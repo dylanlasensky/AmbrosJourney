@@ -1,0 +1,1445 @@
+fileFormatVersion: 2
+guid: 16c64511b60104cbe9fbd86076f3df87
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 1734713548425974268
+    second: Free sword set black outline_0
+  - first:
+      213: -2616246506053895093
+    second: Free sword set black outline_1
+  - first:
+      213: 1227724905063259774
+    second: Free sword set black outline_2
+  - first:
+      213: -131972784428926124
+    second: Free sword set black outline_3
+  - first:
+      213: 2789652475935226730
+    second: Free sword set black outline_4
+  - first:
+      213: 8649199477281664838
+    second: Free sword set black outline_5
+  - first:
+      213: -3017463268123127218
+    second: Free sword set black outline_6
+  - first:
+      213: 3357947812313346618
+    second: Free sword set black outline_7
+  - first:
+      213: -8765483578653111326
+    second: Free sword set black outline_8
+  - first:
+      213: 7384266693306656291
+    second: Free sword set black outline_9
+  - first:
+      213: -3414469495209154910
+    second: Free sword set black outline_10
+  - first:
+      213: 1189248907890753328
+    second: Free sword set black outline_11
+  - first:
+      213: 8173813214904451403
+    second: Free sword set black outline_12
+  - first:
+      213: -5199047638004610893
+    second: Free sword set black outline_13
+  - first:
+      213: 5591737496186812862
+    second: Free sword set black outline_14
+  - first:
+      213: -121384246938181944
+    second: Free sword set black outline_15
+  - first:
+      213: 4684746629069495366
+    second: Free sword set black outline_16
+  - first:
+      213: -7389769717867507394
+    second: Free sword set black outline_17
+  - first:
+      213: 4235974732372448210
+    second: Free sword set black outline_18
+  - first:
+      213: -4680814801308619027
+    second: Free sword set black outline_19
+  - first:
+      213: -5008850396200720107
+    second: Free sword set black outline_20
+  - first:
+      213: -7555406730412263746
+    second: Free sword set black outline_21
+  - first:
+      213: 8178162633651815515
+    second: Free sword set black outline_22
+  - first:
+      213: 7879999551892349085
+    second: Free sword set black outline_23
+  - first:
+      213: -9080441785191901665
+    second: Free sword set black outline_24
+  - first:
+      213: 4031699139323851286
+    second: Free sword set black outline_25
+  - first:
+      213: -9045924294435640398
+    second: Free sword set black outline_26
+  - first:
+      213: -2680876734700105470
+    second: Free sword set black outline_27
+  - first:
+      213: 851361478108411174
+    second: Free sword set black outline_28
+  - first:
+      213: 5005208365996010507
+    second: Free sword set black outline_29
+  - first:
+      213: 6965185906926710694
+    second: Free sword set black outline_30
+  - first:
+      213: -7326661452301557053
+    second: Free sword set black outline_31
+  - first:
+      213: -74048165461463960
+    second: Free sword set black outline_32
+  - first:
+      213: 1973041966392439017
+    second: Free sword set black outline_33
+  - first:
+      213: 3669849607455919849
+    second: Free sword set black outline_34
+  - first:
+      213: 4292424283569052366
+    second: Free sword set black outline_35
+  - first:
+      213: -6916237217259372509
+    second: Free sword set black outline_36
+  - first:
+      213: 562805920711509280
+    second: Free sword set black outline_37
+  - first:
+      213: -7583046742042114152
+    second: Free sword set black outline_38
+  - first:
+      213: 38684459467747705
+    second: Free sword set black outline_39
+  - first:
+      213: 5107492805429453679
+    second: Free sword set black outline_40
+  - first:
+      213: 9003692510642453077
+    second: Free sword set black outline_41
+  - first:
+      213: 6395202768126824033
+    second: Free sword set black outline_42
+  - first:
+      213: -7873244571154236157
+    second: Free sword set black outline_43
+  - first:
+      213: -7906596882255334511
+    second: Free sword set black outline_44
+  - first:
+      213: -3769685549864438491
+    second: Free sword set black outline_45
+  - first:
+      213: 7595820398226628320
+    second: Free sword set black outline_46
+  - first:
+      213: -8444677516194400787
+    second: Free sword set black outline_47
+  - first:
+      213: 995152444426900098
+    second: Free sword set black outline_48
+  - first:
+      213: 4777257319138037611
+    second: Free sword set black outline_49
+  - first:
+      213: 7150655594598334994
+    second: Free sword set black outline_50
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Free sword set black outline_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 63
+        width: 16
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cf1dcf808c0f21810800000000000000
+      internalID: 1734713548425974268
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free sword set black outline_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 47
+        width: 16
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b4cfcc90aa931bbd0800000000000000
+      internalID: -2616246506053895093
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free sword set black outline_2
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 63
+        width: 16
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e7e1230eb41c90110800000000000000
+      internalID: 1227724905063259774
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free sword set black outline_3
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 48
+        width: 16
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 45b3818a3732b2ef0800000000000000
+      internalID: -131972784428926124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free sword set black outline_4
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 63
+        width: 16
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a6b78ea8526d6b620800000000000000
+      internalID: 2789652475935226730
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free sword set black outline_5
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 48
+        width: 15
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64f2ed26911280870800000000000000
+      internalID: 8649199477281664838
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free sword set black outline_6
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 63
+        width: 16
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e425bb41521df16d0800000000000000
+      internalID: -3017463268123127218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free sword set black outline_7
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 47
+        width: 16
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a32bc3f7eb3d99e20800000000000000
+      internalID: 3357947812313346618
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free sword set black outline_8
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 63
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2eb8cd1702fba5680800000000000000
+      internalID: -8765483578653111326
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free sword set black outline_9
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 47
+        width: 17
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 326aa4d1f6f2a7660800000000000000
+      internalID: 7384266693306656291
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free sword set black outline_10
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 63
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a6a6a1b51e5d90d0800000000000000
+      internalID: -3414469495209154910
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free sword set black outline_11
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 47
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 03f7950b49f018010800000000000000
+      internalID: 1189248907890753328
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free sword set black outline_12
+      rect:
+        serializedVersion: 2
+        x: 94
+        y: 63
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b4106ceefc73f6170800000000000000
+      internalID: 8173813214904451403
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free sword set black outline_13
+      rect:
+        serializedVersion: 2
+        x: 94
+        y: 47
+        width: 17
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b8c66e08b549d7b0800000000000000
+      internalID: -5199047638004610893
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free sword set black outline_14
+      rect:
+        serializedVersion: 2
+        x: 110
+        y: 63
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb9727160a7d99d40800000000000000
+      internalID: 5591737496186812862
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free sword set black outline_15
+      rect:
+        serializedVersion: 2
+        x: 110
+        y: 47
+        width: 17
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8cedbe7aba1c05ef0800000000000000
+      internalID: -121384246938181944
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free sword set black outline_16
+      rect:
+        serializedVersion: 2
+        x: 126
+        y: 63
+        width: 18
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64c55600d30930140800000000000000
+      internalID: 4684746629069495366
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free sword set black outline_17
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 47
+        width: 17
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e3191922893427990800000000000000
+      internalID: -7389769717867507394
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free sword set black outline_18
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 63
+        width: 33
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2d31790739439ca30800000000000000
+      internalID: 4235974732372448210
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free sword set black outline_19
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 48
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: deeeb9cfcb76a0fb0800000000000000
+      internalID: -4680814801308619027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free sword set black outline_20
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 47
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 519a1694a1dfc7ab0800000000000000
+      internalID: -5008850396200720107
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free sword set black outline_21
+      rect:
+        serializedVersion: 2
+        x: 174
+        y: 32
+        width: 18
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb67e24eb9dc52790800000000000000
+      internalID: -7555406730412263746
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free sword set black outline_22
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 63
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b548036e59bae7170800000000000000
+      internalID: 8178162633651815515
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free sword set black outline_23
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 31
+        width: 16
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d90e7c8a7d16b5d60800000000000000
+      internalID: 7879999551892349085
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free sword set black outline_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 16
+        width: 16
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f16d50e7e4acbf180800000000000000
+      internalID: -9080441785191901665
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free sword set black outline_25
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 31
+        width: 16
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 61275a0a10973f730800000000000000
+      internalID: 4031699139323851286
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free sword set black outline_26
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 16
+        width: 16
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2bb661518cb667280800000000000000
+      internalID: -9045924294435640398
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free sword set black outline_27
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 31
+        width: 16
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 201579d40dc9bcad0800000000000000
+      internalID: -2680876734700105470
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free sword set black outline_28
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 16
+        width: 16
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6257a1ee0c4a0db00800000000000000
+      internalID: 851361478108411174
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free sword set black outline_29
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 31
+        width: 16
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b0c610a7d72167540800000000000000
+      internalID: 5005208365996010507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free sword set black outline_30
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 16
+        width: 16
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6af6ce0edaf49a060800000000000000
+      internalID: 6965185906926710694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free sword set black outline_31
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 31
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c2a40a3a38725a90800000000000000
+      internalID: -7326661452301557053
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free sword set black outline_32
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 0
+        width: 17
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 86c6669f59de8fef0800000000000000
+      internalID: -74048165461463960
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free sword set black outline_33
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 31
+        width: 17
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e072cdf637a16b10800000000000000
+      internalID: 1973041966392439017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free sword set black outline_34
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 0
+        width: 19
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ee448736ccede230800000000000000
+      internalID: 3669849607455919849
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free sword set black outline_35
+      rect:
+        serializedVersion: 2
+        x: 94
+        y: 31
+        width: 17
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ecad467c421c19b30800000000000000
+      internalID: 4292424283569052366
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free sword set black outline_36
+      rect:
+        serializedVersion: 2
+        x: 94
+        y: 0
+        width: 18
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3204bea05e69400a0800000000000000
+      internalID: -6916237217259372509
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free sword set black outline_37
+      rect:
+        serializedVersion: 2
+        x: 110
+        y: 31
+        width: 17
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0250f75c00d7fc700800000000000000
+      internalID: 562805920711509280
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free sword set black outline_38
+      rect:
+        serializedVersion: 2
+        x: 110
+        y: 0
+        width: 18
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 89785613a2b93c690800000000000000
+      internalID: -7583046742042114152
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free sword set black outline_39
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 32
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 97137e89f4f698000800000000000000
+      internalID: 38684459467747705
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free sword set black outline_40
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 16
+        width: 16
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f636c7855a571e640800000000000000
+      internalID: 5107492805429453679
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free sword set black outline_41
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 15
+        width: 33
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 55a30b382aa83fc70800000000000000
+      internalID: 9003692510642453077
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free sword set black outline_42
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 15
+        width: 17
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 16e4bccc80350c850800000000000000
+      internalID: 6395202768126824033
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free sword set black outline_43
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1
+        width: 16
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 30d349ad6cd9cb290800000000000000
+      internalID: -7873244571154236157
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free sword set black outline_44
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 0
+        width: 32
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 193b5fac600264290800000000000000
+      internalID: -7906596882255334511
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free sword set black outline_45
+      rect:
+        serializedVersion: 2
+        x: 46
+        y: 0
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 525386d07f26fabc0800000000000000
+      internalID: -3769685549864438491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free sword set black outline_46
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 0
+        width: 9
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0eed6f56866c96960800000000000000
+      internalID: 7595820398226628320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free sword set black outline_47
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: de531847a8a7eca80800000000000000
+      internalID: -8444677516194400787
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free sword set black outline_48
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2825d6b20ed7fcd00800000000000000
+      internalID: 995152444426900098
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free sword set black outline_49
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 15
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b6f8bd3883a3c4240800000000000000
+      internalID: 4777257319138037611
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free sword set black outline_50
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2128133a06b3c3360800000000000000
+      internalID: 7150655594598334994
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Free sword set black outline_0: 1734713548425974268
+      Free sword set black outline_1: -2616246506053895093
+      Free sword set black outline_10: -3414469495209154910
+      Free sword set black outline_11: 1189248907890753328
+      Free sword set black outline_12: 8173813214904451403
+      Free sword set black outline_13: -5199047638004610893
+      Free sword set black outline_14: 5591737496186812862
+      Free sword set black outline_15: -121384246938181944
+      Free sword set black outline_16: 4684746629069495366
+      Free sword set black outline_17: -7389769717867507394
+      Free sword set black outline_18: 4235974732372448210
+      Free sword set black outline_19: -4680814801308619027
+      Free sword set black outline_2: 1227724905063259774
+      Free sword set black outline_20: -5008850396200720107
+      Free sword set black outline_21: -7555406730412263746
+      Free sword set black outline_22: 8178162633651815515
+      Free sword set black outline_23: 7879999551892349085
+      Free sword set black outline_24: -9080441785191901665
+      Free sword set black outline_25: 4031699139323851286
+      Free sword set black outline_26: -9045924294435640398
+      Free sword set black outline_27: -2680876734700105470
+      Free sword set black outline_28: 851361478108411174
+      Free sword set black outline_29: 5005208365996010507
+      Free sword set black outline_3: -131972784428926124
+      Free sword set black outline_30: 6965185906926710694
+      Free sword set black outline_31: -7326661452301557053
+      Free sword set black outline_32: -74048165461463960
+      Free sword set black outline_33: 1973041966392439017
+      Free sword set black outline_34: 3669849607455919849
+      Free sword set black outline_35: 4292424283569052366
+      Free sword set black outline_36: -6916237217259372509
+      Free sword set black outline_37: 562805920711509280
+      Free sword set black outline_38: -7583046742042114152
+      Free sword set black outline_39: 38684459467747705
+      Free sword set black outline_4: 2789652475935226730
+      Free sword set black outline_40: 5107492805429453679
+      Free sword set black outline_41: 9003692510642453077
+      Free sword set black outline_42: 6395202768126824033
+      Free sword set black outline_43: -7873244571154236157
+      Free sword set black outline_44: -7906596882255334511
+      Free sword set black outline_45: -3769685549864438491
+      Free sword set black outline_46: 7595820398226628320
+      Free sword set black outline_47: -8444677516194400787
+      Free sword set black outline_48: 995152444426900098
+      Free sword set black outline_49: 4777257319138037611
+      Free sword set black outline_5: 8649199477281664838
+      Free sword set black outline_50: 7150655594598334994
+      Free sword set black outline_6: -3017463268123127218
+      Free sword set black outline_7: 3357947812313346618
+      Free sword set black outline_8: -8765483578653111326
+      Free sword set black outline_9: 7384266693306656291
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,3629 @@
+fileFormatVersion: 2
+guid: 47089d5e26fba42fba1144e6ca715f77
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -7077041442235134328
+    second: disappear animation Groupe 1_0
+  - first:
+      213: 7218156503934806751
+    second: disappear animation Groupe 1_1
+  - first:
+      213: -6880567064751539282
+    second: disappear animation Groupe 1_2
+  - first:
+      213: -1161793390465128258
+    second: disappear animation Groupe 1_3
+  - first:
+      213: 3229153995007617467
+    second: disappear animation Groupe 1_4
+  - first:
+      213: 442577020318710274
+    second: disappear animation Groupe 1_5
+  - first:
+      213: -1517571447292091280
+    second: disappear animation Groupe 1_6
+  - first:
+      213: -701217334174637931
+    second: disappear animation Groupe 1_7
+  - first:
+      213: -2819350701925702623
+    second: disappear animation Groupe 1_8
+  - first:
+      213: -1759620238195499152
+    second: disappear animation Groupe 1_9
+  - first:
+      213: 5937908962225738129
+    second: disappear animation Groupe 1_10
+  - first:
+      213: 4494537513573048443
+    second: disappear animation Groupe 1_11
+  - first:
+      213: 4119739941119864792
+    second: disappear animation Groupe 1_12
+  - first:
+      213: 4989978569766033360
+    second: disappear animation Groupe 1_13
+  - first:
+      213: -3016455943705774440
+    second: disappear animation Groupe 1_14
+  - first:
+      213: -5220997029835505972
+    second: disappear animation Groupe 1_15
+  - first:
+      213: 4850142889974414662
+    second: disappear animation Groupe 1_16
+  - first:
+      213: -4290609048415081619
+    second: disappear animation Groupe 1_17
+  - first:
+      213: -5807943303195262935
+    second: disappear animation Groupe 1_18
+  - first:
+      213: 253352969414422555
+    second: disappear animation Groupe 1_19
+  - first:
+      213: -5391841223254650889
+    second: disappear animation Groupe 1_20
+  - first:
+      213: 5894974303092894909
+    second: disappear animation Groupe 1_21
+  - first:
+      213: -7876657008188950774
+    second: disappear animation Groupe 1_22
+  - first:
+      213: -5540962693807445699
+    second: disappear animation Groupe 1_23
+  - first:
+      213: 3880311570711921197
+    second: disappear animation Groupe 1_24
+  - first:
+      213: 3984211358789866723
+    second: disappear animation Groupe 1_25
+  - first:
+      213: -8456729856402494564
+    second: disappear animation Groupe 1_26
+  - first:
+      213: -2082652895960154050
+    second: disappear animation Groupe 1_27
+  - first:
+      213: 1540628050679080059
+    second: disappear animation Groupe 1_28
+  - first:
+      213: -5726854805626559312
+    second: disappear animation Groupe 1_29
+  - first:
+      213: -2161632904307815874
+    second: disappear animation Groupe 1_30
+  - first:
+      213: 2674369084350978600
+    second: disappear animation Groupe 1_31
+  - first:
+      213: -5186320748946051088
+    second: disappear animation Groupe 1_32
+  - first:
+      213: 2799846254827969345
+    second: disappear animation Groupe 1_33
+  - first:
+      213: 8356356666270315955
+    second: disappear animation Groupe 1_34
+  - first:
+      213: -6012060776047875363
+    second: disappear animation Groupe 1_35
+  - first:
+      213: 7846619901008006121
+    second: disappear animation Groupe 1_36
+  - first:
+      213: 3962785353525113380
+    second: disappear animation Groupe 1_37
+  - first:
+      213: 8139662005630549770
+    second: disappear animation Groupe 1_38
+  - first:
+      213: 8607036655973612854
+    second: disappear animation Groupe 1_39
+  - first:
+      213: 7560723409154227676
+    second: disappear animation Groupe 1_40
+  - first:
+      213: -8885342834282888301
+    second: disappear animation Groupe 1_41
+  - first:
+      213: -2271408939510270690
+    second: disappear animation Groupe 1_42
+  - first:
+      213: -73554593972361940
+    second: disappear animation Groupe 1_43
+  - first:
+      213: 6059870838491608736
+    second: disappear animation Groupe 1_44
+  - first:
+      213: 2617267903592036985
+    second: disappear animation Groupe 1_45
+  - first:
+      213: 3999589709723721884
+    second: disappear animation Groupe 1_46
+  - first:
+      213: 1594253082702398682
+    second: disappear animation Groupe 1_47
+  - first:
+      213: -2821291669933131738
+    second: disappear animation Groupe 1_48
+  - first:
+      213: 7760167548512559557
+    second: disappear animation Groupe 1_49
+  - first:
+      213: -6967437525153038890
+    second: disappear animation Groupe 1_50
+  - first:
+      213: -7965180291198216384
+    second: disappear animation Groupe 1_51
+  - first:
+      213: 4473271426273838578
+    second: disappear animation Groupe 1_52
+  - first:
+      213: -6470386275052049492
+    second: disappear animation Groupe 1_53
+  - first:
+      213: -6801287899307033624
+    second: disappear animation Groupe 1_54
+  - first:
+      213: -5373482094414469634
+    second: disappear animation Groupe 1_55
+  - first:
+      213: -5295784530133575155
+    second: disappear animation Groupe 1_56
+  - first:
+      213: 5051785888740538411
+    second: disappear animation Groupe 1_57
+  - first:
+      213: -5941766896472535915
+    second: disappear animation Groupe 1_58
+  - first:
+      213: -327290590796466543
+    second: disappear animation Groupe 1_59
+  - first:
+      213: -6801522693718757232
+    second: disappear animation Groupe 1_60
+  - first:
+      213: -1953894078375469862
+    second: disappear animation Groupe 1_61
+  - first:
+      213: 2007155520211600886
+    second: disappear animation Groupe 1_62
+  - first:
+      213: 4230602720390261145
+    second: disappear animation Groupe 1_63
+  - first:
+      213: 8627481837355749109
+    second: disappear animation Groupe 1_64
+  - first:
+      213: 6401692048089712110
+    second: disappear animation Groupe 1_65
+  - first:
+      213: -1105953016183818380
+    second: disappear animation Groupe 1_66
+  - first:
+      213: -3814971418001873239
+    second: disappear animation Groupe 1_67
+  - first:
+      213: -8141643050346166423
+    second: disappear animation Groupe 1_68
+  - first:
+      213: 4846667101767348306
+    second: disappear animation Groupe 1_69
+  - first:
+      213: -6974268955881395494
+    second: disappear animation Groupe 1_70
+  - first:
+      213: 3834336974217207143
+    second: disappear animation Groupe 1_71
+  - first:
+      213: 5431379980517950606
+    second: disappear animation Groupe 1_72
+  - first:
+      213: -4596407412845084314
+    second: disappear animation Groupe 1_73
+  - first:
+      213: 5920722436948506732
+    second: disappear animation Groupe 1_74
+  - first:
+      213: -6817680190223181762
+    second: disappear animation Groupe 1_75
+  - first:
+      213: 4817381840494241462
+    second: disappear animation Groupe 1_76
+  - first:
+      213: 9146001710059406513
+    second: disappear animation Groupe 1_77
+  - first:
+      213: 6972655500711477468
+    second: disappear animation Groupe 1_78
+  - first:
+      213: -8250003308901350727
+    second: disappear animation Groupe 1_79
+  - first:
+      213: 3481194677353866220
+    second: disappear animation Groupe 1_80
+  - first:
+      213: -7364782730467227512
+    second: disappear animation Groupe 1_81
+  - first:
+      213: 5696690104567461465
+    second: disappear animation Groupe 1_82
+  - first:
+      213: 2502733281906217494
+    second: disappear animation Groupe 1_83
+  - first:
+      213: 3074998699220563524
+    second: disappear animation Groupe 1_84
+  - first:
+      213: -5060983922287276538
+    second: disappear animation Groupe 1_85
+  - first:
+      213: -6038488839017089689
+    second: disappear animation Groupe 1_86
+  - first:
+      213: -7720129369170771989
+    second: disappear animation Groupe 1_87
+  - first:
+      213: -1935068054098057957
+    second: disappear animation Groupe 1_88
+  - first:
+      213: -3219328565173929824
+    second: disappear animation Groupe 1_89
+  - first:
+      213: 7489571368052961781
+    second: disappear animation Groupe 1_90
+  - first:
+      213: 7564353959806220588
+    second: disappear animation Groupe 1_91
+  - first:
+      213: 6686641518837349165
+    second: disappear animation Groupe 1_92
+  - first:
+      213: -2862213808874396676
+    second: disappear animation Groupe 1_93
+  - first:
+      213: 5804809160932899666
+    second: disappear animation Groupe 1_94
+  - first:
+      213: 6474884735207135583
+    second: disappear animation Groupe 1_95
+  - first:
+      213: 6552469857765814085
+    second: disappear animation Groupe 1_96
+  - first:
+      213: -7389686368852683586
+    second: disappear animation Groupe 1_97
+  - first:
+      213: -8612573276463972842
+    second: disappear animation Groupe 1_98
+  - first:
+      213: 487097951139326674
+    second: disappear animation Groupe 1_99
+  - first:
+      213: 5684491751887676589
+    second: disappear animation Groupe 1_100
+  - first:
+      213: -4984925892187247803
+    second: disappear animation Groupe 1_101
+  - first:
+      213: 234947042901921831
+    second: disappear animation Groupe 1_102
+  - first:
+      213: -8262425954803877571
+    second: disappear animation Groupe 1_103
+  - first:
+      213: -6945808842837882888
+    second: disappear animation Groupe 1_104
+  - first:
+      213: -841891336942928759
+    second: disappear animation Groupe 1_105
+  - first:
+      213: 2164830453523033863
+    second: disappear animation Groupe 1_106
+  - first:
+      213: -5542738206947463325
+    second: disappear animation Groupe 1_107
+  - first:
+      213: -2488716575015505666
+    second: disappear animation Groupe 1_108
+  - first:
+      213: 5366948101469902557
+    second: disappear animation Groupe 1_109
+  - first:
+      213: 7958171669848816739
+    second: disappear animation Groupe 1_110
+  - first:
+      213: -810543897748651741
+    second: disappear animation Groupe 1_111
+  - first:
+      213: -5876844053807067707
+    second: disappear animation Groupe 1_112
+  - first:
+      213: 832052050295602708
+    second: disappear animation Groupe 1_113
+  - first:
+      213: -332762129349654738
+    second: disappear animation Groupe 1_114
+  - first:
+      213: 1079388895706886496
+    second: disappear animation Groupe 1_115
+  - first:
+      213: 7720839718604828788
+    second: disappear animation Groupe 1_116
+  - first:
+      213: -2780587688527510477
+    second: disappear animation Groupe 1_117
+  - first:
+      213: -4789820301229909094
+    second: disappear animation Groupe 1_118
+  - first:
+      213: -8794841066831225754
+    second: disappear animation Groupe 1_119
+  - first:
+      213: 1055001605449601203
+    second: disappear animation Groupe 1_120
+  - first:
+      213: 6374768151810386868
+    second: disappear animation Groupe 1_121
+  - first:
+      213: 2112965707911564744
+    second: disappear animation Groupe 1_122
+  - first:
+      213: -32140929152247080
+    second: disappear animation Groupe 1_123
+  - first:
+      213: -4736532261274418870
+    second: disappear animation Groupe 1_124
+  - first:
+      213: -919623697202703319
+    second: disappear animation Groupe 1_125
+  - first:
+      213: -7582809010875832349
+    second: disappear animation Groupe 1_126
+  - first:
+      213: 6211420099987993055
+    second: disappear animation Groupe 1_127
+  - first:
+      213: -1884899682627659094
+    second: disappear animation Groupe 1_128
+  - first:
+      213: 3400704780709615139
+    second: disappear animation Groupe 1_129
+  - first:
+      213: -2803279851773130619
+    second: disappear animation Groupe 1_130
+  - first:
+      213: 827503197177202208
+    second: disappear animation Groupe 1_131
+  - first:
+      213: 7924018500258638721
+    second: disappear animation Groupe 1_132
+  - first:
+      213: 7310754109040751787
+    second: disappear animation Groupe 1_133
+  - first:
+      213: 2523195534803945481
+    second: disappear animation Groupe 1_134
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_0
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 196
+        width: 19
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 88e4bd6dd4c49cd90800000000000000
+      internalID: -7077041442235134328
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 195
+        width: 24
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fdaa53ec81b0c2460800000000000000
+      internalID: 7218156503934806751
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_2
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 193
+        width: 31
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eab7b3c95b05380a0800000000000000
+      internalID: -6880567064751539282
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_3
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 194
+        width: 22
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb8edea111b70efe0800000000000000
+      internalID: -1161793390465128258
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_4
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 195
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb9667d137240dc20800000000000000
+      internalID: 3229153995007617467
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_5
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 198
+        width: 17
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20af8d18479542600800000000000000
+      internalID: 442577020318710274
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_6
+      rect:
+        serializedVersion: 2
+        x: 181
+        y: 205
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 07421e22fc080fae0800000000000000
+      internalID: -1517571447292091280
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_7
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 201
+        width: 20
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 590ac2ebc86c446f0800000000000000
+      internalID: -701217334174637931
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_8
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 197
+        width: 18
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 12468726977afd8d0800000000000000
+      internalID: -2819350701925702623
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_9
+      rect:
+        serializedVersion: 2
+        x: 265
+        y: 195
+        width: 15
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 07fd4ca57b29497e0800000000000000
+      internalID: -1759620238195499152
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_10
+      rect:
+        serializedVersion: 2
+        x: 295
+        y: 198
+        width: 17
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 191d212adb0b76250800000000000000
+      internalID: 5937908962225738129
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_11
+      rect:
+        serializedVersion: 2
+        x: 326
+        y: 196
+        width: 20
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b7060363e0ecf5e30800000000000000
+      internalID: 4494537513573048443
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_12
+      rect:
+        serializedVersion: 2
+        x: 353
+        y: 191
+        width: 31
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8df207d26a14c2930800000000000000
+      internalID: 4119739941119864792
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_13
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 197
+        width: 20
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0d757b73217ff3540800000000000000
+      internalID: 4989978569766033360
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_14
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 95
+        width: 30
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8963dc21d456326d0800000000000000
+      internalID: -3016455943705774440
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_15
+      rect:
+        serializedVersion: 2
+        x: 447
+        y: 192
+        width: 33
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ccef8470dda4b87b0800000000000000
+      internalID: -5220997029835505972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_16
+      rect:
+        serializedVersion: 2
+        x: 481
+        y: 95
+        width: 31
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64dbfc2e24b2f4340800000000000000
+      internalID: 4850142889974414662
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_17
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 95
+        width: 33
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d6b64279dc1b474c0800000000000000
+      internalID: -4290609048415081619
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_18
+      rect:
+        serializedVersion: 2
+        x: 547
+        y: 196
+        width: 21
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9200079665a066fa0800000000000000
+      internalID: -5807943303195262935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_19
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 192
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b10bcb0fe27148300800000000000000
+      internalID: 253352969414422555
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_20
+      rect:
+        serializedVersion: 2
+        x: 605
+        y: 192
+        width: 34
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ff499289f45c25b0800000000000000
+      internalID: -5391841223254650889
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_21
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 164
+        width: 19
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dbc68ef45e72fc150800000000000000
+      internalID: 5894974303092894909
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_22
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 163
+        width: 24
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a077e41fe2e70b290800000000000000
+      internalID: -7876657008188950774
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_23
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 161
+        width: 31
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d396ae989cb8a13b0800000000000000
+      internalID: -5540962693807445699
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_24
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 162
+        width: 22
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d224f1690d2a9d530800000000000000
+      internalID: 3880311570711921197
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_25
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 163
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e41fbe1f13ca4730800000000000000
+      internalID: 3984211358789866723
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_26
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 166
+        width: 17
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c9b60b35009a3aa80800000000000000
+      internalID: -8456729856402494564
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_27
+      rect:
+        serializedVersion: 2
+        x: 181
+        y: 173
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e304bd9b93ee813e0800000000000000
+      internalID: -2082652895960154050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_28
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 169
+        width: 20
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b74aabbac09616510800000000000000
+      internalID: 1540628050679080059
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_29
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 165
+        width: 18
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0b4e36e75ef1680b0800000000000000
+      internalID: -5726854805626559312
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_30
+      rect:
+        serializedVersion: 2
+        x: 265
+        y: 163
+        width: 15
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e3acfeb83565002e0800000000000000
+      internalID: -2161632904307815874
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_31
+      rect:
+        serializedVersion: 2
+        x: 295
+        y: 166
+        width: 17
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 82ad60743844d1520800000000000000
+      internalID: 2674369084350978600
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_32
+      rect:
+        serializedVersion: 2
+        x: 326
+        y: 164
+        width: 20
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ff25d3d1cc7608b0800000000000000
+      internalID: -5186320748946051088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_33
+      rect:
+        serializedVersion: 2
+        x: 353
+        y: 159
+        width: 31
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 14b9ab4a55d0bd620800000000000000
+      internalID: 2799846254827969345
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_34
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 165
+        width: 20
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b572853d1eb7f370800000000000000
+      internalID: 8356356666270315955
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_35
+      rect:
+        serializedVersion: 2
+        x: 447
+        y: 160
+        width: 33
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dda6b93d39ed09ca0800000000000000
+      internalID: -6012060776047875363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_36
+      rect:
+        serializedVersion: 2
+        x: 547
+        y: 164
+        width: 21
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ebc71f0a3bc4ec60800000000000000
+      internalID: 7846619901008006121
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_37
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4223cf58844aef630800000000000000
+      internalID: 3962785353525113380
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_38
+      rect:
+        serializedVersion: 2
+        x: 605
+        y: 160
+        width: 34
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a0f3a55e773e5f070800000000000000
+      internalID: 8139662005630549770
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_39
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 132
+        width: 19
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63db2109c36527770800000000000000
+      internalID: 8607036655973612854
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_40
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 131
+        width: 24
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cdd3e97d1e51de860800000000000000
+      internalID: 7560723409154227676
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_41
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 129
+        width: 31
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 393810fc4cbe0b480800000000000000
+      internalID: -8885342834282888301
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_42
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 130
+        width: 22
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e15f7dc9a955a70e0800000000000000
+      internalID: -2271408939510270690
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_43
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 131
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c25edaa8c7eaafef0800000000000000
+      internalID: -73554593972361940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_44
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 134
+        width: 17
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a67a09cb6cf81450800000000000000
+      internalID: 6059870838491608736
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_45
+      rect:
+        serializedVersion: 2
+        x: 181
+        y: 141
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 97a72ab9a47625420800000000000000
+      internalID: 2617267903592036985
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_46
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 137
+        width: 20
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c90e36776a5618730800000000000000
+      internalID: 3999589709723721884
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_47
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 133
+        width: 18
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad44c846bbcef1610800000000000000
+      internalID: 1594253082702398682
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_48
+      rect:
+        serializedVersion: 2
+        x: 265
+        y: 131
+        width: 15
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 628fddd8c22c8d8d0800000000000000
+      internalID: -2821291669933131738
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_49
+      rect:
+        serializedVersion: 2
+        x: 295
+        y: 134
+        width: 17
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c1ea9e2547a1bb60800000000000000
+      internalID: 7760167548512559557
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_50
+      rect:
+        serializedVersion: 2
+        x: 326
+        y: 132
+        width: 20
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ddb6866c70be4f90800000000000000
+      internalID: -6967437525153038890
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_51
+      rect:
+        serializedVersion: 2
+        x: 353
+        y: 127
+        width: 31
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 047103bf9bef57190800000000000000
+      internalID: -7965180291198216384
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_52
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 133
+        width: 20
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f505fa69a0441e30800000000000000
+      internalID: 4473271426273838578
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_53
+      rect:
+        serializedVersion: 2
+        x: 447
+        y: 128
+        width: 33
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: caba5f3e6f19436a0800000000000000
+      internalID: -6470386275052049492
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_54
+      rect:
+        serializedVersion: 2
+        x: 547
+        y: 132
+        width: 21
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8eb34aab0b8fc91a0800000000000000
+      internalID: -6801287899307033624
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_55
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 128
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ef5e08b418e8d65b0800000000000000
+      internalID: -5373482094414469634
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_56
+      rect:
+        serializedVersion: 2
+        x: 605
+        y: 128
+        width: 34
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d0a116237089186b0800000000000000
+      internalID: -5295784530133575155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_57
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 100
+        width: 19
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b28f5b3108c8b1640800000000000000
+      internalID: 5051785888740538411
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_58
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 99
+        width: 24
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 59c449d0d7a9a8da0800000000000000
+      internalID: -5941766896472535915
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_59
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 97
+        width: 31
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 196bf3511fa357bf0800000000000000
+      internalID: -327290590796466543
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_60
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 98
+        width: 22
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 090b22565232c91a0800000000000000
+      internalID: -6801522693718757232
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_61
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 99
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: adcd0b910bf52e4e0800000000000000
+      internalID: -1953894078375469862
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_62
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 102
+        width: 17
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f54d2faf49dadb10800000000000000
+      internalID: 2007155520211600886
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_63
+      rect:
+        serializedVersion: 2
+        x: 181
+        y: 109
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 999a9ae62ce16ba30800000000000000
+      internalID: 4230602720390261145
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_64
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 105
+        width: 20
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5fe49bd4509fab770800000000000000
+      internalID: 8627481837355749109
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_65
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 101
+        width: 18
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ee584d7000167d850800000000000000
+      internalID: 6401692048089712110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_66
+      rect:
+        serializedVersion: 2
+        x: 265
+        y: 99
+        width: 15
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4777714679dd6a0f0800000000000000
+      internalID: -1105953016183818380
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_67
+      rect:
+        serializedVersion: 2
+        x: 295
+        y: 102
+        width: 17
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a6eab935bf7e0bc0800000000000000
+      internalID: -3814971418001873239
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_68
+      rect:
+        serializedVersion: 2
+        x: 326
+        y: 100
+        width: 20
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 967c61038c2130f80800000000000000
+      internalID: -8141643050346166423
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_69
+      rect:
+        serializedVersion: 2
+        x: 353
+        y: 95
+        width: 31
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2503a61ec02d24340800000000000000
+      internalID: 4846667101767348306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_70
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 101
+        width: 20
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: adaa7acf55b663f90800000000000000
+      internalID: -6974268955881395494
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_71
+      rect:
+        serializedVersion: 2
+        x: 447
+        y: 96
+        width: 33
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 76ddc51b92d463530800000000000000
+      internalID: 3834336974217207143
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_72
+      rect:
+        serializedVersion: 2
+        x: 547
+        y: 100
+        width: 21
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e84c0fac053206b40800000000000000
+      internalID: 5431379980517950606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_73
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 66185629fc74630c0800000000000000
+      internalID: -4596407412845084314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_74
+      rect:
+        serializedVersion: 2
+        x: 605
+        y: 96
+        width: 34
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c683004efa1aa2250800000000000000
+      internalID: 5920722436948506732
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_75
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 65
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e3897851dfbb261a0800000000000000
+      internalID: -6817680190223181762
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_76
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 65
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b6a316a247cad240800000000000000
+      internalID: 4817381840494241462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_77
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 65
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1b4c43309102dee70800000000000000
+      internalID: 9146001710059406513
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_78
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 65
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd0c4153c39d3c060800000000000000
+      internalID: 6972655500711477468
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_79
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 65
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9b2432173b9128d80800000000000000
+      internalID: -8250003308901350727
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_80
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 65
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ce368a96d10bf4030800000000000000
+      internalID: 3481194677353866220
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_81
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 65
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 888c19e70290bc990800000000000000
+      internalID: -7364782730467227512
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_82
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: 65
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 956f93eb775be0f40800000000000000
+      internalID: 5696690104567461465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_83
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 65
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 612519be8ae7bb220800000000000000
+      internalID: 2502733281906217494
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_84
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 65
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 44674df56079caa20800000000000000
+      internalID: 3074998699220563524
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_85
+      rect:
+        serializedVersion: 2
+        x: 321
+        y: 65
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 60e8a1adfe5c3c9b0800000000000000
+      internalID: -5060983922287276538
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_86
+      rect:
+        serializedVersion: 2
+        x: 353
+        y: 65
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 765b93ae46af23ca0800000000000000
+      internalID: -6038488839017089689
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_87
+      rect:
+        serializedVersion: 2
+        x: 385
+        y: 65
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: beff382ed379cd490800000000000000
+      internalID: -7720129369170771989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_88
+      rect:
+        serializedVersion: 2
+        x: 417
+        y: 65
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b1567437bd14525e0800000000000000
+      internalID: -1935068054098057957
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_89
+      rect:
+        serializedVersion: 2
+        x: 449
+        y: 65
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a83a890ab5a253d0800000000000000
+      internalID: -3219328565173929824
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_90
+      rect:
+        serializedVersion: 2
+        x: 481
+        y: 65
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f1bbb05a7d40f760800000000000000
+      internalID: 7489571368052961781
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_91
+      rect:
+        serializedVersion: 2
+        x: 513
+        y: 65
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c29b19949dbf9f860800000000000000
+      internalID: 7564353959806220588
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_92
+      rect:
+        serializedVersion: 2
+        x: 545
+        y: 65
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d2bbda6b809bbcc50800000000000000
+      internalID: 6686641518837349165
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_93
+      rect:
+        serializedVersion: 2
+        x: 577
+        y: 65
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cf3e2da94bf5748d0800000000000000
+      internalID: -2862213808874396676
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_94
+      rect:
+        serializedVersion: 2
+        x: 609
+        y: 65
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 25bb65a3d23de8050800000000000000
+      internalID: 5804809160932899666
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_95
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 42
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f59de9b7c596bd950800000000000000
+      internalID: 6474884735207135583
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_96
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 42
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 54fe5918e9c0fea50800000000000000
+      internalID: 6552469857765814085
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_97
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 42
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb45df6566f827990800000000000000
+      internalID: -7389686368852683586
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_98
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 42
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 61eb7568c3ef97880800000000000000
+      internalID: -8612573276463972842
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_99
+      rect:
+        serializedVersion: 2
+        x: 137
+        y: 42
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2daea7c710582c600800000000000000
+      internalID: 487097951139326674
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_100
+      rect:
+        serializedVersion: 2
+        x: 169
+        y: 42
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da427ef612f53ee40800000000000000
+      internalID: 5684491751887676589
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_101
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 42
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 54b2884ff4cf1dab0800000000000000
+      internalID: -4984925892187247803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_102
+      rect:
+        serializedVersion: 2
+        x: 233
+        y: 42
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 72092393713b24300800000000000000
+      internalID: 234947042901921831
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_103
+      rect:
+        serializedVersion: 2
+        x: 265
+        y: 42
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d3972fcce57f55d80800000000000000
+      internalID: -8262425954803877571
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_104
+      rect:
+        serializedVersion: 2
+        x: 297
+        y: 42
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8f781ec68a78b9f90800000000000000
+      internalID: -6945808842837882888
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_105
+      rect:
+        serializedVersion: 2
+        x: 329
+        y: 42
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 98cb9022a400154f0800000000000000
+      internalID: -841891336942928759
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_106
+      rect:
+        serializedVersion: 2
+        x: 361
+        y: 42
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 70f2035e3d50b0e10800000000000000
+      internalID: 2164830453523033863
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_107
+      rect:
+        serializedVersion: 2
+        x: 393
+        y: 42
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 36f29eba7fc3413b0800000000000000
+      internalID: -5542738206947463325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_108
+      rect:
+        serializedVersion: 2
+        x: 425
+        y: 42
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ef0f297f57d467dd0800000000000000
+      internalID: -2488716575015505666
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_109
+      rect:
+        serializedVersion: 2
+        x: 457
+        y: 42
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd6121cecda3b7a40800000000000000
+      internalID: 5366948101469902557
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_110
+      rect:
+        serializedVersion: 2
+        x: 489
+        y: 42
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 36c7ae238fa117e60800000000000000
+      internalID: 7958171669848816739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_111
+      rect:
+        serializedVersion: 2
+        x: 521
+        y: 42
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 321c4d39e9e50c4f0800000000000000
+      internalID: -810543897748651741
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_112
+      rect:
+        serializedVersion: 2
+        x: 553
+        y: 42
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5cd867c4871417ea0800000000000000
+      internalID: -5876844053807067707
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_113
+      rect:
+        serializedVersion: 2
+        x: 585
+        y: 42
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 41e318c6eea0c8b00800000000000000
+      internalID: 832052050295602708
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_114
+      rect:
+        serializedVersion: 2
+        x: 617
+        y: 42
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e27496d3b9ac16bf0800000000000000
+      internalID: -332762129349654738
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_115
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 14
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0613c175b72cafe00800000000000000
+      internalID: 1079388895706886496
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_116
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 14
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 470fa2b31dee52b60800000000000000
+      internalID: 7720839718604828788
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_117
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 14
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3344e7eba3e5969d0800000000000000
+      internalID: -2780587688527510477
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_118
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 14
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a9b9c3740d3278db0800000000000000
+      internalID: -4789820301229909094
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_119
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 14
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 66cd18395a272f580800000000000000
+      internalID: -8794841066831225754
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_120
+      rect:
+        serializedVersion: 2
+        x: 172
+        y: 14
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b05a4ade5e14ae00800000000000000
+      internalID: 1055001605449601203
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_121
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 14
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4bba12eebd9b77850800000000000000
+      internalID: 6374768151810386868
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_122
+      rect:
+        serializedVersion: 2
+        x: 236
+        y: 14
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8cd86aacd13c25d10800000000000000
+      internalID: 2112965707911564744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_123
+      rect:
+        serializedVersion: 2
+        x: 268
+        y: 14
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8da1127ceffcd8ff0800000000000000
+      internalID: -32140929152247080
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_124
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 14
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a418f8be005744eb0800000000000000
+      internalID: -4736532261274418870
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_125
+      rect:
+        serializedVersion: 2
+        x: 332
+        y: 14
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9249339ae17dc33f0800000000000000
+      internalID: -919623697202703319
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_126
+      rect:
+        serializedVersion: 2
+        x: 364
+        y: 14
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e76d1b416374c690800000000000000
+      internalID: -7582809010875832349
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_127
+      rect:
+        serializedVersion: 2
+        x: 396
+        y: 14
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fd17182eba5633650800000000000000
+      internalID: 6211420099987993055
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_128
+      rect:
+        serializedVersion: 2
+        x: 428
+        y: 14
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aaa5bbba9bd77d5e0800000000000000
+      internalID: -1884899682627659094
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_129
+      rect:
+        serializedVersion: 2
+        x: 460
+        y: 14
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3265b28fafab13f20800000000000000
+      internalID: 3400704780709615139
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_130
+      rect:
+        serializedVersion: 2
+        x: 492
+        y: 14
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5888d05c3dfb819d0800000000000000
+      internalID: -2803279851773130619
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_131
+      rect:
+        serializedVersion: 2
+        x: 524
+        y: 14
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0264f3606c1eb7b00800000000000000
+      internalID: 827503197177202208
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_132
+      rect:
+        serializedVersion: 2
+        x: 556
+        y: 14
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18b2a8db7d4c7fd60800000000000000
+      internalID: 7924018500258638721
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_133
+      rect:
+        serializedVersion: 2
+        x: 588
+        y: 14
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba4f99dc024057560800000000000000
+      internalID: 7310754109040751787
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disappear animation Groupe 1_134
+      rect:
+        serializedVersion: 2
+        x: 619
+        y: 14
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 90847de68f0340320800000000000000
+      internalID: 2523195534803945481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      disappear animation Groupe 1_0: -7077041442235134328
+      disappear animation Groupe 1_1: 7218156503934806751
+      disappear animation Groupe 1_10: 5937908962225738129
+      disappear animation Groupe 1_100: 5684491751887676589
+      disappear animation Groupe 1_101: -4984925892187247803
+      disappear animation Groupe 1_102: 234947042901921831
+      disappear animation Groupe 1_103: -8262425954803877571
+      disappear animation Groupe 1_104: -6945808842837882888
+      disappear animation Groupe 1_105: -841891336942928759
+      disappear animation Groupe 1_106: 2164830453523033863
+      disappear animation Groupe 1_107: -5542738206947463325
+      disappear animation Groupe 1_108: -2488716575015505666
+      disappear animation Groupe 1_109: 5366948101469902557
+      disappear animation Groupe 1_11: 4494537513573048443
+      disappear animation Groupe 1_110: 7958171669848816739
+      disappear animation Groupe 1_111: -810543897748651741
+      disappear animation Groupe 1_112: -5876844053807067707
+      disappear animation Groupe 1_113: 832052050295602708
+      disappear animation Groupe 1_114: -332762129349654738
+      disappear animation Groupe 1_115: 1079388895706886496
+      disappear animation Groupe 1_116: 7720839718604828788
+      disappear animation Groupe 1_117: -2780587688527510477
+      disappear animation Groupe 1_118: -4789820301229909094
+      disappear animation Groupe 1_119: -8794841066831225754
+      disappear animation Groupe 1_12: 4119739941119864792
+      disappear animation Groupe 1_120: 1055001605449601203
+      disappear animation Groupe 1_121: 6374768151810386868
+      disappear animation Groupe 1_122: 2112965707911564744
+      disappear animation Groupe 1_123: -32140929152247080
+      disappear animation Groupe 1_124: -4736532261274418870
+      disappear animation Groupe 1_125: -919623697202703319
+      disappear animation Groupe 1_126: -7582809010875832349
+      disappear animation Groupe 1_127: 6211420099987993055
+      disappear animation Groupe 1_128: -1884899682627659094
+      disappear animation Groupe 1_129: 3400704780709615139
+      disappear animation Groupe 1_13: 4989978569766033360
+      disappear animation Groupe 1_130: -2803279851773130619
+      disappear animation Groupe 1_131: 827503197177202208
+      disappear animation Groupe 1_132: 7924018500258638721
+      disappear animation Groupe 1_133: 7310754109040751787
+      disappear animation Groupe 1_134: 2523195534803945481
+      disappear animation Groupe 1_14: -3016455943705774440
+      disappear animation Groupe 1_15: -5220997029835505972
+      disappear animation Groupe 1_16: 4850142889974414662
+      disappear animation Groupe 1_17: -4290609048415081619
+      disappear animation Groupe 1_18: -5807943303195262935
+      disappear animation Groupe 1_19: 253352969414422555
+      disappear animation Groupe 1_2: -6880567064751539282
+      disappear animation Groupe 1_20: -5391841223254650889
+      disappear animation Groupe 1_21: 5894974303092894909
+      disappear animation Groupe 1_22: -7876657008188950774
+      disappear animation Groupe 1_23: -5540962693807445699
+      disappear animation Groupe 1_24: 3880311570711921197
+      disappear animation Groupe 1_25: 3984211358789866723
+      disappear animation Groupe 1_26: -8456729856402494564
+      disappear animation Groupe 1_27: -2082652895960154050
+      disappear animation Groupe 1_28: 1540628050679080059
+      disappear animation Groupe 1_29: -5726854805626559312
+      disappear animation Groupe 1_3: -1161793390465128258
+      disappear animation Groupe 1_30: -2161632904307815874
+      disappear animation Groupe 1_31: 2674369084350978600
+      disappear animation Groupe 1_32: -5186320748946051088
+      disappear animation Groupe 1_33: 2799846254827969345
+      disappear animation Groupe 1_34: 8356356666270315955
+      disappear animation Groupe 1_35: -6012060776047875363
+      disappear animation Groupe 1_36: 7846619901008006121
+      disappear animation Groupe 1_37: 3962785353525113380
+      disappear animation Groupe 1_38: 8139662005630549770
+      disappear animation Groupe 1_39: 8607036655973612854
+      disappear animation Groupe 1_4: 3229153995007617467
+      disappear animation Groupe 1_40: 7560723409154227676
+      disappear animation Groupe 1_41: -8885342834282888301
+      disappear animation Groupe 1_42: -2271408939510270690
+      disappear animation Groupe 1_43: -73554593972361940
+      disappear animation Groupe 1_44: 6059870838491608736
+      disappear animation Groupe 1_45: 2617267903592036985
+      disappear animation Groupe 1_46: 3999589709723721884
+      disappear animation Groupe 1_47: 1594253082702398682
+      disappear animation Groupe 1_48: -2821291669933131738
+      disappear animation Groupe 1_49: 7760167548512559557
+      disappear animation Groupe 1_5: 442577020318710274
+      disappear animation Groupe 1_50: -6967437525153038890
+      disappear animation Groupe 1_51: -7965180291198216384
+      disappear animation Groupe 1_52: 4473271426273838578
+      disappear animation Groupe 1_53: -6470386275052049492
+      disappear animation Groupe 1_54: -6801287899307033624
+      disappear animation Groupe 1_55: -5373482094414469634
+      disappear animation Groupe 1_56: -5295784530133575155
+      disappear animation Groupe 1_57: 5051785888740538411
+      disappear animation Groupe 1_58: -5941766896472535915
+      disappear animation Groupe 1_59: -327290590796466543
+      disappear animation Groupe 1_6: -1517571447292091280
+      disappear animation Groupe 1_60: -6801522693718757232
+      disappear animation Groupe 1_61: -1953894078375469862
+      disappear animation Groupe 1_62: 2007155520211600886
+      disappear animation Groupe 1_63: 4230602720390261145
+      disappear animation Groupe 1_64: 8627481837355749109
+      disappear animation Groupe 1_65: 6401692048089712110
+      disappear animation Groupe 1_66: -1105953016183818380
+      disappear animation Groupe 1_67: -3814971418001873239
+      disappear animation Groupe 1_68: -8141643050346166423
+      disappear animation Groupe 1_69: 4846667101767348306
+      disappear animation Groupe 1_7: -701217334174637931
+      disappear animation Groupe 1_70: -6974268955881395494
+      disappear animation Groupe 1_71: 3834336974217207143
+      disappear animation Groupe 1_72: 5431379980517950606
+      disappear animation Groupe 1_73: -4596407412845084314
+      disappear animation Groupe 1_74: 5920722436948506732
+      disappear animation Groupe 1_75: -6817680190223181762
+      disappear animation Groupe 1_76: 4817381840494241462
+      disappear animation Groupe 1_77: 9146001710059406513
+      disappear animation Groupe 1_78: 6972655500711477468
+      disappear animation Groupe 1_79: -8250003308901350727
+      disappear animation Groupe 1_8: -2819350701925702623
+      disappear animation Groupe 1_80: 3481194677353866220
+      disappear animation Groupe 1_81: -7364782730467227512
+      disappear animation Groupe 1_82: 5696690104567461465
+      disappear animation Groupe 1_83: 2502733281906217494
+      disappear animation Groupe 1_84: 3074998699220563524
+      disappear animation Groupe 1_85: -5060983922287276538
+      disappear animation Groupe 1_86: -6038488839017089689
+      disappear animation Groupe 1_87: -7720129369170771989
+      disappear animation Groupe 1_88: -1935068054098057957
+      disappear animation Groupe 1_89: -3219328565173929824
+      disappear animation Groupe 1_9: -1759620238195499152
+      disappear animation Groupe 1_90: 7489571368052961781
+      disappear animation Groupe 1_91: 7564353959806220588
+      disappear animation Groupe 1_92: 6686641518837349165
+      disappear animation Groupe 1_93: -2862213808874396676
+      disappear animation Groupe 1_94: 5804809160932899666
+      disappear animation Groupe 1_95: 6474884735207135583
+      disappear animation Groupe 1_96: 6552469857765814085
+      disappear animation Groupe 1_97: -7389686368852683586
+      disappear animation Groupe 1_98: -8612573276463972842
+      disappear animation Groupe 1_99: 487097951139326674
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

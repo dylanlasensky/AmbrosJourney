@@ -1,0 +1,2173 @@
+fileFormatVersion: 2
+guid: d362c24d43ba747c68f8123bd95790bb
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 5306211230059298291
+    second: IDLE animation Groupe 1_0
+  - first:
+      213: 106733926080603690
+    second: IDLE animation Groupe 1_1
+  - first:
+      213: 7390473172581268971
+    second: IDLE animation Groupe 1_2
+  - first:
+      213: 6060785550388810239
+    second: IDLE animation Groupe 1_3
+  - first:
+      213: -7783293591841696106
+    second: IDLE animation Groupe 1_4
+  - first:
+      213: 8587226749895192997
+    second: IDLE animation Groupe 1_5
+  - first:
+      213: 869002870892829709
+    second: IDLE animation Groupe 1_6
+  - first:
+      213: -4117179057004851642
+    second: IDLE animation Groupe 1_7
+  - first:
+      213: 673966540089429623
+    second: IDLE animation Groupe 1_8
+  - first:
+      213: -6597692748075898464
+    second: IDLE animation Groupe 1_9
+  - first:
+      213: 5342241868376578088
+    second: IDLE animation Groupe 1_10
+  - first:
+      213: -3178309152164873630
+    second: IDLE animation Groupe 1_11
+  - first:
+      213: -6847433389160431396
+    second: IDLE animation Groupe 1_12
+  - first:
+      213: -239866052312976312
+    second: IDLE animation Groupe 1_13
+  - first:
+      213: 5430123517323198155
+    second: IDLE animation Groupe 1_14
+  - first:
+      213: -1568206667264264034
+    second: IDLE animation Groupe 1_15
+  - first:
+      213: 2386363922670600889
+    second: IDLE animation Groupe 1_16
+  - first:
+      213: 8718870249142286090
+    second: IDLE animation Groupe 1_17
+  - first:
+      213: 3677955001647759362
+    second: IDLE animation Groupe 1_18
+  - first:
+      213: 23192915598186823
+    second: IDLE animation Groupe 1_19
+  - first:
+      213: -8570322615138488387
+    second: IDLE animation Groupe 1_20
+  - first:
+      213: 5540497083868725106
+    second: IDLE animation Groupe 1_21
+  - first:
+      213: 5442912389558192914
+    second: IDLE animation Groupe 1_22
+  - first:
+      213: 6661432776391334010
+    second: IDLE animation Groupe 1_23
+  - first:
+      213: -7251541103737205405
+    second: IDLE animation Groupe 1_24
+  - first:
+      213: -3042092084725326654
+    second: IDLE animation Groupe 1_25
+  - first:
+      213: 2350076368098483666
+    second: IDLE animation Groupe 1_26
+  - first:
+      213: 2257755417589351881
+    second: IDLE animation Groupe 1_27
+  - first:
+      213: -4007862298478634447
+    second: IDLE animation Groupe 1_28
+  - first:
+      213: -2837154776226958969
+    second: IDLE animation Groupe 1_29
+  - first:
+      213: 1440524385144397607
+    second: IDLE animation Groupe 1_30
+  - first:
+      213: -3850455063706548875
+    second: IDLE animation Groupe 1_31
+  - first:
+      213: -8199771615662649076
+    second: IDLE animation Groupe 1_32
+  - first:
+      213: -8477513510888331505
+    second: IDLE animation Groupe 1_33
+  - first:
+      213: 724041566332775567
+    second: IDLE animation Groupe 1_34
+  - first:
+      213: -8596918281310757342
+    second: IDLE animation Groupe 1_35
+  - first:
+      213: 4167114218530571530
+    second: IDLE animation Groupe 1_36
+  - first:
+      213: -5999239908580221648
+    second: IDLE animation Groupe 1_37
+  - first:
+      213: 6336237698575394003
+    second: IDLE animation Groupe 1_38
+  - first:
+      213: 2413856069825138775
+    second: IDLE animation Groupe 1_39
+  - first:
+      213: -8395211331800523420
+    second: IDLE animation Groupe 1_40
+  - first:
+      213: 5911215575774243378
+    second: IDLE animation Groupe 1_41
+  - first:
+      213: 2465680068653686848
+    second: IDLE animation Groupe 1_42
+  - first:
+      213: -3640780209173407087
+    second: IDLE animation Groupe 1_43
+  - first:
+      213: 1998751733481244348
+    second: IDLE animation Groupe 1_44
+  - first:
+      213: 8076027664181288041
+    second: IDLE animation Groupe 1_45
+  - first:
+      213: -7909965202693437115
+    second: IDLE animation Groupe 1_46
+  - first:
+      213: 678101893260319645
+    second: IDLE animation Groupe 1_47
+  - first:
+      213: -6963423973311905409
+    second: IDLE animation Groupe 1_48
+  - first:
+      213: 2819625278477129600
+    second: IDLE animation Groupe 1_49
+  - first:
+      213: 1947463459062635944
+    second: IDLE animation Groupe 1_50
+  - first:
+      213: 8763099215662242941
+    second: IDLE animation Groupe 1_51
+  - first:
+      213: -2965966213384615285
+    second: IDLE animation Groupe 1_52
+  - first:
+      213: 4344898291089141905
+    second: IDLE animation Groupe 1_53
+  - first:
+      213: 8381770388467098562
+    second: IDLE animation Groupe 1_54
+  - first:
+      213: -7642400288717015002
+    second: IDLE animation Groupe 1_55
+  - first:
+      213: 4462206753366073095
+    second: IDLE animation Groupe 1_56
+  - first:
+      213: 517478935491851067
+    second: IDLE animation Groupe 1_57
+  - first:
+      213: -625439474470897320
+    second: IDLE animation Groupe 1_58
+  - first:
+      213: -7836750159499883704
+    second: IDLE animation Groupe 1_59
+  - first:
+      213: 7293970834160037332
+    second: IDLE animation Groupe 1_60
+  - first:
+      213: 9069722649847472171
+    second: IDLE animation Groupe 1_61
+  - first:
+      213: 3982439201359762574
+    second: IDLE animation Groupe 1_62
+  - first:
+      213: -2158083411334833388
+    second: IDLE animation Groupe 1_63
+  - first:
+      213: -7227561044322771916
+    second: IDLE animation Groupe 1_64
+  - first:
+      213: 2119197784072399145
+    second: IDLE animation Groupe 1_65
+  - first:
+      213: -5025342027626084665
+    second: IDLE animation Groupe 1_66
+  - first:
+      213: 6637838089210435393
+    second: IDLE animation Groupe 1_67
+  - first:
+      213: 8410571720663725990
+    second: IDLE animation Groupe 1_68
+  - first:
+      213: -633248810989655880
+    second: IDLE animation Groupe 1_69
+  - first:
+      213: 5042711130256336725
+    second: IDLE animation Groupe 1_70
+  - first:
+      213: 731202269891127810
+    second: IDLE animation Groupe 1_71
+  - first:
+      213: 7135416892154627969
+    second: IDLE animation Groupe 1_72
+  - first:
+      213: -7392150445279435502
+    second: IDLE animation Groupe 1_73
+  - first:
+      213: 20024305312564188
+    second: IDLE animation Groupe 1_74
+  - first:
+      213: -7303842125756947085
+    second: IDLE animation Groupe 1_75
+  - first:
+      213: -5777568139127540871
+    second: IDLE animation Groupe 1_76
+  - first:
+      213: -5897845597814950605
+    second: IDLE animation Groupe 1_77
+  - first:
+      213: 3161323527571318598
+    second: IDLE animation Groupe 1_78
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: IDLE animation Groupe 1_0
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 100
+        width: 19
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3fd7fde000373a940800000000000000
+      internalID: 5306211230059298291
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IDLE animation Groupe 1_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 99
+        width: 24
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a266485b0f13b7100800000000000000
+      internalID: 106733926080603690
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IDLE animation Groupe 1_2
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 97
+        width: 31
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bedb2cda13c309660800000000000000
+      internalID: 7390473172581268971
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IDLE animation Groupe 1_3
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 98
+        width: 22
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff1debeb85c3c1450800000000000000
+      internalID: 6060785550388810239
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IDLE animation Groupe 1_4
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 99
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 69693b347bf2cf390800000000000000
+      internalID: -7783293591841696106
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IDLE animation Groupe 1_5
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 102
+        width: 17
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5a13c316b35fb2770800000000000000
+      internalID: 8587226749895192997
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IDLE animation Groupe 1_6
+      rect:
+        serializedVersion: 2
+        x: 181
+        y: 109
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d0c9c54c1815f0c00800000000000000
+      internalID: 869002870892829709
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IDLE animation Groupe 1_7
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 105
+        width: 20
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64e4c8e1677dcd6c0800000000000000
+      internalID: -4117179057004851642
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IDLE animation Groupe 1_8
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 101
+        width: 18
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 77e87845ff86a5900800000000000000
+      internalID: 673966540089429623
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IDLE animation Groupe 1_9
+      rect:
+        serializedVersion: 2
+        x: 265
+        y: 99
+        width: 15
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a9e3c5d6694074a0800000000000000
+      internalID: -6597692748075898464
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IDLE animation Groupe 1_10
+      rect:
+        serializedVersion: 2
+        x: 295
+        y: 102
+        width: 17
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8281ec4cca4732a40800000000000000
+      internalID: 5342241868376578088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IDLE animation Groupe 1_11
+      rect:
+        serializedVersion: 2
+        x: 326
+        y: 100
+        width: 20
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 26af6de5aa064e3d0800000000000000
+      internalID: -3178309152164873630
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IDLE animation Groupe 1_12
+      rect:
+        serializedVersion: 2
+        x: 353
+        y: 63
+        width: 31
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd081ff9c9709f0a0800000000000000
+      internalID: -6847433389160431396
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IDLE animation Groupe 1_13
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 101
+        width: 20
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 844b536a813dbacf0800000000000000
+      internalID: -239866052312976312
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IDLE animation Groupe 1_14
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 95
+        width: 30
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bce3b88a19cab5b40800000000000000
+      internalID: 5430123517323198155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IDLE animation Groupe 1_15
+      rect:
+        serializedVersion: 2
+        x: 447
+        y: 96
+        width: 33
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e987057485c9c3ae0800000000000000
+      internalID: -1568206667264264034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IDLE animation Groupe 1_16
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 32
+        width: 32
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9b2c69b18511e1120800000000000000
+      internalID: 2386363922670600889
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IDLE animation Groupe 1_17
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 95
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a07f8da0c46aff870800000000000000
+      internalID: 8718870249142286090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IDLE animation Groupe 1_18
+      rect:
+        serializedVersion: 2
+        x: 547
+        y: 100
+        width: 21
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 200061d5698ba0330800000000000000
+      internalID: 3677955001647759362
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IDLE animation Groupe 1_19
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 93
+        width: 32
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 749198775d5625000800000000000000
+      internalID: 23192915598186823
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IDLE animation Groupe 1_20
+      rect:
+        serializedVersion: 2
+        x: 605
+        y: 96
+        width: 34
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dbf6c223df8101980800000000000000
+      internalID: -8570322615138488387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IDLE animation Groupe 1_21
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 68
+        width: 19
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 27f35133ebcc3ec40800000000000000
+      internalID: 5540497083868725106
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IDLE animation Groupe 1_22
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 67
+        width: 24
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 21b40330bfb198b40800000000000000
+      internalID: 5442912389558192914
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IDLE animation Groupe 1_23
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 65
+        width: 30
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a7813fbf0d9227c50800000000000000
+      internalID: 6661432776391334010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IDLE animation Groupe 1_24
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 66
+        width: 22
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 36d899559c95d5b90800000000000000
+      internalID: -7251541103737205405
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IDLE animation Groupe 1_25
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 67
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2cc5bebdd5158c5d0800000000000000
+      internalID: -3042092084725326654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IDLE animation Groupe 1_26
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 70
+        width: 17
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2dddc8b61062d9020800000000000000
+      internalID: 2350076368098483666
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IDLE animation Groupe 1_27
+      rect:
+        serializedVersion: 2
+        x: 181
+        y: 77
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9c580271798255f10800000000000000
+      internalID: 2257755417589351881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IDLE animation Groupe 1_28
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 73
+        width: 18
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 13a108e59763168c0800000000000000
+      internalID: -4007862298478634447
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IDLE animation Groupe 1_29
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 69
+        width: 17
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 781703e43c660a8d0800000000000000
+      internalID: -2837154776226958969
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IDLE animation Groupe 1_30
+      rect:
+        serializedVersion: 2
+        x: 265
+        y: 67
+        width: 15
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 72fd1dacb45cdf310800000000000000
+      internalID: 1440524385144397607
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IDLE animation Groupe 1_31
+      rect:
+        serializedVersion: 2
+        x: 295
+        y: 70
+        width: 17
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 575ca28258f609ac0800000000000000
+      internalID: -3850455063706548875
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IDLE animation Groupe 1_32
+      rect:
+        serializedVersion: 2
+        x: 326
+        y: 69
+        width: 20
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c01d819e82f843e80800000000000000
+      internalID: -8199771615662649076
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IDLE animation Groupe 1_33
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 69
+        width: 20
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f072deca062d95a80800000000000000
+      internalID: -8477513510888331505
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IDLE animation Groupe 1_34
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 63
+        width: 30
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f8ce1ebe7ff4c0a00800000000000000
+      internalID: 724041566332775567
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IDLE animation Groupe 1_35
+      rect:
+        serializedVersion: 2
+        x: 447
+        y: 64
+        width: 33
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 22e196f1f5c91b880800000000000000
+      internalID: -8596918281310757342
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IDLE animation Groupe 1_36
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 32
+        width: 33
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a058efdad4094d930800000000000000
+      internalID: 4167114218530571530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IDLE animation Groupe 1_37
+      rect:
+        serializedVersion: 2
+        x: 547
+        y: 68
+        width: 21
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 03d9ab6a61b6ebca0800000000000000
+      internalID: -5999239908580221648
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IDLE animation Groupe 1_38
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 64
+        width: 33
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d46604bd96dee750800000000000000
+      internalID: 6336237698575394003
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IDLE animation Groupe 1_39
+      rect:
+        serializedVersion: 2
+        x: 605
+        y: 64
+        width: 34
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 75019dc6e4dbf7120800000000000000
+      internalID: 2413856069825138775
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IDLE animation Groupe 1_40
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 35
+        width: 19
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 46d12b106c73e7b80800000000000000
+      internalID: -8395211331800523420
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IDLE animation Groupe 1_41
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 34
+        width: 24
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 23aa7c84f3bd80250800000000000000
+      internalID: 5911215575774243378
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IDLE animation Groupe 1_42
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 33
+        width: 31
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0402ddd65fad73220800000000000000
+      internalID: 2465680068653686848
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IDLE animation Groupe 1_43
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 34
+        width: 22
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 19a52fe70b9597dc0800000000000000
+      internalID: -3640780209173407087
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IDLE animation Groupe 1_44
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 35
+        width: 25
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb6885c9c1efcbb10800000000000000
+      internalID: 1998751733481244348
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IDLE animation Groupe 1_45
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 38
+        width: 17
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 96cd0c73f50d31070800000000000000
+      internalID: 8076027664181288041
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IDLE animation Groupe 1_46
+      rect:
+        serializedVersion: 2
+        x: 181
+        y: 46
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 549c1c39e882a3290800000000000000
+      internalID: -7909965202693437115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IDLE animation Groupe 1_47
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 41
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d9b1d45441a196900800000000000000
+      internalID: 678101893260319645
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IDLE animation Groupe 1_48
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 37
+        width: 18
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f710e424ac2fc5f90800000000000000
+      internalID: -6963423973311905409
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IDLE animation Groupe 1_49
+      rect:
+        serializedVersion: 2
+        x: 265
+        y: 35
+        width: 15
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 08757537042512720800000000000000
+      internalID: 2819625278477129600
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IDLE animation Groupe 1_50
+      rect:
+        serializedVersion: 2
+        x: 295
+        y: 37
+        width: 17
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8ad5b7aa2b7c60b10800000000000000
+      internalID: 1947463459062635944
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IDLE animation Groupe 1_51
+      rect:
+        serializedVersion: 2
+        x: 326
+        y: 37
+        width: 20
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d7c5d09ce48cc9970800000000000000
+      internalID: 8763099215662242941
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IDLE animation Groupe 1_52
+      rect:
+        serializedVersion: 2
+        x: 353
+        y: 31
+        width: 32
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b8a466b7175c6d6d0800000000000000
+      internalID: -2965966213384615285
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IDLE animation Groupe 1_53
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 37
+        width: 20
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 190f199b9fd2c4c30800000000000000
+      internalID: 4344898291089141905
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IDLE animation Groupe 1_54
+      rect:
+        serializedVersion: 2
+        x: 415
+        y: 0
+        width: 31
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c3287182c7025470800000000000000
+      internalID: 8381770388467098562
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IDLE animation Groupe 1_55
+      rect:
+        serializedVersion: 2
+        x: 447
+        y: 32
+        width: 33
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 628fda7bd6db0f590800000000000000
+      internalID: -7642400288717015002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IDLE animation Groupe 1_56
+      rect:
+        serializedVersion: 2
+        x: 547
+        y: 36
+        width: 21
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 70fdbb08661fced30800000000000000
+      internalID: 4462206753366073095
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IDLE animation Groupe 1_57
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 33
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b333db0a9547e2700800000000000000
+      internalID: 517478935491851067
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IDLE animation Groupe 1_58
+      rect:
+        serializedVersion: 2
+        x: 606
+        y: 32
+        width: 34
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 859b7a79c1ef157f0800000000000000
+      internalID: -625439474470897320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IDLE animation Groupe 1_59
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 2
+        width: 18
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 84b068530454e3390800000000000000
+      internalID: -7836750159499883704
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IDLE animation Groupe 1_60
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 2
+        width: 24
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4dd2b2c14d3693560800000000000000
+      internalID: 7293970834160037332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IDLE animation Groupe 1_61
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 1
+        width: 31
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b20297352b02edd70800000000000000
+      internalID: 9069722649847472171
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IDLE animation Groupe 1_62
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 2
+        width: 22
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e8493a09a57744730800000000000000
+      internalID: 3982439201359762574
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IDLE animation Groupe 1_63
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 3
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 41b59b74292fc02e0800000000000000
+      internalID: -2158083411334833388
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IDLE animation Groupe 1_64
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 6
+        width: 17
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 43c90b0068b82bb90800000000000000
+      internalID: -7227561044322771916
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IDLE animation Groupe 1_65
+      rect:
+        serializedVersion: 2
+        x: 181
+        y: 14
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9292e681827e86d10800000000000000
+      internalID: 2119197784072399145
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IDLE animation Groupe 1_66
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 9
+        width: 20
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c681802d06624ab0800000000000000
+      internalID: -5025342027626084665
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IDLE animation Groupe 1_67
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 5
+        width: 18
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 14712f7c2965e1c50800000000000000
+      internalID: 6637838089210435393
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IDLE animation Groupe 1_68
+      rect:
+        serializedVersion: 2
+        x: 265
+        y: 4
+        width: 15
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a77b183b6a58b470800000000000000
+      internalID: 8410571720663725990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IDLE animation Groupe 1_69
+      rect:
+        serializedVersion: 2
+        x: 295
+        y: 5
+        width: 17
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8b8e58ebf8f3637f0800000000000000
+      internalID: -633248810989655880
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IDLE animation Groupe 1_70
+      rect:
+        serializedVersion: 2
+        x: 326
+        y: 4
+        width: 20
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 55766d73e0f4bf540800000000000000
+      internalID: 5042711130256336725
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IDLE animation Groupe 1_71
+      rect:
+        serializedVersion: 2
+        x: 353
+        y: 0
+        width: 31
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20ae1d32790c52a00800000000000000
+      internalID: 731202269891127810
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IDLE animation Groupe 1_72
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 6
+        width: 20
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 187c23dbbd7160360800000000000000
+      internalID: 7135416892154627969
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IDLE animation Groupe 1_73
+      rect:
+        serializedVersion: 2
+        x: 447
+        y: 0
+        width: 33
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 215afd6d55ec96990800000000000000
+      internalID: -7392150445279435502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IDLE animation Groupe 1_74
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 0
+        width: 32
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd38705eff3274000800000000000000
+      internalID: 20024305312564188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IDLE animation Groupe 1_75
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 37529b6b84a83aa90800000000000000
+      internalID: -7303842125756947085
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IDLE animation Groupe 1_76
+      rect:
+        serializedVersion: 2
+        x: 547
+        y: 4
+        width: 21
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 97330b96364f1dfa0800000000000000
+      internalID: -5777568139127540871
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IDLE animation Groupe 1_77
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 335732a4da4a62ea0800000000000000
+      internalID: -5897845597814950605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IDLE animation Groupe 1_78
+      rect:
+        serializedVersion: 2
+        x: 605
+        y: 0
+        width: 34
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64729f8bff64fdb20800000000000000
+      internalID: 3161323527571318598
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      IDLE animation Groupe 1_0: 5306211230059298291
+      IDLE animation Groupe 1_1: 106733926080603690
+      IDLE animation Groupe 1_10: 5342241868376578088
+      IDLE animation Groupe 1_11: -3178309152164873630
+      IDLE animation Groupe 1_12: -6847433389160431396
+      IDLE animation Groupe 1_13: -239866052312976312
+      IDLE animation Groupe 1_14: 5430123517323198155
+      IDLE animation Groupe 1_15: -1568206667264264034
+      IDLE animation Groupe 1_16: 2386363922670600889
+      IDLE animation Groupe 1_17: 8718870249142286090
+      IDLE animation Groupe 1_18: 3677955001647759362
+      IDLE animation Groupe 1_19: 23192915598186823
+      IDLE animation Groupe 1_2: 7390473172581268971
+      IDLE animation Groupe 1_20: -8570322615138488387
+      IDLE animation Groupe 1_21: 5540497083868725106
+      IDLE animation Groupe 1_22: 5442912389558192914
+      IDLE animation Groupe 1_23: 6661432776391334010
+      IDLE animation Groupe 1_24: -7251541103737205405
+      IDLE animation Groupe 1_25: -3042092084725326654
+      IDLE animation Groupe 1_26: 2350076368098483666
+      IDLE animation Groupe 1_27: 2257755417589351881
+      IDLE animation Groupe 1_28: -4007862298478634447
+      IDLE animation Groupe 1_29: -2837154776226958969
+      IDLE animation Groupe 1_3: 6060785550388810239
+      IDLE animation Groupe 1_30: 1440524385144397607
+      IDLE animation Groupe 1_31: -3850455063706548875
+      IDLE animation Groupe 1_32: -8199771615662649076
+      IDLE animation Groupe 1_33: -8477513510888331505
+      IDLE animation Groupe 1_34: 724041566332775567
+      IDLE animation Groupe 1_35: -8596918281310757342
+      IDLE animation Groupe 1_36: 4167114218530571530
+      IDLE animation Groupe 1_37: -5999239908580221648
+      IDLE animation Groupe 1_38: 6336237698575394003
+      IDLE animation Groupe 1_39: 2413856069825138775
+      IDLE animation Groupe 1_4: -7783293591841696106
+      IDLE animation Groupe 1_40: -8395211331800523420
+      IDLE animation Groupe 1_41: 5911215575774243378
+      IDLE animation Groupe 1_42: 2465680068653686848
+      IDLE animation Groupe 1_43: -3640780209173407087
+      IDLE animation Groupe 1_44: 1998751733481244348
+      IDLE animation Groupe 1_45: 8076027664181288041
+      IDLE animation Groupe 1_46: -7909965202693437115
+      IDLE animation Groupe 1_47: 678101893260319645
+      IDLE animation Groupe 1_48: -6963423973311905409
+      IDLE animation Groupe 1_49: 2819625278477129600
+      IDLE animation Groupe 1_5: 8587226749895192997
+      IDLE animation Groupe 1_50: 1947463459062635944
+      IDLE animation Groupe 1_51: 8763099215662242941
+      IDLE animation Groupe 1_52: -2965966213384615285
+      IDLE animation Groupe 1_53: 4344898291089141905
+      IDLE animation Groupe 1_54: 8381770388467098562
+      IDLE animation Groupe 1_55: -7642400288717015002
+      IDLE animation Groupe 1_56: 4462206753366073095
+      IDLE animation Groupe 1_57: 517478935491851067
+      IDLE animation Groupe 1_58: -625439474470897320
+      IDLE animation Groupe 1_59: -7836750159499883704
+      IDLE animation Groupe 1_6: 869002870892829709
+      IDLE animation Groupe 1_60: 7293970834160037332
+      IDLE animation Groupe 1_61: 9069722649847472171
+      IDLE animation Groupe 1_62: 3982439201359762574
+      IDLE animation Groupe 1_63: -2158083411334833388
+      IDLE animation Groupe 1_64: -7227561044322771916
+      IDLE animation Groupe 1_65: 2119197784072399145
+      IDLE animation Groupe 1_66: -5025342027626084665
+      IDLE animation Groupe 1_67: 6637838089210435393
+      IDLE animation Groupe 1_68: 8410571720663725990
+      IDLE animation Groupe 1_69: -633248810989655880
+      IDLE animation Groupe 1_7: -4117179057004851642
+      IDLE animation Groupe 1_70: 5042711130256336725
+      IDLE animation Groupe 1_71: 731202269891127810
+      IDLE animation Groupe 1_72: 7135416892154627969
+      IDLE animation Groupe 1_73: -7392150445279435502
+      IDLE animation Groupe 1_74: 20024305312564188
+      IDLE animation Groupe 1_75: -7303842125756947085
+      IDLE animation Groupe 1_76: -5777568139127540871
+      IDLE animation Groupe 1_77: -5897845597814950605
+      IDLE animation Groupe 1_78: 3161323527571318598
+      IDLE animation Groupe 1_8: 673966540089429623
+      IDLE animation Groupe 1_9: -6597692748075898464
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

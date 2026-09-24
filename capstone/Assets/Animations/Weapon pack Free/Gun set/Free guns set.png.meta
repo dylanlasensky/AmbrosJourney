@@ -1,0 +1,2901 @@
+fileFormatVersion: 2
+guid: 884b3c307172842d193101f68a5bc2a0
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -4165112875398058744
+    second: Free guns set_0
+  - first:
+      213: 2530867489509409743
+    second: Free guns set_1
+  - first:
+      213: -4511425024213537152
+    second: Free guns set_2
+  - first:
+      213: 6615531850260371511
+    second: Free guns set_3
+  - first:
+      213: -9099711591098787015
+    second: Free guns set_4
+  - first:
+      213: 3225135756436842146
+    second: Free guns set_5
+  - first:
+      213: 9174702416676041848
+    second: Free guns set_6
+  - first:
+      213: -2596816977243613798
+    second: Free guns set_7
+  - first:
+      213: -3042991713980692102
+    second: Free guns set_8
+  - first:
+      213: -3571102371356353609
+    second: Free guns set_9
+  - first:
+      213: -7760883903154661369
+    second: Free guns set_10
+  - first:
+      213: 8362937242493128198
+    second: Free guns set_11
+  - first:
+      213: 8398047334844517446
+    second: Free guns set_12
+  - first:
+      213: -5450872471365525417
+    second: Free guns set_13
+  - first:
+      213: 3894805956748927469
+    second: Free guns set_14
+  - first:
+      213: -8780357712650712941
+    second: Free guns set_15
+  - first:
+      213: -3091220302116368936
+    second: Free guns set_16
+  - first:
+      213: -1499878637482820569
+    second: Free guns set_17
+  - first:
+      213: -6244265883709904219
+    second: Free guns set_18
+  - first:
+      213: -6531522362087194345
+    second: Free guns set_19
+  - first:
+      213: 7692739954498210433
+    second: Free guns set_20
+  - first:
+      213: -2636919617532038934
+    second: Free guns set_21
+  - first:
+      213: 4640752179431801816
+    second: Free guns set_22
+  - first:
+      213: 2961372332181921223
+    second: Free guns set_23
+  - first:
+      213: 3499111997904705797
+    second: Free guns set_24
+  - first:
+      213: -6474817035480753697
+    second: Free guns set_25
+  - first:
+      213: 8474232201714262678
+    second: Free guns set_26
+  - first:
+      213: -4861140122919892774
+    second: Free guns set_27
+  - first:
+      213: -8847665186614623141
+    second: Free guns set_28
+  - first:
+      213: -1420655646449480088
+    second: Free guns set_29
+  - first:
+      213: -1465875064306112498
+    second: Free guns set_30
+  - first:
+      213: -3898132026336478312
+    second: Free guns set_31
+  - first:
+      213: -5964387250251068626
+    second: Free guns set_32
+  - first:
+      213: -4240976367805994102
+    second: Free guns set_33
+  - first:
+      213: 8828433116635980795
+    second: Free guns set_34
+  - first:
+      213: -5372402417907554354
+    second: Free guns set_35
+  - first:
+      213: 77623144006834648
+    second: Free guns set_36
+  - first:
+      213: -3205307977383233781
+    second: Free guns set_37
+  - first:
+      213: -711292697015392996
+    second: Free guns set_38
+  - first:
+      213: -6444860593837887481
+    second: Free guns set_39
+  - first:
+      213: 8390191617573568656
+    second: Free guns set_40
+  - first:
+      213: -5199903568219530548
+    second: Free guns set_41
+  - first:
+      213: -8791635111134679281
+    second: Free guns set_42
+  - first:
+      213: 8840526304154259221
+    second: Free guns set_43
+  - first:
+      213: -8108164078336133515
+    second: Free guns set_44
+  - first:
+      213: -1323737527214676171
+    second: Free guns set_45
+  - first:
+      213: 6088853161692534349
+    second: Free guns set_46
+  - first:
+      213: -3534075008939170297
+    second: Free guns set_47
+  - first:
+      213: 613673068276515377
+    second: Free guns set_48
+  - first:
+      213: 7435370811666556364
+    second: Free guns set_49
+  - first:
+      213: -7953566292938106894
+    second: Free guns set_50
+  - first:
+      213: -7317301022661932811
+    second: Free guns set_51
+  - first:
+      213: 1905449320697109654
+    second: Free guns set_52
+  - first:
+      213: -5287431070009830665
+    second: Free guns set_53
+  - first:
+      213: 1448596450809370672
+    second: Free guns set_54
+  - first:
+      213: 1369853861178926056
+    second: Free guns set_55
+  - first:
+      213: -7564609587605231841
+    second: Free guns set_56
+  - first:
+      213: 1046744914159764325
+    second: Free guns set_57
+  - first:
+      213: -2172130445070903927
+    second: Free guns set_58
+  - first:
+      213: -5721371643209957714
+    second: Free guns set_59
+  - first:
+      213: 6633616431842635799
+    second: Free guns set_60
+  - first:
+      213: -5513347807088358509
+    second: Free guns set_61
+  - first:
+      213: -1466185832731561551
+    second: Free guns set_62
+  - first:
+      213: -7964150933825088185
+    second: Free guns set_63
+  - first:
+      213: -6204888428738942233
+    second: Free guns set_64
+  - first:
+      213: 5166304795930692094
+    second: Free guns set_65
+  - first:
+      213: 8402991289728472339
+    second: Free guns set_66
+  - first:
+      213: 3075618675058568585
+    second: Free guns set_67
+  - first:
+      213: -3642495037964475536
+    second: Free guns set_68
+  - first:
+      213: -2652899073816170517
+    second: Free guns set_69
+  - first:
+      213: 9001923179274913101
+    second: Free guns set_70
+  - first:
+      213: -402046395211074938
+    second: Free guns set_71
+  - first:
+      213: 3568225244712797704
+    second: Free guns set_72
+  - first:
+      213: -8513589130580667812
+    second: Free guns set_73
+  - first:
+      213: -3504710969742812548
+    second: Free guns set_74
+  - first:
+      213: 611089408376961750
+    second: Free guns set_75
+  - first:
+      213: -3452947347651257713
+    second: Free guns set_76
+  - first:
+      213: 566967183268667270
+    second: Free guns set_77
+  - first:
+      213: -8997770970697257476
+    second: Free guns set_78
+  - first:
+      213: 5596110312772556854
+    second: Free guns set_79
+  - first:
+      213: 5579233439834242831
+    second: Free guns set_80
+  - first:
+      213: -7135483530335111011
+    second: Free guns set_81
+  - first:
+      213: -2474271440468130579
+    second: Free guns set_82
+  - first:
+      213: 4034415352011207939
+    second: Free guns set_83
+  - first:
+      213: 2061870504015080796
+    second: Free guns set_84
+  - first:
+      213: 1895174489014760983
+    second: Free guns set_85
+  - first:
+      213: 9217871877439371011
+    second: Free guns set_86
+  - first:
+      213: 2148654844699971306
+    second: Free guns set_87
+  - first:
+      213: -7243396218678040470
+    second: Free guns set_88
+  - first:
+      213: 8300192778977590489
+    second: Free guns set_89
+  - first:
+      213: 5221942527007548815
+    second: Free guns set_90
+  - first:
+      213: -8400890108839943786
+    second: Free guns set_91
+  - first:
+      213: -445254499398262845
+    second: Free guns set_92
+  - first:
+      213: -9185837007443479752
+    second: Free guns set_93
+  - first:
+      213: -3988759358879009065
+    second: Free guns set_94
+  - first:
+      213: -3822069103935403581
+    second: Free guns set_95
+  - first:
+      213: -1702038588934208821
+    second: Free guns set_96
+  - first:
+      213: -1847938974783550875
+    second: Free guns set_97
+  - first:
+      213: 8675458034020159188
+    second: Free guns set_98
+  - first:
+      213: 2662316488885717054
+    second: Free guns set_99
+  - first:
+      213: 6859206692780240900
+    second: Free guns set_100
+  - first:
+      213: -6364929771209504758
+    second: Free guns set_101
+  - first:
+      213: -7150931116579957339
+    second: Free guns set_102
+  - first:
+      213: -6852724424072952085
+    second: Free guns set_103
+  - first:
+      213: 753947262271444474
+    second: Free guns set_104
+  - first:
+      213: -1589195869833298953
+    second: Free guns set_105
+  - first:
+      213: -7265008727425884977
+    second: Free guns set_106
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Free guns set_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 68
+        width: 16
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 80d2e7458eb8236c0800000000000000
+      internalID: -4165112875398058744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_1
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 68
+        width: 15
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc30bc592927f1320800000000000000
+      internalID: 2530867489509409743
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_2
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 68
+        width: 16
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 08ea1f0d7d23461c0800000000000000
+      internalID: -4511425024213537152
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_3
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 68
+        width: 17
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7385d0fca271fcb50800000000000000
+      internalID: 6615531850260371511
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_4
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 66
+        width: 15
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 93b5d0e258457b180800000000000000
+      internalID: -9099711591098787015
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_5
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 66
+        width: 15
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a624da02ebf1cc20800000000000000
+      internalID: 3225135756436842146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_6
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 66
+        width: 16
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 874b4e10d37135f70800000000000000
+      internalID: 9174702416676041848
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_7
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 66
+        width: 14
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a95d0bcb7b046fbd0800000000000000
+      internalID: -2596816977243613798
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_8
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 65
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a7949b9982f15c5d0800000000000000
+      internalID: -3042991713980692102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_9
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 65
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7bbdfb25055e07ec0800000000000000
+      internalID: -3571102371356353609
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_10
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 65
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7085b61853dcb4490800000000000000
+      internalID: -7760883903154661369
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_11
+      rect:
+        serializedVersion: 2
+        x: 177
+        y: 65
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 60e00b10d1f1f0470800000000000000
+      internalID: 8362937242493128198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_12
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 67
+        width: 18
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64cc2586e8bdb8470800000000000000
+      internalID: 8398047334844517446
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_13
+      rect:
+        serializedVersion: 2
+        x: 207
+        y: 67
+        width: 17
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7506d440e5c9a54b0800000000000000
+      internalID: -5450872471365525417
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_14
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 67
+        width: 34
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: de16811d1612d0630800000000000000
+      internalID: 3894805956748927469
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_15
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 65
+        width: 17
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 398c7904e27e52680800000000000000
+      internalID: -8780357712650712941
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_16
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 65
+        width: 17
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8ddc0e16387c915d0800000000000000
+      internalID: -3091220302116368936
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_17
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 65
+        width: 18
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 72cb3ae635c5f2be0800000000000000
+      internalID: -1499878637482820569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_18
+      rect:
+        serializedVersion: 2
+        x: 305
+        y: 65
+        width: 16
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5aa61662349e759a0800000000000000
+      internalID: -6244265883709904219
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_19
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 64
+        width: 18
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 711c545640f5b55a0800000000000000
+      internalID: -6531522362087194345
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_20
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 64
+        width: 18
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18a02511b3a12ca60800000000000000
+      internalID: 7692739954498210433
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_21
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 64
+        width: 18
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ae07ebf2497c76bd0800000000000000
+      internalID: -2636919617532038934
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_22
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d307a9f483476040800000000000000
+      internalID: 4640752179431801816
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_23
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 52
+        width: 16
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7cd9f533278e81920800000000000000
+      internalID: 2961372332181921223
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_24
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 52
+        width: 16
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 509da60b2d75f8030800000000000000
+      internalID: 3499111997904705797
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_25
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 52
+        width: 16
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fd995861634d426a0800000000000000
+      internalID: -6474817035480753697
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_26
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 50
+        width: 16
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 692ea5ff9458a9570800000000000000
+      internalID: 8474232201714262678
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_27
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 48
+        width: 15
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad806f940d2c98cb0800000000000000
+      internalID: -4861140122919892774
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_28
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 48
+        width: 15
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b54ce34c367c63580800000000000000
+      internalID: -8847665186614623141
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_29
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 50
+        width: 16
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 86ec93d6731d84ce0800000000000000
+      internalID: -1420655646449480088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_30
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 50
+        width: 15
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e086ee2456a28abe0800000000000000
+      internalID: -1465875064306112498
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_31
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 50
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 89bf3a2439d07e9c0800000000000000
+      internalID: -3898132026336478312
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_32
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 49
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e2b8ae5856d3a3da0800000000000000
+      internalID: -5964387250251068626
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_33
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 49
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a8be81096760525c0800000000000000
+      internalID: -4240976367805994102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_34
+      rect:
+        serializedVersion: 2
+        x: 177
+        y: 50
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bf3e1600525e48a70800000000000000
+      internalID: 8828433116635980795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_35
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 49
+        width: 66
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ec7ab2217746175b0800000000000000
+      internalID: -5372402417907554354
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_36
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 33
+        width: 49
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d950e496d5c31100800000000000000
+      internalID: 77623144006834648
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_37
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 49
+        width: 33
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b07b85480657483d0800000000000000
+      internalID: -3205307977383233781
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_38
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 49
+        width: 18
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c1561178f0bf026f0800000000000000
+      internalID: -711292697015392996
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_39
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 48
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 700316daf614f86a0800000000000000
+      internalID: -6444860593837887481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_40
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 48
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 090cee2b2d2ff6470800000000000000
+      internalID: 8390191617573568656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_41
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 49
+        width: 16
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cca1df5414b36d7b0800000000000000
+      internalID: -5199903568219530548
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_42
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 36
+        width: 16
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f0f27fd4276ddf580800000000000000
+      internalID: -8791635111134679281
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_43
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 36
+        width: 16
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 51f8c92a5dbdfaa70800000000000000
+      internalID: 8840526304154259221
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_44
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 36
+        width: 16
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 576313acab30a7f80800000000000000
+      internalID: -8108164078336133515
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_45
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 36
+        width: 16
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 537e3828bb321ade0800000000000000
+      internalID: -1323737527214676171
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_46
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 35
+        width: 16
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d469230c0b3ff7450800000000000000
+      internalID: 6088853161692534349
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_47
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 34
+        width: 16
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7066892f08174fec0800000000000000
+      internalID: -3534075008939170297
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_48
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 34
+        width: 15
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 13288da7764348800800000000000000
+      internalID: 613673068276515377
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_49
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 35
+        width: 15
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc561b2eb5ebf2760800000000000000
+      internalID: 7435370811666556364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_50
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 33
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f757eba8914f9190800000000000000
+      internalID: -7953566292938106894
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_51
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 33
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f802a51d79b37a90800000000000000
+      internalID: -7317301022661932811
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_52
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 34
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 69c19a9cf04817a10800000000000000
+      internalID: 1905449320697109654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_53
+      rect:
+        serializedVersion: 2
+        x: 177
+        y: 33
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7f253b1b4754f96b0800000000000000
+      internalID: -5287431070009830665
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_54
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 35
+        width: 18
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 03852690cc27a1410800000000000000
+      internalID: 1448596450809370672
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_55
+      rect:
+        serializedVersion: 2
+        x: 207
+        y: 35
+        width: 18
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e364c534d2b20310800000000000000
+      internalID: 1369853861178926056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_56
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 35
+        width: 34
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f17a64ab8ab150790800000000000000
+      internalID: -7564609587605231841
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_57
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 34
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 56380fa14f8c68e00800000000000000
+      internalID: 1046744914159764325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_58
+      rect:
+        serializedVersion: 2
+        x: 319
+        y: 32
+        width: 19
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 985dcbf5eda0bd1e0800000000000000
+      internalID: -2172130445070903927
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_59
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 32
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eae3a7abdca9990b0800000000000000
+      internalID: -5721371643209957714
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_60
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 33
+        width: 18
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 710bc249ff65f0c50800000000000000
+      internalID: 6633616431842635799
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_61
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 32
+        width: 16
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 39bc1536167ac73b0800000000000000
+      internalID: -5513347807088358509
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_62
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 20
+        width: 16
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1b13359d0cf07abe0800000000000000
+      internalID: -1466185832731561551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_63
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 20
+        width: 16
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 74592cbebe6a97190800000000000000
+      internalID: -7964150933825088185
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_64
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 20
+        width: 16
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ea651659dec3e9a0800000000000000
+      internalID: -6204888428738942233
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_65
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 20
+        width: 16
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ef988d2f6d662b740800000000000000
+      internalID: 5166304795930692094
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_66
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 19
+        width: 17
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 31597fa9e0c6d9470800000000000000
+      internalID: 8402991289728472339
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_67
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 19
+        width: 15
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 98d6c6fb3eaceaa20800000000000000
+      internalID: 3075618675058568585
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_68
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 20
+        width: 16
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 073210ecf02437dc0800000000000000
+      internalID: -3642495037964475536
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_69
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 19
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bef693819520f2bd0800000000000000
+      internalID: -2652899073816170517
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_70
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 17
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d454904ff614dec70800000000000000
+      internalID: 9001923179274913101
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_71
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 18
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 682b7360fe4ab6af0800000000000000
+      internalID: -402046395211074938
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_72
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 17
+        width: 15
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 80600bd64f1e48130800000000000000
+      internalID: 3568225244712797704
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_73
+      rect:
+        serializedVersion: 2
+        x: 177
+        y: 18
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c52dc1ceac7a9d980800000000000000
+      internalID: -8513589130580667812
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_74
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 19
+        width: 34
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c7a901811f3cc5fc0800000000000000
+      internalID: -3504710969742812548
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_75
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 18
+        width: 66
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6daff4844960b7800800000000000000
+      internalID: 611089408376961750
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_76
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 19
+        width: 18
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f8a9e1b8eaaa410d0800000000000000
+      internalID: -3452947347651257713
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_77
+      rect:
+        serializedVersion: 2
+        x: 305
+        y: 18
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 68f580636a54ed700800000000000000
+      internalID: 566967183268667270
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_78
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 16
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cfda44179fe712380800000000000000
+      internalID: -8997770970697257476
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_79
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 17
+        width: 18
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63855b41ea069ad40800000000000000
+      internalID: 5596110312772556854
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_80
+      rect:
+        serializedVersion: 2
+        x: 353
+        y: 16
+        width: 17
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f0ffc44e04b6d6d40800000000000000
+      internalID: 5579233439834242831
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_81
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 17
+        width: 16
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d98b9b9d88ba9fc90800000000000000
+      internalID: -7135483530335111011
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_82
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1
+        width: 15
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: de4c001fb3f99add0800000000000000
+      internalID: -2474271440468130579
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_83
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 1
+        width: 15
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 305b20d236f1df730800000000000000
+      internalID: 4034415352011207939
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_84
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 1
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c5daca49c4c3d9c10800000000000000
+      internalID: 2061870504015080796
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_85
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 2
+        width: 14
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7167b1d18230d4a10800000000000000
+      internalID: 1895174489014760983
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_86
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 1
+        width: 16
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 30736d752a57cef70800000000000000
+      internalID: 9217871877439371011
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_87
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aee834b723e81dd10800000000000000
+      internalID: 2148654844699971306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_88
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 1
+        width: 15
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a68a94a24894a7b90800000000000000
+      internalID: -7243396218678040470
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_89
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 1
+        width: 16
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9dcb83e2b55303370800000000000000
+      internalID: 8300192778977590489
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_90
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 2
+        width: 15
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f856acfaf01187840800000000000000
+      internalID: 5221942527007548815
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_91
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 2
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 691a081b4fa0a6b80800000000000000
+      internalID: -8400890108839943786
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_92
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 9
+        width: 9
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3cfd8b0546322d9f0800000000000000
+      internalID: -445254499398262845
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_93
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 2
+        width: 14
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 833b1be09e9558080800000000000000
+      internalID: -9185837007443479752
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_94
+      rect:
+        serializedVersion: 2
+        x: 178
+        y: 2
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d670871f7415a8c0800000000000000
+      internalID: -3988759358879009065
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_95
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 0
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c94fe0766845fac0800000000000000
+      internalID: -3822069103935403581
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_96
+      rect:
+        serializedVersion: 2
+        x: 207
+        y: 0
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc2c190dbe42168e0800000000000000
+      internalID: -1702038588934208821
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_97
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: 0
+        width: 15
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 56a4d611b4dca56e0800000000000000
+      internalID: -1847938974783550875
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_98
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 1
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4de849d0e1b656870800000000000000
+      internalID: 8675458034020159188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_99
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 0
+        width: 18
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e38c2b7bdb272f420800000000000000
+      internalID: 2662316488885717054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_100
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 0
+        width: 18
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 400f52c352cc03f50800000000000000
+      internalID: 6859206692780240900
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_101
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 0
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a08cfbe881a3ba7a0800000000000000
+      internalID: -6364929771209504758
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_102
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 0
+        width: 18
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5a5d6f6690ac2cc90800000000000000
+      internalID: -7150931116579957339
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_103
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 1
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be60d7f817b36e0a0800000000000000
+      internalID: -6852724424072952085
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_104
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 1
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: af5511b5a0f867a00800000000000000
+      internalID: 753947262271444474
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_105
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 1
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7fb711cb6ca02f9e0800000000000000
+      internalID: -1589195869833298953
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free guns set_106
+      rect:
+        serializedVersion: 2
+        x: 369
+        y: 1
+        width: 15
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fccdaa7dd018d2b90800000000000000
+      internalID: -7265008727425884977
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Free guns set_0: -4165112875398058744
+      Free guns set_1: 2530867489509409743
+      Free guns set_10: -7760883903154661369
+      Free guns set_100: 6859206692780240900
+      Free guns set_101: -6364929771209504758
+      Free guns set_102: -7150931116579957339
+      Free guns set_103: -6852724424072952085
+      Free guns set_104: 753947262271444474
+      Free guns set_105: -1589195869833298953
+      Free guns set_106: -7265008727425884977
+      Free guns set_11: 8362937242493128198
+      Free guns set_12: 8398047334844517446
+      Free guns set_13: -5450872471365525417
+      Free guns set_14: 3894805956748927469
+      Free guns set_15: -8780357712650712941
+      Free guns set_16: -3091220302116368936
+      Free guns set_17: -1499878637482820569
+      Free guns set_18: -6244265883709904219
+      Free guns set_19: -6531522362087194345
+      Free guns set_2: -4511425024213537152
+      Free guns set_20: 7692739954498210433
+      Free guns set_21: -2636919617532038934
+      Free guns set_22: 4640752179431801816
+      Free guns set_23: 2961372332181921223
+      Free guns set_24: 3499111997904705797
+      Free guns set_25: -6474817035480753697
+      Free guns set_26: 8474232201714262678
+      Free guns set_27: -4861140122919892774
+      Free guns set_28: -8847665186614623141
+      Free guns set_29: -1420655646449480088
+      Free guns set_3: 6615531850260371511
+      Free guns set_30: -1465875064306112498
+      Free guns set_31: -3898132026336478312
+      Free guns set_32: -5964387250251068626
+      Free guns set_33: -4240976367805994102
+      Free guns set_34: 8828433116635980795
+      Free guns set_35: -5372402417907554354
+      Free guns set_36: 77623144006834648
+      Free guns set_37: -3205307977383233781
+      Free guns set_38: -711292697015392996
+      Free guns set_39: -6444860593837887481
+      Free guns set_4: -9099711591098787015
+      Free guns set_40: 8390191617573568656
+      Free guns set_41: -5199903568219530548
+      Free guns set_42: -8791635111134679281
+      Free guns set_43: 8840526304154259221
+      Free guns set_44: -8108164078336133515
+      Free guns set_45: -1323737527214676171
+      Free guns set_46: 6088853161692534349
+      Free guns set_47: -3534075008939170297
+      Free guns set_48: 613673068276515377
+      Free guns set_49: 7435370811666556364
+      Free guns set_5: 3225135756436842146
+      Free guns set_50: -7953566292938106894
+      Free guns set_51: -7317301022661932811
+      Free guns set_52: 1905449320697109654
+      Free guns set_53: -5287431070009830665
+      Free guns set_54: 1448596450809370672
+      Free guns set_55: 1369853861178926056
+      Free guns set_56: -7564609587605231841
+      Free guns set_57: 1046744914159764325
+      Free guns set_58: -2172130445070903927
+      Free guns set_59: -5721371643209957714
+      Free guns set_6: 9174702416676041848
+      Free guns set_60: 6633616431842635799
+      Free guns set_61: -5513347807088358509
+      Free guns set_62: -1466185832731561551
+      Free guns set_63: -7964150933825088185
+      Free guns set_64: -6204888428738942233
+      Free guns set_65: 5166304795930692094
+      Free guns set_66: 8402991289728472339
+      Free guns set_67: 3075618675058568585
+      Free guns set_68: -3642495037964475536
+      Free guns set_69: -2652899073816170517
+      Free guns set_7: -2596816977243613798
+      Free guns set_70: 9001923179274913101
+      Free guns set_71: -402046395211074938
+      Free guns set_72: 3568225244712797704
+      Free guns set_73: -8513589130580667812
+      Free guns set_74: -3504710969742812548
+      Free guns set_75: 611089408376961750
+      Free guns set_76: -3452947347651257713
+      Free guns set_77: 566967183268667270
+      Free guns set_78: -8997770970697257476
+      Free guns set_79: 5596110312772556854
+      Free guns set_8: -3042991713980692102
+      Free guns set_80: 5579233439834242831
+      Free guns set_81: -7135483530335111011
+      Free guns set_82: -2474271440468130579
+      Free guns set_83: 4034415352011207939
+      Free guns set_84: 2061870504015080796
+      Free guns set_85: 1895174489014760983
+      Free guns set_86: 9217871877439371011
+      Free guns set_87: 2148654844699971306
+      Free guns set_88: -7243396218678040470
+      Free guns set_89: 8300192778977590489
+      Free guns set_9: -3571102371356353609
+      Free guns set_90: 5221942527007548815
+      Free guns set_91: -8400890108839943786
+      Free guns set_92: -445254499398262845
+      Free guns set_93: -9185837007443479752
+      Free guns set_94: -3988759358879009065
+      Free guns set_95: -3822069103935403581
+      Free guns set_96: -1702038588934208821
+      Free guns set_97: -1847938974783550875
+      Free guns set_98: 8675458034020159188
+      Free guns set_99: 2662316488885717054
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

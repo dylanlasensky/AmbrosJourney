@@ -1,0 +1,2121 @@
+fileFormatVersion: 2
+guid: acfa6469266e041029f0f7fa3e7f4e29
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6042976072073078435
+    second: Attack animation Groupe 1_0
+  - first:
+      213: -5662447321524620950
+    second: Attack animation Groupe 1_1
+  - first:
+      213: 6105051340292380175
+    second: Attack animation Groupe 1_2
+  - first:
+      213: -5058931760364528283
+    second: Attack animation Groupe 1_3
+  - first:
+      213: -645316975870207976
+    second: Attack animation Groupe 1_4
+  - first:
+      213: 4826789423539322115
+    second: Attack animation Groupe 1_5
+  - first:
+      213: -2169277532456572972
+    second: Attack animation Groupe 1_6
+  - first:
+      213: -910395011941865229
+    second: Attack animation Groupe 1_7
+  - first:
+      213: -1021658540039670397
+    second: Attack animation Groupe 1_8
+  - first:
+      213: 6280751761234329407
+    second: Attack animation Groupe 1_9
+  - first:
+      213: -8248309529981182582
+    second: Attack animation Groupe 1_10
+  - first:
+      213: -3671197685962235261
+    second: Attack animation Groupe 1_11
+  - first:
+      213: -4190479819770339988
+    second: Attack animation Groupe 1_12
+  - first:
+      213: -2639379914202430637
+    second: Attack animation Groupe 1_13
+  - first:
+      213: -8610192751973960239
+    second: Attack animation Groupe 1_14
+  - first:
+      213: 7872094838531299616
+    second: Attack animation Groupe 1_15
+  - first:
+      213: -3264398786550093203
+    second: Attack animation Groupe 1_16
+  - first:
+      213: -4306040004117154755
+    second: Attack animation Groupe 1_17
+  - first:
+      213: 8539896696854117984
+    second: Attack animation Groupe 1_18
+  - first:
+      213: 811326443304240593
+    second: Attack animation Groupe 1_19
+  - first:
+      213: 5536976942969647408
+    second: Attack animation Groupe 1_20
+  - first:
+      213: 7080795262047032700
+    second: Attack animation Groupe 1_21
+  - first:
+      213: -8805901248112979636
+    second: Attack animation Groupe 1_22
+  - first:
+      213: 5778462956265525939
+    second: Attack animation Groupe 1_23
+  - first:
+      213: -5987826753505254966
+    second: Attack animation Groupe 1_24
+  - first:
+      213: 3646151603558526073
+    second: Attack animation Groupe 1_25
+  - first:
+      213: -929722014997307477
+    second: Attack animation Groupe 1_26
+  - first:
+      213: -786994895626896645
+    second: Attack animation Groupe 1_27
+  - first:
+      213: 6015554243634798998
+    second: Attack animation Groupe 1_28
+  - first:
+      213: -4456067109640982534
+    second: Attack animation Groupe 1_29
+  - first:
+      213: 6691454014089783640
+    second: Attack animation Groupe 1_30
+  - first:
+      213: 2890036267835199063
+    second: Attack animation Groupe 1_31
+  - first:
+      213: -1646444347178171488
+    second: Attack animation Groupe 1_32
+  - first:
+      213: 7120550299920655140
+    second: Attack animation Groupe 1_33
+  - first:
+      213: -3723462267652806690
+    second: Attack animation Groupe 1_34
+  - first:
+      213: 4196505324725387391
+    second: Attack animation Groupe 1_35
+  - first:
+      213: 4887911063905820327
+    second: Attack animation Groupe 1_36
+  - first:
+      213: 8817341940857056076
+    second: Attack animation Groupe 1_37
+  - first:
+      213: -8300652483425244064
+    second: Attack animation Groupe 1_38
+  - first:
+      213: -6113786826453447458
+    second: Attack animation Groupe 1_39
+  - first:
+      213: -3446328349420642549
+    second: Attack animation Groupe 1_40
+  - first:
+      213: -5903384442389450811
+    second: Attack animation Groupe 1_41
+  - first:
+      213: -6185980162881634305
+    second: Attack animation Groupe 1_42
+  - first:
+      213: -8066714126636471970
+    second: Attack animation Groupe 1_43
+  - first:
+      213: 8569365300144608490
+    second: Attack animation Groupe 1_44
+  - first:
+      213: -7140310169858169397
+    second: Attack animation Groupe 1_45
+  - first:
+      213: -4843196361293202286
+    second: Attack animation Groupe 1_46
+  - first:
+      213: 4731430619967848713
+    second: Attack animation Groupe 1_47
+  - first:
+      213: 2519908574987763482
+    second: Attack animation Groupe 1_48
+  - first:
+      213: 1794660381120591844
+    second: Attack animation Groupe 1_49
+  - first:
+      213: -1691797677859372357
+    second: Attack animation Groupe 1_50
+  - first:
+      213: 5369014335899119646
+    second: Attack animation Groupe 1_51
+  - first:
+      213: 1894519746513952599
+    second: Attack animation Groupe 1_52
+  - first:
+      213: -2568903596901737435
+    second: Attack animation Groupe 1_53
+  - first:
+      213: 1561492092720709472
+    second: Attack animation Groupe 1_54
+  - first:
+      213: 1726484013816832611
+    second: Attack animation Groupe 1_55
+  - first:
+      213: -4694309796719905611
+    second: Attack animation Groupe 1_56
+  - first:
+      213: 4660830568198510007
+    second: Attack animation Groupe 1_57
+  - first:
+      213: 2122331342038875531
+    second: Attack animation Groupe 1_58
+  - first:
+      213: 3634520651198485832
+    second: Attack animation Groupe 1_59
+  - first:
+      213: -3149245624020972693
+    second: Attack animation Groupe 1_60
+  - first:
+      213: -634021922404284881
+    second: Attack animation Groupe 1_61
+  - first:
+      213: 2993285319300365752
+    second: Attack animation Groupe 1_62
+  - first:
+      213: -7681572885522729204
+    second: Attack animation Groupe 1_63
+  - first:
+      213: -7196128316039446689
+    second: Attack animation Groupe 1_64
+  - first:
+      213: 8697601823751346688
+    second: Attack animation Groupe 1_65
+  - first:
+      213: -1804945534695821039
+    second: Attack animation Groupe 1_66
+  - first:
+      213: 5780910120249469572
+    second: Attack animation Groupe 1_67
+  - first:
+      213: -1631008850657524328
+    second: Attack animation Groupe 1_68
+  - first:
+      213: -6282103052469606234
+    second: Attack animation Groupe 1_69
+  - first:
+      213: 2190800579486082409
+    second: Attack animation Groupe 1_70
+  - first:
+      213: 3888355196402651559
+    second: Attack animation Groupe 1_71
+  - first:
+      213: 1465841120658005328
+    second: Attack animation Groupe 1_72
+  - first:
+      213: 818381715939582995
+    second: Attack animation Groupe 1_73
+  - first:
+      213: -3804156501106761992
+    second: Attack animation Groupe 1_74
+  - first:
+      213: -5615363050567082933
+    second: Attack animation Groupe 1_75
+  - first:
+      213: -8987852325139277239
+    second: Attack animation Groupe 1_76
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Attack animation Groupe 1_0
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 100
+        width: 19
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d5916ed8749032ca0800000000000000
+      internalID: -6042976072073078435
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack animation Groupe 1_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 99
+        width: 24
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a61b9297922fa61b0800000000000000
+      internalID: -5662447321524620950
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack animation Groupe 1_2
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 97
+        width: 31
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f0656a919df79b450800000000000000
+      internalID: 6105051340292380175
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack animation Groupe 1_3
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 98
+        width: 22
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 56dd7880e501bc9b0800000000000000
+      internalID: -5058931760364528283
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack animation Groupe 1_4
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 99
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8181ab521af5b07f0800000000000000
+      internalID: -645316975870207976
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack animation Groupe 1_5
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 102
+        width: 17
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 30d7ca348633cf240800000000000000
+      internalID: 4826789423539322115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack animation Groupe 1_6
+      rect:
+        serializedVersion: 2
+        x: 181
+        y: 109
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4d7a0bad39d25e1e0800000000000000
+      internalID: -2169277532456572972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack animation Groupe 1_7
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 105
+        width: 20
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3f8eae36f80ad53f0800000000000000
+      internalID: -910395011941865229
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack animation Groupe 1_8
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 101
+        width: 18
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 385f03788f652d1f0800000000000000
+      internalID: -1021658540039670397
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack animation Groupe 1_9
+      rect:
+        serializedVersion: 2
+        x: 265
+        y: 99
+        width: 15
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f3ff7c23376b92750800000000000000
+      internalID: 6280751761234329407
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack animation Groupe 1_10
+      rect:
+        serializedVersion: 2
+        x: 295
+        y: 102
+        width: 17
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a8d90041f2e188d80800000000000000
+      internalID: -8248309529981182582
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack animation Groupe 1_11
+      rect:
+        serializedVersion: 2
+        x: 326
+        y: 100
+        width: 20
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3822cfbc7294d0dc0800000000000000
+      internalID: -3671197685962235261
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack animation Groupe 1_12
+      rect:
+        serializedVersion: 2
+        x: 353
+        y: 95
+        width: 31
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c6d55285ecc68d5c0800000000000000
+      internalID: -4190479819770339988
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack animation Groupe 1_13
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 101
+        width: 20
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 353c9aab3f90f5bd0800000000000000
+      internalID: -2639379914202430637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack animation Groupe 1_14
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 95
+        width: 30
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d5f2f29f43728880800000000000000
+      internalID: -8610192751973960239
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack animation Groupe 1_15
+      rect:
+        serializedVersion: 2
+        x: 447
+        y: 96
+        width: 33
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 02918d82c8c4f3d60800000000000000
+      internalID: 7872094838531299616
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack animation Groupe 1_16
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 95
+        width: 31
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d6a2772699682b2d0800000000000000
+      internalID: -3264398786550093203
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack animation Groupe 1_17
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 33
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d34b9fd3e6fdd34c0800000000000000
+      internalID: -4306040004117154755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack animation Groupe 1_18
+      rect:
+        serializedVersion: 2
+        x: 547
+        y: 100
+        width: 21
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06e758aaccec38670800000000000000
+      internalID: 8539896696854117984
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack animation Groupe 1_19
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d5c7020a19624b00800000000000000
+      internalID: 811326443304240593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack animation Groupe 1_20
+      rect:
+        serializedVersion: 2
+        x: 605
+        y: 96
+        width: 34
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 031fb37813b47dc40800000000000000
+      internalID: 5536976942969647408
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack animation Groupe 1_21
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 68
+        width: 19
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c75159176c9044260800000000000000
+      internalID: 7080795262047032700
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack animation Groupe 1_22
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 70
+        width: 24
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c419e0378772bc580800000000000000
+      internalID: -8805901248112979636
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack animation Groupe 1_23
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 65
+        width: 28
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b2d5ff6179313050800000000000000
+      internalID: 5778462956265525939
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack animation Groupe 1_24
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 66
+        width: 20
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac12db4ea47f6eca0800000000000000
+      internalID: -5987826753505254966
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack animation Groupe 1_25
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 67
+        width: 25
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 97ca357b09bb99230800000000000000
+      internalID: 3646151603558526073
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack animation Groupe 1_26
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 70
+        width: 17
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: baf9934d0c6f813f0800000000000000
+      internalID: -929722014997307477
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack animation Groupe 1_27
+      rect:
+        serializedVersion: 2
+        x: 181
+        y: 76
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bfafc16ef480415f0800000000000000
+      internalID: -786994895626896645
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack animation Groupe 1_28
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 75
+        width: 19
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 69122fa76ba8b7350800000000000000
+      internalID: 6015554243634798998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack animation Groupe 1_29
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 69
+        width: 18
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aff2c82b29ed822c0800000000000000
+      internalID: -4456067109640982534
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack animation Groupe 1_30
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 67
+        width: 14
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 859eea419f1dcdc50800000000000000
+      internalID: 6691454014089783640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack animation Groupe 1_31
+      rect:
+        serializedVersion: 2
+        x: 293
+        y: 72
+        width: 19
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 75e005c6ca87b1820800000000000000
+      internalID: 2890036267835199063
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack animation Groupe 1_32
+      rect:
+        serializedVersion: 2
+        x: 326
+        y: 68
+        width: 19
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a3cef7e697a629e0800000000000000
+      internalID: -1646444347178171488
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack animation Groupe 1_33
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 31
+        width: 32
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 423621085c641d260800000000000000
+      internalID: 7120550299920655140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack animation Groupe 1_34
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 69
+        width: 20
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed7ebf99bca935cc0800000000000000
+      internalID: -3723462267652806690
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack animation Groupe 1_35
+      rect:
+        serializedVersion: 2
+        x: 419
+        y: 63
+        width: 27
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f70ca4adb5bfc3a30800000000000000
+      internalID: 4196505324725387391
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack animation Groupe 1_36
+      rect:
+        serializedVersion: 2
+        x: 447
+        y: 64
+        width: 33
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7aedec1273955d340800000000000000
+      internalID: 4887911063905820327
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack animation Groupe 1_37
+      rect:
+        serializedVersion: 2
+        x: 481
+        y: 63
+        width: 31
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c4b20f767cd7d5a70800000000000000
+      internalID: 8817341940857056076
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack animation Groupe 1_38
+      rect:
+        serializedVersion: 2
+        x: 547
+        y: 68
+        width: 23
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06c69798b882ecc80800000000000000
+      internalID: -8300652483425244064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack animation Groupe 1_39
+      rect:
+        serializedVersion: 2
+        x: 578
+        y: 64
+        width: 28
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: edc87c80647772ba0800000000000000
+      internalID: -6113786826453447458
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack animation Groupe 1_40
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 63
+        width: 32
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b0f9c6920ae2c20d0800000000000000
+      internalID: -3446328349420642549
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack animation Groupe 1_41
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 38
+        width: 18
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5cf2fca8027f21ea0800000000000000
+      internalID: -5903384442389450811
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack animation Groupe 1_42
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 40
+        width: 23
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fffb3db01dbf62aa0800000000000000
+      internalID: -6185980162881634305
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack animation Groupe 1_43
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 33
+        width: 56
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e592539bd364d0090800000000000000
+      internalID: -8066714126636471970
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack animation Groupe 1_44
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 35
+        width: 25
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ae49da986508ce670800000000000000
+      internalID: 8569365300144608490
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack animation Groupe 1_45
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 38
+        width: 17
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc5ae734bb588ec90800000000000000
+      internalID: -7140310169858169397
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack animation Groupe 1_46
+      rect:
+        serializedVersion: 2
+        x: 181
+        y: 44
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 29c77abd19289ccb0800000000000000
+      internalID: -4843196361293202286
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack animation Groupe 1_47
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 41
+        width: 20
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9010796a41b69a140800000000000000
+      internalID: 4731430619967848713
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack animation Groupe 1_48
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 37
+        width: 19
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a1f3b967f7388f220800000000000000
+      internalID: 2519908574987763482
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack animation Groupe 1_49
+      rect:
+        serializedVersion: 2
+        x: 267
+        y: 37
+        width: 12
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4e7f82dab1ae7e810800000000000000
+      internalID: 1794660381120591844
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack animation Groupe 1_50
+      rect:
+        serializedVersion: 2
+        x: 292
+        y: 37
+        width: 22
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb28c5bb9f68588e0800000000000000
+      internalID: -1691797677859372357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack animation Groupe 1_51
+      rect:
+        serializedVersion: 2
+        x: 327
+        y: 37
+        width: 19
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e103f3d9712928a40800000000000000
+      internalID: 5369014335899119646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack animation Groupe 1_52
+      rect:
+        serializedVersion: 2
+        x: 389
+        y: 37
+        width: 21
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 75f5deefbafaa4a10800000000000000
+      internalID: 1894519746513952599
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack animation Groupe 1_53
+      rect:
+        serializedVersion: 2
+        x: 415
+        y: 0
+        width: 32
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 52cd27c0acb695cd0800000000000000
+      internalID: -2568903596901737435
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack animation Groupe 1_54
+      rect:
+        serializedVersion: 2
+        x: 447
+        y: 32
+        width: 33
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06ff23209c88ba510800000000000000
+      internalID: 1561492092720709472
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack animation Groupe 1_55
+      rect:
+        serializedVersion: 2
+        x: 481
+        y: 31
+        width: 31
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 36261f13014b5f710800000000000000
+      internalID: 1726484013816832611
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack animation Groupe 1_56
+      rect:
+        serializedVersion: 2
+        x: 546
+        y: 36
+        width: 21
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b4bfd48c167adeb0800000000000000
+      internalID: -4694309796719905611
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack animation Groupe 1_57
+      rect:
+        serializedVersion: 2
+        x: 579
+        y: 32
+        width: 27
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7b511c725b89ea040800000000000000
+      internalID: 4660830568198510007
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack animation Groupe 1_58
+      rect:
+        serializedVersion: 2
+        x: 605
+        y: 31
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b8db7e96c19047d10800000000000000
+      internalID: 2122331342038875531
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack animation Groupe 1_59
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 7
+        width: 19
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 845d1879649607230800000000000000
+      internalID: 3634520651198485832
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack animation Groupe 1_60
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 8
+        width: 23
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b6bc6c55ac1ab44d0800000000000000
+      internalID: -3149245624020972693
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack animation Groupe 1_61
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 1
+        width: 29
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f264847bb608337f0800000000000000
+      internalID: -634021922404284881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack animation Groupe 1_62
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 6
+        width: 23
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8bd3a4883294a8920800000000000000
+      internalID: 2993285319300365752
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack animation Groupe 1_63
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 3
+        width: 25
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c07352ac822956590800000000000000
+      internalID: -7681572885522729204
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack animation Groupe 1_64
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 7
+        width: 24
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f5fb65c5c67322c90800000000000000
+      internalID: -7196128316039446689
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack animation Groupe 1_65
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 9
+        width: 20
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00a1d7ed6c614b870800000000000000
+      internalID: 8697601823751346688
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack animation Groupe 1_66
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 3
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1113785699b83f6e0800000000000000
+      internalID: -1804945534695821039
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack animation Groupe 1_67
+      rect:
+        serializedVersion: 2
+        x: 267
+        y: 9
+        width: 12
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 48a2ee3302be93050800000000000000
+      internalID: 5780910120249469572
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack animation Groupe 1_68
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 2
+        width: 21
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8954a0f771e7d59e0800000000000000
+      internalID: -1631008850657524328
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack animation Groupe 1_69
+      rect:
+        serializedVersion: 2
+        x: 327
+        y: 0
+        width: 20
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a8e62bce8c71d8a0800000000000000
+      internalID: -6282103052469606234
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack animation Groupe 1_70
+      rect:
+        serializedVersion: 2
+        x: 353
+        y: 0
+        width: 31
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 965ecf90589476e10800000000000000
+      internalID: 2190800579486082409
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack animation Groupe 1_71
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 5
+        width: 20
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a1df12237636f530800000000000000
+      internalID: 3888355196402651559
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack animation Groupe 1_72
+      rect:
+        serializedVersion: 2
+        x: 447
+        y: 0
+        width: 33
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 05d1bfd9bb6b75410800000000000000
+      internalID: 1465841120658005328
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack animation Groupe 1_73
+      rect:
+        serializedVersion: 2
+        x: 481
+        y: 0
+        width: 30
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 314e04da5d97b5b00800000000000000
+      internalID: 818381715939582995
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack animation Groupe 1_74
+      rect:
+        serializedVersion: 2
+        x: 545
+        y: 3
+        width: 23
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8fed98941dbe43bc0800000000000000
+      internalID: -3804156501106761992
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack animation Groupe 1_75
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b4c58169e093212b0800000000000000
+      internalID: -5615363050567082933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack animation Groupe 1_76
+      rect:
+        serializedVersion: 2
+        x: 605
+        y: 0
+        width: 34
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 94a97621eebb44380800000000000000
+      internalID: -8987852325139277239
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Attack animation Groupe 1_0: -6042976072073078435
+      Attack animation Groupe 1_1: -5662447321524620950
+      Attack animation Groupe 1_10: -8248309529981182582
+      Attack animation Groupe 1_11: -3671197685962235261
+      Attack animation Groupe 1_12: -4190479819770339988
+      Attack animation Groupe 1_13: -2639379914202430637
+      Attack animation Groupe 1_14: -8610192751973960239
+      Attack animation Groupe 1_15: 7872094838531299616
+      Attack animation Groupe 1_16: -3264398786550093203
+      Attack animation Groupe 1_17: -4306040004117154755
+      Attack animation Groupe 1_18: 8539896696854117984
+      Attack animation Groupe 1_19: 811326443304240593
+      Attack animation Groupe 1_2: 6105051340292380175
+      Attack animation Groupe 1_20: 5536976942969647408
+      Attack animation Groupe 1_21: 7080795262047032700
+      Attack animation Groupe 1_22: -8805901248112979636
+      Attack animation Groupe 1_23: 5778462956265525939
+      Attack animation Groupe 1_24: -5987826753505254966
+      Attack animation Groupe 1_25: 3646151603558526073
+      Attack animation Groupe 1_26: -929722014997307477
+      Attack animation Groupe 1_27: -786994895626896645
+      Attack animation Groupe 1_28: 6015554243634798998
+      Attack animation Groupe 1_29: -4456067109640982534
+      Attack animation Groupe 1_3: -5058931760364528283
+      Attack animation Groupe 1_30: 6691454014089783640
+      Attack animation Groupe 1_31: 2890036267835199063
+      Attack animation Groupe 1_32: -1646444347178171488
+      Attack animation Groupe 1_33: 7120550299920655140
+      Attack animation Groupe 1_34: -3723462267652806690
+      Attack animation Groupe 1_35: 4196505324725387391
+      Attack animation Groupe 1_36: 4887911063905820327
+      Attack animation Groupe 1_37: 8817341940857056076
+      Attack animation Groupe 1_38: -8300652483425244064
+      Attack animation Groupe 1_39: -6113786826453447458
+      Attack animation Groupe 1_4: -645316975870207976
+      Attack animation Groupe 1_40: -3446328349420642549
+      Attack animation Groupe 1_41: -5903384442389450811
+      Attack animation Groupe 1_42: -6185980162881634305
+      Attack animation Groupe 1_43: -8066714126636471970
+      Attack animation Groupe 1_44: 8569365300144608490
+      Attack animation Groupe 1_45: -7140310169858169397
+      Attack animation Groupe 1_46: -4843196361293202286
+      Attack animation Groupe 1_47: 4731430619967848713
+      Attack animation Groupe 1_48: 2519908574987763482
+      Attack animation Groupe 1_49: 1794660381120591844
+      Attack animation Groupe 1_5: 4826789423539322115
+      Attack animation Groupe 1_50: -1691797677859372357
+      Attack animation Groupe 1_51: 5369014335899119646
+      Attack animation Groupe 1_52: 1894519746513952599
+      Attack animation Groupe 1_53: -2568903596901737435
+      Attack animation Groupe 1_54: 1561492092720709472
+      Attack animation Groupe 1_55: 1726484013816832611
+      Attack animation Groupe 1_56: -4694309796719905611
+      Attack animation Groupe 1_57: 4660830568198510007
+      Attack animation Groupe 1_58: 2122331342038875531
+      Attack animation Groupe 1_59: 3634520651198485832
+      Attack animation Groupe 1_6: -2169277532456572972
+      Attack animation Groupe 1_60: -3149245624020972693
+      Attack animation Groupe 1_61: -634021922404284881
+      Attack animation Groupe 1_62: 2993285319300365752
+      Attack animation Groupe 1_63: -7681572885522729204
+      Attack animation Groupe 1_64: -7196128316039446689
+      Attack animation Groupe 1_65: 8697601823751346688
+      Attack animation Groupe 1_66: -1804945534695821039
+      Attack animation Groupe 1_67: 5780910120249469572
+      Attack animation Groupe 1_68: -1631008850657524328
+      Attack animation Groupe 1_69: -6282103052469606234
+      Attack animation Groupe 1_7: -910395011941865229
+      Attack animation Groupe 1_70: 2190800579486082409
+      Attack animation Groupe 1_71: 3888355196402651559
+      Attack animation Groupe 1_72: 1465841120658005328
+      Attack animation Groupe 1_73: 818381715939582995
+      Attack animation Groupe 1_74: -3804156501106761992
+      Attack animation Groupe 1_75: -5615363050567082933
+      Attack animation Groupe 1_76: -8987852325139277239
+      Attack animation Groupe 1_8: -1021658540039670397
+      Attack animation Groupe 1_9: 6280751761234329407
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

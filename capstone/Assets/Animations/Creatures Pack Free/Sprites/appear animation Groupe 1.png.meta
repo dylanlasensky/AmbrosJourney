@@ -1,0 +1,3629 @@
+fileFormatVersion: 2
+guid: fe28f585d30ab4bbcbd08c7a1a652c83
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -8811139045638110480
+    second: appear animation Groupe 1_0
+  - first:
+      213: -2262865273726907114
+    second: appear animation Groupe 1_1
+  - first:
+      213: 412557553178630514
+    second: appear animation Groupe 1_2
+  - first:
+      213: 7888051938124755581
+    second: appear animation Groupe 1_3
+  - first:
+      213: 6924209527157623599
+    second: appear animation Groupe 1_4
+  - first:
+      213: 2725493251699241170
+    second: appear animation Groupe 1_5
+  - first:
+      213: -7893518589981094743
+    second: appear animation Groupe 1_6
+  - first:
+      213: -8169293997601031553
+    second: appear animation Groupe 1_7
+  - first:
+      213: 5856563124675837198
+    second: appear animation Groupe 1_8
+  - first:
+      213: 2891538789833498385
+    second: appear animation Groupe 1_9
+  - first:
+      213: 2498747519232737252
+    second: appear animation Groupe 1_10
+  - first:
+      213: -8710284112525976756
+    second: appear animation Groupe 1_11
+  - first:
+      213: -324196958750546296
+    second: appear animation Groupe 1_12
+  - first:
+      213: -6066506928063646344
+    second: appear animation Groupe 1_13
+  - first:
+      213: 1422183487444650721
+    second: appear animation Groupe 1_14
+  - first:
+      213: 4396821202772876557
+    second: appear animation Groupe 1_15
+  - first:
+      213: 3971487795936443947
+    second: appear animation Groupe 1_16
+  - first:
+      213: -951785774616709079
+    second: appear animation Groupe 1_17
+  - first:
+      213: -463263130500646568
+    second: appear animation Groupe 1_18
+  - first:
+      213: -886618291520095798
+    second: appear animation Groupe 1_19
+  - first:
+      213: -6344305444549588739
+    second: appear animation Groupe 1_20
+  - first:
+      213: -7553144268876976211
+    second: appear animation Groupe 1_21
+  - first:
+      213: -7528363012670311535
+    second: appear animation Groupe 1_22
+  - first:
+      213: 4110588396393320671
+    second: appear animation Groupe 1_23
+  - first:
+      213: -1862263161942476452
+    second: appear animation Groupe 1_24
+  - first:
+      213: 2359069321256525864
+    second: appear animation Groupe 1_25
+  - first:
+      213: -6706692297790397161
+    second: appear animation Groupe 1_26
+  - first:
+      213: -7169775273873028153
+    second: appear animation Groupe 1_27
+  - first:
+      213: 8860451845208336173
+    second: appear animation Groupe 1_28
+  - first:
+      213: 5610157117631225864
+    second: appear animation Groupe 1_29
+  - first:
+      213: 3032661019478508255
+    second: appear animation Groupe 1_30
+  - first:
+      213: -420053893684619197
+    second: appear animation Groupe 1_31
+  - first:
+      213: -8467346349269877568
+    second: appear animation Groupe 1_32
+  - first:
+      213: 1090194516451702811
+    second: appear animation Groupe 1_33
+  - first:
+      213: 8472108754816090381
+    second: appear animation Groupe 1_34
+  - first:
+      213: -952177383204847692
+    second: appear animation Groupe 1_35
+  - first:
+      213: -5905203349300117315
+    second: appear animation Groupe 1_36
+  - first:
+      213: 4990153977196757498
+    second: appear animation Groupe 1_37
+  - first:
+      213: -6739982279752163806
+    second: appear animation Groupe 1_38
+  - first:
+      213: 8933816245154341226
+    second: appear animation Groupe 1_39
+  - first:
+      213: -944475563474288698
+    second: appear animation Groupe 1_40
+  - first:
+      213: -1401029260888717474
+    second: appear animation Groupe 1_41
+  - first:
+      213: 7721564043592150944
+    second: appear animation Groupe 1_42
+  - first:
+      213: -5164283521038526403
+    second: appear animation Groupe 1_43
+  - first:
+      213: 4571696893055023394
+    second: appear animation Groupe 1_44
+  - first:
+      213: -1510173072457983182
+    second: appear animation Groupe 1_45
+  - first:
+      213: 2125709776637591891
+    second: appear animation Groupe 1_46
+  - first:
+      213: 5391602180452792352
+    second: appear animation Groupe 1_47
+  - first:
+      213: 8148043043793720013
+    second: appear animation Groupe 1_48
+  - first:
+      213: 4487042518839831104
+    second: appear animation Groupe 1_49
+  - first:
+      213: 2669835909736545167
+    second: appear animation Groupe 1_50
+  - first:
+      213: 7648920651235229605
+    second: appear animation Groupe 1_51
+  - first:
+      213: 1649979569813638040
+    second: appear animation Groupe 1_52
+  - first:
+      213: -8446168322679658462
+    second: appear animation Groupe 1_53
+  - first:
+      213: 7272310428815067015
+    second: appear animation Groupe 1_54
+  - first:
+      213: 4477658361044545478
+    second: appear animation Groupe 1_55
+  - first:
+      213: 7556420844867218157
+    second: appear animation Groupe 1_56
+  - first:
+      213: -2788879114163036167
+    second: appear animation Groupe 1_57
+  - first:
+      213: 5456916527490166727
+    second: appear animation Groupe 1_58
+  - first:
+      213: 1794065924323099999
+    second: appear animation Groupe 1_59
+  - first:
+      213: 7352071479809524856
+    second: appear animation Groupe 1_60
+  - first:
+      213: 7106501665362024908
+    second: appear animation Groupe 1_61
+  - first:
+      213: -4026133578750032100
+    second: appear animation Groupe 1_62
+  - first:
+      213: -3677481825902515500
+    second: appear animation Groupe 1_63
+  - first:
+      213: -2939879580597593252
+    second: appear animation Groupe 1_64
+  - first:
+      213: 5773933456163950802
+    second: appear animation Groupe 1_65
+  - first:
+      213: 2524808322223680273
+    second: appear animation Groupe 1_66
+  - first:
+      213: -7168813960874149252
+    second: appear animation Groupe 1_67
+  - first:
+      213: 2708370843299708
+    second: appear animation Groupe 1_68
+  - first:
+      213: -6743445892529572797
+    second: appear animation Groupe 1_69
+  - first:
+      213: -8881597181398515755
+    second: appear animation Groupe 1_70
+  - first:
+      213: -5963983123791690425
+    second: appear animation Groupe 1_71
+  - first:
+      213: -3701569072745158453
+    second: appear animation Groupe 1_72
+  - first:
+      213: 3506354777943350034
+    second: appear animation Groupe 1_73
+  - first:
+      213: -7706599899349155401
+    second: appear animation Groupe 1_74
+  - first:
+      213: -2039747786013686792
+    second: appear animation Groupe 1_75
+  - first:
+      213: 1137839304692112076
+    second: appear animation Groupe 1_76
+  - first:
+      213: 3219097885264707080
+    second: appear animation Groupe 1_77
+  - first:
+      213: 7538184097694278883
+    second: appear animation Groupe 1_78
+  - first:
+      213: -7572591600341243191
+    second: appear animation Groupe 1_79
+  - first:
+      213: 2906107677117141183
+    second: appear animation Groupe 1_80
+  - first:
+      213: 7740046079527075350
+    second: appear animation Groupe 1_81
+  - first:
+      213: 55710485864673226
+    second: appear animation Groupe 1_82
+  - first:
+      213: -3177099237030105065
+    second: appear animation Groupe 1_83
+  - first:
+      213: -1635735620442777193
+    second: appear animation Groupe 1_84
+  - first:
+      213: -3507034048905595067
+    second: appear animation Groupe 1_85
+  - first:
+      213: -2842187774806226482
+    second: appear animation Groupe 1_86
+  - first:
+      213: 7543140325159697577
+    second: appear animation Groupe 1_87
+  - first:
+      213: -7260270014093330988
+    second: appear animation Groupe 1_88
+  - first:
+      213: 5190490487941758380
+    second: appear animation Groupe 1_89
+  - first:
+      213: -5620543826300392878
+    second: appear animation Groupe 1_90
+  - first:
+      213: 8347037723277806739
+    second: appear animation Groupe 1_91
+  - first:
+      213: 1887066426021835364
+    second: appear animation Groupe 1_92
+  - first:
+      213: -849673271720941139
+    second: appear animation Groupe 1_93
+  - first:
+      213: -4600981423612393038
+    second: appear animation Groupe 1_94
+  - first:
+      213: 7169170736798301171
+    second: appear animation Groupe 1_95
+  - first:
+      213: 9024471429802782390
+    second: appear animation Groupe 1_96
+  - first:
+      213: -6200763664213968012
+    second: appear animation Groupe 1_97
+  - first:
+      213: -1684293307761058269
+    second: appear animation Groupe 1_98
+  - first:
+      213: 6165976578975085227
+    second: appear animation Groupe 1_99
+  - first:
+      213: -7509585112103922788
+    second: appear animation Groupe 1_100
+  - first:
+      213: -7854974534414047271
+    second: appear animation Groupe 1_101
+  - first:
+      213: -2711832725881096929
+    second: appear animation Groupe 1_102
+  - first:
+      213: 7533128971094387588
+    second: appear animation Groupe 1_103
+  - first:
+      213: 3973216600784088245
+    second: appear animation Groupe 1_104
+  - first:
+      213: -2706628556300236473
+    second: appear animation Groupe 1_105
+  - first:
+      213: -2336216249383478325
+    second: appear animation Groupe 1_106
+  - first:
+      213: 7419621403678398250
+    second: appear animation Groupe 1_107
+  - first:
+      213: 4455699889358563254
+    second: appear animation Groupe 1_108
+  - first:
+      213: -7509922733499416429
+    second: appear animation Groupe 1_109
+  - first:
+      213: -1169090633655344961
+    second: appear animation Groupe 1_110
+  - first:
+      213: -139221939494973471
+    second: appear animation Groupe 1_111
+  - first:
+      213: -715081875665447061
+    second: appear animation Groupe 1_112
+  - first:
+      213: 7754272336241669117
+    second: appear animation Groupe 1_113
+  - first:
+      213: 3816661576910213558
+    second: appear animation Groupe 1_114
+  - first:
+      213: 5973155190626335785
+    second: appear animation Groupe 1_115
+  - first:
+      213: -2971499496400109811
+    second: appear animation Groupe 1_116
+  - first:
+      213: 8210910741952010283
+    second: appear animation Groupe 1_117
+  - first:
+      213: 148491438005853014
+    second: appear animation Groupe 1_118
+  - first:
+      213: 3669228895835092184
+    second: appear animation Groupe 1_119
+  - first:
+      213: 6262701476769336614
+    second: appear animation Groupe 1_120
+  - first:
+      213: 6293675571598523670
+    second: appear animation Groupe 1_121
+  - first:
+      213: 7539473260095519283
+    second: appear animation Groupe 1_122
+  - first:
+      213: -9087340340172171766
+    second: appear animation Groupe 1_123
+  - first:
+      213: -3343337727523631974
+    second: appear animation Groupe 1_124
+  - first:
+      213: -5672711570360060835
+    second: appear animation Groupe 1_125
+  - first:
+      213: 889324707119467315
+    second: appear animation Groupe 1_126
+  - first:
+      213: 7649987901677230505
+    second: appear animation Groupe 1_127
+  - first:
+      213: -8484412844541973518
+    second: appear animation Groupe 1_128
+  - first:
+      213: -8407834007818665105
+    second: appear animation Groupe 1_129
+  - first:
+      213: 1824426220523642898
+    second: appear animation Groupe 1_130
+  - first:
+      213: -7827720765351866592
+    second: appear animation Groupe 1_131
+  - first:
+      213: 2421094942383699937
+    second: appear animation Groupe 1_132
+  - first:
+      213: 1533108708952011247
+    second: appear animation Groupe 1_133
+  - first:
+      213: -8725720611467899552
+    second: appear animation Groupe 1_134
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: appear animation Groupe 1_0
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 206
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0f28a2ea8bb88b580800000000000000
+      internalID: -8811139045638110480
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_1
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 206
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 61dc0f0d500b890e0800000000000000
+      internalID: -2262865273726907114
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_2
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 206
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 279dd96a8e2b9b500800000000000000
+      internalID: 412557553178630514
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_3
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 206
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d72f1cde17df77d60800000000000000
+      internalID: 7888051938124755581
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_4
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 206
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f2b0b9001ebb71060800000000000000
+      internalID: 6924209527157623599
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_5
+      rect:
+        serializedVersion: 2
+        x: 172
+        y: 206
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2d0f1411ca5e2d520800000000000000
+      internalID: 2725493251699241170
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_6
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 206
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ac0c300aa6947290800000000000000
+      internalID: -7893518589981094743
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_7
+      rect:
+        serializedVersion: 2
+        x: 236
+        y: 206
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f7a72475466d0ae80800000000000000
+      internalID: -8169293997601031553
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_8
+      rect:
+        serializedVersion: 2
+        x: 268
+        y: 206
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e0d74fae121b64150800000000000000
+      internalID: 5856563124675837198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_9
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 206
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 11fd946953fc02820800000000000000
+      internalID: 2891538789833498385
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_10
+      rect:
+        serializedVersion: 2
+        x: 332
+        y: 206
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ef714b31a55da220800000000000000
+      internalID: 2498747519232737252
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_11
+      rect:
+        serializedVersion: 2
+        x: 364
+        y: 206
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c4b192cafbade1780800000000000000
+      internalID: -8710284112525976756
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_12
+      rect:
+        serializedVersion: 2
+        x: 396
+        y: 206
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 886696c6598308bf0800000000000000
+      internalID: -324196958750546296
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_13
+      rect:
+        serializedVersion: 2
+        x: 428
+        y: 206
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 875f15537107fcba0800000000000000
+      internalID: -6066506928063646344
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_14
+      rect:
+        serializedVersion: 2
+        x: 460
+        y: 206
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1ea8096c85c9cb310800000000000000
+      internalID: 1422183487444650721
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_15
+      rect:
+        serializedVersion: 2
+        x: 492
+        y: 206
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d0dde2ca695a40d30800000000000000
+      internalID: 4396821202772876557
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_16
+      rect:
+        serializedVersion: 2
+        x: 524
+        y: 206
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b2e379acb1f8d1730800000000000000
+      internalID: 3971487795936443947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_17
+      rect:
+        serializedVersion: 2
+        x: 556
+        y: 206
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 92873b971e39ac2f0800000000000000
+      internalID: -951785774616709079
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_18
+      rect:
+        serializedVersion: 2
+        x: 588
+        y: 206
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 85939f423a82299f0800000000000000
+      internalID: -463263130500646568
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_19
+      rect:
+        serializedVersion: 2
+        x: 619
+        y: 206
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac9b4928c5912b3f0800000000000000
+      internalID: -886618291520095798
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_20
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 170
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df88b0fcfcf74f7a0800000000000000
+      internalID: -6344305444549588739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_21
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 170
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: daf6f444e47dd2790800000000000000
+      internalID: -7553144268876976211
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_22
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 170
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 193b8991ab1e58790800000000000000
+      internalID: -7528363012670311535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_23
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 170
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fd0ddd02e5ebb0930800000000000000
+      internalID: 4110588396393320671
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_24
+      rect:
+        serializedVersion: 2
+        x: 137
+        y: 170
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c597f1a5589e726e0800000000000000
+      internalID: -1862263161942476452
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_25
+      rect:
+        serializedVersion: 2
+        x: 169
+        y: 170
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 820640e7c091db020800000000000000
+      internalID: 2359069321256525864
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_26
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 170
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 715ea5483ea0de2a0800000000000000
+      internalID: -6706692297790397161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_27
+      rect:
+        serializedVersion: 2
+        x: 233
+        y: 170
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7cb4b612067df7c90800000000000000
+      internalID: -7169775273873028153
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_28
+      rect:
+        serializedVersion: 2
+        x: 265
+        y: 170
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d27e81f2206a6fa70800000000000000
+      internalID: 8860451845208336173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_29
+      rect:
+        serializedVersion: 2
+        x: 297
+        y: 170
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 800e982bc284bdd40800000000000000
+      internalID: 5610157117631225864
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_30
+      rect:
+        serializedVersion: 2
+        x: 329
+        y: 170
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fd2c036212d261a20800000000000000
+      internalID: 3032661019478508255
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_31
+      rect:
+        serializedVersion: 2
+        x: 361
+        y: 170
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3489860953bab2af0800000000000000
+      internalID: -420053893684619197
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_32
+      rect:
+        serializedVersion: 2
+        x: 393
+        y: 170
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0cc71957b51fd7a80800000000000000
+      internalID: -8467346349269877568
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_33
+      rect:
+        serializedVersion: 2
+        x: 425
+        y: 170
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b18be29f226212f00800000000000000
+      internalID: 1090194516451702811
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_34
+      rect:
+        serializedVersion: 2
+        x: 457
+        y: 170
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d014a4d760af29570800000000000000
+      internalID: 8472108754816090381
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_35
+      rect:
+        serializedVersion: 2
+        x: 489
+        y: 170
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4bff9eef6bf29c2f0800000000000000
+      internalID: -952177383204847692
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_36
+      rect:
+        serializedVersion: 2
+        x: 521
+        y: 170
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db0058647d08c0ea0800000000000000
+      internalID: -5905203349300117315
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_37
+      rect:
+        serializedVersion: 2
+        x: 553
+        y: 170
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: af1c0517a96904540800000000000000
+      internalID: 4990153977196757498
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_38
+      rect:
+        serializedVersion: 2
+        x: 585
+        y: 170
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 22ed1f693d5c672a0800000000000000
+      internalID: -6739982279752163806
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_39
+      rect:
+        serializedVersion: 2
+        x: 617
+        y: 170
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a61e905aa8a4bfb70800000000000000
+      internalID: 8933816245154341226
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_40
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 129
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6cff314aa7c84e2f0800000000000000
+      internalID: -944475563474288698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_41
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 100
+        width: 19
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e57ccc86f4b8e8ce0800000000000000
+      internalID: -1401029260888717474
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_42
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 129
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0af2db84691882b60800000000000000
+      internalID: 7721564043592150944
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_43
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 129
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d385819cf77c458b0800000000000000
+      internalID: -5164283521038526403
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_44
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 129
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2293d433a1ee17f30800000000000000
+      internalID: 4571696893055023394
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_45
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 129
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 23b18c28799ca0be0800000000000000
+      internalID: -1510173072457983182
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_46
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 129
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3510f0487c9008d10800000000000000
+      internalID: 2125709776637591891
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_47
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 129
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0283c100e91d2da40800000000000000
+      internalID: 5391602180452792352
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_48
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: 129
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dc2dae76af9a31170800000000000000
+      internalID: 8148043043793720013
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_49
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 129
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 04aa583c56d254e30800000000000000
+      internalID: 4487042518839831104
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_50
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 129
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f8bbd605d992d0520800000000000000
+      internalID: 2669835909736545167
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_51
+      rect:
+        serializedVersion: 2
+        x: 321
+        y: 129
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5af760c7ecc662a60800000000000000
+      internalID: 7648920651235229605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_52
+      rect:
+        serializedVersion: 2
+        x: 353
+        y: 129
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 89bc4614da7e5e610800000000000000
+      internalID: 1649979569813638040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_53
+      rect:
+        serializedVersion: 2
+        x: 385
+        y: 129
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 228a58509ae29ca80800000000000000
+      internalID: -8446168322679658462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_54
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 0
+        width: 30
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 78704edfdcf6ce460800000000000000
+      internalID: 7272310428815067015
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_55
+      rect:
+        serializedVersion: 2
+        x: 417
+        y: 129
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6cf2e934e86d32e30800000000000000
+      internalID: 4477658361044545478
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_56
+      rect:
+        serializedVersion: 2
+        x: 449
+        y: 129
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: deaeaa709bccdd860800000000000000
+      internalID: 7556420844867218157
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_57
+      rect:
+        serializedVersion: 2
+        x: 481
+        y: 129
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ff5ec6c839eb49d0800000000000000
+      internalID: -2788879114163036167
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_58
+      rect:
+        serializedVersion: 2
+        x: 481
+        y: 0
+        width: 31
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7cf62067bacdabb40800000000000000
+      internalID: 5456916527490166727
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_59
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 33
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f5549eae37dc5e810800000000000000
+      internalID: 1794065924323099999
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_60
+      rect:
+        serializedVersion: 2
+        x: 513
+        y: 129
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 874c355de0ec70660800000000000000
+      internalID: 7352071479809524856
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_61
+      rect:
+        serializedVersion: 2
+        x: 545
+        y: 129
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc910afdc9d5f9260800000000000000
+      internalID: 7106501665362024908
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_62
+      rect:
+        serializedVersion: 2
+        x: 577
+        y: 129
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c17055c67dc4028c0800000000000000
+      internalID: -4026133578750032100
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_63
+      rect:
+        serializedVersion: 2
+        x: 609
+        y: 129
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4da202373c5f6fcc0800000000000000
+      internalID: -3677481825902515500
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_64
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 99
+        width: 24
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c5b5e0cf8137337d0800000000000000
+      internalID: -2939879580597593252
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_65
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 97
+        width: 31
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2d0556303e1212050800000000000000
+      internalID: 5773933456163950802
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_66
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 98
+        width: 22
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 11ba714cacbe90320800000000000000
+      internalID: 2524808322223680273
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_67
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 99
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c7a3c314fa1438c90800000000000000
+      internalID: -7168813960874149252
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_68
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 102
+        width: 17
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c7fe80abf3f990000800000000000000
+      internalID: 2708370843299708
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_69
+      rect:
+        serializedVersion: 2
+        x: 181
+        y: 109
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 34435b560b77a62a0800000000000000
+      internalID: -6743445892529572797
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_70
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 105
+        width: 20
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5df71a49b6a3eb480800000000000000
+      internalID: -8881597181398515755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_71
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 101
+        width: 18
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 745c8fb82fcab3da0800000000000000
+      internalID: -5963983123791690425
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_72
+      rect:
+        serializedVersion: 2
+        x: 265
+        y: 99
+        width: 15
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc8e3734a8261acc0800000000000000
+      internalID: -3701569072745158453
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_73
+      rect:
+        serializedVersion: 2
+        x: 295
+        y: 102
+        width: 17
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 21b9ec3d71319a030800000000000000
+      internalID: 3506354777943350034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_74
+      rect:
+        serializedVersion: 2
+        x: 326
+        y: 100
+        width: 20
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7b18b3d0938ac0590800000000000000
+      internalID: -7706599899349155401
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_75
+      rect:
+        serializedVersion: 2
+        x: 353
+        y: 95
+        width: 31
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8f3c347123c51b3e0800000000000000
+      internalID: -2039747786013686792
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_76
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 101
+        width: 20
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cca96afa1da6acf00800000000000000
+      internalID: 1137839304692112076
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_77
+      rect:
+        serializedVersion: 2
+        x: 447
+        y: 96
+        width: 33
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 80ef96c98788cac20800000000000000
+      internalID: 3219097885264707080
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_78
+      rect:
+        serializedVersion: 2
+        x: 547
+        y: 100
+        width: 21
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e4e0927f720d9860800000000000000
+      internalID: 7538184097694278883
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_79
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9caad809f00c8e690800000000000000
+      internalID: -7572591600341243191
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_80
+      rect:
+        serializedVersion: 2
+        x: 605
+        y: 96
+        width: 34
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb05a9df881945820800000000000000
+      internalID: 2906107677117141183
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_81
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 68
+        width: 19
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 61ebd5b96ea2a6b60800000000000000
+      internalID: 7740046079527075350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_82
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 67
+        width: 24
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: acf6a38446ce5c000800000000000000
+      internalID: 55710485864673226
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_83
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 65
+        width: 31
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 710f7a0b31da8e3d0800000000000000
+      internalID: -3177099237030105065
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_84
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 66
+        width: 22
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7991e05ae13bc49e0800000000000000
+      internalID: -1635735620442777193
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_85
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 67
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 54738c31d13845fc0800000000000000
+      internalID: -3507034048905595067
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_86
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 70
+        width: 17
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ec987b107458e88d0800000000000000
+      internalID: -2842187774806226482
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_87
+      rect:
+        serializedVersion: 2
+        x: 181
+        y: 77
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ac7114192e9ea860800000000000000
+      internalID: 7543140325159697577
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_88
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 73
+        width: 20
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4d5fb8483e65e3b90800000000000000
+      internalID: -7260270014093330988
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_89
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 69
+        width: 18
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cadffcf2993580840800000000000000
+      internalID: 5190490487941758380
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_90
+      rect:
+        serializedVersion: 2
+        x: 265
+        y: 67
+        width: 15
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 25aa9dc3b21dff1b0800000000000000
+      internalID: -5620543826300392878
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_91
+      rect:
+        serializedVersion: 2
+        x: 295
+        y: 70
+        width: 17
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 39c42c6b592a6d370800000000000000
+      internalID: 8347037723277806739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_92
+      rect:
+        serializedVersion: 2
+        x: 326
+        y: 68
+        width: 20
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 462f8969ae4303a10800000000000000
+      internalID: 1887066426021835364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_93
+      rect:
+        serializedVersion: 2
+        x: 353
+        y: 63
+        width: 31
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da9edef39aa5534f0800000000000000
+      internalID: -849673271720941139
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_94
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 69
+        width: 20
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b98963b5c70620c0800000000000000
+      internalID: -4600981423612393038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_95
+      rect:
+        serializedVersion: 2
+        x: 447
+        y: 64
+        width: 33
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3fbfcfc1dc20e7360800000000000000
+      internalID: 7169170736798301171
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_96
+      rect:
+        serializedVersion: 2
+        x: 547
+        y: 68
+        width: 21
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6be6e03a3fc5d3d70800000000000000
+      internalID: 9024471429802782390
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_97
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 47b706aec4672f9a0800000000000000
+      internalID: -6200763664213968012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_98
+      rect:
+        serializedVersion: 2
+        x: 605
+        y: 64
+        width: 34
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 32e955d092030a8e0800000000000000
+      internalID: -1684293307761058269
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_99
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 36
+        width: 19
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba23033a703f19550800000000000000
+      internalID: 6165976578975085227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_100
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 35
+        width: 24
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c93db76c02898c790800000000000000
+      internalID: -7509585112103922788
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_101
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 33
+        width: 31
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d7e28447468df290800000000000000
+      internalID: -7854974534414047271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_102
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 34
+        width: 22
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f15f393f082ad5ad0800000000000000
+      internalID: -2711832725881096929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_103
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 35
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 48be84113ec0b8860800000000000000
+      internalID: 7533128971094387588
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_104
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 38
+        width: 17
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5bcab698273b32730800000000000000
+      internalID: 3973216600784088245
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_105
+      rect:
+        serializedVersion: 2
+        x: 181
+        y: 45
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 749cbca1baf107ad0800000000000000
+      internalID: -2706628556300236473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_106
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 41
+        width: 20
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bcb9001f2b7149fd0800000000000000
+      internalID: -2336216249383478325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_107
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 37
+        width: 18
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a27d2261b5ac7f660800000000000000
+      internalID: 7419621403678398250
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_108
+      rect:
+        serializedVersion: 2
+        x: 265
+        y: 35
+        width: 15
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b7e6fa2173d5dd30800000000000000
+      internalID: 4455699889358563254
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_109
+      rect:
+        serializedVersion: 2
+        x: 295
+        y: 38
+        width: 17
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 390032b201567c790800000000000000
+      internalID: -7509922733499416429
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_110
+      rect:
+        serializedVersion: 2
+        x: 326
+        y: 36
+        width: 20
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb0acb6434e86cfe0800000000000000
+      internalID: -1169090633655344961
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_111
+      rect:
+        serializedVersion: 2
+        x: 353
+        y: 31
+        width: 31
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1ef06773262611ef0800000000000000
+      internalID: -139221939494973471
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_112
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 37
+        width: 20
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b6714af92d48316f0800000000000000
+      internalID: -715081875665447061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_113
+      rect:
+        serializedVersion: 2
+        x: 447
+        y: 32
+        width: 33
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df3b25d1b95bc9b60800000000000000
+      internalID: 7754272336241669117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_114
+      rect:
+        serializedVersion: 2
+        x: 547
+        y: 36
+        width: 21
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b19d9f8b7187f430800000000000000
+      internalID: 3816661576910213558
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_115
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 92c309daff8e4e250800000000000000
+      internalID: 5973155190626335785
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_116
+      rect:
+        serializedVersion: 2
+        x: 605
+        y: 32
+        width: 34
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d0fb1d2a3fc13c6d0800000000000000
+      internalID: -2971499496400109811
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_117
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 4
+        width: 19
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b281d7801d303f170800000000000000
+      internalID: 8210910741952010283
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_118
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 3
+        width: 24
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 65b96861d2c8f0200800000000000000
+      internalID: 148491438005853014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_119
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 1
+        width: 31
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d479d78d38bbe230800000000000000
+      internalID: 3669228895835092184
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_120
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 2
+        width: 22
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 62d8629dfc599e650800000000000000
+      internalID: 6262701476769336614
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_121
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 3
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 61dfea84690a75750800000000000000
+      internalID: 6293675571598523670
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_122
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 6
+        width: 17
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 33abc85fbf691a860800000000000000
+      internalID: 7539473260095519283
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_123
+      rect:
+        serializedVersion: 2
+        x: 181
+        y: 13
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a06d5fe7b1843e180800000000000000
+      internalID: -9087340340172171766
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_124
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 9
+        width: 20
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a9ccac2fc041a91d0800000000000000
+      internalID: -3343337727523631974
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_125
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 5
+        width: 18
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d54b07fc1ea7641b0800000000000000
+      internalID: -5672711570360060835
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_126
+      rect:
+        serializedVersion: 2
+        x: 265
+        y: 3
+        width: 15
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 33b85d9fb14875c00800000000000000
+      internalID: 889324707119467315
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_127
+      rect:
+        serializedVersion: 2
+        x: 295
+        y: 6
+        width: 17
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a9d18717773a2a60800000000000000
+      internalID: 7649987901677230505
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_128
+      rect:
+        serializedVersion: 2
+        x: 326
+        y: 4
+        width: 20
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2fb6051687f414a80800000000000000
+      internalID: -8484412844541973518
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_129
+      rect:
+        serializedVersion: 2
+        x: 353
+        y: 0
+        width: 31
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f630589348f515b80800000000000000
+      internalID: -8407834007818665105
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_130
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 5
+        width: 20
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 21068393bf9a15910800000000000000
+      internalID: 1824426220523642898
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_131
+      rect:
+        serializedVersion: 2
+        x: 447
+        y: 0
+        width: 33
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 02fc04cdf695e5390800000000000000
+      internalID: -7827720765351866592
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_132
+      rect:
+        serializedVersion: 2
+        x: 547
+        y: 4
+        width: 21
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e77648c505799120800000000000000
+      internalID: 2421094942383699937
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_133
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe1742f7f32b64510800000000000000
+      internalID: 1533108708952011247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: appear animation Groupe 1_134
+      rect:
+        serializedVersion: 2
+        x: 605
+        y: 0
+        width: 34
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06dc620b55308e680800000000000000
+      internalID: -8725720611467899552
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      appear animation Groupe 1_0: -8811139045638110480
+      appear animation Groupe 1_1: -2262865273726907114
+      appear animation Groupe 1_10: 2498747519232737252
+      appear animation Groupe 1_100: -7509585112103922788
+      appear animation Groupe 1_101: -7854974534414047271
+      appear animation Groupe 1_102: -2711832725881096929
+      appear animation Groupe 1_103: 7533128971094387588
+      appear animation Groupe 1_104: 3973216600784088245
+      appear animation Groupe 1_105: -2706628556300236473
+      appear animation Groupe 1_106: -2336216249383478325
+      appear animation Groupe 1_107: 7419621403678398250
+      appear animation Groupe 1_108: 4455699889358563254
+      appear animation Groupe 1_109: -7509922733499416429
+      appear animation Groupe 1_11: -8710284112525976756
+      appear animation Groupe 1_110: -1169090633655344961
+      appear animation Groupe 1_111: -139221939494973471
+      appear animation Groupe 1_112: -715081875665447061
+      appear animation Groupe 1_113: 7754272336241669117
+      appear animation Groupe 1_114: 3816661576910213558
+      appear animation Groupe 1_115: 5973155190626335785
+      appear animation Groupe 1_116: -2971499496400109811
+      appear animation Groupe 1_117: 8210910741952010283
+      appear animation Groupe 1_118: 148491438005853014
+      appear animation Groupe 1_119: 3669228895835092184
+      appear animation Groupe 1_12: -324196958750546296
+      appear animation Groupe 1_120: 6262701476769336614
+      appear animation Groupe 1_121: 6293675571598523670
+      appear animation Groupe 1_122: 7539473260095519283
+      appear animation Groupe 1_123: -9087340340172171766
+      appear animation Groupe 1_124: -3343337727523631974
+      appear animation Groupe 1_125: -5672711570360060835
+      appear animation Groupe 1_126: 889324707119467315
+      appear animation Groupe 1_127: 7649987901677230505
+      appear animation Groupe 1_128: -8484412844541973518
+      appear animation Groupe 1_129: -8407834007818665105
+      appear animation Groupe 1_13: -6066506928063646344
+      appear animation Groupe 1_130: 1824426220523642898
+      appear animation Groupe 1_131: -7827720765351866592
+      appear animation Groupe 1_132: 2421094942383699937
+      appear animation Groupe 1_133: 1533108708952011247
+      appear animation Groupe 1_134: -8725720611467899552
+      appear animation Groupe 1_14: 1422183487444650721
+      appear animation Groupe 1_15: 4396821202772876557
+      appear animation Groupe 1_16: 3971487795936443947
+      appear animation Groupe 1_17: -951785774616709079
+      appear animation Groupe 1_18: -463263130500646568
+      appear animation Groupe 1_19: -886618291520095798
+      appear animation Groupe 1_2: 412557553178630514
+      appear animation Groupe 1_20: -6344305444549588739
+      appear animation Groupe 1_21: -7553144268876976211
+      appear animation Groupe 1_22: -7528363012670311535
+      appear animation Groupe 1_23: 4110588396393320671
+      appear animation Groupe 1_24: -1862263161942476452
+      appear animation Groupe 1_25: 2359069321256525864
+      appear animation Groupe 1_26: -6706692297790397161
+      appear animation Groupe 1_27: -7169775273873028153
+      appear animation Groupe 1_28: 8860451845208336173
+      appear animation Groupe 1_29: 5610157117631225864
+      appear animation Groupe 1_3: 7888051938124755581
+      appear animation Groupe 1_30: 3032661019478508255
+      appear animation Groupe 1_31: -420053893684619197
+      appear animation Groupe 1_32: -8467346349269877568
+      appear animation Groupe 1_33: 1090194516451702811
+      appear animation Groupe 1_34: 8472108754816090381
+      appear animation Groupe 1_35: -952177383204847692
+      appear animation Groupe 1_36: -5905203349300117315
+      appear animation Groupe 1_37: 4990153977196757498
+      appear animation Groupe 1_38: -6739982279752163806
+      appear animation Groupe 1_39: 8933816245154341226
+      appear animation Groupe 1_4: 6924209527157623599
+      appear animation Groupe 1_40: -944475563474288698
+      appear animation Groupe 1_41: -1401029260888717474
+      appear animation Groupe 1_42: 7721564043592150944
+      appear animation Groupe 1_43: -5164283521038526403
+      appear animation Groupe 1_44: 4571696893055023394
+      appear animation Groupe 1_45: -1510173072457983182
+      appear animation Groupe 1_46: 2125709776637591891
+      appear animation Groupe 1_47: 5391602180452792352
+      appear animation Groupe 1_48: 8148043043793720013
+      appear animation Groupe 1_49: 4487042518839831104
+      appear animation Groupe 1_5: 2725493251699241170
+      appear animation Groupe 1_50: 2669835909736545167
+      appear animation Groupe 1_51: 7648920651235229605
+      appear animation Groupe 1_52: 1649979569813638040
+      appear animation Groupe 1_53: -8446168322679658462
+      appear animation Groupe 1_54: 7272310428815067015
+      appear animation Groupe 1_55: 4477658361044545478
+      appear animation Groupe 1_56: 7556420844867218157
+      appear animation Groupe 1_57: -2788879114163036167
+      appear animation Groupe 1_58: 5456916527490166727
+      appear animation Groupe 1_59: 1794065924323099999
+      appear animation Groupe 1_6: -7893518589981094743
+      appear animation Groupe 1_60: 7352071479809524856
+      appear animation Groupe 1_61: 7106501665362024908
+      appear animation Groupe 1_62: -4026133578750032100
+      appear animation Groupe 1_63: -3677481825902515500
+      appear animation Groupe 1_64: -2939879580597593252
+      appear animation Groupe 1_65: 5773933456163950802
+      appear animation Groupe 1_66: 2524808322223680273
+      appear animation Groupe 1_67: -7168813960874149252
+      appear animation Groupe 1_68: 2708370843299708
+      appear animation Groupe 1_69: -6743445892529572797
+      appear animation Groupe 1_7: -8169293997601031553
+      appear animation Groupe 1_70: -8881597181398515755
+      appear animation Groupe 1_71: -5963983123791690425
+      appear animation Groupe 1_72: -3701569072745158453
+      appear animation Groupe 1_73: 3506354777943350034
+      appear animation Groupe 1_74: -7706599899349155401
+      appear animation Groupe 1_75: -2039747786013686792
+      appear animation Groupe 1_76: 1137839304692112076
+      appear animation Groupe 1_77: 3219097885264707080
+      appear animation Groupe 1_78: 7538184097694278883
+      appear animation Groupe 1_79: -7572591600341243191
+      appear animation Groupe 1_8: 5856563124675837198
+      appear animation Groupe 1_80: 2906107677117141183
+      appear animation Groupe 1_81: 7740046079527075350
+      appear animation Groupe 1_82: 55710485864673226
+      appear animation Groupe 1_83: -3177099237030105065
+      appear animation Groupe 1_84: -1635735620442777193
+      appear animation Groupe 1_85: -3507034048905595067
+      appear animation Groupe 1_86: -2842187774806226482
+      appear animation Groupe 1_87: 7543140325159697577
+      appear animation Groupe 1_88: -7260270014093330988
+      appear animation Groupe 1_89: 5190490487941758380
+      appear animation Groupe 1_9: 2891538789833498385
+      appear animation Groupe 1_90: -5620543826300392878
+      appear animation Groupe 1_91: 8347037723277806739
+      appear animation Groupe 1_92: 1887066426021835364
+      appear animation Groupe 1_93: -849673271720941139
+      appear animation Groupe 1_94: -4600981423612393038
+      appear animation Groupe 1_95: 7169170736798301171
+      appear animation Groupe 1_96: 9024471429802782390
+      appear animation Groupe 1_97: -6200763664213968012
+      appear animation Groupe 1_98: -1684293307761058269
+      appear animation Groupe 1_99: 6165976578975085227
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,1471 @@
+fileFormatVersion: 2
+guid: edaff63dbf26d48639298c7b39383602
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -3064861892798394993
+    second: Free magic weapon black outline_0
+  - first:
+      213: 3174696900573375481
+    second: Free magic weapon black outline_1
+  - first:
+      213: 5961699791464243658
+    second: Free magic weapon black outline_2
+  - first:
+      213: 4333481631692606330
+    second: Free magic weapon black outline_3
+  - first:
+      213: 4142982992172368837
+    second: Free magic weapon black outline_4
+  - first:
+      213: 3713269485271906712
+    second: Free magic weapon black outline_5
+  - first:
+      213: -8374611623333283289
+    second: Free magic weapon black outline_6
+  - first:
+      213: -4678975038469506178
+    second: Free magic weapon black outline_7
+  - first:
+      213: -1852482336150695169
+    second: Free magic weapon black outline_8
+  - first:
+      213: -6453711490868154872
+    second: Free magic weapon black outline_9
+  - first:
+      213: -4938038587654059845
+    second: Free magic weapon black outline_10
+  - first:
+      213: 7745309171949639661
+    second: Free magic weapon black outline_11
+  - first:
+      213: 1367955870656497012
+    second: Free magic weapon black outline_12
+  - first:
+      213: -8760889131502617353
+    second: Free magic weapon black outline_13
+  - first:
+      213: -5076996065184289905
+    second: Free magic weapon black outline_14
+  - first:
+      213: -6132153226356698714
+    second: Free magic weapon black outline_15
+  - first:
+      213: -5465857399549596060
+    second: Free magic weapon black outline_16
+  - first:
+      213: 2560153485784999702
+    second: Free magic weapon black outline_17
+  - first:
+      213: 2454127978487548756
+    second: Free magic weapon black outline_18
+  - first:
+      213: -7083696957335708413
+    second: Free magic weapon black outline_19
+  - first:
+      213: -8544749609559129178
+    second: Free magic weapon black outline_20
+  - first:
+      213: 438403510578576740
+    second: Free magic weapon black outline_21
+  - first:
+      213: 6072491249627276410
+    second: Free magic weapon black outline_22
+  - first:
+      213: 5488990079028864497
+    second: Free magic weapon black outline_23
+  - first:
+      213: 5196444311962815271
+    second: Free magic weapon black outline_24
+  - first:
+      213: 7129279815372177002
+    second: Free magic weapon black outline_25
+  - first:
+      213: -7220548846797628579
+    second: Free magic weapon black outline_26
+  - first:
+      213: -8455644787345702799
+    second: Free magic weapon black outline_27
+  - first:
+      213: 2147570587720341800
+    second: Free magic weapon black outline_28
+  - first:
+      213: 4450636045949599526
+    second: Free magic weapon black outline_29
+  - first:
+      213: 8238020017957300569
+    second: Free magic weapon black outline_30
+  - first:
+      213: 1438299600723899132
+    second: Free magic weapon black outline_31
+  - first:
+      213: 2708793330640632214
+    second: Free magic weapon black outline_32
+  - first:
+      213: -8083141455062349318
+    second: Free magic weapon black outline_33
+  - first:
+      213: 8707217518196666099
+    second: Free magic weapon black outline_34
+  - first:
+      213: 4784059851460665835
+    second: Free magic weapon black outline_35
+  - first:
+      213: -2863864563156099632
+    second: Free magic weapon black outline_36
+  - first:
+      213: 8731434584830630965
+    second: Free magic weapon black outline_37
+  - first:
+      213: 6953581553634849157
+    second: Free magic weapon black outline_38
+  - first:
+      213: -9091456454852381481
+    second: Free magic weapon black outline_39
+  - first:
+      213: -940489282197576734
+    second: Free magic weapon black outline_40
+  - first:
+      213: 754795602293685210
+    second: Free magic weapon black outline_41
+  - first:
+      213: 2874764910994849008
+    second: Free magic weapon black outline_42
+  - first:
+      213: -5306318429164200349
+    second: Free magic weapon black outline_43
+  - first:
+      213: -4831542904214659766
+    second: Free magic weapon black outline_44
+  - first:
+      213: -5081584685356471837
+    second: Free magic weapon black outline_45
+  - first:
+      213: -3498402900102074012
+    second: Free magic weapon black outline_46
+  - first:
+      213: -1045749481118119038
+    second: Free magic weapon black outline_47
+  - first:
+      213: 6931697057159858349
+    second: Free magic weapon black outline_48
+  - first:
+      213: -7012029024441009750
+    second: Free magic weapon black outline_49
+  - first:
+      213: 8717347529165928013
+    second: Free magic weapon black outline_50
+  - first:
+      213: 781304529845663782
+    second: Free magic weapon black outline_51
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Free magic weapon black outline_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f8dce1ac85c6775d0800000000000000
+      internalID: -3064861892798394993
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free magic weapon black outline_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 47
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9fba534c20ace0c20800000000000000
+      internalID: 3174696900573375481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free magic weapon black outline_2
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 64
+        width: 15
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac12fb7bf563cb250800000000000000
+      internalID: 5961699791464243658
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free magic weapon black outline_3
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 47
+        width: 18
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a7bc7b1959e932c30800000000000000
+      internalID: 4333481631692606330
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free magic weapon black outline_4
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 63
+        width: 18
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c34be6b415de7930800000000000000
+      internalID: 4142982992172368837
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free magic weapon black outline_5
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 47
+        width: 17
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 899fde05cee288330800000000000000
+      internalID: 3713269485271906712
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free magic weapon black outline_6
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 47
+        width: 31
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 72abc53691767cb80800000000000000
+      internalID: -8374611623333283289
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free magic weapon black outline_7
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e7bfa172ef0f01fb0800000000000000
+      internalID: -4678975038469506178
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free magic weapon black outline_8
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 47
+        width: 14
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff25d015129aa46e0800000000000000
+      internalID: -1852482336150695169
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free magic weapon black outline_9
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 63
+        width: 12
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 80e62ff979fcf66a0800000000000000
+      internalID: -6453711490868154872
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free magic weapon black outline_10
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 47
+        width: 7
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb845bf3110987bb0800000000000000
+      internalID: -4938038587654059845
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free magic weapon black outline_11
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 15
+        width: 13
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: de712adc7addc7b60800000000000000
+      internalID: 7745309171949639661
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free magic weapon black outline_12
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 63
+        width: 16
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 47504eadd94fbf210800000000000000
+      internalID: 1367955870656497012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free magic weapon black outline_13
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 47
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7fcb43880c11b6680800000000000000
+      internalID: -8760889131502617353
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free magic weapon black outline_14
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 63
+        width: 16
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f8b62a05af2ea89b0800000000000000
+      internalID: -5076996065184289905
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free magic weapon black outline_15
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 63
+        width: 16
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a15eb2512736eaa0800000000000000
+      internalID: -6132153226356698714
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free magic weapon black outline_16
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 47
+        width: 15
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 46ee7ea87af5524b0800000000000000
+      internalID: -5465857399549596060
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free magic weapon black outline_17
+      rect:
+        serializedVersion: 2
+        x: 177
+        y: 47
+        width: 15
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 61761b2f70e778320800000000000000
+      internalID: 2560153485784999702
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free magic weapon black outline_18
+      rect:
+        serializedVersion: 2
+        x: 179
+        y: 63
+        width: 12
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 45b0917d460de0220800000000000000
+      internalID: 2454127978487548756
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free magic weapon black outline_19
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 31
+        width: 17
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 30d5d79f527a1bd90800000000000000
+      internalID: -7083696957335708413
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free magic weapon black outline_20
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 31
+        width: 17
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a3029b8083fa6980800000000000000
+      internalID: -8544749609559129178
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free magic weapon black outline_21
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 31
+        width: 17
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 46df15c8ba5851600800000000000000
+      internalID: 438403510578576740
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free magic weapon black outline_22
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 31
+        width: 18
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a74a3bb3e92d54450800000000000000
+      internalID: 6072491249627276410
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free magic weapon black outline_23
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 31
+        width: 7
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1f5a82c156fcc2c40800000000000000
+      internalID: 5488990079028864497
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free magic weapon black outline_24
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 15
+        width: 11
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 72b84add19a7d1840800000000000000
+      internalID: 5196444311962815271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free magic weapon black outline_25
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 31
+        width: 9
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a6efe93383a40f260800000000000000
+      internalID: 7129279815372177002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free magic weapon black outline_26
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 47
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d5b554774157bcb90800000000000000
+      internalID: -7220548846797628579
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free magic weapon black outline_27
+      rect:
+        serializedVersion: 2
+        x: 133
+        y: 31
+        width: 8
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1704067add387aa80800000000000000
+      internalID: -8455644787345702799
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free magic weapon black outline_28
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 31
+        width: 9
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 829d52b3214bdcd10800000000000000
+      internalID: 2147570587720341800
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free magic weapon black outline_29
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 14
+        width: 16
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 62fff5f37e5d3cd30800000000000000
+      internalID: 4450636045949599526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free magic weapon black outline_30
+      rect:
+        serializedVersion: 2
+        x: 177
+        y: 31
+        width: 15
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 959e6e63f83535270800000000000000
+      internalID: 8238020017957300569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free magic weapon black outline_31
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 15
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cf2fbbdcdddd5f310800000000000000
+      internalID: 1438299600723899132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free magic weapon black outline_32
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 0
+        width: 13
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 69938c2be21979520800000000000000
+      internalID: 2708793330640632214
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free magic weapon black outline_33
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 0
+        width: 16
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: af946c54ca9e2df80800000000000000
+      internalID: -8083141455062349318
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free magic weapon black outline_34
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 16
+        width: 15
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3feab22333046d870800000000000000
+      internalID: 8707217518196666099
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free magic weapon black outline_35
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 16
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be1658e7615646240800000000000000
+      internalID: 4784059851460665835
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free magic weapon black outline_36
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 16
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0dd504c6a528148d0800000000000000
+      internalID: -2863864563156099632
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free magic weapon black outline_37
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 0
+        width: 18
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 53cd3686e794c2970800000000000000
+      internalID: 8731434584830630965
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free magic weapon black outline_38
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 15
+        width: 17
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5813d15d495108060800000000000000
+      internalID: 6953581553634849157
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free magic weapon black outline_39
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 14
+        width: 14
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d4779dd588a4d180800000000000000
+      internalID: -9091456454852381481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free magic weapon black outline_40
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 0
+        width: 6
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2e32d831bf5b2f2f0800000000000000
+      internalID: -940489282197576734
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free magic weapon black outline_41
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 11
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: adbfdb8e992997a00800000000000000
+      internalID: 754795602293685210
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free magic weapon black outline_42
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 15
+        width: 8
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0fcfa94947735e720800000000000000
+      internalID: 2874764910994849008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free magic weapon black outline_43
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 0
+        width: 10
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 36e1f84b08b2c56b0800000000000000
+      internalID: -5306318429164200349
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free magic weapon black outline_44
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 0
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a4dd935c359e2fcb0800000000000000
+      internalID: -4831542904214659766
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free magic weapon black outline_45
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 14
+        width: 16
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e9234de6a59a79b0800000000000000
+      internalID: -5081584685356471837
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free magic weapon black outline_46
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 0
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4613832091d237fc0800000000000000
+      internalID: -3498402900102074012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free magic weapon black outline_47
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 14
+        width: 15
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 28bc7e53360cc71f0800000000000000
+      internalID: -1045749481118119038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free magic weapon black outline_48
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 0
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da842ae6fb5523060800000000000000
+      internalID: 6931697057159858349
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free magic weapon black outline_49
+      rect:
+        serializedVersion: 2
+        x: 177
+        y: 14
+        width: 15
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa9f67be0c440be90800000000000000
+      internalID: -7012029024441009750
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free magic weapon black outline_50
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 12
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d46709b246d3af870800000000000000
+      internalID: 8717347529165928013
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free magic weapon black outline_51
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 0
+        width: 17
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 628bad29450c7da00800000000000000
+      internalID: 781304529845663782
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Free magic weapon black outline_0: -3064861892798394993
+      Free magic weapon black outline_1: 3174696900573375481
+      Free magic weapon black outline_10: -4938038587654059845
+      Free magic weapon black outline_11: 7745309171949639661
+      Free magic weapon black outline_12: 1367955870656497012
+      Free magic weapon black outline_13: -8760889131502617353
+      Free magic weapon black outline_14: -5076996065184289905
+      Free magic weapon black outline_15: -6132153226356698714
+      Free magic weapon black outline_16: -5465857399549596060
+      Free magic weapon black outline_17: 2560153485784999702
+      Free magic weapon black outline_18: 2454127978487548756
+      Free magic weapon black outline_19: -7083696957335708413
+      Free magic weapon black outline_2: 5961699791464243658
+      Free magic weapon black outline_20: -8544749609559129178
+      Free magic weapon black outline_21: 438403510578576740
+      Free magic weapon black outline_22: 6072491249627276410
+      Free magic weapon black outline_23: 5488990079028864497
+      Free magic weapon black outline_24: 5196444311962815271
+      Free magic weapon black outline_25: 7129279815372177002
+      Free magic weapon black outline_26: -7220548846797628579
+      Free magic weapon black outline_27: -8455644787345702799
+      Free magic weapon black outline_28: 2147570587720341800
+      Free magic weapon black outline_29: 4450636045949599526
+      Free magic weapon black outline_3: 4333481631692606330
+      Free magic weapon black outline_30: 8238020017957300569
+      Free magic weapon black outline_31: 1438299600723899132
+      Free magic weapon black outline_32: 2708793330640632214
+      Free magic weapon black outline_33: -8083141455062349318
+      Free magic weapon black outline_34: 8707217518196666099
+      Free magic weapon black outline_35: 4784059851460665835
+      Free magic weapon black outline_36: -2863864563156099632
+      Free magic weapon black outline_37: 8731434584830630965
+      Free magic weapon black outline_38: 6953581553634849157
+      Free magic weapon black outline_39: -9091456454852381481
+      Free magic weapon black outline_4: 4142982992172368837
+      Free magic weapon black outline_40: -940489282197576734
+      Free magic weapon black outline_41: 754795602293685210
+      Free magic weapon black outline_42: 2874764910994849008
+      Free magic weapon black outline_43: -5306318429164200349
+      Free magic weapon black outline_44: -4831542904214659766
+      Free magic weapon black outline_45: -5081584685356471837
+      Free magic weapon black outline_46: -3498402900102074012
+      Free magic weapon black outline_47: -1045749481118119038
+      Free magic weapon black outline_48: 6931697057159858349
+      Free magic weapon black outline_49: -7012029024441009750
+      Free magic weapon black outline_5: 3713269485271906712
+      Free magic weapon black outline_50: 8717347529165928013
+      Free magic weapon black outline_51: 781304529845663782
+      Free magic weapon black outline_6: -8374611623333283289
+      Free magic weapon black outline_7: -4678975038469506178
+      Free magic weapon black outline_8: -1852482336150695169
+      Free magic weapon black outline_9: -6453711490868154872
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
