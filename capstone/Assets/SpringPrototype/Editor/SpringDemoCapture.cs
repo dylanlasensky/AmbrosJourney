@@ -19,15 +19,15 @@ public class SpringWalkthrough : MonoBehaviour
     bool recording=true;int frame;string folder;RenderTexture scaled;Texture2D pixels;
     IEnumerator Start()
     {
-        Application.runInBackground=true;Time.captureFramerate=12;folder=Path.GetFullPath(Path.Combine(Application.dataPath,"../../tools/.spring-demo-v4"));Directory.CreateDirectory(folder);
+        Application.runInBackground=true;Time.captureFramerate=12;folder=Path.GetFullPath(Path.Combine(Application.dataPath,"../../tools/.spring-demo-v5"));Directory.CreateDirectory(folder);
         scaled=new RenderTexture(1280,720,0,RenderTextureFormat.ARGB32,RenderTextureReadWrite.Linear);pixels=new Texture2D(1280,720,TextureFormat.RGB24,false);StartCoroutine(Capture());
         yield return new WaitForSeconds(2);
         yield return MoveTo(new Vector2(-14,14));yield return KeyPress(Key.E);yield return new WaitForSeconds(3);
-        for(int i=0;i<4;i++){yield return KeyPress(Key.E);yield return new WaitForSeconds(3);}
+        for(int i=0;i<2;i++){yield return KeyPress(Key.E);yield return new WaitForSeconds(3);}
         yield return KeyPress(Key.E);
-        yield return MoveTo(new Vector2(-18,6));yield return MoveTo(new Vector2(-20,6));yield return ReadNote();yield return MoveTo(new Vector2(-18,6));yield return MoveTo(new Vector2(-18,1.2f));yield return Challenge(new[]{Key.Digit1,Key.Digit2,Key.Digit1});
-        yield return MoveTo(new Vector2(-15,-7));yield return MoveTo(new Vector2(3,-7));yield return MoveTo(new Vector2(10,0));yield return MoveTo(new Vector2(14,6));yield return MoveTo(new Vector2(14,8));yield return ReadNote();yield return MoveTo(new Vector2(14,6));yield return MoveTo(new Vector2(10,4.3f));yield return Challenge(new[]{Key.Digit2,Key.Digit2,Key.Digit1});
-        yield return MoveTo(new Vector2(19,2));yield return MoveTo(new Vector2(21,-7));yield return MoveTo(new Vector2(21,-10.3f));yield return ReadNote();yield return MoveTo(new Vector2(15,-12.3f));yield return Challenge(new[]{Key.Digit2,Key.Digit1,Key.Digit1});
+        yield return MoveTo(new Vector2(-18,6));yield return MoveTo(new Vector2(-20,6));yield return ReadNote();yield return MoveTo(new Vector2(-18,6));yield return MoveTo(new Vector2(-18,1.2f));yield return Challenge(new[]{Key.Digit1,Key.Digit1});
+        yield return MoveTo(new Vector2(-15,-7));yield return MoveTo(new Vector2(3,-7));yield return MoveTo(new Vector2(10,0));yield return MoveTo(new Vector2(14,6));yield return MoveTo(new Vector2(14,8));yield return ReadNote();yield return MoveTo(new Vector2(14,6));yield return MoveTo(new Vector2(10,4.3f));yield return Challenge(new[]{Key.Digit2,Key.Digit1});
+        yield return MoveTo(new Vector2(19,2));yield return MoveTo(new Vector2(21,-7));yield return MoveTo(new Vector2(21,-10.3f));yield return ReadNote();yield return MoveTo(new Vector2(15,-12.3f));yield return Challenge(new[]{Key.Digit2,Key.Digit1});
         yield return MoveTo(new Vector2(15,-22));yield return MoveTo(new Vector2(0,-24));yield return MoveTo(new Vector2(0,-26.2f));yield return KeyPress(Key.E);
         foreach(Key key in new[]{Key.Digit1,Key.Digit1,Key.Digit2,Key.Digit1,Key.Digit2}){yield return new WaitForSeconds(2.8f);yield return KeyPress(key);yield return new WaitForSeconds(2);yield return KeyPress(Key.E);}
         yield return new WaitForSeconds(3);yield return KeyPress(Key.E);

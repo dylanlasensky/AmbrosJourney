@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-// Spring: exploration and field notes -> nine applied challenges -> guardian -> Summer.
+// Spring: exploration and field notes -> six applied challenges -> guardian -> Summer.
 public class SpringGuide : MonoBehaviour
 {
     public Transform player, mage;
@@ -27,18 +27,17 @@ public class SpringGuide : MonoBehaviour
     bool journalOpen;
     readonly string[] locations={"Blossom Grove", "Stillwater Lake", "Whispering Ruins"};
     readonly string[] fieldNotes={
-        "THE PATTERN GARDEN\nA gardener trains an AI to sort flowers by showing it labeled pictures. Examples matter: if it sees only pink flowers, it may struggle with white ones. More varied, correctly labeled examples help it handle new cases. People choose the examples and check the results.\nTry the nearby bat: apply this idea to three claims. You can review this note with J.",
-        "A REFLECTION IS NOT THE WHOLE PICTURE\nThe lake can reflect a tree without becoming one. In a similar way, an AI can imitate friendly conversation without being a human friend. A warm or confident response is not proof that its advice is accurate. Compare important claims with a reliable source or ask a trusted adult.\nFind the lakeside bat and test three claims about AI responses.",
-        "THE PRIVACY WARD\nBefore sending a prompt, stop and check what it reveals. Passwords, private photos and your address should stay private. You can ask for help with a made-up example instead. If a tool asks for personal information you do not understand, ask a trusted adult before continuing.\nThe ruins bat has three choices for you. Protect the traveler in each one."
+        "THE PATTERN GARDEN\nA gardener trains an AI to sort flowers by showing it labeled pictures. Examples matter: if it sees only pink flowers, it may struggle with white ones. More varied, correctly labeled examples help it handle new cases. People choose the examples and check the results.\nTry the nearby bat: apply this idea to two claims. You can review this note with J.",
+        "A REFLECTION IS NOT THE WHOLE PICTURE\nThe lake can reflect a tree without becoming one. In a similar way, an AI can imitate friendly conversation without being a human friend. A warm or confident response is not proof that its advice is accurate. Compare important claims with a reliable source or ask a trusted adult.\nFind the lakeside bat and test two claims about AI responses.",
+        "THE PRIVACY WARD\nBefore sending a prompt, stop and check what it reveals. Passwords, private photos and your address should stay private. You can ask for help with a made-up example instead. If a tool asks for personal information you do not understand, ask a trusted adult before continuing.\nThe ruins bat has two choices for you. Protect the traveler in each one."
     };
     GUIStyle title, text, small, button, panelStyle;
     readonly string[] lessons = {
-        "Ambros! Another kid pulled through a computer... I was your age when it happened to me. I have been trapped here so long that everyone calls me the Ancient Mage.",
-        "To get home, complete the challenges in Spring, Summer, Fall and Winter. Bring the final item back to Spring. I will teach you what you need to know, then join your party when we clear this season.",
-        "AI is software built by people. Many AI systems learn patterns from training examples, such as text or pictures. They use those patterns to make predictions or generate answers. They do not know everything.",
-        "Keep personal information out of AI tools. Do not upload private photos, passwords or your address. A service may store your inputs depending on its settings. Ask a trusted adult before sharing anything personal.",
-        "Walk with WASD or the arrow keys. Press E near a character to talk. Follow the golden compass through Blossom Grove, Stillwater Lake and the southern ruins. Read the field note at each landmark, then test three claims with its bat. Press J anytime to review your notes. Then face the Thornhide Guardian to open the Summer gate."
+        "Ambros! Another kid pulled through a computer... I was your age when it happened to me. Everyone calls me the Ancient Mage now. Beat the four seasons and bring the final item back here to find your way home.",
+        "Spring will teach you how AI learns, how to check its answers and how to protect your privacy. Read a field note at each landmark, then apply the lesson to two claims from its bat.",
+        "Move with WASD or arrows. Press E to interact and J to review your notes. Follow the golden compass. When all three lessons are complete, pass Thornhide's quiz with 80% to open the Summer gate. I will join you then."
     };
+    int QuestionIndex(int mission)=>mission*3+(trials[mission]==0?0:mission==2?1:2);
     readonly string[] claims = {
         "AI is built by people and can learn patterns from examples.",
         "A flower AI trained only on pink flowers is guaranteed to recognize every white flower.",
@@ -145,8 +144,8 @@ public class SpringGuide : MonoBehaviour
     {
         if(target<3)
         {
-            int question=target*3+trials[target];bool right=(selected==0)==truth[question];
-            if(right){trials[target]++;feedback="Correct! "+explanations[question];if(trials[target]==3){cleared[target]=true;MissionsComplete++;bats[target].gameObject.SetActive(false);feedback+="\nLesson complete. Your journal has been updated.";}}
+            int question=QuestionIndex(target);bool right=(selected==0)==truth[question];
+            if(right){trials[target]++;feedback="Correct! "+explanations[question];if(trials[target]==2){cleared[target]=true;MissionsComplete++;bats[target].gameObject.SetActive(false);feedback+="\nLesson complete. Your journal has been updated.";}}
             else{hearts--;feedback="That myth fooled you! "+(hearts<=0?"The Mage restores your three hearts. ":"You lost a heart. ")+explanations[question]+" Try that claim again.";if(hearts<=0)hearts=3;}
         }
         else {bool right=selected==correct[bossQuestion];if(right)BossScore++;feedback=(right?"Correct! ":"Not quite. ")+reasons[bossQuestion];}
@@ -173,7 +172,7 @@ public class SpringGuide : MonoBehaviour
         Styles();float scale=Mathf.Min(Screen.width/1280f,Screen.height/720f);GUI.matrix=Matrix4x4.Scale(new Vector3(scale,scale,1));float w=Screen.width/scale,h=Screen.height/scale;
         Panel(new Rect(24,24,260,83));GUI.Label(new Rect(42,34,240,32),"Spring Valley",title);GUI.Label(new Rect(42,72,240,27),"CHAPTER 01  /  THE AWAKENING",small);
         Panel(new Rect(w-428,24,404,100));GUI.Label(new Rect(w-410,34,365,26),"JOURNAL  "+MissionsComplete+" / 3   |   COURAGE "+hearts+" / 3",small);GUI.Label(new Rect(w-410,61,365,57),Quest(),text);
-        if(journalOpen){Panel(new Rect(w/2-450,140,900,550));GUI.Label(new Rect(w/2-425,155,850,40),"Ambros' Field Journal",title);for(int i=0;i<3;i++){GUI.Label(new Rect(w/2-425,210+i*140,850,32),locations[i]+"  /  "+trials[i]+" of 3 challenges",title);GUI.Label(new Rect(w/2-425,246+i*140,850,100),studied[i]?fieldNotes[i].Split('\n')[1]:"Find the glowing field note near this landmark to learn its lesson.",text);}GUI.Label(new Rect(w/2-425,650,850,28),"J / ESC  Return to the trail",small);return;}
+        if(journalOpen){Panel(new Rect(w/2-450,140,900,550));GUI.Label(new Rect(w/2-425,155,850,40),"Ambros' Field Journal",title);for(int i=0;i<3;i++){GUI.Label(new Rect(w/2-425,210+i*140,850,32),locations[i]+"  /  "+trials[i]+" of 2 challenges",title);GUI.Label(new Rect(w/2-425,246+i*140,850,100),studied[i]?fieldNotes[i].Split('\n')[1]:"Find the glowing field note near this landmark to learn its lesson.",text);}GUI.Label(new Rect(w/2-425,650,850,28),"J / ESC  Return to the trail",small);return;}
         Compass(w,h);
         for(int i=0;i<3;i++)WorldLabel(stones[i],studied[i]?"FIELD NOTE  /  REVIEW":"FIELD NOTE  /  READ WITH E",w,h);
         for(int i=0;i<3;i++)if(!cleared[i])WorldLabel(bats[i],"MYTH BAT "+(i+1),w,h);
@@ -183,7 +182,7 @@ public class SpringGuide : MonoBehaviour
         var box=new Rect(w/2-450,h-355,900,330);Panel(box);
         string heading="Ancient Mage",body="";
         if(target==-1)body=SpringComplete?"You did it, Ambros! I will travel with you. The Summer gate is open beyond the guardian clearing.":LessonComplete?"Find the three myth bats, then face the Thornhide Guardian. Pass its five-question quiz with at least 80%. I will join you after we clear Spring.":lessons[page];
-        else if(target<3){heading=locations[target]+" / Challenge "+Mathf.Min(3,trials[target]+1)+" of 3";body=!LessonComplete?"Meet the Ancient Mage first.":!studied[target]?"Find the field note near this landmark first. Read it with E, then come back to apply what you learned.":feedback!=""?feedback:"TRUE OR FALSE?\n\n"+claims[target*3+Mathf.Min(2,trials[target])];}
+        else if(target<3){heading=locations[target]+" / Challenge "+Mathf.Min(2,trials[target]+1)+" of 2";body=!LessonComplete?"Meet the Ancient Mage first.":!studied[target]?"Find the field note near this landmark first. Read it with E, then come back to apply what you learned.":feedback!=""?feedback:"TRUE OR FALSE?\n\n"+claims[QuestionIndex(target)];}
         else if(target==3){heading="Spring Thornhide Guardian";body=SpringComplete?"Spring cleared! Your grade: "+BossScore+" / 5 ("+(BossScore*20)+"%). You earned Apprentice rank. The Ancient Mage joins your party. The Summer gate is now open.":MissionsComplete<3?"Dispel all three myth bats before challenging the guardian.":bossResult?"Your grade: "+BossScore+" / 5 ("+(BossScore*20)+"%). You need 80% to pass. Review your mistakes and try again. No progress is lost.":feedback!=""?feedback:"QUESTION "+(bossQuestion+1)+" / 5  •  80% TO PASS\n\n"+questions[bossQuestion];}
         else if(target>=5){heading=locations[target-5]+" / Field Note";body=LessonComplete?fieldNotes[target-5]:"Visit the Mage at his cottage first. He will help you read these trail notes.";}
         else {heading="The Summer Gate";body=SpringComplete?"You have unlocked Summer! The next season teaches when AI is useful and when to do the thinking yourself. This build ends here. Your Spring adventure is complete.":"The path is sealed. Finish the Mage's lessons, defeat the myth bats and score at least 80% against the Thornhide Guardian.";}
