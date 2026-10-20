@@ -8,3 +8,8 @@
 /[Ll]ogs/
 /[Uu]ser[Ss]ettings/
 /[Pp]ackages/
+# Reproducible cinematic and demo intermediates
+/tools/.opening-work/
+/tools/.spring-demo-frames/
+
+/tools/.spring-demo-final/
