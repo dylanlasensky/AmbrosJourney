@@ -3,7 +3,7 @@
 
 A 2D adventure about using AI safely. Ambros gets pulled into a game through his laptop. To get home, he must explore four seasons, learn through small missions, and pass each guardian's quiz.
 
-**Playable now:** Spring Valley. Spring includes a woodland cottage, winding trails, a lake, three field-note stops and nine applied myth-bat challenges, a quest compass, and the distinct Thornhide Guardian in a southern clearing. An 80% quiz score opens the Summer gate and adds the Ancient Mage to the party.
+**Playable now:** Spring Valley. Spring includes a woodland cottage, winding trails, a lake, three field-note stops and six applied myth-bat challenges, a quest compass, and the distinct Thornhide Guardian in a southern clearing. An 80% quiz score opens the Summer gate and adds the Ancient Mage to the party.
 
 **Opening:** the illustrated Ambros references are the approved visual direction. A replacement generated animation is still pending; the current 20-second animation is a temporary version.
 
