@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-// Spring: tutorial -> three short missions -> graded bat boss -> Summer gate.
+// Spring: exploration and field notes -> nine applied challenges -> guardian -> Summer.
 public class SpringGuide : MonoBehaviour
 {
     public Transform player, mage;
@@ -21,17 +21,47 @@ public class SpringGuide : MonoBehaviour
     Transform[] bats = new Transform[3];
     Transform boss, gate;
     bool[] cleared = new bool[3];
+    bool[] studied=new bool[3];
+    int[] trials=new int[3];
+    Transform[] stones=new Transform[3];
+    bool journalOpen;
+    readonly string[] locations={"Blossom Grove", "Stillwater Lake", "Whispering Ruins"};
+    readonly string[] fieldNotes={
+        "THE PATTERN GARDEN\nA gardener trains an AI to sort flowers by showing it labeled pictures. Examples matter: if it sees only pink flowers, it may struggle with white ones. More varied, correctly labeled examples help it handle new cases. People choose the examples and check the results.\nTry the nearby bat: apply this idea to three claims. You can review this note with J.",
+        "A REFLECTION IS NOT THE WHOLE PICTURE\nThe lake can reflect a tree without becoming one. In a similar way, an AI can imitate friendly conversation without being a human friend. A warm or confident response is not proof that its advice is accurate. Compare important claims with a reliable source or ask a trusted adult.\nFind the lakeside bat and test three claims about AI responses.",
+        "THE PRIVACY WARD\nBefore sending a prompt, stop and check what it reveals. Passwords, private photos and your address should stay private. You can ask for help with a made-up example instead. If a tool asks for personal information you do not understand, ask a trusted adult before continuing.\nThe ruins bat has three choices for you. Protect the traveler in each one."
+    };
     GUIStyle title, text, small, button, panelStyle;
     readonly string[] lessons = {
         "Ambros! Another kid pulled through a computer... I was your age when it happened to me. I have been trapped here so long that everyone calls me the Ancient Mage.",
         "To get home, complete the challenges in Spring, Summer, Fall and Winter. Bring the final item back to Spring. I will teach you what you need to know, then join your party when we clear this season.",
         "AI is software built by people. Many AI systems learn patterns from training examples, such as text or pictures. They use those patterns to make predictions or generate answers. They do not know everything.",
         "Keep personal information out of AI tools. Do not upload private photos, passwords or your address. A service may store your inputs depending on its settings. Ask a trusted adult before sharing anything personal.",
-        "Walk with WASD or the arrow keys. Press E near a character to talk. Follow the golden compass through Blossom Grove, Stillwater Lake and the southern ruins. Three confused bats are spreading AI myths. Explore each landmark and answer their challenges. Then face the Thornhide Guardian to open the Summer gate."
+        "Walk with WASD or the arrow keys. Press E near a character to talk. Follow the golden compass through Blossom Grove, Stillwater Lake and the southern ruins. Read the field note at each landmark, then test three claims with its bat. Press J anytime to review your notes. Then face the Thornhide Guardian to open the Summer gate."
     };
-    readonly string[] claims = { "AI is built by people and can learn patterns from examples.", "AI thinks and feels exactly like a human.", "It is safe to give an AI your password or private photos." };
-    readonly bool[] truth = { true, false, false };
-    readonly string[] explanations = { "Correct. People build and train AI systems using examples. That is how many systems learn patterns.", "Correct. AI can generate humanlike responses. That does not mean it thinks or feels like a person.", "Correct. Keep passwords, private photos and identifying details out of AI tools. Ask a trusted adult when unsure." };
+    readonly string[] claims = {
+        "AI is built by people and can learn patterns from examples.",
+        "A flower AI trained only on pink flowers is guaranteed to recognize every white flower.",
+        "Checking the labels and adding varied flower examples can improve the training set.",
+        "AI thinks and feels exactly like a human.",
+        "An AI answer sounds confident. That alone proves its facts are correct.",
+        "Before using an AI's surprising claim in homework, I should check a reliable source.",
+        "It is safe to give an AI your password or private photos.",
+        "I can ask for help writing a story using a made-up name instead of my full name and address.",
+        "If an unfamiliar AI tool asks for personal details, I should ask a trusted adult before sharing."
+    };
+    readonly bool[] truth = { true,false,true,false,false,true,false,true,true };
+    readonly string[] explanations = {
+        "People design and train AI systems. Examples let many systems learn useful patterns. That is different from being born knowing every answer.",
+        "Training examples have limits. A model that saw only pink flowers might not recognize other colors. Testing on new examples helps people find this problem.",
+        "Varied examples and accurate labels are useful. More data is not automatically better if it is mislabeled or missing important groups.",
+        "Humanlike language is not the same as being a human. Treat the tool as software, and rely on real people for friendship and support.",
+        "Confidence is a writing style, not evidence. AI can produce convincing mistakes. Check names, dates and other important facts.",
+        "A textbook, teacher or reliable reference can help you verify a claim. Do not assume that a link generated by AI is a real or reliable source.",
+        "Passwords and private photos should stay private. A tool may store inputs. Never send a password just because a chatbot asks for it.",
+        "A fictional example often gives enough context for useful help. Remove details that identify you or someone else before you share a prompt.",
+        "Pause and ask a trusted adult. You do not have to provide personal information to complete a conversation with an AI."
+    };
     readonly string[] questions = { "How do many AI systems learn?", "Who builds AI systems?", "Can an AI give a wrong answer?", "Which information should stay private?", "What is a safe way to use AI for school?" };
     readonly string[,] answers = { { "By learning patterns from examples", "By knowing everything from birth" }, { "People who design and train them", "They appear without people" }, { "No. A confident answer is always right", "Yes. Check important claims" }, { "Passwords, your address and private photos", "A made-up story about a dragon" }, { "Let it do all my work and copy it", "Use it to explain a topic, then think for myself" } };
     readonly int[] correct = { 0, 0, 1, 0, 1 };
@@ -40,6 +70,8 @@ public class SpringGuide : MonoBehaviour
     {
         Vector2[] positions = { new Vector2(-18,0), new Vector2(10,6), new Vector2(15,-14) };
         for(int i=0;i<3;i++) bats[i]=CreateBat("Misinformation Bat "+(i+1),positions[i],1);
+        Vector2[] notePositions={new Vector2(-21,5),new Vector2(13,9),new Vector2(21,-12)};
+        for(int i=0;i<3;i++){var o=new GameObject(locations[i]+" field note");o.transform.position=notePositions[i];var r=o.AddComponent<SpriteRenderer>();if(gateSprite){var t=gateSprite.texture;r.sprite=Sprite.Create(t,new Rect(0,0,t.width,t.height),new Vector2(.5f,0),t.height/1.8f);}r.sharedMaterial=mage.GetComponent<SpriteRenderer>().sharedMaterial;r.color=new Color(.85f,1,.85f);r.sortingOrder=100-Mathf.RoundToInt(notePositions[i].y*10);stones[i]=o.transform;}
         boss=CreateGuardian();
         var obj=new GameObject("Summer Gate (unlocks after 80 percent)");gate=obj.transform;gate.position=new Vector3(0,-33,0);
         if(gateSprite!=null)
@@ -77,7 +109,8 @@ public class SpringGuide : MonoBehaviour
         if(Distance(mage)<distance){best=-1;distance=Distance(mage);}
         for(int i=0;i<3;i++) if(!cleared[i] && Distance(bats[i])<distance){best=i;distance=Distance(bats[i]);}
         if(Distance(boss)<distance){best=3;distance=Distance(boss);}
-        if(Distance(gate)<distance)best=4;
+        if(Distance(gate)<distance){best=4;distance=Distance(gate);}
+        for(int i=0;i<3;i++)if(Distance(stones[i])<distance){best=5+i;distance=Distance(stones[i]);}
         return best;
     }
     void Update()
@@ -86,7 +119,9 @@ public class SpringGuide : MonoBehaviour
         if(SpringComplete && Distance(mage)>15)mage.position=player.position+new Vector3(-2,1,0);
         if(SpringComplete && !DialogueOpen && Distance(mage)>1.6f) mage.position=Vector3.MoveTowards(mage.position,player.position+new Vector3(-1,-.5f,0),2.8f*Time.deltaTime);
         var k=Keyboard.current;if(k==null)return;
-        if(k.escapeKey.wasPressedThisFrame){DialogueOpen=false;return;}
+        if(k.jKey.wasPressedThisFrame){journalOpen=!journalOpen;DialogueOpen=journalOpen;return;}
+        if(k.escapeKey.wasPressedThisFrame){journalOpen=false;DialogueOpen=false;return;}
+        if(journalOpen)return;
         if(k.eKey.wasPressedThisFrame || (DialogueOpen && k.enterKey.wasPressedThisFrame))
         {
             if(!DialogueOpen){target=Nearby();if(target==-99)return;DialogueOpen=true;page=0;feedback="";bossResult=false;bossQuestion=0;if(!SpringComplete)BossScore=0;}
@@ -95,9 +130,10 @@ public class SpringGuide : MonoBehaviour
         if(DialogueOpen && string.IsNullOrEmpty(feedback) && IsQuestion())
         {if(k.digit1Key.wasPressedThisFrame)Answer(0);else if(k.digit2Key.wasPressedThisFrame)Answer(1);}
     }
-    bool IsQuestion()=> target>=0 && target<=2 && LessonComplete || target==3 && MissionsComplete==3 && !bossResult && !SpringComplete;
+    bool IsQuestion()=> target>=0 && target<=2 && LessonComplete && studied[target] && !cleared[target] || target==3 && MissionsComplete==3 && !bossResult && !SpringComplete;
     void Continue()
     {
+        if(target>=5){if(LessonComplete)studied[target-5]=true;DialogueOpen=false;return;}
         if(target==-1){if(page<lessons.Length-1 && !LessonComplete)page++;else{LessonComplete=true;DialogueOpen=false;}return;}
         if(target>=0 && target<=2 && feedback!="")
         {if(cleared[target])DialogueOpen=false;else feedback="";return;}
@@ -109,9 +145,9 @@ public class SpringGuide : MonoBehaviour
     {
         if(target<3)
         {
-            bool right=(selected==0)==truth[target];
-            if(right){cleared[target]=true;MissionsComplete++;bats[target].gameObject.SetActive(false);feedback=explanations[target]+" Mission complete!";}
-            else{hearts--;feedback="That myth fooled you! "+(hearts<=0?"The Mage restores your three hearts. ":"You lost a heart. ")+"Think about the lesson and try again.";if(hearts<=0)hearts=3;}
+            int question=target*3+trials[target];bool right=(selected==0)==truth[question];
+            if(right){trials[target]++;feedback="Correct! "+explanations[question];if(trials[target]==3){cleared[target]=true;MissionsComplete++;bats[target].gameObject.SetActive(false);feedback+="\nLesson complete. Your journal has been updated.";}}
+            else{hearts--;feedback="That myth fooled you! "+(hearts<=0?"The Mage restores your three hearts. ":"You lost a heart. ")+explanations[question]+" Try that claim again.";if(hearts<=0)hearts=3;}
         }
         else {bool right=selected==correct[bossQuestion];if(right)BossScore++;feedback=(right?"Correct! ":"Not quite. ")+reasons[bossQuestion];}
     }
@@ -128,7 +164,7 @@ public class SpringGuide : MonoBehaviour
         button=new GUIStyle(GUI.skin.button){fontSize=18,wordWrap=true,alignment=TextAnchor.MiddleLeft,padding=new RectOffset(16,16,8,8),border=new RectOffset(8,8,8,8)};button.normal.background=buttonTexture;button.normal.textColor=new Color(1,.96f,.83f);button.hover.background=buttonTexture;button.hover.textColor=Color.white;
     }
     void Panel(Rect r){if(Event.current.type!=EventType.Repaint)return;var old=GUI.color;GUI.color=new Color(.12f,.22f,.18f,.7f).linear;panelStyle.Draw(new Rect(r.x+3,r.y+5,r.width,r.height),false,false,false,false);GUI.color=new Color(.55f,.35f,.22f).linear;panelStyle.Draw(r,false,false,false,false);GUI.color=Color.white;panelStyle.Draw(new Rect(r.x+3,r.y+3,r.width-6,r.height-6),false,false,false,false);GUI.color=old;}
-    Transform Destination(){if(!LessonComplete)return mage;for(int i=0;i<3;i++)if(!cleared[i])return bats[i];return SpringComplete?gate:boss;}
+    Transform Destination(){if(!LessonComplete)return mage;for(int i=0;i<3;i++)if(!cleared[i])return studied[i]?bats[i]:stones[i];return SpringComplete?gate:boss;}
     string Quest()=>SpringComplete?"Step through the Summer gate":!explored?"Stretch your legs! Follow the compass.":!LessonComplete?"Meet the Mage beside his cottage":MissionsComplete<3?new[]{"Blossom Grove: learn how AI learns","Lakeside: separate people from AI","Southern ruins: protect your privacy"}[NextBat()]:"Head south to challenge Thornhide";
     int NextBat(){for(int i=0;i<3;i++)if(!cleared[i])return i;return 2;}
     void Compass(float w,float h){var dest=Destination();if(!dest||DialogueOpen)return;Vector2 waypoint=dest.position;if(LessonComplete&&MissionsComplete==1){if(player.position.x< -10&&player.position.y> -5)waypoint=new Vector2(-15,-7);else if(player.position.x<2)waypoint=new Vector2(3,-7);}Vector2 delta=waypoint-(Vector2)player.position;var center=new Vector2(w-65,176);Panel(new Rect(w-112,130,88,100));var matrix=GUI.matrix;GUI.matrix=matrix*Matrix4x4.TRS(center,Quaternion.Euler(0,0,-Mathf.Atan2(delta.y,delta.x)*Mathf.Rad2Deg),Vector3.one);GUI.DrawTexture(new Rect(-17,-17,34,34),arrowTexture);GUI.matrix=matrix;GUI.Label(new Rect(w-100,198,78,25),Mathf.CeilToInt(delta.magnitude)+" steps",small);}
@@ -137,16 +173,19 @@ public class SpringGuide : MonoBehaviour
         Styles();float scale=Mathf.Min(Screen.width/1280f,Screen.height/720f);GUI.matrix=Matrix4x4.Scale(new Vector3(scale,scale,1));float w=Screen.width/scale,h=Screen.height/scale;
         Panel(new Rect(24,24,260,83));GUI.Label(new Rect(42,34,240,32),"Spring Valley",title);GUI.Label(new Rect(42,72,240,27),"CHAPTER 01  /  THE AWAKENING",small);
         Panel(new Rect(w-428,24,404,100));GUI.Label(new Rect(w-410,34,365,26),"JOURNAL  "+MissionsComplete+" / 3   |   COURAGE "+hearts+" / 3",small);GUI.Label(new Rect(w-410,61,365,57),Quest(),text);
+        if(journalOpen){Panel(new Rect(w/2-450,140,900,550));GUI.Label(new Rect(w/2-425,155,850,40),"Ambros' Field Journal",title);for(int i=0;i<3;i++){GUI.Label(new Rect(w/2-425,210+i*140,850,32),locations[i]+"  /  "+trials[i]+" of 3 challenges",title);GUI.Label(new Rect(w/2-425,246+i*140,850,100),studied[i]?fieldNotes[i].Split('\n')[1]:"Find the glowing field note near this landmark to learn its lesson.",text);}GUI.Label(new Rect(w/2-425,650,850,28),"J / ESC  Return to the trail",small);return;}
         Compass(w,h);
+        for(int i=0;i<3;i++)WorldLabel(stones[i],studied[i]?"FIELD NOTE  /  REVIEW":"FIELD NOTE  /  READ WITH E",w,h);
         for(int i=0;i<3;i++)if(!cleared[i])WorldLabel(bats[i],"MYTH BAT "+(i+1),w,h);
         if(!SpringComplete)WorldLabel(boss,"THORNHIDE  /  80% TO PASS",w,h);
         WorldLabel(gate,SpringComplete?"SUMMER  /  UNLOCKED":"SUMMER  /  SEALED",w,h);
-        if(!DialogueOpen){Panel(new Rect(24,h-62,590,38));GUI.Label(new Rect(40,h-57,565,30),"WASD / Arrows  Move     E  Talk     R  Return to cottage",small);if(Nearby()!=-99){Panel(new Rect(w/2-150,h-120,300,42));GUI.Label(new Rect(w/2-130,h-115,270,34),"[ E ]  Start conversation",text);}return;}
+        if(!DialogueOpen){Panel(new Rect(24,h-62,590,38));GUI.Label(new Rect(40,h-57,565,30),"WASD  Move    E  Interact    J  Journal    R  Cottage",small);if(Nearby()!=-99){Panel(new Rect(w/2-150,h-120,300,42));GUI.Label(new Rect(w/2-130,h-115,270,34),"[ E ]  Start conversation",text);}return;}
         var box=new Rect(w/2-450,h-355,900,330);Panel(box);
         string heading="Ancient Mage",body="";
         if(target==-1)body=SpringComplete?"You did it, Ambros! I will travel with you. The Summer gate is open beyond the guardian clearing.":LessonComplete?"Find the three myth bats, then face the Thornhide Guardian. Pass its five-question quiz with at least 80%. I will join you after we clear Spring.":lessons[page];
-        else if(target<3){heading="Misinformation Bat "+(target+1);body=!LessonComplete?"You are not ready for this challenge. Find the Ancient Mage first.":feedback!=""?feedback:"TRUE OR FALSE?\n\n"+claims[target];}
+        else if(target<3){heading=locations[target]+" / Challenge "+Mathf.Min(3,trials[target]+1)+" of 3";body=!LessonComplete?"Meet the Ancient Mage first.":!studied[target]?"Find the field note near this landmark first. Read it with E, then come back to apply what you learned.":feedback!=""?feedback:"TRUE OR FALSE?\n\n"+claims[target*3+Mathf.Min(2,trials[target])];}
         else if(target==3){heading="Spring Thornhide Guardian";body=SpringComplete?"Spring cleared! Your grade: "+BossScore+" / 5 ("+(BossScore*20)+"%). You earned Apprentice rank. The Ancient Mage joins your party. The Summer gate is now open.":MissionsComplete<3?"Dispel all three myth bats before challenging the guardian.":bossResult?"Your grade: "+BossScore+" / 5 ("+(BossScore*20)+"%). You need 80% to pass. Review your mistakes and try again. No progress is lost.":feedback!=""?feedback:"QUESTION "+(bossQuestion+1)+" / 5  •  80% TO PASS\n\n"+questions[bossQuestion];}
+        else if(target>=5){heading=locations[target-5]+" / Field Note";body=LessonComplete?fieldNotes[target-5]:"Visit the Mage at his cottage first. He will help you read these trail notes.";}
         else {heading="The Summer Gate";body=SpringComplete?"You have unlocked Summer! The next season teaches when AI is useful and when to do the thinking yourself. This build ends here. Your Spring adventure is complete.":"The path is sealed. Finish the Mage's lessons, defeat the myth bats and score at least 80% against the Thornhide Guardian.";}
         GUI.Label(new Rect(box.x+24,box.y+15,850,38),heading,title);GUI.Label(new Rect(box.x+24,box.y+61,850,145),body,text);
         if(IsQuestion() && feedback==""){for(int i=0;i<2;i++){string label=target<3?(i==0?"True":"False"):answers[bossQuestion,i];if(GUI.Button(new Rect(box.x+24,box.y+191+i*53,850,46),(i+1)+". "+label,button))Answer(i);}}
