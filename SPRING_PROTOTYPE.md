@@ -1,28 +1,24 @@
-# Intro and Spring implementation
+# Opening and Spring Valley
 
-Start in `Assets/Opening/Intro.unity`, followed automatically by `Assets/Scenes/Spring.unity`. The Capstone menu can play either scene.
+This local review build follows Sprint Two's Ambros / Ancient Mage / AI-literacy adventure. The opening follows the updated brief: Ambros plays a game on his laptop, gets pulled inside, and must beat the seasons to get home. No live AI service is used.
 
-## Implemented
+## Current build
+- Twenty-second original 2D animation: furnished bedroom, typing character, growing portal, animated suction and tunnel, landing in Spring. Includes an original music and effects cue. The video automatically loads Spring, with no player action during playback.
+- Spring spans 64 × 64 world units. Winding trails connect the Mage's cottage, Blossom Grove, Stillwater Lake, southern ruins, and a separate guardian clearing. Grass, blossoms, trees, bushes, rocks, a dock, trail posts and drifting petals furnish the map.
+- A parchment journal, contextual interaction prompts and rotating compass guide exploration. The compass routes the second mission around the lake.
+- Three spaced-out bat lessons cover AI training, humanlike responses, and privacy. Wrong answers provide retries; three courage points replenish on depletion.
+- Thornhide uses a separate animated creature from the existing Creatures Pack. Its five-question quiz requires 4/5 to open the Summer gate behind the arena. Failure preserves lesson progress. The Mage joins after success.
+- The generated woodland cottage and earlier season gate supplement the original asset packs.
 
-- Original 34-second storybook opening MP4 with generated keyframes, gentle camera movement, captions and an original synthesized ambient cue. Ambros is at his laptop, gets pulled inside, and arrives in Spring. The opening has no player actions.
-- Spring clearing with tilemaps, trees, rocks, water, boundaries, animated Ambros, camera follow and NPC interaction.
-- Ancient Mage backstory and tutorial on AI basics, training examples and private data.
-- Three true/false myth-bat missions with immediate feedback, heart damage for wrong answers and retries.
-- Five-question Bat Guardian quiz. Four correct answers (80%) unlock the Summer gate, remove the guardian and add the Mage as a following companion. Failed attempts can be retried without repeating missions.
-- Original mossy stone seasonal gate. Summer is unlocked as a progression flag; no Summer gameplay is included.
+## Review and reproduction
+Open the inner `capstone` project with Unity 6000.6.2f1. Use the Capstone menu:
+- **Play From Opening** / **Play Spring Only**: review the game.
+- **Upgrade Spring World**: rebuild the expanded map in Spring (replaces that generated layout).
+- **Validate Spring Progression**: checks wrong-answer retry, all missions, 60% failure, 80% success, distinct boss art and expanded bounds.
+- **Record Spring Demo**: editor-only walkthrough using ordinary Input System keyboard events. Captures the real Game view at 12 fps into `tools/.spring-demo-v3`; encode with ffmpeg.
+- **Record Animated Opening**: renders 480 animation frames from `AnimatedSource.unity` into `tools/.intro-animated`. Run `python3 tools/render_animated_opening.py /path/to/ffmpeg` to encode the 20-second video and original sound cue.
 
-## Sprint Two alignment
+`AnimatedOpening.cs` retains the editable animation source. The older keyframe renderer and art remain as earlier source material; they are no longer used by the opening video.
 
-The source is `SprintTwo (1).pdf`, pages 3–5, read October 20, 2026. Ambros is a middle schooler trapped through his computer. Spring contains the tutorial and first AI lesson, taught by the Ancient Mage (another child who grew old in the game). Misinformation bats use true/false challenges. Future seasons teach appropriate AI use, prompting and verification. Winter eventually drops an item to bring back to Spring for the return home. The planned final challenge focuses on AI safety. No live AI API is used.
-
-The latest direction uses a game on the laptop for the opening, replacing the notebook's earlier Claude-question setup. A larger bat guardian and 80% seasonal pass threshold implement the requested final boss gate.
-
-## Controls and editing
-
-WASD / arrows move. E interacts or continues. 1 / 2 select an answer. Escape closes dialogue. R returns to spawn. No movement is accepted while dialogue is open. Progress is session-only.
-
-Scripts and extracted art: `Assets/SpringPrototype`. Intro: `Assets/Opening`. Existing environment/character licenses still apply. The gate and cinematic artwork were generated for this project. Keyframes and the renderer are retained under `tools/opening-art` and `tools/render_opening.py`. Characters use side-facing art for all movement directions.
-
-`Capstone > Set Up Opening and Spring Missions` wires scene references and build order. `Build Spring Prototype` replaces the original layout, so save desired scene edits before rebuilding. `Validate Spring Progression` tests the tutorial, bat retries, all missions, a failing boss grade and an 80% passing grade. `Record Spring Demo` sends ordinary keyboard inputs and records the actual Game view for a review video.
-
-Summer, Fall, Winter, saving/loading, inventory, customization and the final certificate remain future work.
+## Limits
+Summer, Fall and Winter are not playable yet. Saves, inventory, character customization and the eventual completion certificate remain future work. Movement uses the original character pack's side-facing frames. The opening is stylized 2D animation, not a rendered 3D film. No changes are pushed until the demo is approved.
