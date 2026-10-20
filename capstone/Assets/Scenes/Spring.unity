@@ -289,6 +289,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SpringGuide
   player: {fileID: 1561877052}
   mage: {fileID: 445633498}
+  batSheet: {fileID: 2800000, guid: c7a3adaa93d8d454e92bc588febcd01e, type: 3}
+  gateSprite: {fileID: 21300000, guid: cfa00ef2f6c664abe859f63462b36ab6, type: 3}
 --- !u!4 &43802326
 Transform:
   m_ObjectHideFlags: 0
