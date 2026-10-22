@@ -1,6 +1,6 @@
 # Opening and Spring Valley
 
-This local review build follows Sprint Two's Ambros / Ancient Mage / AI-literacy adventure. The opening follows the updated brief: Ambros plays a game on his laptop, gets pulled inside, and must beat the seasons to get home. No live AI service is used.
+This build follows Sprint Two's Ambros / Ancient Mage / AI-literacy adventure. The opening follows the updated brief: Ambros plays a game on his laptop, gets pulled inside, and must beat the seasons to get home. No live AI service is used.
 
 ## Current build
 - Temporary twenty-second original 2D animation (rejected visual style, replacement pending): furnished bedroom, typing character, growing portal, animated suction and tunnel, landing in Spring. Includes an original music and effects cue. The video automatically loads Spring, with no player action during playback.
@@ -21,7 +21,7 @@ Open the inner `capstone` project with Unity 6000.6.2f1. Use the Capstone menu:
 `AnimatedOpening.cs` retains the editable animation source. The older keyframe renderer and art remain as earlier source material; they are no longer used by the opening video.
 
 ## Limits
-Summer, Fall and Winter are not playable yet. Saves, inventory, character customization and the eventual completion certificate remain future work. Movement uses the original character pack's side-facing frames. The opening is stylized 2D animation, not a rendered 3D film. No changes are pushed until the demo is approved.
+Summer, Fall and Winter are not playable yet. Saves, inventory, character customization and the eventual completion certificate remain future work. Movement uses the original character pack's side-facing frames. The opening is stylized 2D animation, not a rendered 3D film.
 
 ## Pacing target
 Spring targets approximately 5 minutes for a first-time player reading the field notes, considering six applied claims, exploring and completing the five-question guardian quiz. This is a design estimate, not a measured usability-test result. Fast repeat play and the demonstration are shorter. No artificial waiting is required. Spring is the shorter introductory chapter. Reserve the remaining roughly twenty-five minutes for the later seasons and finale.
