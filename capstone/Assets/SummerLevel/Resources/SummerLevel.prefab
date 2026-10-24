@@ -1,0 +1,344 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1000
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1001}
+  - component: {fileID: 1002}
+  m_Layer: 0
+  m_Name: Summer Valley
+  m_TagString: Untagged
+  m_IsActive: 1
+--- !u!4 &1001
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91bce162a7064cb999ef6612e9514a1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  artwork:
+  - key: AmbrosIdle1
+    texture: {fileID: 2800000, guid: 391680ee42f94521ab791dc7de213827, type: 3}
+    pixelsPerUnit: 32
+    pivot: {x: 0.5, y: 0}
+  - key: AmbrosIdle2
+    texture: {fileID: 2800000, guid: 9168e24a814d40c89ed7bc28a941dd2c, type: 3}
+    pixelsPerUnit: 32
+    pivot: {x: 0.5, y: 0}
+  - key: AmbrosIdle3
+    texture: {fileID: 2800000, guid: ac57b345b25242719f0532c8fe334b2c, type: 3}
+    pixelsPerUnit: 32
+    pivot: {x: 0.5, y: 0}
+  - key: AmbrosIdle4
+    texture: {fileID: 2800000, guid: 580cf355ab634b1bb1b3e6a25796bb80, type: 3}
+    pixelsPerUnit: 32
+    pivot: {x: 0.5, y: 0}
+  - key: AmbrosWalk1
+    texture: {fileID: 2800000, guid: 6819ad244ed84021af355e71c0e9b4a3, type: 3}
+    pixelsPerUnit: 32
+    pivot: {x: 0.5, y: 0}
+  - key: AmbrosWalk2
+    texture: {fileID: 2800000, guid: 4094d2c391b44da89700db3e92d3fc59, type: 3}
+    pixelsPerUnit: 32
+    pivot: {x: 0.5, y: 0}
+  - key: AmbrosWalk3
+    texture: {fileID: 2800000, guid: bff588b0531b4c79a275e029be8a9848, type: 3}
+    pixelsPerUnit: 32
+    pivot: {x: 0.5, y: 0}
+  - key: AmbrosWalk4
+    texture: {fileID: 2800000, guid: d9ea38700f6247c793fe1cb0d797f5ff, type: 3}
+    pixelsPerUnit: 32
+    pivot: {x: 0.5, y: 0}
+  - key: AmbrosWalk5
+    texture: {fileID: 2800000, guid: 2af7447a75734975bec3e625569786dc, type: 3}
+    pixelsPerUnit: 32
+    pivot: {x: 0.5, y: 0}
+  - key: AmbrosWalk6
+    texture: {fileID: 2800000, guid: b5b2cbc0c8e4454380c343984ba260f2, type: 3}
+    pixelsPerUnit: 32
+    pivot: {x: 0.5, y: 0}
+  - key: AmbrosWalk7
+    texture: {fileID: 2800000, guid: d8559524eb72475d8be4024c0ba6e772, type: 3}
+    pixelsPerUnit: 32
+    pivot: {x: 0.5, y: 0}
+  - key: AmbrosWalk8
+    texture: {fileID: 2800000, guid: 220422a2dad1496baa1a389548609c8d, type: 3}
+    pixelsPerUnit: 32
+    pivot: {x: 0.5, y: 0}
+  - key: MageIdle1
+    texture: {fileID: 2800000, guid: c92ee0e562dd4635bf773c64ff9df237, type: 3}
+    pixelsPerUnit: 32
+    pivot: {x: 0.5, y: 0}
+  - key: MageIdle2
+    texture: {fileID: 2800000, guid: 80786936d567426b96f49afa79b3935f, type: 3}
+    pixelsPerUnit: 32
+    pivot: {x: 0.5, y: 0}
+  - key: MageIdle3
+    texture: {fileID: 2800000, guid: 2fdbb5f140c24c778f31e0745475f62b, type: 3}
+    pixelsPerUnit: 32
+    pivot: {x: 0.5, y: 0}
+  - key: MageIdle4
+    texture: {fileID: 2800000, guid: 711be029387c4e96ab945119b84c46d8, type: 3}
+    pixelsPerUnit: 32
+    pivot: {x: 0.5, y: 0}
+  - key: MaleIdle1
+    texture: {fileID: 2800000, guid: bce21c84b2894c8f99a0c81112236e4f, type: 3}
+    pixelsPerUnit: 32
+    pivot: {x: 0.5, y: 0}
+  - key: MaleIdle2
+    texture: {fileID: 2800000, guid: 912b6632dfe546adb8d9b45ff5578b5a, type: 3}
+    pixelsPerUnit: 32
+    pivot: {x: 0.5, y: 0}
+  - key: MaleIdle3
+    texture: {fileID: 2800000, guid: 2a597eb9a29c4d9a8bb200a48d2ce91b, type: 3}
+    pixelsPerUnit: 32
+    pivot: {x: 0.5, y: 0}
+  - key: MaleIdle4
+    texture: {fileID: 2800000, guid: 329160d5f946435b9480814055f5a9c5, type: 3}
+    pixelsPerUnit: 32
+    pivot: {x: 0.5, y: 0}
+  - key: MaleWalk1
+    texture: {fileID: 2800000, guid: 108d3521f38f42d8857eab26d791ca16, type: 3}
+    pixelsPerUnit: 32
+    pivot: {x: 0.5, y: 0}
+  - key: MaleWalk2
+    texture: {fileID: 2800000, guid: 473175057ef141078869d025800c7ca1, type: 3}
+    pixelsPerUnit: 32
+    pivot: {x: 0.5, y: 0}
+  - key: MaleWalk3
+    texture: {fileID: 2800000, guid: 396947d5c85c4049a09eeb17339b801c, type: 3}
+    pixelsPerUnit: 32
+    pivot: {x: 0.5, y: 0}
+  - key: MaleWalk4
+    texture: {fileID: 2800000, guid: fe69f8de7d264b2fbe95b66297ba4a5b, type: 3}
+    pixelsPerUnit: 32
+    pivot: {x: 0.5, y: 0}
+  - key: MaleWalk5
+    texture: {fileID: 2800000, guid: d973074e3199401286b5ca2b168b5faa, type: 3}
+    pixelsPerUnit: 32
+    pivot: {x: 0.5, y: 0}
+  - key: MaleWalk6
+    texture: {fileID: 2800000, guid: 95aed123a1f64b17889a10f26670d22d, type: 3}
+    pixelsPerUnit: 32
+    pivot: {x: 0.5, y: 0}
+  - key: FemaleIdle1
+    texture: {fileID: 2800000, guid: cd9afdcc8ff54ef5ae8ca6aa19f6a7d2, type: 3}
+    pixelsPerUnit: 32
+    pivot: {x: 0.5, y: 0}
+  - key: FemaleIdle2
+    texture: {fileID: 2800000, guid: aa9e85f16d6f4528b7b081383e506b21, type: 3}
+    pixelsPerUnit: 32
+    pivot: {x: 0.5, y: 0}
+  - key: FemaleIdle3
+    texture: {fileID: 2800000, guid: ef52860703344a46926a99d4cffdfa91, type: 3}
+    pixelsPerUnit: 32
+    pivot: {x: 0.5, y: 0}
+  - key: FemaleIdle4
+    texture: {fileID: 2800000, guid: 14cf35c551d648d594046924ceb7f6ce, type: 3}
+    pixelsPerUnit: 32
+    pivot: {x: 0.5, y: 0}
+  - key: FemaleWalk1
+    texture: {fileID: 2800000, guid: 2f80646c17234cacac4943eb85913cdb, type: 3}
+    pixelsPerUnit: 32
+    pivot: {x: 0.5, y: 0}
+  - key: FemaleWalk2
+    texture: {fileID: 2800000, guid: 70793cfb10004f549e20c21bd64242fb, type: 3}
+    pixelsPerUnit: 32
+    pivot: {x: 0.5, y: 0}
+  - key: FemaleWalk3
+    texture: {fileID: 2800000, guid: 637bc04fa3214118a261dc9eafbfe5a8, type: 3}
+    pixelsPerUnit: 32
+    pivot: {x: 0.5, y: 0}
+  - key: FemaleWalk4
+    texture: {fileID: 2800000, guid: ffa00b321815444d9e6a45aa15a421db, type: 3}
+    pixelsPerUnit: 32
+    pivot: {x: 0.5, y: 0}
+  - key: FemaleWalk5
+    texture: {fileID: 2800000, guid: 9d8ba789442d4ed58c426e79efc258e5, type: 3}
+    pixelsPerUnit: 32
+    pivot: {x: 0.5, y: 0}
+  - key: FemaleWalk6
+    texture: {fileID: 2800000, guid: dad8c7ea72fe4bf389d2f04aa383b315, type: 3}
+    pixelsPerUnit: 32
+    pivot: {x: 0.5, y: 0}
+  - key: OrcIdle1
+    texture: {fileID: 2800000, guid: 25486195cc2044a981e41b8275058100, type: 3}
+    pixelsPerUnit: 32
+    pivot: {x: 0.5, y: 0}
+  - key: OrcIdle2
+    texture: {fileID: 2800000, guid: c76e857ee44946eca06e4974c07d9f82, type: 3}
+    pixelsPerUnit: 32
+    pivot: {x: 0.5, y: 0}
+  - key: OrcIdle3
+    texture: {fileID: 2800000, guid: e48b1ca108bb43e29b4def8ab7e22d32, type: 3}
+    pixelsPerUnit: 32
+    pivot: {x: 0.5, y: 0}
+  - key: OrcIdle4
+    texture: {fileID: 2800000, guid: 780a6fd7a3fe458996086293779c3743, type: 3}
+    pixelsPerUnit: 32
+    pivot: {x: 0.5, y: 0}
+  - key: OrcIdle5
+    texture: {fileID: 2800000, guid: 117ce801e0e04a3e985481189ac5eece, type: 3}
+    pixelsPerUnit: 32
+    pivot: {x: 0.5, y: 0}
+  - key: OrcAttack1
+    texture: {fileID: 2800000, guid: b4ee151b57a84b5088a3de1c18af511f, type: 3}
+    pixelsPerUnit: 32
+    pivot: {x: 0.5, y: 0}
+  - key: OrcAttack2
+    texture: {fileID: 2800000, guid: caefd1feea4a4ad58144f88775407703, type: 3}
+    pixelsPerUnit: 32
+    pivot: {x: 0.5, y: 0}
+  - key: OrcAttack3
+    texture: {fileID: 2800000, guid: aa02f2b9904741b38a0ffe793c047962, type: 3}
+    pixelsPerUnit: 32
+    pivot: {x: 0.5, y: 0}
+  - key: OrcAttack4
+    texture: {fileID: 2800000, guid: b1521f1677ee46b99a6ae96deb0e0993, type: 3}
+    pixelsPerUnit: 32
+    pivot: {x: 0.5, y: 0}
+  - key: OrcAttack5
+    texture: {fileID: 2800000, guid: 37bd07c211c64fddaa309054cd0f5922, type: 3}
+    pixelsPerUnit: 32
+    pivot: {x: 0.5, y: 0}
+  - key: OrcAttack6
+    texture: {fileID: 2800000, guid: 8d1647e65ed4417ca1f0ec3b0843da3e, type: 3}
+    pixelsPerUnit: 32
+    pivot: {x: 0.5, y: 0}
+  - key: AmbrosAttack1
+    texture: {fileID: 2800000, guid: 8fc97d4528054d778e9342c5d79a41d2, type: 3}
+    pixelsPerUnit: 32
+    pivot: {x: 0.5, y: 0}
+  - key: AmbrosAttack2
+    texture: {fileID: 2800000, guid: c61df31176f24570bf1f35462c53e88b, type: 3}
+    pixelsPerUnit: 32
+    pivot: {x: 0.5, y: 0}
+  - key: AmbrosAttack3
+    texture: {fileID: 2800000, guid: ce3f65f2c25246dcb6681f1f15828353, type: 3}
+    pixelsPerUnit: 32
+    pivot: {x: 0.5, y: 0}
+  - key: AmbrosAttack4
+    texture: {fileID: 2800000, guid: 94335a0f778e40e79341c3ce5adc331d, type: 3}
+    pixelsPerUnit: 32
+    pivot: {x: 0.5, y: 0}
+  - key: AmbrosAttack5
+    texture: {fileID: 2800000, guid: 437a5589370649d186f1b4efbd895c7e, type: 3}
+    pixelsPerUnit: 32
+    pivot: {x: 0.5, y: 0}
+  - key: Grass
+    texture: {fileID: 2800000, guid: 4dda9c0a58d84045997ed52f029bbb7d, type: 3}
+    pixelsPerUnit: 8
+    pivot: {x: 0.5, y: 0.5}
+  - key: Path
+    texture: {fileID: 2800000, guid: f63eb021ed20428f9a1c49ad43e46d03, type: 3}
+    pixelsPerUnit: 16
+    pivot: {x: 0.5, y: 0.5}
+  - key: Flowers
+    texture: {fileID: 2800000, guid: 7b7f047a02e3455ea378620965b93d9c, type: 3}
+    pixelsPerUnit: 16
+    pivot: {x: 0.5, y: 0.5}
+  - key: Tree
+    texture: {fileID: 2800000, guid: d03f13a52eec43d8b0dc698f531b5c40, type: 3}
+    pixelsPerUnit: 16
+    pivot: {x: 0.5, y: 0.08}
+  - key: Rock
+    texture: {fileID: 2800000, guid: 56ff60ac5e2e4699a98bd7bced8ec192, type: 3}
+    pixelsPerUnit: 16
+    pivot: {x: 0.5, y: 0.12}
+  - key: Bush
+    texture: {fileID: 2800000, guid: bddc1f270ac242a8ae879ba144641a3d, type: 3}
+    pixelsPerUnit: 16
+    pivot: {x: 0.5, y: 0.15}
+  - key: Water
+    texture: {fileID: 2800000, guid: 9a44c0f685fe42518137bd7c4cae1166, type: 3}
+    pixelsPerUnit: 16
+    pivot: {x: 0.5, y: 0.5}
+  - key: Workbench
+    texture: {fileID: 2800000, guid: 981420d131d7408a81e548040b816b73, type: 3}
+    pixelsPerUnit: 24
+    pivot: {x: 0.5, y: 0}
+  - key: Crate
+    texture: {fileID: 2800000, guid: a721a60c10b7474e95225762ad256c13, type: 3}
+    pixelsPerUnit: 24
+    pivot: {x: 0.5, y: 0}
+  - key: Noticeboard
+    texture: {fileID: 2800000, guid: f94bd6865143468998078d394fb8735b, type: 3}
+    pixelsPerUnit: 24
+    pivot: {x: 0.5, y: 0}
+  - key: Target
+    texture: {fileID: 2800000, guid: 5974787769ed4376984420814d4541af, type: 3}
+    pixelsPerUnit: 24
+    pivot: {x: 0.5, y: 0}
+  - key: GardenBed
+    texture: {fileID: 2800000, guid: 0e52dfdd46a74262aabac08715a5245e, type: 3}
+    pixelsPerUnit: 24
+    pivot: {x: 0.5, y: 0}
+  - key: Shelter
+    texture: {fileID: 2800000, guid: fb99de853ae44a97bb1123ade532dff7, type: 3}
+    pixelsPerUnit: 24
+    pivot: {x: 0.5, y: 0}
+  - key: Ward
+    texture: {fileID: 2800000, guid: 5ebee0411b964760a163b2c65a5e9bd4, type: 3}
+    pixelsPerUnit: 24
+    pivot: {x: 0.5, y: 0}
+  - key: Shield
+    texture: {fileID: 2800000, guid: 06a800eb0037471da1b41c5af919b582, type: 3}
+    pixelsPerUnit: 24
+    pivot: {x: 0.5, y: 0}
+  - key: Device
+    texture: {fileID: 2800000, guid: f88aad5cbbec4e808bbbbafec08cfdb8, type: 3}
+    pixelsPerUnit: 24
+    pivot: {x: 0.5, y: 0}
+  - key: Bridge
+    texture: {fileID: 2800000, guid: 7ed085c77e8e455f8672afd117ceacd3, type: 3}
+    pixelsPerUnit: 24
+    pivot: {x: 0.5, y: 0}
+  - key: Letter
+    texture: {fileID: 2800000, guid: 207e3b9d32eb4de2a8e8312589118bfb, type: 3}
+    pixelsPerUnit: 24
+    pivot: {x: 0.5, y: 0}
+  - key: Stone0
+    texture: {fileID: 2800000, guid: 271a8ce059014901af7dc3b23606d8c4, type: 3}
+    pixelsPerUnit: 24
+    pivot: {x: 0.5, y: 0}
+  - key: Stone1
+    texture: {fileID: 2800000, guid: 8e1da04389cf49208c11d61c9377b866, type: 3}
+    pixelsPerUnit: 24
+    pivot: {x: 0.5, y: 0}
+  - key: Stone2
+    texture: {fileID: 2800000, guid: 4165e51dcb3646feb64fc1e1391afe58, type: 3}
+    pixelsPerUnit: 24
+    pivot: {x: 0.5, y: 0}
+  - key: Portal
+    texture: {fileID: 2800000, guid: e50fe93a7e6e44eea7b95fd9fe0fb68d, type: 3}
+    pixelsPerUnit: 24
+    pivot: {x: 0.5, y: 0}
+  - key: Barrier
+    texture: {fileID: 2800000, guid: f46933901aa849ba98310abe53074bbf, type: 3}
+    pixelsPerUnit: 16
+    pivot: {x: 0.5, y: 0.5}
