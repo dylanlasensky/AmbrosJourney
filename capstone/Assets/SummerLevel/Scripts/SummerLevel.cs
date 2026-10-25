@@ -19,7 +19,8 @@ namespace AmbrosJourney.Summer
         public SpriteRenderer[] wardLights, shields;
         public TMP_FontAsset font;
         public SummerProgress Progress = new SummerProgress();
-        public bool InputBlocked => !dialog || !journal || dialog.activeSelf || journal.activeSelf;
+        public bool Transitioning;
+        public bool InputBlocked => Transitioning || !dialog || !journal || dialog.activeSelf || journal.activeSelf;
         GameObject dialog, journal;
         TextMeshProUGUI heading, copy, objective, compass, prompt, journalCopy, party;
         readonly List<UnityEngine.UI.Button> choices = new List<UnityEngine.UI.Button>();
@@ -51,13 +52,13 @@ namespace AmbrosJourney.Summer
             if (!canvas) return;
             var k = Keyboard.current;
             nearby = Nearest();
-            if (k != null)
+            if (k != null && !Transitioning)
             {
                 if (k.mKey.wasPressedThisFrame) { music.mute = !music.mute; effects.mute = music.mute; }
                 if (k.escapeKey.wasPressedThisFrame)
                 {
                     if (journal.activeSelf) journal.SetActive(false);
-                    else if (dialog.activeSelf && Progress.Introduced) dialog.SetActive(false);
+                    else if (dialog.activeSelf && Progress.Introduced) Close();
                 }
                 else if (k.jKey.wasPressedThisFrame && !dialog.activeSelf) ToggleJournal();
                 else if (dialog.activeSelf)

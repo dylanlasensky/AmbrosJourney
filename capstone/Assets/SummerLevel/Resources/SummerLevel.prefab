@@ -11,8 +11,11 @@ GameObject:
   - component: {fileID: 1001}
   - component: {fileID: 1002}
   m_Layer: 0
-  m_Name: Summer Valley
+  m_Name: SummerLevel
   m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &1001
 Transform:
@@ -342,3 +345,35 @@ MonoBehaviour:
     texture: {fileID: 2800000, guid: f46933901aa849ba98310abe53074bbf, type: 3}
     pixelsPerUnit: 16
     pivot: {x: 0.5, y: 0.5}
+  - key: MageWalk1
+    texture: {fileID: 2800000, guid: 2a71a353959394a91a02fe53678328e6, type: 3}
+    pixelsPerUnit: 32
+    pivot: {x: 0.5, y: 0}
+  - key: MageWalk2
+    texture: {fileID: 2800000, guid: 0a8820eec464f42b880e0762110e45c5, type: 3}
+    pixelsPerUnit: 32
+    pivot: {x: 0.5, y: 0}
+  - key: MageWalk3
+    texture: {fileID: 2800000, guid: 27d0989ca65784822ae202df2700c48b, type: 3}
+    pixelsPerUnit: 32
+    pivot: {x: 0.5, y: 0}
+  - key: MageWalk4
+    texture: {fileID: 2800000, guid: dd4ed43631bb14fd1a69ea1c1850bfb9, type: 3}
+    pixelsPerUnit: 32
+    pivot: {x: 0.5, y: 0}
+  - key: MageWalk5
+    texture: {fileID: 2800000, guid: 29c42404ee28643a591bc9b24fa89c56, type: 3}
+    pixelsPerUnit: 32
+    pivot: {x: 0.5, y: 0}
+  - key: MageWalk6
+    texture: {fileID: 2800000, guid: dbc40a69b1a394bab916c8e21f87e3b0, type: 3}
+    pixelsPerUnit: 32
+    pivot: {x: 0.5, y: 0}
+  - key: MageWalk7
+    texture: {fileID: 2800000, guid: ab4fa5c355e494fb291d0fbe6bd60c5d, type: 3}
+    pixelsPerUnit: 32
+    pivot: {x: 0.5, y: 0}
+  - key: MageWalk8
+    texture: {fileID: 2800000, guid: d1f7bb8fcafa44596b410acdf0e6e3f2, type: 3}
+    pixelsPerUnit: 32
+    pivot: {x: 0.5, y: 0}

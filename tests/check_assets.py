@@ -20,7 +20,7 @@ for name in sorted(tracked):
         errors.append(f"Duplicate GUID: {name} and {guids[guid]}")
     guids[guid] = name[:-5]
 
-folders = ("SpringPrototype", "SummerLevel", "FallLevel", "SeasonPresentation", "Opening")
+folders = ("SpringPrototype", "SummerLevel", "FallLevel", "WinterLevel", "SeasonPresentation", "Opening")
 gameplay = tuple(f"capstone/Assets/{folder}/" for folder in folders)
 for name in sorted(tracked):
     if not name.startswith(gameplay) or name.endswith(".meta"):
@@ -39,7 +39,7 @@ for name in sorted(tracked):
 
 for name in ("capstone/Packages/manifest.json", "capstone/Packages/packages-lock.json"):
     json.loads((root / name).read_text())
-for name in ("SummerLevel", "FallLevel"):
+for name in ("SummerLevel", "FallLevel", "WinterLevel"):
     path = f"capstone/Assets/{name}/Resources/{name}.prefab"
     if path not in tracked:
         errors.append(f"Missing portal resource: {path}")

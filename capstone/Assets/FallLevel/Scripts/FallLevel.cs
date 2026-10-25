@@ -74,7 +74,7 @@ namespace AmbrosJourney.Fall
             if(target==0)Show("Emberfist / The prompt forge",Progress.Complete?"I will travel with you! In Winter, keep checking what a tool tells you. Your own judgment still matters.":"Read the three station notes, then repair their requests. Follow the paths: the north bridge reaches the archive; its east opening leads into the switchbacks. The lower bridge loops back to the orchard.",Close);
             else if(target>=1 && target<=3)Mission(target-1);
             else if(target==4)Boss();
-            else if(target==5)Show("The Winter gate",Progress.Complete?"FALL COMPLETE / PROMPT PATHFINDER\nEmberfist joins your party.\n\nThe Little Mage's next lesson will be checking false AI output. Winter is not built yet; this gate marks the end of the current adventure. You can keep exploring Emberwood.":"Collect the three prompt runes and pass the Sentinel's quiz with at least 4/5. The Winter gate will then open.",Close);
+            else if(target==5)Show("The Winter gate",Progress.Complete?"FALL COMPLETE / PROMPT PATHFINDER\nEmberfist joins your party.\n\nClose this conversation and walk through the unlocked gate to reach Frostveil. Find the Little Mage and discover the cave beyond the snowy ridge.":"Collect the three prompt runes and pass the Sentinel's quiz with at least 4/5. The Winter gate will then open.",Close);
         }
         void Mission(int mission)
         {
@@ -155,7 +155,7 @@ namespace AmbrosJourney.Fall
             arenaSeal.SetActive(!Progress.CanFight);exitSeal.SetActive(!Progress.Complete);
             for(int i=0;i<3;i++)runes[i].color=Progress.MissionComplete(i)?new Color(.6f,1,.7f):new Color(1,.65f,.3f);
             for(int i=0;i<shields.Length;i++)shields[i].enabled=!Progress.Complete && i>=Progress.BossScore;
-            string quest=Progress.Complete?"Explore the unlocked Winter gate":Progress.CanFight?"Challenge the Sentinel / 4 of 5 to pass":!Progress.MissionComplete(0)?"Harvest Orchard / Goal + context + format":!Progress.MissionComplete(1)?"Lantern Archive / Audience + limits":"Revision Kiln / Check + improve";
+            string quest=Progress.Complete?"Walk through the unlocked Winter gate":Progress.CanFight?"Challenge the Sentinel / 4 of 5 to pass":!Progress.MissionComplete(0)?"Harvest Orchard / Goal + context + format":!Progress.MissionComplete(1)?"Lantern Archive / Audience + limits":"Revision Kiln / Check + improve";
             objective.text="RUNES "+Progress.RuneCount+" / 3   |   COURAGE "+Progress.Courage+" / 3\n"+quest;
             var destination=Destination();
             if(!InputBlocked)presentation.SetCompass(player.transform.position,navigation.Next(player.transform.position,destination),destination);
