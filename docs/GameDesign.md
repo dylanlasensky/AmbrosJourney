@@ -57,13 +57,13 @@ Commit `.meta` files with new assets so references survive another teammate's ch
 
 Spring validation covers field-note completion, wrong-answer retries, six bat challenges, a failing 60% guardian result, a passing 80% result, distinct guardian art, and expanded bounds. The gameplay recording exercises the playable route. These checks do not replace a clean build or audience testing.
 
-Spring, Summer and Fall are playable. Remaining work includes the approved illustrated intro, main menu and pause/return controls, Winter, final challenge and escape, persistent saves, and final testing. Inventory, customization, and the certificate remain future features. Current movement uses side-facing character frames. Do not label planned features as shipped.
+Spring, Summer, Fall and Winter are playable. Remaining work includes the approved illustrated intro, main menu and pause/return controls, final challenge and escape, persistent saves, and final testing. Inventory, customization, and the certificate remain future features. Current movement uses side-facing character frames. Do not label planned features as shipped.
 
 
 ## Summer → Fall progression
 
 Summer's three wards and 4/5 Orc pass are unchanged. Close its final conversation and walk through the Fall portal. The add-only Fall adapter loads the Resources world prefab into a runtime scene, using Summer's existing transition convention.
 
-Fall follows the authored prompt-engineering plan: Emberfist introduces goal/context/format, audience and limits, then checking and revising. Three field-note stations teach before seven applied choices. All three runes unlock the Bramble Sentinel; 4/5 passes its five three-choice questions, recruits Emberfist and opens the Winter gate. Winter is not yet playable.
+Fall follows the authored prompt-engineering plan: Emberfist introduces goal/context/format, audience and limits, then checking and revising. Three field-note stations teach before seven applied choices. All three runes unlock the Bramble Sentinel; 4/5 passes its five three-choice questions, recruits Emberfist and opens the Winter gate. Winter now continues through Frostveil and Echo Cavern: two outdoor evidence stations, one cave archive, and a five-question skeleton guardian requiring 4/5. The final return-home chapter remains planned.
 
 Emberwood's 99 × 93 tiles are about 2.5 times Summer's area. Two river crossings, eastern hedge switchbacks and an optional watch-post branch increase navigation difficulty. The compass follows physics-valid routes. Keep the same movement, dialogue, journal, courage recovery and session-only progression conventions. See `capstone/Assets/FallLevel/README.md` for scene ownership, rebuilding, art sources and validation.
