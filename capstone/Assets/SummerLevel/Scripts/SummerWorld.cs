@@ -137,6 +137,7 @@ namespace AmbrosJourney.Summer
             for(int i=0;i<3;i++)Visual("Instruction device","Device",new Vector2(-5+i*5,-26));
             level.fallGate=Visual("Fall portal","Portal",new Vector2(0,-30),1.5f).transform;level.fallGate.GetComponent<SpriteRenderer>().color=new Color(1,.69f,.4f);Label("FALL / PROMPT ENGINEERING",new Vector2(0,-27));
             var exit=Visual("Fall seal","Barrier",new Vector2(0,-28.7f));exit.transform.localScale=new Vector3(5,1,1);exit.gameObject.AddComponent<BoxCollider2D>();level.exitSeal=exit.gameObject;
+            AmbrosJourney.Presentation.NaturalTrail.Apply(paths,2);
             var camera=ObjectAt("Summer Camera",new Vector2(0,22));camera.tag="MainCamera";camera.transform.position=new Vector3(0,22,-10);
             var cam=camera.AddComponent<Camera>();cam.orthographic=true;cam.orthographicSize=7;cam.clearFlags=CameraClearFlags.SolidColor;cam.backgroundColor=new Color(.17f,.25f,.15f);camera.AddComponent<AudioListener>();
             var follow=camera.AddComponent<SummerCamera>();follow.target=level.player.transform;

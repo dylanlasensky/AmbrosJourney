@@ -76,25 +76,25 @@ namespace AmbrosJourney.Winter
         public static readonly Vector2 CaveMin=new Vector2(90,-34),CaveMax=new Vector2(150,36);
         public static readonly Vector2 CaveSpawn=new Vector2(100,-26),Entrance=new Vector2(24,27),BossPosition=new Vector2(134,25);
         public static readonly Vector2[] MissionPositions={new Vector2(-26,-6),new Vector2(23,7),new Vector2(103,10)};
-        readonly Vector2[] trail={new Vector2(-32,-25),new Vector2(-26,-20),new Vector2(-26,-6),new Vector2(-12,-6),new Vector2(-12,-17),new Vector2(10,-17),new Vector2(10,7),new Vector2(23,7),new Vector2(23,18),new Vector2(8,18),new Vector2(8,27),Entrance};
+        readonly Vector2[] trail={new Vector2(-32,-25),new Vector2(-26,-20),new Vector2(-26,-6),new Vector2(-12,-6),new Vector2(-12,-17),new Vector2(10,-17),new Vector2(10,7),new Vector2(23,7),new Vector2(23,18),new Vector2(8,18),new Vector2(8,23),new Vector2(24,23),Entrance};
         public void BuildWorld()
         {
             if(GetComponent<WinterLevel>())return;
             pixelMaterial=new Material(Shader.Find("Sprites/Default"));Resources.Load<Material>("SummerText");runtimeFont=Resources.Load<TMP_FontAsset>("SummerDefault");
             level=gameObject.AddComponent<WinterLevel>();level.font=runtimeFont;level.World=this;
             Outdoors=new GameObject("Frostveil / outdoor map");Outdoors.transform.SetParent(transform);region=Outdoors.transform;
-            var floor=Map("Snow meadow",-1000);var path=Map("Lantern trail",-990);var snow=Tile("Grass");var snowDetail=Tile("Flowers");var dirt=Tile("Path");
+            var floor=Map("Snow meadow",-1000);var path=Map("Lantern trail",-990);var snow=Tile("SnowGround");var snowDetail=snow;var dirt=Tile("Path");
             var rng=new System.Random(40126);for(int y=-34;y<=36;y++)for(int x=-40;x<=40;x++)floor.SetTile(new Vector3Int(x,y,0),rng.Next(30)==0?snowDetail:snow);
             for(int i=1;i<trail.Length;i++)Trail(path,dirt,trail[i-1],trail[i],1);
             Block("West edge",new Vector2(-41,1),new Vector2(1,72));Block("East edge",new Vector2(41,1),new Vector2(1,72));Block("North edge",new Vector2(0,37),new Vector2(83,1));Block("South edge",new Vector2(0,-35),new Vector2(83,1));
             var lake=Map("Frozen lake / unsafe ice",-980);var ice=Tile("Water");for(int y=-9;y<=8;y++)for(int x=-7;x<=3;x++)if(Mathf.Pow(x+2,2)/36f+Mathf.Pow(y,2)/81f<1){lake.SetTile(new Vector3Int(x,y,0),ice);Block("Thin ice",new Vector2(x+.5f,y+.5f),Vector2.one);}
-            for(int i=0;i<330;i++){var p=new Vector2(rng.Next(-38,39),rng.Next(-32,35));if(!SceneryAllowed(p))continue;var v=Visual("Snow pine","Tree",p,.8f+(float)rng.NextDouble()*.25f);var c=v.gameObject.AddComponent<BoxCollider2D>();c.size=new Vector2(.6f,.4f);c.offset=new Vector2(0,.2f);}
+            for(int i=0;i<330;i++){var p=new Vector2(rng.Next(-38,39),rng.Next(-32,35));if(!SceneryAllowed(p))continue;var v=Visual("Snow fir","Tree",p,.8f+(float)rng.NextDouble()*.25f);var c=v.gameObject.AddComponent<BoxCollider2D>();c.size=new Vector2(.6f,.4f);c.offset=new Vector2(0,.2f);}
             for(int i=0;i<75;i++){var p=new Vector2(rng.Next(-38,39),rng.Next(-32,35));if(SceneryAllowed(p))Visual("Snowbank",i%3==0?"Rock":"Bush",p,.7f);}
             Visual("Autumn arrival","Portal",WinterLevel.Spawn+Vector2.up*3,1.3f);Label("FROSTVEIL / ARRIVAL",WinterLevel.Spawn+Vector2.up*6);
             for(int i=1;i<trail.Length;i+=2){Visual("Warm trail lantern","Lantern",trail[i]+new Vector2(2.4f,1),.75f);}
             level.caveEntrance=ObjectAt("Enter Echo Cavern",Entrance).transform;
-            Visual("Snowbound cave entrance","CaveEntrance",Entrance+Vector2.down,.6f);Label("ECHO CAVERN / E TO ENTER",Entrance+Vector2.up*5);
-            Block("Cave left rock",Entrance+new Vector2(-3,3),new Vector2(3,5));Block("Cave right rock",Entrance+new Vector2(3,3),new Vector2(3,5));Block("Cave back wall",Entrance+new Vector2(0,6),new Vector2(9,1));
+            Visual("Frostveil mountain ridge / integrated cave","MountainRidge",Entrance+Vector2.down*1.5f).sortingOrder=-500;Label("ECHO CAVERN / E TO ENTER",Entrance+Vector2.up*3.5f);
+            Block("Mountain west shoulder",new Vector2(15,30),new Vector2(14,7));Block("Mountain east shoulder",new Vector2(34,30),new Vector2(14,7));Block("Mountain upper wall",new Vector2(24,33),new Vector2(32,1));
             Label("FOLLOW THE LANTERNS NORTH",new Vector2(23,13));Label("THIN ICE / STAY ON THE TRAIL",new Vector2(-3,-11));
             level.stations=new Transform[3];level.runes=new SpriteRenderer[3];
             for(int i=0;i<2;i++){level.stations[i]=Visual(WinterContent.Landmarks[i],"Noticeboard",MissionPositions[i],1.5f).transform;level.runes[i]=Visual("Evidence seal","Ward",MissionPositions[i]+Vector2.right*2);Label(WinterContent.Landmarks[i].ToUpper(),MissionPositions[i]+Vector2.up*3.5f);Visual("Research shelter","Shelter",MissionPositions[i]+new Vector2(-4,3),1.1f);}
@@ -117,12 +117,14 @@ namespace AmbrosJourney.Winter
             level.femaleWarrior=Actor("Warrior","FemaleIdle",4,WinterLevel.Spawn+Vector2.left*4);level.femaleWarrior.walk=Frames("FemaleWalk",6);
             level.ember=Actor("Emberfist","EmberIdle",4,WinterLevel.Spawn+Vector2.left*5);level.ember.walk=Frames("EmberWalk",8);
             level.littleMage=Actor("Little Mage","LittleIdle",4,WinterLevel.Spawn+new Vector2(3,2));level.littleMage.walk=Frames("LittleWalk",4);
+            AmbrosJourney.Presentation.NaturalTrail.Apply(path,4);
             var camera=ObjectAt("Winter Camera",WinterLevel.Spawn);camera.tag="MainCamera";camera.transform.position=new Vector3(WinterLevel.Spawn.x,WinterLevel.Spawn.y,-10);
             var cam=camera.AddComponent<Camera>();cam.orthographic=true;cam.orthographicSize=7;cam.backgroundColor=new Color(.07f,.10f,.17f);cam.clearFlags=CameraClearFlags.SolidColor;camera.AddComponent<AudioListener>();followCamera=camera.AddComponent<WinterCamera>();followCamera.target=level.player.transform;followCamera.worldMin=Min;followCamera.worldMax=Max;
             gameObject.AddComponent<WinterSnow>().level=level;Cavern.SetActive(false);
         }
         bool SceneryAllowed(Vector2 p)
         {
+            if(p.y>23&&p.x>6)return false;
             if(Vector2.Distance(p,Entrance)<9||Vector2.Distance(p,WinterLevel.Spawn)<9)return false;
             foreach(var m in MissionPositions)if(Vector2.Distance(p,m)<7)return false;
             for(int i=1;i<trail.Length;i++)if(SegmentDistance(p,trail[i-1],trail[i])<4)return false;

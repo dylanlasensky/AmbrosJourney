@@ -533,5 +533,13 @@ MonoBehaviour:
     texture: {fileID: 2800000, guid: cc4a5d103336b41bab0a0cd365503077, type: 3}
     pixelsPerUnit: 64
     pivot: {x: 0.5, y: 0.08}
+  - key: MountainRidge
+    texture: {fileID: 2800000, guid: fda6f2a17c5fb4ca882536bb0ba6e9f8, type: 3}
+    pixelsPerUnit: 16
+    pivot: {x: 0.5, y: 0.1}
+  - key: SnowGround
+    texture: {fileID: 2800000, guid: 34d56a2a2b83c4867afbcf3b87412913, type: 3}
+    pixelsPerUnit: 32
+    pivot: {x: 0.5, y: 0.5}
   Outdoors: {fileID: 0}
   Cavern: {fileID: 0}

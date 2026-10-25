@@ -13,3 +13,12 @@ Production 2D pixel art sprite of a single luminous blue ice crystal cluster for
 ## Lantern.png
 
 A single game-ready pixel art sprite of a warm amber lantern on a short weathered wooden trail post with snow on top. Top-down three-quarter view matching 16-bit Mana Seed fantasy forest RPG art. Entire isolated prop on genuine transparent background, no ground rectangle. Dark timber post, small hanging iron lantern with golden glass light, snow cap, a few crisp ice pixels, restrained blue slate shadows and ivory snow. Crisp chunky pixel clusters, limited palette, clean readable silhouette at small gameplay size. No text, no letters, no UI, no characters, no background, no large glow outside object. Center with transparent margin.
+
+## World polish: mountain ridge and snow
+
+Generated with OpenAI image generation on 2026-10-25. Original assets, not extracted from reference games. Imported with point filtering, no mipmaps, and uncompressed textures.
+
+- `MountainRidge.png`: one wide continuous snowy mountain ridge with a cave carved into the front bottom center; panoramic 3:1 transparent silhouette; layered slate-blue cliffs, snowy peaks and snow skirts; ivory, powder blue and desaturated blue-grey; chunky 16-bit pixel art, elevated top-down view. Imported at 512px maximum, 16 pixels per unit, pivot (0.5, 0.1).
+- `SnowGround.png`: seamless square top-down RPG snow ground; quiet low contrast ivory-white snow with sparse powder-blue pixel clusters and shallow drifts; no objects, borders, footprints or perspective; restrained pixel palette. Imported at 32px, 32 pixels per unit.
+
+A generated fir-tree variant was reviewed and rejected for a visible halo; the existing snow tree stays in the game.
