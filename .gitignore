@@ -15,3 +15,7 @@
 /tools/.spring-demo-final/
 /tools/.intro-animated/
 /tools/.spring-demo-v*/
+
+# Standalone regression runner outputs
+/tests/**/bin/
+/tests/**/obj/
