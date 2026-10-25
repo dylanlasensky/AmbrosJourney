@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using AmbrosJourney.Presentation;
+using TMPro;
 
 // Spring: exploration and field notes -> six applied challenges -> guardian -> Summer.
 public class SpringGuide : MonoBehaviour
@@ -31,7 +33,7 @@ public class SpringGuide : MonoBehaviour
         "A REFLECTION IS NOT THE WHOLE PICTURE\nThe lake can reflect a tree without becoming one. In a similar way, an AI can imitate friendly conversation without being a human friend. A warm or confident response is not proof that its advice is accurate. Compare important claims with a reliable source or ask a trusted adult.\nFind the lakeside bat and test two claims about AI responses.",
         "THE PRIVACY WARD\nBefore sending a prompt, stop and check what it reveals. Passwords, private photos and your address should stay private. You can ask for help with a made-up example instead. If a tool asks for personal information you do not understand, ask a trusted adult before continuing.\nThe ruins bat has two choices for you. Protect the traveler in each one."
     };
-    GUIStyle title, text, small, button, panelStyle;
+    SeasonOverlay presentation;
     readonly string[] lessons = {
         "Ambros! Another kid pulled through a computer... I was your age when it happened to me. Everyone calls me the Ancient Mage now. Beat the four seasons and bring the final item back here to find your way home.",
         "Spring will teach you how AI learns, how to check its answers and how to protect your privacy. Read a field note at each landmark, then apply the lesson to two claims from its bat.",
@@ -118,7 +120,7 @@ public class SpringGuide : MonoBehaviour
         if(SpringComplete && Distance(mage)>15)mage.position=player.position+new Vector3(-2,1,0);
         if(SpringComplete && !DialogueOpen && Distance(mage)>1.6f) mage.position=Vector3.MoveTowards(mage.position,player.position+new Vector3(-1,-.5f,0),2.8f*Time.deltaTime);
         var k=Keyboard.current;if(k==null)return;
-        if(k.jKey.wasPressedThisFrame){journalOpen=!journalOpen;DialogueOpen=journalOpen;return;}
+        if(k.jKey.wasPressedThisFrame && (!DialogueOpen || journalOpen)){journalOpen=!journalOpen;DialogueOpen=journalOpen;return;}
         if(k.escapeKey.wasPressedThisFrame){journalOpen=false;DialogueOpen=false;return;}
         if(journalOpen)return;
         if(k.eKey.wasPressedThisFrame || (DialogueOpen && k.enterKey.wasPressedThisFrame))
@@ -142,6 +144,7 @@ public class SpringGuide : MonoBehaviour
     }
     void Answer(int selected)
     {
+        if(selected<0 || selected>1 || !IsQuestion() || feedback!="")return;
         if(target<3)
         {
             int question=QuestionIndex(target);bool right=(selected==0)==truth[question];
@@ -150,46 +153,41 @@ public class SpringGuide : MonoBehaviour
         }
         else {bool right=selected==correct[bossQuestion];if(right)BossScore++;feedback=(right?"Correct! ":"Not quite. ")+reasons[bossQuestion];}
     }
-    Texture2D panelTexture, buttonTexture, arrowTexture;
-    Texture2D Rounded(Color c){var t=new Texture2D(32,32);for(int y=0;y<32;y++)for(int x=0;x<32;x++){float dx=Mathf.Max(7-x,x-24),dy=Mathf.Max(7-y,y-24);t.SetPixel(x,y,dx>0&&dy>0&&dx*dx+dy*dy>49?Color.clear:c);}t.filterMode=FilterMode.Point;t.Apply();return t;}
-    void Styles()
-    {
-        if(title!=null)return;
-        panelTexture=Rounded(new Color(.98f,.94f,.81f));buttonTexture=Rounded(new Color(.23f,.39f,.30f).linear);panelStyle=new GUIStyle{border=new RectOffset(8,8,8,8)};panelStyle.normal.background=panelTexture;
-        arrowTexture=new Texture2D(24,24);for(int y=0;y<24;y++)for(int x=0;x<24;x++)arrowTexture.SetPixel(x,y,x<=24-Mathf.Abs(y-12)*2?new Color(1,.78f,.29f):Color.clear);arrowTexture.Apply();
-        title=new GUIStyle(GUI.skin.label){fontSize=25,fontStyle=FontStyle.Bold,wordWrap=true};title.normal.textColor=new Color(.19f,.29f,.23f).linear;
-        text=new GUIStyle(GUI.skin.label){fontSize=19,wordWrap=true};text.normal.textColor=new Color(.24f,.32f,.27f).linear;
-        small=new GUIStyle(text){fontSize=14};
-        button=new GUIStyle(GUI.skin.button){fontSize=18,wordWrap=true,alignment=TextAnchor.MiddleLeft,padding=new RectOffset(16,16,8,8),border=new RectOffset(8,8,8,8)};button.normal.background=buttonTexture;button.normal.textColor=new Color(1,.96f,.83f);button.hover.background=buttonTexture;button.hover.textColor=Color.white;
-    }
-    void Panel(Rect r){if(Event.current.type!=EventType.Repaint)return;var old=GUI.color;GUI.color=new Color(.12f,.22f,.18f,.7f).linear;panelStyle.Draw(new Rect(r.x+3,r.y+5,r.width,r.height),false,false,false,false);GUI.color=new Color(.55f,.35f,.22f).linear;panelStyle.Draw(r,false,false,false,false);GUI.color=Color.white;panelStyle.Draw(new Rect(r.x+3,r.y+3,r.width-6,r.height-6),false,false,false,false);GUI.color=old;}
     Transform Destination(){if(!LessonComplete)return mage;for(int i=0;i<3;i++)if(!cleared[i])return studied[i]?bats[i]:stones[i];return SpringComplete?gate:boss;}
     string Quest()=>SpringComplete?"Step through the Summer gate":!explored?"Stretch your legs! Follow the compass.":!LessonComplete?"Meet the Mage beside his cottage":MissionsComplete<3?new[]{"Blossom Grove: learn how AI learns","Lakeside: separate people from AI","Southern ruins: protect your privacy"}[NextBat()]:"Head south to challenge Thornhide";
     int NextBat(){for(int i=0;i<3;i++)if(!cleared[i])return i;return 2;}
-    void Compass(float w,float h){var dest=Destination();if(!dest||DialogueOpen)return;Vector2 waypoint=dest.position;if(LessonComplete&&MissionsComplete==1){if(player.position.x< -10&&player.position.y> -5)waypoint=new Vector2(-15,-7);else if(player.position.x<2)waypoint=new Vector2(3,-7);}Vector2 delta=waypoint-(Vector2)player.position;var center=new Vector2(w-65,176);Panel(new Rect(w-112,130,88,100));var matrix=GUI.matrix;GUI.matrix=matrix*Matrix4x4.TRS(center,Quaternion.Euler(0,0,-Mathf.Atan2(delta.y,delta.x)*Mathf.Rad2Deg),Vector3.one);GUI.DrawTexture(new Rect(-17,-17,34,34),arrowTexture);GUI.matrix=matrix;GUI.Label(new Rect(w-100,198,78,25),Mathf.CeilToInt(delta.magnitude)+" steps",small);}
-    void OnGUI()
+    void LateUpdate()
     {
-        Styles();float scale=Mathf.Min(Screen.width/1280f,Screen.height/720f);GUI.matrix=Matrix4x4.Scale(new Vector3(scale,scale,1));float w=Screen.width/scale,h=Screen.height/scale;
-        Panel(new Rect(24,24,260,83));GUI.Label(new Rect(42,34,240,32),"Spring Valley",title);GUI.Label(new Rect(42,72,240,27),"CHAPTER 01  /  THE AWAKENING",small);
-        Panel(new Rect(w-428,24,404,100));GUI.Label(new Rect(w-410,34,365,26),"JOURNAL  "+MissionsComplete+" / 3   |   COURAGE "+hearts+" / 3",small);GUI.Label(new Rect(w-410,61,365,57),Quest(),text);
-        if(journalOpen){Panel(new Rect(w/2-450,140,900,550));GUI.Label(new Rect(w/2-425,155,850,40),"Ambros' Field Journal",title);for(int i=0;i<3;i++){GUI.Label(new Rect(w/2-425,210+i*140,850,32),locations[i]+"  /  "+trials[i]+" of 2 challenges",title);GUI.Label(new Rect(w/2-425,246+i*140,850,100),studied[i]?fieldNotes[i].Split('\n')[1]:"Find the glowing field note near this landmark to learn its lesson.",text);}GUI.Label(new Rect(w/2-425,650,850,28),"J / ESC  Return to the trail",small);return;}
-        Compass(w,h);
-        for(int i=0;i<3;i++)WorldLabel(stones[i],studied[i]?"FIELD NOTE  /  REVIEW":"FIELD NOTE  /  READ WITH E",w,h);
-        for(int i=0;i<3;i++)if(!cleared[i])WorldLabel(bats[i],"MYTH BAT "+(i+1),w,h);
-        if(!SpringComplete)WorldLabel(boss,"THORNHIDE  /  80% TO PASS",w,h);
-        WorldLabel(gate,SpringComplete?"SUMMER  /  UNLOCKED":"SUMMER  /  SEALED",w,h);
-        if(!DialogueOpen){Panel(new Rect(24,h-62,590,38));GUI.Label(new Rect(40,h-57,565,30),"WASD  Move    E  Interact    J  Journal    R  Cottage",small);if(Nearby()!=-99){Panel(new Rect(w/2-150,h-120,300,42));GUI.Label(new Rect(w/2-130,h-115,270,34),"[ E ]  Start conversation",text);}return;}
-        var box=new Rect(w/2-450,h-355,900,330);Panel(box);
+        if(!presentation)
+        {
+            var ui=new GameObject("Spring interface");ui.transform.SetParent(transform,false);
+            presentation=ui.AddComponent<SeasonOverlay>();presentation.Initialize(Resources.Load<TMP_FontAsset>("SummerDefault"),1);
+            for(int i=0;i<3;i++){AddLabel(stones[i],"FIELD NOTE / "+locations[i]);AddLabel(bats[i],"MYTH BAT "+(i+1));}
+            AddLabel(boss,"THORNHIDE / 4 OF 5 TO PASS");AddLabel(gate,"SUMMER GATE");
+        }
+        presentation.Objective.text="LESSONS "+MissionsComplete+" / 3   |   COURAGE "+hearts+" / 3\n"+Quest();
+        presentation.Prompt.text=Nearby()!=-99?"[ E ]  Explore / interact":"";
+        presentation.Dialog.SetActive(DialogueOpen&&!journalOpen);presentation.Journal.SetActive(journalOpen);
+        if(journalOpen){var titles=new string[3];var notes=new string[3];for(int i=0;i<3;i++){titles[i]=locations[i]+" / "+trials[i]+" of 2 challenges";notes[i]=studied[i]?fieldNotes[i].Split('\n')[1]:"Find the field note at this landmark.";}presentation.SetJournal(titles,notes,SpringComplete?"PARTY / Ambros + Ancient Mage":"PARTY / Ambros");return;}
+        var dest=Destination();if(dest&&!DialogueOpen){Vector2 waypoint=dest.position;if(LessonComplete&&MissionsComplete==1){if(player.position.x< -10&&player.position.y> -5)waypoint=new Vector2(-15,-7);else if(player.position.x<2)waypoint=new Vector2(3,-7);}presentation.SetCompass(player.position,waypoint,dest.position);}
+        if(!DialogueOpen)return;
         string heading="Ancient Mage",body="";
         if(target==-1)body=SpringComplete?"You did it, Ambros! I will travel with you. The Summer gate is open beyond the guardian clearing.":LessonComplete?"Find the three myth bats, then face the Thornhide Guardian. Pass its five-question quiz with at least 80%. I will join you after we clear Spring.":lessons[page];
         else if(target<3){heading=locations[target]+" / Challenge "+Mathf.Min(2,trials[target]+1)+" of 2";body=!LessonComplete?"Meet the Ancient Mage first.":!studied[target]?"Find the field note near this landmark first. Read it with E, then come back to apply what you learned.":feedback!=""?feedback:"TRUE OR FALSE?\n\n"+claims[QuestionIndex(target)];}
         else if(target==3){heading="Spring Thornhide Guardian";body=SpringComplete?"Spring cleared! Your grade: "+BossScore+" / 5 ("+(BossScore*20)+"%). You earned Apprentice rank. The Ancient Mage joins your party. The Summer gate is now open.":MissionsComplete<3?"Dispel all three myth bats before challenging the guardian.":bossResult?"Your grade: "+BossScore+" / 5 ("+(BossScore*20)+"%). You need 80% to pass. Review your mistakes and try again. No progress is lost.":feedback!=""?feedback:"QUESTION "+(bossQuestion+1)+" / 5  •  80% TO PASS\n\n"+questions[bossQuestion];}
         else if(target>=5){heading=locations[target-5]+" / Field Note";body=LessonComplete?fieldNotes[target-5]:"Visit the Mage at his cottage first. He will help you read these trail notes.";}
         else {heading="The Summer Gate";body=SpringComplete?"You have unlocked Summer! The next season teaches when AI is useful and when to do the thinking yourself. Close this conversation and walk through the unlocked gate to continue your adventure in Summer.":"The path is sealed. Finish the Mage's lessons, defeat the myth bats and score at least 80% against the Thornhide Guardian.";}
-        GUI.Label(new Rect(box.x+24,box.y+15,850,38),heading,title);GUI.Label(new Rect(box.x+24,box.y+61,850,145),body,text);
-        if(IsQuestion() && feedback==""){for(int i=0;i<2;i++){string label=target<3?(i==0?"True":"False"):answers[bossQuestion,i];if(GUI.Button(new Rect(box.x+24,box.y+191+i*53,850,46),(i+1)+". "+label,button))Answer(i);}}
-        else if(GUI.Button(new Rect(box.x+620,box.y+272,255,40),target==3&&bossResult&&!SpringComplete?"Try again [ E ]":"Continue [ E ]",button))Continue();
-        GUI.Label(new Rect(box.x+24,box.y+286,560,29),"ESC  Close conversation",small);
+        presentation.Heading.text=heading;presentation.Copy.text=body;
+        bool asking=IsQuestion()&&feedback=="";
+        for(int i=0;i<presentation.Choices.Count;i++)
+        {
+            var b=presentation.Choices[i];b.gameObject.SetActive(i<(asking?2:1));if(!b.gameObject.activeSelf)continue;
+            b.onClick.RemoveAllListeners();int answer=i;
+            b.GetComponentInChildren<TextMeshProUGUI>().text=asking?(i+1)+". "+(target<3?(i==0?"True":"False"):answers[bossQuestion,i]):"Continue [ E ]";
+            if(asking)b.onClick.AddListener(()=>Answer(answer));else b.onClick.AddListener(Continue);
+        }
+        if(lastBody!=body){presentation.Present(asking);lastBody=body;}
     }
-    void WorldLabel(Transform t,string label,float w,float h){if(t==null || Camera.main==null)return;var p=Camera.main.WorldToViewportPoint(t.position+Vector3.up*1.8f);if(p.x<0||p.x>1||p.y<0||p.y>1)return;var r=new Rect(p.x*w-135,(1-p.y)*h,270,29);Panel(r);GUI.Label(new Rect(r.x+10,r.y+4,250,25),label,small);}
+    string lastBody;
+    void AddLabel(Transform t,string caption){if(!t)return;var o=new GameObject(caption);o.transform.SetParent(t,false);o.transform.localPosition=Vector3.up*2;o.AddComponent<SeasonWorldLabel>().Caption=caption;}
 }

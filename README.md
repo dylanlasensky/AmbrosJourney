@@ -14,7 +14,9 @@ A Unity 2D adventure that teaches middle-school players how to use AI safely. Am
 
 Spring targets **about five minutes** for a first-time player; the full game targets **about thirty minutes**. These are design targets pending user testing. The [gameplay demo](docs/SpringDemo.mp4) follows a faster, familiar route.
 
-The opening automatically transitions into Spring, but its current 20-second animation is **temporary**. The final opening should match the original illustrated Ambros references and remains unfinished. Summer and Fall are now playable. Walk through each unlocked seasonal gate after closing its conversation: Spring → Summer → Fall. Fall's Winter gate currently ends the playable content; Winter and the finale are planned. Progress lasts only for the current session; main-menu, pause-menu, and persistent-save features are not yet complete.
+The opening automatically transitions into Spring, but its current 20-second animation is **temporary**. The final opening should match the original illustrated Ambros references and remains unfinished. All four seasons are playable. Walk through each unlocked seasonal gate after closing its conversation: Spring → Summer → Fall → Winter. Winter includes Frostveil outdoors and the explorable Echo Cavern, where the Frostbound Warden guards the Winter crest. The finale remains planned. Progress lasts only for the current session; main-menu, pause-menu, and persistent-save features are not yet complete.
+
+See [Winter setup and art credits](capstone/Assets/WinterLevel/README.md). All four seasons now share the same parchment UI, dialogue buttons, objective cards and journal.
 
 ## Game direction
 
@@ -23,7 +25,7 @@ The opening automatically transitions into Spring, but its current 20-second ani
 | Level 1 — Spring | Ancient Mage introduces AI basics; misinformation bats test understanding; Thornhide guards the exit. | Playable; polish and user testing remain |
 | Level 2 — Summer | Married Warriors teach the risks of overreliance on AI; an Orc encounter reinforces the lesson. | Playable; connects to Fall |
 | Level 3 — Fall | Emberfist teaches prompt engineering across Emberwood: three rune missions and the Bramble Sentinel. | Playable; user testing remains |
-| Level 4 — Winter | Little Mage teaches verification of false AI output, with a skeleton encounter. | Planned |
+| Level 4 — Winter | Little Mage teaches verification across Frostveil and Echo Cavern; the Frostbound Warden tests evidence-checking. | Playable; two maps, cave boss and Winter crest |
 | Final level | Cumulative AI Safety quiz and return-to-Spring escape resolution. | Planned |
 
 Each season should teach through short exploration missions before testing the player. Companions join after their season. The intended ending uses an item obtained in Winter to return home from Spring; a completion certificate is a future goal. Educational interactions use authored content, without a live AI API.
@@ -47,7 +49,7 @@ These are team targets, not claims that scheduled work is already finished.
 ## Open and play
 
 1. Clone this repository and open the **inner `capstone` folder** in Unity Hub with **Unity 6000.6.2f1**. Let asset imports finish.
-2. Select **Capstone → Play From Opening** or **Capstone → Play Spring Only**; use **Capstone → Summer → Play Summer Only** or **Capstone → Fall → Play Fall Only** to start later chapters directly in the Editor.
+2. Select **Capstone → Play From Opening** or **Capstone → Play Spring Only**; use **Capstone → Summer → Play Summer Only** or **Capstone → Fall → Play Fall Only** to start later chapters directly in the Editor. **Capstone → Winter → Play Winter Only** opens Frostveil.
 3. Move with **WASD / arrow keys**, interact with **E**, answer with **1 / 2** in Spring or **1 / 2 / 3** in Summer/Fall, open the journal with **J**, close dialogue with **Escape**, or return to the cottage with **R**.
 
 Use **Capstone → Validate Spring Progression** for the progression check. [Spring implementation notes](SPRING_PROTOTYPE.md) describe scene rebuilding, demo recording, and known limitations. Coordinate scene edits, commit asset `.meta` files with assets, keep Unity-generated caches out of version control, and preserve asset-pack licenses and credits.

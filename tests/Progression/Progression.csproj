@@ -7,5 +7,6 @@
   <ItemGroup>
     <Compile Include="../../capstone/Assets/SummerLevel/Scripts/SummerProgress.cs" Link="SummerProgress.cs" />
     <Compile Include="../../capstone/Assets/FallLevel/Scripts/FallProgress.cs" Link="FallProgress.cs" />
+    <Compile Include="../../capstone/Assets/WinterLevel/Scripts/WinterProgress.cs" Link="WinterProgress.cs" />
   </ItemGroup>
 </Project>

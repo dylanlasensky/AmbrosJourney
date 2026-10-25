@@ -24,18 +24,21 @@ namespace AmbrosJourney.Presentation
         Color ink, accent, paper = new Color(.98f,.94f,.81f), border = new Color(.55f,.35f,.22f);
         readonly Dictionary<SeasonWorldLabel,RectTransform> labels = new Dictionary<SeasonWorldLabel,RectTransform>();
         float openedAt, feedbackUntil; bool positive;
-        public void Initialize(TMP_FontAsset typeface, bool autumn)
+        public void Initialize(TMP_FontAsset typeface, bool autumn) => Initialize(typeface, autumn ? 3 : 2);
+        public void Initialize(TMP_FontAsset typeface, int chapter)
         {
+            bool autumn=chapter==3;
             font=typeface; ink=autumn?new Color(.25f,.20f,.14f):new Color(.19f,.29f,.23f);
             accent=autumn?new Color(.43f,.26f,.16f):new Color(.23f,.39f,.30f);
+            if(chapter==4){ink=new Color(.16f,.23f,.30f);accent=new Color(.19f,.32f,.42f);}
             rounded=Rounded(); arrowSprite=ArrowSprite();
             root=gameObject.AddComponent<RectTransform>();Canvas=gameObject.AddComponent<Canvas>();Canvas.renderMode=RenderMode.ScreenSpaceOverlay;Canvas.sortingOrder=100;
             var scaler=gameObject.AddComponent<UnityEngine.UI.CanvasScaler>();scaler.uiScaleMode=UnityEngine.UI.CanvasScaler.ScaleMode.ScaleWithScreenSize;scaler.referenceResolution=new Vector2(1280,720);scaler.screenMatchMode=UnityEngine.UI.CanvasScaler.ScreenMatchMode.Expand;
             gameObject.AddComponent<UnityEngine.UI.GraphicRaycaster>();
             if(!EventSystem.current){var e=new GameObject("Season EventSystem",typeof(EventSystem),typeof(InputSystemUIInputModule));e.transform.SetParent(transform,false);}
-            var title=Panel("Chapter",transform,Vector2.up,new Rect(24,24,260,83));
-            Text("Title",title,new Rect(18,10,240,32),autumn?"Emberwood":"Summer Valley",25,true);
-            Text("Chapter",title,new Rect(18,48,240,27),autumn?"CHAPTER 03  /  PROMPT FORGE":"CHAPTER 02  /  INDEPENDENCE",14);
+            var title=Panel("Chapter",transform,Vector2.up,new Rect(24,24,290,83));
+            Text("Title",title,new Rect(18,10,260,32),new[]{"Spring Valley","Summer Valley","Emberwood","Winter / Frostveil"}[chapter-1],25,true);
+            Text("Chapter",title,new Rect(18,48,260,27),new[]{"01  /  THE AWAKENING","02  /  INDEPENDENCE","03  /  PROMPT FORGE","04  /  SEEK THE EVIDENCE"}[chapter-1],14);
             var tracker=Panel("Objectives",transform,Vector2.one,new Rect(-428,24,404,100));
             Objective=Text("Objective",tracker,new Rect(18,37,365,57),"",19);objectiveRect=Objective.rectTransform;
             // Kept as one text field for the established level contract; split visually in LateUpdate.
@@ -43,8 +46,8 @@ namespace AmbrosJourney.Presentation
             compassBox=Panel("Compass",transform,Vector2.one,new Rect(-112,130,88,100));
             var arrowObject=new GameObject("Golden direction arrow",typeof(RectTransform),typeof(UnityEngine.UI.Image));arrowObject.transform.SetParent(compassBox,false);Arrow=arrowObject.GetComponent<RectTransform>();Place(Arrow,Vector2.up,new Rect(27,27,34,34));Arrow.pivot=new Vector2(.5f,.5f);Arrow.anchoredPosition=new Vector2(44,-46);var image=arrowObject.GetComponent<UnityEngine.UI.Image>();image.sprite=arrowSprite;image.raycastTarget=false;
             CompassText=Text("Distance",compassBox,new Rect(8,68,76,25),"",14);CompassText.alignment=TextAlignmentOptions.Center;
-            controls=Panel("Controls",transform,Vector2.zero,new Rect(24,-62,700,38));
-            Text("Controls",controls,new Rect(16,6,675,27),"WASD  Move    E  Interact    J  Journal    R  Arrival    M  Audio",14);
+            controls=Panel("Controls",transform,Vector2.zero,new Rect(24,-62,780,38));
+            Text("Controls",controls,new Rect(16,6,750,27),"WASD / Arrows  Move    E  Interact    1–3  Answer    J  Journal    R  Return",14);
             context=Panel("Interaction prompt",transform,new Vector2(.5f,0),new Rect(-190,-120,380,42));Prompt=Text("Prompt",context,new Rect(18,5,345,32),"",19);
             // Party membership belongs in the journal, rather than floating over the scenery.
             Party=Text("Party",transform,new Rect(0,0,1,1),"",14);Party.gameObject.SetActive(false);
@@ -63,14 +66,15 @@ namespace AmbrosJourney.Presentation
             var journalRect=Panel("Journal",transform,new Vector2(.5f,.5f),new Rect(-450,-275,900,550));Journal=journalRect.gameObject;
             Text("Journal title",journalRect,new Rect(25,15,850,40),"Ambros' Field Journal",25,true);
             JournalCopy=Text("Notes",journalRect,new Rect(25,70,850,430),"",19);
-            Text("Journal hint",journalRect,new Rect(25,505,850,28),"J / ESC  Return to the trail",14);
+            journalParty=Text("Journal party",journalRect,new Rect(25,493,850,24),"",14);
+            Text("Journal hint",journalRect,new Rect(25,522,850,24),"J / ESC  Return to the trail",14);
             Dialog.SetActive(false);Journal.SetActive(false);
         }
-        TextMeshProUGUI trackerText,closeHint;
+        TextMeshProUGUI trackerText,closeHint,journalParty;
         readonly List<TextMeshProUGUI> journalTitles=new List<TextMeshProUGUI>(),journalNotes=new List<TextMeshProUGUI>();
         public void SetJournal(string[] titles,string[] notes,string party)
         {
-            JournalCopy.gameObject.SetActive(false);
+            JournalCopy.gameObject.SetActive(false);journalParty.text=party;
             if(journalTitles.Count==0)
             {
                 var panel=Journal.transform;
@@ -97,12 +101,12 @@ namespace AmbrosJourney.Presentation
         void LayoutDialogue()
         {
             if(!Copy)return;
-            float textHeight=Mathf.Max(116,Copy.GetPreferredValues(Copy.text,850,0).y+8);
+            float textHeight=Mathf.Max(Asking?90:64,Copy.GetPreferredValues(Copy.text,850,0).y+8);
             textHeight=Mathf.Min(250,textHeight);
             int count=0;foreach(var b in Choices)if(b.gameObject.activeSelf)count++;
             float choiceHeight=46;
             if(Asking)foreach(var b in Choices)if(b.gameObject.activeSelf)choiceHeight=Mathf.Max(choiceHeight,b.GetComponentInChildren<TextMeshProUGUI>().GetPreferredValues(818,0).y+16);
-            float height=Mathf.Max(330,61+textHeight+14+count*(choiceHeight+7)+26);
+            float height=Asking?Mathf.Max(300,61+textHeight+14+count*(choiceHeight+7)+40):Mathf.Max(220,61+textHeight+78);
             float top=root.rect.height-25-height;
             Place(dialogueRect,new Vector2(.5f,0),new Rect(-450,-(height+25),900,height));
             Place(bodyRect,Vector2.up,new Rect(24,61,850,textHeight));
@@ -131,12 +135,13 @@ namespace AmbrosJourney.Presentation
         void UpdateLabels()
         {
             var camera=Camera.main;if(!camera)return;
+            var expired=new List<SeasonWorldLabel>();foreach(var pair in labels){if(!pair.Key){Destroy(pair.Value.gameObject);expired.Add(pair.Key);}else pair.Value.gameObject.SetActive(false);}foreach(var marker in expired)labels.Remove(marker);
             foreach(var marker in SeasonWorldLabel.Active)
             {
                 if(!marker)continue;
                 if(!labels.TryGetValue(marker,out var panel)){panel=Panel(marker.Caption,worldLabels,Vector2.up,new Rect(0,0,270,29));var label=Text("Label",panel,new Rect(10,4,250,25),marker.Caption,14);label.enableAutoSizing=true;label.fontSizeMin=11;label.fontSizeMax=14;labels.Add(marker,panel);}
                 var p=camera.WorldToViewportPoint(marker.transform.position);
-                bool visible=p.z>0&&p.x>=0&&p.x<=1&&p.y>=0&&p.y<=1&&!Journal.activeSelf;panel.gameObject.SetActive(visible);
+                bool visible=p.z>0&&p.x>=0&&p.x<=1&&p.y>=0&&p.y<=1&&!Journal.activeSelf&&!Dialog.activeSelf;panel.gameObject.SetActive(visible);
                 if(visible)Place(panel,Vector2.up,new Rect(p.x*root.rect.width-135,(1-p.y)*root.rect.height,270,29));
             }
         }
@@ -146,6 +151,7 @@ namespace AmbrosJourney.Presentation
             var shadow=Face("Shadow",r,new Color(.12f,.22f,.18f,.7f));Stretch(shadow.rectTransform);shadow.rectTransform.anchoredPosition=new Vector2(3,-5);
             var rim=Face("Border",r,border);Stretch(rim.rectTransform);
             var fill=Face("Parchment",r,paper);Stretch(fill.rectTransform);fill.rectTransform.offsetMin=new Vector2(3,3);fill.rectTransform.offsetMax=new Vector2(-3,-3);
+            var rule=Face("Gold inset",r,new Color(.73f,.55f,.30f,.65f));Place(rule.rectTransform,Vector2.up,new Rect(14,6,Mathf.Max(8,area.width-28),2));
             return r;
         }
         UnityEngine.UI.Image Face(string name,Transform parent,Color color)

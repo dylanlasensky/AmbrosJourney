@@ -1,6 +1,7 @@
 using System;
 using AmbrosJourney.Summer;
 using AmbrosJourney.Fall;
+using AmbrosJourney.Winter;
 
 static class Program
 {
@@ -57,7 +58,7 @@ static class Program
     {
         for (int mask = 0; mask < 32; mask++)
         {
-            var p = Summer(); Check(p.BeginBoss(), "Summer boss begins"); int score = 0;
+            var p = Summer(); Check(!p.AnswerBoss(0) && p.BossQuestion==0, "Summer requires a started encounter"); Check(p.BeginBoss(), "Summer boss begins"); int score = 0;
             for (int q = 0; q < 5; q++)
             {
                 int answer = (mask >> q) & 1;
@@ -88,6 +89,25 @@ static class Program
             for(int i=0;i<10;i++)p.LoseCourage();
             Check(p.Complete && p.RuneCount==3 && p.Courage>0, "Fall courage recovery retains learning");
         }
-        Console.WriteLine($"PASS: {checks} assertions, all 32 Summer and 243 Fall guardian outcomes.");
+        for(int mask=0;mask<243;mask++)
+        {
+            var p=new WinterProgress();Check(!p.EnterCave()&&!p.ReadNote(0)&&!p.BeginBoss(),"Winter intro required");p.Introduced=true;
+            Check(!p.ReadNote(2),"Cave archive requires cave entry");
+            Check(p.EnterCave()&&p.CaveDiscovered&&!p.BeginBoss(),"Discovering cave does not bypass evidence seals");p.LeaveCave();
+            for(int m=0;m<3;m++)
+            {
+                if(m==2)p.EnterCave();
+                Check(!p.AnswerMission(m,0),"Winter note prerequisite");p.ReadNote(m);
+                foreach(var q in WinterContent.Missions[m]){int old=p.Steps[m];Check(!p.AnswerMission(m,(q.Correct+1)%3)&&p.Steps[m]==old,"Winter mistake preserves progress");Check(p.AnswerMission(m,q.Correct),"Winter evidence challenge");}
+                Check(!p.AnswerMission(m,0),"No duplicate Winter reward");
+            }
+            Check(!p.AnswerBoss(0),"Winter encounter must start");p.LeaveCave();Check(!p.BeginBoss()&&p.RuneCount==3,"Leaving preserves runes but boss requires cave");p.EnterCave();Check(p.BeginBoss(),"Winter boss begins");
+            Check(!p.AnswerBoss(-1)&&!p.AnswerBoss(3)&&p.BossQuestion==0,"Invalid Winter choices rejected");int code=mask,score=0;
+            for(int i=0;i<5;i++){int answer=code%3;code/=3;if(answer==WinterContent.Boss[i].Correct)score++;p.AnswerBoss(answer);}
+            Check(p.BossFinished&&p.BossScore==score&&p.Complete==(score>=4),"Winter all 243 guardian outcomes");Check(!p.AnswerBoss(0),"No answers after finished attempt");
+            if(!p.Complete){Check(p.BeginBoss()&&p.RuneCount==3,"Winter retries preserve seals");foreach(var q in WinterContent.Boss)p.AnswerBoss(q.Correct);}
+            Check(p.Complete&&!p.BeginBoss(),"Winter success is final");p.LeaveCave();p.EnterCave();Check(p.Complete&&p.RuneCount==3,"Region round trip preserves completion");
+        }
+        Console.WriteLine($"PASS: {checks} assertions, all 32 Summer, 243 Fall and 243 Winter guardian outcomes.");
     }
 }
