@@ -17,6 +17,7 @@ public static class SeasonIntegrationChecks
     const string Key = "SeasonIntegrationChecks.";
     const BindingFlags Private = BindingFlags.Instance | BindingFlags.NonPublic;
     static double readyAt;
+    static readonly MethodInfo SignalTick = typeof(EditorApplication).GetMethod("SignalTick", BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public);
     static SeasonIntegrationChecks()
     {
         EditorApplication.update += Tick;
@@ -29,7 +30,8 @@ public static class SeasonIntegrationChecks
     }
     public static void Run()
     {
-        Directory.CreateDirectory("Temp/SeasonChecks");
+        Directory.CreateDirectory("Logs/SeasonChecks");
+        File.WriteAllText("Logs/SeasonChecks/Integration.txt", "RUNNING\n");
         SessionState.SetString(Key + "error", "");
         SessionState.SetInt(Key + "stage", 0);
         SessionState.SetBool(Key + "active", true);
@@ -38,6 +40,8 @@ public static class SeasonIntegrationChecks
         FallToolsValidate();
         PresentationTools.ValidateMath();
         EditorSceneManager.OpenScene("Assets/Scenes/Spring.unity");
+        EditorWindow.GetWindow(Type.GetType("UnityEditor.GameView,UnityEditor")).Focus();
+        Application.runInBackground = true;
         EditorApplication.isPlaying = true;
     }
     static void SummerToolsValidate() => AmbrosJourney.Summer.Editor.SummerTools.Validate();
@@ -53,8 +57,11 @@ public static class SeasonIntegrationChecks
         {
             string error = SessionState.GetString(Key + "error", "");
             Check(error == "", error);
-            Check(DateTime.UtcNow < DateTime.Parse(SessionState.GetString(Key + "deadline", "")), "Timed out waiting for a season transition");
-            if (!EditorApplication.isPlaying || Time.frameCount < 30) return;
+            Check(DateTime.UtcNow < DateTime.Parse(SessionState.GetString(Key + "deadline", "")).ToUniversalTime(), "Timed out at stage " + SessionState.GetInt(Key + "stage", 0) + "; frame " + Time.frameCount);
+            Application.runInBackground = true;
+            EditorApplication.QueuePlayerLoopUpdate();
+            SignalTick?.Invoke(null, null);
+            if (!EditorApplication.isPlaying) return;
             if (readyAt == 0) readyAt = EditorApplication.timeSinceStartup + 3;
             if (EditorApplication.timeSinceStartup < readyAt) return;
             int stage = SessionState.GetInt(Key + "stage", 0);
@@ -112,11 +119,11 @@ public static class SeasonIntegrationChecks
         }
         catch (Exception e) { Finish(false, e.ToString()); }
     }
-    static void Advance(int stage) { SessionState.SetInt(Key + "stage", stage); readyAt = EditorApplication.timeSinceStartup + 4; }
+    static void Advance(int stage) { Debug.Log("SEASON_CHECK_STAGE: " + stage); SessionState.SetInt(Key + "stage", stage); readyAt = EditorApplication.timeSinceStartup + 4; }
     static void Finish(bool passed, string message)
     {
         SessionState.SetBool(Key + "active", false);
-        File.WriteAllText("Temp/SeasonChecks/Integration.txt", (passed ? "PASS" : "FAIL") + "\n" + message);
+        File.WriteAllText("Logs/SeasonChecks/Integration.txt", (passed ? "PASS" : "FAIL") + "\n" + message);
         Debug.Log("SEASON_INTEGRATION_" + (passed ? "PASS: " : "FAIL: ") + message);
         EditorApplication.Exit(passed ? 0 : 1);
     }
@@ -124,11 +131,11 @@ public static class SeasonIntegrationChecks
     {
         var report = BuildPipeline.BuildPlayer(new BuildPlayerOptions {
             scenes = new[]{"Assets/Opening/Intro.unity", "Assets/Scenes/Spring.unity"},
-            locationPathName = "Temp/SeasonChecks/AmbrosJourney.app", target = BuildTarget.StandaloneOSX,
+            locationPathName = "Logs/SeasonChecks/AmbrosJourney.app", target = BuildTarget.StandaloneOSX,
             options = BuildOptions.Development
         });
-        Directory.CreateDirectory("Temp/SeasonChecks");
-        File.WriteAllText("Temp/SeasonChecks/Build.txt", report.summary.result + "\nErrors: " + report.summary.totalErrors + "\nWarnings: " + report.summary.totalWarnings);
+        Directory.CreateDirectory("Logs/SeasonChecks");
+        File.WriteAllText("Logs/SeasonChecks/Build.txt", report.summary.result + "\nErrors: " + report.summary.totalErrors + "\nWarnings: " + report.summary.totalWarnings);
         Check(report.summary.result == BuildResult.Succeeded, "Connected game build failed");
     }
 }
