@@ -1,0 +1,3 @@
+PASS
+Visible button flow, three-option privacy question, journal, shared compass and existing progression.
+States inspected: 37

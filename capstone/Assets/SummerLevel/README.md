@@ -21,11 +21,11 @@ The resource prefab is included automatically in player builds. No Pipeline pack
 - Message post, northeast: remove all three fictional private details, then choose real human support for an upset friend.
 - Collect three ward pieces; the compass and journal guide the route. The ward opens the southern Orc arena.
 - Answer the five Orc questions. A 3/5 score fails; 4/5 or 5/5 passes. Feedback appears after every answer. Retries preserve the missions; depleted courage replenishes.
-- Pass to earn Independent Thinker rank, recruit both Warriors, restore the ward, and open Fall. The Fall portal introduces prompt engineering; no playable Fall is fabricated.
+- Pass to earn Independent Thinker rank, recruit both Warriors, restore the ward, and open Fall. Close the gate conversation and walk through the unlocked portal to load Fall / Emberwood, where Emberfist teaches prompt engineering. `FallPortalBridge` supplies this connection from the new FallLevel folder.
 
 ## Assets and implementation
 
-All level additions are under `Assets/SummerLevel/`. Existing files are untouched, including Spring, the intro, package manifests, and project/build settings.
+Summer assets are under `Assets/SummerLevel/`. Shared Spring-style presentation and compass helpers are under `Assets/SeasonPresentation/`. Spring, the intro, package manifests, and project/build settings remain unchanged.
 
 The Ambros idle/walk textures are pixel-identical copies of Spring's extracted frames. Mage, married Warrior and Orc frames come from the existing character packs. Summer ground and foliage are cropped from the existing Summer pack. New supporting pixel props include the workshop, stepping stones, message post, ward, shields and machinery. Preserve the original asset-pack notices and licenses. The copied TMP shader and its dependencies include Unity's uGUI license in `Shaders/`. The new Resources folder includes a static Liberation Sans font, its OFL license, a TMP settings asset, and a material retaining the shader for builds. No pre-existing TMP settings asset was present or edited.
 
@@ -42,3 +42,7 @@ Before calling the level final, play the full Spring-to-Summer route, inspect UI
 ## Standalone compatibility
 
 Summer has its own camera and an optional runtime Spring adapter. It compiles and plays in older checkouts without Spring scripts; the portal connection activates when the newer Spring scene is present.
+
+## Shared seasonal interface
+
+Summer and Fall now use the same Spring-style parchment overlays, question buttons, framed landmark labels, journal sections, control hints and gold compass. Summer retains green accents. Answer feedback briefly tints the conversation panel. The compass follows visible route corners around colliders and shows the distance to the actual objective; it hides during conversations and journals. Summer’s learning content, progression and follower logic remain intact. See `docs/PresentationValidation.md` for checks.
