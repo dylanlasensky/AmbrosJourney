@@ -52,6 +52,7 @@ namespace AmbrosJourney.Winter.Editor
             AddSheet(art,"Assets/Animations/Hero pack/64 X 64 Skeleton 2D assets/Sprites and files/Full Sprite sheet/Attack 1 sprite sheet.png","SkeletonAttack",6);
             Generated(art,"CaveEntrance",25.6f, new Vector2(.5f,.08f));Generated(art,"Crystal",32,new Vector2(.5f,.08f));
             Generated(art,"Lantern",64,new Vector2(.5f,.08f));
+            Generated(art,"MountainRidge",16,new Vector2(.5f,.10f));Generated(art,"SnowGround",32,new Vector2(.5f,.5f));
             var world=new GameObject("Frostveil");world.AddComponent<WinterWorld>().artwork=art.ToArray();
             PrefabUtility.SaveAsPrefabAsset(world,Root+"/Resources/WinterLevel.prefab");UnityEngine.Object.DestroyImmediate(world);
             
@@ -71,7 +72,7 @@ namespace AmbrosJourney.Winter.Editor
         static void AddSheet(List<WinterArtwork> art,string path,string prefix,int count)
         {var t=Read(path);for(int i=0;i<count;i++)Replace(art,Crop(t,prefix+(i+1),i*64,0,64,64,32,new Vector2(.5f,0)));UnityEngine.Object.DestroyImmediate(t);}
         static void Generated(List<WinterArtwork> art,string key,float ppu,Vector2 pivot)
-        {string path=Root+"/Art/"+key+".png";AssetDatabase.ImportAsset(path,ImportAssetOptions.ForceSynchronousImport);var importer=(TextureImporter)AssetImporter.GetAtPath(path);importer.textureType=TextureImporterType.Sprite;importer.spriteImportMode=SpriteImportMode.Single;importer.spritePixelsPerUnit=ppu;importer.filterMode=FilterMode.Point;importer.textureCompression=TextureImporterCompression.Uncompressed;importer.maxTextureSize=key=="CaveEntrance"?256:128;importer.mipmapEnabled=false;importer.alphaIsTransparency=true;importer.SaveAndReimport();Replace(art,new WinterArtwork{key=key,texture=AssetDatabase.LoadAssetAtPath<Texture2D>(path),pixelsPerUnit=ppu,pivot=pivot});}
+        {string path=Root+"/Art/"+key+".png";AssetDatabase.ImportAsset(path,ImportAssetOptions.ForceSynchronousImport);var importer=(TextureImporter)AssetImporter.GetAtPath(path);importer.textureType=TextureImporterType.Sprite;importer.spriteImportMode=SpriteImportMode.Single;importer.spritePixelsPerUnit=ppu;importer.filterMode=FilterMode.Point;importer.textureCompression=TextureImporterCompression.Uncompressed;importer.maxTextureSize=key=="MountainRidge"?512:key=="SnowGround"?32:key=="CaveEntrance"?256:128;importer.mipmapEnabled=false;importer.alphaIsTransparency=true;importer.SaveAndReimport();Replace(art,new WinterArtwork{key=key,texture=AssetDatabase.LoadAssetAtPath<Texture2D>(path),pixelsPerUnit=ppu,pivot=pivot});}
     }
 }
 #endif

@@ -70,6 +70,7 @@ public static class SeasonIntegrationChecks
             {
                 var g = UnityEngine.Object.FindAnyObjectByType<SpringGuide>();
                 Check(g, "Spring scene has its guide");
+                CheckMotion(UnityEngine.Object.FindAnyObjectByType<SpringPlayer>(), "input", 4);
                 var gate = GameObject.Find("Summer Gate (unlocks after 80 percent)").transform;
                 Check(!SummerPortalBridge.GateAllowsEntry(g, gate.position, gate.position), "Locked Spring gate blocks entry");
                 Set(g, "target", -1); typeof(SpringGuide).GetProperty("DialogueOpen").SetValue(g,true); Call(g,"LateUpdate"); CheckOverlay(g); Capture("SpringInterface"); for (int i = 0; i < 3; i++) Call(g, "Continue");
@@ -91,7 +92,7 @@ public static class SeasonIntegrationChecks
             else if (stage == 1 && SceneManager.GetActiveScene().name == "Summer")
             {
                 var l = UnityEngine.Object.FindAnyObjectByType<SummerLevel>();
-                Check(l && l.InputBlocked, "Summer loads and shows introduction");Capture("SummerInterface");
+                Check(l && l.InputBlocked, "Summer loads and shows introduction");CheckMotion(l.player,"movement",4.6f);Capture("SummerInterface");
                 Check(!UnityEngine.Object.FindAnyObjectByType<SpringGuide>(), "Spring unloads after transition");
                 Check(!FallPortalBridge.GateAllowsEntry(l), "Incomplete Summer cannot exit");
                 PresentationTools.ValidateRoutes();
@@ -107,7 +108,7 @@ public static class SeasonIntegrationChecks
             else if (stage == 2 && SceneManager.GetActiveScene().name == "Fall")
             {
                 var l = UnityEngine.Object.FindAnyObjectByType<FallLevel>();
-                Check(l && l.InputBlocked, "Fall loads and shows introduction");Capture("FallInterface");
+                Check(l && l.InputBlocked, "Fall loads and shows introduction");CheckMotion(l.player,"movement",4.6f);Capture("FallInterface");
                 Check(!UnityEngine.Object.FindAnyObjectByType<SummerLevel>(), "Summer unloads after transition");
                 AmbrosJourney.Fall.Editor.FallTools.ValidateRoutes();
                 PresentationTools.ValidateRoutes();
@@ -123,7 +124,7 @@ public static class SeasonIntegrationChecks
             else if(stage==3&&SceneManager.GetActiveScene().name=="Winter")
             {
                 Check(!UnityEngine.Object.FindAnyObjectByType<FallLevel>(),"Fall unloaded");
-                Capture("WinterArrival");Advance(4);
+                CheckMotion(UnityEngine.Object.FindAnyObjectByType<WinterLevel>().player,"movement",4.6f);Capture("WinterArrival");Advance(4);
             }
             else if(stage==4){AmbrosJourney.Winter.Editor.WinterPlayChecks.Run();Advance(5);}
             else if(stage==5){Capture("WinterCavern");Advance(6);}
@@ -135,6 +136,30 @@ public static class SeasonIntegrationChecks
             else if(stage==8)Finish(true,"Spring -> Summer -> Fall -> Winter passed. All seasonal UI, portal guards, Winter outdoor/cave routes, round trips and guardian retries passed.");
         }
         catch (Exception e) { Finish(false, e.ToString()); }
+    }
+    static void CheckMotion(MonoBehaviour actor,string input,float speed)
+    {
+        var body=actor.GetComponent<Rigidbody2D>();var oldVelocity=body.linearVelocity;
+        if(actor is SpringPlayer spring)speed=spring.speed;
+        var springGuide=actor is SpringPlayer sp?sp.guide:null;bool wasDialogue=springGuide&&springGuide.DialogueOpen;
+        var field=actor.GetType().GetField(input,Private);var oldInput=field.GetValue(actor);
+        string ownerName=input=="input"?"guide":"level";var owner=actor.GetType().GetField(ownerName);var originalOwner=owner.GetValue(actor);
+        try
+        {
+            // Exercise the actual controller physics methods without advancing the player's position.
+            owner.SetValue(actor,null);body.linearVelocity=Vector2.zero;field.SetValue(actor,Vector2.right);
+            Call(actor,"FixedUpdate");Check(body.linearVelocity.x>0&&body.linearVelocity.x<speed,"Movement accelerates without snapping");
+            for(int i=0;i<20;i++)Call(actor,"FixedUpdate");Check(Mathf.Abs(body.linearVelocity.x-speed)<.001f,"Movement reaches intended speed");
+            field.SetValue(actor,Vector2.zero);for(int i=0;i<5;i++)Call(actor,"FixedUpdate");Check(body.linearVelocity==Vector2.zero,"Released movement brakes within five physics ticks");
+            owner.SetValue(actor,originalOwner);if(springGuide)typeof(SpringGuide).GetProperty("DialogueOpen").SetValue(springGuide,true);body.linearVelocity=Vector2.right*speed;Call(actor,"FixedUpdate");Check(body.linearVelocity==Vector2.zero,"Open introduction immediately stops movement");
+            Check(body.interpolation==RigidbodyInterpolation2D.Interpolate,"Player physics is interpolated");
+            var camera=Camera.main;var originalPosition=camera.transform.position;var damping=Vector3.one;
+            camera.transform.position=actor.transform.position+new Vector3(100,100,-10);
+            AmbrosJourney.Presentation.SeasonCameraMotion.Follow(camera,actor.transform,new Vector2(-200,-200),new Vector2(200,200),ref damping);
+            Check(Vector2.Distance(camera.transform.position,actor.transform.position)<.01f&&damping==Vector3.zero,"Long camera transitions snap and clear damping");camera.transform.position=originalPosition;
+            Debug.Log("MOTION_CHECK_PASS: "+actor.GetType().Name);
+        }
+        finally{if(springGuide)typeof(SpringGuide).GetProperty("DialogueOpen").SetValue(springGuide,wasDialogue);owner.SetValue(actor,originalOwner);field.SetValue(actor,oldInput);body.linearVelocity=oldVelocity;}
     }
     static void CheckOverlay(MonoBehaviour level)
     {
