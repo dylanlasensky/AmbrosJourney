@@ -40,20 +40,20 @@ namespace AmbrosJourney.Winter
                 {
                     leader.trail.Record(leader.transform.position);var destination=leader.trail.Behind(slot*1.8f);
                     Vector2 old=transform.position;
-                    if(trailRevision!=leader.trail.Revision){transform.position=destination;trailRevision=leader.trail.Revision;}
-                    else transform.position=Vector2.MoveTowards(old,destination,5.8f*Time.deltaTime);
-                    movement=trailRevision==leader.trail.Revision?((Vector2)transform.position-old)/Mathf.Max(.001f,Time.deltaTime):Vector2.zero;
+                    if(trailRevision!=leader.trail.Revision){transform.position=destination;trailRevision=leader.trail.Revision;movement=Vector2.zero;}
+                    else {transform.position=Vector2.MoveTowards(old,destination,5.8f*Time.deltaTime);movement=((Vector2)transform.position-old)/Mathf.Max(.001f,Time.deltaTime);}
                 }
             }
             if(Mathf.Abs(movement.x)>.03f)visual.flipX=movement.x<0;
-            int state=Time.time<attackUntil&&attack!=null&&attack.Length>0?2:movement.sqrMagnitude>.01f&&walk!=null&&walk.Length>0?1:0;
-            if(state!=animationState){animationClock=0;animationState=state;}animationClock+=Time.deltaTime*(state==0?7:9);
+            float measuredSpeed=isPlayer&&body?body.linearVelocity.magnitude:movement.magnitude;
+            int state=Time.time<attackUntil&&attack!=null&&attack.Length>0?2:measuredSpeed>.10f&&walk!=null&&walk.Length>0?1:0;
+            if(state!=animationState){animationClock=0;animationState=state;}animationClock+=Time.deltaTime*(state==0?5:state==1?measuredSpeed*1.9f:10);
             var frames=state==2?attack:state==1?walk:idle;
             if(frames!=null&&frames.Length>0){visual.sprite=frames[(int)animationClock%frames.Length];animationMaterial.mainTexture=visual.sprite.texture;}
             visual.color=Time.time<flashUntil?Color.Lerp(Color.white,flashColor,(flashUntil-Time.time)/.3f):Color.white;
             visual.sortingOrder=100-Mathf.RoundToInt(transform.position.y*10);
         }
-        void FixedUpdate(){if(isPlayer&&body)body.linearVelocity=level&&level.InputBlocked?Vector2.zero:movement*4.6f;}
+        void FixedUpdate(){if(isPlayer&&body)body.linearVelocity=level&&level.InputBlocked?Vector2.zero:Vector2.MoveTowards(body.linearVelocity,movement*4.6f,(movement.sqrMagnitude>.01f?42:65)*Time.fixedDeltaTime);}
         void OnDestroy(){if(animationMaterial)Destroy(animationMaterial);}
     }
 }

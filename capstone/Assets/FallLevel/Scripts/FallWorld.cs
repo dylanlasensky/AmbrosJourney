@@ -124,6 +124,7 @@ namespace AmbrosJourney.Fall
             level.winterGate=Visual("Winter portal","Portal",GatePosition,1.5f).transform;level.winterGate.GetComponent<SpriteRenderer>().color=new Color(.65f,.85f,1);Label("WINTER / VERIFICATION",new Vector2(0,-44),14);
             for(int x=-48;x<=48;x+=2)if(Mathf.Abs(x)>3){Visual("Winter approach wall","Rock",new Vector2(x,-44.5f));Block("Winter approach wall",new Vector2(x,-44.5f),new Vector2(2,1));}
             var exit=Visual("Winter seal","Barrier",new Vector2(0,-44.5f));exit.transform.localScale=new Vector3(5,1,1);exit.gameObject.AddComponent<BoxCollider2D>();level.exitSeal=exit.gameObject;
+            AmbrosJourney.Presentation.NaturalTrail.Apply(paths,3);
             var camera=ObjectAt("Fall Camera",FallLevel.Spawn);camera.tag="MainCamera";camera.transform.position=new Vector3(FallLevel.Spawn.x,FallLevel.Spawn.y,-10);
             var cam=camera.AddComponent<Camera>();cam.orthographic=true;cam.orthographicSize=7;cam.clearFlags=CameraClearFlags.SolidColor;cam.backgroundColor=new Color(.29f,.19f,.12f);camera.AddComponent<AudioListener>();
             var follow=camera.AddComponent<FallCamera>();follow.target=level.player.transform;follow.worldMin=Min;follow.worldMax=Max;
