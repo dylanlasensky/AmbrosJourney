@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using AmbrosJourney.Presentation;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.UI;
@@ -27,6 +28,8 @@ namespace AmbrosJourney.Summer
         AudioSource effects, music;
         AudioClip good, bad, ward, strike;
         Canvas canvas;
+        SeasonOverlay presentation;
+        SeasonNavigation navigation;
         int nearby = -1;
         string currentTitle;
         public bool IsDialogueOpen => dialog && dialog.activeSelf;
@@ -93,7 +96,7 @@ namespace AmbrosJourney.Summer
                 case 3: Message(); break;
                 case 4: Boss(); break;
                 case 5:
-                    Show("The Fall gate", Progress.Complete ? "SUMMER COMPLETE\nRank earned: Independent Thinker\nThe married Warriors join your party.\n\nEmberfist's trail marker: Good help begins with a clear request.\n\nFall will teach prompt engineering. Its level is not built yet; you can keep exploring Summer." : "The Fall gate is sealed. Restore all three wards and score at least 4/5 against the Orc.", Close); break;
+                    Show("The Fall gate", Progress.Complete ? "SUMMER COMPLETE\nRank earned: Independent Thinker\nThe married Warriors join your party.\n\nEmberfist's trail marker: Good help begins with a clear request.\n\nEmberfist awaits in Emberwood. Close this conversation and walk through the unlocked portal to begin Fall." : "The Fall gate is sealed. Restore all three wards and score at least 4/5 against the Orc.", Close); break;
                 default: Stone(target - 6); break;
             }
         }
@@ -192,14 +195,15 @@ namespace AmbrosJourney.Summer
         }
         void ShowPages(string[] pages, int index, Action complete)
         { Show("Summer / The village ward", pages[index], () => { if (index + 1 < pages.Length) ShowPages(pages, index + 1, complete); else { complete(); Close(); } }); }
-        void Effect(bool right) { effects.PlayOneShot(right ? good : bad, .45f); }
+        void Effect(bool right) { effects.PlayOneShot(right ? good : bad, .45f); presentation.Feedback(right); }
         void Close() { dialog.SetActive(false); actions.Clear(); next = null; if (music) music.pitch = 1; }
         void Show(string title, string body, Action onContinue)
         {
             currentTitle = title; heading.text = title; copy.text = body; dialog.SetActive(true); journal.SetActive(false);
             next = onContinue; actions.Clear();
             for (int i = 0; i < choices.Count; i++) choices[i].gameObject.SetActive(false);
-            var button = choices[0]; button.gameObject.SetActive(true); SetButton(button, "Continue  [ E / Enter ]", () => { if (next != null) { var n = next; next = null; n(); } });
+            var button = choices[0]; button.gameObject.SetActive(true); SetButton(button, "Continue [ E ]", () => { if (next != null) { var n = next; next = null; n(); } });
+            presentation.Present(false);
         }
         void Ask(string title, string body, string[] options, Action<int> answer)
         {
@@ -211,15 +215,19 @@ namespace AmbrosJourney.Summer
                 int index = i; Action choose = () => answer(index); actions.Add(choose);
                 SetButton(choices[i], (i + 1) + ".  " + options[i], choose);
             }
+            presentation.Present(true);
         }
         void SetButton(UnityEngine.UI.Button button, string label, Action action)
         { button.GetComponentInChildren<TextMeshProUGUI>().text = label; button.onClick.RemoveAllListeners(); button.onClick.AddListener(() => action()); }
         void ToggleJournal()
         {
             journal.SetActive(!journal.activeSelf); if (!journal.activeSelf) return;
-            journalCopy.text = "AMBROS' FIELD JOURNAL / SUMMER\n\n";
+            journalCopy.text = "";
             for (int i = 0; i < 3; i++) journalCopy.text += (Progress.Wards[i] ? SummerContent.Notes[i] : new[] { "WORKSHOP / Restore this ward to collect its lesson.", "TRAINING GARDEN / Restore this ward to collect its lesson.", "MESSAGE POST / Restore this ward to collect its lesson." }[i]) + "\n\n";
-            journalCopy.text += "J / Escape to return. Your progress lasts for this play session.";
+            journalCopy.text += party.text;
+            var titles=new string[3];var notes=new string[3];var names=new[]{"Village Workshop","Training Garden","Message Post"};
+            for(int i=0;i<3;i++){titles[i]=names[i]+"  /  "+(Progress.Wards[i]?"RESTORED":"NOT YET");notes[i]=Progress.Wards[i]?SummerContent.Notes[i].Split('\n')[1]:"Restore this ward to collect its lesson.";}
+            presentation.SetJournal(titles,notes,party.text);
         }
         Vector2 Destination()
         {
@@ -235,56 +243,19 @@ namespace AmbrosJourney.Summer
             for (int i = 0; i < 3; i++) wardLights[i].color = Progress.Wards[i] ? new Color(.5f, 1, .75f) : new Color(.7f, .55f, .30f);
             for (int i = 0; i < shields.Length; i++) shields[i].enabled = !Progress.Complete && i >= Progress.BossScore;
             objective.text = "WARD " + Progress.WardCount + " / 3   |   COURAGE " + Progress.Courage + " / 3\n" + (Progress.Complete ? "Walk through the Fall gate" : Progress.CanFight ? "Challenge the Orc / 4 of 5 to pass" : !Progress.Wards[0] ? "Workshop / Choose the right tool" : !Progress.Wards[1] ? "Training garden / Keep your practice" : "Message post / Ask safely");
-            Vector2 delta = Destination() - (Vector2)player.transform.position;
-            string direction = Mathf.Abs(delta.x) > Mathf.Abs(delta.y) ? delta.x > 0 ? "EAST  >" : "<  WEST" : delta.y > 0 ? "NORTH  ^" : "SOUTH  v";
-            compass.text = direction + "\n" + Mathf.CeilToInt(delta.magnitude) + " steps";
-            prompt.text = InputBlocked ? "" : nearby < 0 ? "Follow the trails and the compass" : "[ E ]  " + new[] { "Talk to the Warrior", "Visit the workshop", "Practice in the garden", "Read the message post", "Face the Orc", "Enter the Fall gate", "SUN stone", "LEAF stone", "SEED stone", "Talk to the Warrior" }[nearby];
+            var destination=Destination();
+            if(!InputBlocked)presentation.SetCompass(player.transform.position,navigation.Next(player.transform.position,destination),destination);
+            prompt.text=InputBlocked||nearby<0?"":"[ E ]  "+new[]{"Talk to the Warrior","Visit the workshop","Practice in the garden","Read the message post","Face the Orc","Enter the Fall gate","SUN stone","LEAF stone","SEED stone","Talk to the Warrior"}[nearby];
             party.text = Progress.Complete ? "PARTY / Ambros + Mage + both Warriors" : "PARTY / Ambros + Ancient Mage";
-        }
-        RectTransform Panel(string name, Transform parent, Vector2 min, Vector2 max, Color color)
-        {
-            var o = new GameObject(name, typeof(RectTransform), typeof(UnityEngine.UI.Image)); o.transform.SetParent(parent, false);
-            var r = o.GetComponent<RectTransform>(); r.anchorMin = min; r.anchorMax = max; r.offsetMin = r.offsetMax = Vector2.zero;
-            o.GetComponent<UnityEngine.UI.Image>().color = color; return r;
-        }
-        TextMeshProUGUI Text(string name, Transform parent, Vector2 min, Vector2 max, string value, int size, Color color)
-        {
-            var o = new GameObject(name, typeof(RectTransform), typeof(TextMeshProUGUI)); o.transform.SetParent(parent, false);
-            var r = o.GetComponent<RectTransform>(); r.anchorMin = min; r.anchorMax = max; r.offsetMin = new Vector2(18, 8); r.offsetMax = new Vector2(-18, -8);
-            var t = o.GetComponent<TextMeshProUGUI>(); t.font = font; t.fontSize = size; t.color = color; t.text = value; t.raycastTarget = false;
-            t.textWrappingMode = TextWrappingModes.Normal; return t;
         }
         void CreateUI()
         {
-            var ui = new GameObject("Summer interface", typeof(RectTransform), typeof(Canvas), typeof(UnityEngine.UI.CanvasScaler), typeof(UnityEngine.UI.GraphicRaycaster)); ui.transform.SetParent(transform, false);
-            canvas = ui.GetComponent<Canvas>(); canvas.renderMode = RenderMode.ScreenSpaceOverlay; canvas.sortingOrder = 100;
-            var scaler = ui.GetComponent<UnityEngine.UI.CanvasScaler>(); scaler.uiScaleMode = UnityEngine.UI.CanvasScaler.ScaleMode.ScaleWithScreenSize; scaler.referenceResolution = new Vector2(1600, 900); scaler.matchWidthOrHeight = .5f;
-            if (!EventSystem.current) { var e = new GameObject("Summer EventSystem", typeof(EventSystem), typeof(InputSystemUIInputModule)); e.transform.SetParent(transform); }
-            Color ink = new Color(.12f, .22f, .16f), parchment = new Color(.98f, .94f, .79f, .98f), green = new Color(.16f, .30f, .22f);
-            var title = Panel("Chapter", ui.transform, new Vector2(.02f, .86f), new Vector2(.30f, .98f), parchment);
-            Text("Title", title, new Vector2(0, .25f), Vector2.one, "SUMMER VALLEY", 30, ink);
-            Text("Subtitle", title, Vector2.zero, new Vector2(1, .38f), "CHAPTER 02 / THINK FOR YOURSELF", 15, ink);
-            var tracker = Panel("Objectives", ui.transform, new Vector2(.60f, .85f), new Vector2(.98f, .98f), parchment);
-            objective = Text("Objective", tracker, Vector2.zero, Vector2.one, "", 21, ink);
-            var needle = Panel("Compass", ui.transform, new Vector2(.85f, .73f), new Vector2(.98f, .84f), green);
-            compass = Text("Direction", needle, Vector2.zero, Vector2.one, "", 22, parchment); compass.alignment = TextAlignmentOptions.Center;
-            var bar = Panel("Controls", ui.transform, new Vector2(.02f, .02f), new Vector2(.98f, .075f), parchment);
-            Text("Controls", bar, Vector2.zero, Vector2.one, "WASD / Arrows  Move     E  Interact     1 / 2 / 3  Answer     J  Journal     R  Arrival     M  Audio", 18, ink);
-            prompt = Text("Context", ui.transform, new Vector2(.25f, .09f), new Vector2(.78f, .15f), "", 23, parchment); prompt.alignment = TextAlignmentOptions.Center;
-            party = Text("Party", ui.transform, new Vector2(.02f, .79f), new Vector2(.60f, .85f), "", 18, parchment);
-            var box = Panel("Conversation", ui.transform, new Vector2(.13f, .16f), new Vector2(.87f, .73f), parchment); dialog = box.gameObject;
-            heading = Text("Speaker", box, new Vector2(.02f, .85f), new Vector2(.98f, .99f), "", 29, ink);
-            copy = Text("Dialogue", box, new Vector2(.02f, .41f), new Vector2(.98f, .86f), "", 23, ink);
-            for (int i = 0; i < 3; i++)
-            {
-                var b = Panel("Choice " + (i + 1), box, new Vector2(.03f, .28f - i * .115f), new Vector2(.97f, .38f - i * .115f), green);
-                var button = b.gameObject.AddComponent<UnityEngine.UI.Button>(); button.targetGraphic = b.GetComponent<UnityEngine.UI.Image>();
-                Text("Label", b, Vector2.zero, Vector2.one, "", 20, parchment); choices.Add(button);
-            }
-            Text("Close hint", box, new Vector2(.02f, -.065f), new Vector2(.98f, .015f), "Escape closes after the introduction. Mission progress is kept.", 16, parchment);
-            var j = Panel("Journal", ui.transform, new Vector2(.12f, .16f), new Vector2(.88f, .82f), parchment); journal = j.gameObject;
-            journalCopy = Text("Notes", j, new Vector2(.02f, .02f), new Vector2(.98f, .98f), "", 23, ink);
-            journal.SetActive(false); dialog.SetActive(false);
+            var ui=new GameObject("Summer interface");ui.transform.SetParent(transform,false);
+            presentation=ui.AddComponent<SeasonOverlay>();presentation.Initialize(font,false);
+            canvas=presentation.Canvas;dialog=presentation.Dialog;journal=presentation.Journal;
+            heading=presentation.Heading;copy=presentation.Copy;objective=presentation.Objective;compass=presentation.CompassText;prompt=presentation.Prompt;journalCopy=presentation.JournalCopy;party=presentation.Party;
+            choices.AddRange(presentation.Choices);
+            navigation=new SeasonNavigation(new Vector2(-30,-32),new Vector2(30,28));
         }
         AudioClip Tone(string name, float duration, float frequency, bool descending = false)
         {
