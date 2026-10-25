@@ -27,7 +27,7 @@ namespace AmbrosJourney.Fall
         {
             var prefab = Resources.Load<GameObject>("FallLevel");
             if (!prefab) { Debug.LogError("FALL: Missing Assets/FallLevel/Resources/FallLevel.prefab. Restore the FallLevel folder."); enabled = false; yield break; }
-            transitioning = true;
+            transitioning = true; summer.Transitioning=true;
             var source = SceneManager.GetActiveScene();
             var player = summer.player.transform;
             foreach (var motor in player.GetComponents<MonoBehaviour>())

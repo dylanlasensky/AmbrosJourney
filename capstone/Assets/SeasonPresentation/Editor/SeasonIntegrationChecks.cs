@@ -8,6 +8,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using AmbrosJourney.Summer;
 using AmbrosJourney.Fall;
+using AmbrosJourney.Winter;
 using AmbrosJourney.Presentation.Editor;
 
 // Run in a disposable checkout: enters Play mode, exercises the real portals, then exits.
@@ -35,7 +36,7 @@ public static class SeasonIntegrationChecks
         SessionState.SetString(Key + "error", "");
         SessionState.SetInt(Key + "stage", 0);
         SessionState.SetBool(Key + "active", true);
-        SessionState.SetString(Key + "deadline", DateTime.UtcNow.AddMinutes(3).ToString("O"));
+        SessionState.SetString(Key + "deadline", DateTime.UtcNow.AddMinutes(6).ToString("O"));
         SummerToolsValidate();
         FallToolsValidate();
         PresentationTools.ValidateMath();
@@ -71,10 +72,10 @@ public static class SeasonIntegrationChecks
                 Check(g, "Spring scene has its guide");
                 var gate = GameObject.Find("Summer Gate (unlocks after 80 percent)").transform;
                 Check(!SummerPortalBridge.GateAllowsEntry(g, gate.position, gate.position), "Locked Spring gate blocks entry");
-                Set(g, "target", -1); for (int i = 0; i < 3; i++) Call(g, "Continue");
-                for (int i = 0; i < 3; i++) { Set(g, "target", 5 + i); Call(g, "Continue"); }
+                Set(g, "target", -1); typeof(SpringGuide).GetProperty("DialogueOpen").SetValue(g,true); Call(g,"LateUpdate"); CheckOverlay(g); Capture("SpringInterface"); for (int i = 0; i < 3; i++) Call(g, "Continue");
+                for (int i = 0; i < 3; i++) { Set(g, "target", 5 + i);typeof(SpringGuide).GetProperty("DialogueOpen").SetValue(g,true);Call(g,"LateUpdate");CheckOverlay(g); Call(g, "Continue"); }
                 int[][] answers = {new[]{0,0}, new[]{1,0}, new[]{1,0}};
-                for (int i = 0; i < 3; i++) { Set(g, "target", i); foreach (int a in answers[i]) { Call(g, "Answer", a); Call(g, "Continue"); } }
+                for (int i = 0; i < 3; i++) { Set(g, "target", i); Set(g, "feedback", ""); foreach (int a in answers[i]) { Call(g, "Answer", a); Call(g, "Continue"); } }
                 Set(g, "target", 3); Set(g, "bossQuestion", 0); Set(g, "feedback", ""); Set(g, "bossResult", false);
                 foreach (int a in new[]{0,0,1,1,0}) { Call(g, "Answer", a); Call(g, "Continue"); }
                 Check(!g.SpringComplete && g.BossScore == 3, "Spring 3/5 fails"); Call(g, "Continue");
@@ -90,7 +91,7 @@ public static class SeasonIntegrationChecks
             else if (stage == 1 && SceneManager.GetActiveScene().name == "Summer")
             {
                 var l = UnityEngine.Object.FindAnyObjectByType<SummerLevel>();
-                Check(l && l.InputBlocked, "Summer loads and shows introduction");
+                Check(l && l.InputBlocked, "Summer loads and shows introduction");Capture("SummerInterface");
                 Check(!UnityEngine.Object.FindAnyObjectByType<SpringGuide>(), "Spring unloads after transition");
                 Check(!FallPortalBridge.GateAllowsEntry(l), "Incomplete Summer cannot exit");
                 PresentationTools.ValidateRoutes();
@@ -106,18 +107,58 @@ public static class SeasonIntegrationChecks
             else if (stage == 2 && SceneManager.GetActiveScene().name == "Fall")
             {
                 var l = UnityEngine.Object.FindAnyObjectByType<FallLevel>();
-                Check(l && l.InputBlocked, "Fall loads and shows introduction");
+                Check(l && l.InputBlocked, "Fall loads and shows introduction");Capture("FallInterface");
                 Check(!UnityEngine.Object.FindAnyObjectByType<SummerLevel>(), "Summer unloads after transition");
                 AmbrosJourney.Fall.Editor.FallTools.ValidateRoutes();
                 PresentationTools.ValidateRoutes();
                 PresentationPlayChecks.Fall();
                 Check(File.ReadAllText("Temp/PresentationChecks/FallPresentationChecks.txt").StartsWith("PASS"), "Fall UI checks pass");
                 Check(l.Progress.Complete && l.ember.follow == l.femaleWarrior.transform, "Fall completed and Emberfist recruited");
+                Call(l,"Close");
+                l.player.transform.position=l.winterGate.position;l.player.GetComponent<Rigidbody2D>().position=l.winterGate.position;
+                Check(WinterPortalBridge.GateAllowsEntry(l),"Completed Fall allows Winter entry");
+                Call(l,"ToggleJournal");Check(!WinterPortalBridge.GateAllowsEntry(l),"Fall journal blocks Winter entry");Call(l,"ToggleJournal");
                 Advance(3);
             }
-            else if (stage == 3) Finish(true, "Spring -> Summer -> Fall transitions, modal guards, progression, UI, routes and followers passed.");
+            else if(stage==3&&SceneManager.GetActiveScene().name=="Winter")
+            {
+                Check(!UnityEngine.Object.FindAnyObjectByType<FallLevel>(),"Fall unloaded");
+                Capture("WinterArrival");Advance(4);
+            }
+            else if(stage==4){AmbrosJourney.Winter.Editor.WinterPlayChecks.Run();Advance(5);}
+            else if(stage==5){Capture("WinterCavern");Advance(6);}
+            else if(stage==6)
+            {
+                var l=UnityEngine.Object.FindAnyObjectByType<WinterLevel>();l.player.transform.position=l.caveExit.position;l.player.GetComponent<Rigidbody2D>().position=l.caveExit.position;l.World.ChangeRegion(false);l.player.transform.position=WinterWorld.Entrance+Vector2.down*1.5f;l.player.GetComponent<Rigidbody2D>().position=l.player.transform.position;Advance(7);
+            }
+            else if(stage==7){Capture("WinterEntrance");Advance(8);}
+            else if(stage==8)Finish(true,"Spring -> Summer -> Fall -> Winter passed. All seasonal UI, portal guards, Winter outdoor/cave routes, round trips and guardian retries passed.");
         }
         catch (Exception e) { Finish(false, e.ToString()); }
+    }
+    static void CheckOverlay(MonoBehaviour level)
+    {
+        var ui=level.GetComponentInChildren<AmbrosJourney.Presentation.SeasonOverlay>();
+        Call(ui,"LateUpdate");Canvas.ForceUpdateCanvases();
+        foreach(var t in ui.GetComponentsInChildren<TMPro.TextMeshProUGUI>()){t.ForceMeshUpdate();Check(!t.isTextOverflowing,"UI overflow: "+t.name+" / "+ui.Heading.text);}
+    }
+    static void Capture(string name)
+    {
+        foreach(var size in new[]{new Vector2Int(1280,720),new Vector2Int(1024,768)})
+        {
+            var camera=Camera.main;var ui=UnityEngine.Object.FindAnyObjectByType<AmbrosJourney.Presentation.SeasonOverlay>();
+            var canvas=ui.Canvas;var mode=canvas.renderMode;var oldCamera=canvas.worldCamera;int sorting=canvas.sortingOrder;float plane=canvas.planeDistance;var oldTarget=camera.targetTexture;float aspect=camera.aspect;var active=RenderTexture.active;
+            var rt=new RenderTexture(size.x,size.y,24);var pixels=new Texture2D(size.x,size.y,TextureFormat.RGB24,false);
+            try
+            {
+                camera.targetTexture=rt;camera.aspect=(float)size.x/size.y;canvas.renderMode=RenderMode.ScreenSpaceCamera;canvas.worldCamera=camera;canvas.planeDistance=1;canvas.sortingOrder=30000;
+                Canvas.ForceUpdateCanvases();Call(ui,"LateUpdate");Canvas.ForceUpdateCanvases();
+                foreach(var t in ui.GetComponentsInChildren<TMPro.TextMeshProUGUI>()){t.ForceMeshUpdate();Check(!t.isTextOverflowing,name+" overflow at "+size+": "+t.name);}
+                camera.Render();RenderTexture.active=rt;pixels.ReadPixels(new Rect(0,0,size.x,size.y),0,0);pixels.Apply();
+                File.WriteAllBytes("Logs/SeasonChecks/"+name+"-"+size.x+".png",pixels.EncodeToPNG());
+            }
+            finally{canvas.sortingOrder=sorting;canvas.renderMode=mode;canvas.worldCamera=oldCamera;canvas.planeDistance=plane;camera.targetTexture=oldTarget;camera.aspect=aspect;RenderTexture.active=active;UnityEngine.Object.DestroyImmediate(pixels);UnityEngine.Object.DestroyImmediate(rt);Canvas.ForceUpdateCanvases();}
+        }
     }
     static void Advance(int stage) { Debug.Log("SEASON_CHECK_STAGE: " + stage); SessionState.SetInt(Key + "stage", stage); readyAt = EditorApplication.timeSinceStartup + 4; }
     static void Finish(bool passed, string message)

@@ -109,7 +109,7 @@ namespace AmbrosJourney.Summer
             level.player = Actor("Ambros","AmbrosIdle",4,SummerLevel.Spawn,"AmbrosAttack",5); level.player.isPlayer = true; level.player.walk = Frames("AmbrosWalk",8);
             var body = level.player.gameObject.AddComponent<Rigidbody2D>(); body.gravityScale=0; body.freezeRotation=true; body.interpolation=RigidbodyInterpolation2D.Interpolate; body.collisionDetectionMode=CollisionDetectionMode2D.Continuous;
             var capsule=level.player.gameObject.AddComponent<CapsuleCollider2D>();capsule.size=new Vector2(.55f,.38f);capsule.direction=CapsuleDirection2D.Horizontal;capsule.offset=new Vector2(0,.22f);
-            level.mage=Actor("Ancient Mage","MageIdle",4,new Vector2(-2,22));
+            level.mage=Actor("Ancient Mage","MageIdle",4,new Vector2(-2,22)); level.mage.walk=Frames("MageWalk",8);
             level.maleWarrior=Actor("Warrior - Workshop guide","MaleIdle",4,new Vector2(-14,16)); level.maleWarrior.walk=Frames("MaleWalk",6);
             level.femaleWarrior=Actor("Warrior - Garden guide","FemaleIdle",4,new Vector2(-16,-3)); level.femaleWarrior.walk=Frames("FemaleWalk",6);
             level.orc=Actor("Overreliant Orc","OrcIdle",5,new Vector2(0,-23),"OrcAttack",6,1.7f);
