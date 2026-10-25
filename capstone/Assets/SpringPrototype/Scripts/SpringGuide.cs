@@ -86,6 +86,7 @@ public class SpringGuide : MonoBehaviour
         gateSeal=new GameObject("Sealed path to Summer");gateSeal.transform.position=new Vector3(0,-32.5f,0);
         var seal=gateSeal.AddComponent<SpriteRenderer>();seal.sprite=Sprite.Create(Texture2D.whiteTexture,new Rect(0,0,1,1),new Vector2(.5f,.5f),1);seal.sharedMaterial=mage.GetComponent<SpriteRenderer>().sharedMaterial;seal.color=new Color(.16f,.8f,.72f,.25f);seal.sortingOrder=420;gateSeal.transform.localScale=new Vector3(1.6f,1.5f,1);
         gateSeal.AddComponent<BoxCollider2D>();
+        NaturalTrail.Spring();
 
     }
     Transform CreateGuardian()
