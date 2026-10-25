@@ -8,17 +8,19 @@ A Unity 2D adventure that teaches middle-school players how to use AI safely. Am
 
 **Spring Valley is playable:** an expanded woodland map, enlarged cottage with a connected entrance path, lake and dock, winding trails, spaced-out encounters, three field-note stops, six myth-bat questions, a journal, directional compass, and a separate Thornhide Guardian arena. Scoring **4/5 (80%)** on the guardian quiz opens the Summer gate and adds the Ancient Mage to the party.
 
+**Summer Valley** adds three ward missions about tool choice, practice and safe requests. **Fall / Emberwood** adds a 99 × 93-tile autumn map, two river crossings, hedge switchbacks, seven prompt-engineering choices, a journal, route-aware compass and a five-question guardian. Pass with **4/5 (80%)** to recruit Emberfist and unlock the Winter gate. See [Fall implementation notes](capstone/Assets/FallLevel/README.md) and [validation](docs/FallValidation.md).
+
 Spring targets **about five minutes** for a first-time player; the full game targets **about thirty minutes**. These are design targets pending user testing. The [gameplay demo](docs/SpringDemo.mp4) follows a faster, familiar route.
 
-The opening automatically transitions into Spring, but its current 20-second animation is **temporary**. The final opening should match the original illustrated Ambros references and remains unfinished. Summer, Fall, Winter, and the finale are planned. Unlocking the Summer gate currently ends the playable content. Progress lasts only for the current session; main-menu, pause-menu, and persistent-save features are not yet complete.
+The opening automatically transitions into Spring, but its current 20-second animation is **temporary**. The final opening should match the original illustrated Ambros references and remains unfinished. Summer and Fall are now playable. Walk through each unlocked seasonal gate after closing its conversation: Spring → Summer → Fall. Fall's Winter gate currently ends the playable content; Winter and the finale are planned. Progress lasts only for the current session; main-menu, pause-menu, and persistent-save features are not yet complete.
 
 ## Game direction
 
 | Chapter | Learning focus and cast | Status |
 | --- | --- | --- |
 | Level 1 — Spring | Ancient Mage introduces AI basics; misinformation bats test understanding; Thornhide guards the exit. | Playable; polish and user testing remain |
-| Level 2 — Summer | Married Warriors teach the risks of overreliance on AI; an Orc encounter reinforces the lesson. | Planned |
-| Level 3 — Fall | Emberfist Warrior teaches prompt engineering through missions and a seasonal monster challenge. | Planned |
+| Level 2 — Summer | Married Warriors teach the risks of overreliance on AI; an Orc encounter reinforces the lesson. | Playable; connects to Fall |
+| Level 3 — Fall | Emberfist teaches prompt engineering across Emberwood: three rune missions and the Bramble Sentinel. | Playable; user testing remains |
 | Level 4 — Winter | Little Mage teaches verification of false AI output, with a skeleton encounter. | Planned |
 | Final level | Cumulative AI Safety quiz and return-to-Spring escape resolution. | Planned |
 
@@ -43,7 +45,7 @@ These are team targets, not claims that scheduled work is already finished.
 ## Open and play
 
 1. Clone this repository and open the **inner `capstone` folder** in Unity Hub with **Unity 6000.6.2f1**. Let asset imports finish.
-2. Select **Capstone → Play From Opening** or **Capstone → Play Spring Only** in the Editor.
-3. Move with **WASD / arrow keys**, interact with **E**, answer with **1 / 2**, open the journal with **J**, close dialogue with **Escape**, or return to the cottage with **R**.
+2. Select **Capstone → Play From Opening** or **Capstone → Play Spring Only**; use **Capstone → Summer → Play Summer Only** or **Capstone → Fall → Play Fall Only** to start later chapters directly in the Editor.
+3. Move with **WASD / arrow keys**, interact with **E**, answer with **1 / 2** in Spring or **1 / 2 / 3** in Summer/Fall, open the journal with **J**, close dialogue with **Escape**, or return to the cottage with **R**.
 
 Use **Capstone → Validate Spring Progression** for the progression check. [Spring implementation notes](SPRING_PROTOTYPE.md) describe scene rebuilding, demo recording, and known limitations. Coordinate scene edits, commit asset `.meta` files with assets, keep Unity-generated caches out of version control, and preserve asset-pack licenses and credits.

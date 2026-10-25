@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using AmbrosJourney.Presentation;
 using UnityEngine.Tilemaps;
 
 namespace AmbrosJourney.Summer
@@ -51,9 +52,7 @@ namespace AmbrosJourney.Summer
         { var o = ObjectAt(label, p); o.AddComponent<BoxCollider2D>().size = size; }
         void Label(string text, Vector2 p, float width = 8)
         {
-            var o = ObjectAt(text, p); var t = o.AddComponent<TextMeshPro>(); t.font = runtimeFont; t.text = text;
-            t.fontSize = 3.1f; t.color = new Color(1, .96f, .78f); t.alignment = TextAlignmentOptions.Center;
-            t.rectTransform.sizeDelta = new Vector2(width, 1); t.GetComponent<MeshRenderer>().sortingOrder = 900;
+            var o=ObjectAt(text,p);o.AddComponent<SeasonWorldLabel>().Caption=text;
         }
         SummerActor Actor(string label, string prefix, int count, Vector2 p, string attackPrefix = null, int attackCount = 0, float scale = 1)
         {
