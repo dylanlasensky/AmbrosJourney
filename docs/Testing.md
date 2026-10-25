@@ -19,11 +19,11 @@ These checks are automated tests, not an AI review or a complete Unity build. Th
 Use Unity 6000.6.2f1 and a disposable checkout. The integration runner enters Play mode, completes Spring, crosses the real Spring/Summer and Summer/Fall portals, exercises modal guards, runs the Summer/Fall interface callbacks and route checks, and verifies Fall completion. It exits the Editor when finished, so do not run it in an Editor containing unsaved work.
 
 ```sh
-unity open /absolute/path/to/capstone --batchmode --wait \
+unity open /absolute/path/to/capstone --wait \
   --args '-executeMethod SeasonIntegrationChecks.Run -logFile /tmp/season-integration.log'
 ```
 
-Read `capstone/Temp/SeasonChecks/Integration.txt` and the log. The result must say PASS; merely starting Unity does not count. The runner fails on logged errors or exceptions and has a three-minute runtime deadline after imports.
+Read `capstone/Logs/SeasonChecks/Integration.txt` and the log. The result must say PASS; merely starting Unity does not count. The runner fails on logged errors or exceptions and has a three-minute runtime deadline after imports.
 
 To compile a macOS Development player containing the opening and Spring, with Summer and Fall included through their Resources prefabs:
 
@@ -32,6 +32,6 @@ unity run /absolute/path/to/capstone --timeout 600 \
   -- -executeMethod SeasonIntegrationChecks.Build
 ```
 
-The app and build summary go under `capstone/Temp/SeasonChecks/`. Unity builds and runtime checks currently run locally with the installed licensed Editor. Hosted Unity builds would require a separately configured Unity licensing setup. No self-hosted runner or paid service is enabled by this workflow.
+The app and build summary go under `capstone/Logs/SeasonChecks/`. Unity builds and runtime checks currently run locally with the installed licensed Editor. Hosted Unity builds would require a separately configured Unity licensing setup. No self-hosted runner or paid service is enabled by this workflow.
 
 Before release, also play the standalone game, check audio and multiple screen shapes, and time first-time players. Progress remains session-only.
