@@ -1,0 +1,26 @@
+name: Game checks
+on:
+  pull_request:
+  push:
+    branches: [main, fall-level, review/season-integration]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  progression:
+    name: Lesson and guardian regression tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+      - run: dotnet run --project tests/Progression/Progression.csproj --configuration Release
+  assets:
+    name: Unity asset integrity
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 tests/check_assets.py

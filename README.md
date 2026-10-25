@@ -1,5 +1,7 @@
 # Ambros' Journey
 
+[Automated checks and local validation](docs/Testing.md)
+
 A Unity 2D adventure that teaches middle-school players how to use AI safely. Ambros is playing a game on his laptop at home when he is pulled into its world. To get home, he must explore four seasons, learn from their inhabitants, and pass each guardian's quiz before facing a final AI Safety challenge.
 
 **Team:** Dylan Lasensky, Kaley Carrubba, and Kaylie Pasternak · CMS 484 Capstone

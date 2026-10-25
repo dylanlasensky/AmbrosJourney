@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="../../capstone/Assets/SummerLevel/Scripts/SummerProgress.cs" Link="SummerProgress.cs" />
+    <Compile Include="../../capstone/Assets/FallLevel/Scripts/FallProgress.cs" Link="FallProgress.cs" />
+  </ItemGroup>
+</Project>
