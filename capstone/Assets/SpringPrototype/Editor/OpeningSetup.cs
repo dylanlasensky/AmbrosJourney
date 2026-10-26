@@ -8,7 +8,7 @@ using System.IO;
 [InitializeOnLoad]
 public static class OpeningSetup
 {
-    const string Opening="Assets/Opening/Opening.mp4";
+    const string Opening="Assets/Resources/Journey/Intro.mp4";
     static OpeningSetup(){EditorApplication.delayCall+=AutoSetup;}
     static void AutoSetup(){if(!EditorApplication.isPlayingOrWillChangePlaymode && File.Exists(Opening) && !File.Exists("Assets/Opening/Intro.unity"))Build();}
     [MenuItem("Capstone/Set Up Opening and Spring Missions")]

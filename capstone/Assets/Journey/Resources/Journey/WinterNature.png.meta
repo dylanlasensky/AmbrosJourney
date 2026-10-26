@@ -1,0 +1,1939 @@
+fileFormatVersion: 2
+guid: a1f16877a41af428bb1b4ef6d72da6f0
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 8359363933649273503
+    second: WinterNature_0
+  - first:
+      213: -1973673686563324591
+    second: WinterNature_1
+  - first:
+      213: 6072903659730238358
+    second: WinterNature_2
+  - first:
+      213: -8863838615699216716
+    second: WinterNature_3
+  - first:
+      213: -498078789981654365
+    second: WinterNature_4
+  - first:
+      213: -2729171169190306986
+    second: WinterNature_5
+  - first:
+      213: 2367811557996309459
+    second: WinterNature_6
+  - first:
+      213: -294575643580602377
+    second: WinterNature_7
+  - first:
+      213: 5866835986212581555
+    second: WinterNature_8
+  - first:
+      213: 3794536228762145822
+    second: WinterNature_9
+  - first:
+      213: -5916548189120497475
+    second: WinterNature_10
+  - first:
+      213: -1555402749337232454
+    second: WinterNature_11
+  - first:
+      213: 7810884085539322357
+    second: WinterNature_12
+  - first:
+      213: -3433808000178449827
+    second: WinterNature_13
+  - first:
+      213: 557276393298006016
+    second: WinterNature_14
+  - first:
+      213: 2734619516507907421
+    second: WinterNature_15
+  - first:
+      213: -8686853558056522557
+    second: WinterNature_16
+  - first:
+      213: 6464462997051074441
+    second: WinterNature_17
+  - first:
+      213: 7702468711235824306
+    second: WinterNature_18
+  - first:
+      213: -8349050921463525243
+    second: WinterNature_19
+  - first:
+      213: -4636668226628827685
+    second: WinterNature_20
+  - first:
+      213: -5427919517538860002
+    second: WinterNature_21
+  - first:
+      213: 8542208107069403888
+    second: WinterNature_22
+  - first:
+      213: -6353704274857590998
+    second: WinterNature_23
+  - first:
+      213: -1115809996316313762
+    second: WinterNature_24
+  - first:
+      213: 6273032931065317618
+    second: WinterNature_25
+  - first:
+      213: 4777147342828724043
+    second: WinterNature_26
+  - first:
+      213: 5326092069352966590
+    second: WinterNature_27
+  - first:
+      213: -7601550642190891566
+    second: WinterNature_28
+  - first:
+      213: 5967735632854849969
+    second: WinterNature_29
+  - first:
+      213: 5849414847906766840
+    second: WinterNature_30
+  - first:
+      213: 5885073891758666435
+    second: WinterNature_31
+  - first:
+      213: -3838151976777479965
+    second: WinterNature_32
+  - first:
+      213: 5326216331380151430
+    second: WinterNature_33
+  - first:
+      213: -5961278096426698501
+    second: WinterNature_34
+  - first:
+      213: 4006536256737782490
+    second: WinterNature_35
+  - first:
+      213: 3708553643534446825
+    second: WinterNature_36
+  - first:
+      213: -3154276956281862160
+    second: WinterNature_37
+  - first:
+      213: 8885615237249940615
+    second: WinterNature_38
+  - first:
+      213: 8263150865174626206
+    second: WinterNature_39
+  - first:
+      213: -5490439868913285626
+    second: WinterNature_40
+  - first:
+      213: 6467795574797035320
+    second: WinterNature_41
+  - first:
+      213: 8528380067906574084
+    second: WinterNature_42
+  - first:
+      213: -4487056685839970003
+    second: WinterNature_43
+  - first:
+      213: -2153024933567801510
+    second: WinterNature_44
+  - first:
+      213: 172627406688996292
+    second: WinterNature_45
+  - first:
+      213: -6733388949653807903
+    second: WinterNature_46
+  - first:
+      213: 2277138866289256569
+    second: WinterNature_47
+  - first:
+      213: -4771419379277030254
+    second: WinterNature_48
+  - first:
+      213: -5783349569836165837
+    second: WinterNature_49
+  - first:
+      213: -5797447082464253740
+    second: WinterNature_50
+  - first:
+      213: 3594845158889714347
+    second: WinterNature_51
+  - first:
+      213: 5325273450308972504
+    second: WinterNature_52
+  - first:
+      213: -8645594035512324664
+    second: WinterNature_53
+  - first:
+      213: 438956909407581926
+    second: WinterNature_54
+  - first:
+      213: -8929214341183787572
+    second: WinterNature_55
+  - first:
+      213: -1505793256561754758
+    second: WinterNature_56
+  - first:
+      213: -8502757871190093546
+    second: WinterNature_57
+  - first:
+      213: 2110880171838046747
+    second: WinterNature_58
+  - first:
+      213: -767098820687809579
+    second: WinterNature_59
+  - first:
+      213: 2806663726262684687
+    second: WinterNature_60
+  - first:
+      213: 5290747693623688681
+    second: WinterNature_61
+  - first:
+      213: 8530874391390404778
+    second: WinterNature_62
+  - first:
+      213: -4840840180280197308
+    second: WinterNature_63
+  - first:
+      213: -7992566747108010170
+    second: WinterNature_64
+  - first:
+      213: 6989911789491401992
+    second: WinterNature_65
+  - first:
+      213: -4199248622647943641
+    second: WinterNature_66
+  - first:
+      213: -8561933060510185264
+    second: WinterNature_67
+  - first:
+      213: -4683531270523159201
+    second: WinterNature_68
+  - first:
+      213: -7487152438043152772
+    second: WinterNature_69
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 1
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 0
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 1024
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: WinterNature_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 583
+        height: 1231
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f928065353d620470800000000000000
+      internalID: 8359363933649273503
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WinterNature_1
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 1223
+        width: 18
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 15d7bd13d3a1c94e0800000000000000
+      internalID: -1973673686563324591
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WinterNature_2
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 1210
+        width: 14
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 69bf361f3b9474450800000000000000
+      internalID: 6072903659730238358
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WinterNature_3
+      rect:
+        serializedVersion: 2
+        x: 424
+        y: 1195
+        width: 25
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4b6abdcddb15df480800000000000000
+      internalID: -8863838615699216716
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WinterNature_4
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 1186
+        width: 33
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3a2bcfcbaf77619f0800000000000000
+      internalID: -498078789981654365
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WinterNature_5
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 1138
+        width: 52
+        height: 116
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 65b9c290849002ad0800000000000000
+      internalID: -2729171169190306986
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WinterNature_6
+      rect:
+        serializedVersion: 2
+        x: 749
+        y: 1193
+        width: 36
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3db2f6911182cd020800000000000000
+      internalID: 2367811557996309459
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WinterNature_7
+      rect:
+        serializedVersion: 2
+        x: 784
+        y: 1197
+        width: 21
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7f765ec430579ebf0800000000000000
+      internalID: -294575643580602377
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WinterNature_8
+      rect:
+        serializedVersion: 2
+        x: 810
+        y: 1148
+        width: 116
+        height: 106
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b0fda1ee303b6150800000000000000
+      internalID: 5866835986212581555
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WinterNature_9
+      rect:
+        serializedVersion: 2
+        x: 956
+        y: 1195
+        width: 31
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e14d7b28896e8a430800000000000000
+      internalID: 3794536228762145822
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WinterNature_10
+      rect:
+        serializedVersion: 2
+        x: 1011
+        y: 1188
+        width: 37
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db8fdfae4c234eda0800000000000000
+      internalID: -5916548189120497475
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WinterNature_11
+      rect:
+        serializedVersion: 2
+        x: 1047
+        y: 1166
+        width: 65
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: abb961bb0791a6ae0800000000000000
+      internalID: -1555402749337232454
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WinterNature_12
+      rect:
+        serializedVersion: 2
+        x: 1117
+        y: 1173
+        width: 52
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f9b25421b5d56c60800000000000000
+      internalID: 7810884085539322357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WinterNature_13
+      rect:
+        serializedVersion: 2
+        x: 581
+        y: 1179
+        width: 27
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d52187221d9a850d0800000000000000
+      internalID: -3433808000178449827
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WinterNature_14
+      rect:
+        serializedVersion: 2
+        x: 802
+        y: 1205
+        width: 11
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0001d385de7dbb700800000000000000
+      internalID: 557276393298006016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WinterNature_15
+      rect:
+        serializedVersion: 2
+        x: 488
+        y: 0
+        width: 763
+        height: 1188
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d55ed4d26f153f520800000000000000
+      internalID: 2734619516507907421
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WinterNature_16
+      rect:
+        serializedVersion: 2
+        x: 709
+        y: 1158
+        width: 34
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3cce330c6b8127780800000000000000
+      internalID: -8686853558056522557
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WinterNature_17
+      rect:
+        serializedVersion: 2
+        x: 977
+        y: 1185
+        width: 9
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 987e2ea78d266b950800000000000000
+      internalID: 6464462997051074441
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WinterNature_18
+      rect:
+        serializedVersion: 2
+        x: 979
+        y: 1181
+        width: 21
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2baa5c2cb7aa4ea60800000000000000
+      internalID: 7702468711235824306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WinterNature_19
+      rect:
+        serializedVersion: 2
+        x: 780
+        y: 1145
+        width: 7
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 580d48e0c66322c80800000000000000
+      internalID: -8349050921463525243
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WinterNature_20
+      rect:
+        serializedVersion: 2
+        x: 784
+        y: 1132
+        width: 35
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bd5c27260de37afb0800000000000000
+      internalID: -4636668226628827685
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WinterNature_21
+      rect:
+        serializedVersion: 2
+        x: 1111
+        y: 1166
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e14cfa705f72ca4b0800000000000000
+      internalID: -5427919517538860002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WinterNature_22
+      rect:
+        serializedVersion: 2
+        x: 737
+        y: 1154
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0f2755bc3050c8670800000000000000
+      internalID: 8542208107069403888
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WinterNature_23
+      rect:
+        serializedVersion: 2
+        x: 1172
+        y: 1074
+        width: 67
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a2f7b3910ab13d7a0800000000000000
+      internalID: -6353704274857590998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WinterNature_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 990
+        width: 17
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e577cbc58b8d380f0800000000000000
+      internalID: -1115809996316313762
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WinterNature_25
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 993
+        width: 27
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f8c970073a4e0750800000000000000
+      internalID: 6273032931065317618
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WinterNature_26
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 972
+        width: 76
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b4fd109a236db4240800000000000000
+      internalID: 4777147342828724043
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WinterNature_27
+      rect:
+        serializedVersion: 2
+        x: 1228
+        y: 1026
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb90fcaa4841ae940800000000000000
+      internalID: 5326092069352966590
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WinterNature_28
+      rect:
+        serializedVersion: 2
+        x: 1236
+        y: 1000
+        width: 13
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2d5c11637fdd18690800000000000000
+      internalID: -7601550642190891566
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WinterNature_29
+      rect:
+        serializedVersion: 2
+        x: 1244
+        y: 986
+        width: 10
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1b911cd80f7a1d250800000000000000
+      internalID: 5967735632854849969
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WinterNature_30
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 899
+        width: 70
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8ffd06900db4d2150800000000000000
+      internalID: 5849414847906766840
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WinterNature_31
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 960
+        width: 11
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c2733b268bfba150800000000000000
+      internalID: 5885073891758666435
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WinterNature_32
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 924
+        width: 5
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e8073ecc152cbac0800000000000000
+      internalID: -3838151976777479965
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WinterNature_33
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 927
+        width: 12
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6845ccca8858ae940800000000000000
+      internalID: 5326216331380151430
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WinterNature_34
+      rect:
+        serializedVersion: 2
+        x: 1218
+        y: 907
+        width: 36
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bf87b2fc729454da0800000000000000
+      internalID: -5961278096426698501
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WinterNature_35
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 817
+        width: 35
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ada249a7f731a9730800000000000000
+      internalID: 4006536256737782490
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WinterNature_36
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 796
+        width: 64
+        height: 111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e0f959d3ed677330800000000000000
+      internalID: 3708553643534446825
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WinterNature_37
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 714
+        width: 59
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0f78e9102d1c934d0800000000000000
+      internalID: -3154276956281862160
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WinterNature_38
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 775
+        width: 20
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 78cb413fafb005b70800000000000000
+      internalID: 8885615237249940615
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WinterNature_39
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 677
+        width: 5
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e9ff13c8eeb9ca270800000000000000
+      internalID: 8263150865174626206
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WinterNature_40
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 636
+        width: 37
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 60608c0670a0ec3b0800000000000000
+      internalID: -5490439868913285626
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WinterNature_41
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 582
+        width: 79
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 837ee93bec932c950800000000000000
+      internalID: 6467795574797035320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WinterNature_42
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 546
+        width: 41
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 407d7198c74ea5670800000000000000
+      internalID: 8528380067906574084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WinterNature_43
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 477
+        width: 5
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d219779b7b5cab1c0800000000000000
+      internalID: -4487056685839970003
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WinterNature_44
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 561
+        width: 21
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a57d12aea3bee12e0800000000000000
+      internalID: -2153024933567801510
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WinterNature_45
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 511
+        width: 31
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4cbc13636bb456200800000000000000
+      internalID: 172627406688996292
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WinterNature_46
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 532
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1ec1851ec623e82a0800000000000000
+      internalID: -6733388949653807903
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WinterNature_47
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 487
+        width: 10
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 978286debb50a9f10800000000000000
+      internalID: 2277138866289256569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WinterNature_48
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 501
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 29c17c7ca5388cdb0800000000000000
+      internalID: -4771419379277030254
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WinterNature_49
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 480
+        width: 11
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 335d10e253a6dbfa0800000000000000
+      internalID: -5783349569836165837
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WinterNature_50
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 473
+        width: 19
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4d8e79d38945b8fa0800000000000000
+      internalID: -5797447082464253740
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WinterNature_51
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 481
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba2772e20a473e130800000000000000
+      internalID: 3594845158889714347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WinterNature_52
+      rect:
+        serializedVersion: 2
+        x: 46
+        y: 355
+        width: 19
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8df2c711dfb27e940800000000000000
+      internalID: 5325273450308972504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WinterNature_53
+      rect:
+        serializedVersion: 2
+        x: 1047
+        y: 288
+        width: 192
+        height: 132
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8cd4d01f70ea40880800000000000000
+      internalID: -8645594035512324664
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WinterNature_54
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 307
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e631f0cbfc771600800000000000000
+      internalID: 438956909407581926
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WinterNature_55
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 264
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ccdaa6e9dde051480800000000000000
+      internalID: -8929214341183787572
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WinterNature_56
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 201
+        width: 53
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a7d357dd2095a1be0800000000000000
+      internalID: -1505793256561754758
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WinterNature_57
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 274
+        width: 13
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 611de8404c2200a80800000000000000
+      internalID: -8502757871190093546
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WinterNature_58
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 168
+        width: 9
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b1282d5155a5b4d10800000000000000
+      internalID: 2110880171838046747
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WinterNature_59
+      rect:
+        serializedVersion: 2
+        x: 1208
+        y: 173
+        width: 27
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d33845dfa7ba55f0800000000000000
+      internalID: -767098820687809579
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WinterNature_60
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 107
+        width: 43
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f0c8cd7e9c543f620800000000000000
+      internalID: 2806663726262684687
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WinterNature_61
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 133
+        width: 17
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ed38aaeef28c6940800000000000000
+      internalID: 5290747693623688681
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WinterNature_62
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 68
+        width: 7
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa04d4a7f01c36670800000000000000
+      internalID: 8530874391390404778
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WinterNature_63
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 29
+        width: 9
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 44ff5fff081e1dcb0800000000000000
+      internalID: -4840840180280197308
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WinterNature_64
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 0
+        width: 153
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6471703d3e2b41190800000000000000
+      internalID: -7992566747108010170
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WinterNature_65
+      rect:
+        serializedVersion: 2
+        x: 504
+        y: 9
+        width: 74
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 80533f70db7210160800000000000000
+      internalID: 6989911789491401992
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WinterNature_66
+      rect:
+        serializedVersion: 2
+        x: 681
+        y: 0
+        width: 76
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 72e558350a549b5c0800000000000000
+      internalID: -4199248622647943641
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WinterNature_67
+      rect:
+        serializedVersion: 2
+        x: 118
+        y: 15
+        width: 12
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0d80e999e37ed2980800000000000000
+      internalID: -8561933060510185264
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WinterNature_68
+      rect:
+        serializedVersion: 2
+        x: 930
+        y: 7
+        width: 12
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f5d7806bf11c00fb0800000000000000
+      internalID: -4683531270523159201
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WinterNature_69
+      rect:
+        serializedVersion: 2
+        x: 1048
+        y: 0
+        width: 91
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c7eec37b68a481890800000000000000
+      internalID: -7487152438043152772
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      WinterNature_0: 8359363933649273503
+      WinterNature_1: -1973673686563324591
+      WinterNature_10: -5916548189120497475
+      WinterNature_11: -1555402749337232454
+      WinterNature_12: 7810884085539322357
+      WinterNature_13: -3433808000178449827
+      WinterNature_14: 557276393298006016
+      WinterNature_15: 2734619516507907421
+      WinterNature_16: -8686853558056522557
+      WinterNature_17: 6464462997051074441
+      WinterNature_18: 7702468711235824306
+      WinterNature_19: -8349050921463525243
+      WinterNature_2: 6072903659730238358
+      WinterNature_20: -4636668226628827685
+      WinterNature_21: -5427919517538860002
+      WinterNature_22: 8542208107069403888
+      WinterNature_23: -6353704274857590998
+      WinterNature_24: -1115809996316313762
+      WinterNature_25: 6273032931065317618
+      WinterNature_26: 4777147342828724043
+      WinterNature_27: 5326092069352966590
+      WinterNature_28: -7601550642190891566
+      WinterNature_29: 5967735632854849969
+      WinterNature_3: -8863838615699216716
+      WinterNature_30: 5849414847906766840
+      WinterNature_31: 5885073891758666435
+      WinterNature_32: -3838151976777479965
+      WinterNature_33: 5326216331380151430
+      WinterNature_34: -5961278096426698501
+      WinterNature_35: 4006536256737782490
+      WinterNature_36: 3708553643534446825
+      WinterNature_37: -3154276956281862160
+      WinterNature_38: 8885615237249940615
+      WinterNature_39: 8263150865174626206
+      WinterNature_4: -498078789981654365
+      WinterNature_40: -5490439868913285626
+      WinterNature_41: 6467795574797035320
+      WinterNature_42: 8528380067906574084
+      WinterNature_43: -4487056685839970003
+      WinterNature_44: -2153024933567801510
+      WinterNature_45: 172627406688996292
+      WinterNature_46: -6733388949653807903
+      WinterNature_47: 2277138866289256569
+      WinterNature_48: -4771419379277030254
+      WinterNature_49: -5783349569836165837
+      WinterNature_5: -2729171169190306986
+      WinterNature_50: -5797447082464253740
+      WinterNature_51: 3594845158889714347
+      WinterNature_52: 5325273450308972504
+      WinterNature_53: -8645594035512324664
+      WinterNature_54: 438956909407581926
+      WinterNature_55: -8929214341183787572
+      WinterNature_56: -1505793256561754758
+      WinterNature_57: -8502757871190093546
+      WinterNature_58: 2110880171838046747
+      WinterNature_59: -767098820687809579
+      WinterNature_6: 2367811557996309459
+      WinterNature_60: 2806663726262684687
+      WinterNature_61: 5290747693623688681
+      WinterNature_62: 8530874391390404778
+      WinterNature_63: -4840840180280197308
+      WinterNature_64: -7992566747108010170
+      WinterNature_65: 6989911789491401992
+      WinterNature_66: -4199248622647943641
+      WinterNature_67: -8561933060510185264
+      WinterNature_68: -4683531270523159201
+      WinterNature_69: -7487152438043152772
+      WinterNature_7: -294575643580602377
+      WinterNature_8: 5866835986212581555
+      WinterNature_9: 3794536228762145822
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

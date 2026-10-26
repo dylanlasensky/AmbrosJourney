@@ -16,7 +16,6 @@ Open the inner `capstone` project with Unity 6000.6.2f1. Use the Capstone menu:
 - **Upgrade Spring World**: rebuild the expanded map in Spring (replaces that generated layout). Then run **Polish Cottage and Learning Trail** to apply the enlarged cottage, connected approach and revised spawn.
 - **Validate Spring Progression**: checks field-note completion, wrong-answer retry, all six challenges, 60% failure, 80% success, distinct boss art and expanded bounds.
 - **Record Spring Demo**: editor-only walkthrough using ordinary Input System keyboard events. Captures the real Game view at 12 fps into `tools/.spring-demo-v5`; encode with ffmpeg.
-- **Record Animated Opening**: renders 480 animation frames from `AnimatedSource.unity` into `tools/.intro-animated`. Run `python3 tools/render_animated_opening.py /path/to/ffmpeg` to encode the 20-second video and original sound cue.
 
 `AnimatedOpening.cs` retains the editable animation source. The older keyframe renderer and art remain as earlier source material; they are no longer used by the opening video.
 

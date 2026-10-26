@@ -32,22 +32,19 @@ namespace AmbrosJourney.Journey
             chapter=JourneySession.CurrentChapter();winter=FindAnyObjectByType<WinterLevel>();spring=FindAnyObjectByType<SpringGuide>();summer=FindAnyObjectByType<AmbrosJourney.Summer.SummerLevel>();fall=FindAnyObjectByType<AmbrosJourney.Fall.FallLevel>();player=JourneySession.Instance.Player();if(chapter==0)return;
             var texture=Resources.Load<Texture2D>("Journey/WorldAtlas");atlasMaterial=new Material(Shader.Find("Sprites/Default")){mainTexture=texture};owned.Add(atlasMaterial);
             pixel=Sprite.Create(Texture2D.whiteTexture,new Rect(0,0,1,1),Vector2.one*.5f,1);owned.Add(pixel);pixelMaterial=new Material(Shader.Find("Sprites/Default")){mainTexture=Texture2D.whiteTexture};owned.Add(pixelMaterial);
-            var cottage=Atlas(chapter==4?1:0,7);var shrine=Atlas(3,2.2f);
             foreach(var r in FindObjectsByType<SpriteRenderer>())
             {
                 string n=r.name.ToLowerInvariant();
-                if(n.Contains("shelter")||n.Contains("cottage")){r.sprite=cottage;r.sharedMaterial=atlasMaterial;r.transform.localScale=Vector3.one;r.sortingOrder=100-Mathf.RoundToInt(r.transform.position.y*10);}
                 if(n.Contains("mountain ridge")){r.sprite=Atlas(2,32);r.sharedMaterial=atlasMaterial;r.transform.position=new Vector2(24,25.5f);}
                 if(n.Contains("lantern")&&r.sprite)lanterns.Add(r);
             }
-            // Add a modest settlement cluster away from the main walking route.
-            Vector2[][] houses={new[]{new Vector2(-29,22),new Vector2(25,21)},new[]{new Vector2(-23,-18),new Vector2(23,23)},new[]{new Vector2(-40,35),new Vector2(41,30)},new[]{new Vector2(-33,19),new Vector2(33,-20)}};
-            foreach(var p in houses[chapter-1])AddCottage(p,cottage);
+            var cohesion=gameObject.AddComponent<WorldCohesion>();cohesion.Build(chapter,winter);
+            lanterns.Clear();foreach(var light in FindObjectsByType<SpriteRenderer>(FindObjectsInactive.Include))if(light.name.ToLowerInvariant().Contains("lantern"))lanterns.Add(light);
             for(int i=0;i<3;i++)
             {
                 int id=(chapter-1)*3+i;var position=FindClear(ArtifactPositions[id]);
                 Transform parent=winter?(i==2?winter.World.Cavern.transform:winter.World.Outdoors.transform):transform;
-                var r=Visual("Artifact / "+ArtifactNames[id],position,shrine,parent);var label=new GameObject("Artifact caption");label.transform.SetParent(r.transform,false);label.transform.localPosition=new Vector3(0,2,0);label.AddComponent<SeasonWorldLabel>().Caption="[ F ] "+ArtifactNames[id];
+                var r=Visual("Artifact / "+ArtifactNames[id],position,null,parent);cohesion.Relic(r);var label=new GameObject("Artifact caption");label.transform.SetParent(r.transform,false);label.transform.localPosition=new Vector3(0,2,0);label.AddComponent<SeasonWorldLabel>().Caption="[ F ] "+ArtifactNames[id];
                 artifacts.Add(r.gameObject);artifactHomes.Add(r.transform.position);
             }
             var sentinel=Resources.Load<Texture2D>("Journey/SentinelAtlas");
@@ -61,13 +58,6 @@ namespace AmbrosJourney.Journey
             if(chapter>=3)AddClues();
             Physics2D.SyncTransforms();
         }
-        void AddCottage(Vector2 position,Sprite sprite)
-        {
-            // Do not force buildings into tree trunks, water or an existing landmark.
-            if(Physics2D.OverlapBox(position+Vector2.up*2,new Vector2(7,5),0))return;
-            Transform parent=winter?winter.World.Outdoors.transform:transform;
-            var r=Visual("Ranger's rest / seasonal cottage",position,sprite,parent);var c=r.gameObject.AddComponent<BoxCollider2D>();c.size=new Vector2(4.5f,1.1f);c.offset=new Vector2(0,1.5f);
-        }
         static Vector2 FindClear(Vector2 point)
         {
             for(int radius=0;radius<=4;radius++)for(int y=-radius;y<=radius;y++)for(int x=-radius;x<=radius;x++)
@@ -77,7 +67,7 @@ namespace AmbrosJourney.Journey
         {
             Vector2[] places=chapter==3?new[]{new Vector2(-29,10),new Vector2(10,20),new Vector2(32,5)}:new[]{new Vector2(-26,-16),new Vector2(18,10),new Vector2(8,22)};
             string[] clues=chapter==3?new[]{"ORCHARD WEST / ARCHIVE ACROSS NORTH BRIDGE","FOLLOW THE RIVER NORTH, THEN TURN EAST","KILN: TAKE THE SOUTHERN SWITCHBACK"}:new[]{"LEDGER NORTH / OBSERVATORY EAST OF THE LAKE","CAVE: LANTERNS LEAD NORTH, THEN WEST","FOLLOW THIS RIDGE EAST TO THE WARDEN"};
-            for(int i=0;i<places.Length;i++){var o=new GameObject("Trail directions");o.transform.SetParent(winter?winter.World.Outdoors.transform:transform);o.transform.position=places[i];o.AddComponent<SeasonWorldLabel>().Caption=clues[i];}
+            for(int i=0;i<places.Length;i++){var o=new GameObject("Trail directions");o.transform.SetParent(winter?winter.World.Outdoors.transform:transform);o.transform.position=places[i];o.AddComponent<SeasonWorldLabel>().Caption=clues[i];GetComponent<WorldCohesion>().Sign(places[i]-Vector2.up*1.7f);}
         }
         void AddWaterMotion()
         {

@@ -20,11 +20,14 @@ public class OpeningCinematic : MonoBehaviour
     public void Begin()
     {
         elapsed=0;error=null;loading=false;
+        // Videos belong to the teammate. With no supplied clip, start playing immediately.
+        if(!clip)clip=Resources.Load<VideoClip>("Journey/Intro");
+        if(!clip){Finished(null);return;}
         video=GetComponent<VideoPlayer>();video.clip=clip;video.renderMode=VideoRenderMode.CameraNearPlane;video.targetCamera=Object.FindAnyObjectByType<Camera>();video.targetCameraAlpha=1;video.aspectRatio=VideoAspectRatio.FitInside;video.playOnAwake=false;video.isLooping=false;video.waitForFirstFrame=true;
         video.audioOutputMode=VideoAudioOutputMode.Direct;video.SetDirectAudioVolume(0,.4f);
         video.loopPointReached+=Finished;video.errorReceived+=Failed;
         video.prepareCompleted+=Prepared;
-        if(clip==null)error="Opening video is missing. Press Enter to begin Spring.";else video.Prepare();
+        video.Prepare();
     }
     void Prepared(VideoPlayer source){source.Play();Debug.Log("OPENING_CINEMATIC_STARTED");}
     void Failed(VideoPlayer source,string message){error="The opening could not play. Press Enter to begin Spring.";Debug.LogWarning("Opening video: "+message);}

@@ -33,6 +33,9 @@ for name in sorted(tracked):
         for guid in re.findall(r"texture: \{fileID: \d+, guid: ([0-9a-f]+),", text):
             if guid not in guids or guids[guid] not in tracked:
                 errors.append(f"Unresolved artwork {guid}: {name}")
+        for guid in re.findall(r"m_Clip: \{fileID: \d+, guid: ([0-9a-f]+),", text):
+            if guid not in guids or guids[guid] not in tracked:
+                errors.append(f"Unresolved video clip {guid}: {name}")
         for guid in re.findall(r"m_SourcePrefab: \{fileID: \d+, guid: ([0-9a-f]+),", text):
             if guid not in guids:
                 errors.append(f"Unresolved scene prefab {guid}: {name}")

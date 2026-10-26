@@ -2,7 +2,7 @@
 
 ## Play and save
 
-Open `capstone` in Unity **6000.6.2f1**, open `Assets/Opening/Intro.unity`, and press Play. The opening scene now starts with a name-entry menu. Play begins the existing opening clip; its completion loads Spring. Continue skips the opening and restores the last saved location.
+Open `capstone` in Unity **6000.6.2f1**, open `Assets/Opening/Intro.unity`, and press Play. The opening scene now starts with a name-entry menu. New Journey loads Spring immediately while the teammate-owned intro is absent. Continue skips the opening and restores the last saved location.
 
 Pause is always available on the right side of every season, or with **Esc**. It stops physics, animation and audio, and offers Resume, Save and return to menu, artifacts, guidance, reset, and travel to unlocked seasons. The same profile has one checkpoint per season. Travel lets players recover missed collectibles without restarting lessons. Returning to a checkpoint on a portal does not immediately send the player through it: step away first.
 
@@ -19,9 +19,9 @@ Saves contain the explorer name, exact player coordinates, Winter outdoor/cave r
 
 ## Teammate video handoff
 
-No intro or outro video was created or modified by this update.
+The retired placeholder intro and its generation tools have been removed. New videos belong to the teammate.
 
-**Intro:** replace the existing `Assets/Opening/Opening.mp4` while keeping its `.meta`, or assign the new VideoClip to `OpeningCinematic.clip` in `Assets/Opening/Intro.unity`. The menu calls `OpeningCinematic.Begin()` after a valid name is entered. Playback completion loads Spring. A playback failure displays an Enter-to-continue fallback.
+**Intro:** add the teammate's clip at `Assets/Resources/Journey/Intro.mp4` and commit its `.meta`, or assign their VideoClip to `OpeningCinematic.clip` in `Assets/Opening/Intro.unity`. With neither supplied, New Journey enters Spring immediately. There is no placeholder or missing-video screen. A supplied clip still transitions to Spring when it ends and retains an Enter-to-continue fallback if playback fails.
 
 **Outro:** add the teammate's clip at **`Assets/Resources/Journey/Outro.mp4`**, commit its `.meta`, and rebuild. The final victory continuation loads `Resources.Load<VideoClip>("Journey/Outro")`, plays it using unscaled time while gameplay is paused, then presents the certificate. A missing/unplayable clip goes directly to the certificate, so an unfinished video does not trap the player. Do not put the outro in the opening folder without also updating this resource path.
 
@@ -29,7 +29,7 @@ The certificate uses the explorer name and completion date. On desktop, Download
 
 ## Graphics and animation
 
-The generated atlas uses the existing seasonal terrain pack as its visual reference: rounded violet-gray stone, warm ivory highlights, earthy roofs and clustered pixel shading. It adds warm and snowy ranger cottages, a mountain integrated with the cave mouth, and collectible compass shrines. Existing shelter/cottage visuals use the same family. Fall's enlarged placeholder guardian is replaced by a four-pose stone-and-bramble Sentinel atlas. Additional cottages are placed only where their footprint is clear; paths and mission locations remain usable. Generated files and import metadata live under `Assets/Journey/Resources/Journey`.
+The generated atlas uses the existing seasonal terrain pack as its visual reference: rounded violet-gray stone, warm ivory highlights, earthy roofs and clustered pixel shading. It adds warm and snowy ranger cottages, a mountain integrated with the cave mouth, and collectible compass shrines. Existing shelter/cottage visuals use the same family. Fall's enlarged placeholder guardian is replaced by a four-pose stone-and-bramble Sentinel atlas. Only authored landmark buildings remain; their front steps connect to trails. Seasonal cottage variants, snow-rooted trees, carved signs and grouped local furnishings replace generic extra-house placement. Generated files and import metadata live under `Assets/Journey/Resources/Journey`.
 
 Water surfaces have moving highlights, lanterns subtly flicker, and existing blossom/leaf/snow effects continue. Companions retain a safe route spine but use different gaps and slowly varying lateral offsets. Obstacle checks pull the formation back into narrow passages; teleports reset its route.
 
@@ -57,4 +57,4 @@ Run the existing .NET project, `python3 tests/check_assets.py`, and Unity's `Sea
 
 ## Homepage
 
-The blossom-valley homepage follows the supplied visual reference. Returning explorers see Continue and their actual saved season. New Journey asks before resetting an existing save; fresh explorers enter a name before starting the existing intro. Settings changes Explorer/Assisted guidance, persists that choice for existing saves, and retains a draft name before a new game. Quit exits the standalone game; a browser build instead explains that the tab can be closed. Completed explorers can reopen their certificate from the menu. The original intro/outro handoff remains unchanged.
+The blossom-valley homepage follows the supplied visual reference. Returning explorers see Continue and their actual saved season. New Journey asks before resetting an existing save; fresh explorers enter a name before entering Spring (or a teammate-supplied intro). Settings changes Explorer/Assisted guidance, persists that choice for existing saves, and retains a draft name before a new game. Quit exits the standalone game; a browser build instead explains that the tab can be closed. Completed explorers can reopen their certificate from the menu. Both optional video hooks remain owned by the teammate.

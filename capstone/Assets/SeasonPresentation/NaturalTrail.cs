@@ -9,6 +9,24 @@ namespace AmbrosJourney.Presentation
     {
         const int Pixels=16, Chunk=16;
         readonly List<Object> owned=new List<Object>();
+        public HashSet<Vector2Int> Cells {get;private set;}
+        public bool Near(Vector2 point,float margin)
+        {
+            if(Cells==null)return false;var cell=Vector2Int.FloorToInt(point);
+            int radius=Mathf.CeilToInt(margin);
+            for(int y=-radius;y<=radius;y++)for(int x=-radius;x<=radius;x++)if(Cells.Contains(cell+new Vector2Int(x,y)))return true;
+            return false;
+        }
+        public static void Spur(Transform parent,int season,Vector2 start,Vector2 bend,Vector2 end)
+        {
+            var cells=new HashSet<Vector2Int>();var points=new[]{start,bend,end};
+            for(int segment=1;segment<points.Length;segment++)
+            {
+                int steps=Mathf.Max(1,Mathf.CeilToInt(Vector2.Distance(points[segment-1],points[segment])*3));
+                for(int i=0;i<=steps;i++){var p=Vector2.Lerp(points[segment-1],points[segment],i/(float)steps);cells.Add(Vector2Int.FloorToInt(p));cells.Add(Vector2Int.FloorToInt(p+Vector2.right*.65f));}
+            }
+            var host=new GameObject("Doorstep trail");host.transform.SetParent(parent,false);host.AddComponent<NaturalTrail>().Build(cells,season,-987);
+        }
         public static void Apply(Tilemap map,int season,TileBase fill=null,bool onlyPath=false)
         {
             var cells=new HashSet<Vector2Int>();
@@ -41,6 +59,7 @@ namespace AmbrosJourney.Presentation
         }
         void Build(HashSet<Vector2Int> cells,int season,int order)
         {
+            Cells=cells;
             var chunks=new HashSet<Vector2Int>();foreach(var p in cells)for(int y=-1;y<=1;y++)for(int x=-1;x<=1;x++)chunks.Add(new Vector2Int(Mathf.FloorToInt((p.x+x)/(float)Chunk),Mathf.FloorToInt((p.y+y)/(float)Chunk)));
             Color soil=season==4?new Color(.64f,.73f,.80f):season==3?new Color(.53f,.40f,.29f):new Color(.62f,.51f,.34f);
             foreach(var chunk in chunks)
