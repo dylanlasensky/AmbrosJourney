@@ -2,11 +2,18 @@ using System;
 
 namespace AmbrosJourney.Fall
 {
-    // Same session-only contract as Summer; missions survive mistakes and guardian retries.
+    // Serializable lesson state; missions survive mistakes, retries and chapter revisits.
     [Serializable]
     public sealed class FallProgress
     {
         public bool Introduced;
+        public bool Valid()
+        {
+            if(Courage<1||Courage>3||BossQuestion<0||BossQuestion>5||BossScore<0||BossScore>BossQuestion||Studied==null||Studied.Length!=3||Steps==null||Steps.Length!=3)return false;
+            for(int i=0;i<3;i++)if(Steps[i]<0||Steps[i]>FallContent.Missions[i].Length)return false;
+            if(BossFinished!=(BossQuestion==5))return false;
+            return !Complete||(BossFinished&&BossScore>=4&&RuneCount==3);
+        }
         public bool[] Studied = new bool[3];
         public int[] Steps = new int[3];
         public int Courage = 3, BossQuestion, BossScore;

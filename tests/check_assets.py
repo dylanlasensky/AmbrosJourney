@@ -20,7 +20,7 @@ for name in sorted(tracked):
         errors.append(f"Duplicate GUID: {name} and {guids[guid]}")
     guids[guid] = name[:-5]
 
-folders = ("SpringPrototype", "SummerLevel", "FallLevel", "WinterLevel", "SeasonPresentation", "Opening")
+folders = ("SpringPrototype", "SummerLevel", "FallLevel", "WinterLevel", "SeasonPresentation", "Opening", "Journey")
 gameplay = tuple(f"capstone/Assets/{folder}/" for folder in folders)
 for name in sorted(tracked):
     if not name.startswith(gameplay) or name.endswith(".meta"):

@@ -19,7 +19,7 @@ namespace AmbrosJourney.Fall
         public SpriteRenderer[] runes,shields;
         public TMP_FontAsset font;
         public FallProgress Progress=new FallProgress();
-        public bool InputBlocked=>!dialog || !journal || dialog.activeSelf || journal.activeSelf || Transitioning;
+        public bool InputBlocked=>AmbrosJourney.Journey.JourneySession.Blocked || !dialog || !journal || dialog.activeSelf || journal.activeSelf || Transitioning;
         public bool Transitioning;
         public bool IsDialogueOpen=>dialog && dialog.activeSelf;
         public string CurrentTitle=>currentTitle;
@@ -35,9 +35,14 @@ namespace AmbrosJourney.Fall
         SeasonNavigation navigation;
         int nearby=-1;
         string currentTitle;
+        public void RestoreProgress(FallProgress p)
+        {
+            if(p==null||!p.Valid())throw new ArgumentException("Invalid Fall checkpoint");
+            Progress=p;if(p.Introduced)Close();journal.SetActive(false);if(p.Complete){ember.follow=femaleWarrior.transform;}RefreshWorld();
+        }
         void Start()
         {
-            Application.runInBackground=true;CreateUI();CreateAudio();
+            Application.runInBackground=false;CreateUI();CreateAudio();
             mage.follow=player.transform;maleWarrior.follow=mage.transform;femaleWarrior.follow=maleWarrior.transform;
             ShowPages(new[]{
                 "Emberfist: Welcome to Emberwood! The Mage and Warriors told me you keep your own thinking. Here, our instruction engines have tangled the forest with vague requests.",
@@ -48,6 +53,7 @@ namespace AmbrosJourney.Fall
         }
         void Update()
         {
+            if(AmbrosJourney.Journey.JourneySession.Blocked)return;
             if(!canvas)return;nearby=Nearest();var k=Keyboard.current;
             if(k!=null && !Transitioning)
             {

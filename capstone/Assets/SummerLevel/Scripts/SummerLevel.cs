@@ -20,7 +20,7 @@ namespace AmbrosJourney.Summer
         public TMP_FontAsset font;
         public SummerProgress Progress = new SummerProgress();
         public bool Transitioning;
-        public bool InputBlocked => Transitioning || !dialog || !journal || dialog.activeSelf || journal.activeSelf;
+        public bool InputBlocked => AmbrosJourney.Journey.JourneySession.Blocked ||  Transitioning || !dialog || !journal || dialog.activeSelf || journal.activeSelf;
         GameObject dialog, journal;
         TextMeshProUGUI heading, copy, objective, compass, prompt, journalCopy, party;
         readonly List<UnityEngine.UI.Button> choices = new List<UnityEngine.UI.Button>();
@@ -35,9 +35,14 @@ namespace AmbrosJourney.Summer
         string currentTitle;
         public bool IsDialogueOpen => dialog && dialog.activeSelf;
         public string CurrentTitle => currentTitle;
+        public void RestoreProgress(SummerProgress p)
+        {
+            if(p==null||!p.Valid())throw new ArgumentException("Invalid Summer checkpoint");
+            Progress=p;if(p.Introduced)Close();journal.SetActive(false);if(p.Complete){maleWarrior.follow=mage.transform;femaleWarrior.follow=maleWarrior.transform;}RefreshWorld();
+        }
         void Start()
         {
-            Application.runInBackground = true;
+            Application.runInBackground = false;
             CreateUI(); CreateAudio();
             mage.follow = player.transform;
             ShowPages(new[] {
@@ -49,6 +54,7 @@ namespace AmbrosJourney.Summer
         }
         void Update()
         {
+            if(AmbrosJourney.Journey.JourneySession.Blocked)return;
             if (!canvas) return;
             var k = Keyboard.current;
             nearby = Nearest();

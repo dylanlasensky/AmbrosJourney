@@ -54,6 +54,12 @@ static class Program
         }
         return p;
     }
+    static WinterProgress ReadyWinter()
+    {
+        var p=new WinterProgress();Check(!p.EnterCave()&&!p.BeginWinterBoss()&&!p.BeginBoss(),"Intro and Winter crest required");p.Introduced=true;Check(!p.EnterCave()&&!p.ReadNote(2),"Cannot bypass cave guard");
+        for(int m=0;m<2;m++){Check(!p.AnswerMission(m,0),"Read note first");p.ReadNote(m);foreach(var q in WinterContent.Missions[m]){int previous=p.Steps[m];Check(!p.AnswerMission(m,(q.Correct+1)%3)&&p.Steps[m]==previous,"Mistake retains mission progress");Check(p.AnswerMission(m,q.Correct),"Correct mission answer");}}
+        return p;
+    }
     static void Main()
     {
         for (int mask = 0; mask < 32; mask++)
@@ -91,23 +97,22 @@ static class Program
         }
         for(int mask=0;mask<243;mask++)
         {
-            var p=new WinterProgress();Check(!p.EnterCave()&&!p.ReadNote(0)&&!p.BeginBoss(),"Winter intro required");p.Introduced=true;
-            Check(!p.ReadNote(2),"Cave archive requires cave entry");
-            Check(p.EnterCave()&&p.CaveDiscovered&&!p.BeginBoss(),"Discovering cave does not bypass evidence seals");p.LeaveCave();
-            for(int m=0;m<3;m++)
-            {
-                if(m==2)p.EnterCave();
-                Check(!p.AnswerMission(m,0),"Winter note prerequisite");p.ReadNote(m);
-                foreach(var q in WinterContent.Missions[m]){int old=p.Steps[m];Check(!p.AnswerMission(m,(q.Correct+1)%3)&&p.Steps[m]==old,"Winter mistake preserves progress");Check(p.AnswerMission(m,q.Correct),"Winter evidence challenge");}
-                Check(!p.AnswerMission(m,0),"No duplicate Winter reward");
-            }
-            Check(!p.AnswerBoss(0),"Winter encounter must start");p.LeaveCave();Check(!p.BeginBoss()&&p.RuneCount==3,"Leaving preserves runes but boss requires cave");p.EnterCave();Check(p.BeginBoss(),"Winter boss begins");
-            Check(!p.AnswerBoss(-1)&&!p.AnswerBoss(3)&&p.BossQuestion==0,"Invalid Winter choices rejected");int code=mask,score=0;
-            for(int i=0;i<5;i++){int answer=code%3;code/=3;if(answer==WinterContent.Boss[i].Correct)score++;p.AnswerBoss(answer);}
-            Check(p.BossFinished&&p.BossScore==score&&p.Complete==(score>=4),"Winter all 243 guardian outcomes");Check(!p.AnswerBoss(0),"No answers after finished attempt");
-            if(!p.Complete){Check(p.BeginBoss()&&p.RuneCount==3,"Winter retries preserve seals");foreach(var q in WinterContent.Boss)p.AnswerBoss(q.Correct);}
-            Check(p.Complete&&!p.BeginBoss(),"Winter success is final");p.LeaveCave();p.EnterCave();Check(p.Complete&&p.RuneCount==3,"Region round trip preserves completion");
+            var p=ReadyWinter();Check(p.BeginWinterBoss(),"Outdoor Winter boss begins");int code=mask,score=0;
+            for(int i=0;i<5;i++){int c=code%3;code/=3;if(c==WinterContent.Boss[i].Correct)score++;p.AnswerWinterBoss(c);}
+            Check(p.WinterBossFinished&&p.WinterComplete==(score>=4),"All Winter boss outcomes");Check(!p.AnswerWinterBoss(0),"No duplicate Winter boss reward");
+            if(!p.WinterComplete){Check(!p.EnterCave(),"Failed Winter attempt cannot enter cave");p.BeginWinterBoss();foreach(var q in WinterContent.Boss)p.AnswerWinterBoss(q.Correct);}
+            Check(p.EnterCave()&&p.WinterComplete&&!p.BeginBoss(),"Winter crest opens cave but not final boss");
         }
-        Console.WriteLine($"PASS: {checks} assertions, all 32 Summer, 243 Fall and 243 Winter guardian outcomes.");
+        for(int mask=0;mask<6561;mask++)
+        {
+            var p=ReadyWinter();p.BeginWinterBoss();foreach(var q in WinterContent.Boss)p.AnswerWinterBoss(q.Correct);p.EnterCave();p.ReadNote(2);foreach(var q in WinterContent.Missions[2])p.AnswerMission(2,q.Correct);
+            Check(p.BeginBoss(),"Final begins after all seals");Check(!p.AnswerBoss(-1)&&!p.AnswerBoss(3)&&p.BossQuestion==0,"Reject invalid final choices");int code=mask,score=0;
+            for(int i=0;i<8;i++){int c=code%3;code/=3;if(c==WinterContent.Final[i].Correct)score++;p.AnswerBoss(c);}
+            Check(p.BossFinished&&p.BossScore==score&&p.Complete==(score>=7),"All 6561 final outcomes");Check(!p.AnswerBoss(0),"No answers after final result");
+            if(!p.Complete){Check(p.BeginBoss()&&p.RuneCount==3&&p.WinterComplete,"Final retry preserves all lessons and Winter crest");foreach(var q in WinterContent.Final)p.AnswerBoss(q.Correct);}
+            Check(p.Complete&&!p.BeginBoss(),"Final success is permanent");p.LeaveCave();p.EnterCave();Check(p.Complete&&p.RuneCount==3,"Region round trip retains completion");
+        }
+        JourneyTests.Run();
+        Console.WriteLine($"PASS: {checks} assertions, all 32 Summer, 243 Fall , 243 Winter and 6561 cumulative final outcomes.");
     }
 }

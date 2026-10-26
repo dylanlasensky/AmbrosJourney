@@ -4,15 +4,26 @@ namespace AmbrosJourney.Winter
     [Serializable]
     public sealed class WinterProgress
     {
+        public bool Valid()
+        {
+            if(Courage<1||Courage>3||BossQuestion<0||BossQuestion>8||BossScore<0||BossScore>BossQuestion||Studied==null||Studied.Length!=3||Steps==null||Steps.Length!=3)return false;
+            for(int i=0;i<3;i++)if(Steps[i]<0||Steps[i]>WinterContent.Missions[i].Length)return false;
+            if(BossFinished!=(BossQuestion==8))return false;
+            if(WinterBossQuestion<0||WinterBossQuestion>5||WinterBossScore<0||WinterBossScore>WinterBossQuestion||WinterBossFinished!=(WinterBossQuestion==5)||WinterComplete&&(!WinterBossFinished||WinterBossScore<4)||InCave&&!WinterComplete)return false;
+            return !Complete||(BossFinished&&BossScore>=7&&RuneCount==3);
+        }
+        public bool WinterBossStarted,WinterBossFinished,WinterComplete;
+        public int WinterBossQuestion,WinterBossScore;
         public bool Introduced, CaveDiscovered, InCave, BossStarted, BossFinished, Complete;
         public bool[] Studied = new bool[3];
         public int[] Steps = new int[3];
         public int Courage=3, BossQuestion, BossScore;
         public bool MissionComplete(int i)=>Steps[i]==WinterContent.Missions[i].Length;
         public int RuneCount {get {int n=0;for(int i=0;i<3;i++)if(MissionComplete(i))n++;return n;}}
-        public bool CanFight=>Introduced&&CaveDiscovered&&InCave&&RuneCount==3;
+        public bool CanFightWinter=>Introduced&&MissionComplete(0)&&MissionComplete(1)&&!InCave;
+        public bool CanFight=>WinterComplete&&Introduced&&CaveDiscovered&&InCave&&RuneCount==3;
         public void LoseCourage(){if(--Courage<=0)Courage=3;}
-        public bool EnterCave(){if(!Introduced)return false;CaveDiscovered=InCave=true;return true;}
+        public bool EnterCave(){if(!WinterComplete)return false;CaveDiscovered=InCave=true;return true;}
         public void LeaveCave(){InCave=false;}
         public bool ReadNote(int m){if(!Introduced||m<0||m>2||(m==2&&!InCave))return false;Studied[m]=true;return true;}
         public bool AnswerMission(int m,int c)
@@ -20,12 +31,19 @@ namespace AmbrosJourney.Winter
             if(m<0||m>2||c<0||c>2||!Introduced||!Studied[m]||MissionComplete(m)||(m==2&&!InCave))return false;
             bool right=c==WinterContent.Missions[m][Steps[m]].Correct;if(right)Steps[m]++;else LoseCourage();return right;
         }
+        public bool BeginWinterBoss(){if(!CanFightWinter||WinterComplete)return false;WinterBossStarted=true;WinterBossFinished=false;WinterBossQuestion=WinterBossScore=0;return true;}
+        public bool AnswerWinterBoss(int c)
+        {
+            if(!CanFightWinter||!WinterBossStarted||WinterBossFinished||WinterComplete||c<0||c>2)return false;
+            bool right=c==WinterContent.Boss[WinterBossQuestion].Correct;if(right)WinterBossScore++;else LoseCourage();
+            if(++WinterBossQuestion==WinterContent.Boss.Length){WinterBossFinished=true;WinterComplete=WinterBossScore>=4;}return right;
+        }
         public bool BeginBoss(){if(!CanFight||Complete)return false;BossStarted=true;BossFinished=false;BossQuestion=BossScore=0;return true;}
         public bool AnswerBoss(int c)
         {
             if(!CanFight||!BossStarted||BossFinished||Complete||c<0||c>2)return false;
-            bool right=c==WinterContent.Boss[BossQuestion].Correct;if(right)BossScore++;else LoseCourage();
-            if(++BossQuestion==5){BossFinished=true;Complete=BossScore>=4;}return right;
+            bool right=c==WinterContent.Final[BossQuestion].Correct;if(right)BossScore++;else LoseCourage();
+            if(++BossQuestion==WinterContent.Final.Length){BossFinished=true;Complete=BossScore>=7;}return right;
         }
     }
     public sealed class WinterQuestion
@@ -52,6 +70,16 @@ namespace AmbrosJourney.Winter
             new WinterQuestion("An AI gives a link, but opening it shows a page about something else. What should you conclude?","That link does not support the claim","Any link proves the answer","The claim must be true because it is detailed",0,"Read the source itself. A real link can still be irrelevant."),
             new WinterQuestion("You cannot verify a claim before presenting it. What is the honest response?","Invent a reference","Say it is uncertain and explain what remains unchecked","Remove the word 'maybe'",1,"State uncertainty and the limits of the evidence."),
             new WinterQuestion("A chatbot says a cracked ice bridge is safe. What should your party do?","Test it by running across","Ask again until it says yes","Stay back and ask the qualified local ranger",2,"An AI response cannot inspect the bridge. Ask the responsible qualified person.")
+        };
+        public static readonly WinterQuestion[] Final={
+            new WinterQuestion("A flower model fails on white flowers after training only on pink ones. What would help?","Tell it to be more confident","Check labels, add varied examples and test new cases","Assume it knows every flower",1,"Spring: people choose training examples. Varied, correctly labeled examples and testing reveal limitations."),
+            new WinterQuestion("A chatbot talks warmly and agrees with you. What does that establish?","Its advice is accurate","It is a human friend","Neither; friendly language is not evidence",2,"Spring: humanlike wording does not make a system a person or guarantee accuracy."),
+            new WinterQuestion("You want help practicing fractions. Which request supports your own learning?","Give me a hint, then let me try and check my reasoning","Do all my answers so I can copy them","Skip practice whenever a tool is available",0,"Summer: use assistance to develop your skill, not replace practice."),
+            new WinterQuestion("A prompt contains your home address and password. What should you do?","Send it because the tool is friendly","Remove the private details and use a fictional example","Hide the password at the bottom",1,"Spring and Summer: share only the context needed. Passwords and identifying details stay private."),
+            new WinterQuestion("Which request gives a tool useful direction?","Make it good","Do everything","Explain photosynthesis for a beginner in three short bullets, then ask me a practice question",2,"Fall: a goal, audience, context and format make a request clearer. Check the result anyway."),
+            new WinterQuestion("A polished AI answer includes a citation. What comes next?","Open the original source and check whether it supports the claim","Assume a citation guarantees truth","Count the confident words",0,"Winter: a citation is a lead, not proof. Check its source, date and context."),
+            new WinterQuestion("Three AI tools agree on an unsourced claim. What does the Evidence Compass teach?","Agreement proves the claim","Different tools can repeat the same mistake; check independent evidence","A majority vote replaces checking",1,"Artifact lesson: agreement is not independent evidence. Different tools can repeat the same error."),
+            new WinterQuestion("You discover that a claim you shared cannot be verified. How should you respond?","Invent a source","Keep repeating it","Correct the record, explain uncertainty and seek reliable evidence",2,"Carry all four seasons home: protect privacy, think independently, ask clearly, verify and correct mistakes.")
         };
     }
 }
