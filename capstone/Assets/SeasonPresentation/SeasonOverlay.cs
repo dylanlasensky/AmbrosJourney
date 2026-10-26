@@ -20,7 +20,7 @@ namespace AmbrosJourney.Presentation
         RectTransform root, dialogueRect, headerRect, bodyRect, objectiveRect, context, controls, compassBox, worldLabels;
         UnityEngine.UI.Image dialogFill;
         TMP_FontAsset font;int season;
-        Sprite rounded, arrowSprite;
+        Sprite rounded, arrowSprite, card;
         Color ink, accent, paper = new Color(.98f,.94f,.81f), border = new Color(.55f,.35f,.22f);
         readonly Dictionary<SeasonWorldLabel,RectTransform> labels = new Dictionary<SeasonWorldLabel,RectTransform>();
         float openedAt, feedbackUntil; bool positive;
@@ -31,7 +31,7 @@ namespace AmbrosJourney.Presentation
             font=typeface; ink=autumn?new Color(.25f,.20f,.14f):new Color(.19f,.29f,.23f);
             accent=autumn?new Color(.43f,.26f,.16f):new Color(.23f,.39f,.30f);
             if(chapter==4){ink=new Color(.16f,.23f,.30f);accent=new Color(.19f,.32f,.42f);}
-            rounded=Rounded(); arrowSprite=ArrowSprite();
+            rounded=Rounded(); arrowSprite=ArrowSprite();card=FieldCardSkin.Create();if(card)paper=Color.white;
             root=gameObject.AddComponent<RectTransform>();Canvas=gameObject.AddComponent<Canvas>();Canvas.renderMode=RenderMode.ScreenSpaceOverlay;Canvas.sortingOrder=100;
             var scaler=gameObject.AddComponent<UnityEngine.UI.CanvasScaler>();scaler.uiScaleMode=UnityEngine.UI.CanvasScaler.ScaleMode.ScaleWithScreenSize;scaler.referenceResolution=new Vector2(1280,720);scaler.screenMatchMode=UnityEngine.UI.CanvasScaler.ScreenMatchMode.Expand;
             gameObject.AddComponent<UnityEngine.UI.GraphicRaycaster>();
@@ -141,22 +141,29 @@ namespace AmbrosJourney.Presentation
         {
             var camera=Camera.main;if(!camera)return;
             var expired=new List<SeasonWorldLabel>();foreach(var pair in labels){if(!pair.Key){Destroy(pair.Value.gameObject);expired.Add(pair.Key);}else pair.Value.gameObject.SetActive(false);}foreach(var marker in expired)labels.Remove(marker);
+            var player=AmbrosJourney.Journey.JourneySession.Instance?AmbrosJourney.Journey.JourneySession.Instance.Player():null;
             foreach(var marker in SeasonWorldLabel.Active)
             {
-                if(!marker)continue;
-                if(!labels.TryGetValue(marker,out var panel)){panel=Panel(marker.Caption,worldLabels,Vector2.up,new Rect(0,0,270,29));var label=Text("Label",panel,new Rect(10,4,250,25),marker.Caption,14);label.enableAutoSizing=true;label.fontSizeMin=11;label.fontSizeMax=14;labels.Add(marker,panel);}
+                if(!marker||player&&Vector2.Distance(marker.transform.position,player.position)>8)continue;
+                if(!labels.TryGetValue(marker,out var panel)){panel=Panel(marker.Caption,worldLabels,Vector2.up,new Rect(0,0,310,44));var label=Text("Label",panel,new Rect(12,8,286,30),marker.Caption,14);label.enableAutoSizing=true;label.fontSizeMin=11;label.fontSizeMax=14;labels.Add(marker,panel);}
                 var p=camera.WorldToViewportPoint(marker.transform.position);
                 bool visible=p.z>0&&p.x>=0&&p.x<=1&&p.y>=0&&p.y<=1&&!Journal.activeSelf&&!Dialog.activeSelf;panel.gameObject.SetActive(visible);
-                if(visible)Place(panel,Vector2.up,new Rect(p.x*root.rect.width-135,(1-p.y)*root.rect.height,270,29));
+                if(visible)Place(panel,Vector2.up,new Rect(p.x*root.rect.width-155,(1-p.y)*root.rect.height,310,44));
             }
         }
         RectTransform Panel(string name,Transform parent,Vector2 anchor,Rect area)
         {
             var o=new GameObject(name,typeof(RectTransform));o.transform.SetParent(parent,false);var r=o.GetComponent<RectTransform>();Place(r,anchor,area);
             var shadow=Face("Shadow",r,new Color(.12f,.22f,.18f,.7f));Stretch(shadow.rectTransform);shadow.rectTransform.anchoredPosition=new Vector2(3,-5);
-            var rim=Face("Border",r,border);Stretch(rim.rectTransform);
-            var fill=Face("Parchment",r,paper);Stretch(fill.rectTransform);fill.rectTransform.offsetMin=new Vector2(3,3);fill.rectTransform.offsetMax=new Vector2(-3,-3);
-            var rule=Face("Gold inset",r,new Color(.73f,.55f,.30f,.65f));Place(rule.rectTransform,Vector2.up,new Rect(14,6,Mathf.Max(8,area.width-28),2));
+            if(card)
+            {
+                var fill=Face("Parchment",r,Color.white);fill.sprite=card;fill.pixelsPerUnitMultiplier=8;Stretch(fill.rectTransform);
+            }
+            else
+            {
+                var rim=Face("Border",r,border);Stretch(rim.rectTransform);
+                var fill=Face("Parchment",r,paper);Stretch(fill.rectTransform);fill.rectTransform.offsetMin=new Vector2(3,3);fill.rectTransform.offsetMax=new Vector2(-3,-3);
+            }
             return r;
         }
         UnityEngine.UI.Image Face(string name,Transform parent,Color color)
@@ -175,6 +182,6 @@ namespace AmbrosJourney.Presentation
         {
             var t=new Texture2D(24,24,TextureFormat.RGBA32,false);for(int y=0;y<24;y++)for(int x=0;x<24;x++)t.SetPixel(x,y,x<=24-Mathf.Abs(y-12)*2?new Color(1,.78f,.29f):Color.clear);t.filterMode=FilterMode.Point;t.Apply();return Sprite.Create(t,new Rect(0,0,24,24),Vector2.one*.5f,100);
         }
-        void OnDestroy(){foreach(var s in new[]{rounded,arrowSprite})if(s){Destroy(s.texture);Destroy(s);}}
+        void OnDestroy(){if(card)Destroy(card);foreach(var s in new[]{rounded,arrowSprite})if(s){Destroy(s.texture);Destroy(s);}}
     }
 }

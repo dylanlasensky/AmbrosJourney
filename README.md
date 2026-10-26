@@ -18,7 +18,7 @@ A Unity 2D adventure that teaches middle-school players how to use AI safely. Am
 
 Spring targets **about five minutes** for a first-time player; the full game targets **about thirty minutes**. These are design targets pending user testing. The [gameplay demo](docs/SpringDemo.mp4) follows a faster, familiar route.
 
-The name-entry menu starts the existing opening clip, which then transitions into Spring. The teammate is creating the final intro and outro. All four seasons are playable in order: Spring → Summer → Fall → Winter. Winter now has an outdoor Warden and the cumulative Echo Keeper inside the cave. Pause, exact-location saves, reset, chapter revisits, collectible artifacts and the final PDF certificate are implemented. See [Journey completion](docs/JourneyCompletion.md) for controls and video integration.
+The name-entry menu currently enters Spring directly. The retired generated intro has been removed; the teammate owns the final intro and outro. All four seasons are playable in order: Spring → Summer → Fall → Winter. Winter now has an outdoor Warden and the cumulative Echo Keeper inside the cave. Pause, exact-location saves, reset, chapter revisits, collectible artifacts and the final PDF certificate are implemented. See [Journey completion](docs/JourneyCompletion.md) for controls and video integration.
 
 See [Winter setup and art credits](capstone/Assets/WinterLevel/README.md). All four seasons now share the same parchment UI, dialogue buttons, objective cards and journal.
 

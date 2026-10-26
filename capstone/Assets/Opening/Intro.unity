@@ -241,7 +241,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54c865434df6948a6a0827b33c3dde03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OpeningCinematic
-  clip: {fileID: 32900000, guid: d0648432c3a0e40de8f6f27bce8a3cbf, type: 3}
+  clip: {fileID: 0}
 --- !u!328 &591985824
 VideoPlayer:
   m_ObjectHideFlags: 0

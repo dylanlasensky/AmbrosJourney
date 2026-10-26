@@ -15,3 +15,18 @@ A second original atlas, `SentinelAtlas.png`, replaces Fall's enlarged 32-pixel 
 `MenuLandscape.png` is an image-generation edit of the owner-supplied “Ambros’ Journey_ Blossom Valley.png” reference. The prompt preserves the dark blossom tree, pink flowers, cloaked explorer, sunset mountains, castle, waterfalls and cyan portal; removes all lettering, button frames and ornaments; and reconstructs calm, dark foliage beneath the left menu. All title text, decorative rules and menu actions are rendered by Unity, not baked into the artwork. The landscape uses bilinear filtering, no mipmaps, a 2048-pixel import limit and high-quality compression. Aspect-fill cropping preserves proportions and the left menu's backdrop.
 
 The live title and menu use Spectral Regular by Production Type, distributed under the SIL Open Font License. Source: https://github.com/google/fonts/tree/main/ofl/spectral. The unmodified TTF and its OFL license are included together in `Assets/Journey/Resources/Journey/`.
+
+## Seasonal cohesion assets
+
+Six additional original PNGs were generated on October 26, 2026. The prompts referenced the existing seasonal terrain, requesting a consistent three-quarter top-down pixel-art view, muted dark outlines, upper-left lighting, warm timber, rounded gray stone, clear ground pivots, generous isolated spacing, and no words. Winter prompts explicitly prohibited green grass islands and rectangular ground plates. No third-party game screenshots were used as generated image inputs.
+
+| Resource | Contents and sprite layout |
+| --- | --- |
+| `WinterNature.png` | Snow fir, bare oak, snow boulder and berry shrub; two columns, top row 66% of source height. |
+| `VillageDetails.png` | Noticeboard, sign, workbench, bench, wood rack, harvest cart, planter, well and lantern; three columns with measured boundaries 0/.35/.64/1, rows 0/.39/.665/1 from top. |
+| `SeasonCottages.png` | One timber-and-stone cottage in Spring, Summer, Fall and Winter treatments; equal two-by-two cells. |
+| `DiscoveryDetails.png` | Stone portal, compass relic, neutral rocks and crystal cluster; two-by-two, split at 55% from left/top. |
+| `UtilityDetails.png` | Raised garden, supplies, reading lectern and practice target; equal two-by-two cells. |
+| `FieldCard.png` | Blank cream parchment with walnut frame and copper pins, cropped and nine-sliced in `FieldCardSkin`. Text is rendered in Unity. |
+
+`WorldCohesion` trims transparent sprite padding at import-independent runtime coordinates, assigns ground pivots, and sizes each family consistently. World textures use point filtering, no mipmaps, a 1024-pixel import cap and uncompressed alpha; readable pixels support the one-time bounds calculation. Generated art is static texture data, not a live image-generation dependency. The old `WorldAtlas` remains in use for the integrated cave mountain; its former cottage and shrine cells are superseded by the new families.

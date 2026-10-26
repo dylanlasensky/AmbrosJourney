@@ -55,7 +55,7 @@ namespace AmbrosJourney.Journey.Editor
             }
             else if(stage>=3&&stage<=6)
             {
-                int chapter=stage-2;Check(JourneySession.CurrentChapter()==chapter,"Travel loads requested chapter");CollectAll();Inspect();SeasonIntegrationChecks.Capture("Exploration"+chapter);
+                int chapter=stage-2;Check(JourneySession.CurrentChapter()==chapter,"Travel loads requested chapter");CollectAll();WorldCohesionChecks.CheckAndCapture(chapter);Inspect();SeasonIntegrationChecks.Capture("Exploration"+chapter);
                 if(chapter<4){session.Save();session.LoadChapter(chapter+1);}else {Check(session.Data.ArtifactCount==12,"All artifacts survive chapter loads");session.ShowArtifacts();Inspect();SeasonIntegrationChecks.Capture("ArtifactAchievement");}
             }
             else if(stage==7)
@@ -83,14 +83,13 @@ namespace AmbrosJourney.Journey.Editor
                 string normalSave=JourneySession.SavePathOverride;string directory=Path.GetFullPath("Logs/SeasonChecks/menu-save-directory");Directory.CreateDirectory(directory);
                 try{JourneySession.SavePathOverride=directory;UI.GetComponentInChildren<TMP_InputField>().text="Test Explorer";session.NewJourney();Check(!session.Data.started&&UI.GetComponentInChildren<TMP_InputField>(),"Failed save stays on name-entry menu");Inspect();}
                 finally{JourneySession.SavePathOverride=normalSave;}
-                UI.GetComponentInChildren<TMP_InputField>().text="Zoë Explorer";var opening=UnityEngine.Object.FindAnyObjectByType<OpeningCinematic>();typeof(OpeningCinematic).GetField("elapsed",Private).SetValue(opening,120f);Click("New Journey");Check((float)typeof(OpeningCinematic).GetField("elapsed",Private).GetValue(opening)==0,"Time spent in menu does not expire intro preparation");Check(session.Data.started&&session.Data.playerName=="Zoë Explorer"&&session.Data.assistedGuidance,"Named new journey begins intro with chosen settings");
+                UI.GetComponentInChildren<TMP_InputField>().text="Zoë Explorer";var opening=UnityEngine.Object.FindAnyObjectByType<OpeningCinematic>();Check(!opening.clip&&!Resources.Load<UnityEngine.Video.VideoClip>("Journey/Intro"),"No placeholder intro video ships");Click("New Journey");Check(session.Data.started&&session.Data.playerName=="Zoë Explorer"&&session.Data.assistedGuidance,"Named journey starts with chosen settings");
             }
             else if(stage==13)
             {
-                var opening=UnityEngine.Object.FindAnyObjectByType<OpeningCinematic>();Check(opening,"Intro plays before Spring");Check(opening.GetComponent<UnityEngine.Video.VideoPlayer>().isPlaying,"Intro actually playing");
-                typeof(OpeningCinematic).GetMethod("Finished",Private).Invoke(opening,new object[]{opening.GetComponent<UnityEngine.Video.VideoPlayer>()});
+                Check(SceneManager.GetActiveScene().name=="Spring","Missing teammate intro starts Spring immediately without an error screen");Check(!UnityEngine.Object.FindAnyObjectByType<UnityEngine.Video.VideoPlayer>(),"Retired opening player is gone");
             }
-            else if(stage==14){Check(SceneManager.GetActiveScene().name=="Spring","Intro completion enters fresh Spring");Check(!UnityEngine.Object.FindAnyObjectByType<SpringGuide>().LessonComplete,"Reset starts with no lessons");Debug.Log("JOURNEY_PLAY_PASS: menu, exact outdoor/cave save, pause, chapter travel, all 12 F-key pickups, achievement, certificate export, reset and intro.");return true;}
+            else if(stage==14){Check(SceneManager.GetActiveScene().name=="Spring","New Journey enters fresh Spring");Check(!UnityEngine.Object.FindAnyObjectByType<SpringGuide>().LessonComplete,"Reset starts with no lessons");Debug.Log("JOURNEY_PLAY_PASS: menu, exact outdoor/cave save, pause, chapter travel, all 12 F-key pickups, achievement, certificate export, reset and direct-to-Spring start.");return true;}
             return false;
         }
         static void Click(string name)

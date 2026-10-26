@@ -1,0 +1,2927 @@
+fileFormatVersion: 2
+guid: 1a5fb9582a1024e559505c5d5f7a24f4
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 9123810307063403124
+    second: DiscoveryDetails_0
+  - first:
+      213: 4616123904805524668
+    second: DiscoveryDetails_1
+  - first:
+      213: 785685468643704876
+    second: DiscoveryDetails_2
+  - first:
+      213: 7298045843986376460
+    second: DiscoveryDetails_3
+  - first:
+      213: -135975672448045042
+    second: DiscoveryDetails_4
+  - first:
+      213: 8094462117180772744
+    second: DiscoveryDetails_5
+  - first:
+      213: 1584074427777988872
+    second: DiscoveryDetails_6
+  - first:
+      213: 7417842001463347109
+    second: DiscoveryDetails_7
+  - first:
+      213: 916980275516772020
+    second: DiscoveryDetails_8
+  - first:
+      213: 493856600208259276
+    second: DiscoveryDetails_9
+  - first:
+      213: 3730453896579090992
+    second: DiscoveryDetails_10
+  - first:
+      213: -5564881360879589230
+    second: DiscoveryDetails_11
+  - first:
+      213: 8405425144397198681
+    second: DiscoveryDetails_12
+  - first:
+      213: -5630241004932039258
+    second: DiscoveryDetails_13
+  - first:
+      213: -321057145462247732
+    second: DiscoveryDetails_14
+  - first:
+      213: -7953583644322944134
+    second: DiscoveryDetails_15
+  - first:
+      213: 8821691650208556804
+    second: DiscoveryDetails_16
+  - first:
+      213: 2753234942153313512
+    second: DiscoveryDetails_17
+  - first:
+      213: -1519884848128014136
+    second: DiscoveryDetails_18
+  - first:
+      213: 7268391479279261263
+    second: DiscoveryDetails_19
+  - first:
+      213: -2354328037067080694
+    second: DiscoveryDetails_20
+  - first:
+      213: -7535720527990532082
+    second: DiscoveryDetails_21
+  - first:
+      213: -1095138393351768112
+    second: DiscoveryDetails_22
+  - first:
+      213: -2579854895445592005
+    second: DiscoveryDetails_23
+  - first:
+      213: 2031162768833253647
+    second: DiscoveryDetails_24
+  - first:
+      213: 1230534947143914618
+    second: DiscoveryDetails_25
+  - first:
+      213: 7782386306579585355
+    second: DiscoveryDetails_26
+  - first:
+      213: 4082303094182003498
+    second: DiscoveryDetails_27
+  - first:
+      213: 8540415392869246703
+    second: DiscoveryDetails_28
+  - first:
+      213: -8271205456671988647
+    second: DiscoveryDetails_29
+  - first:
+      213: -5468774489423232637
+    second: DiscoveryDetails_30
+  - first:
+      213: -8575844289021696127
+    second: DiscoveryDetails_31
+  - first:
+      213: -7345247431797709854
+    second: DiscoveryDetails_32
+  - first:
+      213: 8710156606571953441
+    second: DiscoveryDetails_33
+  - first:
+      213: 7738787600218100215
+    second: DiscoveryDetails_34
+  - first:
+      213: 2788646968091136368
+    second: DiscoveryDetails_35
+  - first:
+      213: 852288153208272146
+    second: DiscoveryDetails_36
+  - first:
+      213: -7426337983701583805
+    second: DiscoveryDetails_37
+  - first:
+      213: 6590060747026114538
+    second: DiscoveryDetails_38
+  - first:
+      213: -9188665926019764841
+    second: DiscoveryDetails_39
+  - first:
+      213: 9186699433801537089
+    second: DiscoveryDetails_40
+  - first:
+      213: -1061664145227470792
+    second: DiscoveryDetails_41
+  - first:
+      213: -7499755547026791676
+    second: DiscoveryDetails_42
+  - first:
+      213: -6517513077646135968
+    second: DiscoveryDetails_43
+  - first:
+      213: 2123394076985606613
+    second: DiscoveryDetails_44
+  - first:
+      213: 7946905070300240627
+    second: DiscoveryDetails_45
+  - first:
+      213: -3669189539766765777
+    second: DiscoveryDetails_46
+  - first:
+      213: 6253492269956615350
+    second: DiscoveryDetails_47
+  - first:
+      213: 8167454208615506167
+    second: DiscoveryDetails_48
+  - first:
+      213: 2436534900592125679
+    second: DiscoveryDetails_49
+  - first:
+      213: -4339868956741732417
+    second: DiscoveryDetails_50
+  - first:
+      213: 8253148020733908402
+    second: DiscoveryDetails_51
+  - first:
+      213: -277016216699617593
+    second: DiscoveryDetails_52
+  - first:
+      213: -7514127895209285061
+    second: DiscoveryDetails_53
+  - first:
+      213: -2695600985374487457
+    second: DiscoveryDetails_54
+  - first:
+      213: 8499206325674955478
+    second: DiscoveryDetails_55
+  - first:
+      213: 8059619182287087249
+    second: DiscoveryDetails_56
+  - first:
+      213: -6697709261252811116
+    second: DiscoveryDetails_57
+  - first:
+      213: 7745083857818731641
+    second: DiscoveryDetails_58
+  - first:
+      213: -7479091061855876493
+    second: DiscoveryDetails_59
+  - first:
+      213: -7314600927116756181
+    second: DiscoveryDetails_60
+  - first:
+      213: -6730590580905049836
+    second: DiscoveryDetails_61
+  - first:
+      213: -3214279614392387554
+    second: DiscoveryDetails_62
+  - first:
+      213: 261535399561466368
+    second: DiscoveryDetails_63
+  - first:
+      213: -5741622729504608038
+    second: DiscoveryDetails_64
+  - first:
+      213: 4351588568172497481
+    second: DiscoveryDetails_65
+  - first:
+      213: 8348397846695244660
+    second: DiscoveryDetails_66
+  - first:
+      213: 5660809517737532780
+    second: DiscoveryDetails_67
+  - first:
+      213: 7038221567761685866
+    second: DiscoveryDetails_68
+  - first:
+      213: -4541619515058146500
+    second: DiscoveryDetails_69
+  - first:
+      213: -6482793321543064460
+    second: DiscoveryDetails_70
+  - first:
+      213: 283702899713268529
+    second: DiscoveryDetails_71
+  - first:
+      213: -5315187618610399007
+    second: DiscoveryDetails_72
+  - first:
+      213: 3150562096582091135
+    second: DiscoveryDetails_73
+  - first:
+      213: -1270406160071535873
+    second: DiscoveryDetails_74
+  - first:
+      213: -8116526579600026045
+    second: DiscoveryDetails_75
+  - first:
+      213: 7178427414123018679
+    second: DiscoveryDetails_76
+  - first:
+      213: 7552806501012816466
+    second: DiscoveryDetails_77
+  - first:
+      213: -6131504146822602335
+    second: DiscoveryDetails_78
+  - first:
+      213: 7607725587738670459
+    second: DiscoveryDetails_79
+  - first:
+      213: -2702643407190818661
+    second: DiscoveryDetails_80
+  - first:
+      213: -2665337033427736636
+    second: DiscoveryDetails_81
+  - first:
+      213: 1637958586934125682
+    second: DiscoveryDetails_82
+  - first:
+      213: -2624769961842868855
+    second: DiscoveryDetails_83
+  - first:
+      213: 8041154628588194373
+    second: DiscoveryDetails_84
+  - first:
+      213: 5511652787256817425
+    second: DiscoveryDetails_85
+  - first:
+      213: 4974343351536035767
+    second: DiscoveryDetails_86
+  - first:
+      213: -7820956933965149232
+    second: DiscoveryDetails_87
+  - first:
+      213: 4513774886806174978
+    second: DiscoveryDetails_88
+  - first:
+      213: -1174101041597871344
+    second: DiscoveryDetails_89
+  - first:
+      213: 7673210597529347748
+    second: DiscoveryDetails_90
+  - first:
+      213: 5597637346022049400
+    second: DiscoveryDetails_91
+  - first:
+      213: 1870064056562505364
+    second: DiscoveryDetails_92
+  - first:
+      213: -4528493955887253800
+    second: DiscoveryDetails_93
+  - first:
+      213: 5697090199487956840
+    second: DiscoveryDetails_94
+  - first:
+      213: 6285317392637829003
+    second: DiscoveryDetails_95
+  - first:
+      213: 277518319003847487
+    second: DiscoveryDetails_96
+  - first:
+      213: 4953718841441995561
+    second: DiscoveryDetails_97
+  - first:
+      213: 551864450912994595
+    second: DiscoveryDetails_98
+  - first:
+      213: -9145852418196347522
+    second: DiscoveryDetails_99
+  - first:
+      213: 7073923415990426549
+    second: DiscoveryDetails_100
+  - first:
+      213: 5932234021568930413
+    second: DiscoveryDetails_101
+  - first:
+      213: 892851948248089933
+    second: DiscoveryDetails_102
+  - first:
+      213: -57542334250402066
+    second: DiscoveryDetails_103
+  - first:
+      213: -5678707326475476309
+    second: DiscoveryDetails_104
+  - first:
+      213: 5912266374116127876
+    second: DiscoveryDetails_105
+  - first:
+      213: -9130739320038070111
+    second: DiscoveryDetails_106
+  - first:
+      213: -3482107881673075314
+    second: DiscoveryDetails_107
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 1
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 0
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 1024
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: DiscoveryDetails_0
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 1225
+        width: 18
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 472df8e52294e9e70800000000000000
+      internalID: 9123810307063403124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_1
+      rect:
+        serializedVersion: 2
+        x: 856
+        y: 1146
+        width: 124
+        height: 102
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb45f11fb34cf0040800000000000000
+      internalID: 4616123904805524668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_2
+      rect:
+        serializedVersion: 2
+        x: 858
+        y: 1229
+        width: 13
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c20c1bf55c057ea00800000000000000
+      internalID: 785685468643704876
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_3
+      rect:
+        serializedVersion: 2
+        x: 866
+        y: 1239
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c07e255470ed74560800000000000000
+      internalID: 7298045843986376460
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_4
+      rect:
+        serializedVersion: 2
+        x: 1005
+        y: 1125
+        width: 125
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e00b3a9a8daec1ef0800000000000000
+      internalID: -135975672448045042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 309
+        width: 743
+        height: 929
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8819a66c86e455070800000000000000
+      internalID: 8094462117180772744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_6
+      rect:
+        serializedVersion: 2
+        x: 94
+        y: 1218
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 809bc7d9c43cbf510800000000000000
+      internalID: 1584074427777988872
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_7
+      rect:
+        serializedVersion: 2
+        x: 603
+        y: 1221
+        width: 15
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5a70239bff771f660800000000000000
+      internalID: 7417842001463347109
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_8
+      rect:
+        serializedVersion: 2
+        x: 731
+        y: 1108
+        width: 104
+        height: 122
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4be8734c3b4c9bc00800000000000000
+      internalID: 916980275516772020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_9
+      rect:
+        serializedVersion: 2
+        x: 1137
+        y: 1132
+        width: 88
+        height: 102
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc8356916f78ad600800000000000000
+      internalID: 493856600208259276
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_10
+      rect:
+        serializedVersion: 2
+        x: 621
+        y: 1203
+        width: 15
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 03a819cdd0c35c330800000000000000
+      internalID: 3730453896579090992
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_11
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1138
+        width: 35
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2986493e2e195c2b0800000000000000
+      internalID: -5564881360879589230
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_12
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 1156
+        width: 13
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9557eed82a116a470800000000000000
+      internalID: 8405425144397198681
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_13
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 1132
+        width: 21
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6adff25e2ad5dd1b0800000000000000
+      internalID: -5630241004932039258
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_14
+      rect:
+        serializedVersion: 2
+        x: 643
+        y: 1142
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cce2f1c2a306b8bf0800000000000000
+      internalID: -321057145462247732
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_15
+      rect:
+        serializedVersion: 2
+        x: 743
+        y: 1138
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a7b26ccb0d13f9190800000000000000
+      internalID: -7953583644322944134
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_16
+      rect:
+        serializedVersion: 2
+        x: 715
+        y: 1094
+        width: 10
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 407e5b801d1fc6a70800000000000000
+      internalID: 8821691650208556804
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_17
+      rect:
+        serializedVersion: 2
+        x: 737
+        y: 1132
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8eccd36b794753620800000000000000
+      internalID: 2753234942153313512
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_18
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 1022
+        width: 33
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8c8c4d788c848eae0800000000000000
+      internalID: -1519884848128014136
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_19
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 1084
+        width: 13
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f469ae27a838ed460800000000000000
+      internalID: 7268391479279261263
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_20
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 1036
+        width: 66
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a0cbfd1cf1fb35fd0800000000000000
+      internalID: -2354328037067080694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_21
+      rect:
+        serializedVersion: 2
+        x: 739
+        y: 1045
+        width: 20
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e0851821b1ebb6790800000000000000
+      internalID: -7535720527990532082
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_22
+      rect:
+        serializedVersion: 2
+        x: 743
+        y: 521
+        width: 412
+        height: 600
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0d7306cfe694dc0f0800000000000000
+      internalID: -1095138393351768112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_23
+      rect:
+        serializedVersion: 2
+        x: 1125
+        y: 1064
+        width: 56
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b38b9e824a3823cd0800000000000000
+      internalID: -2579854895445592005
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_24
+      rect:
+        serializedVersion: 2
+        x: 1131
+        y: 1062
+        width: 16
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f011e45d6c3203c10800000000000000
+      internalID: 2031162768833253647
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_25
+      rect:
+        serializedVersion: 2
+        x: 1143
+        y: 1062
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a749738c30db31110800000000000000
+      internalID: 1230534947143914618
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_26
+      rect:
+        serializedVersion: 2
+        x: 1155
+        y: 1040
+        width: 82
+        height: 87
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b495a8cec17900c60800000000000000
+      internalID: 7782386306579585355
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_27
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 1020
+        width: 17
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a234232090147a830800000000000000
+      internalID: 4082303094182003498
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_28
+      rect:
+        serializedVersion: 2
+        x: 1143
+        y: 881
+        width: 26
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe6ef3efc86a58670800000000000000
+      internalID: 8540415392869246703
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_29
+      rect:
+        serializedVersion: 2
+        x: 1145
+        y: 893
+        width: 14
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9542bcab576c63d80800000000000000
+      internalID: -8271205456671988647
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_30
+      rect:
+        serializedVersion: 2
+        x: 1145
+        y: 873
+        width: 14
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 381c531a3920b14b0800000000000000
+      internalID: -5468774489423232637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_31
+      rect:
+        serializedVersion: 2
+        x: 713
+        y: 762
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 187accf4e0b7cf880800000000000000
+      internalID: -8575844289021696127
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_32
+      rect:
+        serializedVersion: 2
+        x: 715
+        y: 690
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2e3e858a060701a90800000000000000
+      internalID: -7345247431797709854
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_33
+      rect:
+        serializedVersion: 2
+        x: 1139
+        y: 821
+        width: 18
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 12d3eb80941b0e870800000000000000
+      internalID: 8710156606571953441
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_34
+      rect:
+        serializedVersion: 2
+        x: 1139
+        y: 805
+        width: 16
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7f1923f0252b56b60800000000000000
+      internalID: 7738787600218100215
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_35
+      rect:
+        serializedVersion: 2
+        x: 1141
+        y: 658
+        width: 96
+        height: 214
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 071da0184a343b620800000000000000
+      internalID: 2788646968091136368
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_36
+      rect:
+        serializedVersion: 2
+        x: 1152
+        y: 825
+        width: 21
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 215b04a4f8fe3db00800000000000000
+      internalID: 852288153208272146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_37
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 618
+        width: 19
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 348f97343f850f890800000000000000
+      internalID: -7426337983701583805
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_38
+      rect:
+        serializedVersion: 2
+        x: 1141
+        y: 610
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ae7acb27559947b50800000000000000
+      internalID: 6590060747026114538
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_39
+      rect:
+        serializedVersion: 2
+        x: 1147
+        y: 576
+        width: 56
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 79d2bdf160d4b7080800000000000000
+      internalID: -9188665926019764841
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_40
+      rect:
+        serializedVersion: 2
+        x: 745
+        y: 597
+        width: 8
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 146d50a3676bd7f70800000000000000
+      internalID: 9186699433801537089
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_41
+      rect:
+        serializedVersion: 2
+        x: 750
+        y: 597
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 838a2f8b5163441f0800000000000000
+      internalID: -1061664145227470792
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_42
+      rect:
+        serializedVersion: 2
+        x: 764
+        y: 593
+        width: 7
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 403e33db0148be790800000000000000
+      internalID: -7499755547026791676
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_43
+      rect:
+        serializedVersion: 2
+        x: 770
+        y: 586
+        width: 15
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06d60fb13642d85a0800000000000000
+      internalID: -6517513077646135968
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_44
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 532
+        width: 17
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d145eca9afc77d10800000000000000
+      internalID: 2123394076985606613
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_45
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 557
+        width: 7
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3fa1ff29e04194e60800000000000000
+      internalID: 7946905070300240627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_46
+      rect:
+        serializedVersion: 2
+        x: 589
+        y: 542
+        width: 17
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f277f94cd8b641dc0800000000000000
+      internalID: -3669189539766765777
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_47
+      rect:
+        serializedVersion: 2
+        x: 987
+        y: 552
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6bc4a6c461ed8c650800000000000000
+      internalID: 6253492269956615350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_48
+      rect:
+        serializedVersion: 2
+        x: 449
+        y: 533
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7f0ebc76450a85170800000000000000
+      internalID: 8167454208615506167
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_49
+      rect:
+        serializedVersion: 2
+        x: 478
+        y: 507
+        width: 13
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe6a2a0359f40d120800000000000000
+      internalID: 2436534900592125679
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_50
+      rect:
+        serializedVersion: 2
+        x: 609
+        y: 521
+        width: 17
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb7f9ad6d20b5c3c0800000000000000
+      internalID: -4339868956741732417
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_51
+      rect:
+        serializedVersion: 2
+        x: 796
+        y: 522
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b51096d562198270800000000000000
+      internalID: 8253148020733908402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_52
+      rect:
+        serializedVersion: 2
+        x: 1043
+        y: 479
+        width: 49
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ceb896f737d72cf0800000000000000
+      internalID: -277016216699617593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_53
+      rect:
+        serializedVersion: 2
+        x: 1161
+        y: 497
+        width: 30
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b3a6239ad7478b790800000000000000
+      internalID: -7514127895209285061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_54
+      rect:
+        serializedVersion: 2
+        x: 526
+        y: 519
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f5c8f8a8f2d479ad0800000000000000
+      internalID: -2695600985374487457
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_55
+      rect:
+        serializedVersion: 2
+        x: 715
+        y: 23
+        width: 516
+        height: 502
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d2db9a5f1f33f570800000000000000
+      internalID: 8499206325674955478
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_56
+      rect:
+        serializedVersion: 2
+        x: 786
+        y: 497
+        width: 21
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1966521d1f489df60800000000000000
+      internalID: 8059619182287087249
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_57
+      rect:
+        serializedVersion: 2
+        x: 1042
+        y: 521
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 496ae22b9e4fc03a0800000000000000
+      internalID: -6697709261252811116
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_58
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 513
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 974c5e4cbb01c7b60800000000000000
+      internalID: 7745083857818731641
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_59
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 499
+        width: 8
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 37a084f1e4ee43890800000000000000
+      internalID: -7479091061855876493
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_60
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 510
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b2b767116315d7a90800000000000000
+      internalID: -7314600927116756181
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_61
+      rect:
+        serializedVersion: 2
+        x: 524
+        y: 499
+        width: 18
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4118090e6832892a0800000000000000
+      internalID: -6730590580905049836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_62
+      rect:
+        serializedVersion: 2
+        x: 714
+        y: 505
+        width: 11
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e18bc5f78b59463d0800000000000000
+      internalID: -3214279614392387554
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_63
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 481
+        width: 13
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0021d0b6f0921a300800000000000000
+      internalID: 261535399561466368
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_64
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 0
+        width: 616
+        height: 492
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad0b1954c88a150b0800000000000000
+      internalID: -5741622729504608038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_65
+      rect:
+        serializedVersion: 2
+        x: 659
+        y: 479
+        width: 19
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 94a829e3fb2f36c30800000000000000
+      internalID: 4351588568172497481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_66
+      rect:
+        serializedVersion: 2
+        x: 649
+        y: 455
+        width: 9
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 473f7ef1c977bd370800000000000000
+      internalID: 8348397846695244660
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_67
+      rect:
+        serializedVersion: 2
+        x: 665
+        y: 465
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c6d55ed934c3f8e40800000000000000
+      internalID: 5660809517737532780
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_68
+      rect:
+        serializedVersion: 2
+        x: 1165
+        y: 457
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a6d9decc939cca160800000000000000
+      internalID: 7038221567761685866
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_69
+      rect:
+        serializedVersion: 2
+        x: 625
+        y: 439
+        width: 9
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c333af31d1de8f0c0800000000000000
+      internalID: -4541619515058146500
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_70
+      rect:
+        serializedVersion: 2
+        x: 711
+        y: 440
+        width: 14
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 474a62542dd7806a0800000000000000
+      internalID: -6482793321543064460
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_71
+      rect:
+        serializedVersion: 2
+        x: 1174
+        y: 441
+        width: 23
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 13b582fb84aefe300800000000000000
+      internalID: 283702899713268529
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_72
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 385
+        width: 6
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e83c2e9509ac36b0800000000000000
+      internalID: -5315187618610399007
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_73
+      rect:
+        serializedVersion: 2
+        x: 731
+        y: 388
+        width: 24
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f71e591d88b09bb20800000000000000
+      internalID: 3150562096582091135
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_74
+      rect:
+        serializedVersion: 2
+        x: 1149
+        y: 353
+        width: 36
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff2d77c045c9e5ee0800000000000000
+      internalID: -1270406160071535873
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_75
+      rect:
+        serializedVersion: 2
+        x: 1178
+        y: 392
+        width: 23
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3469cec341e4c5f80800000000000000
+      internalID: -8116526579600026045
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_76
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 342
+        width: 48
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7b97ab043b5ee9360800000000000000
+      internalID: 7178427414123018679
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_77
+      rect:
+        serializedVersion: 2
+        x: 1165
+        y: 347
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 25241260f75f0d860800000000000000
+      internalID: 7552806501012816466
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_78
+      rect:
+        serializedVersion: 2
+        x: 1176
+        y: 341
+        width: 15
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a1edcde67588eaa0800000000000000
+      internalID: -6131504146822602335
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_79
+      rect:
+        serializedVersion: 2
+        x: 1185
+        y: 318
+        width: 26
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b7530d55d12149960800000000000000
+      internalID: 7607725587738670459
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_80
+      rect:
+        serializedVersion: 2
+        x: 1198
+        y: 317
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b9007dfe3284e7ad0800000000000000
+      internalID: -2702643407190818661
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_81
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 304
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4c7a8d3f612d20bd0800000000000000
+      internalID: -2665337033427736636
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_82
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 208
+        width: 48
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 274620318a23bb610800000000000000
+      internalID: 1637958586934125682
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_83
+      rect:
+        serializedVersion: 2
+        x: 707
+        y: 246
+        width: 18
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 98d7d3750a1f29bd0800000000000000
+      internalID: -2624769961842868855
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_84
+      rect:
+        serializedVersion: 2
+        x: 721
+        y: 271
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 54accf4e78be79f60800000000000000
+      internalID: 8041154628588194373
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_85
+      rect:
+        serializedVersion: 2
+        x: 1174
+        y: 274
+        width: 11
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 117fbbd02035d7c40800000000000000
+      internalID: 5511652787256817425
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_86
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 74
+        width: 6
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7b7a12b4cea680540800000000000000
+      internalID: 4974343351536035767
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_87
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 101
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0db01631b11667390800000000000000
+      internalID: -7820956933965149232
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_88
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 78
+        width: 15
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20d3924385624ae30800000000000000
+      internalID: 4513774886806174978
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_89
+      rect:
+        serializedVersion: 2
+        x: 557
+        y: 57
+        width: 21
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 01b8425c251c4bfe0800000000000000
+      internalID: -1174101041597871344
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_90
+      rect:
+        serializedVersion: 2
+        x: 646
+        y: 69
+        width: 18
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a6ef705268bc7a60800000000000000
+      internalID: 7673210597529347748
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_91
+      rect:
+        serializedVersion: 2
+        x: 675
+        y: 79
+        width: 50
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 876ca17328dcead40800000000000000
+      internalID: 5597637346022049400
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_92
+      rect:
+        serializedVersion: 2
+        x: 721
+        y: 79
+        width: 6
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 49652a6f95dc3f910800000000000000
+      internalID: 1870064056562505364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_93
+      rect:
+        serializedVersion: 2
+        x: 731
+        y: 73
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d636d77dbe8721c0800000000000000
+      internalID: -4528493955887253800
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_94
+      rect:
+        serializedVersion: 2
+        x: 1157
+        y: 84
+        width: 10
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 867c6d91a51201f40800000000000000
+      internalID: 5697090199487956840
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_95
+      rect:
+        serializedVersion: 2
+        x: 1162
+        y: 81
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b8f13c81edee93750800000000000000
+      internalID: 6285317392637829003
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_96
+      rect:
+        serializedVersion: 2
+        x: 1156
+        y: 65
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f3b43e6d071f9d300800000000000000
+      internalID: 277518319003847487
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_97
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 55
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 92b4f455a052fb440800000000000000
+      internalID: 4953718841441995561
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_98
+      rect:
+        serializedVersion: 2
+        x: 185
+        y: 56
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 325c5d05bcd98a700800000000000000
+      internalID: 551864450912994595
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_99
+      rect:
+        serializedVersion: 2
+        x: 295
+        y: 47
+        width: 16
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e756245bea7631180800000000000000
+      internalID: -9145852418196347522
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_100
+      rect:
+        serializedVersion: 2
+        x: 1131
+        y: 54
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5bb5d6a1edf9b2260800000000000000
+      internalID: 7073923415990426549
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_101
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 45
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d626a1c8967835250800000000000000
+      internalID: 5932234021568930413
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_102
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 47
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d45c75ccd1c046c00800000000000000
+      internalID: 892851948248089933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_103
+      rect:
+        serializedVersion: 2
+        x: 303
+        y: 25
+        width: 20
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eee35774d81933ff0800000000000000
+      internalID: -57542334250402066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_104
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 33
+        width: 16
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba2650e06cd2131b0800000000000000
+      internalID: -5678707326475476309
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_105
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 22
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 484bda651f69c0250800000000000000
+      internalID: 5912266374116127876
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_106
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 32
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a8607417f8194180800000000000000
+      internalID: -9130739320038070111
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DiscoveryDetails_107
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 23
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e85d943a4511dafc0800000000000000
+      internalID: -3482107881673075314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      DiscoveryDetails_0: 9123810307063403124
+      DiscoveryDetails_1: 4616123904805524668
+      DiscoveryDetails_10: 3730453896579090992
+      DiscoveryDetails_100: 7073923415990426549
+      DiscoveryDetails_101: 5932234021568930413
+      DiscoveryDetails_102: 892851948248089933
+      DiscoveryDetails_103: -57542334250402066
+      DiscoveryDetails_104: -5678707326475476309
+      DiscoveryDetails_105: 5912266374116127876
+      DiscoveryDetails_106: -9130739320038070111
+      DiscoveryDetails_107: -3482107881673075314
+      DiscoveryDetails_11: -5564881360879589230
+      DiscoveryDetails_12: 8405425144397198681
+      DiscoveryDetails_13: -5630241004932039258
+      DiscoveryDetails_14: -321057145462247732
+      DiscoveryDetails_15: -7953583644322944134
+      DiscoveryDetails_16: 8821691650208556804
+      DiscoveryDetails_17: 2753234942153313512
+      DiscoveryDetails_18: -1519884848128014136
+      DiscoveryDetails_19: 7268391479279261263
+      DiscoveryDetails_2: 785685468643704876
+      DiscoveryDetails_20: -2354328037067080694
+      DiscoveryDetails_21: -7535720527990532082
+      DiscoveryDetails_22: -1095138393351768112
+      DiscoveryDetails_23: -2579854895445592005
+      DiscoveryDetails_24: 2031162768833253647
+      DiscoveryDetails_25: 1230534947143914618
+      DiscoveryDetails_26: 7782386306579585355
+      DiscoveryDetails_27: 4082303094182003498
+      DiscoveryDetails_28: 8540415392869246703
+      DiscoveryDetails_29: -8271205456671988647
+      DiscoveryDetails_3: 7298045843986376460
+      DiscoveryDetails_30: -5468774489423232637
+      DiscoveryDetails_31: -8575844289021696127
+      DiscoveryDetails_32: -7345247431797709854
+      DiscoveryDetails_33: 8710156606571953441
+      DiscoveryDetails_34: 7738787600218100215
+      DiscoveryDetails_35: 2788646968091136368
+      DiscoveryDetails_36: 852288153208272146
+      DiscoveryDetails_37: -7426337983701583805
+      DiscoveryDetails_38: 6590060747026114538
+      DiscoveryDetails_39: -9188665926019764841
+      DiscoveryDetails_4: -135975672448045042
+      DiscoveryDetails_40: 9186699433801537089
+      DiscoveryDetails_41: -1061664145227470792
+      DiscoveryDetails_42: -7499755547026791676
+      DiscoveryDetails_43: -6517513077646135968
+      DiscoveryDetails_44: 2123394076985606613
+      DiscoveryDetails_45: 7946905070300240627
+      DiscoveryDetails_46: -3669189539766765777
+      DiscoveryDetails_47: 6253492269956615350
+      DiscoveryDetails_48: 8167454208615506167
+      DiscoveryDetails_49: 2436534900592125679
+      DiscoveryDetails_5: 8094462117180772744
+      DiscoveryDetails_50: -4339868956741732417
+      DiscoveryDetails_51: 8253148020733908402
+      DiscoveryDetails_52: -277016216699617593
+      DiscoveryDetails_53: -7514127895209285061
+      DiscoveryDetails_54: -2695600985374487457
+      DiscoveryDetails_55: 8499206325674955478
+      DiscoveryDetails_56: 8059619182287087249
+      DiscoveryDetails_57: -6697709261252811116
+      DiscoveryDetails_58: 7745083857818731641
+      DiscoveryDetails_59: -7479091061855876493
+      DiscoveryDetails_6: 1584074427777988872
+      DiscoveryDetails_60: -7314600927116756181
+      DiscoveryDetails_61: -6730590580905049836
+      DiscoveryDetails_62: -3214279614392387554
+      DiscoveryDetails_63: 261535399561466368
+      DiscoveryDetails_64: -5741622729504608038
+      DiscoveryDetails_65: 4351588568172497481
+      DiscoveryDetails_66: 8348397846695244660
+      DiscoveryDetails_67: 5660809517737532780
+      DiscoveryDetails_68: 7038221567761685866
+      DiscoveryDetails_69: -4541619515058146500
+      DiscoveryDetails_7: 7417842001463347109
+      DiscoveryDetails_70: -6482793321543064460
+      DiscoveryDetails_71: 283702899713268529
+      DiscoveryDetails_72: -5315187618610399007
+      DiscoveryDetails_73: 3150562096582091135
+      DiscoveryDetails_74: -1270406160071535873
+      DiscoveryDetails_75: -8116526579600026045
+      DiscoveryDetails_76: 7178427414123018679
+      DiscoveryDetails_77: 7552806501012816466
+      DiscoveryDetails_78: -6131504146822602335
+      DiscoveryDetails_79: 7607725587738670459
+      DiscoveryDetails_8: 916980275516772020
+      DiscoveryDetails_80: -2702643407190818661
+      DiscoveryDetails_81: -2665337033427736636
+      DiscoveryDetails_82: 1637958586934125682
+      DiscoveryDetails_83: -2624769961842868855
+      DiscoveryDetails_84: 8041154628588194373
+      DiscoveryDetails_85: 5511652787256817425
+      DiscoveryDetails_86: 4974343351536035767
+      DiscoveryDetails_87: -7820956933965149232
+      DiscoveryDetails_88: 4513774886806174978
+      DiscoveryDetails_89: -1174101041597871344
+      DiscoveryDetails_9: 493856600208259276
+      DiscoveryDetails_90: 7673210597529347748
+      DiscoveryDetails_91: 5597637346022049400
+      DiscoveryDetails_92: 1870064056562505364
+      DiscoveryDetails_93: -4528493955887253800
+      DiscoveryDetails_94: 5697090199487956840
+      DiscoveryDetails_95: 6285317392637829003
+      DiscoveryDetails_96: 277518319003847487
+      DiscoveryDetails_97: 4953718841441995561
+      DiscoveryDetails_98: 551864450912994595
+      DiscoveryDetails_99: -9145852418196347522
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -35,7 +35,7 @@ Preserve the original pixel-art characters and seasonal environment identity. Ma
 
 Use a cartoony fantasy UI with legible text, contextual E prompts, a journal, and clear objectives. Directional guidance should encourage movement between lessons. The guardian must look different from the bats.
 
-The final intro should match `tools/opening-art/01-home.png`, `02-portal.png`, and `03-spring.png`: illustrated Ambros, coherent bedroom-to-portal action, and arrival in Spring. The current procedural video is a placeholder, not the approved visual result. Read `IntroVideoBrief.md` before replacing it. Preserve the automatic transition and verify footage and audio in the opening scene.
+Intro and outro videos are owned by the teammate. The retired procedural intro and its generator have been removed. The game starts directly in Spring until a teammate clip is supplied; see `JourneyCompletion.md` for the optional video hooks.
 
 ## Implementation and collaboration
 
@@ -44,7 +44,7 @@ The final intro should match `tools/opening-art/01-home.png`, `02-portal.png`, a
 | `capstone/` | Unity project root; open this folder in Unity Hub |
 | `capstone/Assets/SpringPrototype/Scripts/` | Player, camera, dialogue, lessons, UI, progression, atmosphere |
 | `capstone/Assets/SpringPrototype/Editor/` | Scene builders, polish tools, validation, demo capture |
-| `capstone/Assets/Opening/Opening.mp4` | Temporary opening video |
+| `capstone/Assets/Resources/Journey/Intro.mp4` | Optional teammate-owned intro (not supplied) |
 | `tools/opening-art/` | Original illustrated opening references |
 | `docs/SpringDemo.mp4` | Recorded gameplay preview |
 | `SPRING_PROTOTYPE.md` | Reproduction and validation instructions |
