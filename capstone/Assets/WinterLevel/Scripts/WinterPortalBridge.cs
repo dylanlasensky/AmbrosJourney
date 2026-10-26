@@ -19,6 +19,7 @@ namespace AmbrosJourney.Winter
         {return source && source.Progress.Complete && !source.InputBlocked && source.player && source.winterGate && Vector2.Distance(source.player.transform.position,source.winterGate.position)<1.1f;}
         void LateUpdate()
         {
+            if(!AmbrosJourney.Journey.JourneySession.CanUsePortals)return;
             if(transitioning)return;
             if(!fall)fall=Object.FindAnyObjectByType<AmbrosJourney.Fall.FallLevel>();
             if(GateAllowsEntry(fall))StartCoroutine(EnterWinter());
@@ -27,6 +28,7 @@ namespace AmbrosJourney.Winter
         {
             var prefab = Resources.Load<GameObject>("WinterLevel");
             if (!prefab) { Debug.LogError("WINTER: Missing Assets/WinterLevel/Resources/WinterLevel.prefab. Restore the WinterLevel folder."); enabled = false; yield break; }
+            AmbrosJourney.Journey.JourneySession.Instance?.Save();
             transitioning = true; fall.Transitioning=true;
             var source = SceneManager.GetActiveScene();
             var player = fall.player.transform;

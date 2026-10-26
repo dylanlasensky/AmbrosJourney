@@ -19,7 +19,7 @@ namespace AmbrosJourney.Presentation
         public bool Asking { get; private set; }
         RectTransform root, dialogueRect, headerRect, bodyRect, objectiveRect, context, controls, compassBox, worldLabels;
         UnityEngine.UI.Image dialogFill;
-        TMP_FontAsset font;
+        TMP_FontAsset font;int season;
         Sprite rounded, arrowSprite;
         Color ink, accent, paper = new Color(.98f,.94f,.81f), border = new Color(.55f,.35f,.22f);
         readonly Dictionary<SeasonWorldLabel,RectTransform> labels = new Dictionary<SeasonWorldLabel,RectTransform>();
@@ -27,7 +27,7 @@ namespace AmbrosJourney.Presentation
         public void Initialize(TMP_FontAsset typeface, bool autumn) => Initialize(typeface, autumn ? 3 : 2);
         public void Initialize(TMP_FontAsset typeface, int chapter)
         {
-            bool autumn=chapter==3;
+            season=chapter;bool autumn=chapter==3;
             font=typeface; ink=autumn?new Color(.25f,.20f,.14f):new Color(.19f,.29f,.23f);
             accent=autumn?new Color(.43f,.26f,.16f):new Color(.23f,.39f,.30f);
             if(chapter==4){ink=new Color(.16f,.23f,.30f);accent=new Color(.19f,.32f,.42f);}
@@ -88,9 +88,14 @@ namespace AmbrosJourney.Presentation
         }
         public void SetCompass(Vector2 player,Vector2 waypoint,Vector2 destination)
         {
+            bool assisted=AmbrosJourney.Journey.JourneySession.Instance&&AmbrosJourney.Journey.JourneySession.Instance.Data.assistedGuidance;
+            bool distant=Vector2.Distance(player,destination)>14;
+            bool whiteout=season==4&&player.x<80&&Mathf.Repeat(Time.time,48)>26;
+            Arrow.gameObject.SetActive(assisted||!whiteout);
+            if(!assisted&&season>=3&&distant)waypoint=destination;
             CompassDelta=waypoint-player;ObjectiveDistance=Vector2.Distance(player,destination);
             Arrow.localEulerAngles=new Vector3(0,0,Mathf.Atan2(CompassDelta.y,CompassDelta.x)*Mathf.Rad2Deg);
-            CompassText.text=Mathf.CeilToInt(ObjectiveDistance)+" steps";
+            CompassText.text=!assisted&&whiteout?"Snowfall":!assisted&&season>=3&&distant?"Explore":Mathf.CeilToInt(ObjectiveDistance)+" steps";
         }
         public void Present(bool asking)
         {
@@ -162,7 +167,7 @@ namespace AmbrosJourney.Presentation
         }
         static void Place(RectTransform r,Vector2 anchor,Rect rect){r.anchorMin=r.anchorMax=anchor;r.pivot=Vector2.up;r.anchoredPosition=new Vector2(rect.x,-rect.y);r.sizeDelta=rect.size;}
         static void Stretch(RectTransform r){r.anchorMin=Vector2.zero;r.anchorMax=Vector2.one;r.offsetMin=r.offsetMax=Vector2.zero;}
-        static Sprite Rounded()
+        public static Sprite Rounded()
         {
             var t=new Texture2D(32,32,TextureFormat.RGBA32,false);for(int y=0;y<32;y++)for(int x=0;x<32;x++){float dx=Mathf.Max(7-x,x-24),dy=Mathf.Max(7-y,y-24);t.SetPixel(x,y,dx>0&&dy>0&&dx*dx+dy*dy>49?Color.clear:Color.white);}t.filterMode=FilterMode.Point;t.Apply();return Sprite.Create(t,new Rect(0,0,32,32),Vector2.one*.5f,100,0,SpriteMeshType.FullRect,new Vector4(8,8,8,8));
         }

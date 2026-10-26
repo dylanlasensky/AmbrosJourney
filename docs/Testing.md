@@ -26,7 +26,7 @@ Use Unity 6000.6.2f1 and a disposable checkout. The integration runner enters Pl
 
 Read `capstone/Logs/SeasonChecks/Integration.txt` and the log. The result must say PASS; merely starting Unity does not count. The runner fails on logged errors or exceptions and has a six-minute runtime deadline after imports.
 
-To compile a macOS Development player containing the opening and Spring, with Summer, Fall and Winter included through their Resources prefabs:
+To compile a macOS release player containing the opening and Spring, with Summer, Fall and Winter included through their Resources prefabs:
 
 ```sh
 unity run /absolute/path/to/capstone --timeout 600 \
@@ -37,4 +37,4 @@ The integration run also captures each season at 1280×720 and 1024×768, checks
 
 The app and build summary go under `capstone/Logs/SeasonChecks/`. Unity builds and runtime checks currently run locally with the installed licensed Editor. Hosted Unity builds would require a separately configured Unity licensing setup. No self-hosted runner or paid service is enabled by this workflow.
 
-Before release, also play the standalone game, check audio and multiple screen shapes, and time first-time players. Progress remains session-only.
+Before release, also play the standalone game, check audio and multiple screen shapes, and time first-time players. The journey update includes persistent saves; see [Journey completion](JourneyCompletion.md) for the new menu, artifact, checkpoint and certificate tests.

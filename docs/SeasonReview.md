@@ -14,7 +14,7 @@ Validated on October 25, 2026 with Unity 6000.6.2f1 in an isolated checkout.
 
 ## Winter
 
-Frostveil's outdoor route leads to the Wayfarer's Ledger, Frozen Observatory and a discoverable cave entrance. Echo Cavern has four chambers connected by bent passages, a western archive branch and a sealed northern guardian hall. Players may enter the cave early, leave, and return without losing lessons. Three evidence seals unlock the Frostbound Warden; 4/5 earns the Winter crest and recruits the Little Mage. The finale remains unimplemented and is described honestly in the game.
+Frostveil's outdoor route leads to the Wayfarer's Ledger, Frozen Observatory and a discoverable cave entrance. Echo Cavern has four chambers connected by bent passages, a western archive branch and a sealed northern guardian hall. The two outdoor lessons unlock the Frostbound Warden at the entrance; 4/5 earns the Winter crest, recruits Little Mage and permits entry. Inside, the archive unlocks the cumulative Echo Keeper, requiring 7/8. Players may leave and return without losing lessons. The finale connects to the teammate outro and PDF certificate.
 
 ## Checks
 
@@ -26,4 +26,4 @@ Frostveil's outdoor route leads to the Wayfarer's Ledger, Frozen Observatory and
 - The connected macOS Development build starting at the opening succeeded with **0 errors and 2 warnings**. Winter is included through its Resources prefab.
 - Captured all four seasonal interfaces at **1280×720 and 1024×768**; active TMP text overflow checks passed at both sizes. Representative 16:9 captures are in `docs/screenshots/`.
 
-See `docs/Testing.md` for commands and scope. These are source review, automated live Editor checks, rendering inspection and build checks. A full human playthrough of the standalone executable, first-time-player pacing, educational comprehension and audio balance still require team testing. No claim is made that every possible error has been eliminated. Progress remains session-only.
+See `docs/Testing.md` for commands and scope. These are source review, automated live Editor checks, rendering inspection and build checks. A full human playthrough of the standalone executable, first-time-player pacing, educational comprehension and audio balance still require team testing. No claim is made that every possible error has been eliminated. The journey update includes persistent chapter checkpoints and recovery; see `JourneyCompletion.md`.

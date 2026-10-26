@@ -52,6 +52,7 @@ namespace AmbrosJourney.Presentation
                     float coverage=Coverage(cells,x,y);float edge=.48f+.055f*Mathf.Sin(x*2.3f+y*.8f)+.045f*Mathf.Sin(y*3.1f-x*.6f);
                     float noise=Noise(wx,wy);float alpha=Mathf.Clamp01((coverage-edge)*8+.48f);
                     // Pixel dither only at the soil/grass boundary: no blurred or tiled square border.
+                    if(season==4&&y>10){float drift=.5f+.3f*Mathf.Sin(x*.35f+y*.18f)+.25f*Mathf.Sin(y*.7f-x*.21f);alpha*=Mathf.SmoothStep(0,1,Mathf.InverseLerp(.35f,.85f,drift));}
                     if(alpha<=0||alpha<noise)continue;visible=true;
                     float grain=(Noise(wx/3,wy/3)-.5f)*.075f+(noise-.5f)*.025f;
                     var color=soil+new Color(grain,grain,grain,0);

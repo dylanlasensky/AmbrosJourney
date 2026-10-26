@@ -2,11 +2,16 @@ using System;
 
 namespace AmbrosJourney.Summer
 {
-    // Session-only state. No changes to Spring's progression or save format.
+    // Serializable lesson state. JourneySession checkpoints it without depending on Unity types.
     [Serializable]
     public sealed class SummerProgress
     {
         public bool Introduced;
+        public bool Valid()
+        {
+            if(Courage<1||Courage>3||BossQuestion<0||BossQuestion>5||BossScore<0||BossScore>BossQuestion||Wards==null||Wards.Length!=3||RemovedPrivateDetails==null||RemovedPrivateDetails.Length!=3||WorkshopQuestion<0||WorkshopQuestion>2||GardenQuestion<0||GardenQuestion>1||PatternStep<0||PatternStep>3)return false;
+            return Wards[0]==(WorkshopQuestion==2)&&PatternComplete==(PatternStep==3)&&Wards[1]==(GardenQuestion==1)&&(!Complete||(BossFinished&&BossScore>=4&&CanFight));
+        }
         public bool[] Wards = new bool[3];
         public bool[] RemovedPrivateDetails = new bool[3];
         public int WorkshopQuestion, GardenQuestion, PatternStep, BossQuestion, BossScore;

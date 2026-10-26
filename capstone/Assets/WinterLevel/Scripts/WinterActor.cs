@@ -38,7 +38,7 @@ namespace AmbrosJourney.Winter
                 while(leader&&leader.follow&&slot<8){leader=leader.follow.GetComponent<WinterActor>();slot++;}
                 if(leader)
                 {
-                    leader.trail.Record(leader.transform.position);var destination=leader.trail.Behind(slot*1.8f);
+                    leader.trail.Record(leader.transform.position);var destination=leader.trail.Formation(slot,transform.position);
                     Vector2 old=transform.position;
                     if(trailRevision!=leader.trail.Revision){transform.position=destination;trailRevision=leader.trail.Revision;movement=Vector2.zero;}
                     else {transform.position=Vector2.MoveTowards(old,destination,5.8f*Time.deltaTime);movement=((Vector2)transform.position-old)/Mathf.Max(.001f,Time.deltaTime);}

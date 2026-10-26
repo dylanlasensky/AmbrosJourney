@@ -18,7 +18,7 @@ public class SpringPlayer : MonoBehaviour
     {
         var k = Keyboard.current;
         input = Vector2.zero;
-        if (k != null && (guide == null || !guide.DialogueOpen))
+        if (!AmbrosJourney.Journey.JourneySession.Blocked && k != null && (guide == null || !guide.DialogueOpen))
         {
             input.x = ((k.dKey.isPressed || k.rightArrowKey.isPressed) ? 1 : 0) - ((k.aKey.isPressed || k.leftArrowKey.isPressed) ? 1 : 0);
             input.y = ((k.wKey.isPressed || k.upArrowKey.isPressed) ? 1 : 0) - ((k.sKey.isPressed || k.downArrowKey.isPressed) ? 1 : 0);
@@ -31,5 +31,5 @@ public class SpringPlayer : MonoBehaviour
         if (frames != null && frames.Length > 0) visual.sprite = frames[(int)clock % frames.Length];
         visual.sortingOrder = 100 - Mathf.RoundToInt(transform.position.y * 10);
     }
-    void FixedUpdate() { body.linearVelocity=guide&&guide.DialogueOpen?Vector2.zero:Vector2.MoveTowards(body.linearVelocity,input*speed,(input.sqrMagnitude>.01f?42:65)*Time.fixedDeltaTime); }
+    void FixedUpdate() { body.linearVelocity=AmbrosJourney.Journey.JourneySession.Blocked||guide&&guide.DialogueOpen?Vector2.zero:Vector2.MoveTowards(body.linearVelocity,input*speed,(input.sqrMagnitude>.01f?42:65)*Time.fixedDeltaTime); }
 }

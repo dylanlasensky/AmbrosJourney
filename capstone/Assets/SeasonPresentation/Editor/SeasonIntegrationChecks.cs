@@ -1,5 +1,7 @@
 using System;
 using System.IO;
+using System.Linq;
+using AmbrosJourney.Presentation;
 using System.Reflection;
 using UnityEditor;
 using UnityEditor.SceneManagement;
@@ -36,7 +38,8 @@ public static class SeasonIntegrationChecks
         SessionState.SetString(Key + "error", "");
         SessionState.SetInt(Key + "stage", 0);
         SessionState.SetBool(Key + "active", true);
-        SessionState.SetString(Key + "deadline", DateTime.UtcNow.AddMinutes(6).ToString("O"));
+        SessionState.SetString(Key + "deadline", DateTime.UtcNow.AddMinutes(12).ToString("O"));
+        AmbrosJourney.Journey.Editor.JourneyTools.Prepare();
         SummerToolsValidate();
         FallToolsValidate();
         PresentationTools.ValidateMath();
@@ -63,11 +66,14 @@ public static class SeasonIntegrationChecks
             EditorApplication.QueuePlayerLoopUpdate();
             SignalTick?.Invoke(null, null);
             if (!EditorApplication.isPlaying) return;
+            AmbrosJourney.Journey.JourneySession.TestMode=true;
+            AmbrosJourney.Journey.JourneySession.SavePathOverride=Path.GetFullPath("Logs/SeasonChecks/test-save.json");
             if (readyAt == 0) readyAt = EditorApplication.timeSinceStartup + 3;
             if (EditorApplication.timeSinceStartup < readyAt) return;
             int stage = SessionState.GetInt(Key + "stage", 0);
             if (stage == 0)
             {
+                AmbrosJourney.Journey.JourneySession.Instance.BeginTestProfile();
                 var g = UnityEngine.Object.FindAnyObjectByType<SpringGuide>();
                 Check(g, "Spring scene has its guide");
                 CheckMotion(UnityEngine.Object.FindAnyObjectByType<SpringPlayer>(), "input", 4);
@@ -133,7 +139,7 @@ public static class SeasonIntegrationChecks
                 var l=UnityEngine.Object.FindAnyObjectByType<WinterLevel>();l.player.transform.position=l.caveExit.position;l.player.GetComponent<Rigidbody2D>().position=l.caveExit.position;l.World.ChangeRegion(false);l.player.transform.position=WinterWorld.Entrance+Vector2.down*1.5f;l.player.GetComponent<Rigidbody2D>().position=l.player.transform.position;Advance(7);
             }
             else if(stage==7){Capture("WinterEntrance");Advance(8);}
-            else if(stage==8)Finish(true,"Spring -> Summer -> Fall -> Winter passed. All seasonal UI, portal guards, Winter outdoor/cave routes, round trips and guardian retries passed.");
+            else if(stage>=8){if(AmbrosJourney.Journey.Editor.JourneyPlayChecks.Step(stage-8))Finish(true,"All four seasons, both Winter bosses, menus, save/restore, artifacts, certificate and reset passed.");else Advance(stage+1);}
         }
         catch (Exception e) { Finish(false, e.ToString()); }
     }
@@ -167,22 +173,22 @@ public static class SeasonIntegrationChecks
         Call(ui,"LateUpdate");Canvas.ForceUpdateCanvases();
         foreach(var t in ui.GetComponentsInChildren<TMPro.TextMeshProUGUI>()){t.ForceMeshUpdate();Check(!t.isTextOverflowing,"UI overflow: "+t.name+" / "+ui.Heading.text);}
     }
-    static void Capture(string name)
+    public static void Capture(string name)
     {
         foreach(var size in new[]{new Vector2Int(1280,720),new Vector2Int(1024,768)})
         {
-            var camera=Camera.main;var ui=UnityEngine.Object.FindAnyObjectByType<AmbrosJourney.Presentation.SeasonOverlay>();
-            var canvas=ui.Canvas;var mode=canvas.renderMode;var oldCamera=canvas.worldCamera;int sorting=canvas.sortingOrder;float plane=canvas.planeDistance;var oldTarget=camera.targetTexture;float aspect=camera.aspect;var active=RenderTexture.active;
-            var rt=new RenderTexture(size.x,size.y,24);var pixels=new Texture2D(size.x,size.y,TextureFormat.RGB24,false);
+            var camera=Camera.main;if(!camera)camera=UnityEngine.Object.FindAnyObjectByType<Camera>();Check(camera,"Screenshot camera");
+            var canvases=UnityEngine.Object.FindObjectsByType<Canvas>();var modes=canvases.Select(c=>c.renderMode).ToArray();var cameras=canvases.Select(c=>c.worldCamera).ToArray();var planes=canvases.Select(c=>c.planeDistance).ToArray();var orders=canvases.Select(c=>c.sortingOrder).ToArray();
+            var oldTarget=camera.targetTexture;float aspect=camera.aspect;var active=RenderTexture.active;var rt=new RenderTexture(size.x,size.y,24);var pixels=new Texture2D(size.x,size.y,TextureFormat.RGB24,false);
             try
             {
-                camera.targetTexture=rt;camera.aspect=(float)size.x/size.y;canvas.renderMode=RenderMode.ScreenSpaceCamera;canvas.worldCamera=camera;canvas.planeDistance=1;canvas.sortingOrder=30000;
-                Canvas.ForceUpdateCanvases();Call(ui,"LateUpdate");Canvas.ForceUpdateCanvases();
-                foreach(var t in ui.GetComponentsInChildren<TMPro.TextMeshProUGUI>()){t.ForceMeshUpdate();Check(!t.isTextOverflowing,name+" overflow at "+size+": "+t.name);}
-                camera.Render();RenderTexture.active=rt;pixels.ReadPixels(new Rect(0,0,size.x,size.y),0,0);pixels.Apply();
-                File.WriteAllBytes("Logs/SeasonChecks/"+name+"-"+size.x+".png",pixels.EncodeToPNG());
+                camera.targetTexture=rt;camera.aspect=(float)size.x/size.y;
+                foreach(var canvas in canvases){canvas.renderMode=RenderMode.ScreenSpaceCamera;canvas.worldCamera=camera;canvas.planeDistance=1;canvas.sortingOrder=Mathf.Max(30000,canvas.sortingOrder);}
+                Canvas.ForceUpdateCanvases();var overlay=UnityEngine.Object.FindAnyObjectByType<SeasonOverlay>();if(overlay)Call(overlay,"LateUpdate");Canvas.ForceUpdateCanvases();
+                foreach(var canvas in canvases)foreach(var t in canvas.GetComponentsInChildren<TMPro.TextMeshProUGUI>()){t.ForceMeshUpdate();Check(!t.isTextOverflowing,name+" overflow at "+size+": "+t.name);}
+                camera.Render();RenderTexture.active=rt;pixels.ReadPixels(new Rect(0,0,size.x,size.y),0,0);pixels.Apply();File.WriteAllBytes("Logs/SeasonChecks/"+name+"-"+size.x+".png",pixels.EncodeToPNG());
             }
-            finally{canvas.sortingOrder=sorting;canvas.renderMode=mode;canvas.worldCamera=oldCamera;canvas.planeDistance=plane;camera.targetTexture=oldTarget;camera.aspect=aspect;RenderTexture.active=active;UnityEngine.Object.DestroyImmediate(pixels);UnityEngine.Object.DestroyImmediate(rt);Canvas.ForceUpdateCanvases();}
+            finally{for(int i=0;i<canvases.Length;i++){canvases[i].renderMode=modes[i];canvases[i].worldCamera=cameras[i];canvases[i].planeDistance=planes[i];canvases[i].sortingOrder=orders[i];}camera.targetTexture=oldTarget;camera.aspect=aspect;RenderTexture.active=active;UnityEngine.Object.DestroyImmediate(pixels);UnityEngine.Object.DestroyImmediate(rt);Canvas.ForceUpdateCanvases();}
         }
     }
     static void Advance(int stage) { Debug.Log("SEASON_CHECK_STAGE: " + stage); SessionState.SetInt(Key + "stage", stage); readyAt = EditorApplication.timeSinceStartup + 4; }
@@ -198,7 +204,7 @@ public static class SeasonIntegrationChecks
         var report = BuildPipeline.BuildPlayer(new BuildPlayerOptions {
             scenes = new[]{"Assets/Opening/Intro.unity", "Assets/Scenes/Spring.unity"},
             locationPathName = "Logs/SeasonChecks/AmbrosJourney.app", target = BuildTarget.StandaloneOSX,
-            options = BuildOptions.Development
+            options = BuildOptions.None
         });
         Directory.CreateDirectory("Logs/SeasonChecks");
         File.WriteAllText("Logs/SeasonChecks/Build.txt", report.summary.result + "\nErrors: " + report.summary.totalErrors + "\nWarnings: " + report.summary.totalWarnings);

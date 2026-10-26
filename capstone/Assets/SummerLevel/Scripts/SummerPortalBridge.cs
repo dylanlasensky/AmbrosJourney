@@ -26,6 +26,7 @@ namespace AmbrosJourney.Summer
         { return guide && Vector2.Distance(playerPosition, gatePosition) < 1.1f && Flag(guide, "SpringComplete") && !Flag(guide, "DialogueOpen"); }
         void LateUpdate()
         {
+            if(!AmbrosJourney.Journey.JourneySession.CanUsePortals)return;
             if (transitioning || SceneManager.GetActiveScene().name != "Spring") return;
             if (!spring)
                 foreach (var behaviour in Object.FindObjectsByType<MonoBehaviour>())
@@ -39,6 +40,7 @@ namespace AmbrosJourney.Summer
         {
             var prefab = Resources.Load<GameObject>("SummerLevel");
             if (!prefab) { Debug.LogError("SUMMER: Missing Assets/SummerLevel/Resources/SummerLevel.prefab. Restore the new SummerLevel folder."); enabled = false; yield break; }
+            AmbrosJourney.Journey.JourneySession.Instance?.Save();
             transitioning = true;
             var source = SceneManager.GetActiveScene();
             var player = Player(spring);

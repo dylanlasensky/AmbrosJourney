@@ -19,6 +19,7 @@ namespace AmbrosJourney.Fall
         {return source && source.Progress.Complete && !source.InputBlocked && source.player && source.fallGate && Vector2.Distance(source.player.transform.position,source.fallGate.position)<1.1f;}
         void LateUpdate()
         {
+            if(!AmbrosJourney.Journey.JourneySession.CanUsePortals)return;
             if(transitioning)return;
             if(!summer)summer=Object.FindAnyObjectByType<AmbrosJourney.Summer.SummerLevel>();
             if(GateAllowsEntry(summer))StartCoroutine(EnterFall());
@@ -27,6 +28,7 @@ namespace AmbrosJourney.Fall
         {
             var prefab = Resources.Load<GameObject>("FallLevel");
             if (!prefab) { Debug.LogError("FALL: Missing Assets/FallLevel/Resources/FallLevel.prefab. Restore the FallLevel folder."); enabled = false; yield break; }
+            AmbrosJourney.Journey.JourneySession.Instance?.Save();
             transitioning = true; summer.Transitioning=true;
             var source = SceneManager.GetActiveScene();
             var player = summer.player.transform;

@@ -1,5 +1,9 @@
 # Ambros' Journey
 
+## Complete journey update
+
+Start from `Assets/Opening/Intro.unity` for the name-entry menu. This branch adds pause/save/reset, travel to unlocked seasons, twelve artifacts, an outdoor Winter boss, an eight-question final cave boss, and a downloadable PDF certificate. Intro/outro videos remain teammate-owned. See [gameplay, video handoff and validation](docs/JourneyCompletion.md).
+
 [Automated checks and local validation](docs/Testing.md)
 
 A Unity 2D adventure that teaches middle-school players how to use AI safely. Ambros is playing a game on his laptop at home when he is pulled into its world. To get home, he must explore four seasons, learn from their inhabitants, and pass each guardian's quiz before facing a final AI Safety challenge.
@@ -14,7 +18,7 @@ A Unity 2D adventure that teaches middle-school players how to use AI safely. Am
 
 Spring targets **about five minutes** for a first-time player; the full game targets **about thirty minutes**. These are design targets pending user testing. The [gameplay demo](docs/SpringDemo.mp4) follows a faster, familiar route.
 
-The opening automatically transitions into Spring, but its current 20-second animation is **temporary**. The final opening should match the original illustrated Ambros references and remains unfinished. All four seasons are playable. Walk through each unlocked seasonal gate after closing its conversation: Spring → Summer → Fall → Winter. Winter includes Frostveil outdoors and the explorable Echo Cavern, where the Frostbound Warden guards the Winter crest. The finale remains planned. Progress lasts only for the current session; main-menu, pause-menu, and persistent-save features are not yet complete.
+The name-entry menu starts the existing opening clip, which then transitions into Spring. The teammate is creating the final intro and outro. All four seasons are playable in order: Spring → Summer → Fall → Winter. Winter now has an outdoor Warden and the cumulative Echo Keeper inside the cave. Pause, exact-location saves, reset, chapter revisits, collectible artifacts and the final PDF certificate are implemented. See [Journey completion](docs/JourneyCompletion.md) for controls and video integration.
 
 See [Winter setup and art credits](capstone/Assets/WinterLevel/README.md). All four seasons now share the same parchment UI, dialogue buttons, objective cards and journal.
 

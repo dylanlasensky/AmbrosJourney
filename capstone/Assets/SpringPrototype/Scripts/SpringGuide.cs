@@ -67,11 +67,19 @@ public class SpringGuide : MonoBehaviour
     readonly string[,] answers = { { "By learning patterns from examples", "By knowing everything from birth" }, { "People who design and train them", "They appear without people" }, { "No. A confident answer is always right", "Yes. Check important claims" }, { "Passwords, your address and private photos", "A made-up story about a dragon" }, { "Let it do all my work and copy it", "Use it to explain a topic, then think for myself" } };
     readonly int[] correct = { 0, 0, 1, 0, 1 };
     readonly string[] reasons = { "AI learns patterns from training examples.", "People design, train and test AI systems.", "AI can make mistakes even when it sounds confident.", "Never share passwords or private personal information.", "Use AI to support your learning. Follow your teacher's rules." };
+    public AmbrosJourney.Journey.SpringState CaptureProgress()=>new AmbrosJourney.Journey.SpringState{explored=explored,lessonComplete=LessonComplete,complete=SpringComplete,missions=MissionsComplete,bossScore=BossScore,hearts=hearts,cleared=(bool[])cleared.Clone(),studied=(bool[])studied.Clone(),trials=(int[])trials.Clone()};
+    public void RestoreProgress(AmbrosJourney.Journey.SpringState state)
+    {
+        if(state==null||!state.Valid())throw new System.ArgumentException("Invalid Spring checkpoint");
+        explored=state.explored;LessonComplete=state.lessonComplete;SpringComplete=state.complete;MissionsComplete=state.missions;BossScore=state.bossScore;hearts=Mathf.Clamp(state.hearts,1,3);cleared=state.cleared;studied=state.studied;trials=state.trials;
+        DialogueOpen=journalOpen=false;target=-1;feedback="";bossQuestion=0;bossResult=false;
+        for(int i=0;i<3;i++)bats[i].gameObject.SetActive(!cleared[i]);boss.gameObject.SetActive(!SpringComplete);gateSeal.SetActive(!SpringComplete);
+    }
     void Start()
     {
         Vector2[] positions = { new Vector2(-18,0), new Vector2(10,6), new Vector2(15,-14) };
         for(int i=0;i<3;i++) bats[i]=CreateBat("Misinformation Bat "+(i+1),positions[i],1);
-        Vector2[] notePositions={new Vector2(-21,5),new Vector2(13,9),new Vector2(21,-12)};
+        Vector2[] notePositions={new Vector2(-21,5),new Vector2(7,1),new Vector2(21,-12)};
         for(int i=0;i<3;i++){var o=new GameObject(locations[i]+" field note");o.transform.position=notePositions[i];var r=o.AddComponent<SpriteRenderer>();if(gateSprite){var t=gateSprite.texture;r.sprite=Sprite.Create(t,new Rect(0,0,t.width,t.height),new Vector2(.5f,0),t.height/1.8f);}r.sharedMaterial=mage.GetComponent<SpriteRenderer>().sharedMaterial;r.color=new Color(.85f,1,.85f);r.sortingOrder=100-Mathf.RoundToInt(notePositions[i].y*10);stones[i]=o.transform;}
         boss=CreateGuardian();
         var obj=new GameObject("Summer Gate (unlocks after 80 percent)");gate=obj.transform;gate.position=new Vector3(0,-33,0);
@@ -117,6 +125,7 @@ public class SpringGuide : MonoBehaviour
     }
     void Update()
     {
+        if(AmbrosJourney.Journey.JourneySession.Blocked)return;
         if(Vector2.Distance(player.position,StartPosition)>3)explored=true;
         if(SpringComplete && Distance(mage)>15)mage.position=player.position+new Vector3(-2,1,0);
         if(SpringComplete && !DialogueOpen && Distance(mage)>1.6f) mage.position=Vector3.MoveTowards(mage.position,player.position+new Vector3(-1,-.5f,0),2.8f*Time.deltaTime);
@@ -159,6 +168,7 @@ public class SpringGuide : MonoBehaviour
     int NextBat(){for(int i=0;i<3;i++)if(!cleared[i])return i;return 2;}
     void LateUpdate()
     {
+        if(AmbrosJourney.Journey.JourneySession.Blocked)return;
         if(!presentation)
         {
             var ui=new GameObject("Spring interface");ui.transform.SetParent(transform,false);

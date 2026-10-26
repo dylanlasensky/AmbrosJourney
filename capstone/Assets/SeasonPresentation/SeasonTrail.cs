@@ -2,11 +2,12 @@ using System.Collections.Generic;
 using UnityEngine;
 namespace AmbrosJourney.Presentation
 {
-    // Arc-length breadcrumbs: every companion traces the player's actual turns at a fixed gap.
+    // A safe breadcrumb spine with individual spacing and gentle lateral wandering.
     public sealed class SeasonTrail
     {
         readonly List<Vector2> points=new List<Vector2>();
         Vector2 latest;
+        readonly Vector2[] formation=new Vector2[9];readonly float[] nextFormation=new float[9];
         public int Revision {get;private set;}
         public void Record(Vector2 position)
         {
@@ -16,7 +17,16 @@ namespace AmbrosJourney.Presentation
         }
         public void Reset(Vector2 position)
         {
-            points.Clear();for(int i=100;i>=0;i--)points.Add(position+Vector2.left*(i*.1f));latest=position;Revision++;
+            System.Array.Clear(nextFormation,0,nextFormation.Length);points.Clear();int length=100;while(length>0&&!SeasonNavigation.ClearSegment(position,position+Vector2.left*(length*.1f)))length-=10;for(int i=length;i>=0;i--)points.Add(position+Vector2.left*(i*.1f));latest=position;Revision++;
+        }
+        public Vector2 Formation(int slot,Vector2 current)
+        {
+            if(Time.time<nextFormation[slot])return formation[slot];nextFormation[slot]=Time.time+.15f;
+            float gap=1.45f*slot+(slot%3)*.19f;var center=Behind(gap);var direction=Behind(Mathf.Max(0,gap-.5f))-Behind(gap+.5f);
+            var side=new Vector2(-direction.y,direction.x).normalized;
+            float wander=(slot%2==0?1:-1)*(.48f+.20f*Mathf.Sin(Time.time*.65f+slot*2.1f));
+            var offset=center+side*wander;
+            return formation[slot]=SeasonNavigation.ClearSegment(center,offset)&&SeasonNavigation.ClearSegment(current,offset)?offset:center;
         }
         public Vector2 Behind(float distance)
         {
