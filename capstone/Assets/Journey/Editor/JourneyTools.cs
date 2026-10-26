@@ -8,6 +8,9 @@ namespace AmbrosJourney.Journey.Editor
         [MenuItem("Capstone/Journey/Prepare Art and Player")]
         public static void Prepare()
         {
+            const string menuPath="Assets/Journey/Resources/Journey/MenuLandscape.png";
+            AssetDatabase.ImportAsset(menuPath,ImportAssetOptions.ForceSynchronousImport);
+            var menu=(TextureImporter)AssetImporter.GetAtPath(menuPath);menu.textureType=TextureImporterType.Default;menu.filterMode=FilterMode.Bilinear;menu.mipmapEnabled=false;menu.wrapMode=TextureWrapMode.Clamp;menu.maxTextureSize=2048;menu.textureCompression=TextureImporterCompression.CompressedHQ;menu.SaveAndReimport();
             const string path="Assets/Journey/Resources/Journey/WorldAtlas.png";
             AssetDatabase.ImportAsset(path,ImportAssetOptions.ForceSynchronousImport);
             var importer=(TextureImporter)AssetImporter.GetAtPath(path);importer.textureType=TextureImporterType.Default;importer.filterMode=FilterMode.Point;importer.mipmapEnabled=false;importer.alphaIsTransparency=true;importer.maxTextureSize=2048;importer.textureCompression=TextureImporterCompression.Uncompressed;importer.SaveAndReimport();

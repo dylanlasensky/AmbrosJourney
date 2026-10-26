@@ -54,3 +54,7 @@ These changes address identifiable unnecessary work. They do not establish the t
 The expanded pure .NET suite covers all 32 Summer, 243 Fall, 243 Winter and 6,561 final-boss answer combinations, plus save round trips, corrupt-primary recovery, reset, bounds and name handling. The Unity integration runner traverses the actual four-season portals, checks mission/boss retries and UI text at 1280×720 and 1024×768, follows routes to every artifact, collects all twelve with F-key input, verifies outdoor and cave checkpoint restoration, exports a personalized PDF, resets the profile, and checks that the opening video plays before fresh Spring.
 
 Run the existing .NET project, `python3 tests/check_assets.py`, and Unity's `SeasonIntegrationChecks.Run`. Runtime captures, test saves and generated sample PDFs are written under `capstone/Logs/SeasonChecks` and are not source assets. `SeasonIntegrationChecks.Build` creates the release Mac application there.
+
+## Homepage
+
+The blossom-valley homepage follows the supplied visual reference. Returning explorers see Continue and their actual saved season. New Journey asks before resetting an existing save; fresh explorers enter a name before starting the existing intro. Settings changes Explorer/Assisted guidance, persists that choice for existing saves, and retains a draft name before a new game. Quit exits the standalone game; a browser build instead explains that the tab can be closed. Completed explorers can reopen their certificate from the menu. The original intro/outro handoff remains unchanged.

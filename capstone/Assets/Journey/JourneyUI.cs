@@ -7,7 +7,21 @@ namespace AmbrosJourney.Journey
 {
     public sealed class JourneyUI : MonoBehaviour
     {
-        Sprite rounded;
+        Sprite rounded; TMP_FontAsset menuFont;
+        public TMP_FontAsset MenuFont
+        {
+            get
+            {
+                if(!menuFont)
+                {
+                    var source=Resources.Load<UnityEngine.Font>("Journey/MenuSerif");
+                    if(!source)return Font;
+                    menuFont=TMP_FontAsset.CreateFontAsset(source);
+                    menuFont.name="Journey menu / Spectral";
+                }
+                return menuFont;
+            }
+        }
         public Canvas Canvas;public RectTransform Root;public TMP_FontAsset Font;
         public static readonly Color Ink=new Color(.16f,.24f,.25f),Gold=new Color(.80f,.63f,.32f),Paper=new Color(.97f,.93f,.82f),Green=new Color(.16f,.30f,.28f);
         public void Initialize()
@@ -40,7 +54,7 @@ namespace AmbrosJourney.Journey
             var placeholder=Text(r,"Placeholder","Your explorer name",new Rect(-b.width/2+15,-b.height/2+9,b.width-30,b.height-18),24,new Color(.4f,.47f,.45f));
             field.textViewport=r;field.textComponent=t;field.placeholder=placeholder;field.characterLimit=32;field.lineType=TMP_InputField.LineType.SingleLine;field.text=initial;return field;
         }
-        void OnDestroy(){if(rounded){Destroy(rounded.texture);Destroy(rounded);}}
+        void OnDestroy(){if(rounded){Destroy(rounded.texture);Destroy(rounded);}if(menuFont){foreach(var texture in menuFont.atlasTextures)if(texture)Destroy(texture);if(menuFont.material)Destroy(menuFont.material);Destroy(menuFont);}}
         public void Clear(){for(int i=transform.childCount-1;i>=0;i--){var c=transform.GetChild(i);if(!c.GetComponent<EventSystem>()){c.gameObject.SetActive(false);Destroy(c.gameObject);}}}
     }
 }

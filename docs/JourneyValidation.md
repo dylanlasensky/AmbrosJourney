@@ -16,3 +16,9 @@ Reports and runtime screenshots are under `capstone/Logs/SeasonChecks` (ignored)
 The desktop build is the validated target. The optional WebGL download bridge has not been tested in a browser build. Team playtesting is still needed for first-time pacing, laptop temperatures and the teammate's finished videos.
 
 The non-development macOS application build succeeded with **zero errors**. Unity reported three build warnings; the log is `/tmp/ambros-journey-build.log`.
+
+## Reference homepage revision (October 26, 2026)
+
+Re-ran the complete Unity integration suite after replacing the homepage with the supplied blossom-valley composition. The final run passed all four seasons, both Winter bosses, artifacts, exact-location recovery, reset, intro playback and PDF export. New coverage exercises the actual Continue/New Journey/Settings/Back button callbacks, correct saved-season labeling, reset cancellation, guidance persistence to disk, draft-name retention, and an intentionally unwritable save destination. A failed initial save leaves the profile unstarted and the name field available.
+
+Fresh, returning, settings and completed-game menus passed TMP overflow checks and rendered screenshots at 1280×720 and 1024×768. The compact certificate action is checked for overlap with Quit. Visually reviewed the paintings, aspect-fill crop, title, live controls, input and gold frames. The illustrated background is static and compressed; existing frame limits remain in effect.

@@ -9,3 +9,9 @@ The first result did not provide enough gutter between sprites. A second generat
 Original output files remain outside the repository in the generator's output directory. Only the selected final atlas is included. Existing third-party asset licenses and source files remain unchanged.
 
 A second original atlas, `SentinelAtlas.png`, replaces Fall's enlarged 32-pixel placeholder. The prompt used the existing terrain and old Sentinel as references, requesting a stone-and-wood golem with amber eyes, copper autumn leaves, mossy rounded shoulders and a chest rune. Four subtle idle poses share a two-by-two layout, perspective, scale and foot baseline. The imported atlas is capped at 512 pixels with point filtering; the guardian uses all four poses and retains the existing quiz, strike feedback and collision logic.
+
+## Blossom Valley homepage
+
+`MenuLandscape.png` is an image-generation edit of the owner-supplied “Ambros’ Journey_ Blossom Valley.png” reference. The prompt preserves the dark blossom tree, pink flowers, cloaked explorer, sunset mountains, castle, waterfalls and cyan portal; removes all lettering, button frames and ornaments; and reconstructs calm, dark foliage beneath the left menu. All title text, decorative rules and menu actions are rendered by Unity, not baked into the artwork. The landscape uses bilinear filtering, no mipmaps, a 2048-pixel import limit and high-quality compression. Aspect-fill cropping preserves proportions and the left menu's backdrop.
+
+The live title and menu use Spectral Regular by Production Type, distributed under the SIL Open Font License. Source: https://github.com/google/fonts/tree/main/ofl/spectral. The unmodified TTF and its OFL license are included together in `Assets/Journey/Resources/Journey/`.

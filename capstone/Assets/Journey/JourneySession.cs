@@ -113,29 +113,77 @@ namespace AmbrosJourney.Journey
         }
         void ShowMenu()
         {
-            Background("AMBROS' JOURNEY  /  FOUR SEASONS OF DISCOVERY","A small explorer. A wiser world.","Learn to question, create and check the evidence. Your journey stays saved on this device.");
-            var card=ui.Panel(ui.Root,"Explorer card",new Rect(-550,-57,520,355),JourneyUI.Paper);
-            ui.Text(card,"Name label","EXPLORER NAME",new Rect(-230,-155,460,30),16);
-            nameInput=ui.NameInput(card,Data.playerName,new Rect(-230,-116,460,56));
+            JourneyMenu.Background(ui);
+            nameInput=null;
             if(Data.started)
             {
-                nameInput.interactable=false;
-                ui.Button(card,"Continue / "+ChapterNames[Data.chapter-1],new Rect(-230,-38,460,54),()=>LoadChapter(Data.chapter));
-                ui.Button(card,"Reset journey",new Rect(-230,30,460,48),ConfirmReset);
-                if(Data.finished)ui.Button(card,"View certificate",new Rect(-230,90,460,48),()=>ShowCertificate());
+                JourneyMenu.Button(ui,"Continue",-40,()=>LoadChapter(Data.chapter),true);
+                string[] seasons={"Spring","Summer","Fall","Winter"};
+                JourneyMenu.Text(ui,"Saved season",seasons[Data.chapter-1]+" · "+ChapterNames[Data.chapter-1],new Rect(-534,18,410,37),22,JourneyMenu.Muted);
+                JourneyMenu.Button(ui,"New Journey",78,ConfirmReset);
+                JourneyMenu.Button(ui,"Settings",132,ShowMenuSettings);
+                JourneyMenu.Button(ui,"Quit",186,QuitGame);
+                if(Data.finished)JourneyMenu.Button(ui,"View Certificate",239,ShowCertificate,height:32);
             }
-            else ui.Button(card,"Play / Begin in Spring",new Rect(-230,-38,460,54),NewJourney);
-            ui.Text(card,"Save status",notice,new Rect(-230,146,460,42),15);
-            var atlas=Resources.Load<Texture2D>("Journey/WorldAtlas");
-            if(atlas){var art=new GameObject("Season illustration",typeof(RectTransform),typeof(UnityEngine.UI.RawImage));art.transform.SetParent(ui.Root,false);JourneyUI.Place(art.GetComponent<RectTransform>(),new Rect(95,-70,365,280));var image=art.GetComponent<UnityEngine.UI.RawImage>();image.texture=atlas;image.uvRect=new Rect(34f/1254,645f/1254,574f/1254,497f/1254);image.raycastTarget=false;}
-            ui.Text(ui.Root,"Chapter trail","SPRING  >  SUMMER  >  FALL  >  WINTER\n\n12 lost artifacts. One evidence compass.\nA final challenge, and your way home.",new Rect(45,220,510,105),19,JourneyUI.Paper);
+            else
+            {
+                JourneyMenu.Text(ui,"Name label","YOUR EXPLORER NAME",new Rect(-554,-43,350,28),16,JourneyMenu.Gold);
+                nameInput=ui.NameInput(ui.Root,Data.playerName,new Rect(-562,-9,340,48));
+                nameInput.GetComponent<UnityEngine.UI.Image>().color=new Color(.025f,.065f,.05f,.87f);
+                nameInput.textComponent.color=JourneyMenu.Cream; nameInput.textComponent.font=ui.MenuFont;
+                var placeholder=(TMP_Text)nameInput.placeholder;placeholder.font=ui.MenuFont;placeholder.color=JourneyMenu.Muted;
+                foreach(var text in new[]{nameInput.textComponent,placeholder})
+                {
+                    JourneyUI.Place(text.rectTransform,new Rect(-155,-23,310,46));text.fontSize=22;
+                    text.alignment=TextAlignmentOptions.MidlineLeft;text.textWrappingMode=TextWrappingModes.NoWrap;
+                    text.enableAutoSizing=true;text.fontSizeMin=10;text.fontSizeMax=22;
+                }
+                nameInput.customCaretColor=true;nameInput.caretColor=JourneyMenu.Gold;
+                JourneyMenu.Frame(ui,new Rect(-562,-9,340,48));
+                JourneyMenu.Button(ui,"New Journey",63,NewJourney,true);
+                JourneyMenu.Button(ui,"Settings",132,ShowMenuSettings);
+                JourneyMenu.Button(ui,"Quit",186,QuitGame);
+            }
+            if(!string.IsNullOrEmpty(notice)&&notice!="Progress saved on this device."&&!Data.finished)
+            {
+                var status=JourneyMenu.Text(ui,"Menu status",notice,new Rect(-554,241,425,31),15,JourneyMenu.Muted);
+                status.textWrappingMode=TextWrappingModes.Normal;
+            }
+        }
+        void ShowMenuSettings()
+        {
+            // Keep a fresh explorer's draft name when they visit settings before playing.
+            if(nameInput)Data.playerName=JourneyData.CleanName(nameInput.text);
+            JourneyMenu.Background(ui);nameInput=null;
+            JourneyMenu.Text(ui,"Settings heading","Journey settings",new Rect(-550,-45,420,46),30);
+            JourneyMenu.Button(ui,"Guidance: "+(Data.assistedGuidance?"Assisted":"Explorer"),20,()=>
+            {
+                bool old=Data.assistedGuidance;Data.assistedGuidance=!old;
+                try{if(Data.started)JourneyStorage.Write(SavePath,JsonUtility.ToJson(Data));}
+                catch(Exception e)when(e is IOException||e is UnauthorizedAccessException){Data.assistedGuidance=old;notice="Settings could not be saved. Check available disk space.";ShowMenu();return;}
+                ShowMenuSettings();
+            });
+            var description=JourneyMenu.Text(ui,"Guidance description",Data.assistedGuidance?"Assisted keeps the compass available in every season.":"Explorer lets winter snowfall obscure your compass.",new Rect(-534,78,360,65),19,JourneyMenu.Muted);description.textWrappingMode=TextWrappingModes.Normal;
+            JourneyMenu.Button(ui,"Back",177,ShowMenu,true);
+        }
+        void QuitGame()
+        {
+            if(!Save()){ShowMenu();return;}
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying=false;
+#elif UNITY_WEBGL
+            notice="Your journey is saved. You can close this browser tab.";ShowMenu();
+#else
+            Application.Quit();
+#endif
         }
         public void NewJourney()
         {
             string name=JourneyData.CleanName(nameInput?nameInput.text:Data.playerName);
             if(name.Length==0){notice="Enter an explorer name to start.";ShowMenu();return;}
-            Data=new JourneyData{playerName=name,started=true};
-            try{JourneyStorage.Write(SavePath,JsonUtility.ToJson(Data));}catch(Exception e)when(e is IOException||e is UnauthorizedAccessException){notice="Could not create your save. Check available disk space.";ShowMenu();return;}
+            var fresh=new JourneyData{playerName=name,started=true,assistedGuidance=Data.assistedGuidance};
+            try{JourneyStorage.Write(SavePath,JsonUtility.ToJson(fresh));}catch(Exception e)when(e is IOException||e is UnauthorizedAccessException){notice="Could not create your save. Check available disk space.";ShowMenu();return;}
+            Data=fresh;
             menu=false;ui.Clear();beginIntro?.Invoke();
         }
         public void LoadChapter(int chapter){if(loading||chapter<1||chapter>Data.unlocked)return;StartCoroutine(Load(chapter));}
@@ -178,7 +226,7 @@ namespace AmbrosJourney.Journey
             Background("START AGAIN?","Reset this explorer's journey?","This removes saved locations, lessons, artifacts and the achievement for this profile.");
             ui.Button(ui.Root,"Keep my progress",new Rect(-550,10,510,56),()=>{if(menu)ShowMenu();else ShowPause();});
             ui.Button(ui.Root,"Reset / Start from the beginning",new Rect(40,10,510,56),()=>{
-                try{JourneyStorage.Reset(SavePath);Data=new JourneyData();Paused=false;Time.timeScale=1;AudioListener.pause=false;if(menu)ShowMenu();else SceneManager.LoadScene("Intro");}
+                try{JourneyStorage.Reset(SavePath);Data=new JourneyData();notice="";Paused=false;Time.timeScale=1;AudioListener.pause=false;if(menu)ShowMenu();else SceneManager.LoadScene("Intro");}
                 catch(Exception e)when(e is IOException||e is UnauthorizedAccessException){notice="Reset failed. Your current session is still available.";if(menu)ShowMenu();else ShowPause();}
             });
         }

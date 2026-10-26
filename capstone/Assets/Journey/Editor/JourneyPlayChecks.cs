@@ -34,7 +34,20 @@ namespace AmbrosJourney.Journey.Editor
                 Check(session.Save(),"Save writes");Check(File.Exists(JourneySession.SavePath),"Save file exists");SeasonIntegrationChecks.Capture("PauseMenu");
                 session.Resume();winter.Interact(8);Check(winter.IsDialogueOpen,"Conversation opens for pause regression");session.Pause();InputSystem.QueueStateEvent(Keyboard.current,new KeyboardState(Key.Escape));InputSystem.Update();Call(session,"Update");Call(winter,"Update");Check(!session.Paused&&winter.IsDialogueOpen,"Esc resumes without also closing the conversation");InputSystem.QueueStateEvent(Keyboard.current,new KeyboardState());InputSystem.Update();Call(winter,"Close");session.ReturnToMenu();
             }
-            else if(stage==1){Check(SceneManager.GetActiveScene().name=="Intro","Return to menu");Inspect();SeasonIntegrationChecks.Capture("MainMenu");session.LoadChapter(4);}
+            else if(stage==1)
+            {
+                Check(SceneManager.GetActiveScene().name=="Intro","Return to menu");Inspect();SeasonIntegrationChecks.Capture("MainMenu");
+                Check(UI.transform.Find("Blossom valley painting").GetComponent<UnityEngine.UI.RawImage>().texture,"Menu painting imported");
+                Check(UI.transform.Find("Saved season").GetComponent<TMP_Text>().text=="Winter · Frostveil","Menu shows actual saved chapter");
+                Click("Settings");Inspect();bool assisted=session.Data.assistedGuidance;Click("Guidance: "+(assisted?"Assisted":"Explorer"));Check(session.Data.assistedGuidance!=assisted,"Settings toggle guidance");
+                var disk=JsonUtility.FromJson<JourneyData>(File.ReadAllText(JourneySession.SavePath));Check(disk.assistedGuidance==session.Data.assistedGuidance,"Menu settings persist to save");
+                Click("Guidance: "+(!assisted?"Assisted":"Explorer"));SeasonIntegrationChecks.Capture("MenuSettings");Click("Back");
+                Click("New Journey");Check(session.Data.started,"New Journey asks before discarding a save");Click("Keep my progress");Check(File.Exists(JourneySession.SavePath),"Cancel reset retains save");
+                session.Data.finished=true;Call(session,"ShowMenu");Inspect();SeasonIntegrationChecks.Capture("CompletedJourneyMenu");
+                var quit=UI.transform.Find("Quit").GetComponent<RectTransform>();var certificate=UI.transform.Find("View Certificate").GetComponent<RectTransform>();Check(-certificate.anchoredPosition.y>=-quit.anchoredPosition.y+quit.rect.height,"Completed menu actions do not overlap");
+                session.Data.finished=false;Call(session,"ShowMenu");
+                Click("Continue");
+            }
             else if(stage==2)
             {
                 var winter=UnityEngine.Object.FindAnyObjectByType<WinterLevel>();Check(winter&&winter.Progress.Complete&&winter.Progress.WinterComplete,"Continue retains bosses");Check(Vector2.Distance(winter.player.transform.position,savedPosition)<.01f,"Exact outdoor position restored");
@@ -65,8 +78,12 @@ namespace AmbrosJourney.Journey.Editor
             else if(stage==12)
             {
                 Check(SceneManager.GetActiveScene().name=="Intro"&&!session.Data.started&&session.Data.ArtifactCount==0,"Full reset returns fresh menu");Check(!File.Exists(JourneySession.SavePath)&&!File.Exists(JourneySession.SavePath+".bak"),"Reset deletes recovery copy too");Inspect();
+                UI.GetComponentInChildren<TMP_InputField>().text="Zoë Explorer";Click("Settings");Inspect();Click("Guidance: Explorer");Click("Back");Check(UI.GetComponentInChildren<TMP_InputField>().text=="Zoë Explorer","Settings retains draft explorer name");SeasonIntegrationChecks.Capture("NewJourneyMenu");
                 var input=UI.GetComponentInChildren<TMP_InputField>();input.text=" ";session.NewJourney();Check(!session.Data.started,"Blank name rejected");
-                UI.GetComponentInChildren<TMP_InputField>().text="Zoë Explorer";var opening=UnityEngine.Object.FindAnyObjectByType<OpeningCinematic>();typeof(OpeningCinematic).GetField("elapsed",Private).SetValue(opening,120f);session.NewJourney();Check((float)typeof(OpeningCinematic).GetField("elapsed",Private).GetValue(opening)==0,"Time spent in menu does not expire intro preparation");Check(session.Data.started&&session.Data.playerName=="Zoë Explorer","Named new journey begins intro");
+                string normalSave=JourneySession.SavePathOverride;string directory=Path.GetFullPath("Logs/SeasonChecks/menu-save-directory");Directory.CreateDirectory(directory);
+                try{JourneySession.SavePathOverride=directory;UI.GetComponentInChildren<TMP_InputField>().text="Test Explorer";session.NewJourney();Check(!session.Data.started&&UI.GetComponentInChildren<TMP_InputField>(),"Failed save stays on name-entry menu");Inspect();}
+                finally{JourneySession.SavePathOverride=normalSave;}
+                UI.GetComponentInChildren<TMP_InputField>().text="Zoë Explorer";var opening=UnityEngine.Object.FindAnyObjectByType<OpeningCinematic>();typeof(OpeningCinematic).GetField("elapsed",Private).SetValue(opening,120f);Click("New Journey");Check((float)typeof(OpeningCinematic).GetField("elapsed",Private).GetValue(opening)==0,"Time spent in menu does not expire intro preparation");Check(session.Data.started&&session.Data.playerName=="Zoë Explorer"&&session.Data.assistedGuidance,"Named new journey begins intro with chosen settings");
             }
             else if(stage==13)
             {
@@ -75,6 +92,11 @@ namespace AmbrosJourney.Journey.Editor
             }
             else if(stage==14){Check(SceneManager.GetActiveScene().name=="Spring","Intro completion enters fresh Spring");Check(!UnityEngine.Object.FindAnyObjectByType<SpringGuide>().LessonComplete,"Reset starts with no lessons");Debug.Log("JOURNEY_PLAY_PASS: menu, exact outdoor/cave save, pause, chapter travel, all 12 F-key pickups, achievement, certificate export, reset and intro.");return true;}
             return false;
+        }
+        static void Click(string name)
+        {
+            foreach(var button in UI.GetComponentsInChildren<UnityEngine.UI.Button>())if(button.name==name){button.onClick.Invoke();return;}
+            throw new Exception("Missing menu button: "+name);
         }
         static void CollectAll()
         {
