@@ -29,44 +29,49 @@ public class SpringGuide : MonoBehaviour
     bool journalOpen;
     readonly string[] locations={"Blossom Grove", "Stillwater Lake", "Whispering Ruins"};
     readonly string[] fieldNotes={
-        "THE PATTERN GARDEN\nA gardener trains an AI to sort flowers by showing it labeled pictures. Examples matter: if it sees only pink flowers, it may struggle with white ones. More varied, correctly labeled examples help it handle new cases. People choose the examples and check the results.\nTry the nearby bat: apply this idea to two claims. You can review this note with J.",
-        "A REFLECTION IS NOT THE WHOLE PICTURE\nThe lake can reflect a tree without becoming one. In a similar way, an AI can imitate friendly conversation without being a human friend. A warm or confident response is not proof that its advice is accurate. Compare important claims with a reliable source or ask a trusted adult.\nFind the lakeside bat and test two claims about AI responses.",
-        "THE PRIVACY WARD\nBefore sending a prompt, stop and check what it reveals. Passwords, private photos and your address should stay private. You can ask for help with a made-up example instead. If a tool asks for personal information you do not understand, ask a trusted adult before continuing.\nThe ruins bat has two choices for you. Protect the traveler in each one."
+        "LEARNING FROM EXAMPLES\nPeople train AI by giving it examples. A flower sorter that mostly sees pink flowers may struggle with other colors. People need to check its labels and test it on different flowers, even when it gets the practice examples right.\nRead this, then try the two claims at the nearby bat. J opens your notes.",
+        "SOUNDS HUMAN, STILL A TOOL\nA chatbot can sound friendly without having feelings or knowing you. It can also sound sure when it is wrong. Use it for ideas, but check important facts somewhere reliable. Talk to people you trust when you need support.\nTry the two claims at the lakeside bat.",
+        "KEEP SOME THINGS PRIVATE\nBefore sending a message, check what someone could learn about you from it. Leave out passwords, your address and private photos. A made-up example often works just as well. If you are unsure what a tool needs, ask a trusted adult.\nTry the two claims at the ruins bat."
     };
     SeasonOverlay presentation;
     readonly string[] lessons = {
-        "Ambros! Another kid pulled through a computer... I was your age when it happened to me. Everyone calls me the Ancient Mage now. Beat the four seasons and bring the final item back here to find your way home.",
-        "Spring will teach you how AI learns, how to check its answers and how to protect your privacy. Read a field note at each landmark, then apply the lesson to two claims from its bat.",
-        "Move with WASD or arrows. Press E to interact and J to review your notes. Follow the golden compass. When all three lessons are complete, pass Thornhide's quiz with 80% to open the Summer gate. I will join you then."
+        "You're stuck here too? I was about your age when I arrived. Now everyone calls me the Ancient Mage. We need to get through all four seasons to find a way home.",
+        "Let's start with what AI can and can't do. Read the notes along the trail, then try the two claims at each bat. You can look back at your notes whenever you need them.",
+        "Use WASD or the arrows to move, E to talk, and J for your notes. The gold arrow points to your next stop. Finish the three lessons, then get at least four of Blossom Guardian's five questions right. I'll come with you after that."
     };
     int QuestionIndex(int mission)=>mission*3+(trials[mission]==0?0:mission==2?1:2);
     readonly string[] claims = {
-        "AI is built by people and can learn patterns from examples.",
-        "A flower AI trained only on pink flowers is guaranteed to recognize every white flower.",
-        "Checking the labels and adding varied flower examples can improve the training set.",
-        "AI thinks and feels exactly like a human.",
-        "An AI answer sounds confident. That alone proves its facts are correct.",
-        "Before using an AI's surprising claim in homework, I should check a reliable source.",
-        "It is safe to give an AI your password or private photos.",
-        "I can ask for help writing a story using a made-up name instead of my full name and address.",
-        "If an unfamiliar AI tool asks for personal details, I should ask a trusted adult before sharing."
+        "People can train an AI to sort pictures by showing it labeled examples.",
+        "A flower sorter that only saw pink flowers will recognize every white flower too.",
+        "A flower sorter gets its practice pictures right. It still needs to be tested on new pictures.",
+        "If a chatbot remembers your name, it cares about you the way a person does.",
+        "A detailed chatbot answer is enough to prove a fact.",
+        "Before using a surprising AI fact in homework, it helps to check a book or another reliable source.",
+        "If a chatbot needs more details for a story, your password is useful context.",
+        "A made-up name can work in a story prompt instead of your real name and address.",
+        "It's okay to pause and ask an adult before sharing personal details with a tool."
     };
     readonly bool[] truth = { true,false,true,false,false,true,false,true,true };
     readonly string[] explanations = {
-        "People design and train AI systems. Examples let many systems learn useful patterns. That is different from being born knowing every answer.",
-        "Training examples have limits. A model that saw only pink flowers might not recognize other colors. Testing on new examples helps people find this problem.",
-        "Varied examples and accurate labels are useful. More data is not automatically better if it is mislabeled or missing important groups.",
-        "Humanlike language is not the same as being a human. Treat the tool as software, and rely on real people for friendship and support.",
-        "Confidence is a writing style, not evidence. AI can produce convincing mistakes. Check names, dates and other important facts.",
-        "A textbook, teacher or reliable reference can help you verify a claim. Do not assume that a link generated by AI is a real or reliable source.",
-        "Passwords and private photos should stay private. A tool may store inputs. Never send a password just because a chatbot asks for it.",
-        "A fictional example often gives enough context for useful help. Remove details that identify you or someone else before you share a prompt.",
-        "Pause and ask a trusted adult. You do not have to provide personal information to complete a conversation with an AI."
+        "AI can learn patterns from examples people provide. People also decide what it should learn and check how well it works.",
+        "It might struggle with flowers it hasn't seen. Trying new examples helps people find the gaps.",
+        "Getting the practice examples right is a start. New pictures show whether it learned a useful pattern.",
+        "Remembering a name is a feature. It doesn't mean the chatbot has feelings or understands you like a friend would.",
+        "Details can sound convincing and still be wrong. Look for evidence that supports the answer.",
+        "Checking a source helps you catch mistakes before you use them. Open the source itself, not just the link in an AI answer.",
+        "A story doesn't need your password. Give details about the story, not details that let someone into your account.",
+        "A made-up example gives the tool something to work with without identifying you.",
+        "You can stop and ask for help. You don't have to share something just to keep a conversation going."
     };
-    readonly string[] questions = { "How do many AI systems learn?", "Who builds AI systems?", "Can an AI give a wrong answer?", "Which information should stay private?", "What is a safe way to use AI for school?" };
-    readonly string[,] answers = { { "By learning patterns from examples", "By knowing everything from birth" }, { "People who design and train them", "They appear without people" }, { "No. A confident answer is always right", "Yes. Check important claims" }, { "Passwords, your address and private photos", "A made-up story about a dragon" }, { "Let it do all my work and copy it", "Use it to explain a topic, then think for myself" } };
+    readonly string[] questions = { "An AI sorts new leaf pictures badly. What should its makers look at?", "Who decides which examples an AI learns from?", "A chatbot gives a date you have never heard before. What should you do before using it?", "You want help planning a party. Which detail should you leave out?", "You used AI to explain a science topic. What would show that you understood it?" };
+    readonly string[,] answers = { { "Its training examples and how it was tested", "How quickly it gives each answer" }, { "The people building and training it", "The people who ask it questions afterward" }, { "Use it if the answer gives enough detail", "Check a reliable source for that date" }, { "The password for your party-planning account", "The theme and how many ideas you want" }, { "Read the explanation one more time", "Explain it yourself and try a new example" } };
     readonly int[] correct = { 0, 0, 1, 0, 1 };
-    readonly string[] reasons = { "AI learns patterns from training examples.", "People design, train and test AI systems.", "AI can make mistakes even when it sounds confident.", "Never share passwords or private personal information.", "Use AI to support your learning. Follow your teacher's rules." };
+    readonly string[] reasons = {
+        "Look at what it learned from and how it handles new examples. Speed doesn't tell you whether its answers are useful.",
+        "People choose the training examples and check the system. That means their choices matter.",
+        "Check the date in a reliable source before using it. A detailed answer can still contain a mistake.",
+        "A password gives access to your account. A party theme is enough context for brainstorming.",
+        "Explaining it yourself and trying a new example help you see what you actually understand." };
     public AmbrosJourney.Journey.SpringState CaptureProgress()=>new AmbrosJourney.Journey.SpringState{explored=explored,lessonComplete=LessonComplete,complete=SpringComplete,missions=MissionsComplete,bossScore=BossScore,hearts=hearts,cleared=(bool[])cleared.Clone(),studied=(bool[])studied.Clone(),trials=(int[])trials.Clone()};
     public void RestoreProgress(AmbrosJourney.Journey.SpringState state)
     {
@@ -99,10 +104,10 @@ public class SpringGuide : MonoBehaviour
     }
     Transform CreateGuardian()
     {
-        var o=new GameObject("Thornhide Guardian");o.transform.position=new Vector2(0,-28);
+        var o=new GameObject("Blossom Guardian");o.transform.position=new Vector2(0,-28);
         var r=o.AddComponent<SpriteRenderer>();r.sharedMaterial=mage.GetComponent<SpriteRenderer>().sharedMaterial;
         if(guardianSheet){var frames=new Sprite[4];for(int i=0;i<4;i++)frames[i]=Sprite.Create(guardianSheet,new Rect(64,guardianSheet.height-32*(i+1),32,32),new Vector2(.5f,.1f),8);o.AddComponent<SpringSpriteAnimation>().frames=frames;}
-        o.AddComponent<CircleCollider2D>().radius=1;return o.transform;
+        o.AddComponent<CircleCollider2D>().radius=1;SeasonBossVisual.Attach(o,"SpringBlossomAtlas",5.8f);return o.transform;
     }
     Transform CreateBat(string label,Vector2 pos,float size)
     {
@@ -161,10 +166,10 @@ public class SpringGuide : MonoBehaviour
             if(right){trials[target]++;feedback="Correct! "+explanations[question];if(trials[target]==2){cleared[target]=true;MissionsComplete++;bats[target].gameObject.SetActive(false);feedback+="\nLesson complete. Your journal has been updated.";}}
             else{hearts--;feedback="That myth fooled you! "+(hearts<=0?"The Mage restores your three hearts. ":"You lost a heart. ")+explanations[question]+" Try that claim again.";if(hearts<=0)hearts=3;}
         }
-        else {bool right=selected==correct[bossQuestion];if(right)BossScore++;feedback=(right?"Correct! ":"Not quite. ")+reasons[bossQuestion];}
+        else {bool right=selected==correct[bossQuestion];if(right){BossScore++;boss.GetComponent<SeasonBossVisual>().Flash(new Color(1,.85f,.55f));}else boss.GetComponent<SeasonBossVisual>().Strike();feedback=(right?"Correct! ":"Not quite. ")+reasons[bossQuestion];}
     }
     Transform Destination(){if(!LessonComplete)return mage;for(int i=0;i<3;i++)if(!cleared[i])return studied[i]?bats[i]:stones[i];return SpringComplete?gate:boss;}
-    string Quest()=>SpringComplete?"Step through the Summer gate":!explored?"Stretch your legs! Follow the compass.":!LessonComplete?"Meet the Mage beside his cottage":MissionsComplete<3?new[]{"Blossom Grove: learn how AI learns","Lakeside: separate people from AI","Southern ruins: protect your privacy"}[NextBat()]:"Head south to challenge Thornhide";
+    string Quest()=>SpringComplete?"Step through the Summer gate":!explored?"Stretch your legs! Follow the compass.":!LessonComplete?"Meet the Mage beside his cottage":MissionsComplete<3?new[]{"Blossom Grove: learn how AI learns","Lakeside: separate people from AI","Southern ruins: protect your privacy"}[NextBat()]:"Head south to challenge Blossom Guardian";
     int NextBat(){for(int i=0;i<3;i++)if(!cleared[i])return i;return 2;}
     void LateUpdate()
     {
@@ -183,11 +188,11 @@ public class SpringGuide : MonoBehaviour
         var dest=Destination();if(dest&&!DialogueOpen){Vector2 waypoint=dest.position;if(LessonComplete&&MissionsComplete==1){if(player.position.x< -10&&player.position.y> -5)waypoint=new Vector2(-15,-7);else if(player.position.x<2)waypoint=new Vector2(3,-7);}presentation.SetCompass(player.position,waypoint,dest.position);}
         if(!DialogueOpen)return;
         string heading="Ancient Mage",body="";
-        if(target==-1)body=SpringComplete?"You did it, Ambros! I will travel with you. The Summer gate is open beyond the guardian clearing.":LessonComplete?"Find the three myth bats, then face the Thornhide Guardian. Pass its five-question quiz with at least 80%. I will join you after we clear Spring.":lessons[page];
+        if(target==-1)body=SpringComplete?"You did it, Ambros! I will travel with you. The Summer gate is open beyond the guardian clearing.":LessonComplete?"Find the three myth bats, then face the Blossom Guardian. Pass its five-question quiz with at least 80%. I will join you after we clear Spring.":lessons[page];
         else if(target<3){heading=locations[target]+" / Challenge "+Mathf.Min(2,trials[target]+1)+" of 2";body=!LessonComplete?"Meet the Ancient Mage first.":!studied[target]?"Find the field note near this landmark first. Read it with E, then come back to apply what you learned.":feedback!=""?feedback:"TRUE OR FALSE?\n\n"+claims[QuestionIndex(target)];}
-        else if(target==3){heading="Spring Thornhide Guardian";body=SpringComplete?"Spring cleared! Your grade: "+BossScore+" / 5 ("+(BossScore*20)+"%). You earned Apprentice rank. The Ancient Mage joins your party. The Summer gate is now open.":MissionsComplete<3?"Dispel all three myth bats before challenging the guardian.":bossResult?"Your grade: "+BossScore+" / 5 ("+(BossScore*20)+"%). You need 80% to pass. Review your mistakes and try again. No progress is lost.":feedback!=""?feedback:"QUESTION "+(bossQuestion+1)+" / 5  •  80% TO PASS\n\n"+questions[bossQuestion];}
+        else if(target==3){heading="Spring Blossom Guardian";body=SpringComplete?"Spring cleared! Your grade: "+BossScore+" / 5 ("+(BossScore*20)+"%). You earned Apprentice rank. The Ancient Mage joins your party. The Summer gate is now open.":MissionsComplete<3?"Dispel all three myth bats before challenging the guardian.":bossResult?"Your grade: "+BossScore+" / 5 ("+(BossScore*20)+"%). You need 80% to pass. Review your mistakes and try again. No progress is lost.":feedback!=""?feedback:"QUESTION "+(bossQuestion+1)+" / 5  /  80% TO PASS\n\n"+questions[bossQuestion];}
         else if(target>=5){heading=locations[target-5]+" / Field Note";body=LessonComplete?fieldNotes[target-5]:"Visit the Mage at his cottage first. He will help you read these trail notes.";}
-        else {heading="The Summer Gate";body=SpringComplete?"You have unlocked Summer! The next season teaches when AI is useful and when to do the thinking yourself. Close this conversation and walk through the unlocked gate to continue your adventure in Summer.":"The path is sealed. Finish the Mage's lessons, defeat the myth bats and score at least 80% against the Thornhide Guardian.";}
+        else {heading="The Summer Gate";body=SpringComplete?"You have unlocked Summer! The next season teaches when AI is useful and when to do the thinking yourself. Close this conversation and walk through the unlocked gate to continue your adventure in Summer.":"The path is sealed. Finish the Mage's lessons, defeat the myth bats and score at least 80% against the Blossom Guardian.";}
         presentation.Heading.text=heading;presentation.Copy.text=body;
         bool asking=IsQuestion()&&feedback=="";
         for(int i=0;i<presentation.Choices.Count;i++)

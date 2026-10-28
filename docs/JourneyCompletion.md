@@ -1,3 +1,5 @@
+> Current handoff. For the latest boss, font and question changes see [Bosses](Bosses.md), [Question refresh](QuestionRefresh.md) and [current validation](CurrentValidation.md).
+
 # Journey completion update
 
 ## Play and save
@@ -12,10 +14,10 @@ Saves contain the explorer name, exact player coordinates, Winter outdoor/cave r
 
 - Spring field note 2 is at **(7, 1)**, on the approach to the lakeside Myth Bat at (10, 6).
 - Three artifacts are placed in each season. Approach and press **F**. The HUD and collection screen track all twelve. Completed seasons remain available from Pause, so none is permanently missable.
-- Completing the collection awards **Evidence Keeper** and reveals the Evidence Compass lesson: agreement between AI tools is not independent corroboration. The final quiz includes this lesson.
+- Completing the collection awards **Evidence Keeper** and reveals the Evidence Compass lesson: agreement between AI tools is not independent corroboration. Winter also teaches this idea before the final activities; collection completion is optional.
 - Fall and Winter use broad bearings at long range in **Explorer** mode. Winter snow periodically obscures the compass outdoors, and snowdrifts partly cover the northern trail. Landmarks, lanterns and signposts provide clues. **Pause → Guidance: Assisted** restores exact distance and route guidance, including during snowfall.
 - The **Frostbound Warden** stands immediately outside Echo Cavern. Complete the two outdoor evidence stations, then score **4/5** to earn the Winter crest and recruit Little Mage. The cave stays closed until this encounter is passed.
-- Inside the cave, complete the Echo Archive to open the final hall. The **Echo Keeper** asks eight questions spanning all four seasons and the artifact lesson. **7/8** passes. Feedback follows every answer; retries preserve lessons, crests and collectibles.
+- Inside the cave, complete the Echo Archive to open the final hall. The **Echo Keeper** presents eight new AI safety activities spanning all four seasons: selecting private details, arranging a prompt, matching tasks to help and checking evidence. **7/8** passes. Dragging has click and keyboard alternatives. The independent-evidence lesson is taught in Winter, so it does not depend on collecting optional artifacts. Feedback follows every answer; retries preserve lessons, crests and collectibles.
 
 ## Teammate video handoff
 
@@ -31,7 +33,11 @@ The certificate uses the explorer name and completion date. On desktop, Download
 
 The generated atlas uses the existing seasonal terrain pack as its visual reference: rounded violet-gray stone, warm ivory highlights, earthy roofs and clustered pixel shading. It adds warm and snowy ranger cottages, a mountain integrated with the cave mouth, and collectible compass shrines. Existing shelter/cottage visuals use the same family. Fall's enlarged placeholder guardian is replaced by a four-pose stone-and-bramble Sentinel atlas. Only authored landmark buildings remain; their front steps connect to trails. Seasonal cottage variants, snow-rooted trees, carved signs and grouped local furnishings replace generic extra-house placement. Generated files and import metadata live under `Assets/Journey/Resources/Journey`.
 
-Water surfaces have moving highlights, lanterns subtly flicker, and existing blossom/leaf/snow effects continue. Companions retain a safe route spine but use different gaps and slowly varying lateral offsets. Obstacle checks pull the formation back into narrow passages; teleports reset its route.
+Water surfaces have moving highlights, lanterns subtly flicker, and existing blossom/leaf/snow effects continue. All UI now uses the supplied Determination font through a baked TMP asset, including menu, notes, choices, controls, collection and certificate. Existing point sizes remain; font leading is normalized and cramped labels are shortened.
+
+Spring, Summer and Winter have new seasonal guardian atlases; the final Echo Keeper is a larger ancient AI robot. Two idle poses and distinct one-shot windup/impact poses respond to encounter events. Fall's existing Sentinel is unchanged. See `Bosses.md`.
+
+Companions retain a safe route spine but use different gaps and slowly varying lateral offsets. Obstacle checks pull the formation back into narrow passages; teleports reset its route.
 
 ## Performance changes
 
@@ -51,7 +57,7 @@ These changes address identifiable unnecessary work. They do not establish the t
 
 ## Verification
 
-The expanded pure .NET suite covers all 32 Summer, 243 Fall, 243 Winter and 6,561 final-boss answer combinations, plus save round trips, corrupt-primary recovery, reset, bounds and name handling. The Unity integration runner traverses the actual four-season portals, checks mission/boss retries and UI text at 1280×720 and 1024×768, follows routes to every artifact, collects all twelve with F-key input, verifies outdoor and cave checkpoint restoration, exports a personalized PDF, resets the profile, and checks that the opening video plays before fresh Spring.
+The expanded pure .NET suite covers all 32 Summer, 243 Fall, 243 Winter and 256 final-activity pass/fail combinations, plus save round trips, corrupt-primary recovery, reset, bounds and name handling. The Unity integration runner traverses the actual four-season portals, checks mission/boss retries and UI text at 1280×720 and 1024×768, follows routes to every artifact, collects all twelve with F-key input, verifies outdoor and cave checkpoint restoration, exports a personalized PDF, resets the profile, and checks fresh Spring starts directly when the teammate intro is absent.
 
 Run the existing .NET project, `python3 tests/check_assets.py`, and Unity's `SeasonIntegrationChecks.Run`. Runtime captures, test saves and generated sample PDFs are written under `capstone/Logs/SeasonChecks` and are not source assets. `SeasonIntegrationChecks.Build` creates the release Mac application there.
 

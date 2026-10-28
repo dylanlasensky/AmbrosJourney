@@ -24,7 +24,7 @@ namespace AmbrosJourney.Journey
             // Keep type legible on bright displays without flattening the illustration.
             var shade = ui.Panel(ui.Root, "Menu shade", new Rect(-640,-360,500,720), new Color(.015f,.025f,.02f,.12f));
             shade.GetComponent<UnityEngine.UI.Image>().raycastTarget = false;
-            Text(ui,"Ambros title","AMBROS’",new Rect(-565,-307,435,100),82);
+            Text(ui,"Ambros title","AMBROS'",new Rect(-565,-307,435,100),82);
             Text(ui,"Journey title","JOURNEY",new Rect(-565,-229,435,100),82);
             Text(ui,"Subtitle","Four Seasons of Discovery",new Rect(-554,-128,420,39),25,Gold);
             Rule(ui,-553,-86,352);

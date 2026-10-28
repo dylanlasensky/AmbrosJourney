@@ -1,69 +1,45 @@
 # Game design and team handoff
 
-Read this alongside the README before extending Ambros' Journey. Planned features are not all implemented.
+This is the current design/implementation handoff. Dated validation reports remain evidence of their own snapshots; see [documentation index](README.md).
 
-## Sprint context
+## Story and audience
 
-Early repository work established the Unity project, character and animation packs, and seasonal environment assets. Map art is a foundation, not evidence that every season is playable.
+Ambros, represented by the Chibi Assassin character, is pulled into a game while using his laptop. Four seasons teach middle-school players to understand AI, keep their own judgment, ask useful questions and check evidence. The Ancient Mage is another trapped child who has grown old. Summer's married Warriors, Fall's Emberfist and Winter's Little Mage provide the later lessons.
 
-Sprint Two established the four-season educational adventure. Ambros uses the Chibi Assassin character. The Ancient Mage is another child who has been trapped so long that he has grown old. Summer's married Warriors teach overreliance, Fall's Emberfist Warrior teaches prompt engineering, and Winter's Little Mage teaches verification. Companions join after their seasons. The eventual final AI Safety challenge, return to Spring with an item obtained in Winter, and completion certificate resolve the wider adventure.
+The teammate owns the final intro/outro videos. The generated placeholder intro and its tools were retired. Until the intro is supplied, name entry leads straight into Spring. The current final victory goes to the outro/certificate flow; the earlier proposal for a required interactive return to Spring is not implemented.
 
-The current direction updates that plan:
+## Progression contract
 
-- Ambros starts by playing a game on his laptop at home and is pulled inside. The roughly twenty-second opening is noninteractive and hands control to Spring.
-- Spring targets five minutes within a roughly thirty-minute full game. Do not pad playtime with timers or repetitive dialogue.
-- Exploration and field notes teach concepts before bats test them. A distinct seasonal guardian checks understanding.
-- Spring's guardian is Thornhide, a separate large creature rather than another bat.
-- The expanded map has an enlarged cottage, connected steps and approach, open woodland, a lake and dock, winding routes, and a southern arena with the gate behind the boss.
+| Stage | Teaching and application | Guardian threshold | Companion/reward |
+| --- | --- | --- | --- |
+| Spring | Meet Mage; three landmark notes; six true/false claims about training, humanlike responses, verification and privacy | Blossom Guardian, 4/5 | Apprentice; Ancient Mage |
+| Summer | Useful tool choices; hint then Sun > Seed > Leaf practice; permitted draft feedback; fictional privacy redaction and human support | Suncrest Guardian, 4/5 after three wards | Independent Thinker; both Warriors |
+| Fall | Goal/context/format; audience and permitted hints; specific revisions and factual limits; seven choices across three notes | Existing Bramble Sentinel, 4/5 after three runes | Prompt Pathfinder; Emberfist |
+| Winter outdoors | Original sources, source context, independent evidence and current local information; four choices after two notes | Frostbound Warden, 4/5 | Winter crest; Little Mage; cave access |
+| Cave/finale | Echo Archive uncertainty/correction note and two choices; eight new cumulative AI safety activities | Echo Keeper, 7/8 | Journey complete; optional outro; personalized PDF |
 
-Sprint Three is due November 4. The current schedule covers rough versions of all levels, then finalizing Spring and Summer. Later work finishes the remaining seasons and finale, includes audience testing, and prepares the post-Thanksgiving demo. See the README for the team's weekly dates. This is a design handoff, not a replacement for original sprint submissions or proof that every planned deliverable is complete.
+Teach before testing. Spring is approachable; later scenarios require applying concepts and distinguishing plausible shortcuts. Wording is concise and conversational, with no em dashes in runtime copy. Explanations should help the player understand a mistake. Mission retries retain completed choices; failed guardians retain missions; depleted courage replenishes. There are no artificial waiting timers.
 
-## Spring progression contract
+The final uses multi-selection, drag/click prompt assembly, ordering, matching and one new judgment choice. It applies the lessons in unfamiliar situations rather than repeating earlier questions. The AI-agreement lesson is in Winter's ordinary note as well as the optional collection reward, so final access does not depend on finding every artifact.
 
-1. Arrive near the cottage and meet the Ancient Mage for the three-page introduction.
-2. Explore three landmark field-note stops covering training from examples, humanlike responses and verification, and privacy/safe use.
-3. Visit three spaced-out misinformation bats. Each has two true/false questions; collect the relevant note first. The compass and prompts guide exploration.
-4. Review collected notes with J. Wrong answers provide feedback and retries. Courage can deplete and replenish without erasing lesson progress.
-5. Complete Thornhide's five-question quiz. Four correct answers unlock the Summer gate. A lower score permits another attempt while preserving completed lessons.
-6. The Mage joins and the gate opens. Close the conversation and walk through the unlocked gate: the runtime Summer portal adapter loads playable Summer.
+## Exploration, art and presentation
 
-Test route clarity and comprehension with first-time players. The recorded demo is shorter than the target because it follows a known route and advances text quickly. Keep teaching copy concise and age-appropriate. Teach players to check claims and protect personal information. Use authored lessons rather than a live model service.
+Spring targets about five minutes within a roughly thirty-minute full journey; Summer's 5-6 minute estimate and all pacing targets remain unmeasured. Fall's 99 x 93 tiles are about 2.5 times Summer's area. Rivers, branching paths and hedge turns make later navigation more complex. Winter adds snow, unsafe ice, landmark clues and a second map.
 
-## Art, layout, and UI
+Keep routes readable, doorsteps connected and interaction areas clear. The world is whimsical top-down pixel art with natural seasonal scenery and signs of machine takeover. The new Blossom Guardian, Suncrest Guardian and Frostbound Warden use seasonal silhouettes and materials. The final Keeper is a larger ancient AI robot. Fall's existing Sentinel remains unchanged.
 
-Preserve the original pixel-art characters and seasonal environment identity. Match new assets in palette, scale, perspective, and readability. Detail should distinguish places without crowding paths. Keep cottage steps usable, shoreline boundaries clear, and the boss approach readable. Avoid placing all enemies at spawn or reducing the route to a simple T-shaped junction.
+All four seasons and menus use Determination, existing point sizes and shared parchment cards. Font leading is normalized without scaling glyphs; short labels are adjusted to fit rather than making the text smaller. Explorer guidance uses broad bearings in distant Fall/Winter areas and Winter whiteouts; Assisted restores exact route guidance. Companions follow a safe breadcrumb spine with varied spacing/offsets and obstacle-aware narrowing.
 
-Use a cartoony fantasy UI with legible text, contextual E prompts, a journal, and clear objectives. Directional guidance should encourage movement between lessons. The guardian must look different from the bats.
+## Persistent journey
 
-Intro and outro videos are owned by the teammate. The retired procedural intro and its generator have been removed. The game starts directly in Spring until a teammate clip is supplied; see `JourneyCompletion.md` for the optional video hooks.
+Name entry, Continue, pause, save/return, confirmed reset, unlocked-season travel, twelve artifacts, Evidence Keeper and the PDF certificate are implemented. Saves retain exact positions/region, partial lessons, guardians and collectibles locally with a recovery copy. There are no cloud accounts or live AI calls. One profile is stored per device.
 
-## Implementation and collaboration
+Three artifacts per season encourage revisits. Completing the collection reveals the Evidence Compass lesson about privacy, original sources, independent evidence and uncertainty. These collectibles are optional; the final requires all lessons/crests, not all artifacts.
 
-| Location | Purpose |
-| --- | --- |
-| `capstone/` | Unity project root; open this folder in Unity Hub |
-| `capstone/Assets/SpringPrototype/Scripts/` | Player, camera, dialogue, lessons, UI, progression, atmosphere |
-| `capstone/Assets/SpringPrototype/Editor/` | Scene builders, polish tools, validation, demo capture |
-| `capstone/Assets/Resources/Journey/Intro.mp4` | Optional teammate-owned intro (not supplied) |
-| `tools/opening-art/` | Original illustrated opening references |
-| `docs/SpringDemo.mp4` | Recorded gameplay preview |
-| `SPRING_PROTOTYPE.md` | Reproduction and validation instructions |
+## Collaboration and outstanding work
 
-World rebuild commands replace generated layout content. Coordinate before running them and apply the cottage/learning-trail polish step afterward. Extend the existing game rather than creating an unrelated prototype.
+Open `capstone/` in Unity 6000.6.2f1. Runtime world builders and Resources prefabs own later seasons; coordinate before rebuilding scenes or assets. Commit required `.meta` files and preserve pack/font licenses. Keep Library, Temp, Logs and player builds out of source control. Legacy `orc` and skeleton fields remain compatibility/source references, not the displayed boss forms.
 
-Commit `.meta` files with new assets so references survive another teammate's checkout. Do not commit Library, Temp, Logs, local capture frames, or editor caches. Agree on scene ownership before simultaneous edits and review scene changes carefully. Preserve source-pack notices and licensing.
+Sprint Three is due Nov 4; the original weekly schedule remains planning context in the root README. The teammate's clips, audience comprehension/difficulty/pacing tests, target-hardware/audio checks, and broader inventory/customization remain outstanding. Implemented features are not proof that the game meets learning or performance goals.
 
-## Validation and remaining work
-
-Spring validation covers field-note completion, wrong-answer retries, six bat challenges, a failing 60% guardian result, a passing 80% result, distinct guardian art, and expanded bounds. The gameplay recording exercises the playable route. These checks do not replace a clean build or audience testing.
-
-Spring, Summer, Fall and Winter are playable. The journey update adds the main menu, pause/return/reset, persistent chapter checkpoints, an artifact collection, cumulative final challenge and PDF certificate. The teammate owns the final intro/outro videos. Character customization and broader inventory remain future work; audience testing is still needed. Current movement uses side-facing character frames.
-
-
-## Summer → Fall progression
-
-Summer's three wards and 4/5 Orc pass are unchanged. Close its final conversation and walk through the Fall portal. The add-only Fall adapter loads the Resources world prefab into a runtime scene, using Summer's existing transition convention.
-
-Fall follows the authored prompt-engineering plan: Emberfist introduces goal/context/format, audience and limits, then checking and revising. Three field-note stations teach before seven applied choices. All three runes unlock the Bramble Sentinel; 4/5 passes its five three-choice questions, recruits Emberfist and opens the Winter gate. Winter now continues through Frostveil and Echo Cavern: two outdoor evidence stations, a five-question Warden outside the cave requiring 4/5, the cave archive, and an eight-question cumulative Echo Keeper requiring 7/8. Final victory connects to the teammate outro and PDF certificate.
-
-Emberwood's 99 × 93 tiles are about 2.5 times Summer's area. Two river crossings, eastern hedge switchbacks and an optional watch-post branch increase navigation difficulty. The compass follows physics-valid routes. Keep the same movement, dialogue, journal, courage recovery and persistent progression conventions. See `capstone/Assets/FallLevel/README.md` for scene ownership, rebuilding, art sources and validation.
+Use [Journey completion](JourneyCompletion.md), [current questions](QuestionRefresh.md), [boss artwork](Bosses.md), [testing](Testing.md) and [current validation](CurrentValidation.md).

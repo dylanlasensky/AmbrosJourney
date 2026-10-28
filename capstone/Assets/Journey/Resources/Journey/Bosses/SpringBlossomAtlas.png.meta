@@ -1,0 +1,431 @@
+fileFormatVersion: 2
+guid: 9c21cbaa0b11d44a49874af470e57cea
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 5718909656814903929
+    second: SpringBlossomAtlas_0
+  - first:
+      213: 8570944571220809633
+    second: SpringBlossomAtlas_1
+  - first:
+      213: -2322622529705096635
+    second: SpringBlossomAtlas_2
+  - first:
+      213: 603618124703937039
+    second: SpringBlossomAtlas_3
+  - first:
+      213: 4677893727519195284
+    second: SpringBlossomAtlas_4
+  - first:
+      213: -4754354533151577639
+    second: SpringBlossomAtlas_5
+  - first:
+      213: 6337128967872217984
+    second: SpringBlossomAtlas_6
+  - first:
+      213: 8080893244850559326
+    second: SpringBlossomAtlas_7
+  - first:
+      213: -1520996425864072631
+    second: SpringBlossomAtlas_8
+  - first:
+      213: 741176843719102123
+    second: SpringBlossomAtlas_9
+  - first:
+      213: 8941984658324372634
+    second: SpringBlossomAtlas_10
+  - first:
+      213: 6650792792390315883
+    second: SpringBlossomAtlas_11
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 1
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 0
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: SpringBlossomAtlas_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 640
+        width: 622
+        height: 600
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 972e0056806ad5f40800000000000000
+      internalID: 5718909656814903929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpringBlossomAtlas_1
+      rect:
+        serializedVersion: 2
+        x: 623
+        y: 586
+        width: 610
+        height: 644
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a7dd2d3dac12f670800000000000000
+      internalID: 8570944571220809633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpringBlossomAtlas_2
+      rect:
+        serializedVersion: 2
+        x: 840
+        y: 1210
+        width: 27
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 54acb917d1364cfd0800000000000000
+      internalID: -2322622529705096635
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpringBlossomAtlas_3
+      rect:
+        serializedVersion: 2
+        x: 1115
+        y: 1213
+        width: 15
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f0237fe7c7b706800800000000000000
+      internalID: 603618124703937039
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpringBlossomAtlas_4
+      rect:
+        serializedVersion: 2
+        x: 1127
+        y: 1207
+        width: 16
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4904fc58f873be040800000000000000
+      internalID: 4677893727519195284
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpringBlossomAtlas_5
+      rect:
+        serializedVersion: 2
+        x: 1210
+        y: 1207
+        width: 7
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d96b33edb3250eb0800000000000000
+      internalID: -4754354533151577639
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpringBlossomAtlas_6
+      rect:
+        serializedVersion: 2
+        x: 611
+        y: 1116
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0838cd1883102f750800000000000000
+      internalID: 6337128967872217984
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpringBlossomAtlas_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 626
+        height: 619
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e59db2f7799152070800000000000000
+      internalID: 8080893244850559326
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpringBlossomAtlas_8
+      rect:
+        serializedVersion: 2
+        x: 627
+        y: 0
+        width: 612
+        height: 595
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 942bbbb2fc554eae0800000000000000
+      internalID: -1520996425864072631
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpringBlossomAtlas_9
+      rect:
+        serializedVersion: 2
+        x: 627
+        y: 363
+        width: 31
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bae4f959960394a00800000000000000
+      internalID: 741176843719102123
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpringBlossomAtlas_10
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 15
+        width: 35
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a9cba6a8baf481c70800000000000000
+      internalID: 8941984658324372634
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpringBlossomAtlas_11
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 25
+        width: 18
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b6f2729aecc5c4c50800000000000000
+      internalID: 6650792792390315883
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      SpringBlossomAtlas_0: 5718909656814903929
+      SpringBlossomAtlas_1: 8570944571220809633
+      SpringBlossomAtlas_10: 8941984658324372634
+      SpringBlossomAtlas_11: 6650792792390315883
+      SpringBlossomAtlas_2: -2322622529705096635
+      SpringBlossomAtlas_3: 603618124703937039
+      SpringBlossomAtlas_4: 4677893727519195284
+      SpringBlossomAtlas_5: -4754354533151577639
+      SpringBlossomAtlas_6: 6337128967872217984
+      SpringBlossomAtlas_7: 8080893244850559326
+      SpringBlossomAtlas_8: -1520996425864072631
+      SpringBlossomAtlas_9: 741176843719102123
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

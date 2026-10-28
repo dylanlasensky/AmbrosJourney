@@ -24,7 +24,7 @@ namespace AmbrosJourney.Journey
         public bool Paused {get;private set;}
         int resumeFrame=-1;JourneyUI ui;bool menu,loading,cinematic;float nextSave;string notice="";Action beginIntro;TMP_InputField nameInput;
         public static readonly string[] ChapterNames={"Spring Valley","Summer Valley","Emberwood","Frostveil"};
-        public const string ArtifactLesson="THE EVIDENCE COMPASS\nPause before sharing. Protect private details. Trace a claim to its original source, compare independent evidence, and explain what you still do not know.\n\nEven unanimous AI answers are not independent evidence: several tools can repeat the same mistake. This is the collection's final-boss lesson.";
+        public const string ArtifactLesson="THE EVIDENCE COMPASS\nBefore sharing, leave out private details, check the original source and look for separate evidence. Say what you still haven't checked.\n\nSeveral AI tools can agree and still be wrong. They may repeat the same mistake, so matching replies don't count as separate checks.";
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]static void ResetStatics(){Instance=null;TestMode=false;SavePathOverride=null;}
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]static void Install(){if(!Instance){var host=new GameObject("Journey / save and menus");DontDestroyOnLoad(host);host.AddComponent<JourneySession>();}}
         static bool ValidSave(JourneyData data)
@@ -205,7 +205,7 @@ namespace AmbrosJourney.Journey
         void ShowHUD()
         {
             ui.Clear();var pause=ui.Button(ui.Root,"Pause / Esc",new Rect(470,298,145,38),Pause);var rect=pause.GetComponent<RectTransform>();rect.anchorMin=rect.anchorMax=Vector2.one;rect.anchoredPosition=new Vector2(-169,-245);
-            var b=ui.Button(ui.Root,"Artifacts "+Data.ArtifactCount+" / 12",new Rect(300,298,170,38),ShowArtifacts);var br=b.GetComponent<RectTransform>();br.anchorMin=br.anchorMax=Vector2.one;br.anchoredPosition=new Vector2(-194,-291);
+            var b=ui.Button(ui.Root,"Found "+Data.ArtifactCount+"/12",new Rect(300,298,170,38),ShowArtifacts);var br=b.GetComponent<RectTransform>();br.anchorMin=br.anchorMax=Vector2.one;br.anchoredPosition=new Vector2(-194,-291);
         }
         void ShowPause()
         {
@@ -238,7 +238,7 @@ namespace AmbrosJourney.Journey
             ui.Text(ui.Root,"Collection lesson",Data.ArtifactCount==12?ArtifactLesson:"Complete the collection to unlock the Evidence Compass lesson.\nUse the pause menu to revisit earlier seasons. Nothing is permanently missable.",new Rect(-550,75,1100,160),22,JourneyUI.Paper);
             ui.Button(ui.Root,"Return",new Rect(-550,270,300,48),()=>{if(menu)ShowMenu();else Resume();});
         }
-        string ArtifactRow(int chapter){string s="";for(int i=chapter*3;i<chapter*3+3;i++)s+=(Data.artifacts[i]?"Found: ":"Missing: ")+JourneyWorld.ArtifactNames[i]+"\n";return s;}
+        string ArtifactRow(int chapter){string s="";for(int i=chapter*3;i<chapter*3+3;i++)s+=(Data.artifacts[i]?"[x] ":"[ ] ")+JourneyWorld.ArtifactNames[i]+"\n";return s;}
         public void Collect(int id){if(id<0||id>=12||Data.artifacts[id])return;Data.artifacts[id]=true;Save();ShowArtifacts();}
         public void FinishJourney(){Data.finished=true;Data.completedOn=DateTime.Now.ToString("yyyy-MM-dd");Save();StartCoroutine(JourneyEnding.Play(this));}
         public void SetCinematicVisible(bool playing){cinematic=playing;ui.gameObject.SetActive(!playing);}

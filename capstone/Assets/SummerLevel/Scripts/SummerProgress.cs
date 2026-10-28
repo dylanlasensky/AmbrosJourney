@@ -89,20 +89,20 @@ namespace AmbrosJourney.Summer
     {
         public static readonly int[] Pattern = { 0, 2, 1 };
         public static readonly string[] Notes = {
-            "CHOOSE THE RIGHT TOOL\nAI can suggest ideas or explain unfamiliar topics. People still choose what fits. A damaged bridge needs a qualified person to inspect it; a chatbot cannot establish its safety.",
-            "KEEP YOUR PRACTICE\nTry first. Ask for a hint. Explain the answer in your own words. Help should leave you something to work out. Follow your teacher's rules about AI.",
-            "ASK SAFELY\nShare only what the task needs. Keep your full name, address, passwords and private photos private. Use fictional examples. Talk with real people and trusted adults when you need support."
+            "PICK THE RIGHT KIND OF HELP\nAI can help you come up with ideas or explain a topic. You still need to decide what fits. Some jobs need someone who can look at the real problem, like a builder checking a damaged bridge.",
+            "LEAVE ROOM TO PRACTICE\nTry a step yourself, then ask for a hint if you need one. Check that you can explain what you did. Follow your teacher's rules about which help is allowed.",
+            "SHARE LESS, ASK PEOPLE TOO\nA useful request doesn't need your password or home address. Use made-up details when you can. If someone is upset or you need personal support, talk to a real person you trust."
         };
         public static readonly SummerQuestion[] Workshop = {
-            new SummerQuestion("The village needs names for its summer festival. Which use of AI fits the task?", "Brainstorm names, then choose together", "Send everyone's private messages", 0, "AI can offer possibilities. People decide what fits, without sharing private messages."),
-            new SummerQuestion("The bridge looks damaged. What should the village do?", "Cross because a chatbot says it is safe", "Ask the village builder to inspect it", 1, "A chatbot cannot establish whether this particular bridge is safe. Ask a qualified person.")
+            new SummerQuestion("The village is naming its summer festival. How could AI help?","Suggest a few names for the group to discuss","Choose the name and send it straight to the printer",0,"Suggestions can get you started. The people planning the festival know what fits their village."),
+            new SummerQuestion("A plank on the bridge has cracked. What is the best next step?","Describe it to AI and use its repair steps","Ask the builder to look at the bridge",1,"The builder can inspect the real bridge. A chat description can't show everything that matters.")
         };
         public static readonly SummerQuestion[] Boss = {
-            new SummerQuestion("You do not understand a homework topic. What could help you learn?", "Ask for an explanation, then try an example yourself", "Copy a finished answer without understanding it", 0, "Use explanations to support your own practice."),
-            new SummerQuestion("Your teacher says this assignment must be completed without AI. What should you do?", "Use AI anyway and hide it", "Follow the rule; ask your teacher for help", 1, "Follow classroom rules. Your teacher can explain what help is allowed."),
-            new SummerQuestion("You want ideas for a fictional creature. What could you do?", "Ask for suggestions, then develop your own idea", "Let AI make every choice because your ideas do not matter", 0, "Brainstorming can help. Your choices and creativity still matter."),
-            new SummerQuestion("An AI tool asks for your password to help with a story. What should you do?", "Send it to get a better story", "Keep it private and stop sharing sensitive information", 1, "A story does not need your password. Ask a trusted adult if a tool requests private information."),
-            new SummerQuestion("AI completed a problem, but you cannot explain it. What next?", "Submit it without reading it", "Work through the steps and practice a similar problem", 1, "Practice and explaining the steps help you build understanding.")
+            new SummerQuestion("You read an AI explanation but still can't start the homework. What would help most?","Ask for a small example, then try a similar one","Ask it to finish this question so you can study the answer",0,"An example can help you get going. Trying a new one shows which parts you understand."),
+            new SummerQuestion("Your teacher allows spellcheck but says not to use AI to write the paragraph. What fits that rule?","Ask AI for a paragraph and change a few words","Write your paragraph and use the allowed spellcheck",1,"Use the help the teacher allows. Changing a few words doesn't make an AI paragraph your own work."),
+            new SummerQuestion("AI suggests a creature for your story, but it doesn't fit your plot. What should you do?","Keep the parts you like and change what doesn't fit","Keep the whole idea because the tool made it consistent",0,"You know the story you're trying to tell. Suggestions don't have to decide it for you."),
+            new SummerQuestion("A story tool asks for your account password to save your ideas. What should you do?","Put it in the chat just for this session","Keep it out of the chat and ask an adult about the request",1,"Don't put a password in a conversation. An adult can help you check how the tool is supposed to work."),
+            new SummerQuestion("An AI answer matches the answer key, but you can't explain the steps. Are you ready to hand it in?","Yes, since the result matches","Not yet; try the steps and a similar problem yourself",1,"A right result doesn't show what you've learned. Check that you can do the thinking too.")
         };
     }
 }

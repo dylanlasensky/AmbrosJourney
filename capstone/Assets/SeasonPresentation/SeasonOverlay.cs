@@ -28,7 +28,7 @@ namespace AmbrosJourney.Presentation
         public void Initialize(TMP_FontAsset typeface, int chapter)
         {
             season=chapter;bool autumn=chapter==3;
-            font=typeface; ink=autumn?new Color(.25f,.20f,.14f):new Color(.19f,.29f,.23f);
+            font=GameFont.Resolve(typeface); ink=autumn?new Color(.25f,.20f,.14f):new Color(.19f,.29f,.23f);
             accent=autumn?new Color(.43f,.26f,.16f):new Color(.23f,.39f,.30f);
             if(chapter==4){ink=new Color(.16f,.23f,.30f);accent=new Color(.19f,.32f,.42f);}
             rounded=Rounded(); arrowSprite=ArrowSprite();card=FieldCardSkin.Create();if(card)paper=Color.white;
@@ -37,7 +37,7 @@ namespace AmbrosJourney.Presentation
             gameObject.AddComponent<UnityEngine.UI.GraphicRaycaster>();
             if(!EventSystem.current){var e=new GameObject("Season EventSystem",typeof(EventSystem),typeof(InputSystemUIInputModule));e.transform.SetParent(transform,false);}
             var title=Panel("Chapter",transform,Vector2.up,new Rect(24,24,290,83));
-            Text("Title",title,new Rect(18,10,260,32),new[]{"Spring Valley","Summer Valley","Emberwood","Winter / Frostveil"}[chapter-1],25,true);
+            Text("Title",title,new Rect(18,10,260,32),new[]{"Spring Valley","Summer Valley","Emberwood","Frostveil"}[chapter-1],25,true);
             Text("Chapter",title,new Rect(18,48,260,27),new[]{"01  /  THE AWAKENING","02  /  INDEPENDENCE","03  /  PROMPT FORGE","04  /  SEEK THE EVIDENCE"}[chapter-1],14);
             var tracker=Panel("Objectives",transform,Vector2.one,new Rect(-428,24,404,100));
             Objective=Text("Objective",tracker,new Rect(18,37,365,57),"",19);objectiveRect=Objective.rectTransform;
@@ -47,7 +47,7 @@ namespace AmbrosJourney.Presentation
             var arrowObject=new GameObject("Golden direction arrow",typeof(RectTransform),typeof(UnityEngine.UI.Image));arrowObject.transform.SetParent(compassBox,false);Arrow=arrowObject.GetComponent<RectTransform>();Place(Arrow,Vector2.up,new Rect(27,27,34,34));Arrow.pivot=new Vector2(.5f,.5f);Arrow.anchoredPosition=new Vector2(44,-46);var image=arrowObject.GetComponent<UnityEngine.UI.Image>();image.sprite=arrowSprite;image.raycastTarget=false;
             CompassText=Text("Distance",compassBox,new Rect(8,68,76,25),"",14);CompassText.alignment=TextAlignmentOptions.Center;
             controls=Panel("Controls",transform,Vector2.zero,new Rect(24,-62,780,38));
-            Text("Controls",controls,new Rect(16,6,750,27),"WASD / Arrows  Move    E  Interact    1–3  Answer    J  Journal    R  Return",14);
+            Text("Controls",controls,new Rect(16,6,750,27),"WASD / Arrows  Move    E  Interact    1-3  Answer    J  Journal    R  Return",14);
             context=Panel("Interaction prompt",transform,new Vector2(.5f,0),new Rect(-190,-120,380,42));Prompt=Text("Prompt",context,new Rect(18,5,345,32),"",19);
             // Party membership belongs in the journal, rather than floating over the scenery.
             Party=Text("Party",transform,new Rect(0,0,1,1),"",14);Party.gameObject.SetActive(false);
@@ -103,6 +103,16 @@ namespace AmbrosJourney.Presentation
             LayoutDialogue();
         }
         public void Feedback(bool right){positive=right;feedbackUntil=Time.unscaledTime+.55f;}
+        RectTransform activityArea;
+        float activityHeight;
+        public RectTransform BeginActivity(float height)
+        {
+            EndActivity();activityHeight=height;
+            var o=new GameObject("Final activity",typeof(RectTransform));o.transform.SetParent(dialogueRect,false);activityArea=o.GetComponent<RectTransform>();
+            foreach(var choice in Choices)choice.gameObject.SetActive(false);
+            Present(true);return activityArea;
+        }
+        public void EndActivity(){activityHeight=0;activityArea=null;}
         void LayoutDialogue()
         {
             if(!Copy)return;
@@ -112,10 +122,11 @@ namespace AmbrosJourney.Presentation
             float choiceHeight=46;
             if(Asking)foreach(var b in Choices)if(b.gameObject.activeSelf)choiceHeight=Mathf.Max(choiceHeight,b.GetComponentInChildren<TextMeshProUGUI>().GetPreferredValues(818,0).y+16);
             float height=Asking?Mathf.Max(300,61+textHeight+14+count*(choiceHeight+7)+40):Mathf.Max(220,61+textHeight+78);
-            float top=root.rect.height-25-height;
+            if(activityHeight>0)height=61+textHeight+14+activityHeight+40;
             Place(dialogueRect,new Vector2(.5f,0),new Rect(-450,-(height+25),900,height));
             Place(bodyRect,Vector2.up,new Rect(24,61,850,textHeight));
             float y=61+textHeight+14;
+            if(activityArea)Place(activityArea,Vector2.up,new Rect(24,y,850,activityHeight));
             foreach(var b in Choices)if(b.gameObject.activeSelf)
             {
                 var r=b.GetComponent<RectTransform>();bool continuing=!Asking;

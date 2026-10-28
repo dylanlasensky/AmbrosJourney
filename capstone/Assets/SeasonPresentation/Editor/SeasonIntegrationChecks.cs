@@ -74,8 +74,10 @@ public static class SeasonIntegrationChecks
             if (stage == 0)
             {
                 AmbrosJourney.Journey.JourneySession.Instance.BeginTestProfile();
+                AmbrosJourney.Journey.JourneySession.Instance.Resume(); // A background Editor may have auto-paused before test mode began.
                 var g = UnityEngine.Object.FindAnyObjectByType<SpringGuide>();
                 Check(g, "Spring scene has its guide");
+                BossRefreshChecks.CheckAndCapture(GameObject.Find("Blossom Guardian").GetComponent<SeasonBossVisual>(),"SpringBlossom");
                 CheckMotion(UnityEngine.Object.FindAnyObjectByType<SpringPlayer>(), "input", 4);
                 var gate = GameObject.Find("Summer Gate (unlocks after 80 percent)").transform;
                 Check(!SummerPortalBridge.GateAllowsEntry(g, gate.position, gate.position), "Locked Spring gate blocks entry");
@@ -98,7 +100,7 @@ public static class SeasonIntegrationChecks
             else if (stage == 1 && SceneManager.GetActiveScene().name == "Summer")
             {
                 var l = UnityEngine.Object.FindAnyObjectByType<SummerLevel>();
-                Check(l && l.InputBlocked, "Summer loads and shows introduction");CheckMotion(l.player,"movement",4.6f);Capture("SummerInterface");
+                Check(l && l.InputBlocked, "Summer loads and shows introduction");BossRefreshChecks.CheckAndCapture(l.orc.GetComponent<SeasonBossVisual>(),"SummerSuncrest");CheckMotion(l.player,"movement",4.6f);Capture("SummerInterface");
                 Check(!UnityEngine.Object.FindAnyObjectByType<SpringGuide>(), "Spring unloads after transition");
                 Check(!FallPortalBridge.GateAllowsEntry(l), "Incomplete Summer cannot exit");
                 PresentationTools.ValidateRoutes();
@@ -130,10 +132,10 @@ public static class SeasonIntegrationChecks
             else if(stage==3&&SceneManager.GetActiveScene().name=="Winter")
             {
                 Check(!UnityEngine.Object.FindAnyObjectByType<FallLevel>(),"Fall unloaded");
-                CheckMotion(UnityEngine.Object.FindAnyObjectByType<WinterLevel>().player,"movement",4.6f);Capture("WinterArrival");Advance(4);
+                CheckMotion(UnityEngine.Object.FindAnyObjectByType<WinterLevel>().player,"movement",4.6f);BossRefreshChecks.CheckAndCapture(UnityEngine.Object.FindAnyObjectByType<WinterLevel>().winterGuardian.GetComponent<SeasonBossVisual>(),"WinterFrostbound");Capture("WinterArrival");Advance(4);
             }
             else if(stage==4){AmbrosJourney.Winter.Editor.WinterPlayChecks.Run();Advance(5);}
-            else if(stage==5){Capture("WinterCavern");Advance(6);}
+            else if(stage==5){BossRefreshChecks.CheckAndCapture(UnityEngine.Object.FindAnyObjectByType<WinterLevel>().guardian.GetComponent<SeasonBossVisual>(),"FinalEchoKeeper");Capture("WinterCavern");Advance(6);}
             else if(stage==6)
             {
                 var l=UnityEngine.Object.FindAnyObjectByType<WinterLevel>();l.player.transform.position=l.caveExit.position;l.player.GetComponent<Rigidbody2D>().position=l.caveExit.position;l.World.ChangeRegion(false);l.player.transform.position=WinterWorld.Entrance+Vector2.down*1.5f;l.player.GetComponent<Rigidbody2D>().position=l.player.transform.position;Advance(7);
@@ -154,7 +156,7 @@ public static class SeasonIntegrationChecks
         {
             // Exercise the actual controller physics methods without advancing the player's position.
             owner.SetValue(actor,null);body.linearVelocity=Vector2.zero;field.SetValue(actor,Vector2.right);
-            Call(actor,"FixedUpdate");Check(body.linearVelocity.x>0&&body.linearVelocity.x<speed,"Movement accelerates without snapping");
+            Call(actor,"FixedUpdate");Check(body.linearVelocity.x>0&&body.linearVelocity.x<speed,"Movement accelerates without snapping: velocity="+body.linearVelocity+", blocked="+AmbrosJourney.Journey.JourneySession.Blocked+", fixed dt="+Time.fixedDeltaTime);
             for(int i=0;i<20;i++)Call(actor,"FixedUpdate");Check(Mathf.Abs(body.linearVelocity.x-speed)<.001f,"Movement reaches intended speed");
             field.SetValue(actor,Vector2.zero);for(int i=0;i<5;i++)Call(actor,"FixedUpdate");Check(body.linearVelocity==Vector2.zero,"Released movement brakes within five physics ticks");
             owner.SetValue(actor,originalOwner);if(springGuide)typeof(SpringGuide).GetProperty("DialogueOpen").SetValue(springGuide,true);body.linearVelocity=Vector2.right*speed;Call(actor,"FixedUpdate");Check(body.linearVelocity==Vector2.zero,"Open introduction immediately stops movement");
@@ -185,7 +187,7 @@ public static class SeasonIntegrationChecks
                 camera.targetTexture=rt;camera.aspect=(float)size.x/size.y;
                 foreach(var canvas in canvases){canvas.renderMode=RenderMode.ScreenSpaceCamera;canvas.worldCamera=camera;canvas.planeDistance=1;canvas.sortingOrder=Mathf.Max(30000,canvas.sortingOrder);}
                 Canvas.ForceUpdateCanvases();var overlay=UnityEngine.Object.FindAnyObjectByType<SeasonOverlay>();if(overlay)Call(overlay,"LateUpdate");Canvas.ForceUpdateCanvases();
-                foreach(var canvas in canvases)foreach(var t in canvas.GetComponentsInChildren<TMPro.TextMeshProUGUI>()){t.ForceMeshUpdate();Check(!t.isTextOverflowing,name+" overflow at "+size+": "+t.name);}
+                foreach(var canvas in canvases)foreach(var t in canvas.GetComponentsInChildren<TMPro.TextMeshProUGUI>()){t.ForceMeshUpdate();Check(!t.isTextOverflowing,name+" overflow at "+size+": "+t.name+" / "+t.text+" rect="+t.rectTransform.rect.size+" preferred="+t.GetPreferredValues()+" pointSize="+t.fontSize);}
                 camera.Render();RenderTexture.active=rt;pixels.ReadPixels(new Rect(0,0,size.x,size.y),0,0);pixels.Apply();File.WriteAllBytes("Logs/SeasonChecks/"+name+"-"+size.x+".png",pixels.EncodeToPNG());
             }
             finally{for(int i=0;i<canvases.Length;i++){canvases[i].renderMode=modes[i];canvases[i].worldCamera=cameras[i];canvases[i].planeDistance=planes[i];canvases[i].sortingOrder=orders[i];}camera.targetTexture=oldTarget;camera.aspect=aspect;RenderTexture.active=active;UnityEngine.Object.DestroyImmediate(pixels);UnityEngine.Object.DestroyImmediate(rt);Canvas.ForceUpdateCanvases();}

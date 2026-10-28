@@ -1,3 +1,5 @@
+> Asset provenance: these are the original prompts for earlier world assets. Their text is retained as a record, not a current feature list. New boss art is documented in [Bosses](Bosses.md) and `BossGenerationPrompts.json`; all current live text uses Determination.
+
 # Winter art provenance
 
 Created with the built-in image-generation tool for Ambros Journey. Final PNGs are in `capstone/Assets/WinterLevel/Art/`. Transparent alpha is retained. Unity import settings control the runtime sprite scale and resolution; originals are retained in the repository.

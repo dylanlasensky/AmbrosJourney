@@ -1,26 +1,32 @@
-# Opening and Spring Valley
+# Spring Valley: implementation and review
 
-This build follows Sprint Two's Ambros / Ancient Mage / AI-literacy adventure. The opening follows the updated brief: Ambros plays a game on his laptop, gets pulled inside, and must beat the seasons to get home. No live AI service is used.
+Spring is the introductory chapter of the connected four-season game. The Ancient Mage teaches how AI uses examples, why humanlike language is not human understanding, and how to check claims and protect privacy. He was another child trapped in the game and has grown old there.
 
-## Current build
-- Temporary twenty-second original 2D animation (rejected visual style, replacement pending): furnished bedroom, typing character, growing portal, animated suction and tunnel, landing in Spring. Includes an original music and effects cue. The video automatically loads Spring, with no player action during playback.
-- Spring spans 64 × 64 world units. Winding trails connect the Mage's cottage, Blossom Grove, Stillwater Lake, southern ruins, and a separate guardian clearing. Grass, blossoms, trees, bushes, rocks, a dock, trail posts and drifting petals furnish the map.
-- A parchment journal, contextual interaction prompts and rotating compass guide exploration. The compass routes the second mission around the lake.
-- Three field-note stops teach the material before six applied true/false challenges. Press J to review the collected notes. The lessons cover AI training, humanlike responses, and privacy. Wrong answers provide retries; three courage points replenish on depletion.
-- Thornhide uses a separate animated creature from the existing Creatures Pack. Its five-question quiz requires 4/5 to open the Summer gate behind the arena. Failure preserves lesson progress. The Mage joins after success.
-- The generated woodland cottage and earlier season gate supplement the original asset packs.
+## Start and progression
 
-## Review and reproduction
-Open the inner `capstone` project with Unity 6000.6.2f1. Use the Capstone menu:
-- **Play From Opening** / **Play Spring Only**: review the game.
-- **Upgrade Spring World**: rebuild the expanded map in Spring (replaces that generated layout). Then run **Polish Cottage and Learning Trail** to apply the enlarged cottage, connected approach and revised spawn.
-- **Validate Spring Progression**: checks field-note completion, wrong-answer retry, all six challenges, 60% failure, 80% success, distinct boss art and expanded bounds.
-- **Record Spring Demo**: editor-only walkthrough using ordinary Input System keyboard events. Captures the real Game view at 12 fps into `tools/.spring-demo-v5`; encode with ffmpeg.
+Use the main menu through `Assets/Opening/Intro.unity`, **Capstone > Play From Opening**, or **Play Spring Only** for a direct chapter preview. New Journey starts Spring immediately until the teammate supplies the optional intro.
 
-`AnimatedOpening.cs` retains the editable animation source. The older keyframe renderer and art remain as earlier source material; they are no longer used by the opening video.
+1. Meet the Mage beside his cottage for the three-page introduction.
+2. Read the field notes at Blossom Grove, Stillwater Lake and Whispering Ruins.
+3. Apply each note to two true/false claims from its Myth Bat. Six claims are active; the source retains three unused alternatives.
+4. Use J to review notes. Mistakes explain the answer and allow retries; depleted courage replenishes without erasing lessons.
+5. Pass the **Blossom Guardian** with at least **4/5 (80%)**. This blossom-covered moss/woodland tortoise has separate idle, windup and impact poses. It replaces the old Thornhide creature visually and in displayed names.
+6. Earn Apprentice rank, recruit the Ancient Mage, close the gate conversation and walk through the unlocked Summer portal.
 
-## Limits
-Spring now connects to playable Summer, Fall and Winter. Winter includes an outdoor map and an explorable boss cave; the final return-home chapter remains planned. Saves, inventory, character customization and the eventual completion certificate remain future work. Movement uses the original character pack's side-facing frames. The opening is stylized 2D animation, not a rendered 3D film.
+The 64 x 64-unit valley includes the Mage's cottage, winding woodland trails, a lake and dock, three landmark lessons and a separate southern guardian clearing. The lakeside note is at (7, 1), on the approach to its bat. Three optional artifacts support later collection completion.
 
-## Pacing target
-Spring targets approximately 5 minutes for a first-time player reading the field notes, considering six applied claims, exploring and completing the five-question guardian quiz. This is a design estimate, not a measured usability-test result. Fast repeat play and the demonstration are shorter. No artificial waiting is required. Spring is the shorter introductory chapter. Reserve the remaining roughly twenty-five minutes for the later seasons and finale.
+## Shared systems
+
+Spring uses the same Canvas/TMP parchment UI and Determination font as later chapters. The gold compass points to the next note, bat or guardian, with the existing lake detour. JourneySession adds pause, exact-location saves, artifacts, chapter revisits and certificate access. Progress is persistent, not session-only.
+
+`SpringGuide` owns lesson/guardian rules; `SeasonBossVisual` supplies the new guardian's runtime artwork and one-shot attack. Existing bat art and licensed source-pack files remain. The guardian's previous texture assignment is retained as a source reference; active artwork comes from `Resources/Journey/Bosses/SpringBlossomAtlas`.
+
+## Tools and limits
+
+**Validate Spring Progression** covers prerequisites, six claims, wrong-answer retries, a 3/5 guardian failure and a 4/5 success. The connected integration suite additionally checks real portals, menus, saves, text fitting and the new boss poses.
+
+World rebuilding commands replace generated scene content. Coordinate scene ownership before using Upgrade Spring World or the cottage/trail polish commands. Do not use a Spring rebuild to generate another season. The retired generated opening and `AnimatedOpening.cs` are no longer shipped; old demo footage is historical, not a current visual reference.
+
+Spring's approximate five-minute first-time pacing is a target awaiting audience testing. Movement retains side-facing character frames. The optional teammate intro/outro remains separate from gameplay.
+
+See [current design](docs/GameDesign.md), [questions](docs/QuestionRefresh.md), [boss artwork](docs/Bosses.md) and [validation](docs/CurrentValidation.md).

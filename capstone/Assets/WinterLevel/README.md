@@ -1,26 +1,29 @@
 # Winter: Frostveil and Echo Cavern
 
-Open the inner `capstone` project with Unity **6000.6.2f1**. Use **Capstone → Winter → Play Winter Only**, or complete Fall and walk through its unlocked Winter gate. Close the gate conversation first.
+Use Unity **6000.6.2f1** with the inner `capstone` project. Start at the main menu, complete Fall and walk through the unlocked Winter gate after closing its conversation, or use **Capstone > Winter > Play Winter Only**.
 
-Winter has two explorable maps in one session:
+## Learning route
 
-- **Frostveil:** a snowy woodland trail around unsafe ice, two evidence stations, the Little Mage, lantern signposts and a cave entrance on the northern ridge.
-- **Echo Cavern:** a separate stone interior with connected chambers, a western archive detour, crystal formations and a sealed northern boss hall. Interact with the daylight exit to return outside. Progress survives both directions.
+Little Mage teaches original sources, independent evidence, dates/context, uncertainty and correcting mistakes. The two regions share one session:
 
-The Little Mage teaches verification: find the original source, compare independent evidence, and admit uncertainty or correct mistakes. Read each of three notes before its two challenges. The two outdoor evidence seals unlock the **Frostbound Warden**, directly outside the cave. Score 4/5 to earn the Winter crest, recruit the Little Mage and enter. Complete the cave archive to face the **Echo Keeper**: eight cumulative questions, including the artifact lesson, with 7/8 required. Mistakes and retries preserve lessons.
+1. **Frostveil:** snowy trails around unsafe ice, lantern directions, the Wayfarer's Ledger and Frozen Observatory. Each station teaches a note before two evidence choices.
+2. Complete both outdoor seals, then challenge the **Frostbound Warden** outside the cave. This giant white bear-like guardian has icy fists, crystal antlers and snowy fir growth. Its five questions require **4/5**. Passing earns Winter's crest, recruits Little Mage and opens the entrance.
+3. **Echo Cavern:** bent passages connect stone chambers, crystals, an archive branch and a sealed northern hall. The Echo Archive teaches uncertainty/corrections before its two choices. You can return outside without losing lessons.
+4. All three seals unlock the **Echo Keeper**, a large ancient AI robot with iron/bronze armor, rune circuitry and a cyan core. Eight new AI safety activities review all seasons; **7/8** passes. The activities include privacy selection, prompt assembly, matching, evidence ordering and a new judgment scenario. Dragging has click/number-key alternatives.
+5. Victory starts the optional teammate outro, then the personalized PDF certificate. The current implementation does not require walking back to Spring.
 
-Final victory plays the teammate-provided outro when available, then unlocks a personalized PDF certificate. Persistent menus, saving, collectibles and video integration are documented in [Journey completion](../../../docs/JourneyCompletion.md).
+Winter's independent-evidence note teaches that AI agreement is not separate evidence. The final can therefore test this idea without requiring the optional twelve-artifact collection. Three artifacts are in Winter, with the third inside the cave.
 
-## Controls and ownership
+## Controls and systems
 
-WASD/arrows move; E interacts/continues; 1/2/3 or mouse selects answers; J opens the journal; Escape pauses; F collects nearby artifacts; R returns to the current map's arrival; M toggles Winter audio.
+WASD/arrows move; E/Enter interacts/continues; 1/2/3 or mouse selects regular answers; J opens notes; Esc pauses; F collects; R returns to the current region's arrival; M toggles seasonal audio. The final panel explains its own selection, matching and arrangement controls and grades only on Check/Enter.
 
-`WinterWorld` creates both map groups from the same Resources prefab used by `Winter.unity`. Outdoor objects and cave objects are activated separately; the player, party, progress and UI remain alive. `WinterProgress` has no Unity dependency and is exercised by hosted CI. `WinterPortalBridge` follows the existing seasonal handoff convention. `WinterTools` rebuilds the scene/prefab from source assets through the Editor.
+Explorer guidance uses broad bearings at long range, with periodic outdoor snowfall obscuring the compass. Landmarks, lanterns and signs remain clues. Pause > Guidance: Assisted restores exact guidance. JourneySession saves the exact outdoor/cave location, partial lessons, bosses and artifacts and supports revisits.
 
-## Art
+`WinterWorld` creates separate outdoor/cave groups from the Resources prefab while keeping player, party and UI alive. `WinterProgress` and `FinalChallenges` are plain C# grading data used by hosted tests. `FinalActivityPanel` renders activities in the existing conversation frame. `SeasonBossVisual` renders the two new boss atlases and their idle/windup/impact animation; existing interaction positions and scoring rules are retained.
 
-Terrain uses the repository's existing Mana Seed winter sample. Characters reuse the existing Hero Pack (Ambros, Ancient Mage, Warriors, Emberfist, Little Mage and Skeleton); original credits and licenses remain in their asset folders. Winter references shared existing artwork rather than duplicating all prior seasons.
+## Art, font and checks
 
-`Art/CaveEntrance.png`, `Art/Crystal.png` and `Art/Lantern.png` are new generated artwork, created with the built-in image-generation tool for this chapter. They are imported with point filtering, transparency, no mipmaps and no texture compression. See `docs/WinterArtPrompts.md` for the art direction and prompts.
+Terrain and companions reuse the existing licensed packs; shared Journey scenery provides snow-rooted trees, cottages and cave details. New Warden/Keeper art is generated specifically for this game. Original skeleton frames remain in source references, not as active boss appearances. All game text uses Determination with existing point sizes.
 
-The shared `SeasonOverlay` now renders all four seasons. Seasonal accents vary while typography, parchment framing, buttons, objectives, compass and journal use one layout.
+See `docs/Bosses.md` for prompts, `docs/WinterArtPrompts.md` for earlier cave art, `docs/JourneyCompletion.md` for saves/videos, and `docs/Testing.md` / `docs/CurrentValidation.md` for verified scope and limitations.

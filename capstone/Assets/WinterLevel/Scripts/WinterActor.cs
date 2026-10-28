@@ -15,7 +15,7 @@ namespace AmbrosJourney.Winter
         SpriteRenderer visual;Rigidbody2D body;Material animationMaterial;
         Vector2 movement;float attackUntil,animationClock,flashUntil;int animationState=-1,trailRevision=-1;
         Color flashColor;
-        public void Strike(){attackUntil=Time.time+.45f;}
+        public void Strike(){attackUntil=Time.time+.45f;var boss=GetComponent<SeasonBossVisual>();if(boss)boss.Strike();}
         public void Flash(Color color){flashColor=color;flashUntil=Time.time+.3f;}
         void Awake(){visual=GetComponent<SpriteRenderer>();body=GetComponent<Rigidbody2D>();animationMaterial=visual.material;}
         void Start(){body=GetComponent<Rigidbody2D>();if(isPlayer)trail.Reset(transform.position);}

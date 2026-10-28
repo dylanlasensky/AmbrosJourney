@@ -1,47 +1,32 @@
-# Fall / Emberwood
+# Fall: Emberwood
 
-Chapter 3 follows Summer. Emberfist teaches prompt engineering through three exploration missions, then a five-question Bramble Sentinel challenge. Educational content is authored, with no live AI API. Progress is session-only.
+Chapter 3 follows Summer. Emberfist teaches how to write useful prompts, inspect the response, and ask for specific changes without assuming that clear instructions guarantee true facts. Educational content is authored; no live AI service is called.
 
-## Play
+## Play and progression
 
-Use **Capstone → Fall → Play Fall Only** to start directly. For the connected route, complete Summer, close its final conversation and walk through its unlocked Fall portal. The bridge requires Summer completion, no open dialogue/journal, and the player inside the gate. It fades into the Resources prefab in a new runtime scene, following Summer's Spring adapter. No existing scene or build list is replaced.
+Use the main menu, finish Summer and walk through its unlocked portal after closing the conversation, or select **Capstone > Fall > Play Fall Only**.
 
-WASD/arrows move; E/Enter advances interactions; 1/2/3 or mouse selects answers; J opens the journal; Escape closes after the introduction; R returns to arrival without resetting work; M mutes/unmutes this season's audio.
+1. Meet Emberfist; Ambros arrives with the Ancient Mage and both Warriors.
+2. **Harvest Orchard:** read Say What You Need, then choose a clear goal, relevant background and response format.
+3. Cross the north bridge to **Lantern Archive:** read Think About Who It Is For, then choose an audience/scope and a permitted hint that preserves practice.
+4. Follow the eastern hedge switchbacks to **Revision Kiln:** read Read It, Then Make a Change, fix a format mismatch, and distinguish following instructions from giving safe factual advice.
+5. Seven successful choices restore three runes and open the southern **Bramble Sentinel**. Its five-question challenge requires **4/5 (80%)**; mistakes explain the answer and retries retain the missions.
+6. Earn Prompt Pathfinder, recruit Emberfist, close the Winter gate conversation and walk through it to **Frostveil**. Winter and the cave finale are playable.
 
-## Learning route
+The 99 x 93-tile map is about 2.5 times Summer's area. Two river crossings, hedge turns and an optional watch-post branch increase navigation complexity. Explorer guidance uses broad bearings for distant objectives; Assisted gives exact route guidance. There are three optional artifacts and no artificial waiting timers.
 
-1. Meet Emberfist at the forge. The Ancient Mage and both married Warriors arrive with Ambros.
-2. **Harvest Orchard:** read the note, then assemble a prompt by choosing a goal, relevant context and response format.
-3. Cross the **north bridge** to the **Lantern Archive:** read the note, then adapt a request for its audience and choose a safe, permitted hint.
-4. Navigate the **eastern hedge switchbacks** to the **Revision Kiln:** read the note, identify a response-format mismatch and choose a specific revision, then distinguish formatting from factual safety.
-5. Three runes open the southern guardian arena. Answer five three-choice questions; 4/5 or 5/5 passes. Wrong answers give explanations; failed attempts preserve missions. Courage replenishes rather than resetting learning.
-6. Earn Prompt Pathfinder rank, recruit Emberfist and open the Winter gate. Winter remains planned; the gate explains the next chapter and currently ends the playable content.
+## Shared systems and ownership
 
-The map spans 99 by 93 ground tiles, compared with Summer's 61 by 61 (about 2.5 times the area). The river has two crossings, hedges force alternating turns, paths branch to an optional watch post, and recognizable stations remain separated. The compass computes a walkable grid route using the same world colliders, rather than pointing straight through obstacles. No timers pad the level.
+`FallWorld` builds the runtime map/Resources prefab; `FallLevel` owns interactions; `FallProgress` owns guarded lesson and boss rules; `FallPortalBridge` supplies the Summer transition. JourneySession persistently saves partial work, exact positions and artifacts. The shared trail/formation system follows corners and resets the party on return to arrival.
 
-## Structure and assets
+All four seasons use the shared Determination/parchment UI, with copper accents in Fall, answer feedback and seasonal leaves. The existing **Bramble Sentinel artwork, scale and four-pose animation are unchanged by the seasonal boss refresh**. It remains the visual reference for the new Spring, Summer, Winter and final bosses.
 
-- `FallWorld`: serialized artwork plus deterministic runtime map builder, physics boundaries and compass routing. Same runtime-world/prefab setup as Summer.
-- `FallLevel`: interactions, Canvas/TMP UI, journal, compass, authored challenges and original synthesized music/effects, adapted from Summer.
-- `FallProgress`: session state, note prerequisites, mission and guardian rules.
-- `FallActor` / `FallCamera`: movement and camera conventions with Fall bounds; followers trace arc-length breadcrumbs with stable spacing and independent walk/idle animation.
-- `FallPortalBridge`: completion-gated Summer-to-Fall handoff.
-- `Editor/FallTools`: scene/prefab/art generation and progression/route checks.
+Keep `Assets/SummerLevel` and the shared Journey/SeasonPresentation folders intact: Fall reuses their resources. Original Mana Seed, Hero Pack and creature-pack notices still apply. `ArtSources.txt` records crops; the existing generated Sentinel atlas is credited in `docs/JourneyArtPrompts.md`.
 
-Fall reuses Summer's original Ambros, Mage, Warrior and prop textures, retained TMP font/material, UI and shader setup. Keep `Assets/SummerLevel` intact. Fall's crops come from the existing autumn Mana Seed sample, Emberfist individual idle/walk frames, and the premium creature sheet (group 5, column at x=160). Original asset-pack notices and licenses apply. Crops are saved under `Art` with point filtering and no compression; runtime does not read source packs or write files.
+**Rebuild Fall Definition** regenerates Fall's art, Resources prefab and scene. Coordinate scene ownership and preserve unsaved work first. It does not rebuild other seasons. Normal gameplay does not read source packs or write asset files.
 
-**Rebuild Fall Definition** only regenerates Fall's art, Resources prefab and Fall scene; it declines to switch scenes when there is unsaved work. Coordinate before rebuilding if teammates have edited the generated Fall definition. It does not rebuild Spring or Summer.
+## Checks
 
-## Validation
+Fall progression checks cover note prerequisites, seven choices, wrong answers, duplicate rewards, all 243 guardian combinations, the 4/5 threshold and retained progress. Live route checks verify station access and locked/unlocked barriers. The connected suite adds real portal transitions, text fitting, saves, artifacts and the mixed finale.
 
-**Capstone → Fall → Validate Fall Progression** covers introduction/note prerequisites, all seven choices, wrong-answer retries, duplicate rewards, all 243 guardian answer combinations, the 80% threshold, courage recovery and retained missions. `FallTools.ValidateRoutes()` runs in Play mode and checks all station routes and physical guardian/exit barriers before and after unlocking.
-
-Live checks, visuals and transition results are recorded in `docs/FallValidation.md`. Audience testing and timing with first-time players remain necessary; there is no persistent-save contract yet.
-
-## Spring-style presentation
-
-Summer and Fall share `Assets/SeasonPresentation`: Spring-style rounded parchment dialogue, question buttons, chapter/objective cards, framed landmark labels, journal sections, control hints and gold compass. Summer uses green accents and Fall uses copper. Spring itself is unchanged. Correct/incorrect answers tint the popup; Fall also flashes Ambros and emits gold glints for correct answers and completed runes. Autumn leaves mirror Spring’s seasonal particles.
-
-The shared compass uses collision-aware route lookahead and displays the actual distance to the objective, rather than the distance to a nearby routing cell. It hides during dialogue and journals, matching Spring. Fall companions follow the player’s actual path around turns at 1.8-unit gaps, stop without chasing an offset, and reset together when R returns to arrival. The Mage now has eight original walking frames.
-
-Editor checks are under **Capstone → Presentation**. Interface checks require a fresh playing session of the named season. Build and art preparation require Edit mode. See `docs/PresentationValidation.md`.
+`docs/FallValidation.md` is an older dated snapshot. Use `docs/CurrentValidation.md` and `docs/Testing.md` for the current game. Audience comprehension and timing still need first-time players.

@@ -1,0 +1,639 @@
+fileFormatVersion: 2
+guid: 1913a0a4356ce4a118993c3594a48115
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 7049853316056442617
+    second: WinterFrostboundAtlas_0
+  - first:
+      213: -9090646766615931408
+    second: WinterFrostboundAtlas_1
+  - first:
+      213: -366018676842562121
+    second: WinterFrostboundAtlas_2
+  - first:
+      213: -8110914647645476618
+    second: WinterFrostboundAtlas_3
+  - first:
+      213: -3013615440885449824
+    second: WinterFrostboundAtlas_4
+  - first:
+      213: 1457930618225255539
+    second: WinterFrostboundAtlas_5
+  - first:
+      213: -7724958804802216492
+    second: WinterFrostboundAtlas_6
+  - first:
+      213: -6985590156043721133
+    second: WinterFrostboundAtlas_7
+  - first:
+      213: -6530831952392561917
+    second: WinterFrostboundAtlas_8
+  - first:
+      213: -8832554678928452916
+    second: WinterFrostboundAtlas_9
+  - first:
+      213: 2705585410553207934
+    second: WinterFrostboundAtlas_10
+  - first:
+      213: 3876552043048478387
+    second: WinterFrostboundAtlas_11
+  - first:
+      213: 3972604961070341002
+    second: WinterFrostboundAtlas_12
+  - first:
+      213: 2672649233806414835
+    second: WinterFrostboundAtlas_13
+  - first:
+      213: -1992116448040597910
+    second: WinterFrostboundAtlas_14
+  - first:
+      213: 2320640894613714176
+    second: WinterFrostboundAtlas_15
+  - first:
+      213: -7304644788469785816
+    second: WinterFrostboundAtlas_16
+  - first:
+      213: 8876687128317445190
+    second: WinterFrostboundAtlas_17
+  - first:
+      213: 7263703080206151609
+    second: WinterFrostboundAtlas_18
+  - first:
+      213: -347205517351100597
+    second: WinterFrostboundAtlas_19
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 1
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 0
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: WinterFrostboundAtlas_0
+      rect:
+        serializedVersion: 2
+        x: 567
+        y: 1219
+        width: 19
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9f6672e3d3c16d160800000000000000
+      internalID: 7049853316056442617
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WinterFrostboundAtlas_1
+      rect:
+        serializedVersion: 2
+        x: 1222
+        y: 1245
+        width: 13
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0f5dd491ee887d180800000000000000
+      internalID: -9090646766615931408
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WinterFrostboundAtlas_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1183
+        width: 5
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7bdf3a1e3f3abeaf0800000000000000
+      internalID: -366018676842562121
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WinterFrostboundAtlas_3
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 648
+        width: 590
+        height: 594
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f82497f91e307f80800000000000000
+      internalID: -8110914647645476618
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WinterFrostboundAtlas_4
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 1161
+        width: 24
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0abf36c29bc7d26d0800000000000000
+      internalID: -3013615440885449824
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WinterFrostboundAtlas_5
+      rect:
+        serializedVersion: 2
+        x: 593
+        y: 1181
+        width: 41
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3746b7e3c2c9b3410800000000000000
+      internalID: 1457930618225255539
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WinterFrostboundAtlas_6
+      rect:
+        serializedVersion: 2
+        x: 611
+        y: 582
+        width: 616
+        height: 654
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4dddc3745ee6bc490800000000000000
+      internalID: -7724958804802216492
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WinterFrostboundAtlas_7
+      rect:
+        serializedVersion: 2
+        x: 635
+        y: 1123
+        width: 7
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3566c8aa3c23e0f90800000000000000
+      internalID: -6985590156043721133
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WinterFrostboundAtlas_8
+      rect:
+        serializedVersion: 2
+        x: 611
+        y: 1108
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 30bdedde0f2dd55a0800000000000000
+      internalID: -6530831952392561917
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WinterFrostboundAtlas_9
+      rect:
+        serializedVersion: 2
+        x: 587
+        y: 1080
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc2514ff0567c6580800000000000000
+      internalID: -8832554678928452916
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WinterFrostboundAtlas_10
+      rect:
+        serializedVersion: 2
+        x: 599
+        y: 1028
+        width: 11
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e7cd089989b2c8520800000000000000
+      internalID: 2705585410553207934
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WinterFrostboundAtlas_11
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 646
+        height: 639
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b628375b874cc530800000000000000
+      internalID: 3876552043048478387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WinterFrostboundAtlas_12
+      rect:
+        serializedVersion: 2
+        x: 691
+        y: 622
+        width: 50
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a8b5d811a27812730800000000000000
+      internalID: 3972604961070341002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WinterFrostboundAtlas_13
+      rect:
+        serializedVersion: 2
+        x: 715
+        y: 596
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3f3504e5158271520800000000000000
+      internalID: 2672649233806414835
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WinterFrostboundAtlas_14
+      rect:
+        serializedVersion: 2
+        x: 1188
+        y: 598
+        width: 17
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a66c35b25a49a54e0800000000000000
+      internalID: -1992116448040597910
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WinterFrostboundAtlas_15
+      rect:
+        serializedVersion: 2
+        x: 1190
+        y: 578
+        width: 19
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 005f1be2992943020800000000000000
+      internalID: 2320640894613714176
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WinterFrostboundAtlas_16
+      rect:
+        serializedVersion: 2
+        x: 1149
+        y: 586
+        width: 12
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 82b99dc3440b0aa90800000000000000
+      internalID: -7304644788469785816
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WinterFrostboundAtlas_17
+      rect:
+        serializedVersion: 2
+        x: 653
+        y: 23
+        width: 586
+        height: 561
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 644c4a999e3503b70800000000000000
+      internalID: 8876687128317445190
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WinterFrostboundAtlas_18
+      rect:
+        serializedVersion: 2
+        x: 691
+        y: 568
+        width: 12
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9bf2999777bddc460800000000000000
+      internalID: 7263703080206151609
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WinterFrostboundAtlas_19
+      rect:
+        serializedVersion: 2
+        x: 629
+        y: 548
+        width: 15
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b4f5b3aeb6a7e2bf0800000000000000
+      internalID: -347205517351100597
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      WinterFrostboundAtlas_0: 7049853316056442617
+      WinterFrostboundAtlas_1: -9090646766615931408
+      WinterFrostboundAtlas_10: 2705585410553207934
+      WinterFrostboundAtlas_11: 3876552043048478387
+      WinterFrostboundAtlas_12: 3972604961070341002
+      WinterFrostboundAtlas_13: 2672649233806414835
+      WinterFrostboundAtlas_14: -1992116448040597910
+      WinterFrostboundAtlas_15: 2320640894613714176
+      WinterFrostboundAtlas_16: -7304644788469785816
+      WinterFrostboundAtlas_17: 8876687128317445190
+      WinterFrostboundAtlas_18: 7263703080206151609
+      WinterFrostboundAtlas_19: -347205517351100597
+      WinterFrostboundAtlas_2: -366018676842562121
+      WinterFrostboundAtlas_3: -8110914647645476618
+      WinterFrostboundAtlas_4: -3013615440885449824
+      WinterFrostboundAtlas_5: 1457930618225255539
+      WinterFrostboundAtlas_6: -7724958804802216492
+      WinterFrostboundAtlas_7: -6985590156043721133
+      WinterFrostboundAtlas_8: -6530831952392561917
+      WinterFrostboundAtlas_9: -8832554678928452916
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
