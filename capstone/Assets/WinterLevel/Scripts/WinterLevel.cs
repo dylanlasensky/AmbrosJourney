@@ -34,6 +34,7 @@ namespace AmbrosJourney.Winter
         AudioClip good,bad,ward,strike;
         Canvas canvas;
         SeasonOverlay presentation;
+        FinalActivityPanel finalPanel;
         SeasonNavigation navigation;
         int nearby=-1;
         string currentTitle;
@@ -47,9 +48,9 @@ namespace AmbrosJourney.Winter
             Application.runInBackground=false;CreateUI();CreateAudio();
             mage.follow=player.transform;maleWarrior.follow=mage.transform;femaleWarrior.follow=maleWarrior.transform;ember.follow=femaleWarrior.transform;
             ShowPages(new[]{
-                "Little Mage: Welcome to Frostveil! Snow can hide the trail, and a confident answer can hide a mistake. We will learn to check the evidence before we believe a claim.",
-                "Find the Wayfarer's Ledger and Frozen Observatory. Read their notes and test the claims. Lanterns mark the path through the snow. The cave entrance lies beyond the northern ridge.",
-                "Defeat the Frostbound Warden outside the cave with 4/5. Inside, find the Echo Archive and face the final Keeper: eight questions from every season, including the artifact lesson. Score 7/8 to find your way home."
+                "Little Mage: Glad you made it to Frostveil! Some of the information along this trail doesn't add up. Let's check where it came from before we use it.",
+                "Start with the Wayfarer's Ledger and Frozen Observatory. The notes will help you check their claims. Follow the lanterns toward the northern ridge when you're ready for the cave.",
+                "The Warden outside the cave needs four of five answers right. Then find the Echo Archive inside. The final Keeper has eight new activities about AI safety. Get seven right to open the way home."
             },0,()=>Progress.Introduced=true);
             Debug.Log("WINTER_READY: Frostveil and Echo Cavern, six evidence challenges and cave guardian.");
         }
@@ -62,6 +63,7 @@ namespace AmbrosJourney.Winter
                 if(k.mKey.wasPressedThisFrame){music.mute=!music.mute;effects.mute=music.mute;}
                 if(k.escapeKey.wasPressedThisFrame){if(journal.activeSelf)journal.SetActive(false);else if(dialog.activeSelf && Progress.Introduced)Close();}
                 else if(k.jKey.wasPressedThisFrame && !dialog.activeSelf)ToggleJournal();
+                else if(finalPanel&&finalPanel.IsOpen)finalPanel.HandleKeyboard(k);
                 else if(dialog.activeSelf)
                 {
                     if(actions.Count>0){int c=k.digit1Key.wasPressedThisFrame?0:k.digit2Key.wasPressedThisFrame?1:k.digit3Key.wasPressedThisFrame?2:-1;if(c>=0 && c<actions.Count)actions[c]();}
@@ -83,9 +85,9 @@ namespace AmbrosJourney.Winter
             else if(target>=1&&target<=3){if(stations[target-1].gameObject.activeInHierarchy)Mission(target-1);}
             else if(target==4&&Progress.InCave)Boss();
             else if(target==8&&!Progress.InCave)WinterBoss();
-            else if(target==5)Show("Winter crest",Progress.Complete?"WINTER COMPLETE / EVIDENCE EXPLORER\nThe Little Mage joins your party. You may explore both maps and review your notes. The final Keeper is defeated. Open Pause to view your AI Learning Certificate.":"Restore three evidence seals and score at least 4/5 against the Echo Keeper.",Close);
+            else if(target==5)Show("Winter crest",Progress.Complete?"WINTER COMPLETE / EVIDENCE EXPLORER\nThe Little Mage joins your party. You may explore both maps and review your notes. The final Keeper is defeated. Open Pause to view your AI Learning Certificate.":"Earn the Winter crest, finish the cave lesson and get at least 7/8 right in the Echo Keeper challenge.",Close);
             else if(target==6&&!Progress.InCave&&!Progress.WinterComplete)WinterBoss();
-            else if(target==6&&!Progress.InCave)Show("Echo Cavern / Entrance","A lantern glows beside the cave. Explore its branching passages to reach the Echo Archive, then find the Warden beyond the sealed northern hall. Your outdoor lessons stay with you.",()=>{Close();World.ChangeRegion(true);});
+            else if(target==6&&!Progress.InCave)Show("Echo Cavern / Entrance","A lantern glows beside the cave. Explore its branching passages to reach the Echo Archive, then find the Echo Keeper beyond the sealed northern hall. Your outdoor lessons stay with you.",()=>{Close();World.ChangeRegion(true);});
             else if(target==7&&Progress.InCave)Show("Return to Frostveil","Follow the daylight back outside. Your notes, evidence seals and guardian progress are kept.",()=>{Close();World.ChangeRegion(false);});
         }
         void Mission(int mission)
@@ -123,7 +125,7 @@ namespace AmbrosJourney.Winter
         {
             if(Progress.Complete){Show("Final Keeper / Restored","Your way home is open. View your certificate from the pause menu, or keep exploring for artifacts.",()=>{Close();var session=AmbrosJourney.Journey.JourneySession.Instance;if(session){if(session.Data.finished)session.ShowCertificate();else session.FinishJourney();}});return;}
             if(!Progress.CanFight){Show("The final seal is closed","Earn the Winter crest outside, then complete the Echo Archive. All three evidence seals are needed.",Close);return;}
-            Show("Final boss / The Echo Keeper","Eight questions bring together Spring, Summer, Fall, Winter and the Evidence Compass artifact lesson. Score 7/8 to pass.\n\nYou can revisit any unlocked season from Pause to find missed artifacts and review notes. Your lessons stay safe on a retry.",()=>{Progress.BeginBoss();BossQuestion();});
+            Show("Final boss / The Echo Keeper","Eight activities put your AI safety skills to work in new situations. Pick details, build a request, match jobs and check evidence. Get at least 7/8 right.\n\nYou can revisit any unlocked season from Pause to find missed artifacts and review notes. Your lessons stay safe on a retry.",()=>{Progress.BeginBoss();BossQuestion();});
         }
         void BossQuestion()
         {
@@ -135,7 +137,14 @@ namespace AmbrosJourney.Winter
                 return;
             }
             var q=WinterContent.Final[Progress.BossQuestion];
-            Ask("Echo Keeper / Question "+(Progress.BossQuestion+1)+" of 8",q.Prompt,q.Choices,c=>{bool right=Progress.AnswerBoss(c);Effect(right);if(right){player.Strike();guardian.Flash(new Color(1,.8f,.3f));}else guardian.Strike();effects.PlayOneShot(strike,.35f);Show(right?"A final seal opens!":"The Keeper asks you to reconsider",q.Explanation+"\n\nScore: "+Progress.BossScore+" / "+Progress.BossQuestion+" answered.",BossQuestion);});
+            Show("Echo Keeper: Activity "+(Progress.BossQuestion+1)+" of 8",q.Prompt,null);
+            if(!finalPanel)finalPanel=gameObject.AddComponent<FinalActivityPanel>();
+            finalPanel.Present(presentation,q,response=>{
+                bool right=Progress.AnswerFinal(response);Effect(right);
+                if(right){player.Strike();guardian.Flash(new Color(1,.8f,.3f));}else guardian.Strike();
+                effects.PlayOneShot(strike,.35f);
+                Show(right?"That works":"Let's look at that again",q.Explanation+"\n\nScore: "+Progress.BossScore+" / "+Progress.BossQuestion+" activities.",BossQuestion);
+            });
         }
         void ShowPages(string[] pages,int index,Action complete)
         {Show("Winter / Little Mage's trail",pages[index],()=>{if(index+1<pages.Length)ShowPages(pages,index+1,complete);else{complete();Close();}});}
@@ -145,9 +154,10 @@ namespace AmbrosJourney.Winter
             player.Flash(right?new Color(.65f,1,.65f):new Color(1,.5f,.4f));
             if(right)SeasonFeedback.Burst(player.transform.position,new Color(1,.8f,.3f));
         }
-        void Close(){dialog.SetActive(false);actions.Clear();next=null;if(music)music.pitch=1;}
+        void Close(){if(finalPanel)finalPanel.Hide();dialog.SetActive(false);actions.Clear();next=null;if(music)music.pitch=1;}
         void Show(string title,string body,Action onContinue)
         {
+            if(finalPanel)finalPanel.Hide();
             currentTitle=title;heading.text=title;copy.text=body;dialog.SetActive(true);journal.SetActive(false);next=onContinue;actions.Clear();
             foreach(var c in choices)c.gameObject.SetActive(false);
             choices[0].gameObject.SetActive(true);SetButton(choices[0],"Continue [ E ]",()=>{if(next!=null){var n=next;next=null;n();}});

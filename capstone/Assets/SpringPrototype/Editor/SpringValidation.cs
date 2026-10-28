@@ -33,7 +33,7 @@ public static class SpringValidation
             Set(g,"target",3);Set(g,"bossQuestion",0);Set(g,"feedback","");Set(g,"bossResult",false);
             int[] fail={0,0,1,1,0};foreach(var a in fail){Call(g,"Answer",a);Call(g,"Continue");}Require(g.BossScore==3 && !g.SpringComplete,"60 percent keeps gate locked");
             Call(g,"Continue");int[] pass={0,0,1,0,0};foreach(var a in pass){Call(g,"Answer",a);Call(g,"Continue");}Require(g.BossScore==4 && g.SpringComplete,"80 percent unlocks Summer");
-            var boss=GameObject.Find("Thornhide Guardian");Require(boss==null,"Boss disappears after passing");
+            var boss=GameObject.Find("Blossom Guardian");Require(boss==null,"Boss disappears after passing");
             Debug.Log("SPRING_VALIDATION_PASSED: tutorial, field notes, wrong-answer retry, six challenges, failed boss, retry and 80 percent gate.");
         }
         catch(Exception e){Debug.LogError("SPRING_VALIDATION_FAILED: "+e);}

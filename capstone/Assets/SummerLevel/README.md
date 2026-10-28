@@ -1,48 +1,31 @@
-# Summer Valley — Level 2
+# Summer Valley: Level 2
 
-Summer teaches choosing appropriate AI help, preserving learning practice, following classroom rules, privacy, and seeking support from people. This implements the three-mission and Orc breakdown discussed for Sprint Three. The 5–6 minute pacing is a target awaiting first-time user testing.
+The married Warriors teach when AI help is useful, when real people are needed, and how to keep your own practice and judgment. Privacy, classroom rules and human support carry forward from Spring.
 
-## Play
+## Play and route
 
-Open the inner `capstone` folder in Unity **6000.6.2f1**. Select **Capstone → Summer → Play Summer Only**, or open `Assets/SummerLevel/Summer.unity` and press Play. The map is assembled at runtime from the scene's `SummerWorld` component, so the Edit-mode hierarchy initially shows the world definition. Do not run the original Spring rebuild tools to create Summer.
+Open the inner `capstone` project with Unity **6000.6.2f1**. Use the main menu, the completed Spring portal, or **Capstone > Summer > Play Summer Only**. `SummerWorld` builds the map at runtime from the scene/Resources prefab. Do not rebuild Spring to make Summer.
 
-For the connected route, start the existing opening/Spring normally, complete Spring, close its final conversation, then **walk through the existing unlocked Summer portal**. `SummerPortalBridge` installs itself at runtime, checks `SpringComplete`, and transitions to the new Summer Resources prefab. It does not replace Spring's dialogue or edit its scene. Summer is loaded into a runtime scene without modifying the existing build scene list. The old Spring gate dialogue still says the old prototype ends there; close it and walk through the gate to continue.
+1. Meet the Warriors; the Ancient Mage arrives with Ambros.
+2. Workshop: choose useful festival brainstorming help and ask the builder to inspect a damaged bridge.
+3. Training garden: choose a first-step hint, interact with **Sun > Seed > Leaf**, and ask for feedback on your own draft rather than a replacement.
+4. Message post: remove the unneeded name, fictional street address and password from Ambros's actual example, then choose real support for a friend. This is an authored fictional message, not collected personal data.
+5. Each completed mission awards a ward piece and a field note: **Pick the Right Kind of Help**, **Leave Room to Practice**, **Share Less, Ask People Too**.
+6. Three wards open the southern **Suncrest Guardian**, a golden sunflower-maned lion with leaf armor. Score **4/5** on its five questions. Wrong answers explain the issue; retries preserve missions and depleted courage replenishes.
+7. Earn Independent Thinker, recruit both Warriors, close the final conversation and walk through the unlocked Fall portal.
 
-The resource prefab is included automatically in player builds. No Pipeline package or editor-only loader is required by Summer. Runtime progress is session-only, like the existing prototype.
+Three optional artifacts are available. Progress, partial missions and exact locations are saved by JourneySession and survive chapter revisits. The 5-6 minute first-time pacing estimate remains unmeasured.
 
-## Route and controls
+## Presentation and assets
 
-- WASD / arrows: move. E: interact or continue. 1/2/3: select an answer. Mouse buttons also select answers.
-- J: journal when dialogue is closed. Escape: close journal/dialogue after the introduction.
-- R: return to Summer arrival without resetting progress. M: mute/unmute Summer music and effects.
-- Meet the married Warriors and arrive with the Ancient Mage.
-- Workshop, northwest: festival brainstorming and damaged-bridge decisions, with explanations and retries.
-- Training garden, southwest: choose a hint; walk to Sun → Seed → Leaf stones, pressing E at each; answer the classroom-practice choice.
-- Message post, northeast: remove all three fictional private details, then choose real human support for an upset friend.
-- Collect three ward pieces; the compass and journal guide the route. The ward opens the southern Orc arena.
-- Answer the five Orc questions. A 3/5 score fails; 4/5 or 5/5 passes. Feedback appears after every answer. Retries preserve the missions; depleted courage replenishes.
-- Pass to earn Independent Thinker rank, recruit both Warriors, restore the ward, and open Fall. Close the gate conversation and walk through the unlocked portal to load Fall / Emberwood, where Emberfist teaches prompt engineering. `FallPortalBridge` supplies this connection from the new FallLevel folder.
+All seasons share Determination, parchment panels, question buttons, objective cards, framed labels, a journal and gold compass. Summer uses green accents. Its companions use the shared trail/formation behavior, including the Mage's walking frames. Normal controls, pause, saves and guidance are documented in the repository README and JourneyCompletion.
 
-## Assets and implementation
+`SummerLevel` owns interactions; `SummerProgress` owns session state and guarded scoring; `SummerWorld` owns layout; `SummerPortalBridge` handles the Spring connection. The field named `orc` remains for source compatibility, but the active boss, labels and dialogue are Suncrest Guardian. `SeasonBossVisual` uses the new generated atlas and distinct idle/attack poses. Original Hero Pack art remains licensed source/fallback material; it is not the active guardian appearance.
 
-Summer assets are under `Assets/SummerLevel/`. Shared Spring-style presentation and compass helpers are under `Assets/SeasonPresentation/`. Spring, the intro, package manifests, and project/build settings remain unchanged.
+The existing Summer terrain, character packs, supporting props, font/shader licenses and `Art/ASSET_SOURCES.json` retain their original credits. The displayed font is now the supplied Determination, not the older SummerBody font. See `docs/Bosses.md` for new art prompts and ownership.
 
-The Ambros idle/walk textures are pixel-identical copies of Spring's extracted frames. Mage, married Warrior and Orc frames come from the existing character packs. Summer ground and foliage are cropped from the existing Summer pack. New supporting pixel props include the workshop, stepping stones, message post, ward, shields and machinery. Preserve the original asset-pack notices and licenses. The copied TMP shader and its dependencies include Unity's uGUI license in `Shaders/`. The new Resources folder includes a static Liberation Sans font, its OFL license, a TMP settings asset, and a material retaining the shader for builds. No pre-existing TMP settings asset was present or edited.
+## Verification
 
-`SummerWorld` owns layout/art references. `SummerLevel` owns interactions, responsive Canvas/TMP UI and original synthesized music/effects. `SummerProgress` owns session state and pass/retry rules. `SummerActor` animates movement, attacks and companions. `SummerPortalBridge` provides the add-only Spring connection. These scripts do not write files during gameplay.
+**Capstone > Summer > Validate Summer Progression** checks prerequisites, wrong answers, pattern order, privacy selection, courage recovery and boss thresholds. Hosted tests cover all 32 guardian combinations. The connected Unity checks cover live callbacks, portals, text fitting, boss animation hooks, saves and collection. Run them in an isolated checkout, not over unsaved Editor work.
 
-## Checks
-
-Use **Capstone → Summer → Validate Summer Progression** to check lesson prerequisites, wrong-answer retries, stone order, private-field selection, courage recovery, boss thresholds and the Resources prefab.
-
-The level was also checked against all 32 combinations of Orc answers, including retry and progress preservation. `Art/ASSET_SOURCES.json` records the included artwork. All assets needed to play are included; no generation script is required.
-
-Before calling the level final, play the full Spring-to-Summer route, inspect UI at the target window size, listen to the audio, and time first-time players. Validate clean standalone builds on the team's intended platforms. The existing repository has no persistent save contract; Summer does not add one.
-
-## Standalone compatibility
-
-Summer has its own camera and an optional runtime Spring adapter. It compiles and plays in older checkouts without Spring scripts; the portal connection activates when the newer Spring scene is present.
-
-## Shared seasonal interface
-
-Summer and Fall now use the same Spring-style parchment overlays, question buttons, framed landmark labels, journal sections, control hints and gold compass. Summer retains green accents. Answer feedback briefly tints the conversation panel. The compass follows visible route corners around colliders and shows the distance to the actual objective; it hides during conversations and journals. Summer’s learning content, progression and follower logic remain intact. See `docs/PresentationValidation.md` for checks.
+See `docs/Testing.md`, `docs/QuestionRefresh.md` and `docs/CurrentValidation.md`. First-time comprehension, pacing and audio balance still need people to play the game.

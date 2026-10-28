@@ -1,3 +1,5 @@
+> **Dated validation snapshot.** Counts, captures and limitations below describe the version tested at that time. For the current bosses, Determination UI, mixed finale, persistent saves and latest results, see [current validation](CurrentValidation.md) and [documentation index](README.md).
+
 # Fall validation — October 24, 2026
 
 Verified in the existing Unity 6000.6.2f1 project.
@@ -12,7 +14,7 @@ Verified in the existing Unity 6000.6.2f1 project.
 - Runtime checks after the portal reported zero Unity errors or warnings and an advancing player loop.
 - Standalone macOS Development build starting in Summer succeeded with **0 errors**, 3 existing font/shader/platform warnings, approximately 311 MB, in 64 seconds. Its Resources include Fall. Warnings: SummerDefault's internal font name differs from its filename; Intel macOS architecture deprecation; deprecated debug-symbol pragma in the existing TMP shader. No existing shaders, font or platform settings were changed to suppress these.
 
-The build check proves packaging and player compilation; a full manual playthrough of that standalone executable was not performed. Audience comprehension, first-time navigation, pacing and platform-specific user testing remain to be done. Progress is session-only, and Winter is still planned.
+The build check proves packaging and player compilation; a full manual playthrough of that standalone executable was not performed. Audience comprehension, first-time navigation, pacing and platform-specific user testing remain to be done. At this snapshot, progress was session-only and Winter was still planned. The current journey now includes persistent saves and playable Winter/finale.
 
 The temporary Unity Pipeline connection used to construct and inspect the project was removed from the manifest after validation; Fall has no dependency on it. Existing art/font/render settings that Unity reserialized during the build were restored.
 

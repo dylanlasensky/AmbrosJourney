@@ -1,3 +1,5 @@
+> Asset provenance: these are the original prompts for earlier world assets. Their text is retained as a record, not a current feature list. New boss art is documented in [Bosses](Bosses.md) and `BossGenerationPrompts.json`; all current live text uses Determination.
+
 # Referenced journey artwork
 
 Generated October 26, 2026 using OpenAI image generation. Reference images were the existing `Assets/MapSpring/seasonal sample (spring).png` terrain pack and the previous `Assets/WinterLevel/Art/MountainRidge.png`. The terrain was the style target; the old mountain illustrated the realism mismatch to remove.
@@ -14,7 +16,7 @@ A second original atlas, `SentinelAtlas.png`, replaces Fall's enlarged 32-pixel 
 
 `MenuLandscape.png` is an image-generation edit of the owner-supplied “Ambros’ Journey_ Blossom Valley.png” reference. The prompt preserves the dark blossom tree, pink flowers, cloaked explorer, sunset mountains, castle, waterfalls and cyan portal; removes all lettering, button frames and ornaments; and reconstructs calm, dark foliage beneath the left menu. All title text, decorative rules and menu actions are rendered by Unity, not baked into the artwork. The landscape uses bilinear filtering, no mipmaps, a 2048-pixel import limit and high-quality compression. Aspect-fill cropping preserves proportions and the left menu's backdrop.
 
-The live title and menu use Spectral Regular by Production Type, distributed under the SIL Open Font License. Source: https://github.com/google/fonts/tree/main/ofl/spectral. The unmodified TTF and its OFL license are included together in `Assets/Journey/Resources/Journey/`.
+At this asset-generation stage the live title and menu used Spectral Regular by Production Type, distributed under the SIL Open Font License. The source and license remain, but current live text uses the supplied Determination font instead. Source: https://github.com/google/fonts/tree/main/ofl/spectral. The unmodified TTF and its OFL license are included together in `Assets/Journey/Resources/Journey/`.
 
 ## Seasonal cohesion assets
 

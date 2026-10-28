@@ -103,16 +103,28 @@ static class Program
             if(!p.WinterComplete){Check(!p.EnterCave(),"Failed Winter attempt cannot enter cave");p.BeginWinterBoss();foreach(var q in WinterContent.Boss)p.AnswerWinterBoss(q.Correct);}
             Check(p.EnterCave()&&p.WinterComplete&&!p.BeginBoss(),"Winter crest opens cave but not final boss");
         }
-        for(int mask=0;mask<6561;mask++)
+        for(int mask=0;mask<256;mask++)
         {
             var p=ReadyWinter();p.BeginWinterBoss();foreach(var q in WinterContent.Boss)p.AnswerWinterBoss(q.Correct);p.EnterCave();p.ReadNote(2);foreach(var q in WinterContent.Missions[2])p.AnswerMission(2,q.Correct);
-            Check(p.BeginBoss(),"Final begins after all seals");Check(!p.AnswerBoss(-1)&&!p.AnswerBoss(3)&&p.BossQuestion==0,"Reject invalid final choices");int code=mask,score=0;
-            for(int i=0;i<8;i++){int c=code%3;code/=3;if(c==WinterContent.Final[i].Correct)score++;p.AnswerBoss(c);}
-            Check(p.BossFinished&&p.BossScore==score&&p.Complete==(score>=7),"All 6561 final outcomes");Check(!p.AnswerBoss(0),"No answers after final result");
-            if(!p.Complete){Check(p.BeginBoss()&&p.RuneCount==3&&p.WinterComplete,"Final retry preserves all lessons and Winter crest");foreach(var q in WinterContent.Final)p.AnswerBoss(q.Correct);}
+            Check(p.BeginBoss(),"Final begins after all seals");
+            Check(!p.AnswerFinal(null)&&!p.AnswerFinal(new[]{-1})&&p.BossQuestion==0,"Invalid final responses do not consume an activity");
+            Check(!p.AnswerFinal(new[]{1,1})&&p.BossQuestion==0,"Duplicate privacy picks cannot submit");
+            int score=0;
+            for(int i=0;i<8;i++)
+            {
+                var q=WinterContent.Final[i];bool right=(mask&(1<<i))!=0;var response=(int[])q.Expected.Clone();if(right)score++;
+                else if(q.Kind==FinalActivityKind.SelectMany){for(int c=0;c<q.Choices.Length;c++)if(Array.IndexOf(q.Expected,c)<0){response=new[]{c};break;}}
+                else if(q.Kind==FinalActivityKind.Arrange)Array.Reverse(response);
+                else response[0]=(response[0]+1)%(q.Kind==FinalActivityKind.Match?q.Categories.Length:q.Choices.Length);
+                if(q.Kind==FinalActivityKind.Arrange)Check(!p.AnswerFinal(new[]{response[0]})&&p.BossQuestion==i,"Incomplete arrangements don't advance");
+                Check(p.AnswerFinal(response)==right&&p.BossQuestion==i+1,"Activity grading and progress agree");
+            }
+            Check(p.Valid()&&p.BossFinished&&p.BossScore==score&&p.Complete==(score>=7),"All 256 mixed-activity final outcomes");
+            Check(!p.AnswerFinal(WinterContent.Final[0].Expected),"No answers after final result");
+            if(!p.Complete){Check(p.BeginBoss()&&p.RuneCount==3&&p.WinterComplete,"Final retry preserves lessons and crest");foreach(var q in WinterContent.Final)p.AnswerFinal(q.Expected);}
             Check(p.Complete&&!p.BeginBoss(),"Final success is permanent");p.LeaveCave();p.EnterCave();Check(p.Complete&&p.RuneCount==3,"Region round trip retains completion");
         }
         JourneyTests.Run();
-        Console.WriteLine($"PASS: {checks} assertions, all 32 Summer, 243 Fall , 243 Winter and 6561 cumulative final outcomes.");
+        Console.WriteLine($"PASS: {checks} assertions, all 32 Summer, 243 Fall , 243 Winter and 256 mixed-activity final outcomes.");
     }
 }

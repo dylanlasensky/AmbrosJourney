@@ -46,11 +46,11 @@ namespace AmbrosJourney.Summer
             CreateUI(); CreateAudio();
             mage.follow = player.transform;
             ShowPages(new[] {
-                "Warrior: You made it through Spring! We could use someone who knows that a confident answer is not always a correct one.",
-                "Warrior: My spouse and I have been defending this village. We have tools for almost everything. The trouble started when people stopped deciding how to use them.",
-                "Ancient Mage: A useful tool should help you grow. Restore three ward pieces: choose the right tool, keep your practice, and ask safely. Then face the Orc together."
+                "Warrior: You made it! We've been trying to get the village back on track. A tool can be useful without being right about everything.",
+                "Warrior: My spouse and I look after this place. Lately, people have been letting the tools make every decision. Help us work out where they actually help.",
+                "Ancient Mage: Try the workshop, garden and message post. Each one has a different problem. Finish all three and the path to the Suncrest Guardian will open."
             }, 0, () => Progress.Introduced = true);
-            Debug.Log("SUMMER_READY: three missions, five-question Orc, journal, compass and companions.");
+            Debug.Log("SUMMER_READY: three missions, five-question Suncrest Guardian, journal, compass and companions.");
         }
         void Update()
         {
@@ -97,20 +97,20 @@ namespace AmbrosJourney.Summer
             switch (target)
             {
                 case 0: case 9:
-                    Show("The married Warriors", Progress.Complete ? "Our village is safe again. We will travel with you. AI can support your ideas and learning. You are responsible for your choices." : "Restore the workshop, training garden and message post. Our ward will open the way to the Orc. We will guard the village while you work.", Close); break;
+                    Show("The married Warriors", Progress.Complete ? "Our village is safe again. We will travel with you. AI can support your ideas and learning. You are responsible for your choices." : "Restore the workshop, training garden and message post. Our ward will open the way to the Suncrest Guardian. We will guard the village while you work.", Close); break;
                 case 1: Workshop(); break;
                 case 2: Garden(); break;
                 case 3: Message(); break;
                 case 4: Boss(); break;
                 case 5:
-                    Show("The Fall gate", Progress.Complete ? "SUMMER COMPLETE\nRank earned: Independent Thinker\nThe married Warriors join your party.\n\nEmberfist's trail marker: Good help begins with a clear request.\n\nEmberfist awaits in Emberwood. Close this conversation and walk through the unlocked portal to begin Fall." : "The Fall gate is sealed. Restore all three wards and score at least 4/5 against the Orc.", Close); break;
+                    Show("The Fall gate", Progress.Complete ? "SUMMER COMPLETE\nRank earned: Independent Thinker\nThe married Warriors join your party.\n\nEmberfist's trail marker: Good help begins with a clear request.\n\nEmberfist awaits in Emberwood. Close this conversation and walk through the unlocked portal to begin Fall." : "The Fall gate is sealed. Restore all three wards and score at least 4/5 against the Suncrest Guardian.", Close); break;
                 default: Stone(target - 6); break;
             }
         }
         void Workshop()
         {
             if (Progress.Wards[0]) { Show("Workshop restored", SummerContent.Notes[0], Close); return; }
-            Show("Village workshop / Choose the right tool", "Warrior: Sometimes AI can suggest ideas or explain something unfamiliar. Sometimes you need to inspect the problem yourself, or ask someone who knows what they are doing.", WorkshopQuestion);
+            Show("Village workshop / Choose the right tool", "Warrior: We've got two jobs to sort out. Think about what a tool can help with and what needs someone here in the village.", WorkshopQuestion);
         }
         void WorkshopQuestion()
         {
@@ -125,7 +125,7 @@ namespace AmbrosJourney.Summer
         {
             if (Progress.Wards[1]) { Show("Training garden restored", SummerContent.Notes[1], Close); return; }
             if (!Progress.HintChosen)
-                Ask("Training garden / Keep your practice", "The training device offers to do every exercise for you.\n\nWarrior: If a machine does every practice swing, your sword arm gets no practice. Learning works better when you take part.\n\nYou are stuck on a three-stone pattern. What help should you ask for?", new[] { "Give me a hint about the first step", "Complete the whole exercise for me" }, c => {
+                Ask("Training garden / Keep your practice", "Warrior: You're stuck on a three-stone pattern. The device can give you a hint or show all the steps. Which help leaves you something to practice?", new[] { "Show me the first step so I can try the rest", "Show me the full pattern so I can follow it" }, c => {
                     bool right = Progress.ChooseHint(c); Effect(right);
                     Show(right ? "A helpful hint" : "Keep something to practice", right ? "Start with SUN. Then follow the garden's clue: sun wakes the SEED; the seed grows into a LEAF.\n\nClose this message. Walk to each stepping stone and press E: Sun, Seed, Leaf. The labels stay visible." : "If the device does every step, you miss the practice. A hint can help you begin while leaving the rest for you to work out.", right ? (Action)Close : Garden);
                 });
@@ -144,9 +144,9 @@ namespace AmbrosJourney.Summer
         void GardenQuestion()
         {
             if (Progress.Wards[1]) { Show("Keep your practice", SummerContent.Notes[1], Close); return; }
-            Ask("Training garden / Put learning first", "A student has an assignment to show their own understanding. What should they do?", new[] { "Try it, then ask for an explanation or permitted feedback", "Submit an AI answer they cannot explain" }, c => {
+            Ask("Training garden / Put learning first", "You have a draft for an assignment. Your teacher allows feedback, but the ideas must be yours. What should you ask for?", new[] { "Point out one unclear part so I can revise it", "Rewrite the draft so I can turn in the improved version" }, c => {
                 bool right = Progress.AnswerGarden(c); Effect(right);
-                Show(right ? "Your practice matters" : "Keep the thinking", "Keep the thinking and follow your teacher's rules. Overreliance can mean fewer opportunities to practice skills; AI does not literally remove your brain.", right ? (Action)(() => Reward(1)) : GardenQuestion);
+                Show(right ? "Your practice matters" : "Keep the thinking", "Use feedback to improve your own work. If the tool rewrites it all, you miss the practice. Follow your teacher's rules about help.", right ? (Action)(() => Reward(1)) : GardenQuestion);
             });
         }
         void Message()
@@ -154,29 +154,29 @@ namespace AmbrosJourney.Summer
             if (Progress.Wards[2]) { Show("Message post restored", SummerContent.Notes[2], Close); return; }
             if (!Progress.PrivacyComplete)
             {
-                var labels = new string[3]; string[] details = { "FULL NAME", "HOME ADDRESS", "PASSWORD" };
-                for (int i = 0; i < 3; i++) labels[i] = (Progress.RemovedPrivateDetails[i] ? "Removed: " : "Remove: ") + details[i];
-                Ask("Message post / Remove private details", "This example uses placeholders, not real personal information:\n\nI am [FULL NAME], I live at [HOME ADDRESS], and my password is [PASSWORD]. Help me plan a birthday treasure hunt.\n\nSelect all three private details to remove. The treasure-hunt request can stay.", labels, c => {
+                var labels = new string[3]; string[] details = { "Ambros", "123 Mystical View Rd", "IWantToGoHome987" };
+                for (int i = 0; i < 3; i++) labels[i] = (Progress.RemovedPrivateDetails[i] ? "Removed: " : "Keep out: ") + details[i];
+                Ask("Message post / Remove private details", "Read Ambros's made-up message. Pick the details you'd leave out before sending it.\n\nI am Ambros, I live at 123 Mystical View Rd, and my password is IWantToGoHome987. Help me plan a birthday treasure hunt.", labels, c => {
                     Progress.AnswerMessage(c); effects.PlayOneShot(good, .25f);
                     if (Progress.PrivacyComplete) Show("A safer request", "Help me brainstorm a birthday treasure hunt with five clues for a small garden.\n\nThis gives enough context without identifying anyone. Next, consider when a real person can help.", Message);
                     else Message();
                 });
             }
-            else Ask("Message post / People matter", "Your friend seems upset. What should you do?", new[] { "Ask AI to decide exactly what my friend feels", "Talk kindly with my friend; get a trusted adult's help if needed" }, c => {
+            else Ask("Message post / People matter", "Your friend has stopped replying in the group chat. You aren't sure why. What should you do?", new[] { "Paste the chat into AI and ask what my friend is thinking", "Check in with my friend and ask an adult for help if needed" }, c => {
                 bool right = Progress.AnswerMessage(c); Effect(right);
-                Show(right ? "Ask safely" : "AI cannot know your friend's feelings", "Real conversations and trusted people matter. AI cannot know exactly how another person feels or replace personal support.", right ? (Action)(() => Reward(2)) : Message);
+                Show(right ? "Ask safely" : "AI cannot know your friend's feelings", "A chat tool doesn't know what your friend is feeling. Talk to them kindly. If you're worried about them, get a trusted adult's help.", right ? (Action)(() => Reward(2)) : Message);
             });
         }
         void Reward(int mission)
         {
             effects.PlayOneShot(ward, .6f);
-            Show("Ward piece restored / " + Progress.WardCount + " of 3", SummerContent.Notes[mission] + (Progress.CanFight ? "\n\nThe village ward opens the Orc's clearing. Follow the compass south." : "\n\nYour journal now holds this lesson. Follow the compass to the next ward."), Close);
+            Show("Ward piece restored / " + Progress.WardCount + " of 3", SummerContent.Notes[mission] + (Progress.CanFight ? "\n\nThe village ward opens the Suncrest Guardian's clearing. Follow the compass south." : "\n\nYour journal now holds this lesson. Follow the compass to the next ward."), Close);
         }
         void Boss()
         {
-            if (Progress.Complete) { Show("The Orc is learning too", "Orc: What if I get it wrong?\nAmbros: Then you practice. You can ask for help without giving up.", Close); return; }
-            if (!Progress.CanFight) { Show("The Orc's clearing is sealed", "Restore all three ward pieces first. The journal records your lessons, and the compass points toward your next mission.", Close); return; }
-            Show("The Orc / Five shields", "Orc: Why think when a machine can choose everything? Hand over your thinking, and I will handle the rest!\n\nWarrior: Tools can help us. We still make the decisions.\n\nAnswer five questions. Score 4/5 to open Fall. Wrong answers give feedback; retries preserve your missions.", () => { Progress.BeginBoss(); BossQuestion(); });
+            if (Progress.Complete) { Show("The Suncrest Guardian is learning too", "Suncrest Guardian: What if I get it wrong?\nAmbros: Then you practice. You can ask for help without giving up.", Close); return; }
+            if (!Progress.CanFight) { Show("The Suncrest Guardian's clearing is sealed", "Restore all three ward pieces first. The journal records your lessons, and the compass points toward your next mission.", Close); return; }
+            Show("The Suncrest Guardian / Five shields", "Suncrest Guardian: I've been using these tools for everything. How do you decide when to step in?\n\nWarrior: Let's see what you've learned. Get four of five questions right to open Fall. You can retry without redoing the village jobs.", () => { Progress.BeginBoss(); BossQuestion(); });
         }
         void BossQuestion()
         {
@@ -187,17 +187,17 @@ namespace AmbrosJourney.Summer
                 {
                     maleWarrior.follow = mage.transform; femaleWarrior.follow = maleWarrior.transform;
                     effects.PlayOneShot(ward, .7f);
-                    Show("Summer cleared / " + Progress.BossScore + " of 5", "Orc: What if I get it wrong?\nAmbros: Then you practice. You can ask for help without giving up.\n\nThe Warriors restore the village ward and join your party.\nRank earned: INDEPENDENT THINKER\n\nAI can support your ideas and learning. You are responsible for your choices.\n\nThe Fall gate is open.", Close);
+                    Show("Summer cleared / " + Progress.BossScore + " of 5", "Suncrest Guardian: What if I get it wrong?\nAmbros: Then you practice. You can ask for help without giving up.\n\nThe Warriors restore the village ward and join your party.\nRank earned: INDEPENDENT THINKER\n\nAI can support your ideas and learning. You are responsible for your choices.\n\nThe Fall gate is open.", Close);
                 }
                 else Show("Your score / " + Progress.BossScore + " of 5", "You need 4/5 (80%) to pass. Review the explanations or open your journal. All three missions remain complete.\n\nContinue to try again, or press Escape to return to the village.", () => { Progress.BeginBoss(); BossQuestion(); });
                 return;
             }
             var q = SummerContent.Boss[Progress.BossQuestion];
-            Ask("Orc / Question " + (Progress.BossQuestion + 1) + " of 5", q.Prompt, q.Choices, c => {
+            Ask("Suncrest Guardian / Question " + (Progress.BossQuestion + 1) + " of 5", q.Prompt, q.Choices, c => {
                 bool right = Progress.AnswerBoss(c); Effect(right);
                 if (right) player.Strike(); else orc.Strike();
                 effects.PlayOneShot(strike, .35f);
-                Show(right ? "A shield cracks!" : "The Orc attacks", q.Explanation + "\n\nScore: " + Progress.BossScore + " / " + Progress.BossQuestion + " answered. Courage: " + Progress.Courage + " / 3.", BossQuestion);
+                Show(right ? "A shield cracks!" : "The Suncrest Guardian attacks", q.Explanation + "\n\nScore: " + Progress.BossScore + " / " + Progress.BossQuestion + " answered. Courage: " + Progress.Courage + " / 3.", BossQuestion);
             });
         }
         void ShowPages(string[] pages, int index, Action complete)
@@ -249,10 +249,10 @@ namespace AmbrosJourney.Summer
             arenaSeal.SetActive(!Progress.CanFight); exitSeal.SetActive(!Progress.Complete);
             for (int i = 0; i < 3; i++) wardLights[i].color = Progress.Wards[i] ? new Color(.5f, 1, .75f) : new Color(.7f, .55f, .30f);
             for (int i = 0; i < shields.Length; i++) shields[i].enabled = !Progress.Complete && i >= Progress.BossScore;
-            objective.text = "WARD " + Progress.WardCount + " / 3   |   COURAGE " + Progress.Courage + " / 3\n" + (Progress.Complete ? "Walk through the Fall gate" : Progress.CanFight ? "Challenge the Orc / 4 of 5 to pass" : !Progress.Wards[0] ? "Workshop / Choose the right tool" : !Progress.Wards[1] ? "Training garden / Keep your practice" : "Message post / Ask safely");
+            objective.text = "WARD " + Progress.WardCount + " / 3   |   COURAGE " + Progress.Courage + " / 3\n" + (Progress.Complete ? "Walk through the Fall gate" : Progress.CanFight ? "Challenge the Suncrest Guardian / 4 of 5 to pass" : !Progress.Wards[0] ? "Workshop / Choose the right tool" : !Progress.Wards[1] ? "Training garden / Keep your practice" : "Message post / Ask safely");
             var destination=Destination();
             if(!InputBlocked)presentation.SetCompass(player.transform.position,navigation.Next(player.transform.position,destination),destination);
-            prompt.text=InputBlocked||nearby<0?"":"[ E ]  "+new[]{"Talk to the Warrior","Visit the workshop","Practice in the garden","Read the message post","Face the Orc","Enter the Fall gate","SUN stone","LEAF stone","SEED stone","Talk to the Warrior"}[nearby];
+            prompt.text=InputBlocked||nearby<0?"":"[ E ]  "+new[]{"Talk to the Warrior","Visit the workshop","Practice in the garden","Read the message post","Face the Suncrest Guardian","Enter the Fall gate","SUN stone","LEAF stone","SEED stone","Talk to the Warrior"}[nearby];
             party.text = Progress.Complete ? "PARTY / Ambros + Mage + both Warriors" : "PARTY / Ambros + Ancient Mage";
         }
         void CreateUI()

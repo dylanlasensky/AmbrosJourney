@@ -98,13 +98,13 @@ namespace AmbrosJourney.Winter
             Label("FOLLOW THE LANTERNS NORTH",new Vector2(23,13));Label("THIN ICE / STAY ON THE TRAIL",new Vector2(-3,-11));
             level.stations=new Transform[3];level.runes=new SpriteRenderer[3];
             for(int i=0;i<2;i++){level.stations[i]=Visual(WinterContent.Landmarks[i],"Noticeboard",MissionPositions[i],1.5f).transform;level.runes[i]=Visual("Evidence seal","Ward",MissionPositions[i]+Vector2.right*2);Label(WinterContent.Landmarks[i].ToUpper(),MissionPositions[i]+Vector2.up*3.5f);Visual("Research shelter","Shelter",MissionPositions[i]+new Vector2(-4,3),1.1f);}
-            level.winterGuardian=Actor("Frostbound Warden / Winter boss","SkeletonIdle",4,new Vector2(24,24),"SkeletonAttack",6,1.8f);Label("WINTER WARDEN / CAVE GUARD",new Vector2(24,28));
+            level.winterGuardian=Actor("Frostbound Warden / Winter boss","SkeletonIdle",4,new Vector2(24,24),"SkeletonAttack",6,1.8f);SeasonBossVisual.Attach(level.winterGuardian.gameObject,"WinterFrostboundAtlas",6.2f);Label("WINTER WARDEN / CAVE GUARD",new Vector2(24,28));
             Cavern=new GameObject("Echo Cavern / interior map");Cavern.transform.SetParent(transform);region=Cavern.transform;
             BuildCave();
             level.caveExit=Visual("Daylight exit","Portal",CaveSpawn+Vector2.down,1.2f).transform;Label("DAYLIGHT / E TO LEAVE",CaveSpawn+Vector2.up*3);
             level.stations[2]=Visual("Echo Archive","Noticeboard",MissionPositions[2],1.5f).transform;level.runes[2]=Visual("Archive evidence seal","Ward",MissionPositions[2]+Vector2.right*2);Label("ECHO ARCHIVE",MissionPositions[2]+Vector2.up*3);
             for(int i=0;i<5;i++)Visual("Archive crystal","Crystal",new Vector2(98+i*2,15),.4f);
-            level.guardian=Actor("Echo Keeper / final boss","SkeletonIdle",4,BossPosition,"SkeletonAttack",6,2.2f);Label("ECHO KEEPER / FINAL",BossPosition+Vector2.up*5);
+            level.guardian=Actor("Echo Keeper / ancient AI robot","SkeletonIdle",4,BossPosition,"SkeletonAttack",6,2.2f);SeasonBossVisual.Attach(level.guardian.gameObject,"FinalEchoKeeperAtlas",8.6f);Label("ECHO KEEPER / FINAL",BossPosition+Vector2.up*5);
             var seal=Visual("Three-seal frozen barrier","Barrier",new Vector2(134,16));seal.transform.localScale=new Vector3(9,1.3f,1);seal.gameObject.AddComponent<BoxCollider2D>();level.arenaSeal=seal.gameObject;
             level.shields=new SpriteRenderer[5];for(int i=0;i<5;i++)level.shields[i]=Visual("Warden ice seal","Shield",BossPosition+new Vector2(-4+i*2,-2));
             level.winterGate=Visual("Winter crest","Ward",new Vector2(140,30),2).transform;Label("WINTER CREST",new Vector2(140,33));

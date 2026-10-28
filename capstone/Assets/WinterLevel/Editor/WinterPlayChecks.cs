@@ -15,7 +15,7 @@ namespace AmbrosJourney.Winter.Editor
         static void Inspect()
         {
             typeof(SeasonOverlay).GetMethod("LateUpdate",Flags).Invoke(ui,null);Canvas.ForceUpdateCanvases();
-            foreach(var t in ui.GetComponentsInChildren<TextMeshProUGUI>()){t.ForceMeshUpdate();Check(!t.isTextOverflowing,"Text overflow "+t.name+" / "+ui.Heading.text);}
+            foreach(var t in ui.GetComponentsInChildren<TextMeshProUGUI>()){t.ForceMeshUpdate();Check(t.font==GameFont.Resolve(),"Determination font on "+t.name);Check(!t.isTextOverflowing,"Text overflow "+t.name+" / "+ui.Heading.text);}
             States++;
         }
         static void Next(){Inspect();ui.Choices[0].onClick.Invoke();}
@@ -37,13 +37,41 @@ namespace AmbrosJourney.Winter.Editor
             Check(Route(WinterWorld.CaveSpawn,WinterWorld.MissionPositions[2],true),"Archive reachable");Check(!Route(WinterWorld.CaveSpawn,WinterWorld.BossPosition,true),"Final physically sealed before Archive");
             Mission(2);Call("RefreshWorld");Physics2D.SyncTransforms();Check(Route(WinterWorld.CaveSpawn,WinterWorld.BossPosition,true),"Final reachable after all seals");
             Move(WinterWorld.BossPosition+Vector2.down*2);level.Interact(4);Next();
-            for(int i=0;i<8;i++){int c=WinterContent.Final[i].Correct;Choice(i<6?c:(c+1)%3);Next();}Check(!level.Progress.Complete,"Final 6/8 fails");Next();
-            for(int i=0;i<8;i++){int c=WinterContent.Final[i].Correct;Choice(i<7?c:(c+1)%3);Next();}Check(level.Progress.Complete,"Final 7/8 passes");Inspect();Call("Close");
+            for(int i=0;i<8;i++){Activity(i,i<6);Next();}Check(!level.Progress.Complete,"Final 6/8 fails");Next();
+            for(int i=0;i<8;i++){Activity(i,i<7);Next();}Check(level.Progress.Complete,"Final 7/8 passes");Inspect();Call("Close");
             Call("ToggleJournal");Inspect();Call("ToggleJournal");
             Move(level.caveExit.position);level.Interact(7);Next();Check(level.Progress.Complete&&level.Progress.RuneCount==3,"Leaving preserves completed season");
             Move(WinterWorld.Entrance);level.Interact(6);Next();Check(level.Progress.Complete,"Re-entry preserves completion");
             Move(WinterWorld.BossPosition+Vector2.down*3);Call("RefreshWorld");
             Debug.Log("WINTER_PLAY_PASS: "+States+" UI states, outdoor and cave routes, cave guard, return trips, Winter 3/5 retry and 4/5 pass, cumulative final 6/8 retry and 7/8 pass.");
+        }
+        static void Activity(int index,bool correct)
+        {
+            var q=WinterContent.Final[index];var panel=level.GetComponent<FinalActivityPanel>();Check(panel&&panel.IsOpen,"Interactive final opens");Inspect();
+            SeasonIntegrationChecks.Capture("FinalActivity"+index);
+            int[] answer=(int[])q.Expected.Clone();
+            if(!correct)
+            {
+                if(q.Kind==FinalActivityKind.SelectMany)answer=new[]{Array.FindIndex(q.Choices,x=>Array.IndexOf(q.Expected,Array.IndexOf(q.Choices,x))<0)};
+                else if(q.Kind==FinalActivityKind.Arrange)Array.Reverse(answer);
+                else answer[0]=(answer[0]+1)%(q.Kind==FinalActivityKind.Match?q.Categories.Length:q.Choices.Length);
+            }
+            if(q.Kind==FinalActivityKind.Arrange)
+            {
+                for(int slot=0;slot<answer.Length;slot++)
+                {
+                    var area=ui.Dialog.transform.Find("Final activity");var source=area.Find("Card "+answer[slot]).gameObject;var target=area.Find("Space "+slot).gameObject;
+                    var e=new UnityEngine.EventSystems.PointerEventData(UnityEngine.EventSystems.EventSystem.current){pointerDrag=source,delta=new Vector2(429,0)};
+                    UnityEngine.EventSystems.ExecuteEvents.Execute(source,e,UnityEngine.EventSystems.ExecuteEvents.beginDragHandler);
+                    UnityEngine.EventSystems.ExecuteEvents.Execute(source,e,UnityEngine.EventSystems.ExecuteEvents.dragHandler);
+                    UnityEngine.EventSystems.ExecuteEvents.Execute(target,e,UnityEngine.EventSystems.ExecuteEvents.dropHandler);
+                    UnityEngine.EventSystems.ExecuteEvents.Execute(source,e,UnityEngine.EventSystems.ExecuteEvents.endDragHandler);
+                }
+            }
+            else if(q.Kind==FinalActivityKind.Match){for(int i=0;i<answer.Length;i++)for(int n=0;n<=answer[i];n++)panel.Select(i);}
+            else foreach(int selected in answer)panel.Select(selected);
+            Inspect();int before=level.Progress.BossQuestion;panel.GetComponentsInChildren<UnityEngine.UI.Button>()[panel.GetComponentsInChildren<UnityEngine.UI.Button>().Length-1].onClick.Invoke();
+            Check(level.Progress.BossQuestion==before+1,"One submission advances exactly one activity");Inspect();
         }
         static void Mission(int m)
         {

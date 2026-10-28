@@ -1,3 +1,5 @@
+> **Dated validation snapshot.** Counts, captures and limitations below describe the version tested at that time. For the current bosses, Determination UI, mixed finale, persistent saves and latest results, see [current validation](CurrentValidation.md) and [documentation index](README.md).
+
 # Four-season review and Winter validation
 
 Validated on October 25, 2026 with Unity 6000.6.2f1 in an isolated checkout.

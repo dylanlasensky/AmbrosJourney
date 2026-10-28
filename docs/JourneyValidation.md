@@ -1,3 +1,5 @@
+> **Dated validation snapshot.** Counts, captures and limitations below describe the version tested at that time. For the current bosses, Determination UI, mixed finale, persistent saves and latest results, see [current validation](CurrentValidation.md) and [documentation index](README.md).
+
 # Journey update validation
 
 Verified locally on October 26, 2026 with Unity 6000.6.2f1 on macOS.

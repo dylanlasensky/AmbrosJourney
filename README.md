@@ -1,59 +1,49 @@
 # Ambros' Journey
 
-## Complete journey update
-
-Start from `Assets/Opening/Intro.unity` for the name-entry menu. This branch adds pause/save/reset, travel to unlocked seasons, twelve artifacts, an outdoor Winter boss, an eight-question final cave boss, and a downloadable PDF certificate. Intro/outro videos remain teammate-owned. See [gameplay, video handoff and validation](docs/JourneyCompletion.md).
-
-[Automated checks and local validation](docs/Testing.md)
-
-A Unity 2D adventure that teaches middle-school players how to use AI safely. Ambros is playing a game on his laptop at home when he is pulled into its world. To get home, he must explore four seasons, learn from their inhabitants, and pass each guardian's quiz before facing a final AI Safety challenge.
+A top-down pixel-art adventure for middle-school players learning to use AI thoughtfully and safely. Ambros is pulled into a game and travels through four seasons to find a way home. Lessons and responses are authored; there is no live AI service.
 
 **Team:** Dylan Lasensky, Kaley Carrubba, and Kaylie Pasternak · CMS 484 Capstone
 
-## Current build
+## Play the current game
 
-**Spring Valley is playable:** an expanded woodland map, enlarged cottage with a connected entrance path, lake and dock, winding trails, spaced-out encounters, three field-note stops, six myth-bat questions, a journal, directional compass, and a separate Thornhide Guardian arena. Scoring **4/5 (80%)** on the guardian quiz opens the Summer gate and adds the Ancient Mage to the party.
+Open the **inner `capstone` folder** in Unity **6000.6.2f1**. Open `Assets/Opening/Intro.unity` and press Play, or use **Capstone > Play From Opening**. The Blossom Valley main menu supports New Journey, Continue, Settings, Quit, and a completed explorer's certificate. New Journey asks for a name and confirms before replacing an existing save.
 
-**Summer Valley** adds three ward missions about tool choice, practice and safe requests. **Fall / Emberwood** adds a 99 × 93-tile autumn map, two river crossings, hedge switchbacks, seven prompt-engineering choices, a journal, route-aware compass and a five-question guardian. Pass with **4/5 (80%)** to recruit Emberfist and unlock the Winter gate. See [Fall implementation notes](capstone/Assets/FallLevel/README.md) and [validation](docs/FallValidation.md).
+New Journey enters Spring directly while the teammate's intro video is absent. Optional intro/outro hooks are implemented; this update does not supply replacement videos. Close the conversation at each unlocked seasonal gate, then walk through it to continue.
 
-Spring targets **about five minutes** for a first-time player; the full game targets **about thirty minutes**. These are design targets pending user testing. The [gameplay demo](docs/SpringDemo.mp4) follows a faster, familiar route.
-
-The name-entry menu currently enters Spring directly. The retired generated intro has been removed; the teammate owns the final intro and outro. All four seasons are playable in order: Spring → Summer → Fall → Winter. Winter now has an outdoor Warden and the cumulative Echo Keeper inside the cave. Pause, exact-location saves, reset, chapter revisits, collectible artifacts and the final PDF certificate are implemented. See [Journey completion](docs/JourneyCompletion.md) for controls and video integration.
-
-See [Winter setup and art credits](capstone/Assets/WinterLevel/README.md). All four seasons now share the same parchment UI, dialogue buttons, objective cards and journal.
-
-## Game direction
-
-| Chapter | Learning focus and cast | Status |
+| Progression | Helper and teaching goal | Encounter and reward |
 | --- | --- | --- |
-| Level 1 — Spring | Ancient Mage introduces AI basics; misinformation bats test understanding; Thornhide guards the exit. | Playable; polish and user testing remain |
-| Level 2 — Summer | Married Warriors teach the risks of overreliance on AI; an Orc encounter reinforces the lesson. | Playable; connects to Fall |
-| Level 3 — Fall | Emberfist teaches prompt engineering across Emberwood: three rune missions and the Bramble Sentinel. | Playable; user testing remains |
-| Level 4 — Winter | Little Mage teaches verification across Frostveil and Echo Cavern; the Frostbound Warden tests evidence-checking. | Playable; two maps, cave boss and Winter crest |
-| Final level | Cumulative AI Safety quiz and return-to-Spring escape resolution. | Planned |
+| Spring Valley | Ancient Mage: examples and training limits, humanlike language, verification and privacy | Three notes and six true/false claims; **Blossom Guardian**, 4/5. Apprentice rank; Mage joins. |
+| Summer Valley | Married Warriors: useful assistance, independent practice, classroom rules, privacy and real support | Workshop, stone pattern and message post; **Suncrest Guardian**, 4/5. Independent Thinker; both Warriors join. |
+| Fall / Emberwood | Emberfist: goals, context, audience, format, useful revisions and factual limits | Three notes and seven choices; **Bramble Sentinel**, 4/5. Prompt Pathfinder; Emberfist joins. |
+| Winter / Frostveil | Little Mage: original sources, independent evidence, dates, uncertainty and corrections | Two outdoor notes with four choices; **Frostbound Warden**, 4/5. Winter crest; Little Mage joins and the cave opens. |
+| Echo Cavern finale | Apply AI safety across the whole journey | Echo Archive note and two choices, then **Echo Keeper**, an ancient AI robot: eight new activities, **7/8**. Optional outro and personalized PDF certificate. |
 
-Each season should teach through short exploration missions before testing the player. Companions join after their season. The intended ending uses an item obtained in Winter to return home from Spring; a completion certificate is a future goal. Educational interactions use authored content, without a live AI API.
+Every season now has its own animated guardian. Spring has a blossom-covered woodland tortoise, Summer a golden sunflower-maned lion, Winter a snowy ice-armored bear, and the final Keeper is a towering rune-powered machine. Fall's existing autumn stone-and-bramble boss is preserved. The new bosses have two idle poses and separate windup/impact poses tied to answer feedback. [Boss art and animations](docs/Bosses.md)
 
-The gameplay aesthetic is whimsical top-down pixel art: seasonal nature, fantasy characters, and signs of an AI/cyborg takeover. Build on the existing character and environment packs. Leave generous walking space, add meaningful scenery, connect paths to entrances, and spread lessons across recognizable landmarks. Use clear on-screen objectives and a playful, readable UI. Bosses should look visibly larger and different from ordinary enemies. The opening has its own illustrated storybook style, with continuous action rather than captioned still images.
+## Controls and progress
 
-See [Game Design and Team Handoff](docs/GameDesign.md) for progression rules, sprint context, and collaboration guidance, and the [intro brief](docs/IntroVideoBrief.md) for opening shots and references.
+- **WASD / arrows:** move. **E / Enter:** interact and continue. **1/2** answers Spring's claims; later choices also use **3** or the mouse.
+- **J:** field journal. **Esc** or Pause: pause/menu controls. **R:** return to the current region's arrival. **F:** collect a nearby artifact. **M:** mute/unmute seasonal audio in Summer, Fall and Winter.
+- Finale: select details, match jobs, or drag cards into order. Clicking a card and a slot works too; number keys and Enter provide alternatives. Check submits the completed activity.
+- Pause offers Resume, Save and return, reset with confirmation, artifacts, Explorer/Assisted guidance and travel to unlocked seasons.
+- Progress saves locally, including exact chapter/region coordinates, partial lessons, bosses, artifacts and completion. Autosave runs every five seconds during exploration. There is one profile per device with a recovery copy, not cloud accounts.
+- Three optional artifacts in each season unlock the **Evidence Keeper** achievement and Evidence Compass collection lesson. The final's evidence topic is also taught in Winter; collecting all artifacts is not required to understand or enter the finale.
 
-## Timeline — Fall 2026
+All four seasons, menus, controls, notes and activities use the supplied **Determination** font with the existing point sizes and shared parchment UI. Minor labels are shortened to fit. [Current questions and notes](docs/QuestionRefresh.md)
 
-These are team targets, not claims that scheduled work is already finished.
+## Documentation and checks
 
-| Week | Dates | Goals |
-| --- | --- | --- |
-| 1 | Oct 19–23 | Rough drafts of Levels 1 and 2; main menu; pause and return-to-menu buttons |
-| 2 | Oct 26–30 | Rough drafts of Levels 3 and 4; rough final AI Safety quiz |
-| 3 | Nov 2–6 | **Sprint 3 due Nov 4**; finalize Levels 1 and 2 |
-| 4 | Nov 9–13 | Finalize Levels 3, 4, and the final level; user testing with friends and the target audience |
-| 5 | Nov 16–20 | Finishing touches; prepare for the demo after Thanksgiving |
+- [Game design and progression](docs/GameDesign.md)
+- [Menus, saves, artifacts and teammate video handoff](docs/JourneyCompletion.md)
+- [Spring setup](SPRING_PROTOTYPE.md), [Summer](capstone/Assets/SummerLevel/README.md), [Fall](capstone/Assets/FallLevel/README.md), [Winter](capstone/Assets/WinterLevel/README.md)
+- [Testing and builds](docs/Testing.md), [latest combined validation](docs/CurrentValidation.md), [documentation index](docs/README.md)
 
-## Open and play
+The hosted Game checks workflow runs progression and asset-integrity checks. Unity playthrough, rendering and player builds are additional local checks; a passing source test alone is not a complete release test. Commit required `.meta` files with assets and keep generated caches/builds/logs out of Git. Preserve existing art and font licenses.
 
-1. Clone this repository and open the **inner `capstone` folder** in Unity Hub with **Unity 6000.6.2f1**. Let asset imports finish.
-2. Select **Capstone → Play From Opening** or **Capstone → Play Spring Only**; use **Capstone → Summer → Play Summer Only** or **Capstone → Fall → Play Fall Only** to start later chapters directly in the Editor. **Capstone → Winter → Play Winter Only** opens Frostveil.
-3. Move with **WASD / arrow keys**, interact with **E**, answer with **1 / 2** in Spring or **1 / 2 / 3** in Summer/Fall, open the journal with **J**, close dialogue with **Escape**, or return to the cottage with **R**.
+## Design targets and remaining work
 
-Use **Capstone → Validate Spring Progression** for the progression check. [Spring implementation notes](SPRING_PROTOTYPE.md) describe scene rebuilding, demo recording, and known limitations. Coordinate scene edits, commit asset `.meta` files with assets, keep Unity-generated caches out of version control, and preserve asset-pack licenses and credits.
+Spring targets about five minutes; the whole journey targets roughly thirty minutes. These are unmeasured first-time-player targets, not promised durations. Navigation becomes more complex in Fall and Winter without artificial waiting timers. Explorer guidance uses broad bearings at long range in those seasons; Assisted restores exact route guidance, including during Winter snow.
+
+The teammate's final intro/outro clips, broader inventory/customization and audience testing remain outstanding. The implemented finale goes directly to the ending/certificate flow; the older plan to require a playable return to Spring is not currently implemented. User testing should check comprehension, difficulty, pacing, audio balance, screen shapes and standalone behavior on target hardware.
+
+The team's original Fall 2026 milestones remain planning context: Oct 19-23 rough Spring/Summer; Oct 26-30 rough Fall/Winter/finale; Sprint Three due Nov 4; later November polish, audience testing and post-Thanksgiving demo preparation. A milestone date is not evidence of completion.

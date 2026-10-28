@@ -45,9 +45,9 @@ namespace AmbrosJourney.Fall
             Application.runInBackground=false;CreateUI();CreateAudio();
             mage.follow=player.transform;maleWarrior.follow=mage.transform;femaleWarrior.follow=maleWarrior.transform;
             ShowPages(new[]{
-                "Emberfist: Welcome to Emberwood! The Mage and Warriors told me you keep your own thinking. Here, our instruction engines have tangled the forest with vague requests.",
-                "A prompt is a request to an AI tool. Shape it with a goal, useful context and a format. Then read the response and revise it. Clear words help; they cannot guarantee truth.",
-                "Find three rune stations: Harvest Orchard, Lantern Archive and Revision Kiln. Read each note before its challenges. Rivers and hedge turns make this trail longer: follow signposts and the compass. Earn all three runes, then score 4/5 against the Bramble Sentinel to open Winter."
+                "Emberfist: Welcome to Emberwood! Our machines keep getting requests mixed up. Help me work out how to give them clearer instructions.",
+                "A prompt is what you ask an AI tool to do. Say what you need, give useful background and explain how you want the reply. Then read it and ask for changes if needed. You still have to check the facts.",
+                "Start at Harvest Orchard, cross the north bridge to Lantern Archive, then find Revision Kiln. Read each note and fix the requests there. Three runes open the Sentinel's clearing. Get four of five questions right to reach Winter."
             },0,()=>Progress.Introduced=true);
             Debug.Log("FALL_READY: Emberwood, three prompt missions, seven applied choices and five-question guardian.");
         }
@@ -100,7 +100,7 @@ namespace AmbrosJourney.Fall
         {
             if(Progress.Complete){Show("Bramble Sentinel / Restored", "Sentinel: A clear request gives me direction, not wisdom.\nEmberfist: Exactly. We still inspect the answer.",Close);return;}
             if(!Progress.CanFight){Show("The rune barrier is sealed","Restore the Orchard, Archive and Kiln runes before challenging the Sentinel.",Close);return;}
-            Show("Bramble Sentinel / Five tangled instructions","Sentinel: If you want the Winter road, show me what makes a useful request!\n\nAnswer five questions with three choices each. Score 4/5 (80%) to pass. Feedback follows every choice; retries preserve all three missions.",()=>{Progress.BeginBoss();BossQuestion();});
+            Show("Bramble Sentinel / Five tangled instructions","Sentinel: Let's try a few new requests. Can you spot what each one needs?\n\nGet four of five questions right to open Winter. Your runes stay safe if you need another try.",()=>{Progress.BeginBoss();BossQuestion();});
         }
         void BossQuestion()
         {

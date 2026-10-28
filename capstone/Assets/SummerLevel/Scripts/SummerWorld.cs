@@ -112,7 +112,8 @@ namespace AmbrosJourney.Summer
             level.mage=Actor("Ancient Mage","MageIdle",4,new Vector2(-2,22)); level.mage.walk=Frames("MageWalk",8);
             level.maleWarrior=Actor("Warrior - Workshop guide","MaleIdle",4,new Vector2(-14,16)); level.maleWarrior.walk=Frames("MaleWalk",6);
             level.femaleWarrior=Actor("Warrior - Garden guide","FemaleIdle",4,new Vector2(-16,-3)); level.femaleWarrior.walk=Frames("FemaleWalk",6);
-            level.orc=Actor("Overreliant Orc","OrcIdle",5,new Vector2(0,-23),"OrcAttack",6,1.7f);
+            level.orc=Actor("Suncrest Guardian","OrcIdle",5,new Vector2(0,-23),"OrcAttack",6,1.7f);
+            SeasonBossVisual.Attach(level.orc.gameObject,"SummerSuncrestAtlas",6f);
             // Readable landmarks with new supporting props; original character art is retained.
             level.workshop=Visual("Village workshop","Workbench",new Vector2(-18,12),1.5f).transform;
             Label("VILLAGE WORKSHOP",new Vector2(-18,16));
@@ -130,10 +131,10 @@ namespace AmbrosJourney.Summer
             Visual("Damaged bridge - ask the builder","Bridge",new Vector2(8,5));Block("Broken bridge approach",new Vector2(7,5),new Vector2(2,5));
             level.wardLights=new SpriteRenderer[3]; Vector2[] wp={new Vector2(-16,12),new Vector2(-12,-6),new Vector2(21,8)};
             for(int i=0;i<3;i++)level.wardLights[i]=Visual("Ward piece "+(i+1),"Ward",wp[i]);
-            Label("ORC'S CLEARING",new Vector2(0,-16));
+            Label("SUNCREST'S CLEARING",new Vector2(0,-16));
             for(int x=-29;x<=29;x+=2) if(Mathf.Abs(x)>3) {Visual("Arena perimeter","Rock",new Vector2(x,-18));Block("Arena wall",new Vector2(x,-18),new Vector2(2,1));}
             var seal=Visual("Village ward barrier","Barrier",new Vector2(0,-18));seal.transform.localScale=new Vector3(8.4f,2,1);seal.gameObject.AddComponent<BoxCollider2D>(); level.arenaSeal=seal.gameObject;
-            level.shields=new SpriteRenderer[5];for(int i=0;i<5;i++)level.shields[i]=Visual("Orc shield "+(i+1),"Shield",new Vector2(-3+i*1.5f,-24));
+            level.shields=new SpriteRenderer[5];for(int i=0;i<5;i++)level.shields[i]=Visual("Suncrest seal "+(i+1),"Shield",new Vector2(-3+i*1.5f,-24));
             for(int i=0;i<3;i++)Visual("Instruction device","Device",new Vector2(-5+i*5,-26));
             level.fallGate=Visual("Fall portal","Portal",new Vector2(0,-30),1.5f).transform;level.fallGate.GetComponent<SpriteRenderer>().color=new Color(1,.69f,.4f);Label("FALL / PROMPT ENGINEERING",new Vector2(0,-27));
             var exit=Visual("Fall seal","Barrier",new Vector2(0,-28.7f));exit.transform.localScale=new Vector3(5,1,1);exit.gameObject.AddComponent<BoxCollider2D>();level.exitSeal=exit.gameObject;
