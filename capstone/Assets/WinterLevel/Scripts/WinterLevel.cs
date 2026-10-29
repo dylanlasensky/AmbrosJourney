@@ -129,7 +129,6 @@ namespace AmbrosJourney.Winter
         }
         void BossQuestion()
         {
-            music.pitch=.80f;
             if(Progress.BossFinished)
             {
                 if(Progress.Complete){effects.PlayOneShot(ward,.7f);Show("The way home / "+Progress.BossScore+" of 8","The Echo Keeper's final seal opens. You have learned to question confidently worded claims, protect your privacy, practice your own skills and check evidence.\n\nYour AI Learning Certificate is earned. Continue to return home.",()=>{Close();AmbrosJourney.Journey.JourneySession.Instance?.FinishJourney();});}
@@ -218,15 +217,15 @@ namespace AmbrosJourney.Winter
         void CreateAudio()
         {
             effects = gameObject.AddComponent<AudioSource>(); effects.playOnAwake = false;
-            music = gameObject.AddComponent<AudioSource>(); music.playOnAwake = false; music.loop = true; music.volume = .12f;
+            music = gameObject.AddComponent<AudioSource>(); music.playOnAwake = false; music.loop = true; music.volume = .22f;
             good = Tone("Winter positive", .2f, 660); bad = Tone("Winter reconsider", .25f, 210, true); ward = Tone("Ward restored", .8f, 520); strike = Tone("Shield impact", .12f, 100, true);
-            int rate = 22050, length = rate * 16; var samples = new float[length]; float[] notes = { 261.63f, 329.63f, 392f, 329.63f, 293.66f, 349.23f, 440f, 392f };
-            for (int i = 0; i < length; i++) { float t = (float)i / rate; float beat = t % 2; float envelope = Mathf.Sin(Mathf.PI * beat / 2); samples[i] = .12f * Mathf.Sin(2 * Mathf.PI * notes[(int)(t / 2) % notes.Length] * t) * envelope + .035f * Mathf.Sin(2 * Mathf.PI * 130.815f * t) * Mathf.Sin(Mathf.PI * t / 16); }
-            var ambient = AudioClip.Create("Original Winter melody", length, 1, rate, false); ambient.SetData(samples, 0); music.clip = ambient; music.Play();
+            music.clip = Resources.Load<AudioClip>("SeasonMusic/zephiramusic-lofi-winter-610024");
+            if (music.clip) music.Play();
+            else Debug.LogError("Missing Winter background music.");
         }
         void OnDestroy()
         {
-            foreach (var c in new[] { good, bad, ward, strike, music ? music.clip : null }) if (c) Destroy(c);
+            foreach (var c in new[] { good, bad, ward, strike }) if (c) Destroy(c);
         }
     }
 }
