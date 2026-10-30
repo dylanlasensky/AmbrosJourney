@@ -17,3 +17,5 @@ After passing the final Echo Keeper challenge (7/8), the completion date is reco
 Run the Unity fixture in batch mode without `-quit` (the fixture exits after its final check). The extra Game View size is used only for deterministic 1280x720 screenshots.
 
 The supplied `m2-res_480p.mp4` reference was inspected frame by frame. The revised animation uses texture-backed fragments of the actual Keeper atlas; pieces progressively detach rather than fading the whole boss. Play checks also confirm progressive fragment release, the falling-item phase, and disabled pickup until landing.
+
+The faster scroll revision emits the red-ribbon parchment pickup at 0.72 seconds, during the remaining dust, with a 0.20-second fall and 0.12-second bounce. The full animation releases player movement after 1.30 seconds. Unity checks confirm this earlier drop and the 32x32 scroll/ribbon artwork, as well as the existing pickup, save recovery, name/date and PDF behavior.

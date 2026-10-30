@@ -28,7 +28,7 @@ namespace AmbrosJourney.Journey.Editor
         }
         public static void Run()
         {
-            Directory.CreateDirectory("Logs/CertificateChecks");Directory.CreateDirectory("Logs/CertificateChecks/Animation");SessionState.SetString(Key+"Error","");SessionState.SetBool(Key,true);
+            Directory.CreateDirectory("Logs/CertificateChecks");Directory.CreateDirectory("Logs/CertificateChecks/Animation");foreach(var frame in Directory.GetFiles("Logs/CertificateChecks/Animation","*.png"))File.Delete(frame);SessionState.SetString(Key+"Error","");SessionState.SetBool(Key,true);
             const string path="Assets/Journey/Resources/Journey/CertificateBackground.png";
             AssetDatabase.ImportAsset(path,ImportAssetOptions.ForceSynchronousImport);
             var importer=(TextureImporter)AssetImporter.GetAtPath(path);importer.textureType=TextureImporterType.Default;importer.mipmapEnabled=false;importer.wrapMode=TextureWrapMode.Clamp;importer.filterMode=FilterMode.Bilinear;importer.maxTextureSize=4096;importer.textureCompression=TextureImporterCompression.Uncompressed;importer.SaveAndReimport();
@@ -60,7 +60,7 @@ namespace AmbrosJourney.Journey.Editor
                 if(stage>=1&&stage<=2)
                 {
                     var animated=UnityEngine.Object.FindAnyObjectByType<WinterLevel>()?.CertificateReward;
-                    if(animated&&animated.Dropping){sawDrop=true;Check(!animated.Ready,"Reward cannot be picked up while falling");}
+                    if(animated&&animated.Dropping){sawDrop=true;Check(animated.AnimationElapsed<1.2f,"Scroll drops promptly while dust is still clearing");Check(!animated.Ready,"Reward cannot be picked up while falling");}
                     if(Time.unscaledTime>=nextCapture){ScreenCapture.CaptureScreenshot(Path.GetFullPath("Logs/CertificateChecks/Animation/"+(captureIndex++).ToString("D3")+".png"));nextCapture=Time.unscaledTime+.075f;}
                 }
                 if(EditorApplication.timeSinceStartup<waitUntil)return;
@@ -77,7 +77,7 @@ namespace AmbrosJourney.Journey.Editor
                     session.RecordFinalVictory();date=session.Data.completedOn;Check(session.Data.certificatePending&&date==DateTime.Now.ToString("yyyy-MM-dd"),"Victory date saved before pickup");
                     session.ShowCertificate();Check(!session.Paused,"Certificate unavailable before pickup");
                     Call(level,"BossQuestion");Check(level.Transitioning&&level.CertificateReward&&!level.CertificateReward.Ready,"Victory starts crumble before item appears");
-                    startFrame=Time.frameCount;stage++;waitUntil=EditorApplication.timeSinceStartup+.7;
+                    startFrame=Time.frameCount;stage++;waitUntil=EditorApplication.timeSinceStartup+.45;
                 }
                 else if(stage==1)
                 {
@@ -90,6 +90,10 @@ namespace AmbrosJourney.Journey.Editor
                 {
                     Check(!level.Transitioning&&level.CertificateReward.Ready&&sawDrop,"Animation drops certificate, bounces and restores movement");
                     Check(!level.guardian.GetComponent<SpriteRenderer>().enabled,"Boss is gone");
+                    var scroll=GameObject.Find("Dropped AI safety certificate").GetComponent<SpriteRenderer>().sprite.texture;
+                    int ribbon=0;foreach(var pixel in scroll.GetPixels32())if(pixel.a>0&&pixel.r>180&&pixel.g<80&&pixel.b<90)ribbon++;
+                    Check(scroll.width==32&&ribbon>20,"Rolled parchment scroll has its red ribbon");
+                    File.WriteAllBytes(Path.GetFullPath("Logs/CertificateChecks/CertificateScroll.png"),scroll.EncodeToPNG());
                     var position=level.CertificateReward.Position;level.player.transform.position=position+Vector2.down*4;level.player.GetComponent<Rigidbody2D>().position=level.player.transform.position;
                     Check(!level.CertificateReward.TryCollect(),"Remote pickup rejected");
                     session.Data.completedOn="2026-10-01";date=session.Data.completedOn;session.RecordFinalVictory();Check(session.Data.completedOn==date,"Completion date never changes on replay");

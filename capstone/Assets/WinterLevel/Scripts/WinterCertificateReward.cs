@@ -17,6 +17,8 @@ namespace AmbrosJourney.Winter
         public int DetachedPixelCount {get;private set;}
         public int TotalPixelCount {get;private set;}
         public bool Dropping {get;private set;}
+        public float AnimationElapsed {get;private set;}
+        public const float DropDelay=.72f,FallDuration=.20f,BounceDuration=.12f;
         Vector3 restingPosition;
         bool started,claimed;
         Camera focusedCamera;WinterCamera followCamera;float originalSize;Vector3 originalCameraPosition;bool followWasEnabled;
@@ -75,21 +77,21 @@ namespace AmbrosJourney.Winter
                 Vector3 position=boss.transform.TransformPoint(local);host.transform.position=position;host.transform.localScale=boss.transform.lossyScale;
                 float fromTop=1-Mathf.InverseLerp(bounds.min.y,bounds.max.y,position.y);
                 dust.Add(host);renderers.Add(renderer);origins.Add(position);
-                releaseTimes.Add(.18f+fromTop*.60f+(float)random.NextDouble()*.18f);
-                lifetimes.Add(.52f+(float)random.NextDouble()*.16f);
+                releaseTimes.Add(.18f+fromTop*.42f+(float)random.NextDouble()*.12f);
+                lifetimes.Add(.40f+(float)random.NextDouble()*.12f);
                 velocities.Add(new Vector3(((float)random.NextDouble()-.5f)*2.4f,.15f+(float)random.NextDouble()*.9f,0));spins.Add(((float)random.NextDouble()-.5f)*100);
             }
             TotalPixelCount=dust.Count;float elapsed=0;Vector3 bossPosition=boss.transform.position;
-            while(elapsed<1.8f)
+            while(elapsed<1.30f)
             {
-                elapsed+=Time.deltaTime;DetachedPixelCount=0;
+                elapsed+=Time.deltaTime;AnimationElapsed=elapsed;DetachedPixelCount=0;
                 visual.enabled=elapsed<.18f;
                 visual.color=Color.Lerp(Color.white,new Color(.65f,.95f,1),Mathf.Sin(Mathf.Clamp01(elapsed/.18f)*Mathf.PI)*.55f);
                 if(visual.enabled)boss.transform.position=bossPosition+Vector3.right*(Mathf.Sin(elapsed*90)*.035f);
                 for(int i=0;i<dust.Count;i++)
                 {
                     var renderer=renderers[i];renderer.enabled=elapsed>=.18f;
-                    float t=elapsed-releaseTimes[i];float collapse=Mathf.SmoothStep(0,.85f,Mathf.InverseLerp(.45f,1.02f,Mathf.Min(elapsed,releaseTimes[i])));
+                    float t=elapsed-releaseTimes[i];float collapse=Mathf.SmoothStep(0,.85f,Mathf.InverseLerp(.30f,.75f,Mathf.Min(elapsed,releaseTimes[i])));
                     var origin=origins[i];origin.y=bounds.min.y+(origin.y-bounds.min.y)*(1-collapse);
                     if(t<0){dust[i].transform.position=origin;continue;}
                     DetachedPixelCount++;
@@ -98,33 +100,67 @@ namespace AmbrosJourney.Winter
                     float remaining=1-t/lifetimes[i];renderer.color=new Color(1,1,1,Mathf.Clamp01(remaining*3));
                     if(remaining<=0)renderer.enabled=false;
                 }
+                if(!item&&elapsed>=DropDelay){Dropping=true;Drop();}
+                if(item&&Dropping)AnimateDrop(elapsed-DropDelay);
                 yield return null;
             }
             boss.transform.position=bossPosition;HideBoss();
             foreach(var host in dust)if(host)Destroy(host);dust.Clear();
             foreach(var fragment in fragments)if(fragment)Destroy(fragment);fragments.Clear();
-            // The reward visibly falls after the last pixels disappear, lands, and bounces once.
-            Dropping=true;Drop();float fallTime=0;
-            while(fallTime<.68f)
-            {
-                fallTime+=Time.deltaTime;float height;
-                if(fallTime<.38f){float t=fallTime/.38f;height=2.1f*(1-t*t);item.transform.rotation=Quaternion.Euler(0,0,18*(1-t));}
-                else{float t=Mathf.Clamp01((fallTime-.38f)/.30f);height=.36f*Mathf.Sin(t*Mathf.PI);item.transform.rotation=Quaternion.identity;}
-                item.transform.position=restingPosition+Vector3.up*(.12f+height);yield return null;
-            }
-            Dropping=false;SeasonFeedback.Burst(restingPosition,new Color(1,.83f,.4f),12);RestoreCamera();level.Transitioning=false;
+            if(Dropping)AnimateDrop(FallDuration+BounceDuration);
+            RestoreCamera();level.Transitioning=false;
+        }
+        void AnimateDrop(float elapsed)
+        {
+            float height;
+            if(elapsed<FallDuration){float t=elapsed/FallDuration;height=1.45f*(1-t*t);item.transform.rotation=Quaternion.Euler(0,0,12*(1-t));}
+            else{float t=Mathf.Clamp01((elapsed-FallDuration)/BounceDuration);height=.16f*Mathf.Sin(t*Mathf.PI);item.transform.rotation=Quaternion.identity;}
+            item.transform.position=restingPosition+Vector3.up*(.12f+height);
+            if(elapsed>=FallDuration+BounceDuration){Dropping=false;SeasonFeedback.Burst(restingPosition,new Color(1,.83f,.4f),12);}
         }
         void Drop()
         {
             if(item||claimed)return;
             restingPosition=level.guardian.transform.position+Vector3.down*.45f;
-            paperTexture=new Texture2D(24,24,TextureFormat.RGBA32,false){filterMode=FilterMode.Point,wrapMode=TextureWrapMode.Clamp};
-            var pixels=new Color32[24*24];Color32 paper=new Color32(253,242,203,255),edge=new Color32(174,128,54,255),ink=new Color32(57,89,72,255);
-            for(int y=4;y<21;y++)for(int x=4;x<20;x++)pixels[y*24+x]=x==4||x==19||y==4||y==20?edge:paper;
-            for(int y=13;y<=17;y+=2)for(int x=7;x<17;x++)pixels[y*24+x]=ink;
-            for(int y=7;y<11;y++)for(int x=13;x<17;x++)pixels[y*24+x]=edge;
-            pixels[6*24+14]=edge;pixels[6*24+16]=edge;paperTexture.SetPixels32(pixels);paperTexture.Apply();
-            paperSprite=Sprite.Create(paperTexture,new Rect(0,0,24,24),Vector2.one*.5f,20);
+            paperTexture=new Texture2D(32,32,TextureFormat.RGBA32,false){filterMode=FilterMode.Point,wrapMode=TextureWrapMode.Clamp};
+            // Original pixel-art rolled parchment: shaded curls, cream highlights and a red ribbon.
+            string[] rows={
+                ".........ppppp..............",
+                "........pHHHhpp.............",
+                "......ppPHHHhPpp............",
+                ".....pbPPHHhhPPp............",
+                "....pbccPPHhhPPPp...........",
+                "...pbcccbPPHhhPPPp..........",
+                "...pbcccbbPPHhhPPPp.........",
+                "...pbbccbbbPPHhhPPp.........",
+                "....pbbbbbbPPPHhhPRR........",
+                ".....pbbbbPPPPHhPRRRR.......",
+                "......ppPPPPPPPRRrRRR.......",
+                "........pPPPPPRRrrRRRR......",
+                ".........pPPPRRrrRRRRPp.....",
+                "..........pPRRrrRRRPPPPp....",
+                "...........RRrrRRRPPHPPPp...",
+                "..........RRrrRRRPPHHPPPpp..",
+                ".........RRrrRRRPPHHPPPbbbp.",
+                "........RRrrRRRPPHHPPPbcccbbp",
+                ".......RRrrRRRPPHHPPPbccccbbp",
+                ".......RRRRRRPPHHPPPbccbccbp.",
+                "........RRRRPPHHPPPbccPPccbp.",
+                "..........pPPHHPPPbccPPccbp..",
+                "...........pPHHPPPbccccbbp...",
+                "............ppPPPpbbbbbp....",
+                "..............pppbbbbp......",
+                "................ppppp......."
+            };
+            var colors=new Dictionary<char,Color32>{
+                {'p',new Color32(193,112,75,255)},{'P',new Color32(246,166,106,255)},
+                {'H',new Color32(249,223,164,255)},{'h',new Color32(235,191,126,255)},
+                {'b',new Color32(147,78,53,255)},{'c',new Color32(214,136,83,255)},
+                {'R',new Color32(201,30,35,255)},{'r',new Color32(255,65,64,255)}};
+            var pixels=new Color32[32*32];
+            for(int y=0;y<rows.Length;y++)for(int x=0;x<rows[y].Length;x++)if(colors.TryGetValue(rows[y][x],out var color))pixels[(29-y)*32+x+1]=color;
+            paperTexture.SetPixels32(pixels);paperTexture.Apply();
+            paperSprite=Sprite.Create(paperTexture,new Rect(0,0,32,32),Vector2.one*.5f,24);
             var host=new GameObject("Dropped AI safety certificate",typeof(SpriteRenderer));host.transform.SetParent(level.guardian.transform.parent,true);host.transform.position=restingPosition;
             item=host.GetComponent<SpriteRenderer>();item.sprite=paperSprite;item.sortingOrder=110-Mathf.RoundToInt(restingPosition.y*10);
             if(!material)material=new Material(Shader.Find("Sprites/Default"));item.sharedMaterial=material;
