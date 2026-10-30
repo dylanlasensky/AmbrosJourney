@@ -20,11 +20,13 @@ namespace AmbrosJourney.Journey
         public int version=1,chapter=1,unlocked=1;
         public string playerName="",completedOn="";
         public bool started,finished,outroSeen,assistedGuidance;
+        public bool certificatePending;
         public bool[] artifacts=new bool[12];
         public ChapterSave[] chapters={new ChapterSave(),new ChapterSave(),new ChapterSave(),new ChapterSave()};
         public int ArtifactCount {get{int n=0;foreach(bool found in artifacts)if(found)n++;return n;}}
         public bool Valid()
         {
+            if(certificatePending&&!finished)return false;
             if(version!=1||chapter<1||chapter>4||unlocked<chapter||unlocked>4||playerName==null||playerName.Length>32||artifacts==null||artifacts.Length!=12||chapters==null||chapters.Length!=4)return false;
             foreach(var c in chapters)if(c==null||float.IsNaN(c.x)||float.IsNaN(c.y)||float.IsInfinity(c.x)||float.IsInfinity(c.y)||Math.Abs(c.x)>200||Math.Abs(c.y)>100||c.progress==null||c.progress.Length>16384)return false;
             return true;
