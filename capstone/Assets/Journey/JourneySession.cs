@@ -123,7 +123,7 @@ namespace AmbrosJourney.Journey
                 JourneyMenu.Button(ui,"New Journey",78,ConfirmReset);
                 JourneyMenu.Button(ui,"Settings",132,ShowMenuSettings);
                 JourneyMenu.Button(ui,"Quit",186,QuitGame);
-                if(Data.finished)JourneyMenu.Button(ui,"View Certificate",239,ShowCertificate,height:32);
+                if(Data.finished&&!Data.certificatePending)JourneyMenu.Button(ui,"View Certificate",239,ShowCertificate,height:32);
             }
             else
             {
@@ -215,7 +215,7 @@ namespace AmbrosJourney.Journey
             ui.Button(ui.Root,"Artifacts / "+Data.ArtifactCount+" of 12",new Rect(-550,77,320,52),ShowArtifacts);
             ui.Button(ui.Root,"Guidance: "+(Data.assistedGuidance?"Assisted":"Explorer"),new Rect(-550,143,320,52),()=>{Data.assistedGuidance=!Data.assistedGuidance;Save();ShowPause();});
             ui.Button(ui.Root,"Reset journey",new Rect(-550,275,320,45),ConfirmReset);
-            if(Data.finished)ui.Button(ui.Root,"Certificate",new Rect(-550,209,320,52),ShowCertificate);
+            if(Data.finished&&!Data.certificatePending)ui.Button(ui.Root,"Certificate",new Rect(-550,209,320,52),ShowCertificate);
             ui.Text(ui.Root,"Travel heading","REVISIT AN UNLOCKED SEASON",new Rect(-140,-55,660,35),20,JourneyUI.Gold);
             ui.Text(ui.Root,"Travel explanation","Each season remembers your location and lessons. Return for missed artifacts whenever you like.",new Rect(-140,-10,660,70),20,JourneyUI.Paper);
             for(int i=0;i<Data.unlocked;i++){int c=i+1;ui.Button(ui.Root,ChapterNames[i],new Rect(-140,72+i*53,660,44),()=>{if(Save())LoadChapter(c);else ShowPause();});}
@@ -240,9 +240,25 @@ namespace AmbrosJourney.Journey
         }
         string ArtifactRow(int chapter){string s="";for(int i=chapter*3;i<chapter*3+3;i++)s+=(Data.artifacts[i]?"[x] ":"[ ] ")+JourneyWorld.ArtifactNames[i]+"\n";return s;}
         public void Collect(int id){if(id<0||id>=12||Data.artifacts[id])return;Data.artifacts[id]=true;Save();ShowArtifacts();}
-        public void FinishJourney(){Data.finished=true;Data.completedOn=DateTime.Now.ToString("yyyy-MM-dd");Save();StartCoroutine(JourneyEnding.Play(this));}
+        public void RecordFinalVictory()
+        {
+            if(!Data.finished){Data.finished=true;Data.certificatePending=true;Data.completedOn=DateTime.Now.ToString("yyyy-MM-dd");}
+            Save();
+        }
+        public void FinishJourney()
+        {
+            RecordFinalVictory();Data.certificatePending=false;Save();ShowCertificate();
+        }
         public void SetCinematicVisible(bool playing){cinematic=playing;ui.gameObject.SetActive(!playing);}
-        public void ShowCertificate(){Paused=true;Time.timeScale=0;AudioListener.pause=true;Background("JOURNEY COMPLETE","AI Learning Certificate",Data.playerName+" completed the four seasons and the cumulative final challenge.");ui.Text(ui.Root,"Certificate preview","AMBROS' JOURNEY\n\nAwarded to "+Data.playerName+"\nAI foundations / independence / responsible prompts / evidence checking\n\nCompleted "+Data.completedOn+"\nAn in-game learning achievement, not a professional qualification.",new Rect(-550,-40,1100,240),25,JourneyUI.Paper);ui.Button(ui.Root,"Download PDF certificate",new Rect(-550,235,520,54),()=>JourneyCertificate.Export(Data,ui));ui.Button(ui.Root,"Return",new Rect(30,235,520,54),()=>{if(menu)ShowMenu();else Resume();});}
+        public void ShowCertificate()
+        {
+            if(!Data.finished||Data.certificatePending)return;
+            Paused=true;Time.timeScale=0;AudioListener.pause=true;ui.gameObject.SetActive(true);ui.Clear();
+            var backdrop=ui.Panel(ui.Root,"Certificate backdrop",new Rect(-5000,-5000,10000,10000),new Color(.06f,.12f,.11f,.96f));backdrop.GetComponent<UnityEngine.UI.Image>().raycastTarget=true;
+            JourneyCertificateView.Draw(ui,Data,.86f);
+            ui.Button(ui.Root,"Download PDF certificate",new Rect(-430,312,410,40),()=>JourneyCertificate.Export(Data,ui));
+            ui.Button(ui.Root,"Return",new Rect(20,312,410,40),()=>{if(menu)ShowMenu();else Resume();});
+        }
         void OnApplicationFocus(bool focused){if(TestMode)return;if(!focused&&!Paused&&Data.started&&!menu&&!loading&&CurrentChapter()>0)Pause();}
         void OnApplicationPause(bool paused){if(paused&&!TestMode)Save();}
         void OnApplicationQuit(){Save();Time.timeScale=1;AudioListener.pause=false;}

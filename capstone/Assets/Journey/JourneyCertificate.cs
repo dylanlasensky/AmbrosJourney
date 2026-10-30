@@ -17,7 +17,7 @@ namespace AmbrosJourney.Journey
 #endif
         public static void Export(JourneyData data,JourneyUI parent)
         {
-            if(!data.finished||exporting)return;parent.StartCoroutine(Render(data,parent));
+            if(!data.finished||data.certificatePending||exporting)return;parent.StartCoroutine(Render(data,parent));
         }
         public static string LastExportPath {get;private set;}
         static IEnumerator Render(JourneyData data,JourneyUI parent)
@@ -25,19 +25,9 @@ namespace AmbrosJourney.Journey
             exporting=true;
             var host=new GameObject("Certificate print surface");var ui=host.AddComponent<JourneyUI>();ui.Initialize();host.layer=31;
             var cameraObject=new GameObject("Certificate print camera");var camera=cameraObject.AddComponent<Camera>();camera.enabled=false;camera.orthographic=true;camera.orthographicSize=5;camera.transform.position=new Vector3(10000,10000,-10);camera.cullingMask=1<<31;camera.clearFlags=CameraClearFlags.SolidColor;camera.backgroundColor=JourneyUI.Paper;
-            var target=new RenderTexture(2400,1600,24);camera.targetTexture=target;ui.Canvas.renderMode=RenderMode.ScreenSpaceCamera;ui.Canvas.worldCamera=camera;ui.Canvas.planeDistance=10;
-            ui.Panel(ui.Root,"Page",new Rect(-640,-430,1280,860),JourneyUI.Paper);
-            ui.Panel(ui.Root,"Outer border",new Rect(-590,-335,1180,670),JourneyUI.Green);
-            ui.Panel(ui.Root,"Gold border",new Rect(-582,-327,1164,654),JourneyUI.Gold);
-            ui.Panel(ui.Root,"Inner paper",new Rect(-577,-322,1154,644),JourneyUI.Paper);
-            Center(ui,"AMBROS' JOURNEY",-265,22,JourneyUI.Green);
-            Center(ui,"AI LEARNING CERTIFICATE",-195,45,JourneyUI.Ink);
-            Center(ui,"Awarded to",-103,23,JourneyUI.Ink);
-            var name=Center(ui,data.playerName,-52,48,JourneyUI.Green);name.enableAutoSizing=true;name.fontSizeMin=22;name.fontSizeMax=48;
-            Center(ui,"For completing the four seasons and the cumulative final challenge.",43,23,JourneyUI.Ink);
-            Center(ui,"AI foundations  /  Independent thinking\nResponsible prompts  /  Evidence and verification",101,24,JourneyUI.Ink,80);
-            Center(ui,"Completed "+data.completedOn+(data.ArtifactCount==12?"  |  Evidence Keeper achievement":""),210,20,JourneyUI.Green);
-            Center(ui,"An in-game learning achievement. This is not a professional qualification.",272,15,JourneyUI.Ink);
+            var target=new RenderTexture(2400,1680,24);camera.targetTexture=target;ui.Canvas.renderMode=RenderMode.ScreenSpaceCamera;ui.Canvas.worldCamera=camera;ui.Canvas.planeDistance=10;
+            var scaler=host.GetComponent<UnityEngine.UI.CanvasScaler>();scaler.referenceResolution=new Vector2(1000,700);
+            JourneyCertificateView.Draw(ui,data,1);
             foreach(var t in host.GetComponentsInChildren<Transform>(true))t.gameObject.layer=31;
             Canvas.ForceUpdateCanvases();yield return null;Canvas.ForceUpdateCanvases();
             Texture2D pixels=null;
@@ -70,9 +60,9 @@ namespace AmbrosJourney.Journey
                 var offsets=new List<long>{0};Action<string> write=s=>{var bytes=Encoding.ASCII.GetBytes(s);stream.Write(bytes,0,bytes.Length);};
                 Action<int,string> obj=(id,value)=>{offsets.Add(stream.Position);write(id+" 0 obj\n"+value+"\nendobj\n");};
                 write("%PDF-1.4\n");obj(1,"<< /Type /Catalog /Pages 2 0 R >>");obj(2,"<< /Type /Pages /Kids [3 0 R] /Count 1 >>");
-                obj(3,"<< /Type /Page /Parent 2 0 R /MediaBox [0 0 900 600] /Resources << /XObject << /Im0 4 0 R >> >> /Contents 5 0 R >>");
+                obj(3,"<< /Type /Page /Parent 2 0 R /MediaBox [0 0 900 630] /Resources << /XObject << /Im0 4 0 R >> >> /Contents 5 0 R >>");
                 offsets.Add(stream.Position);write("4 0 obj\n<< /Type /XObject /Subtype /Image /Width "+width+" /Height "+height+" /ColorSpace /DeviceRGB /BitsPerComponent 8 /Filter /DCTDecode /Length "+jpeg.Length+" >>\nstream\n");stream.Write(jpeg,0,jpeg.Length);write("\nendstream\nendobj\n");
-                string content="q 900 0 0 600 0 0 cm /Im0 Do Q\n";obj(5,"<< /Length "+content.Length+" >>\nstream\n"+content+"endstream");
+                string content="q 900 0 0 630 0 0 cm /Im0 Do Q\n";obj(5,"<< /Length "+content.Length+" >>\nstream\n"+content+"endstream");
                 string title="FEFF"+BitConverter.ToString(Encoding.BigEndianUnicode.GetBytes("AI Learning Certificate - "+name)).Replace("-","");obj(6,"<< /Title <"+title+"> /Creator (Ambros Journey) >>");
                 long xref=stream.Position;write("xref\n0 7\n0000000000 65535 f \n");for(int i=1;i<offsets.Count;i++)write(offsets[i].ToString("D10")+" 00000 n \n");write("trailer\n<< /Size 7 /Root 1 0 R /Info 6 0 R >>\nstartxref\n"+xref+"\n%%EOF\n");return stream.ToArray();
             }
