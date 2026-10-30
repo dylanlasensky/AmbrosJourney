@@ -18,7 +18,7 @@ namespace AmbrosJourney.Journey.Editor
     {
         const string Key="CertificateRewardChecks.Active";
         const BindingFlags Hidden=BindingFlags.Instance|BindingFlags.NonPublic;
-        static int stage;static double waitUntil,deadline;static string date;static int startFrame;
+        static int stage;static double waitUntil,deadline;static string date;static int startFrame;static bool sawDrop;static float nextCapture;static int captureIndex;
         static readonly MethodInfo Signal=typeof(EditorApplication).GetMethod("SignalTick",BindingFlags.Static|BindingFlags.NonPublic|BindingFlags.Public);
         static CertificateRewardChecks()
         {
@@ -28,7 +28,7 @@ namespace AmbrosJourney.Journey.Editor
         }
         public static void Run()
         {
-            Directory.CreateDirectory("Logs/CertificateChecks");SessionState.SetString(Key+"Error","");SessionState.SetBool(Key,true);
+            Directory.CreateDirectory("Logs/CertificateChecks");Directory.CreateDirectory("Logs/CertificateChecks/Animation");SessionState.SetString(Key+"Error","");SessionState.SetBool(Key,true);
             const string path="Assets/Journey/Resources/Journey/CertificateBackground.png";
             AssetDatabase.ImportAsset(path,ImportAssetOptions.ForceSynchronousImport);
             var importer=(TextureImporter)AssetImporter.GetAtPath(path);importer.textureType=TextureImporterType.Default;importer.mipmapEnabled=false;importer.wrapMode=TextureWrapMode.Clamp;importer.filterMode=FilterMode.Bilinear;importer.maxTextureSize=4096;importer.textureCompression=TextureImporterCompression.Uncompressed;importer.SaveAndReimport();
@@ -57,6 +57,12 @@ namespace AmbrosJourney.Journey.Editor
                 JourneySession.TestMode=true;JourneySession.SavePathOverride=Path.GetFullPath("Logs/CertificateChecks/save.json");Application.runInBackground=true;
                 if(deadline==0){deadline=EditorApplication.timeSinceStartup+150;waitUntil=EditorApplication.timeSinceStartup+3;}
                 Check(EditorApplication.timeSinceStartup<deadline,"Timed out at stage "+stage+" frame "+Time.frameCount);
+                if(stage>=1&&stage<=2)
+                {
+                    var animated=UnityEngine.Object.FindAnyObjectByType<WinterLevel>()?.CertificateReward;
+                    if(animated&&animated.Dropping){sawDrop=true;Check(!animated.Ready,"Reward cannot be picked up while falling");}
+                    if(Time.unscaledTime>=nextCapture){ScreenCapture.CaptureScreenshot(Path.GetFullPath("Logs/CertificateChecks/Animation/"+(captureIndex++).ToString("D3")+".png"));nextCapture=Time.unscaledTime+.075f;}
+                }
                 if(EditorApplication.timeSinceStartup<waitUntil)return;
                 var session=JourneySession.Instance;var level=UnityEngine.Object.FindAnyObjectByType<WinterLevel>();Check(session&&level,"Winter and session available");
                 if(stage==0)
@@ -75,13 +81,14 @@ namespace AmbrosJourney.Journey.Editor
                 }
                 else if(stage==1)
                 {
-                    Check(Time.frameCount>startFrame,"Game is advancing");Check(level.guardian.GetComponent<SpriteRenderer>().color.a<1,"Boss dissolves during animation");
+                    Check(Time.frameCount>startFrame,"Game is advancing");Check(!level.guardian.GetComponent<SpriteRenderer>().enabled,"Original boss replaced by texture-backed pixels");
+                    Check(level.CertificateReward.DetachedPixelCount>0&&level.CertificateReward.DetachedPixelCount<level.CertificateReward.TotalPixelCount,"Pixels detach progressively rather than disappearing together");
                     Check(GameObject.Find("Falling Keeper dust"),"Boss-colored dust is visible");ScreenCapture.CaptureScreenshot(Path.GetFullPath("Logs/CertificateChecks/KeeperCrumble.png"));
                     stage++;waitUntil=EditorApplication.timeSinceStartup+3;
                 }
                 else if(stage==2)
                 {
-                    Check(!level.Transitioning&&level.CertificateReward.Ready,"Animation drops certificate and restores movement");
+                    Check(!level.Transitioning&&level.CertificateReward.Ready&&sawDrop,"Animation drops certificate, bounces and restores movement");
                     Check(!level.guardian.GetComponent<SpriteRenderer>().enabled,"Boss is gone");
                     var position=level.CertificateReward.Position;level.player.transform.position=position+Vector2.down*4;level.player.GetComponent<Rigidbody2D>().position=level.player.transform.position;
                     Check(!level.CertificateReward.TryCollect(),"Remote pickup rejected");
