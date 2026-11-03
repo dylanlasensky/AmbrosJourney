@@ -1,3 +1,4 @@
+using AmbrosJourney.Audio;
 using System;
 using TMPro;
 using UnityEngine;
@@ -45,7 +46,7 @@ namespace AmbrosJourney.Journey
             const float width=340;
             var panel=ui.Panel(ui.Root,label,new Rect(-562,y,width,height),primary?new Color(.025f,.065f,.05f,.85f):new Color(0,0,0,0));
             var button=panel.gameObject.AddComponent<UnityEngine.UI.Button>();
-            button.onClick.AddListener(()=>action());
+            button.onClick.AddListener(()=>{GameAudio.Click();action();});
             var text=ui.Text(panel,"Label",label,new Rect(-width/2+28,-height/2+1,width-40,height-2),Mathf.Min(primary?31:28,height*.65f),Cream);
             text.font=ui.MenuFont; text.alignment=TextAlignmentOptions.MidlineLeft;
             text.enableAutoSizing=true;text.fontSizeMin=14;text.fontSizeMax=text.fontSize;

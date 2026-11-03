@@ -1,3 +1,4 @@
+using AmbrosJourney.Audio;
 using System;
 using System.Collections.Generic;
 using TMPro;
@@ -66,7 +67,7 @@ namespace AmbrosJourney.Summer
             nearby = Nearest();
             if (k != null && !Transitioning)
             {
-                if (k.mKey.wasPressedThisFrame) { music.mute = !music.mute; effects.mute = music.mute; }
+                if (k.mKey.wasPressedThisFrame) { GameAudio.ToggleMute(); }
                 if (k.escapeKey.wasPressedThisFrame)
                 {
                     if (journal.activeSelf) journal.SetActive(false);
@@ -100,6 +101,7 @@ namespace AmbrosJourney.Summer
         public void Interact(int target)
         {
             if (!Progress.Introduced) return;
+            GameAudio.Click();
             switch (target)
             {
                 case 0: case 9:
@@ -212,7 +214,7 @@ namespace AmbrosJourney.Summer
         void Show(string title, string body, Action onContinue)
         {
             currentTitle = title; heading.text = title; copy.text = body; dialog.SetActive(true); journal.SetActive(false);
-            next = onContinue; actions.Clear();
+            next = onContinue==null?null:()=>{GameAudio.Click();onContinue();}; actions.Clear();
             for (int i = 0; i < choices.Count; i++) choices[i].gameObject.SetActive(false);
             var button = choices[0]; button.gameObject.SetActive(true); SetButton(button, "Continue [ E ]", () => { if (next != null) { var n = next; next = null; n(); } });
             presentation.Present(false);
@@ -224,16 +226,16 @@ namespace AmbrosJourney.Summer
             {
                 choices[i].gameObject.SetActive(i < options.Length);
                 if (i >= options.Length) continue;
-                int index = i; Action choose = () => answer(index); actions.Add(choose);
+                int index = i; Action choose = () => {GameAudio.Click();answer(index);}; actions.Add(choose);
                 SetButton(choices[i], (i + 1) + ".  " + options[i], choose);
             }
             presentation.Present(true);
         }
         void SetButton(UnityEngine.UI.Button button, string label, Action action)
-        { button.GetComponentInChildren<TextMeshProUGUI>().text = label; button.onClick.RemoveAllListeners(); button.onClick.AddListener(() => action()); }
+        { button.GetComponentInChildren<TextMeshProUGUI>().text = label; button.onClick.RemoveAllListeners(); button.onClick.AddListener(() => {GameAudio.Click();action();}); }
         void ToggleJournal()
         {
-            journal.SetActive(!journal.activeSelf); if (!journal.activeSelf) return;
+            GameAudio.Click();journal.SetActive(!journal.activeSelf); if (!journal.activeSelf) return;
             journalCopy.text = "";
             for (int i = 0; i < 3; i++) journalCopy.text += (Progress.Wards[i] ? SummerContent.Notes[i] : new[] { "WORKSHOP / Restore this ward to collect its lesson.", "TRAINING GARDEN / Restore this ward to collect its lesson.", "MESSAGE POST / Restore this ward to collect its lesson." }[i]) + "\n\n";
             journalCopy.text += party.text;
@@ -269,24 +271,16 @@ namespace AmbrosJourney.Summer
             choices.AddRange(presentation.Choices);
             navigation=new SeasonNavigation(new Vector2(-30,-32),new Vector2(30,28));
         }
-        AudioClip Tone(string name, float duration, float frequency, bool descending = false)
-        {
-            int rate = 22050; var data = new float[(int)(duration * rate)];
-            for (int i = 0; i < data.Length; i++) { float t = (float)i / rate; float f = descending ? frequency * (1 - .5f * t / duration) : frequency * (1 + .3f * t / duration); data[i] = Mathf.Sin(t * f * Mathf.PI * 2) * Mathf.Sin(Mathf.PI * t / duration) * .18f; }
-            var clip = AudioClip.Create(name, data.Length, 1, rate, false); clip.SetData(data, 0); return clip;
-        }
         void CreateAudio()
         {
             effects = gameObject.AddComponent<AudioSource>(); effects.playOnAwake = false;
             music = gameObject.AddComponent<AudioSource>(); music.playOnAwake = false; music.loop = true; music.volume = .22f;
-            good = Tone("Summer positive", .2f, 660); bad = Tone("Summer reconsider", .25f, 210, true); ward = Tone("Ward restored", .8f, 520); strike = Tone("Shield impact", .12f, 100, true);
+            good=GameAudio.Clip(SoundCue.Correct);bad=GameAudio.Clip(SoundCue.Incorrect);ward=GameAudio.Clip(SoundCue.Complete);strike=GameAudio.Clip(SoundCue.Impact);
+            effects.volume=.6f;GameAudio.Register(effects);GameAudio.Register(music);
             music.clip = Resources.Load<AudioClip>("SeasonMusic/alex-morgan-soft-chill-background-music-548644");
             if (music.clip) music.Play();
             else Debug.LogError("Missing Summer background music.");
         }
-        void OnDestroy()
-        {
-            foreach (var c in new[] { good, bad, ward, strike }) if (c) Destroy(c);
-        }
+
     }
 }

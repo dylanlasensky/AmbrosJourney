@@ -1,3 +1,4 @@
+using AmbrosJourney.Audio;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -43,7 +44,7 @@ namespace AmbrosJourney.Winter
         }
         IEnumerator Crumble()
         {
-            level.Transitioning=true;
+            level.Transitioning=true;GameAudio.Play(SoundCue.Dust,.55f);
             var boss=level.guardian;var visual=boss.GetComponent<SpriteRenderer>();var sprite=visual.sprite;
             boss.enabled=false;var animation=boss.GetComponent<SeasonBossVisual>();if(animation)animation.enabled=false;
             foreach(var collider in boss.GetComponents<Collider2D>())collider.enabled=false;
@@ -174,7 +175,7 @@ namespace AmbrosJourney.Winter
         {
             var session=JourneySession.Instance;
             if(!CanCollect||level.InputBlocked||!session)return false;
-            claimed=true;item.gameObject.SetActive(false);SeasonFeedback.Burst(restingPosition,new Color(1,.85f,.5f),20);
+            claimed=true;GameAudio.Play(SoundCue.Pickup,.65f);item.gameObject.SetActive(false);SeasonFeedback.Burst(restingPosition,new Color(1,.85f,.5f),20);
             session.FinishJourney();return true;
         }
         void RestoreCamera()

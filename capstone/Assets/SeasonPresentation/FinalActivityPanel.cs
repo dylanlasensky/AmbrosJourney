@@ -1,3 +1,4 @@
+using AmbrosJourney.Audio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -55,6 +56,7 @@ namespace AmbrosJourney.Presentation
         public void Select(int index)
         {
             if(!Available||index<0||index>=challenge.Choices.Length)return;
+            GameAudio.Click();
             if(challenge.Kind==FinalActivityKind.Arrange)selected=index;
             else if(challenge.Kind==FinalActivityKind.Match)response[index]=(response[index]+1)%challenge.Categories.Length;
             else if(challenge.Kind==FinalActivityKind.SelectMany){if(!picked.Add(index))picked.Remove(index);}
@@ -64,13 +66,13 @@ namespace AmbrosJourney.Presentation
         public void Place(int slot)
         {
             if(!Available||challenge.Kind!=FinalActivityKind.Arrange||selected<0||slot<0||slot>=response.Length)return;
-            int old=Array.IndexOf(response,selected);if(old>=0)response[old]=response[slot];response[slot]=selected;selected=-1;Refresh();
+            GameAudio.Click();int old=Array.IndexOf(response,selected);if(old>=0)response[old]=response[slot];response[slot]=selected;selected=-1;Refresh();
         }
         public void Drop(int card,int slot){Select(card);Place(slot);}
-        public void ClearArrangement(){if(!Available)return;for(int i=0;i<response.Length;i++)response[i]=-1;selected=-1;Refresh();}
+        public void ClearArrangement(){if(!Available)return;GameAudio.Click();for(int i=0;i<response.Length;i++)response[i]=-1;selected=-1;Refresh();}
         public void Submit()
         {
-            if(!Available)return;bool right;var values=Response;
+            if(!Available)return;GameAudio.Click();bool right;var values=Response;
             if(!challenge.TryEvaluate(values,out right)){instruction.text="Finish your choices before checking.";return;}
             var callback=submitted;submitted=null;Hide();callback?.Invoke(values);
         }
@@ -102,7 +104,7 @@ namespace AmbrosJourney.Presentation
         {
             var o=new GameObject(name,typeof(RectTransform),typeof(UnityEngine.UI.Image),typeof(UnityEngine.UI.Button));o.transform.SetParent(area,false);Position(o.GetComponent<RectTransform>(),bounds);
             var face=o.GetComponent<UnityEngine.UI.Image>();face.sprite=overlay.Choices[0].GetComponent<UnityEngine.UI.Image>().sprite;face.type=UnityEngine.UI.Image.Type.Sliced;face.color=new Color(.19f,.32f,.42f);face.raycastTarget=true;
-            var button=o.GetComponent<UnityEngine.UI.Button>();button.targetGraphic=face;button.onClick.AddListener(()=>action());button.navigation=new UnityEngine.UI.Navigation{mode=UnityEngine.UI.Navigation.Mode.None};
+            var button=o.GetComponent<UnityEngine.UI.Button>();button.targetGraphic=face;button.onClick.AddListener(()=>{GameAudio.Click();action();});button.navigation=new UnityEngine.UI.Navigation{mode=UnityEngine.UI.Navigation.Mode.None};
             var label=Label(name+" label",text,new Rect(10,3,bounds.width-20,bounds.height-6),18);label.transform.SetParent(o.transform,false);Position(label.rectTransform,new Rect(10,3,bounds.width-20,bounds.height-6));label.color=new Color(1,.96f,.83f);return button;
         }
         static void Position(RectTransform rect,Rect bounds){rect.anchorMin=rect.anchorMax=rect.pivot=Vector2.up;rect.anchoredPosition=new Vector2(bounds.x,-bounds.y);rect.sizeDelta=bounds.size;}

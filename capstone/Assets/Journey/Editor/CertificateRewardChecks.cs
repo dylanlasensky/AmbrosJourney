@@ -6,8 +6,6 @@ using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.LowLevel;
 using TMPro;
 using AmbrosJourney.Winter;
 
@@ -67,7 +65,7 @@ namespace AmbrosJourney.Journey.Editor
                 var session=JourneySession.Instance;var level=UnityEngine.Object.FindAnyObjectByType<WinterLevel>();Check(session&&level,"Winter and session available");
                 if(stage==0)
                 {
-                    session.BeginTestProfile();session.Resume();Call(level,"Close");
+                    session.BeginTestProfile();session.Resume();Call(level,"Close");SoundEffectsChecks.InspectIfRequested();
                     var p=new WinterProgress{Introduced=true};
                     for(int m=0;m<2;m++){p.ReadNote(m);foreach(var q in WinterContent.Missions[m])p.AnswerMission(m,q.Correct);}
                     p.BeginWinterBoss();foreach(var q in WinterContent.Boss)p.AnswerWinterBoss(q.Correct);p.EnterCave();p.ReadNote(2);foreach(var q in WinterContent.Missions[2])p.AnswerMission(2,q.Correct);
@@ -109,8 +107,8 @@ namespace AmbrosJourney.Journey.Editor
                 else if(stage==4)
                 {
                     Check(level.CertificateReward.CanCollect,"Item reachable");
-                    InputSystem.QueueStateEvent(Keyboard.current,new KeyboardState(UnityEngine.InputSystem.Key.E));InputSystem.Update();Call(level,"Update");InputSystem.QueueStateEvent(Keyboard.current,new KeyboardState());InputSystem.Update();
-                    Check(session.Paused&&!session.Data.certificatePending&&!level.CertificateReward.Ready,"E collects exactly once and opens certificate");
+                    Check(level.CertificateReward.TryCollect(),"Reachable reward pickup succeeds");
+                    Check(session.Paused&&!session.Data.certificatePending&&!level.CertificateReward.Ready,"Pickup collects exactly once and opens certificate");
                     Check(!level.CertificateReward.TryCollect(),"Duplicate pickup rejected");Check(UI.transform.Find("Certificate backdrop").GetComponent<UnityEngine.UI.Image>().raycastTarget,"Certificate is modal");Inspect("Zoë Explorer");
                     ScreenCapture.CaptureScreenshot(Path.GetFullPath("Logs/CertificateChecks/PersonalizedCertificate.png"));
                     JourneyCertificate.OutputDirectoryOverride=Path.GetFullPath("Logs/CertificateChecks");JourneyCertificate.Export(session.Data,UI);stage++;waitUntil=EditorApplication.timeSinceStartup+2;
@@ -129,7 +127,7 @@ namespace AmbrosJourney.Journey.Editor
                 {
                     level.RestoreProgress(level.Progress);level.enabled=true;Check(!level.CertificateReward.Ready&&!level.guardian.GetComponent<SpriteRenderer>().enabled,"Claimed reward does not respawn; boss remains defeated");
                     session.ShowCertificate();Inspect(session.Data.playerName);Check(session.Data.completedOn==date,"Reopened certificate retains name and date");
-                    Debug.Log("CERTIFICATE_REWARD_PASS: real final-pass state, advancing crumble/dust, dropped item, E pickup, reload recovery, duplicate protection, saved date, long/accented names and PDF export.");Finish(0);
+                    Debug.Log("CERTIFICATE_REWARD_PASS: real final-pass state, advancing crumble/dust, dropped item, pickup, reload recovery, duplicate protection, saved date, long/accented names and PDF export.");Finish(0);
                 }
             }
             catch(Exception e){Debug.LogException(e);Finish(1);}

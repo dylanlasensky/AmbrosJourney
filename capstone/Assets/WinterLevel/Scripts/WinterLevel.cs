@@ -1,3 +1,4 @@
+using AmbrosJourney.Audio;
 using System;
 using System.Collections.Generic;
 using TMPro;
@@ -67,7 +68,7 @@ namespace AmbrosJourney.Winter
             if(!canvas)return;nearby=Nearest();var k=Keyboard.current;
             if(k!=null && !Transitioning)
             {
-                if(k.mKey.wasPressedThisFrame){music.mute=!music.mute;effects.mute=music.mute;}
+                if(k.mKey.wasPressedThisFrame){GameAudio.ToggleMute();}
                 if(k.escapeKey.wasPressedThisFrame){if(journal.activeSelf)journal.SetActive(false);else if(dialog.activeSelf && Progress.Introduced)Close();}
                 else if(k.jKey.wasPressedThisFrame && !dialog.activeSelf)ToggleJournal();
                 else if(finalPanel&&finalPanel.IsOpen)finalPanel.HandleKeyboard(k);
@@ -89,6 +90,7 @@ namespace AmbrosJourney.Winter
         public void Interact(int target)
         {
             if(!Progress.Introduced || Transitioning)return;
+            GameAudio.Click();
             if(target==0)Show("Little Mage / Follow the evidence",Progress.Complete?"You earned the Winter crest. Evidence, careful checking and honest uncertainty are stronger than a confident guess.":"Read the ledger in the western clearing and the observatory on the eastern ridge. Follow the lanterns north to the cave. The Winter Warden guards the cave entrance. The final Echo Keeper waits inside.",Close);
             else if(target>=1&&target<=3){if(stations[target-1].gameObject.activeInHierarchy)Mission(target-1);}
             else if(target==4&&Progress.InCave)Boss();
@@ -171,21 +173,21 @@ namespace AmbrosJourney.Winter
         void Show(string title,string body,Action onContinue)
         {
             if(finalPanel)finalPanel.Hide();
-            currentTitle=title;heading.text=title;copy.text=body;dialog.SetActive(true);journal.SetActive(false);next=onContinue;actions.Clear();
+            currentTitle=title;heading.text=title;copy.text=body;dialog.SetActive(true);journal.SetActive(false);next=onContinue==null?null:()=>{GameAudio.Click();onContinue();};actions.Clear();
             foreach(var c in choices)c.gameObject.SetActive(false);
             choices[0].gameObject.SetActive(true);SetButton(choices[0],"Continue [ E ]",()=>{if(next!=null){var n=next;next=null;n();}});
             presentation.Present(false);
         }
         void Ask(string title,string body,string[] options,Action<int> answer)
         {
-            Show(title,body,null);for(int i=0;i<choices.Count;i++){choices[i].gameObject.SetActive(i<options.Length);if(i>=options.Length)continue;int index=i;Action choose=()=>answer(index);actions.Add(choose);SetButton(choices[i],(i+1)+".  "+options[i],choose);}
+            Show(title,body,null);for(int i=0;i<choices.Count;i++){choices[i].gameObject.SetActive(i<options.Length);if(i>=options.Length)continue;int index=i;Action choose=()=>{GameAudio.Click();answer(index);};actions.Add(choose);SetButton(choices[i],(i+1)+".  "+options[i],choose);}
             presentation.Present(true);
         }
         void SetButton(UnityEngine.UI.Button button,string label,Action action)
-        {button.GetComponentInChildren<TextMeshProUGUI>().text=label;button.onClick.RemoveAllListeners();button.onClick.AddListener(()=>action());}
+        {button.GetComponentInChildren<TextMeshProUGUI>().text=label;button.onClick.RemoveAllListeners();button.onClick.AddListener(()=>{GameAudio.Click();action();});}
         void ToggleJournal()
         {
-            journal.SetActive(!journal.activeSelf);if(!journal.activeSelf)return;
+            GameAudio.Click();journal.SetActive(!journal.activeSelf);if(!journal.activeSelf)return;
             journalCopy.text="";
             for(int i=0;i<3;i++)journalCopy.text+=(Progress.Studied[i]?WinterContent.Notes[i]:WinterContent.Landmarks[i]+" / Find and read this station's note.")+"\nProgress: "+Progress.Steps[i]+" / "+WinterContent.Missions[i].Length+"\n\n";
             journalCopy.text+=party.text;
@@ -223,24 +225,16 @@ namespace AmbrosJourney.Winter
             choices.AddRange(presentation.Choices);
             navigation=new SeasonNavigation(WinterWorld.Min,WinterWorld.Max);
         }
-        AudioClip Tone(string name, float duration, float frequency, bool descending = false)
-        {
-            int rate = 22050; var data = new float[(int)(duration * rate)];
-            for (int i = 0; i < data.Length; i++) { float t = (float)i / rate; float f = descending ? frequency * (1 - .5f * t / duration) : frequency * (1 + .3f * t / duration); data[i] = Mathf.Sin(t * f * Mathf.PI * 2) * Mathf.Sin(Mathf.PI * t / duration) * .18f; }
-            var clip = AudioClip.Create(name, data.Length, 1, rate, false); clip.SetData(data, 0); return clip;
-        }
         void CreateAudio()
         {
             effects = gameObject.AddComponent<AudioSource>(); effects.playOnAwake = false;
             music = gameObject.AddComponent<AudioSource>(); music.playOnAwake = false; music.loop = true; music.volume = .22f;
-            good = Tone("Winter positive", .2f, 660); bad = Tone("Winter reconsider", .25f, 210, true); ward = Tone("Ward restored", .8f, 520); strike = Tone("Shield impact", .12f, 100, true);
+            good=GameAudio.Clip(SoundCue.Correct);bad=GameAudio.Clip(SoundCue.Incorrect);ward=GameAudio.Clip(SoundCue.Complete);strike=GameAudio.Clip(SoundCue.Impact);
+            effects.volume=.6f;GameAudio.Register(effects);GameAudio.Register(music);
             music.clip = Resources.Load<AudioClip>("SeasonMusic/zephiramusic-lofi-winter-610024");
             if (music.clip) music.Play();
             else Debug.LogError("Missing Winter background music.");
         }
-        void OnDestroy()
-        {
-            foreach (var c in new[] { good, bad, ward, strike }) if (c) Destroy(c);
-        }
+
     }
 }
