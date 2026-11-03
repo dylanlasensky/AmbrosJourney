@@ -52,6 +52,12 @@ namespace AmbrosJourney.Summer
             }, 0, () => Progress.Introduced = true);
             Debug.Log("SUMMER_READY: three missions, five-question Suncrest Guardian, journal, compass and companions.");
         }
+        public bool DismissPanel()
+        {
+            if(journal&&journal.activeSelf){journal.SetActive(false);return true;}
+            if(dialog&&dialog.activeSelf){Progress.Introduced=true;Close();return true;}
+            return false;
+        }
         void Update()
         {
             if(AmbrosJourney.Journey.JourneySession.Blocked)return;

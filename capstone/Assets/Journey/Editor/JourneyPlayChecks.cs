@@ -43,7 +43,7 @@ namespace AmbrosJourney.Journey.Editor
                 var disk=JsonUtility.FromJson<JourneyData>(File.ReadAllText(JourneySession.SavePath));Check(disk.assistedGuidance==session.Data.assistedGuidance,"Menu settings persist to save");
                 Click("Guidance: "+(!assisted?"Assisted":"Explorer"));SeasonIntegrationChecks.Capture("MenuSettings");Click("Back");
                 Click("New Journey");Check(session.Data.started,"New Journey asks before discarding a save");Click("Keep my progress");Check(File.Exists(JourneySession.SavePath),"Cancel reset retains save");
-                session.Data.finished=true;Call(session,"ShowMenu");Inspect();SeasonIntegrationChecks.Capture("CompletedJourneyMenu");
+                session.Data.finished=true;session.Data.certificatePending=false;Call(session,"ShowMenu");Inspect();SeasonIntegrationChecks.Capture("CompletedJourneyMenu");
                 var quit=UI.transform.Find("Quit").GetComponent<RectTransform>();var certificate=UI.transform.Find("View Certificate").GetComponent<RectTransform>();Check(-certificate.anchoredPosition.y>=-quit.anchoredPosition.y+quit.rect.height,"Completed menu actions do not overlap");
                 session.Data.finished=false;Call(session,"ShowMenu");
                 Click("Continue");
@@ -55,7 +55,7 @@ namespace AmbrosJourney.Journey.Editor
             }
             else if(stage>=3&&stage<=6)
             {
-                int chapter=stage-2;Check(JourneySession.CurrentChapter()==chapter,"Travel loads requested chapter");CollectAll();WorldCohesionChecks.CheckAndCapture(chapter);Inspect();SeasonIntegrationChecks.Capture("Exploration"+chapter);
+                int chapter=stage-2;Check(JourneySession.CurrentChapter()==chapter,"Travel loads requested chapter");CollectAll();MoonbranchPolishChecks.Verify(chapter);WorldCohesionChecks.CheckAndCapture(chapter);Inspect();SeasonIntegrationChecks.Capture("Exploration"+chapter);
                 if(chapter<4){session.Save();session.LoadChapter(chapter+1);}else {Check(session.Data.ArtifactCount==12,"All artifacts survive chapter loads");session.ShowArtifacts();Inspect();SeasonIntegrationChecks.Capture("ArtifactAchievement");}
             }
             else if(stage==7)
@@ -111,7 +111,10 @@ namespace AmbrosJourney.Journey.Editor
                 Physics2D.SyncTransforms();Check(SeasonNavigation.FindPath(from,to,min,max).Count>0,"Artifact has a traversable route: "+item.name);
                 player.position=to;player.GetComponent<Rigidbody2D>().position=to;Physics2D.SyncTransforms();
                 InputSystem.QueueStateEvent(Keyboard.current,new KeyboardState(Key.F));InputSystem.Update();Call(world,"Update");InputSystem.QueueStateEvent(Keyboard.current,new KeyboardState());InputSystem.Update();
-                Check(session.Data.artifacts[(JourneySession.CurrentChapter()-1)*3+i],"F collects "+item.name);Inspect();session.Resume();
+                Check(session.Data.artifacts[(JourneySession.CurrentChapter()-1)*3+i],"F collects "+item.name);Inspect();
+                InputSystem.QueueStateEvent(Keyboard.current,new KeyboardState(Key.Escape));InputSystem.Update();Call(session,"Update");
+                Check(!session.Paused&&Time.timeScale==1&&!AudioListener.pause,"Escape closes collected artifact and restores gameplay");
+                InputSystem.QueueStateEvent(Keyboard.current,new KeyboardState());InputSystem.Update();
             }
         }
     }

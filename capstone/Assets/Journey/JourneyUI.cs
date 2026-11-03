@@ -8,6 +8,24 @@ namespace AmbrosJourney.Journey
     public sealed class JourneyUI : MonoBehaviour
     {
         Sprite rounded;
+        public bool KeyboardNavigation=true;
+        void LateUpdate()
+        {
+            if(!KeyboardNavigation||!EventSystem.current)return;
+            var keyboard=UnityEngine.InputSystem.Keyboard.current;if(keyboard==null)return;
+            var selected=EventSystem.current.currentSelectedGameObject;
+            var controls=GetComponentsInChildren<UnityEngine.UI.Selectable>();
+            var usable=System.Array.FindAll(controls,c=>c.IsActive()&&c.IsInteractable());
+            if(usable.Length==0)return;
+            if(keyboard.tabKey.wasPressedThisFrame)
+            {
+                int index=System.Array.FindIndex(usable,c=>c.gameObject==selected);
+                int step=keyboard.shiftKey.isPressed?-1:1;
+                EventSystem.current.SetSelectedGameObject(usable[(index+step+usable.Length)%usable.Length].gameObject);
+            }
+            else if(!selected||!selected.activeInHierarchy||!selected.transform.IsChildOf(transform))
+                EventSystem.current.SetSelectedGameObject(usable[0].gameObject);
+        }
         public TMP_FontAsset MenuFont => Font;
         public Canvas Canvas;public RectTransform Root;public TMP_FontAsset Font;
         public static readonly Color Ink=new Color(.16f,.24f,.25f),Gold=new Color(.80f,.63f,.32f),Paper=new Color(.97f,.93f,.82f),Green=new Color(.16f,.30f,.28f);

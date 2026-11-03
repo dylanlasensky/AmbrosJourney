@@ -128,12 +128,21 @@ public class SpringGuide : MonoBehaviour
         for(int i=0;i<3;i++)if(Distance(stones[i])<distance){best=5+i;distance=Distance(stones[i]);}
         return best;
     }
+    public bool DismissPanel(){if(!DialogueOpen&&!journalOpen)return false;journalOpen=false;DialogueOpen=false;return true;}
+    readonly AmbrosJourney.Presentation.SeasonTrail companionTrail=new AmbrosJourney.Presentation.SeasonTrail();
+    int companionRevision=-1;
     void Update()
     {
         if(AmbrosJourney.Journey.JourneySession.Blocked)return;
         if(Vector2.Distance(player.position,StartPosition)>3)explored=true;
-        if(SpringComplete && Distance(mage)>15)mage.position=player.position+new Vector3(-2,1,0);
-        if(SpringComplete && !DialogueOpen && Distance(mage)>1.6f) mage.position=Vector3.MoveTowards(mage.position,player.position+new Vector3(-1,-.5f,0),2.8f*Time.deltaTime);
+        companionTrail.Record(player.position);
+        if(SpringComplete&&!DialogueOpen)
+        {
+            var destination=companionTrail.Formation(1,companionRevision!=companionTrail.Revision?(Vector2)player.position:(Vector2)mage.position);
+            if(companionRevision!=companionTrail.Revision){mage.position=destination;companionRevision=companionTrail.Revision;}
+            else if(Vector2.Distance(mage.position,destination)>.22f)
+                mage.position=Vector2.MoveTowards(mage.position,destination,Mathf.Lerp(1.5f,5.5f,Mathf.InverseLerp(.3f,4.5f,Vector2.Distance(mage.position,destination)))*Time.deltaTime);
+        }
         var k=Keyboard.current;if(k==null)return;
         if(k.jKey.wasPressedThisFrame && (!DialogueOpen || journalOpen)){journalOpen=!journalOpen;DialogueOpen=journalOpen;return;}
         if(k.escapeKey.wasPressedThisFrame){journalOpen=false;DialogueOpen=false;return;}

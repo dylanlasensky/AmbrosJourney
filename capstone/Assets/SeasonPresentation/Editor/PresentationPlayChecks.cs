@@ -36,7 +36,14 @@ namespace AmbrosJourney.Presentation.Editor
         {
             PresentationTools.ValidateMath();Check(UnityEngine.EventSystems.EventSystem.current,"EventSystem exists");
             Check(ui.GetComponent<UnityEngine.UI.GraphicRaycaster>(),"Canvas receives clicks");
-            var origin=Vector2.zero;foreach(var d in new[]{Vector2.right,Vector2.up,Vector2.left,Vector2.down}){ui.SetCompass(origin,d*10,d*40);Check(Mathf.Abs(Mathf.DeltaAngle(ui.Arrow.localEulerAngles.z,Mathf.Atan2(d.y,d.x)*Mathf.Rad2Deg))<.01f,"Gold arrow cardinal direction");Check(ui.ObjectiveDistance==40,"Compass shows objective distance, not lookahead distance");}
+            var origin=Vector2.zero;var compass=ui.GetComponentInChildren<MoonbranchCompass>(true);
+            foreach(var d in new[]{Vector2.right,Vector2.up,Vector2.left,Vector2.down,new Vector2(.321f,.731f)})
+            {
+                var direction=d.normalized;ui.SetCompass(origin,direction*10,direction*40);
+                for(int frame=0;frame<120;frame++)compass.Advance(1f/60);
+                Check(Mathf.Abs(Mathf.DeltaAngle(ui.Arrow.localEulerAngles.z,Mathf.Atan2(d.y,d.x)*Mathf.Rad2Deg-90))<.01f,"Moonstone tip settles on cardinal and arbitrary direction");
+                Check(Mathf.Abs(ui.ObjectiveDistance-40)<.001f,"Compass shows objective distance, not lookahead distance");
+            }
         }
         [MenuItem("Capstone/Presentation/Validate Fall Interface (Play Mode)")]
         public static void Fall()

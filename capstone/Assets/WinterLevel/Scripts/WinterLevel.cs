@@ -55,6 +55,12 @@ namespace AmbrosJourney.Winter
             },0,()=>Progress.Introduced=true);
             Debug.Log("WINTER_READY: Frostveil and Echo Cavern, six evidence challenges and cave guardian.");
         }
+        public bool DismissPanel()
+        {
+            if(journal&&journal.activeSelf){journal.SetActive(false);return true;}
+            if(dialog&&dialog.activeSelf){Progress.Introduced=true;Close();return true;}
+            return false;
+        }
         void Update()
         {
             if(AmbrosJourney.Journey.JourneySession.Blocked)return;

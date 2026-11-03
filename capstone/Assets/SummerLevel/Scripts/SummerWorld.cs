@@ -120,7 +120,7 @@ namespace AmbrosJourney.Summer
             Visual("Festival supplies","Crate",new Vector2(-22,12)); Visual("Repair supplies","Crate",new Vector2(-22,10));
             Visual("Workshop shelter","Shelter",new Vector2(-21,17),1.3f);
             level.garden=Visual("Training garden","Target",new Vector2(-15,-6),1.3f).transform; Label("TRAINING GARDEN",new Vector2(-16,-1));
-            for(int i=0;i<4;i++)Visual("Garden bed","GardenBed",new Vector2(-23+i*2,-9));
+            for(int i=0;i<4;i++)Visual("Garden bed","GardenBed",new Vector2(-24+(i%2)*2.5f,-11-(i/2)*2.2f));
             level.stones=new Transform[3];
             Vector2[] stonePositions={new Vector2(-21,-4),new Vector2(-18,-8),new Vector2(-23,-8)};
             string[] stoneNames={"SUN","LEAF","SEED"};
