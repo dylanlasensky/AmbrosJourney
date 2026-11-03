@@ -1,3 +1,4 @@
+using AmbrosJourney.Audio;
 using System;
 using TMPro;
 using UnityEngine;
@@ -48,7 +49,7 @@ namespace AmbrosJourney.Journey
         public UnityEngine.UI.Button Button(Transform parent,string label,Rect b,Action action)
         {
             var r=Panel(parent,label,b,new Color(.23f,.40f,.36f));
-            var face=r.GetComponent<UnityEngine.UI.Image>();face.sprite=rounded;face.type=UnityEngine.UI.Image.Type.Sliced;var outline=r.gameObject.AddComponent<UnityEngine.UI.Outline>();outline.effectColor=Gold;outline.effectDistance=new Vector2(1,-1);var button=r.gameObject.AddComponent<UnityEngine.UI.Button>();button.targetGraphic=r.GetComponent<UnityEngine.UI.Image>();button.onClick.AddListener(()=>action());
+            var face=r.GetComponent<UnityEngine.UI.Image>();face.sprite=rounded;face.type=UnityEngine.UI.Image.Type.Sliced;var outline=r.gameObject.AddComponent<UnityEngine.UI.Outline>();outline.effectColor=Gold;outline.effectDistance=new Vector2(1,-1);var button=r.gameObject.AddComponent<UnityEngine.UI.Button>();button.targetGraphic=r.GetComponent<UnityEngine.UI.Image>();button.onClick.AddListener(()=>{GameAudio.Click();action();});
             var colors=button.colors;colors.highlightedColor=new Color(1.25f,1.18f,.94f);colors.selectedColor=colors.highlightedColor;button.colors=colors;
             var t=Text(r,"Label",label,new Rect(-b.width/2+12,-b.height/2+2,b.width-24,b.height-4),19,Paper);t.alignment=TextAlignmentOptions.Center;return button;
         }

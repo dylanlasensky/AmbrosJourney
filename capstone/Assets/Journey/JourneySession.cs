@@ -1,3 +1,4 @@
+using AmbrosJourney.Audio;
 using System;
 using System.Collections;
 using System.IO;
@@ -79,8 +80,8 @@ namespace AmbrosJourney.Journey
             if(portalProtected&&Player()&&Vector2.Distance(Player().position,protectedPosition)>2)portalProtected=false;
             if(!cinematic&&!loading&&Keyboard.current!=null)
             {
-                if(Keyboard.current.escapeKey.wasPressedThisFrame)HandleBack();
-                else if(!menu&&!Paused&&Keyboard.current.iKey.wasPressedThisFrame)ShowArtifacts();
+                if(Keyboard.current.escapeKey.wasPressedThisFrame){GameAudio.Click();HandleBack();}
+                else if(!menu&&!Paused&&Keyboard.current.iKey.wasPressedThisFrame){GameAudio.Click();ShowArtifacts();}
             }
             if(!TestMode&&Data.started&&!Blocked&&Time.unscaledTime>=nextSave){Save();nextSave=Time.unscaledTime+5;}
         }
@@ -268,7 +269,7 @@ namespace AmbrosJourney.Journey
             ui.Button(ui.Root,"Return / Esc",new Rect(-550,270,300,48),returnTo);
         }
         string ArtifactRow(int chapter){string s="";for(int i=chapter*3;i<chapter*3+3;i++)s+=(Data.artifacts[i]?"[x] ":"[ ] ")+JourneyWorld.ArtifactNames[i]+"\n";return s;}
-        public void Collect(int id){if(id<0||id>=12||Data.artifacts[id])return;Data.artifacts[id]=true;Save();ShowArtifacts();}
+        public void Collect(int id){if(id<0||id>=12||Data.artifacts[id])return;Data.artifacts[id]=true;GameAudio.Play(SoundCue.Pickup,.65f);Save();ShowArtifacts();}
         public void RecordFinalVictory()
         {
             if(!Data.finished){Data.finished=true;Data.certificatePending=true;Data.completedOn=DateTime.Now.ToString("yyyy-MM-dd");}

@@ -1,3 +1,4 @@
+using AmbrosJourney.Audio;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using AmbrosJourney.Presentation;
@@ -144,12 +145,13 @@ public class SpringGuide : MonoBehaviour
                 mage.position=Vector2.MoveTowards(mage.position,destination,Mathf.Lerp(1.5f,5.5f,Mathf.InverseLerp(.3f,4.5f,Vector2.Distance(mage.position,destination)))*Time.deltaTime);
         }
         var k=Keyboard.current;if(k==null)return;
-        if(k.jKey.wasPressedThisFrame && (!DialogueOpen || journalOpen)){journalOpen=!journalOpen;DialogueOpen=journalOpen;return;}
+        if(k.mKey.wasPressedThisFrame)GameAudio.ToggleMute();
+        if(k.jKey.wasPressedThisFrame && (!DialogueOpen || journalOpen)){GameAudio.Click();journalOpen=!journalOpen;DialogueOpen=journalOpen;return;}
         if(k.escapeKey.wasPressedThisFrame){journalOpen=false;DialogueOpen=false;return;}
         if(journalOpen)return;
         if(k.eKey.wasPressedThisFrame || (DialogueOpen && k.enterKey.wasPressedThisFrame))
         {
-            if(!DialogueOpen){target=Nearby();if(target==-99)return;DialogueOpen=true;page=0;feedback="";bossResult=false;bossQuestion=0;if(!SpringComplete)BossScore=0;}
+            if(!DialogueOpen){target=Nearby();if(target==-99)return;GameAudio.Click();DialogueOpen=true;page=0;feedback="";bossResult=false;bossQuestion=0;if(!SpringComplete)BossScore=0;}
             else Continue();
         }
         if(DialogueOpen && string.IsNullOrEmpty(feedback) && IsQuestion())
@@ -158,24 +160,26 @@ public class SpringGuide : MonoBehaviour
     bool IsQuestion()=> target>=0 && target<=2 && LessonComplete && studied[target] && !cleared[target] || target==3 && MissionsComplete==3 && !bossResult && !SpringComplete;
     void Continue()
     {
+        GameAudio.Click();
         if(target>=5){if(LessonComplete)studied[target-5]=true;DialogueOpen=false;return;}
         if(target==-1){if(page<lessons.Length-1 && !LessonComplete)page++;else{LessonComplete=true;DialogueOpen=false;}return;}
         if(target>=0 && target<=2 && feedback!="")
         {if(cleared[target])DialogueOpen=false;else feedback="";return;}
-        if(target==3 && feedback!="" && !bossResult){feedback="";bossQuestion++;if(bossQuestion>=questions.Length){bossResult=true;SpringComplete=BossScore>=4;if(SpringComplete){boss.gameObject.SetActive(false);gateSeal.SetActive(false);}}return;}
+        if(target==3 && feedback!="" && !bossResult){feedback="";bossQuestion++;if(bossQuestion>=questions.Length){bossResult=true;SpringComplete=BossScore>=4;if(SpringComplete){GameAudio.Play(SoundCue.Complete,.65f);boss.gameObject.SetActive(false);gateSeal.SetActive(false);}}return;}
         if(target==3 && bossResult && !SpringComplete){bossQuestion=0;BossScore=0;bossResult=false;feedback="";return;}
         if(!IsQuestion() || SpringComplete)DialogueOpen=false;
     }
     void Answer(int selected)
     {
         if(selected<0 || selected>1 || !IsQuestion() || feedback!="")return;
+        GameAudio.Click();
         if(target<3)
         {
-            int question=QuestionIndex(target);bool right=(selected==0)==truth[question];
-            if(right){trials[target]++;feedback="Correct! "+explanations[question];if(trials[target]==2){cleared[target]=true;MissionsComplete++;bats[target].gameObject.SetActive(false);feedback+="\nLesson complete. Your journal has been updated.";}}
+            int question=QuestionIndex(target);bool right=(selected==0)==truth[question];GameAudio.Play(right?SoundCue.Correct:SoundCue.Incorrect,.45f);
+            if(right){trials[target]++;feedback="Correct! "+explanations[question];if(trials[target]==2){cleared[target]=true;MissionsComplete++;GameAudio.Play(SoundCue.Complete,.55f);bats[target].gameObject.SetActive(false);feedback+="\nLesson complete. Your journal has been updated.";}}
             else{hearts--;feedback="That myth fooled you! "+(hearts<=0?"The Mage restores your three hearts. ":"You lost a heart. ")+explanations[question]+" Try that claim again.";if(hearts<=0)hearts=3;}
         }
-        else {bool right=selected==correct[bossQuestion];if(right){BossScore++;boss.GetComponent<SeasonBossVisual>().Flash(new Color(1,.85f,.55f));}else boss.GetComponent<SeasonBossVisual>().Strike();feedback=(right?"Correct! ":"Not quite. ")+reasons[bossQuestion];}
+        else {bool right=selected==correct[bossQuestion];GameAudio.Play(right?SoundCue.Correct:SoundCue.Incorrect,.45f);if(right){BossScore++;boss.GetComponent<SeasonBossVisual>().Flash(new Color(1,.85f,.55f));}else boss.GetComponent<SeasonBossVisual>().Strike();feedback=(right?"Correct! ":"Not quite. ")+reasons[bossQuestion];}
     }
     Transform Destination(){if(!LessonComplete)return mage;for(int i=0;i<3;i++)if(!cleared[i])return studied[i]?bats[i]:stones[i];return SpringComplete?gate:boss;}
     string Quest()=>SpringComplete?"Step through the Summer gate":!explored?"Stretch your legs! Follow the compass.":!LessonComplete?"Meet the Mage beside his cottage":MissionsComplete<3?new[]{"Blossom Grove: learn how AI learns","Lakeside: separate people from AI","Southern ruins: protect your privacy"}[NextBat()]:"Head south to challenge Blossom Guardian";

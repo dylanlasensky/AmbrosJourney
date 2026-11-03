@@ -1,4 +1,5 @@
 using UnityEngine;
+using AmbrosJourney.Audio;
 public class SpringAtmosphere : MonoBehaviour
 {
     Transform[] petals=new Transform[45], ripples=new Transform[22];
@@ -10,7 +11,7 @@ public class SpringAtmosphere : MonoBehaviour
         var music=gameObject.AddComponent<AudioSource>();
         music.playOnAwake=false;music.loop=true;music.volume=.22f;music.spatialBlend=0;
         music.clip=Resources.Load<AudioClip>("SeasonMusic/andriig-spring-easter-day-music-507171");
-        if(music.clip)music.Play();else Debug.LogError("Missing Spring background music.");
+        GameAudio.Register(music);if(music.clip)music.Play();else Debug.LogError("Missing Spring background music.");
     }
     void Start(){CreateAudio();var rand=new System.Random(14);for(int i=0;i<petals.Length;i++){var o=Mark("Drifting blossom",new Color(1,.76f,.78f,.75f),950);o.transform.SetParent(transform);o.transform.localScale=new Vector3(.10f,.055f,1);petals[i]=o.transform;}
         for(int i=0;i<ripples.Length;i++){var o=Mark("Lake shimmer",new Color(.61f,.92f,.84f,.5f),-940);o.transform.SetParent(transform);homes[i]=new Vector3(-7+(float)rand.NextDouble()*10,0+(float)rand.NextDouble()*6,0);ripples[i]=o.transform;}
