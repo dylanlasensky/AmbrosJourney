@@ -20,7 +20,8 @@ namespace AmbrosJourney.Presentation
         RectTransform root, dialogueRect, headerRect, bodyRect, objectiveRect, context, controls, compassBox, worldLabels;
         UnityEngine.UI.Image dialogFill;
         TMP_FontAsset font;int season;
-        Sprite rounded, arrowSprite, card;
+        Sprite rounded, card;
+        MoonbranchCompass moonbranch;
         Color ink, accent, paper = new Color(.98f,.94f,.81f), border = new Color(.55f,.35f,.22f);
         readonly Dictionary<SeasonWorldLabel,RectTransform> labels = new Dictionary<SeasonWorldLabel,RectTransform>();
         float openedAt, feedbackUntil; bool positive;
@@ -31,7 +32,7 @@ namespace AmbrosJourney.Presentation
             font=GameFont.Resolve(typeface); ink=autumn?new Color(.25f,.20f,.14f):new Color(.19f,.29f,.23f);
             accent=autumn?new Color(.43f,.26f,.16f):new Color(.23f,.39f,.30f);
             if(chapter==4){ink=new Color(.16f,.23f,.30f);accent=new Color(.19f,.32f,.42f);}
-            rounded=Rounded(); arrowSprite=ArrowSprite();card=FieldCardSkin.Create();if(card)paper=Color.white;
+            rounded=Rounded();card=FieldCardSkin.Create();if(card)paper=Color.white;
             root=gameObject.AddComponent<RectTransform>();Canvas=gameObject.AddComponent<Canvas>();Canvas.renderMode=RenderMode.ScreenSpaceOverlay;Canvas.sortingOrder=100;
             var scaler=gameObject.AddComponent<UnityEngine.UI.CanvasScaler>();scaler.uiScaleMode=UnityEngine.UI.CanvasScaler.ScaleMode.ScaleWithScreenSize;scaler.referenceResolution=new Vector2(1280,720);scaler.screenMatchMode=UnityEngine.UI.CanvasScaler.ScreenMatchMode.Expand;
             gameObject.AddComponent<UnityEngine.UI.GraphicRaycaster>();
@@ -43,11 +44,14 @@ namespace AmbrosJourney.Presentation
             Objective=Text("Objective",tracker,new Rect(18,37,365,57),"",19);objectiveRect=Objective.rectTransform;
             // Kept as one text field for the established level contract; split visually in LateUpdate.
             trackerText=Text("Progress",tracker,new Rect(18,10,365,26),"",14);
-            compassBox=Panel("Compass",transform,Vector2.one,new Rect(-112,130,88,100));
-            var arrowObject=new GameObject("Golden direction arrow",typeof(RectTransform),typeof(UnityEngine.UI.Image));arrowObject.transform.SetParent(compassBox,false);Arrow=arrowObject.GetComponent<RectTransform>();Place(Arrow,Vector2.up,new Rect(27,27,34,34));Arrow.pivot=new Vector2(.5f,.5f);Arrow.anchoredPosition=new Vector2(44,-46);var image=arrowObject.GetComponent<UnityEngine.UI.Image>();image.sprite=arrowSprite;image.raycastTarget=false;
-            CompassText=Text("Distance",compassBox,new Rect(8,68,76,25),"",14);CompassText.alignment=TextAlignmentOptions.Center;
+            var compassObject=new GameObject("Moonbranch compass",typeof(RectTransform));compassObject.transform.SetParent(transform,false);
+            compassBox=compassObject.GetComponent<RectTransform>();Place(compassBox,Vector2.one,new Rect(-136,126,112,126));
+            moonbranch=compassObject.AddComponent<MoonbranchCompass>();moonbranch.Initialize(chapter,font);
+            Arrow=moonbranch.Needle;
+            CompassText=Text("Distance",compassBox,new Rect(0,105,112,24),"",14);CompassText.alignment=TextAlignmentOptions.Center;CompassText.color=new Color(1,.96f,.84f);
+            var distanceShadow=CompassText.gameObject.AddComponent<UnityEngine.UI.Shadow>();distanceShadow.effectColor=new Color(.08f,.09f,.13f,.95f);distanceShadow.effectDistance=new Vector2(1,-1);
             controls=Panel("Controls",transform,Vector2.zero,new Rect(24,-62,780,38));
-            Text("Controls",controls,new Rect(16,6,750,27),"WASD / Arrows  Move    E  Interact    1-3  Answer    J  Journal    R  Return",14);
+            Text("Controls",controls,new Rect(16,6,750,27),"WASD / Arrows  Move    E  Interact    1-3  Answer    J  Journal    I  Artifacts    Esc  Back",14);
             context=Panel("Interaction prompt",transform,new Vector2(.5f,0),new Rect(-190,-120,380,42));Prompt=Text("Prompt",context,new Rect(18,5,345,32),"",19);
             // Party membership belongs in the journal, rather than floating over the scenery.
             Party=Text("Party",transform,new Rect(0,0,1,1),"",14);Party.gameObject.SetActive(false);
@@ -94,7 +98,7 @@ namespace AmbrosJourney.Presentation
             Arrow.gameObject.SetActive(assisted||!whiteout);
             if(!assisted&&season>=3&&distant)waypoint=destination;
             CompassDelta=waypoint-player;ObjectiveDistance=Vector2.Distance(player,destination);
-            Arrow.localEulerAngles=new Vector3(0,0,Mathf.Atan2(CompassDelta.y,CompassDelta.x)*Mathf.Rad2Deg);
+            moonbranch.Point(CompassDelta);
             CompassText.text=!assisted&&whiteout?"Snowfall":!assisted&&season>=3&&distant?"Explore":Mathf.CeilToInt(ObjectiveDistance)+" steps";
         }
         public void Present(bool asking)
@@ -189,10 +193,6 @@ namespace AmbrosJourney.Presentation
         {
             var t=new Texture2D(32,32,TextureFormat.RGBA32,false);for(int y=0;y<32;y++)for(int x=0;x<32;x++){float dx=Mathf.Max(7-x,x-24),dy=Mathf.Max(7-y,y-24);t.SetPixel(x,y,dx>0&&dy>0&&dx*dx+dy*dy>49?Color.clear:Color.white);}t.filterMode=FilterMode.Point;t.Apply();return Sprite.Create(t,new Rect(0,0,32,32),Vector2.one*.5f,100,0,SpriteMeshType.FullRect,new Vector4(8,8,8,8));
         }
-        static Sprite ArrowSprite()
-        {
-            var t=new Texture2D(24,24,TextureFormat.RGBA32,false);for(int y=0;y<24;y++)for(int x=0;x<24;x++)t.SetPixel(x,y,x<=24-Mathf.Abs(y-12)*2?new Color(1,.78f,.29f):Color.clear);t.filterMode=FilterMode.Point;t.Apply();return Sprite.Create(t,new Rect(0,0,24,24),Vector2.one*.5f,100);
-        }
-        void OnDestroy(){if(card)Destroy(card);foreach(var s in new[]{rounded,arrowSprite})if(s){Destroy(s.texture);Destroy(s);}}
+        void OnDestroy(){if(card)Destroy(card);foreach(var s in new[]{rounded})if(s){Destroy(s.texture);Destroy(s);}}
     }
 }

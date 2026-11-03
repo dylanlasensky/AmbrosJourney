@@ -22,6 +22,7 @@ namespace AmbrosJourney.Journey
         public static string SavePath=>SavePathOverride??Path.Combine(Application.persistentDataPath,"ambros-journey-v1.json");
         public JourneyData Data {get;private set;}
         public bool Paused {get;private set;}
+        Action backAction;
         int resumeFrame=-1;JourneyUI ui;bool menu,loading,cinematic;float nextSave;string notice="";Action beginIntro;TMP_InputField nameInput;
         public static readonly string[] ChapterNames={"Spring Valley","Summer Valley","Emberwood","Frostveil"};
         public const string ArtifactLesson="THE EVIDENCE COMPASS\nBefore sharing, leave out private details, check the original source and look for separate evidence. Say what you still haven't checked.\n\nSeveral AI tools can agree and still be wrong. They may repeat the same mistake, so matching replies don't count as separate checks.";
@@ -76,9 +77,28 @@ namespace AmbrosJourney.Journey
         void Update()
         {
             if(portalProtected&&Player()&&Vector2.Distance(Player().position,protectedPosition)>2)portalProtected=false;
-            if(!cinematic&&!menu&&!loading&&CurrentChapter()>0&&Keyboard.current!=null&&Keyboard.current.escapeKey.wasPressedThisFrame){if(Paused)Resume();else Pause();}
+            if(!cinematic&&!loading&&Keyboard.current!=null)
+            {
+                if(Keyboard.current.escapeKey.wasPressedThisFrame)HandleBack();
+                else if(!menu&&!Paused&&Keyboard.current.iKey.wasPressedThisFrame)ShowArtifacts();
+            }
             if(!TestMode&&Data.started&&!Blocked&&Time.unscaledTime>=nextSave){Save();nextSave=Time.unscaledTime+5;}
         }
+        // One owner consumes Escape before world scripts, so closing a panel never also pauses.
+        public void HandleBack()
+        {
+            if(cinematic||loading)return;
+            if(backAction!=null){var back=backAction;resumeFrame=Time.frameCount;back();return;}
+            if(menu)return;
+            bool dismissed=false;
+            var spring=FindAnyObjectByType<SpringGuide>();if(spring)dismissed=spring.DismissPanel();
+            var summer=FindAnyObjectByType<SummerLevel>();if(summer)dismissed=summer.DismissPanel();
+            var fall=FindAnyObjectByType<FallLevel>();if(fall)dismissed=fall.DismissPanel();
+            var winter=FindAnyObjectByType<WinterLevel>();if(winter)dismissed=winter.DismissPanel();
+            if(dismissed){resumeFrame=Time.frameCount;return;}
+            if(CurrentChapter()>0)Pause();
+        }
+        void BackToMenu(){Paused=false;Time.timeScale=1;AudioListener.pause=false;ShowMenu();}
         public bool Save()
         {
             if(loading||!Data.started||CurrentChapter()==0)return true;
@@ -113,6 +133,7 @@ namespace AmbrosJourney.Journey
         }
         void ShowMenu()
         {
+            backAction=null;ui.KeyboardNavigation=true;
             JourneyMenu.Background(ui);
             nameInput=null;
             if(Data.started)
@@ -152,6 +173,7 @@ namespace AmbrosJourney.Journey
         }
         void ShowMenuSettings()
         {
+            backAction=BackToMenu;
             // Keep a fresh explorer's draft name when they visit settings before playing.
             if(nameInput)Data.playerName=JourneyData.CleanName(nameInput.text);
             JourneyMenu.Background(ui);nameInput=null;
@@ -204,11 +226,14 @@ namespace AmbrosJourney.Journey
         public void Resume(){resumeFrame=Time.frameCount;Paused=false;Time.timeScale=1;AudioListener.pause=false;ShowHUD();}
         void ShowHUD()
         {
-            ui.Clear();var pause=ui.Button(ui.Root,"Pause / Esc",new Rect(470,298,145,38),Pause);var rect=pause.GetComponent<RectTransform>();rect.anchorMin=rect.anchorMax=Vector2.one;rect.anchoredPosition=new Vector2(-169,-245);
-            var b=ui.Button(ui.Root,"Found "+Data.ArtifactCount+"/12",new Rect(300,298,170,38),ShowArtifacts);var br=b.GetComponent<RectTransform>();br.anchorMin=br.anchorMax=Vector2.one;br.anchoredPosition=new Vector2(-194,-291);
+            backAction=null;ui.KeyboardNavigation=false;
+            if(UnityEngine.EventSystems.EventSystem.current)UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(null);
+            ui.Clear();var pause=ui.Button(ui.Root,"Pause / Esc",new Rect(470,298,145,38),Pause);var rect=pause.GetComponent<RectTransform>();rect.anchorMin=rect.anchorMax=Vector2.one;rect.anchoredPosition=new Vector2(-169,-264);
+            var b=ui.Button(ui.Root,"Found "+Data.ArtifactCount+"/12",new Rect(300,298,170,38),ShowArtifacts);var br=b.GetComponent<RectTransform>();br.anchorMin=br.anchorMax=Vector2.one;br.anchoredPosition=new Vector2(-194,-310);
         }
         void ShowPause()
         {
+            backAction=Resume;ui.KeyboardNavigation=true;
             Background("JOURNEY PAUSED",Data.playerName+"'s field journal",notice);
             ui.Button(ui.Root,"Resume",new Rect(-550,-55,320,52),Resume);
             ui.Button(ui.Root,"Save and return to menu",new Rect(-550,11,320,52),ReturnToMenu);
@@ -223,6 +248,7 @@ namespace AmbrosJourney.Journey
         public void ReturnToMenu(){if(!Save()){ShowPause();return;}Paused=false;Time.timeScale=1;AudioListener.pause=false;SceneManager.LoadScene("Intro");}
         void ConfirmReset()
         {
+            backAction=()=>{if(menu)BackToMenu();else ShowPause();};
             Background("START AGAIN?","Reset this explorer's journey?","This removes saved locations, lessons, artifacts and the achievement for this profile.");
             ui.Button(ui.Root,"Keep my progress",new Rect(-550,10,510,56),()=>{if(menu)ShowMenu();else ShowPause();});
             ui.Button(ui.Root,"Reset / Start from the beginning",new Rect(40,10,510,56),()=>{
@@ -232,11 +258,14 @@ namespace AmbrosJourney.Journey
         }
         public void ShowArtifacts()
         {
+            bool fromPause=Paused;
+            Action returnTo=()=>{if(menu)BackToMenu();else if(fromPause)ShowPause();else Resume();};
+            backAction=returnTo;ui.KeyboardNavigation=true;
             if(!menu){Paused=true;Time.timeScale=0;AudioListener.pause=true;Save();}
             Background(Data.ArtifactCount==12?"ACHIEVEMENT / EVIDENCE KEEPER":"LOST ARTIFACTS",Data.ArtifactCount+" of 12 recovered",Data.ArtifactCount==12?"The compass is complete. Carry its lesson into the final challenge.":"Three artifacts are hidden in each season. Search clearings, shelters and the edges of landmarks.");
             for(int i=0;i<4;i++)ui.Text(ui.Root,"Collection "+i,ChapterNames[i]+"\n"+ArtifactRow(i),new Rect(-550+i*280,-55,260,110),19,JourneyUI.Paper);
             ui.Text(ui.Root,"Collection lesson",Data.ArtifactCount==12?ArtifactLesson:"Complete the collection to unlock the Evidence Compass lesson.\nUse the pause menu to revisit earlier seasons. Nothing is permanently missable.",new Rect(-550,75,1100,160),22,JourneyUI.Paper);
-            ui.Button(ui.Root,"Return",new Rect(-550,270,300,48),()=>{if(menu)ShowMenu();else Resume();});
+            ui.Button(ui.Root,"Return / Esc",new Rect(-550,270,300,48),returnTo);
         }
         string ArtifactRow(int chapter){string s="";for(int i=chapter*3;i<chapter*3+3;i++)s+=(Data.artifacts[i]?"[x] ":"[ ] ")+JourneyWorld.ArtifactNames[i]+"\n";return s;}
         public void Collect(int id){if(id<0||id>=12||Data.artifacts[id])return;Data.artifacts[id]=true;Save();ShowArtifacts();}
@@ -253,6 +282,7 @@ namespace AmbrosJourney.Journey
         public void ShowCertificate()
         {
             if(!Data.finished||Data.certificatePending)return;
+            backAction=()=>{if(menu)BackToMenu();else Resume();};ui.KeyboardNavigation=true;
             Paused=true;Time.timeScale=0;AudioListener.pause=true;ui.gameObject.SetActive(true);ui.Clear();
             var backdrop=ui.Panel(ui.Root,"Certificate backdrop",new Rect(-5000,-5000,10000,10000),new Color(.06f,.12f,.11f,.96f));backdrop.GetComponent<UnityEngine.UI.Image>().raycastTarget=true;
             JourneyCertificateView.Draw(ui,Data,.86f);

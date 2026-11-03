@@ -15,6 +15,8 @@ namespace AmbrosJourney.Journey
         public readonly List<Vector2> Doorsteps=new List<Vector2>();
         public int Buildings {get;private set;}
         int season;Transform outside;SpriteRenderer[] original;
+        readonly List<Bounds> propFootprints=new List<Bounds>();
+        public int ComposedPlants {get;private set;}
         static bool Tree(SpriteRenderer r)=>r.name=="Snow fir"||r.name=="Copper canopy"||r.name=="Summer canopy"||r.name=="Blossom canopy";
         static bool Loose(SpriteRenderer r)=>Tree(r)||r.name=="Snowbank"||r.name=="Autumn undergrowth"||r.name=="Summer undergrowth"||r.name=="Wildflower bed"||r.name=="Mossy boulder";
         Sprite Art(string atlas,int index,float width)
@@ -45,18 +47,19 @@ namespace AmbrosJourney.Journey
             Vector2[][] keepClear={new[]{new Vector2(-18,16),new Vector2(-14,12),new Vector2(-21,5),new Vector2(7,1),new Vector2(21,-12)},new[]{new Vector2(0,22),new Vector2(-18,12),new Vector2(-15,-6),new Vector2(19,8)},new[]{new Vector2(-38,34),new Vector2(-29,28),new Vector2(-29,8),new Vector2(27,26),new Vector2(28,-22)},new[]{WinterLevel.Spawn,new Vector2(-26,-6),new Vector2(23,7),WinterWorld.Entrance}};
             var trails=FindObjectsByType<NaturalTrail>();
             Vector2 chosen=position;bool found=false;
-            foreach(var offset in new[]{Vector2.zero,Vector2.left*1.6f,Vector2.right*1.6f,Vector2.up*1.6f,Vector2.down*1.6f})
+            foreach(var offset in new[]{Vector2.zero,Vector2.left*1.6f,Vector2.right*1.6f,Vector2.up*1.6f,Vector2.down*1.6f,Vector2.left*3,Vector2.right*3,Vector2.up*3,Vector2.down*3})
             {
                 var candidate=position+offset;
                 if(keepClear[season-1].Any(p=>Vector2.Distance(p,candidate)<1.8f))continue;
-                if(index!=1&&trails.Any(t=>t.Near(candidate,0)))continue;
+                if(trails.Any(t=>t.Near(candidate,.25f)))continue;
+                if(propFootprints.Any(b=>b.Contains(new Vector3(candidate.x,candidate.y+.5f,0))))continue;
                 if(Physics2D.OverlapCircle(candidate+Vector2.up*.2f,.45f))continue;
                 chosen=candidate;found=true;break;
             }
             if(!found)return null;
             position=chosen;
             var obj=new GameObject(label,typeof(SpriteRenderer));obj.transform.SetParent(parent?parent:outside,false);obj.transform.position=position;
-            var r=obj.GetComponent<SpriteRenderer>();Skin(r,"VillageDetails",index,width);return r;
+            var r=obj.GetComponent<SpriteRenderer>();Skin(r,"VillageDetails",index,width);var bounds=r.bounds;bounds.Expand(.35f);propFootprints.Add(bounds);return r;
         }
         public void Relic(SpriteRenderer renderer)=>Skin(renderer,"DiscoveryDetails",1,1.35f);
         public void Sign(Vector2 position)=>Prop("Carved trail sign",1,position,1.25f);
@@ -90,12 +93,16 @@ namespace AmbrosJourney.Journey
             var trails=FindObjectsByType<NaturalTrail>();
             foreach(var r in original)if(r&&Loose(r)&&trails.Any(t=>t.Near(r.transform.position,Tree(r)?1.5f:.5f)))Remove(r.gameObject);
             ThinScenery();
+            if(season==2)ClearRect(new Rect(-26,-16,8,7));
+            ComposeGroundCover(trails);
+            // Keep collectible approaches legible even when the treasure is still hidden.
+            foreach(var point in JourneyWorld.ArtifactPositions.Skip((season-1)*3).Take(3))ClearRect(new Rect(point.x-2,point.y-1.5f,4,4));
             // Replace the old painted-rectangle Spring posts with the same carved sign family.
             foreach(var r in original)if(r&&r.name=="Trail marker post"){Sign(r.transform.position);Remove(r.gameObject);}else if(r&&r.name=="Trail marker")Remove(r.gameObject);
             if(chapter==1){ClearRect(new Rect(-14,-3,9,12));Prop("Lakeside bench",3,new Vector2(-11,5.3f),2.2f);Prop("Dock lantern",8,new Vector2(-10,3.8f),1);}
-            if(chapter==2){Prop("Garden tool bench",3,new Vector2(-24,-12),2);Prop("Village water well",7,new Vector2(22,20),2.2f);ClearSegment(new Vector2(22,19.5f),new Vector2(15,18));NaturalTrail.Spur(outside,season,new Vector2(22,19.5f),new Vector2(19,19.5f),new Vector2(15,18));}
+            if(chapter==2){NaturalTrail.Spur(outside,season,new Vector2(-21,-10),new Vector2(-19,-10),new Vector2(-17,-8));Prop("Garden tool bench",3,new Vector2(-24,-12),2);Prop("Village water well",7,new Vector2(22,20),2.2f);ClearSegment(new Vector2(22,19.5f),new Vector2(15,18));NaturalTrail.Spur(outside,season,new Vector2(22,19.5f),new Vector2(19,19.5f),new Vector2(15,18));}
             if(chapter==3){Prop("Orchard harvest cart",5,new Vector2(-34,2),2.5f);Prop("Archive reading bench",3,new Vector2(31,29),2.2f);}
-            if(chapter==4){Prop("Winter fuel reserve",4,new Vector2(30,20),1.7f);Prop("Cave entrance lantern",8,new Vector2(27,23),1.2f);}
+            if(chapter==4){Prop("Winter fuel reserve",4,new Vector2(22.8f,11.5f),1.7f);Prop("Cave entrance lantern",8,new Vector2(27,23),1.2f);}
             Physics2D.SyncTransforms();
         }
         void Building(SpriteRenderer renderer)
@@ -121,6 +128,31 @@ namespace AmbrosJourney.Journey
             Prop("Porch lantern",8,p+new Vector2(2.8f,1.1f),.85f);
             if(season<3)Prop("Tended window garden",6,p+new Vector2(-3.7f,1.3f),1.4f);
             if(season==3)Prop("Harvest delivery",5,p+new Vector2(4.2f,3.5f),1.8f);
+        }
+        void ComposeGroundCover(NaturalTrail[] trails)
+        {
+            var trees=original.Where(r=>r&&r.gameObject.activeInHierarchy&&Tree(r)).OrderBy(r=>r.transform.position.x).ThenBy(r=>r.transform.position.y).ToArray();
+            var plants=original.Where(r=>r&&r.gameObject.activeInHierarchy&&Loose(r)&&!Tree(r)).ToArray();
+            var placed=new List<Vector2>();int index=0;
+            foreach(var plant in plants)
+            {
+                var nearest=trees.OrderBy(t=>Vector2.SqrMagnitude(t.transform.position-plant.transform.position)).Take(4);
+                bool found=false;
+                foreach(var tree in nearest)
+                {
+                    // Small asymmetric groups at the forest edge, rather than a random lawn of props.
+                    for(int attempt=0;attempt<4;attempt++)
+                    {
+                        float side=((index+attempt)%2==0?1:-1);
+                        var candidate=(Vector2)tree.transform.position+new Vector2(side*(1.15f+.35f*Mathf.Abs(Mathf.Sin(index*2.13f+attempt))),-.15f-.85f*Mathf.Abs(Mathf.Sin(index*1.71f+attempt)));
+                        if(trails.Any(t=>t.Near(candidate,.65f))||placed.Any(q=>Vector2.Distance(q,candidate)<1.2f))continue;
+                        if(Physics2D.OverlapCircle(candidate+Vector2.up*.22f,.45f))continue;
+                        plant.transform.position=candidate;plant.sortingOrder=100-Mathf.RoundToInt(candidate.y*10);placed.Add(candidate);ComposedPlants++;found=true;break;
+                    }
+                    if(found)break;
+                }
+                if(!found)Remove(plant.gameObject);index++;
+            }
         }
         void ThinScenery()
         {

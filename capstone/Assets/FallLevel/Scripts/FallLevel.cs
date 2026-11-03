@@ -51,6 +51,12 @@ namespace AmbrosJourney.Fall
             },0,()=>Progress.Introduced=true);
             Debug.Log("FALL_READY: Emberwood, three prompt missions, seven applied choices and five-question guardian.");
         }
+        public bool DismissPanel()
+        {
+            if(journal&&journal.activeSelf){journal.SetActive(false);return true;}
+            if(dialog&&dialog.activeSelf){Progress.Introduced=true;Close();return true;}
+            return false;
+        }
         void Update()
         {
             if(AmbrosJourney.Journey.JourneySession.Blocked)return;
