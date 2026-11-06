@@ -235,16 +235,15 @@ namespace AmbrosJourney.Journey
         void ShowPause()
         {
             backAction=Resume;ui.KeyboardNavigation=true;
-            Background("JOURNEY PAUSED",Data.playerName+"'s field journal",notice);
-            ui.Button(ui.Root,"Resume",new Rect(-550,-55,320,52),Resume);
-            ui.Button(ui.Root,"Save and return to menu",new Rect(-550,11,320,52),ReturnToMenu);
-            ui.Button(ui.Root,"Artifacts / "+Data.ArtifactCount+" of 12",new Rect(-550,77,320,52),ShowArtifacts);
-            ui.Button(ui.Root,"Guidance: "+(Data.assistedGuidance?"Assisted":"Explorer"),new Rect(-550,143,320,52),()=>{Data.assistedGuidance=!Data.assistedGuidance;Save();ShowPause();});
-            ui.Button(ui.Root,"Reset journey",new Rect(-550,275,320,45),ConfirmReset);
-            if(Data.finished&&!Data.certificatePending)ui.Button(ui.Root,"Certificate",new Rect(-550,209,320,52),ShowCertificate);
-            ui.Text(ui.Root,"Travel heading","REVISIT AN UNLOCKED SEASON",new Rect(-140,-55,660,35),20,JourneyUI.Gold);
-            ui.Text(ui.Root,"Travel explanation","Each season remembers your location and lessons. Return for missed artifacts whenever you like.",new Rect(-140,-10,660,70),20,JourneyUI.Paper);
-            for(int i=0;i<Data.unlocked;i++){int c=i+1;ui.Button(ui.Root,ChapterNames[i],new Rect(-140,72+i*53,660,44),()=>{if(Save())LoadChapter(c);else ShowPause();});}
+            JourneyPauseJournal.Open(ui,Data,notice);
+            JourneyPauseJournal.Button(ui,"Resume",new Rect(-510,-68,445,49),Resume,true);
+            JourneyPauseJournal.Button(ui,"Save and return to menu",new Rect(-510,-7,445,42),ReturnToMenu);
+            JourneyPauseJournal.Button(ui,"Artifacts / "+Data.ArtifactCount+" of 12",new Rect(-510,44,445,42),ShowArtifacts);
+            JourneyPauseJournal.Button(ui,"Guidance: "+(Data.assistedGuidance?"Assisted":"Explorer"),new Rect(-510,95,445,42),()=>{Data.assistedGuidance=!Data.assistedGuidance;Save();ShowPause();});
+            JourneyPauseJournal.Button(ui,"Reset journey",new Rect(-510,230,445,36),ConfirmReset,quiet:true);
+            if(Data.finished&&!Data.certificatePending)JourneyPauseJournal.Button(ui,"Certificate",new Rect(-510,146,445,42),ShowCertificate);
+            for(int i=0;i<Data.unlocked;i++){int c=i+1;JourneyPauseJournal.Chapter(ui,i,ChapterNames[i],()=>{if(Save())LoadChapter(c);else ShowPause();},c==Data.chapter);}
+
         }
         public void ReturnToMenu(){if(!Save()){ShowPause();return;}Paused=false;Time.timeScale=1;AudioListener.pause=false;SceneManager.LoadScene("Intro");}
         void ConfirmReset()
