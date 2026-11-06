@@ -14,6 +14,7 @@ namespace AmbrosJourney.Journey.Editor
     public static class JourneyPlayChecks
     {
         static Vector2 savedPosition;
+        static Keyboard testKeyboard;
         const BindingFlags Private=BindingFlags.Instance|BindingFlags.NonPublic;
         static void Check(bool condition,string why){if(!condition)throw new Exception("JOURNEY CHECK: "+why);}
         static void Call(object target,string name)=>target.GetType().GetMethod(name,Private).Invoke(target,null);
@@ -27,12 +28,14 @@ namespace AmbrosJourney.Journey.Editor
             var session=JourneySession.Instance;Check(session,"Session exists");
             if(stage==0)
             {
+                // Isolate simulated keys from hardware state in a background Editor.
+                testKeyboard=InputSystem.AddDevice<Keyboard>();testKeyboard.MakeCurrent();
                 var winter=UnityEngine.Object.FindAnyObjectByType<WinterLevel>();Check(winter.Progress.Complete&&winter.Progress.WinterComplete,"Both Winter bosses complete");
                 var navigation=new SeasonNavigation(WinterWorld.Min,WinterWorld.Max);int count=SeasonNavigation.PhysicsQueryCount;var watch=System.Diagnostics.Stopwatch.StartNew();navigation.Next(WinterLevel.Spawn,WinterWorld.Entrance);watch.Stop();int routeQueries=SeasonNavigation.PhysicsQueryCount-count;count=SeasonNavigation.PhysicsQueryCount;for(int i=0;i<100;i++)navigation.Next(WinterLevel.Spawn,WinterWorld.Entrance);Check(SeasonNavigation.PhysicsQueryCount==count,"Compass samples are cached within the update interval");Debug.Log("JOURNEY_ROUTE_PROFILE: "+watch.Elapsed.TotalMilliseconds.ToString("F2")+" ms, "+routeQueries+" physics queries; 100 cached calls add zero queries");
                 JourneySession.ApplyPerformance();double refresh=Screen.currentResolution.refreshRateRatio.value;double limit=QualitySettings.vSyncCount>0?refresh/QualitySettings.vSyncCount:Application.targetFrameRate;Check(limit<=60.01&&!Application.runInBackground,"Rendering limited to at most 60 FPS; background execution off");Application.runInBackground=true;
                 savedPosition=winter.player.transform.position;session.Pause();Inspect();Check(Time.timeScale==0&&AudioListener.pause&&winter.InputBlocked,"Pause freezes simulation, audio and input");
                 Check(session.Save(),"Save writes");Check(File.Exists(JourneySession.SavePath),"Save file exists");SeasonIntegrationChecks.Capture("PauseMenu");
-                session.Resume();winter.Interact(8);Check(winter.IsDialogueOpen,"Conversation opens for pause regression");session.Pause();InputSystem.QueueStateEvent(Keyboard.current,new KeyboardState(Key.Escape));InputSystem.Update();Call(session,"Update");Call(winter,"Update");Check(!session.Paused&&winter.IsDialogueOpen,"Esc resumes without also closing the conversation");InputSystem.QueueStateEvent(Keyboard.current,new KeyboardState());InputSystem.Update();Call(winter,"Close");session.ReturnToMenu();
+                session.Resume();winter.Interact(8);Check(winter.IsDialogueOpen,"Conversation opens for pause regression");session.Pause();InputSystem.QueueStateEvent(Keyboard.current,new KeyboardState(Key.Escape));InputSystem.Update();Check(Keyboard.current.escapeKey.wasPressedThisFrame,"Synthetic Escape press delivered");Call(session,"Update");Check(!session.Paused,"Escape resumes pause menu");Call(winter,"Update");Check(winter.IsDialogueOpen,"Esc resumes without also closing the conversation");InputSystem.QueueStateEvent(Keyboard.current,new KeyboardState());InputSystem.Update();Call(winter,"Close");session.ReturnToMenu();
             }
             else if(stage==1)
             {
@@ -55,7 +58,7 @@ namespace AmbrosJourney.Journey.Editor
             }
             else if(stage>=3&&stage<=6)
             {
-                int chapter=stage-2;Check(JourneySession.CurrentChapter()==chapter,"Travel loads requested chapter");CollectAll();MoonbranchPolishChecks.Verify(chapter);WorldCohesionChecks.CheckAndCapture(chapter);Inspect();SeasonIntegrationChecks.Capture("Exploration"+chapter);
+                int chapter=stage-2;Check(JourneySession.CurrentChapter()==chapter,"Travel loads requested chapter");WorldcraftChecks.Verify(chapter);CollectAll();MoonbranchPolishChecks.Verify(chapter);WorldCohesionChecks.CheckAndCapture(chapter);Inspect();SeasonIntegrationChecks.Capture("Exploration"+chapter);
                 if(chapter<4){session.Save();session.LoadChapter(chapter+1);}else {Check(session.Data.ArtifactCount==12,"All artifacts survive chapter loads");session.ShowArtifacts();Inspect();SeasonIntegrationChecks.Capture("ArtifactAchievement");}
             }
             else if(stage==7)
@@ -89,7 +92,7 @@ namespace AmbrosJourney.Journey.Editor
             {
                 Check(SceneManager.GetActiveScene().name=="Spring","Missing teammate intro starts Spring immediately without an error screen");Check(!UnityEngine.Object.FindAnyObjectByType<UnityEngine.Video.VideoPlayer>(),"Retired opening player is gone");
             }
-            else if(stage==14){Check(SceneManager.GetActiveScene().name=="Spring","New Journey enters fresh Spring");Check(!UnityEngine.Object.FindAnyObjectByType<SpringGuide>().LessonComplete,"Reset starts with no lessons");Debug.Log("JOURNEY_PLAY_PASS: menu, exact outdoor/cave save, pause, chapter travel, all 12 F-key pickups, achievement, certificate export, reset and direct-to-Spring start.");return true;}
+            else if(stage==14){Check(SceneManager.GetActiveScene().name=="Spring","New Journey enters fresh Spring");Check(!UnityEngine.Object.FindAnyObjectByType<SpringGuide>().LessonComplete,"Reset starts with no lessons");if(testKeyboard!=null){InputSystem.RemoveDevice(testKeyboard);testKeyboard=null;}Debug.Log("JOURNEY_PLAY_PASS: menu, exact outdoor/cave save, pause, chapter travel, all 12 F-key pickups, achievement, certificate export, reset and direct-to-Spring start.");return true;}
             return false;
         }
         static void Click(string name)

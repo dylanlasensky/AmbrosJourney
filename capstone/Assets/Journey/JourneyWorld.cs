@@ -35,7 +35,6 @@ namespace AmbrosJourney.Journey
             foreach(var r in FindObjectsByType<SpriteRenderer>())
             {
                 string n=r.name.ToLowerInvariant();
-                if(n.Contains("mountain ridge")){r.sprite=Atlas(2,32);r.sharedMaterial=atlasMaterial;r.transform.position=new Vector2(24,25.5f);}
                 if(n.Contains("lantern")&&r.sprite)lanterns.Add(r);
             }
             var cohesion=gameObject.AddComponent<WorldCohesion>();cohesion.Build(chapter,winter);
@@ -44,7 +43,7 @@ namespace AmbrosJourney.Journey
             {
                 int id=(chapter-1)*3+i;var position=FindClear(ArtifactPositions[id]);
                 Transform parent=winter?(i==2?winter.World.Cavern.transform:winter.World.Outdoors.transform):transform;
-                var r=Visual("Artifact / "+ArtifactNames[id],position,null,parent);cohesion.Relic(r);var label=new GameObject("Artifact caption");label.transform.SetParent(r.transform,false);label.transform.localPosition=new Vector3(0,2,0);label.AddComponent<SeasonWorldLabel>().Caption="[ F ] "+ArtifactNames[id];
+                var r=Visual("Artifact / "+ArtifactNames[id],position,null,parent);cohesion.Relic(r,id);cohesion.FrameRelic(r);var label=new GameObject("Artifact caption");label.transform.SetParent(r.transform,false);label.transform.localPosition=new Vector3(0,2,0);label.AddComponent<SeasonWorldLabel>().Caption="[ F ] "+ArtifactNames[id];
                 artifacts.Add(r.gameObject);artifactHomes.Add(r.transform.position);
             }
             var sentinel=Resources.Load<Texture2D>("Journey/SentinelAtlas");

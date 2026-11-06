@@ -22,6 +22,7 @@ namespace AmbrosJourney.Journey.Editor
             {
                 Physics2D.SyncTransforms();
                 foreach(var door in world.Doorsteps)Require(SeasonNavigation.FindPath(start,door,min,max).Count>0,"Reachable doorstep "+door+" in "+chapter);
+                foreach(var portal in world.PortalThresholds)Require(SeasonNavigation.FindPath(start,portal,min,max).Count>0,"Reachable portal threshold "+portal+" in "+chapter);
                 var trees=UnityEngine.Object.FindObjectsByType<SpriteRenderer>().Where(r=>r.name=="Snow fir").ToArray();
                 if(chapter==4){Require(trees.Length>15,"Winter retains forest");foreach(var tree in trees)Require(tree.sprite.texture.name=="WinterNature","Winter roots use snow-compatible transparent art");}
                 Capture("Map"+chapter,(min+max)*.5f,Mathf.Max(max.x-min.x,max.y-min.y)*.5f+2,true);
@@ -34,7 +35,7 @@ namespace AmbrosJourney.Journey.Editor
             finally{if(winter)winter.World.RestoreRegion(inCave);}
             Debug.Log("WORLD_COHESION_PASS: season "+chapter+", "+world.Buildings+" buildings, all doorstep routes, full map and nine survey views.");
         }
-        static void Capture(string name,Vector2 center,float size,bool square)
+        internal static void Capture(string name,Vector2 center,float size,bool square)
         {
             Directory.CreateDirectory("Logs/WorldAudit");var camera=Camera.main;var oldPosition=camera.transform.position;float oldSize=camera.orthographicSize,oldAspect=camera.aspect;var oldTarget=camera.targetTexture;var oldActive=RenderTexture.active;
             var canvases=UnityEngine.Object.FindObjectsByType<Canvas>();var enabled=canvases.Select(c=>c.enabled).ToArray();

@@ -19,13 +19,25 @@ namespace AmbrosJourney.Presentation
         }
         public static void Spur(Transform parent,int season,Vector2 start,Vector2 bend,Vector2 end)
         {
-            var cells=new HashSet<Vector2Int>();var points=new[]{start,bend,end};
+            Approach(parent,season,1.05f,start,bend,end);
+        }
+        public static void Approach(Transform parent,int season,float halfWidth,params Vector2[] points)
+        {
+            var cells=new HashSet<Vector2Int>();
             for(int segment=1;segment<points.Length;segment++)
             {
-                int steps=Mathf.Max(1,Mathf.CeilToInt(Vector2.Distance(points[segment-1],points[segment])*3));
-                for(int i=0;i<=steps;i++){var p=Vector2.Lerp(points[segment-1],points[segment],i/(float)steps);cells.Add(Vector2Int.FloorToInt(p));cells.Add(Vector2Int.FloorToInt(p+Vector2.right*.65f));}
+                Vector2 a=points[segment-1],b=points[segment],d=b-a;
+                var min=Vector2Int.FloorToInt(Vector2.Min(a,b)-Vector2.one*halfWidth);
+                var max=Vector2Int.CeilToInt(Vector2.Max(a,b)+Vector2.one*halfWidth);
+                for(int y=min.y;y<=max.y;y++)for(int x=min.x;x<=max.x;x++)
+                {
+                    var center=new Vector2(x+.5f,y+.5f);
+                    float t=d.sqrMagnitude<.001f?0:Mathf.Clamp01(Vector2.Dot(center-a,d)/d.sqrMagnitude);
+                    if(Vector2.Distance(center,a+d*t)<=halfWidth)cells.Add(new Vector2Int(x,y));
+                }
             }
-            var host=new GameObject("Doorstep trail");host.transform.SetParent(parent,false);host.AddComponent<NaturalTrail>().Build(cells,season,-987);
+            // Cell centres are sampled symmetrically; the old spur biased every doorstep to the right.
+            var host=new GameObject("Landmark approach");host.transform.SetParent(parent,false);host.AddComponent<NaturalTrail>().Build(cells,season,-987);
         }
         public static void Apply(Tilemap map,int season,TileBase fill=null,bool onlyPath=false)
         {
