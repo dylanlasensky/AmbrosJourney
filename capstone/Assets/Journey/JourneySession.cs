@@ -263,11 +263,25 @@ namespace AmbrosJourney.Journey
             backAction=returnTo;ui.KeyboardNavigation=true;
             if(!menu){Paused=true;Time.timeScale=0;AudioListener.pause=true;Save();}
             Background(Data.ArtifactCount==12?"ACHIEVEMENT / EVIDENCE KEEPER":"LOST ARTIFACTS",Data.ArtifactCount+" of 12 recovered",Data.ArtifactCount==12?"The compass is complete. Carry its lesson into the final challenge.":"Three artifacts are hidden in each season. Search clearings, shelters and the edges of landmarks.");
-            for(int i=0;i<4;i++)ui.Text(ui.Root,"Collection "+i,ChapterNames[i]+"\n"+ArtifactRow(i),new Rect(-550+i*280,-55,260,110),19,JourneyUI.Paper);
-            ui.Text(ui.Root,"Collection lesson",Data.ArtifactCount==12?ArtifactLesson:"Complete the collection to unlock the Evidence Compass lesson.\nUse the pause menu to revisit earlier seasons. Nothing is permanently missable.",new Rect(-550,75,1100,160),22,JourneyUI.Paper);
+            var world=FindAnyObjectByType<WorldCohesion>();
+            for(int chapter=0;chapter<4;chapter++)
+            {
+                float x=-550+chapter*280;
+                ui.Text(ui.Root,"Collection "+chapter,ChapterNames[chapter],new Rect(x,-65,260,30),21,JourneyUI.Gold);
+                for(int item=0;item<3;item++)
+                {
+                    int id=chapter*3+item;float y=-28+item*50;
+                    if(world)
+                    {
+                        var icon=ui.Panel(ui.Root,"Relic icon "+id,new Rect(x,y,38,38),Data.artifacts[id]?Color.white:new Color(.45f,.45f,.45f,.6f)).GetComponent<UnityEngine.UI.Image>();
+                        icon.sprite=world.ArtifactIcon(id);icon.preserveAspect=true;icon.raycastTarget=false;
+                    }
+                    ui.Text(ui.Root,"Relic name "+id,(Data.artifacts[id]?"Found · ":"Hidden · ")+JourneyWorld.ArtifactNames[id],new Rect(x+46,y,212,46),17,JourneyUI.Paper);
+                }
+            }
+            ui.Text(ui.Root,"Collection lesson",Data.ArtifactCount==12?ArtifactLesson:"Complete the collection to unlock the Evidence Compass lesson.\nUse the pause menu to revisit earlier seasons. Nothing is permanently missable.",new Rect(-550,120,1100,140),20,JourneyUI.Paper);
             ui.Button(ui.Root,"Return / Esc",new Rect(-550,270,300,48),returnTo);
         }
-        string ArtifactRow(int chapter){string s="";for(int i=chapter*3;i<chapter*3+3;i++)s+=(Data.artifacts[i]?"[x] ":"[ ] ")+JourneyWorld.ArtifactNames[i]+"\n";return s;}
         public void Collect(int id){if(id<0||id>=12||Data.artifacts[id])return;Data.artifacts[id]=true;GameAudio.Play(SoundCue.Pickup,.65f);Save();ShowArtifacts();}
         public void RecordFinalVictory()
         {

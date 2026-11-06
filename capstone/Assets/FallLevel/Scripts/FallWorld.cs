@@ -114,9 +114,9 @@ namespace AmbrosJourney.Fall
             level.stations=new Transform[3];level.runes=new SpriteRenderer[3];string[] props={"Noticeboard","Noticeboard","Workbench"};
             for(int i=0;i<3;i++){var pos=MissionPositions[i];level.stations[i]=Visual(FallContent.Landmarks[i],props[i],pos,1.5f).transform;Label(FallContent.Landmarks[i].ToUpper(),pos+new Vector2(0,3.6f),12);level.runes[i]=Visual("Prompt rune "+(i+1),"Ward",pos+new Vector2(2,0));Visual("Instruction engine","Device",pos+new Vector2(-3,1));}
             // Two small harvest stacks beside the orchard; the center trail stays open.
-            foreach(var position in new[]{new Vector2(-34,5),new Vector2(-35.2f,4.2f),new Vector2(-33.5f,3.6f)})Visual("Harvest supplies","Crate",position);
+            foreach(var position in new[]{new Vector2(-34,5),new Vector2(-36,5.7f)})Visual("Harvest supplies","Crate",position);
             Visual("Archive shelter","Shelter",new Vector2(24,31),1.6f);Visual("Archive scrolls","Letter",new Vector2(30,28));
-            foreach(var position in new[]{new Vector2(32,-21),new Vector2(33.3f,-21.5f),new Vector2(32.4f,-23)})Visual("Kiln fuel","Crate",position);
+            foreach(var position in new[]{new Vector2(32,-21),new Vector2(34,-22.6f)})Visual("Kiln fuel","Crate",position);
             Sign("ORCHARD  SOUTH",new Vector2(-24,22));Sign("ARCHIVE  EAST / NORTH BRIDGE",new Vector2(-12,22));Sign("KILN  EAST THEN SOUTH",new Vector2(29,16));Sign("KILN  WEST AT NEXT TURN",new Vector2(36,4));Sign("KILN  SOUTH THEN EAST",new Vector2(16,-6));Sign("LOWER BRIDGE  WEST",new Vector2(7,-11));Sign("SENTINEL  SOUTH",new Vector2(5,-28));
             Visual("Quiet overlook","Shelter",new Vector2(-38,-26));Label("OLD WATCH / OPTIONAL DETOUR",new Vector2(-38,-23),14);
             level.guardian=Actor("Bramble Sentinel","SentinelIdle",4,GuardianPosition,"SentinelIdle",4,2.1f);Label("BRAMBLE SENTINEL",GuardianPosition+new Vector2(0,4),13);

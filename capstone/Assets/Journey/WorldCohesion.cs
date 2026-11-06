@@ -7,7 +7,7 @@ using AmbrosJourney.Winter;
 namespace AmbrosJourney.Journey
 {
     // One art vocabulary and authored doorstep routes. No randomly added houses.
-    public sealed class WorldCohesion : MonoBehaviour
+    public sealed partial class WorldCohesion : MonoBehaviour
     {
         readonly List<Object> owned=new List<Object>();
         readonly Dictionary<string,Sprite> sprites=new Dictionary<string,Sprite>();
@@ -23,9 +23,10 @@ namespace AmbrosJourney.Journey
         {
             string key=atlas+index+":"+width;if(sprites.TryGetValue(key,out var existing))return existing;
             var texture=Resources.Load<Texture2D>("Journey/"+atlas);if(!texture)throw new System.InvalidOperationException("Missing cohesion atlas: "+atlas);
-            int columns=atlas=="VillageDetails"?3:2;
-            float[] xs=columns==3?new[]{0f,.35f,.64f,1f}:atlas=="DiscoveryDetails"?new[]{0f,.55f,1f}:new[]{0f,.5f,1f};
-            float[] ys=atlas=="WinterNature"?new[]{0f,.66f,1f}:columns==3?new[]{0f,.39f,.665f,1f}:atlas=="DiscoveryDetails"?new[]{0f,.55f,1f}:new[]{0f,.5f,1f};
+            bool worldcraft=atlas=="SeasonalRelics"||atlas=="SeasonalDetails";
+            int columns=worldcraft||atlas=="VillageDetails"?3:2;
+            float[] xs=worldcraft?new[]{0f,1f/3,2f/3,1f}:columns==3?new[]{0f,.35f,.64f,1f}:atlas=="DiscoveryDetails"?new[]{0f,.55f,1f}:new[]{0f,.5f,1f};
+            float[] ys=atlas=="SeasonalRelics"?new[]{0f,.25f,.495f,.735f,1f}:worldcraft?new[]{0f,.25f,.5f,.75f,1f}:atlas=="WinterNature"?new[]{0f,.66f,1f}:columns==3?new[]{0f,.39f,.665f,1f}:atlas=="DiscoveryDetails"?new[]{0f,.55f,1f}:new[]{0f,.5f,1f};
             int column=index%columns,row=index/columns;
             int left=Mathf.RoundToInt(xs[column]*texture.width),right=Mathf.RoundToInt(xs[column+1]*texture.width);
             int bottom=Mathf.RoundToInt((1-ys[row+1])*texture.height),top=Mathf.RoundToInt((1-ys[row])*texture.height);
@@ -61,7 +62,8 @@ namespace AmbrosJourney.Journey
             var obj=new GameObject(label,typeof(SpriteRenderer));obj.transform.SetParent(parent?parent:outside,false);obj.transform.position=position;
             var r=obj.GetComponent<SpriteRenderer>();Skin(r,"VillageDetails",index,width);var bounds=r.bounds;bounds.Expand(.35f);propFootprints.Add(bounds);return r;
         }
-        public void Relic(SpriteRenderer renderer)=>Skin(renderer,"DiscoveryDetails",1,1.35f);
+        public Sprite ArtifactIcon(int id)=>Art("SeasonalRelics",id,1.15f);
+        public void Relic(SpriteRenderer renderer,int id)=>Skin(renderer,"SeasonalRelics",id,1.15f);
         public void Sign(Vector2 position)=>Prop("Carved trail sign",1,position,1.25f);
         public void Build(int chapter,WinterLevel winter)
         {
@@ -80,7 +82,7 @@ namespace AmbrosJourney.Journey
                 else if(r.sprite&&r.sprite.name=="Target")Skin(r,"UtilityDetails",3,1.5f);
                 else if(r.sprite&&r.sprite.name=="Device")Skin(r,"UtilityDetails",2,1.3f);
                 else if(r.sprite&&r.sprite.name=="Ward")Skin(r,"DiscoveryDetails",3,.65f);
-                if(name.Contains("portal")||name=="daylight exit"||name=="autumn arrival"||name.StartsWith("summer gate"))Skin(r,"DiscoveryDetails",0,2.8f);
+                if(name.Contains("portal")||name=="daylight exit"||name=="autumn arrival"||name.StartsWith("summer gate"))Skin(r,"SeasonPortals",chapter-1,3.2f);
                 else if(name.Contains("crystal")&&r.sprite)Skin(r,"DiscoveryDetails",3,1.3f);
                 else if(chapter!=4&&r.sprite&&r.sprite.name=="Rock")Skin(r,"DiscoveryDetails",2,1.6f);
                 if(chapter==4)
@@ -90,6 +92,7 @@ namespace AmbrosJourney.Journey
                     else if(name=="frosted cave boulder")Skin(r,"DiscoveryDetails",2,1.4f);
                 }
             }
+            AnchorPortals();
             var trails=FindObjectsByType<NaturalTrail>();
             foreach(var r in original)if(r&&Loose(r)&&trails.Any(t=>t.Near(r.transform.position,Tree(r)?1.5f:.5f)))Remove(r.gameObject);
             ThinScenery();
@@ -100,9 +103,12 @@ namespace AmbrosJourney.Journey
             // Replace the old painted-rectangle Spring posts with the same carved sign family.
             foreach(var r in original)if(r&&r.name=="Trail marker post"){Sign(r.transform.position);Remove(r.gameObject);}else if(r&&r.name=="Trail marker")Remove(r.gameObject);
             if(chapter==1){ClearRect(new Rect(-14,-3,9,12));Prop("Lakeside bench",3,new Vector2(-11,5.3f),2.2f);Prop("Dock lantern",8,new Vector2(-10,3.8f),1);}
-            if(chapter==2){NaturalTrail.Spur(outside,season,new Vector2(-21,-10),new Vector2(-19,-10),new Vector2(-17,-8));Prop("Garden tool bench",3,new Vector2(-24,-12),2);Prop("Village water well",7,new Vector2(22,20),2.2f);ClearSegment(new Vector2(22,19.5f),new Vector2(15,18));NaturalTrail.Spur(outside,season,new Vector2(22,19.5f),new Vector2(19,19.5f),new Vector2(15,18));}
+            if(chapter==2){NaturalTrail.Spur(outside,season,new Vector2(-21,-10),new Vector2(-19,-10),new Vector2(-17,-8));Prop("Garden tool bench",3,new Vector2(-20,-15.8f),2);Prop("Village water well",7,new Vector2(22,20),2.2f);ClearSegment(new Vector2(22,19.5f),new Vector2(15,18));NaturalTrail.Spur(outside,season,new Vector2(22,19.5f),new Vector2(19,19.5f),new Vector2(15,18));}
             if(chapter==3){Prop("Orchard harvest cart",5,new Vector2(-34,2),2.5f);Prop("Archive reading bench",3,new Vector2(31,29),2.2f);}
-            if(chapter==4){Prop("Winter fuel reserve",4,new Vector2(22.8f,11.5f),1.7f);Prop("Cave entrance lantern",8,new Vector2(27,23),1.2f);}
+            if(chapter==4){Prop("Winter fuel reserve",4,new Vector2(22.8f,11.5f),1.7f);}
+            Physics2D.SyncTransforms();
+            ClearLandmarkSightlines();
+            ComposeSeasonalDetails(winter);
             Physics2D.SyncTransforms();
         }
         void Building(SpriteRenderer renderer)

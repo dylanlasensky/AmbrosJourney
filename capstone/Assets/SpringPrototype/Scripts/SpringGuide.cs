@@ -83,6 +83,8 @@ public class SpringGuide : MonoBehaviour
     }
     void Start()
     {
+        // Conversation uses proximity; companions must never plug a doorway or a compass route.
+        foreach(var collider in mage.GetComponents<Collider2D>())collider.isTrigger=true;
         Vector2[] positions = { new Vector2(-18,0), new Vector2(10,6), new Vector2(15,-14) };
         for(int i=0;i<3;i++) bats[i]=CreateBat("Misinformation Bat "+(i+1),positions[i],1);
         Vector2[] notePositions={new Vector2(-21,5),new Vector2(7,1),new Vector2(21,-12)};
