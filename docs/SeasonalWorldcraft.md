@@ -1,6 +1,6 @@
 # Seasonal scenery and portal placement
 
-This update builds on main `30ebb2d`, including the team's sound-effects refresh.
+This update includes main `64f380a`: the team's sound-effects refresh and the open-journal pause screen from PR #13.
 
 ## What changed
 
