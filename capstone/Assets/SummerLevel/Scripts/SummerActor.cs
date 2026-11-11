@@ -10,7 +10,7 @@ namespace AmbrosJourney.Summer
         public Sprite[] idle,walk,attack;
         public bool isPlayer;
         public Transform follow;
-        public GuideWalk Guidance;
+        [System.NonSerialized] public GuideWalk Guidance;
         public SummerLevel level;
         readonly SeasonTrail trail=new SeasonTrail();
         SpriteRenderer visual;Rigidbody2D body;Material animationMaterial;
