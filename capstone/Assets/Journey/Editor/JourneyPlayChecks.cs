@@ -79,7 +79,14 @@ namespace AmbrosJourney.Journey.Editor
             {
                 Check(SceneManager.GetActiveScene().name=="Intro"&&!session.Data.started&&session.Data.ArtifactCount==0,"Full reset returns fresh menu");Check(!File.Exists(JourneySession.SavePath)&&!File.Exists(JourneySession.SavePath+".bak"),"Reset deletes recovery copy too");Inspect();
                 UI.GetComponentInChildren<TMP_InputField>().text="Zoë Explorer";Click("Settings");Inspect();Click("Guidance: Explorer");Click("Back");Check(UI.GetComponentInChildren<TMP_InputField>().text=="Zoë Explorer","Settings retains draft explorer name");SeasonIntegrationChecks.Capture("NewJourneyMenu");
-                var input=UI.GetComponentInChildren<TMP_InputField>();input.text=" ";session.NewJourney();Check(!session.Data.started,"Blank name rejected");
+                var input=UI.GetComponentInChildren<TMP_InputField>();
+                var start=Array.Find(UI.GetComponentsInChildren<UnityEngine.UI.Button>(),button=>button.name=="New Journey");
+                Check(start.interactable,"Entered name enables play");
+                input.text=" ";Check(!start.interactable,"Whitespace disables play");
+                input.text="<>";Check(!start.interactable,"Sanitized empty name disables play");
+                input.text="Alex";Check(start.interactable&&!input.GetComponent<UnityEngine.UI.Outline>().enabled,"Valid name enables play and stops glow");
+                input.text="";Check(!start.interactable&&input.GetComponent<UnityEngine.UI.Outline>().enabled,"Clearing name restores required prompt");
+                session.NewJourney();Check(!session.Data.started,"Blank name rejected");
                 string normalSave=JourneySession.SavePathOverride;string directory=Path.GetFullPath("Logs/SeasonChecks/menu-save-directory");Directory.CreateDirectory(directory);
                 try{JourneySession.SavePathOverride=directory;UI.GetComponentInChildren<TMP_InputField>().text="Test Explorer";session.NewJourney();Check(!session.Data.started&&UI.GetComponentInChildren<TMP_InputField>(),"Failed save stays on name-entry menu");Inspect();}
                 finally{JourneySession.SavePathOverride=normalSave;}

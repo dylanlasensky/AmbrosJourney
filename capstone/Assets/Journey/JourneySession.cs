@@ -149,7 +149,7 @@ namespace AmbrosJourney.Journey
             }
             else
             {
-                JourneyMenu.Text(ui,"Name label","YOUR EXPLORER NAME",new Rect(-554,-43,350,28),16,JourneyMenu.Gold);
+                var nameLabel=JourneyMenu.Text(ui,"Name label","TYPE YOUR NAME (REQUIRED)",new Rect(-554,-43,350,28),16,JourneyMenu.Gold);
                 nameInput=ui.NameInput(ui.Root,Data.playerName,new Rect(-562,-9,340,48));
                 nameInput.GetComponent<UnityEngine.UI.Image>().color=new Color(.025f,.065f,.05f,.87f);
                 nameInput.textComponent.color=JourneyMenu.Cream; nameInput.textComponent.font=ui.MenuFont;
@@ -162,7 +162,22 @@ namespace AmbrosJourney.Journey
                 }
                 nameInput.customCaretColor=true;nameInput.caretColor=JourneyMenu.Gold;
                 JourneyMenu.Frame(ui,new Rect(-562,-9,340,48));
-                JourneyMenu.Button(ui,"New Journey",63,NewJourney,true);
+                var play=JourneyMenu.Button(ui,"New Journey",63,NewJourney,true);
+                var hint=JourneyMenu.Text(ui,"Name requirement","Enter your name to play.",new Rect(-554,41,340,20),14,JourneyMenu.Cream);
+                var glow=nameInput.gameObject.AddComponent<UnityEngine.UI.Outline>();
+                glow.effectDistance=new Vector2(3,-3);glow.useGraphicAlpha=false;
+                var input=nameInput;
+                void RefreshNameRequirement(string value)
+                {
+                    bool ready=JourneyData.CleanName(value).Length>0;
+                    play.interactable=ready;hint.gameObject.SetActive(!ready);
+                    nameLabel.text=ready?"YOUR EXPLORER NAME":"TYPE YOUR NAME (REQUIRED)";
+                    glow.enabled=!ready;
+                    nameLabel.color=JourneyMenu.Gold;placeholder.color=JourneyMenu.Gold;
+                }
+                input.onValueChanged.AddListener(RefreshNameRequirement);
+                RefreshNameRequirement(input.text);
+                StartCoroutine(PulseNamePrompt(input,nameLabel,placeholder,glow,play));
                 JourneyMenu.Button(ui,"Settings",132,ShowMenuSettings);
                 JourneyMenu.Button(ui,"Quit",186,QuitGame);
             }
@@ -170,6 +185,20 @@ namespace AmbrosJourney.Journey
             {
                 var status=JourneyMenu.Text(ui,"Menu status",notice,new Rect(-554,241,425,31),15,JourneyMenu.Muted);
                 status.textWrappingMode=TextWrappingModes.Normal;
+            }
+        }
+        IEnumerator PulseNamePrompt(TMP_InputField input,TMP_Text label,TMP_Text placeholder,UnityEngine.UI.Outline glow,UnityEngine.UI.Button play)
+        {
+            // Use real time so the required field stays noticeable even if simulation is paused.
+            while(input&&input.gameObject.activeInHierarchy)
+            {
+                if(!play.interactable)
+                {
+                    float pulse=(Mathf.Sin(Time.unscaledTime*Mathf.PI)+1)*.5f;
+                    label.color=placeholder.color=Color.Lerp(JourneyMenu.Gold,JourneyMenu.Cream,pulse);
+                    var color=JourneyMenu.Gold;color.a=Mathf.Lerp(.22f,.65f,pulse);glow.effectColor=color;
+                }
+                yield return null;
             }
         }
         void ShowMenuSettings()
