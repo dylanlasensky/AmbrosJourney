@@ -39,23 +39,19 @@ namespace AmbrosJourney.Fall
         public void RestoreProgress(FallProgress p)
         {
             if(p==null||!p.Valid())throw new ArgumentException("Invalid Fall checkpoint");
-            Progress=p;if(p.Introduced)Close();journal.SetActive(false);if(p.Complete){ember.follow=femaleWarrior.transform;}RefreshWorld();
+            Progress=p;if(p.Introduced){Close();RestoreGuide();}journal.SetActive(false);if(p.Complete){ember.Guidance=null;ember.follow=femaleWarrior.transform;}RefreshWorld();
         }
         void Start()
         {
             Application.runInBackground=false;CreateUI();CreateAudio();
             mage.follow=player.transform;maleWarrior.follow=mage.transform;femaleWarrior.follow=maleWarrior.transform;
-            ShowPages(new[]{
-                "Emberfist: Welcome to Emberwood! Our machines keep getting requests mixed up. Help me work out how to give them clearer instructions.",
-                "A prompt is what you ask an AI tool to do. Say what you need, give useful background and explain how you want the reply. Then read it and ask for changes if needed. You still have to check the facts.",
-                "Start at Harvest Orchard, cross the north bridge to Lantern Archive, then find Revision Kiln. Read each note and fix the requests there. Three runes open the Sentinel's clearing. Get four of five questions right to reach Winter."
-            },0,()=>Progress.Introduced=true);
+            Show("Fall / Emberfist's trail","Emberfist: Welcome to Emberwood! Our machines keep getting requests mixed up. Help me work out how to give them clearer instructions.",()=>{BeginGuidance();Close();});
             Debug.Log("FALL_READY: Emberwood, three prompt missions, seven applied choices and five-question guardian.");
         }
         public bool DismissPanel()
         {
             if(journal&&journal.activeSelf){journal.SetActive(false);return true;}
-            if(dialog&&dialog.activeSelf){Progress.Introduced=true;Close();return true;}
+            if(dialog&&dialog.activeSelf){if(!Progress.Introduced)BeginGuidance();Close();return true;}
             return false;
         }
         void Update()
@@ -74,12 +70,33 @@ namespace AmbrosJourney.Fall
                 }
                 else if(!journal.activeSelf && k.eKey.wasPressedThisFrame && nearby>=0)Interact(nearby);
             }
+            UpdateGuidance();
             RefreshWorld();
+        }
+        public static readonly Vector2 OrchardGuide=new Vector2(-27,9);
+        void BeginGuidance()
+        {
+            Progress.Introduced=true;ember.Guidance=new GuideWalk(OrchardGuide,FallWorld.Min,FallWorld.Max);
+        }
+        void RestoreGuide()
+        {
+            if(Progress.GuideArrived||Progress.Studied[0]||Progress.RuneCount>0)
+            {Progress.GuideArrived=true;ember.Guidance=null;ember.transform.position=OrchardGuide;}
+            else BeginGuidance();
+        }
+        void UpdateGuidance()
+        {
+            if(InputBlocked||!Progress.Introduced||Progress.GuideArrived||ember.Guidance==null||!ember.Guidance.Arrived||Vector2.Distance(player.transform.position,stations[0].position)>4)return;
+            Progress.GuideArrived=true;ember.Guidance=null;
+            ShowPages(new[]{
+                "A prompt is what you ask an AI tool to do. Say what you need, give useful background and explain how you want the reply. Then read it and ask for changes if needed. You still have to check the facts.",
+                "Start at Harvest Orchard, cross the north bridge to Lantern Archive, then find Revision Kiln. Read each note and fix the requests there. Three runes open the Sentinel's clearing. Get four of five questions right to reach Winter."
+            },0,()=>{});
         }
         int Nearest()
         {
             Transform[] targets={ember.transform,stations[0],stations[1],stations[2],guardian.transform,winterGate};
-            int result=-1;float best=2.8f;for(int i=0;i<targets.Length;i++){float d=Vector2.Distance(player.transform.position,targets[i].position);if(d<best){best=d;result=i;}}return result;
+            int result=-1;float best=2.8f;for(int i=1;i<targets.Length;i++){float d=Vector2.Distance(player.transform.position,targets[i].position);if(d<best){best=d;result=i;}}if(result<0&&Vector2.Distance(player.transform.position,ember.transform.position)<2.8f)result=0;return result;
         }
         public void Interact(int target)
         {
@@ -114,7 +131,7 @@ namespace AmbrosJourney.Fall
         {
             if(Progress.BossFinished)
             {
-                if(Progress.Complete){ember.follow=femaleWarrior.transform;effects.PlayOneShot(ward,.7f);Show("Fall cleared / "+Progress.BossScore+" of 5","The Bramble Sentinel's tangled ward falls away. Emberfist joins your party!\n\nRank earned: PROMPT PATHFINDER\nGive a goal, context and format. Set useful limits, check the response and revise. Never confuse clear wording with guaranteed truth.\n\nThe Winter gate is open.",Close);}
+                if(Progress.Complete){ember.Guidance=null;ember.follow=femaleWarrior.transform;effects.PlayOneShot(ward,.7f);Show("Fall cleared / "+Progress.BossScore+" of 5","The Bramble Sentinel's tangled ward falls away. Emberfist joins your party!\n\nRank earned: PROMPT PATHFINDER\nGive a goal, context and format. Set useful limits, check the response and revise. Never confuse clear wording with guaranteed truth.\n\nThe Winter gate is open.",Close);}
                 else Show("Your score / "+Progress.BossScore+" of 5","You need 4/5 (80%). All rune missions remain complete. Review the journal or continue to retry the five questions.",()=>{Progress.BeginBoss();BossQuestion();});
                 return;
             }
@@ -170,6 +187,7 @@ namespace AmbrosJourney.Fall
             for(int i=0;i<shields.Length;i++)shields[i].enabled=!Progress.Complete && i>=Progress.BossScore;
             string quest=Progress.Complete?"Walk through the unlocked Winter gate":Progress.CanFight?"Challenge the Sentinel / 4 of 5 to pass":!Progress.MissionComplete(0)?"Harvest Orchard / Goal + context + format":!Progress.MissionComplete(1)?"Lantern Archive / Audience + limits":"Revision Kiln / Check + improve";
             objective.text="RUNES "+Progress.RuneCount+" / 3   |   COURAGE "+Progress.Courage+" / 3\n"+quest;
+            if(Progress.Introduced&&!Progress.GuideArrived)objective.text="Walk with Emberfist to Harvest Orchard. He will wait for you.";
             var destination=Destination();
             if(!InputBlocked)presentation.SetCompass(player.transform.position,navigation.Next(player.transform.position,destination),destination);
             prompt.text=InputBlocked||nearby<0?"":"[ E ]  "+new[]{"Talk to Emberfist","Harvest Orchard","Lantern Archive","Revision Kiln","Face the Sentinel","Winter gate"}[nearby];

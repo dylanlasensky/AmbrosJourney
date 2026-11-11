@@ -16,7 +16,7 @@ namespace AmbrosJourney.Journey
         {
             if(season==1)
             {
-                Detail("Gardener's basket by the cottage",2,-24,7,1.15f);
+                Detail("Cottage blossom ferns",1,-24,7,1.4f);
                 Detail("Cottage fern border",1,-26,6,1.8f);
                 Detail("Lakeside fallen blossom log",0,-13,2,2.4f);
                 Detail("Lakeside fern bank",1,-12,-1,1.7f);
@@ -34,23 +34,23 @@ namespace AmbrosJourney.Journey
                 Detail("Pond west reeds",5,-2,3,1.6f);
                 Detail("Pond southern reeds",5,3,1,1.8f);
                 Detail("Pond eastern reeds",5,7,5,1.65f);
-                Detail("Workshop pollinator border",3,-26,9,1.4f);
+                Detail("Workshop fern border",5,-26,9,1.4f);
             }
             else if(season==3)
             {
                 Detail("Orchard sorting basket",6,-36,3,1.7f);
                 Detail("Orchard woodland stump",7,-37,7,2.1f);
                 Detail("Orchard harvest basket",6,-33,11,1.4f);
-                Detail("Overlook tea firewood",8,-45,-25,1.9f);
+                Detail("Overlook woodland stump",7,-45,-25,1.9f);
                 Detail("Overlook mushroom hollow",7,-43,-28,1.7f);
-                Detail("Archive delivery basket",6,34,29,1.5f);
+                Detail("Archive mushroom hollow",7,34,29,1.8f);
                 Detail("Kiln fuel and kettle",8,34,-24,1.8f);
                 Detail("Kiln woodland mushrooms",7,36,-20,1.8f);
                 Detail("North bridge woodland",7,-9,22,1.8f);
             }
             else
             {
-                Detail("Ledger expedition sled",11,-33,-5,2.0f);
+                Detail("Ledger snow-covered rocks",9,-33,-5,2.0f);
                 Detail("Ledger snowberry border",10,-34,-8,1.8f);
                 Detail("Ledger windblown stones",9,-31,-11,2.1f);
                 Detail("Observatory expedition sled",11,24.8f,10.8f,1.8f);

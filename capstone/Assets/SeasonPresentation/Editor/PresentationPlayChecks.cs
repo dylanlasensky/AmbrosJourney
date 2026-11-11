@@ -51,7 +51,7 @@ namespace AmbrosJourney.Presentation.Editor
             try
             {
                 var l=UnityEngine.Object.FindAnyObjectByType<FallLevel>();Check(l,"Run Fall first");level=l;ui=l.GetComponentInChildren<SeasonOverlay>();Check(!l.Progress.Introduced,"Start a fresh Fall session for UI regression");inspected.Clear();Common();
-                Next();Next();Next();Check(!l.InputBlocked,"Introduction unlocks movement");
+                Next();GuideArrivalChecks.Fall(l);Next();Next();Check(!l.InputBlocked,"Introduction unlocks movement");
                 for(int m=0;m<3;m++)
                 {
                     l.player.transform.position=l.stations[m].position+Vector3.down;l.player.GetComponent<Rigidbody2D>().position=l.player.transform.position;l.Interact(m+1);Next();
@@ -74,7 +74,7 @@ namespace AmbrosJourney.Presentation.Editor
             try
             {
                 var l=UnityEngine.Object.FindAnyObjectByType<SummerLevel>();Check(l,"Run Summer first");level=l;ui=l.GetComponentInChildren<SeasonOverlay>();Check(!l.Progress.Introduced,"Start a fresh Summer session for UI regression");inspected.Clear();Common();
-                Next();Next();Next();l.Interact(1);Next();Choice(0);Next();Choice(1);Next();Next();
+                Next();Next();GuideArrivalChecks.Summer(l);Next();Next();Choice(0);Next();Choice(1);Next();Next();
                 l.Interact(2);Choice(0);Next();l.Interact(6);Next();l.Interact(8);Next();l.Interact(7);Next();Choice(0);Next();Next();
                 l.Interact(3);Choice(0);Choice(1);Choice(2);Next();Choice(1);Next();Next();
                 l.Interact(4);Next();for(int q=0;q<5;q++){Choice(SummerContent.Boss[q].Correct);Next();}Next();

@@ -6,7 +6,7 @@ namespace AmbrosJourney.Fall
     [Serializable]
     public sealed class FallProgress
     {
-        public bool Introduced;
+        public bool Introduced, GuideArrived;
         public bool Valid()
         {
             if(Courage<1||Courage>3||BossQuestion<0||BossQuestion>5||BossScore<0||BossScore>BossQuestion||Studied==null||Studied.Length!=3||Steps==null||Steps.Length!=3)return false;

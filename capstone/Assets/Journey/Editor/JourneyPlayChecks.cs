@@ -115,8 +115,8 @@ namespace AmbrosJourney.Journey.Editor
                 player.position=to;player.GetComponent<Rigidbody2D>().position=to;Physics2D.SyncTransforms();
                 InputSystem.QueueStateEvent(Keyboard.current,new KeyboardState(Key.F));InputSystem.Update();Call(world,"Update");InputSystem.QueueStateEvent(Keyboard.current,new KeyboardState());InputSystem.Update();
                 Check(session.Data.artifacts[(JourneySession.CurrentChapter()-1)*3+i],"F collects "+item.name);Inspect();
-                InputSystem.QueueStateEvent(Keyboard.current,new KeyboardState(Key.Escape));InputSystem.Update();Call(session,"Update");
-                Check(!session.Paused&&Time.timeScale==1&&!AudioListener.pause,"Escape closes collected artifact and restores gameplay");
+                InputSystem.QueueStateEvent(Keyboard.current,new KeyboardState(i%2==0?Key.Space:Key.Escape));InputSystem.Update();Call(session,"Update");
+                Check(!session.Paused&&Time.timeScale==1&&!AudioListener.pause,"Space or Escape closes collected artifact and restores gameplay");
                 InputSystem.QueueStateEvent(Keyboard.current,new KeyboardState());InputSystem.Update();
             }
         }

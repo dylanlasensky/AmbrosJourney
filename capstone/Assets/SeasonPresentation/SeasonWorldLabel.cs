@@ -5,6 +5,7 @@ namespace AmbrosJourney.Presentation
     public sealed class SeasonWorldLabel : MonoBehaviour
     {
         public string Caption;
+        public float Width=310;
         public static readonly List<SeasonWorldLabel> Active=new List<SeasonWorldLabel>();
         void OnEnable(){Active.Add(this);}
         void OnDisable(){Active.Remove(this);}
