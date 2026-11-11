@@ -11,6 +11,7 @@ namespace AmbrosJourney.Journey.Editor
         static void Check(bool condition,string reason){if(!condition)throw new Exception("WORLDCRAFT: "+reason);}
         public static void Verify(int chapter)
         {
+            Check(!UnityEngine.Object.FindObjectsByType<SpriteRenderer>().Any(r=>r.sprite&&r.sprite.name=="Letter"),"No decorative envelopes resemble an interaction");
             var cohesion=UnityEngine.Object.FindAnyObjectByType<WorldCohesion>();
             var world=UnityEngine.Object.FindAnyObjectByType<JourneyWorld>();
             Check(cohesion.SeasonalDetails.Count>=4,"At least four authored seasonal vignettes, season "+chapter+": "+cohesion.SeasonalDetails.Count);

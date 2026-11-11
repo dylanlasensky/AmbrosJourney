@@ -39,7 +39,7 @@ namespace AmbrosJourney.Summer
         public void RestoreProgress(SummerProgress p)
         {
             if(p==null||!p.Valid())throw new ArgumentException("Invalid Summer checkpoint");
-            Progress=p;if(p.Introduced)Close();journal.SetActive(false);if(p.Complete){maleWarrior.follow=mage.transform;femaleWarrior.follow=maleWarrior.transform;}RefreshWorld();
+            Progress=p;if(p.Introduced){Close();RestoreGuides();}journal.SetActive(false);if(p.Complete){maleWarrior.follow=mage.transform;femaleWarrior.follow=maleWarrior.transform;}RefreshWorld();
         }
         void Start()
         {
@@ -48,15 +48,14 @@ namespace AmbrosJourney.Summer
             mage.follow = player.transform;
             ShowPages(new[] {
                 "Warrior: You made it! We've been trying to get the village back on track. A tool can be useful without being right about everything.",
-                "Warrior: My spouse and I look after this place. Lately, people have been letting the tools make every decision. Help us work out where they actually help.",
-                "Ancient Mage: Try the workshop, garden and message post. Each one has a different problem. Finish all three and the path to the Suncrest Guardian will open."
-            }, 0, () => Progress.Introduced = true);
+                "Warrior: My spouse and I look after this place. Lately, people have been letting the tools make every decision. Help us work out where they actually help."
+            }, 0, BeginGuidance);
             Debug.Log("SUMMER_READY: three missions, five-question Suncrest Guardian, journal, compass and companions.");
         }
         public bool DismissPanel()
         {
             if(journal&&journal.activeSelf){journal.SetActive(false);return true;}
-            if(dialog&&dialog.activeSelf){Progress.Introduced=true;Close();return true;}
+            if(dialog&&dialog.activeSelf){if(!Progress.Introduced)BeginGuidance();Close();return true;}
             return false;
         }
         void Update()
@@ -85,17 +84,44 @@ namespace AmbrosJourney.Summer
                 }
                 else if (!journal.activeSelf && k.eKey.wasPressedThisFrame && nearby >= 0) Interact(nearby);
             }
+            UpdateGuidance();
             RefreshWorld();
+        }
+        public static readonly Vector2 WorkshopGuide=new Vector2(-16,11), WorkshopPartner=new Vector2(-17,10);
+        void BeginGuidance()
+        {
+            Progress.Introduced=true;
+            maleWarrior.Guidance=new GuideWalk(WorkshopGuide,new Vector2(-30,-32),new Vector2(30,28));
+            femaleWarrior.Guidance=new GuideWalk(WorkshopPartner,new Vector2(-30,-32),new Vector2(30,28));
+        }
+        void RestoreGuides()
+        {
+            if(Progress.GuideArrived||Progress.WorkshopQuestion>0||Progress.HintChosen||Progress.WardCount>0)
+            {
+                Progress.GuideArrived=true;maleWarrior.Guidance=null;femaleWarrior.Guidance=null;
+                maleWarrior.transform.position=WorkshopGuide;femaleWarrior.transform.position=WorkshopPartner;
+                femaleWarrior.follow=mage.transform;
+            }
+            else BeginGuidance();
+        }
+        void UpdateGuidance()
+        {
+            if(InputBlocked||!Progress.Introduced||Progress.GuideArrived||maleWarrior.Guidance==null)return;
+            if(!maleWarrior.Guidance.Arrived||!femaleWarrior.Guidance.Arrived||Vector2.Distance(player.transform.position,workshop.position)>4)return;
+            Progress.GuideArrived=true;maleWarrior.Guidance=null;femaleWarrior.Guidance=null;femaleWarrior.follow=mage.transform;
+            Show("Summer / The village ward","Ancient Mage: Try the workshop, garden and message post. Each one has a different problem. Finish all three and the path to the Suncrest Guardian will open.",Workshop);
         }
         int Nearest()
         {
             Transform[] targets = { maleWarrior.transform, workshop, garden, messagePost, orc.transform, fallGate, stones[0], stones[1], stones[2], femaleWarrior.transform };
             float best = 2.8f; int result = -1;
-            for (int i = 0; i < targets.Length; i++)
+            for (int i = 1; i < targets.Length-1; i++)
             {
                 float d = Vector2.Distance(player.transform.position, targets[i].position);
                 if (d < best) { best = d; result = i; }
             }
+            // Nearby lesson objects take priority over a companion standing beside Ambros.
+            if(result<0)foreach(int i in new[]{0,9}){float d=Vector2.Distance(player.transform.position,targets[i].position);if(d<best){best=d;result=i;}}
             return result;
         }
         public void Interact(int target)
@@ -164,7 +190,7 @@ namespace AmbrosJourney.Summer
             {
                 var labels = new string[3]; string[] details = { "Ambros", "123 Mystical View Rd", "IWantToGoHome987" };
                 for (int i = 0; i < 3; i++) labels[i] = (Progress.RemovedPrivateDetails[i] ? "Removed: " : "Keep out: ") + details[i];
-                Ask("Message post / Remove private details", "Read Ambros's made-up message. Pick the details you'd leave out before sending it.\n\nI am Ambros, I live at 123 Mystical View Rd, and my password is IWantToGoHome987. Help me plan a birthday treasure hunt.", labels, c => {
+                Ask("Message post / Remove private details", "Read Ambros’ made-up message. Pick the details you'd leave out before sending it.\n\nI am Ambros, I live at 123 Mystical View Rd, and my password is IWantToGoHome987. Help me plan a birthday treasure hunt.", labels, c => {
                     Progress.AnswerMessage(c); effects.PlayOneShot(good, .25f);
                     if (Progress.PrivacyComplete) Show("A safer request", "Help me brainstorm a birthday treasure hunt with five clues for a small garden.\n\nThis gives enough context without identifying anyone. Next, consider when a real person can help.", Message);
                     else Message();
@@ -192,7 +218,7 @@ namespace AmbrosJourney.Summer
             {
                 if (Progress.Complete)
                 {
-                    maleWarrior.follow = mage.transform; femaleWarrior.follow = maleWarrior.transform;
+                    maleWarrior.Guidance=null;femaleWarrior.Guidance=null;maleWarrior.follow = mage.transform; femaleWarrior.follow = maleWarrior.transform;
                     effects.PlayOneShot(ward, .7f);
                     Show("Summer cleared / " + Progress.BossScore + " of 5", "Suncrest Guardian: What if I get it wrong?\nAmbros: Then you practice. You can ask for help without giving up.\n\nThe Warriors restore the village ward and join your party.\nRank earned: INDEPENDENT THINKER\n\nAI can support your ideas and learning. You are responsible for your choices.\n\nThe Fall gate is open.", Close);
                 }
@@ -257,6 +283,7 @@ namespace AmbrosJourney.Summer
             for (int i = 0; i < 3; i++) wardLights[i].color = Progress.Wards[i] ? new Color(.5f, 1, .75f) : new Color(.7f, .55f, .30f);
             for (int i = 0; i < shields.Length; i++) shields[i].enabled = !Progress.Complete && i >= Progress.BossScore;
             objective.text = "WARD " + Progress.WardCount + " / 3   |   COURAGE " + Progress.Courage + " / 3\n" + (Progress.Complete ? "Walk through the Fall gate" : Progress.CanFight ? "Challenge the Suncrest Guardian / 4 of 5 to pass" : !Progress.Wards[0] ? "Workshop / Choose the right tool" : !Progress.Wards[1] ? "Training garden / Keep your practice" : "Message post / Ask safely");
+            if(Progress.Introduced&&!Progress.GuideArrived)objective.text="Walk with the Warriors to the workshop. They will wait for you.";
             var destination=Destination();
             if(!InputBlocked)presentation.SetCompass(player.transform.position,navigation.Next(player.transform.position,destination),destination);
             prompt.text=InputBlocked||nearby<0?"":"[ E ]  "+new[]{"Talk to the Warrior","Visit the workshop","Practice in the garden","Read the message post","Face the Suncrest Guardian","Enter the Fall gate","SUN stone","LEAF stone","SEED stone","Talk to the Warrior"}[nearby];

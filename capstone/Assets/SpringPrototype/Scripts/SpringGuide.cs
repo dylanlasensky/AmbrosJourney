@@ -38,7 +38,7 @@ public class SpringGuide : MonoBehaviour
     readonly string[] lessons = {
         "You're stuck here too? I was about your age when I arrived. Now everyone calls me the Ancient Mage. We need to get through all four seasons to find a way home.",
         "Let's start with what AI can and can't do. Read the notes along the trail, then try the two claims at each bat. You can look back at your notes whenever you need them.",
-        "Use WASD or the arrows to move, E to talk, and J for your notes. The gold arrow points to your next stop. Finish the three lessons, then get at least four of Blossom Guardian's five questions right. I'll come with you after that."
+        "Use WASD or the arrows to move, E to talk, and J for your notes. The compass points to your next stop. Finish the three lessons, then get at least four of Blossom Guardian's five questions right. I'll come with you after that."
     };
     int QuestionIndex(int mission)=>mission*3+(trials[mission]==0?0:mission==2?1:2);
     readonly string[] claims = {
@@ -193,8 +193,8 @@ public class SpringGuide : MonoBehaviour
         {
             var ui=new GameObject("Spring interface");ui.transform.SetParent(transform,false);
             presentation=ui.AddComponent<SeasonOverlay>();presentation.Initialize(Resources.Load<TMP_FontAsset>("SummerDefault"),1);
-            for(int i=0;i<3;i++){AddLabel(stones[i],"FIELD NOTE / "+locations[i]);AddLabel(bats[i],"MYTH BAT "+(i+1));}
-            AddLabel(boss,"THORNHIDE / 4 OF 5 TO PASS");AddLabel(gate,"SUMMER GATE");
+            for(int i=0;i<3;i++){AddLabel(stones[i],"[ E ] FIELD NOTE / "+locations[i]);AddLabel(bats[i],"MYTH BAT "+(i+1));}
+            AddLabel(boss,"[ E ] BLOSSOM GUARDIAN");AddLabel(gate,"SUMMER GATE");
         }
         presentation.Objective.text="LESSONS "+MissionsComplete+" / 3   |   COURAGE "+hearts+" / 3\n"+Quest();
         presentation.Prompt.text=Nearby()!=-99?"[ E ]  Explore / interact":"";

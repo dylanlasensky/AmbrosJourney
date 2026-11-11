@@ -160,10 +160,11 @@ namespace AmbrosJourney.Presentation
             foreach(var marker in SeasonWorldLabel.Active)
             {
                 if(!marker||player&&Vector2.Distance(marker.transform.position,player.position)>8)continue;
-                if(!labels.TryGetValue(marker,out var panel)){panel=Panel(marker.Caption,worldLabels,Vector2.up,new Rect(0,0,310,44));var label=Text("Label",panel,new Rect(12,8,286,30),marker.Caption,14);label.enableAutoSizing=true;label.fontSizeMin=11;label.fontSizeMax=14;labels.Add(marker,panel);}
+                float width=Mathf.Clamp(marker.Width,80,310);
+                if(!labels.TryGetValue(marker,out var panel)){panel=Panel(marker.Caption,worldLabels,Vector2.up,new Rect(0,0,width,44));var label=Text("Label",panel,new Rect(12,8,width-24,30),marker.Caption,14);label.enableAutoSizing=true;label.fontSizeMin=11;label.fontSizeMax=14;labels.Add(marker,panel);}
                 var p=camera.WorldToViewportPoint(marker.transform.position);
                 bool visible=p.z>0&&p.x>=0&&p.x<=1&&p.y>=0&&p.y<=1&&!Journal.activeSelf&&!Dialog.activeSelf;panel.gameObject.SetActive(visible);
-                if(visible)Place(panel,Vector2.up,new Rect(p.x*root.rect.width-155,(1-p.y)*root.rect.height,310,44));
+                if(visible)Place(panel,Vector2.up,new Rect(p.x*root.rect.width-width/2,(1-p.y)*root.rect.height,width,44));
             }
         }
         RectTransform Panel(string name,Transform parent,Vector2 anchor,Rect area)

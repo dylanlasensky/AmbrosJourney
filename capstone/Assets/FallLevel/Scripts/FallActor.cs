@@ -10,6 +10,7 @@ namespace AmbrosJourney.Fall
         public Sprite[] idle,walk,attack;
         public bool isPlayer;
         public Transform follow;
+        [System.NonSerialized] public GuideWalk Guidance;
         public FallLevel level;
         readonly SeasonTrail trail=new SeasonTrail();
         SpriteRenderer visual;Rigidbody2D body;Material animationMaterial;
@@ -32,6 +33,7 @@ namespace AmbrosJourney.Fall
                     if(k.rKey.wasPressedThisFrame&&body){body.position=FallLevel.Spawn;transform.position=FallLevel.Spawn;body.linearVelocity=Vector2.zero;trail.Reset(FallLevel.Spawn);}
                 }
             }
+            else if(Guidance!=null)movement=Guidance.Step(transform,level.player.transform,blocked);
             else if(follow&&!blocked)
             {
                 int slot=1;var leader=follow.GetComponent<FallActor>();

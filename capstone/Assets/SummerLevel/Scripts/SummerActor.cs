@@ -10,6 +10,7 @@ namespace AmbrosJourney.Summer
         public Sprite[] idle,walk,attack;
         public bool isPlayer;
         public Transform follow;
+        [System.NonSerialized] public GuideWalk Guidance;
         public SummerLevel level;
         readonly SeasonTrail trail=new SeasonTrail();
         SpriteRenderer visual;Rigidbody2D body;Material animationMaterial;
@@ -32,6 +33,7 @@ namespace AmbrosJourney.Summer
                     if(k.rKey.wasPressedThisFrame&&body){body.position=SummerLevel.Spawn;transform.position=SummerLevel.Spawn;body.linearVelocity=Vector2.zero;trail.Reset(SummerLevel.Spawn);}
                 }
             }
+            else if(Guidance!=null)movement=Guidance.Step(transform,level.player.transform,blocked);
             else if(follow&&!blocked)
             {
                 int slot=1;var leader=follow.GetComponent<SummerActor>();

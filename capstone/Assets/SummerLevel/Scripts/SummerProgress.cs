@@ -6,7 +6,7 @@ namespace AmbrosJourney.Summer
     [Serializable]
     public sealed class SummerProgress
     {
-        public bool Introduced;
+        public bool Introduced, GuideArrived;
         public bool Valid()
         {
             if(Courage<1||Courage>3||BossQuestion<0||BossQuestion>5||BossScore<0||BossScore>BossQuestion||Wards==null||Wards.Length!=3||RemovedPrivateDetails==null||RemovedPrivateDetails.Length!=3||WorkshopQuestion<0||WorkshopQuestion>2||GardenQuestion<0||GardenQuestion>1||PatternStep<0||PatternStep>3)return false;
