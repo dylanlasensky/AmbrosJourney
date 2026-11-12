@@ -6,33 +6,33 @@ namespace AmbrosJourney.Summer
     [Serializable]
     public sealed class SummerProgress
     {
-        public bool Introduced, GuideArrived;
+        public bool Introduced, GuideArrived, GardenWarriorRead;
         public bool Valid()
         {
-            if(Courage<1||Courage>3||BossQuestion<0||BossQuestion>5||BossScore<0||BossScore>BossQuestion||Wards==null||Wards.Length!=3||RemovedPrivateDetails==null||RemovedPrivateDetails.Length!=3||WorkshopQuestion<0||WorkshopQuestion>2||GardenQuestion<0||GardenQuestion>1||PatternStep<0||PatternStep>3)return false;
+            if(BossQuestion<0||BossQuestion>5||BossScore<0||BossScore>BossQuestion||Wards==null||Wards.Length!=3||RemovedPrivateDetails==null||RemovedPrivateDetails.Length!=3||WorkshopQuestion<0||WorkshopQuestion>2||GardenQuestion<0||GardenQuestion>1||PatternStep<0||PatternStep>3)return false;
             return Wards[0]==(WorkshopQuestion==2)&&PatternComplete==(PatternStep==3)&&Wards[1]==(GardenQuestion==1)&&(!Complete||(BossFinished&&BossScore>=4&&CanFight));
         }
         public bool[] Wards = new bool[3];
         public bool[] RemovedPrivateDetails = new bool[3];
         public int WorkshopQuestion, GardenQuestion, PatternStep, BossQuestion, BossScore;
-        public int Courage = 3;
+
         public bool HintChosen, PatternComplete, PrivacyComplete, BossStarted, BossFinished, Complete;
         public int WardCount { get { int n = 0; foreach (bool ward in Wards) if (ward) n++; return n; } }
         public bool CanFight => Introduced && WardCount == 3;
-        public void LoseCourage() { if (--Courage <= 0) Courage = 3; }
+
         public bool AnswerWorkshop(int choice)
         {
             if (!Introduced || Wards[0] || choice < 0 || choice > 1) return false;
             bool correct = choice == SummerContent.Workshop[WorkshopQuestion].Correct;
             if (correct) { WorkshopQuestion++; if (WorkshopQuestion == 2) Wards[0] = true; }
-            else LoseCourage();
+
             return correct;
         }
         public bool ChooseHint(int choice)
         {
             if (!Introduced || Wards[1] || choice < 0 || choice > 1) return false;
             HintChosen = choice == 0;
-            if (!HintChosen) LoseCourage();
+
             return HintChosen;
         }
         public bool StepOnStone(int index)
@@ -46,7 +46,7 @@ namespace AmbrosJourney.Summer
         {
             if (!PatternComplete || Wards[1] || choice < 0 || choice > 1) return false;
             bool correct = choice == 0;
-            if (correct) { GardenQuestion = 1; Wards[1] = true; } else LoseCourage();
+            if (correct) { GardenQuestion = 1; Wards[1] = true; }
             return correct;
         }
         public bool AnswerMessage(int choice)
@@ -59,7 +59,7 @@ namespace AmbrosJourney.Summer
                 return true;
             }
             bool correct = choice == 1;
-            if (correct) Wards[2] = true; else LoseCourage();
+            if (correct) Wards[2] = true;
             return correct;
         }
         public bool BeginBoss()
@@ -71,7 +71,7 @@ namespace AmbrosJourney.Summer
         {
             if (!CanFight || !BossStarted || BossFinished || Complete || choice < 0 || choice > 1) return false;
             bool correct = choice == SummerContent.Boss[BossQuestion].Correct;
-            if (correct) BossScore++; else LoseCourage();
+            if (correct) BossScore++;
             BossQuestion++;
             if (BossQuestion == 5) { BossFinished = true; Complete = BossScore >= 4; }
             return correct;

@@ -59,7 +59,7 @@ namespace AmbrosJourney.Winter
                 "First check the original notice in context. Then compare separate current evidence. Update the draft before sharing, and be clear about anything you couldn't confirm."),
             new FinalChallenge(FinalActivityKind.Match,
                 "Your group is planning a science fair. Match each job to the help that fits it best.",
-                "Click each answer to change it. Fill every row before checking.",
+                "Click each answer box repeatedly to see all options. Fill every row, then check.",
                 new[]{"Check whether a sparking cable is safe","Come up with possible stall names","Practice explaining your own experiment"},
                 new[]{1,0,2},
                 "AI can help with ideas. A qualified person needs to inspect a real electrical problem. Practicing your explanation is a job you need to take part in.",

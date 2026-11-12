@@ -1,3 +1,5 @@
+> Current runtime changes: [User-testing feedback](UserTestingFeedback.md). The original asset prompts below are historical provenance.
+
 > Asset provenance: these are the original prompts for earlier world assets. Their text is retained as a record, not a current feature list. New boss art is documented in [Bosses](Bosses.md) and `BossGenerationPrompts.json`; all current live text uses Determination.
 
 # Winter art provenance

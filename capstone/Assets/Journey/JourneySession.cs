@@ -115,8 +115,10 @@ namespace AmbrosJourney.Journey
             try
             {
                 switch(chapter){case 1:FindAnyObjectByType<SpringGuide>().RestoreProgress(JsonUtility.FromJson<SpringState>(e.progress));break;case 2:FindAnyObjectByType<SummerLevel>().RestoreProgress(JsonUtility.FromJson<SummerProgress>(e.progress));break;case 3:FindAnyObjectByType<FallLevel>().RestoreProgress(JsonUtility.FromJson<FallProgress>(e.progress));break;case 4:FindAnyObjectByType<WinterLevel>().RestoreProgress(JsonUtility.FromJson<WinterProgress>(e.progress));break;}
-                var p=Player();p.position=new Vector3(e.x,e.y,0);var body=p.GetComponent<Rigidbody2D>();if(body){body.position=p.position;body.linearVelocity=Vector2.zero;}
-                var camera=Camera.main;if(camera)camera.transform.position=new Vector3(e.x,e.y,-10);
+                var position=new Vector2(e.x,e.y);
+                if(chapter==4&&!FindAnyObjectByType<WinterLevel>().Progress.InCave)position=WinterWorld.ConstrainOutdoorCheckpoint(position);
+                var p=Player();p.position=position;var body=p.GetComponent<Rigidbody2D>();if(body){body.position=p.position;body.linearVelocity=Vector2.zero;}
+                var camera=Camera.main;if(camera)camera.transform.position=new Vector3(position.x,position.y,-10);
                 portalProtected=true;protectedPosition=p.position;Physics2D.SyncTransforms();
             }
             catch(Exception error){notice="This chapter's checkpoint could not be restored. Its starting area has been loaded.";Debug.LogWarning("Checkpoint recovery: "+error.Message);}
@@ -231,7 +233,7 @@ namespace AmbrosJourney.Journey
             artifactsOpen=false;backAction=null;ui.KeyboardNavigation=false;
             if(UnityEngine.EventSystems.EventSystem.current)UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(null);
             ui.Clear();var pause=ui.Button(ui.Root,"Pause / Esc",new Rect(470,298,145,38),Pause);var rect=pause.GetComponent<RectTransform>();rect.anchorMin=rect.anchorMax=Vector2.one;rect.anchoredPosition=new Vector2(-169,-264);
-            var b=ui.Button(ui.Root,"Found "+Data.ArtifactCount+"/12",new Rect(300,298,170,38),ShowArtifacts);var br=b.GetComponent<RectTransform>();br.anchorMin=br.anchorMax=Vector2.one;br.anchoredPosition=new Vector2(-194,-310);
+            var b=ui.Button(ui.Root,Data.ArtifactCount+"/"+Data.artifacts.Length+" Artifacts",new Rect(300,298,190,38),ShowArtifacts);var br=b.GetComponent<RectTransform>();br.anchorMin=br.anchorMax=Vector2.one;br.anchoredPosition=new Vector2(-214,-310);
         }
         void ShowPause()
         {
@@ -298,12 +300,12 @@ namespace AmbrosJourney.Journey
         public void ShowCertificate()
         {
             if(!Data.finished||Data.certificatePending)return;
-            backAction=()=>{if(menu)BackToMenu();else Resume();};ui.KeyboardNavigation=true;
+            backAction=ReturnToMenu;ui.KeyboardNavigation=true;
             Paused=true;Time.timeScale=0;AudioListener.pause=true;ui.gameObject.SetActive(true);ui.Clear();
             var backdrop=ui.Panel(ui.Root,"Certificate backdrop",new Rect(-5000,-5000,10000,10000),new Color(.06f,.12f,.11f,.96f));backdrop.GetComponent<UnityEngine.UI.Image>().raycastTarget=true;
             JourneyCertificateView.Draw(ui,Data,.86f);
             ui.Button(ui.Root,"Download PDF certificate",new Rect(-430,312,410,40),()=>JourneyCertificate.Export(Data,ui));
-            ui.Button(ui.Root,"Return",new Rect(20,312,410,40),()=>{if(menu)ShowMenu();else Resume();});
+            ui.Button(ui.Root,"Return",new Rect(20,312,410,40),ReturnToMenu);
         }
         void OnApplicationFocus(bool focused){if(TestMode)return;if(!focused&&!Paused&&Data.started&&!menu&&!loading&&CurrentChapter()>0)Pause();}
         void OnApplicationPause(bool paused){if(paused&&!TestMode)Save();}

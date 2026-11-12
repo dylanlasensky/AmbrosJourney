@@ -6,7 +6,7 @@ This is the current design/implementation handoff. Dated validation reports rema
 
 Ambros, represented by the Chibi Assassin character, is pulled into a game while using his laptop. Four seasons teach middle-school players to understand AI, keep their own judgment, ask useful questions and check evidence. The Ancient Mage is another trapped child who has grown old. Summer's married Warriors, Fall's Emberfist and Winter's Little Mage provide the later lessons.
 
-The teammate owns the final intro/outro videos. The generated placeholder intro and its tools were retired. Until the intro is supplied, name entry leads straight into Spring. The current final victory goes to the outro/certificate flow; the earlier proposal for a required interactive return to Spring is not implemented.
+The teammate owns the final intro/outro videos. The generated placeholder intro and its tools were retired. Until the intro is supplied, name entry leads straight into Spring. The current final victory crumbles the Keeper, drops an E-pickup scroll, and opens the certificate directly. Return/Escape opens the main menu. The retained outro helper still needs a teammate handoff connection; the earlier proposal for a required interactive return to Spring is not implemented.
 
 ## Progression contract
 
@@ -16,9 +16,11 @@ The teammate owns the final intro/outro videos. The generated placeholder intro 
 | Summer | Useful tool choices; hint then Sun > Seed > Leaf practice; permitted draft feedback; fictional privacy redaction and human support | Suncrest Guardian, 4/5 after three wards | Independent Thinker; both Warriors |
 | Fall | Goal/context/format; audience and permitted hints; specific revisions and factual limits; seven choices across three notes | Existing Bramble Sentinel, 4/5 after three runes | Prompt Pathfinder; Emberfist |
 | Winter outdoors | Original sources, source context, independent evidence and current local information; four choices after two notes | Frostbound Warden, 4/5 | Winter crest; Little Mage; cave access |
-| Cave/finale | Echo Archive uncertainty/correction note and two choices; eight new cumulative AI safety activities | Echo Keeper, 7/8 | Journey complete; optional outro; personalized PDF |
+| Cave/finale | Echo Archive uncertainty/correction note and two choices; eight new cumulative AI safety activities | Echo Keeper, 7/8 | Keeper disintegration; dropped scroll and E pickup; personalized PDF; Return to main menu |
 
-Teach before testing. Spring is approachable; later scenarios require applying concepts and distinguishing plausible shortcuts. Wording is concise and conversational, with no em dashes in runtime copy. Explanations should help the player understand a mistake. Mission retries retain completed choices; failed guardians retain missions; depleted courage replenishes. There are no artificial waiting timers.
+Teach before testing. Spring is approachable; later scenarios require applying concepts and distinguishing plausible shortcuts. Wording is concise and conversational, with no em dashes in runtime copy. Explanations should help the player understand a mistake. Mission retries retain completed choices; failed guardians retain missions. There are no artificial waiting timers.
+
+Correct responses explicitly say Correct! before their explanations. Every displayed quiz score keeps its full total: five for seasonal guardians, eight for the final, and the actual per-lesson count. Courage/hearts and their penalties are removed.
 
 The final uses multi-selection, drag/click prompt assembly, ordering, matching and one new judgment choice. It applies the lessons in unfamiliar situations rather than repeating earlier questions. The AI-agreement lesson is in Winter's ordinary note as well as the optional collection reward, so final access does not depend on finding every artifact.
 
@@ -40,6 +42,6 @@ Three artifacts per season encourage revisits. Completing the collection reveals
 
 Open `capstone/` in Unity 6000.6.2f1. Runtime world builders and Resources prefabs own later seasons; coordinate before rebuilding scenes or assets. Commit required `.meta` files and preserve pack/font licenses. Keep Library, Temp, Logs and player builds out of source control. Legacy `orc` and skeleton fields remain compatibility/source references, not the displayed boss forms.
 
-Sprint Three is due Nov 4; the original weekly schedule remains planning context in the root README. The teammate's clips, audience comprehension/difficulty/pacing tests, target-hardware/audio checks, and broader inventory/customization remain outstanding. Implemented features are not proof that the game meets learning or performance goals.
+The original Sprint Three deadline was Nov 4; the original weekly schedule remains planning context in the root README. The teammate's clips/outro handoff, further audience comprehension/difficulty/pacing tests, target-hardware/audio checks, and broader inventory/customization remain outstanding. Implemented features are not proof that the game meets learning or performance goals.
 
 Use [Journey completion](JourneyCompletion.md), [current questions](QuestionRefresh.md), [boss artwork](Bosses.md), [testing](Testing.md) and [current validation](CurrentValidation.md).

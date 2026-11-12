@@ -7,8 +7,10 @@
 - Extra generic runtime cottages are removed. Fall retains three distinct landmarks and the optional overlook sits clear of its collectible.
 - Trees rooted in trails, dense root clusters, crowded door aprons and dock clutter are cleared. Small decorations reject occupied routes/interaction areas and use a safe nearby position or are omitted.
 - Noticeboards, carved signs, workbenches, gardens, lecterns, targets, portals, crystals and artifacts share a visual vocabulary. Labels are live Determination text, not generated lettering.
-- All seasons use framed parchment cards; nearby landmark labels appear within eight world units and hide during modal views. Water, lanterns, weather, pause behavior and render limits remain active.
+- All seasons use framed parchment cards; nearby labels appear within eight world units and hide during conversations/journals. Interactive targets use one attached overhead [E] card, artifacts use [F], and automatic portals keep walk-through labels. Cards follow moving sprites, avoid overlap, and replace the old bottom interaction popup. Finished Garden Warrior dialogue no longer advertises an interaction. Water, lanterns, weather, pause behavior and render limits remain active.
 - The Blossom Guardian, Suncrest Guardian, Frostbound Warden and robot Echo Keeper now match their environments with separate idle and attack poses. Fall's existing Bramble Sentinel is unchanged. See [Bosses](Bosses.md).
+
+Winter's arrival Mage is clear of its portal; the Warden is beside the visible cave opening. The ridge has continuous collision up to the boundaries and a closed rear, with a three-unit automatic doorway. The first outdoor Explorer whiteout uses an icy, progress-aware notice; its icicles are native UI geometry rather than a new texture asset.
 
 ## Ownership and generation
 

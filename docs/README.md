@@ -5,11 +5,13 @@
 - [Repository overview](../README.md): play, controls, feature status and remaining work.
 - [Game design](GameDesign.md): story, learning goals, rewards and progression contracts.
 - [Journey completion](JourneyCompletion.md): menu, saves, artifacts, guidance, performance and teammate video hooks.
+- [User-testing feedback](UserTestingFeedback.md): the current Winter, menu, interaction and general game changes.
 - [Question refresh](QuestionRefresh.md): current notes, questions, correct answers and final activity structure.
 - [Bosses](Bosses.md): active seasonal forms, frame setup, generated-art prompts and review images.
 - [Testing](Testing.md) and [current validation](CurrentValidation.md): commands, actual results and limits.
 - [Spring](../SPRING_PROTOTYPE.md), [Summer](../capstone/Assets/SummerLevel/README.md), [Fall](../capstone/Assets/FallLevel/README.md), [Winter](../capstone/Assets/WinterLevel/README.md): chapter ownership and setup.
 - [World cohesion](WorldCohesion.md) / [world polish](WorldPolish.md): scenery, routes, motion and art integration.
+- [Moonbranch guidance](MoonbranchPolish.md), [seasonal worldcraft](SeasonalWorldcraft.md), [certificate reward](CertificateReward/Validation.md), [pause journal](PauseJournal/Validation.md), and [audio](Audio/SoundEffects.md): current behavior with clearly labeled earlier validation.
 - [Intro brief](IntroVideoBrief.md): teammate-owned story/video requirements.
 
 ## Asset provenance and dated evidence

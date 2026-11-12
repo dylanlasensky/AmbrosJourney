@@ -18,7 +18,7 @@ public class SpringGuide : MonoBehaviour
     public bool SpringComplete { get; private set; }
     public int MissionsComplete { get; private set; }
     public int BossScore { get; private set; }
-    int page, target = -1, bossQuestion, hearts = 3;
+    int page, target = -1, bossQuestion;
     bool bossResult;
     string feedback = "";
     Transform[] bats = new Transform[3];
@@ -73,11 +73,11 @@ public class SpringGuide : MonoBehaviour
         "Check the date in a reliable source before using it. A detailed answer can still contain a mistake.",
         "A password gives access to your account. A party theme is enough context for brainstorming.",
         "Explaining it yourself and trying a new example help you see what you actually understand." };
-    public AmbrosJourney.Journey.SpringState CaptureProgress()=>new AmbrosJourney.Journey.SpringState{explored=explored,lessonComplete=LessonComplete,complete=SpringComplete,missions=MissionsComplete,bossScore=BossScore,hearts=hearts,cleared=(bool[])cleared.Clone(),studied=(bool[])studied.Clone(),trials=(int[])trials.Clone()};
+    public AmbrosJourney.Journey.SpringState CaptureProgress()=>new AmbrosJourney.Journey.SpringState{explored=explored,lessonComplete=LessonComplete,complete=SpringComplete,missions=MissionsComplete,bossScore=BossScore,cleared=(bool[])cleared.Clone(),studied=(bool[])studied.Clone(),trials=(int[])trials.Clone()};
     public void RestoreProgress(AmbrosJourney.Journey.SpringState state)
     {
         if(state==null||!state.Valid())throw new System.ArgumentException("Invalid Spring checkpoint");
-        explored=state.explored;LessonComplete=state.lessonComplete;SpringComplete=state.complete;MissionsComplete=state.missions;BossScore=state.bossScore;hearts=Mathf.Clamp(state.hearts,1,3);cleared=state.cleared;studied=state.studied;trials=state.trials;
+        explored=state.explored;LessonComplete=state.lessonComplete;SpringComplete=state.complete;MissionsComplete=state.missions;BossScore=state.bossScore;cleared=state.cleared;studied=state.studied;trials=state.trials;
         DialogueOpen=journalOpen=false;target=-1;feedback="";bossQuestion=0;bossResult=false;
         for(int i=0;i<3;i++)bats[i].gameObject.SetActive(!cleared[i]);boss.gameObject.SetActive(!SpringComplete);gateSeal.SetActive(!SpringComplete);
     }
@@ -179,9 +179,10 @@ public class SpringGuide : MonoBehaviour
         {
             int question=QuestionIndex(target);bool right=(selected==0)==truth[question];GameAudio.Play(right?SoundCue.Correct:SoundCue.Incorrect,.45f);
             if(right){trials[target]++;feedback="Correct! "+explanations[question];if(trials[target]==2){cleared[target]=true;MissionsComplete++;GameAudio.Play(SoundCue.Complete,.55f);bats[target].gameObject.SetActive(false);feedback+="\nLesson complete. Your journal has been updated.";}}
-            else{hearts--;feedback="That myth fooled you! "+(hearts<=0?"The Mage restores your three hearts. ":"You lost a heart. ")+explanations[question]+" Try that claim again.";if(hearts<=0)hearts=3;}
+            else{feedback="Not quite. "+explanations[question]+" Try that claim again.";}
+            feedback+="\n\n"+trials[target]+" / 2 correct.";
         }
-        else {bool right=selected==correct[bossQuestion];GameAudio.Play(right?SoundCue.Correct:SoundCue.Incorrect,.45f);if(right){BossScore++;boss.GetComponent<SeasonBossVisual>().Flash(new Color(1,.85f,.55f));}else boss.GetComponent<SeasonBossVisual>().Strike();feedback=(right?"Correct! ":"Not quite. ")+reasons[bossQuestion];}
+        else {bool right=selected==correct[bossQuestion];GameAudio.Play(right?SoundCue.Correct:SoundCue.Incorrect,.45f);if(right){BossScore++;boss.GetComponent<SeasonBossVisual>().Flash(new Color(1,.85f,.55f));}else boss.GetComponent<SeasonBossVisual>().Strike();feedback=(right?"Correct! ":"Not quite. ")+reasons[bossQuestion]+"\n\n"+BossScore+" / "+questions.Length+" correct.";}
     }
     Transform Destination(){if(!LessonComplete)return mage;for(int i=0;i<3;i++)if(!cleared[i])return studied[i]?bats[i]:stones[i];return SpringComplete?gate:boss;}
     string Quest()=>SpringComplete?"Step through the Summer gate":!explored?"Stretch your legs! Follow the compass.":!LessonComplete?"Meet the Mage beside his cottage":MissionsComplete<3?new[]{"Blossom Grove: learn how AI learns","Lakeside: separate people from AI","Southern ruins: protect your privacy"}[NextBat()]:"Head south to challenge Blossom Guardian";
@@ -193,10 +194,10 @@ public class SpringGuide : MonoBehaviour
         {
             var ui=new GameObject("Spring interface");ui.transform.SetParent(transform,false);
             presentation=ui.AddComponent<SeasonOverlay>();presentation.Initialize(Resources.Load<TMP_FontAsset>("SummerDefault"),1);
-            for(int i=0;i<3;i++){AddLabel(stones[i],"[ E ] FIELD NOTE / "+locations[i]);AddLabel(bats[i],"MYTH BAT "+(i+1));}
-            AddLabel(boss,"[ E ] BLOSSOM GUARDIAN");AddLabel(gate,"SUMMER GATE");
+            for(int i=0;i<3;i++){AddLabel(stones[i],"[E] FIELD NOTE / "+locations[i]);AddLabel(bats[i],"[E] MYTH BAT "+(i+1));}
+            AddLabel(mage,"[E] ANCIENT MAGE");AddLabel(boss,"[E] BLOSSOM GUARDIAN");AddLabel(gate,"SUMMER GATE");
         }
-        presentation.Objective.text="LESSONS "+MissionsComplete+" / 3   |   COURAGE "+hearts+" / 3\n"+Quest();
+        presentation.Objective.text="LESSONS "+MissionsComplete+" / 3\n"+Quest();
         presentation.Prompt.text=Nearby()!=-99?"[ E ]  Explore / interact":"";
         presentation.Dialog.SetActive(DialogueOpen&&!journalOpen);presentation.Journal.SetActive(journalOpen);
         if(journalOpen){var titles=new string[3];var notes=new string[3];for(int i=0;i<3;i++){titles[i]=locations[i]+" / "+trials[i]+" of 2 challenges";notes[i]=studied[i]?fieldNotes[i].Split('\n')[1]:"Find the field note at this landmark.";}presentation.SetJournal(titles,notes,SpringComplete?"PARTY / Ambros + Ancient Mage":"PARTY / Ambros");return;}
@@ -220,5 +221,5 @@ public class SpringGuide : MonoBehaviour
         if(lastBody!=body){presentation.Present(asking);lastBody=body;}
     }
     string lastBody;
-    void AddLabel(Transform t,string caption){if(!t)return;var o=new GameObject(caption);o.transform.SetParent(t,false);o.transform.localPosition=Vector3.up*2;o.AddComponent<SeasonWorldLabel>().Caption=caption;}
+    void AddLabel(Transform t,string caption){if(t)SeasonWorldLabel.Attach(t,caption);}
 }

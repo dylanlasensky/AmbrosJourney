@@ -118,7 +118,7 @@ namespace AmbrosJourney.Fall
             var q=FallContent.Missions[mission][Progress.Steps[mission]];
             Ask(FallContent.Landmarks[mission]+" / "+(Progress.Steps[mission]+1)+" of "+FallContent.Missions[mission].Length,q.Prompt,q.Choices,c=>{
                 bool right=Progress.AnswerMission(mission,c);Effect(right);
-                Show(right?"The request takes shape":"Revise your approach",q.Explanation+(right?"":"\n\nTry again. Your completed choices stay safe."),()=>MissionQuestion(mission));
+                Show(right?"The request takes shape":"Revise your approach",SeasonOverlay.AnswerFeedback(right,q.Explanation,Progress.Steps[mission],FallContent.Missions[mission].Length)+(right?"":"\n\nTry again. Your completed choices stay safe."),()=>MissionQuestion(mission));
             });
         }
         void Boss()
@@ -138,7 +138,7 @@ namespace AmbrosJourney.Fall
             var q=FallContent.Boss[Progress.BossQuestion];
             Ask("Sentinel / Question "+(Progress.BossQuestion+1)+" of 5",q.Prompt,q.Choices,c=>{
                 bool right=Progress.AnswerBoss(c);Effect(right);if(right){player.Strike();guardian.Flash(new Color(1,.8f,.3f));}else guardian.Strike();effects.PlayOneShot(strike,.35f);
-                Show(right?"A tangled seal breaks!":"The Sentinel pushes back",q.Explanation+"\n\nScore: "+Progress.BossScore+" / "+Progress.BossQuestion+" answered. Courage: "+Progress.Courage+" / 3.",BossQuestion);
+                Show(right?"A tangled seal breaks!":"The Sentinel pushes back",SeasonOverlay.AnswerFeedback(right,q.Explanation,Progress.BossScore,FallContent.Boss.Length),BossQuestion);
             });
         }
         void ShowPages(string[] pages,int index,Action complete)
@@ -186,7 +186,7 @@ namespace AmbrosJourney.Fall
             for(int i=0;i<3;i++)runes[i].color=Progress.MissionComplete(i)?new Color(.6f,1,.7f):new Color(1,.65f,.3f);
             for(int i=0;i<shields.Length;i++)shields[i].enabled=!Progress.Complete && i>=Progress.BossScore;
             string quest=Progress.Complete?"Walk through the unlocked Winter gate":Progress.CanFight?"Challenge the Sentinel / 4 of 5 to pass":!Progress.MissionComplete(0)?"Harvest Orchard / Goal + context + format":!Progress.MissionComplete(1)?"Lantern Archive / Audience + limits":"Revision Kiln / Check + improve";
-            objective.text="RUNES "+Progress.RuneCount+" / 3   |   COURAGE "+Progress.Courage+" / 3\n"+quest;
+            objective.text="RUNES "+Progress.RuneCount+" / 3\n"+quest;
             if(Progress.Introduced&&!Progress.GuideArrived)objective.text="Walk with Emberfist to Harvest Orchard. He will wait for you.";
             var destination=Destination();
             if(!InputBlocked)presentation.SetCompass(player.transform.position,navigation.Next(player.transform.position,destination),destination);

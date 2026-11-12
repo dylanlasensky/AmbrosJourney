@@ -79,8 +79,7 @@ static class Program
                 foreach (var q in SummerContent.Boss) p.AnswerBoss(q.Correct);
             }
             Check(p.Complete && !p.BeginBoss(), "Summer success is final");
-            for(int i=0;i<10;i++) p.LoseCourage();
-            Check(p.Complete && p.WardCount == 3 && p.Courage > 0, "Summer courage recovery retains learning");
+
         }
         for (int mask = 0; mask < 243; mask++)
         {
@@ -92,8 +91,7 @@ static class Program
             Check(!p.AnswerBoss(0) && p.BossScore == score, "Fall finished attempt cannot accept extra answers");
             if(!p.Complete) { Check(p.BeginBoss() && p.RuneCount == 3 && p.BossScore == 0, "Fall retry preserves runes"); foreach(var q in FallContent.Boss)p.AnswerBoss(q.Correct); }
             Check(p.Complete && !p.BeginBoss(), "Fall success is final");
-            for(int i=0;i<10;i++)p.LoseCourage();
-            Check(p.Complete && p.RuneCount==3 && p.Courage>0, "Fall courage recovery retains learning");
+
         }
         for(int mask=0;mask<243;mask++)
         {

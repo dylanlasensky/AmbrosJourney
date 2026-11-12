@@ -4,7 +4,11 @@ After passing the final Echo Keeper challenge (7/8), the completion date is reco
 
 `certificatePending` is an optional version-1 save field: older completed saves keep access to their certificate. New victories retain the uncollected item across reloads; claimed items do not respawn. Long names shrink to fit, and certificate text treats the saved name as plain text. The existing quiz content and pass threshold are unchanged.
 
-## Validation
+## Current Return behavior
+
+The scroll has one overhead [E] pickup label; the duplicate bottom interaction prompt is hidden. After collection, Return and Escape open the main menu with the saved name, completion date and claimed state intact. The current pickup flow opens the certificate directly; `JourneyEnding.Play` is retained but not invoked. [Latest validation](../CurrentValidation.md) / [feedback changes](../UserTestingFeedback.md).
+
+## Original reward validation snapshot
 
 - Unity 6000.6.2f1: `AmbrosJourney.Journey.Editor.CertificateRewardChecks.Run` passed. The fixture uses an isolated test save under `Logs/CertificateChecks`.
 - The Play-mode fixture confirms advancing frames, boss alpha/dust animation, item appearance, restored movement, out-of-range rejection, E-key pickup, modal display, duplicate rejection, reload recovery before and after collection, preserved completion date, accented/long name fit, and a generated PDF.

@@ -163,7 +163,7 @@ namespace AmbrosJourney.Winter
             paperTexture.SetPixels32(pixels);paperTexture.Apply();
             paperSprite=Sprite.Create(paperTexture,new Rect(0,0,32,32),Vector2.one*.5f,24);
             var host=new GameObject("Dropped AI safety certificate",typeof(SpriteRenderer));host.transform.SetParent(level.guardian.transform.parent,true);host.transform.position=restingPosition;
-            item=host.GetComponent<SpriteRenderer>();item.sprite=paperSprite;item.sortingOrder=110-Mathf.RoundToInt(restingPosition.y*10);
+            item=host.GetComponent<SpriteRenderer>();item.sprite=paperSprite;SeasonWorldLabel.Attach(host.transform,"[E] PICK UP CERTIFICATE");item.sortingOrder=110-Mathf.RoundToInt(restingPosition.y*10);
             if(!material)material=new Material(Shader.Find("Sprites/Default"));item.sharedMaterial=material;
             if(!Dropping)SeasonFeedback.Burst(restingPosition,new Color(1,.83f,.4f),18);
         }

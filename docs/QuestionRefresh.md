@@ -1,3 +1,5 @@
+> Current presentation: [November 12 feedback](UserTestingFeedback.md) adds explicit Correct! feedback, fixed quiz totals, overhead [E] cards, no courage/hearts, and the repeated-click instruction for final Activity 5. Authored questions and correct answers below remain the lesson inventory.
+
 # Question and field note refresh
 
 The lessons use short, everyday language for middle-school players. Early claims introduce ideas; later scenarios ask players to apply them. Distractors describe believable shortcuts rather than unrelated joke answers. Seasonal passing scores and learning prerequisites are unchanged.

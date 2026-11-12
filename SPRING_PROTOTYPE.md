@@ -9,7 +9,7 @@ Use the main menu through `Assets/Opening/Intro.unity`, **Capstone > Play From O
 1. Meet the Mage beside his cottage for the three-page introduction.
 2. Read the field notes at Blossom Grove, Stillwater Lake and Whispering Ruins.
 3. Apply each note to two true/false claims from its Myth Bat. Six claims are active; the source retains three unused alternatives.
-4. Use J to review notes. Mistakes explain the answer and allow retries; depleted courage replenishes without erasing lessons.
+4. Use J to review notes. Mistakes explain the answer and allow retries without erasing lessons.
 5. Pass the **Blossom Guardian** with at least **4/5 (80%)**. This blossom-covered moss/woodland tortoise has separate idle, windup and impact poses. It replaces the old Thornhide creature visually and in displayed names.
 6. Earn Apprentice rank, recruit the Ancient Mage, close the gate conversation and walk through the unlocked Summer portal.
 
@@ -20,6 +20,10 @@ The 64 x 64-unit valley includes the Mage's cottage, winding woodland trails, a 
 Spring uses the same Canvas/TMP parchment UI and Determination font as later chapters. The gold compass points to the next note, bat or guardian, with the existing lake detour. JourneySession adds pause, exact-location saves, artifacts, chapter revisits and certificate access. Progress is persistent, not session-only.
 
 `SpringGuide` owns lesson/guardian rules; `SeasonBossVisual` supplies the new guardian's runtime artwork and one-shot attack. Existing bat art and licensed source-pack files remain. The guardian's previous texture assignment is retained as a source reference; active artwork comes from `Resources/Journey/Bosses/SpringBlossomAtlas`.
+
+## Interaction feedback
+
+Interactive people and lesson objects have overhead **[E]** cards; artifacts use **[F]**. Cards follow their targets, avoid overlap and hide during conversations/journal views. The duplicate bottom interaction popup is removed; the controls bar remains. Correct answers explicitly say **Correct!** and displayed quiz scores use a fixed total. Courage/hearts and wrong-answer penalties are removed; retries retain completed lessons. [Current feedback changes](docs/UserTestingFeedback.md)
 
 ## Tools and limits
 

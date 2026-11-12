@@ -32,6 +32,9 @@ namespace AmbrosJourney.Summer
         Canvas canvas;
         SeasonOverlay presentation;
         SeasonNavigation navigation;
+        bool readingGardenWarrior;
+        SeasonWorldLabel gardenWarriorLabel;
+        bool GardenWarriorHasMore=>!Progress.GardenWarriorRead&&!Progress.GuideArrived&&!Progress.Wards[1];
         int nearby = -1;
         string currentTitle;
         public bool IsDialogueOpen => dialog && dialog.activeSelf;
@@ -39,7 +42,7 @@ namespace AmbrosJourney.Summer
         public void RestoreProgress(SummerProgress p)
         {
             if(p==null||!p.Valid())throw new ArgumentException("Invalid Summer checkpoint");
-            Progress=p;if(p.Introduced){Close();RestoreGuides();}journal.SetActive(false);if(p.Complete){maleWarrior.follow=mage.transform;femaleWarrior.follow=maleWarrior.transform;}RefreshWorld();
+            readingGardenWarrior=false;Progress=p;if(p.Introduced){Close();RestoreGuides();}journal.SetActive(false);if(p.Complete){maleWarrior.follow=mage.transform;femaleWarrior.follow=maleWarrior.transform;}RefreshWorld();
         }
         void Start()
         {
@@ -121,16 +124,17 @@ namespace AmbrosJourney.Summer
                 if (d < best) { best = d; result = i; }
             }
             // Nearby lesson objects take priority over a companion standing beside Ambros.
-            if(result<0)foreach(int i in new[]{0,9}){float d=Vector2.Distance(player.transform.position,targets[i].position);if(d<best){best=d;result=i;}}
+            if(result<0)foreach(int i in new[]{0,9}){if(i==9&&!GardenWarriorHasMore)continue;float d=Vector2.Distance(player.transform.position,targets[i].position);if(d<best){best=d;result=i;}}
             return result;
         }
         public void Interact(int target)
         {
-            if (!Progress.Introduced) return;
+            if (!Progress.Introduced||target==9&&!GardenWarriorHasMore) return;
             GameAudio.Click();
             switch (target)
             {
                 case 0: case 9:
+                    readingGardenWarrior=target==9;
                     Show("The married Warriors", Progress.Complete ? "Our village is safe again. We will travel with you. AI can support your ideas and learning. You are responsible for your choices." : "Restore the workshop, training garden and message post. Our ward will open the way to the Suncrest Guardian. We will guard the village while you work.", Close); break;
                 case 1: Workshop(); break;
                 case 2: Garden(); break;
@@ -152,7 +156,7 @@ namespace AmbrosJourney.Summer
             var q = SummerContent.Workshop[Progress.WorkshopQuestion];
             Ask("Workshop / " + (Progress.WorkshopQuestion + 1) + " of 2", q.Prompt, q.Choices, c => {
                 bool right = Progress.AnswerWorkshop(c); Effect(right);
-                Show(right ? "Good choice" : "Try a different approach", q.Explanation + (right ? "" : "\nYour completed work is safe. Try again."), WorkshopQuestion);
+                Show(right ? "Good choice" : "Try a different approach", SeasonOverlay.AnswerFeedback(right,q.Explanation,Progress.WorkshopQuestion,SummerContent.Workshop.Length) + (right ? "" : "\nYour completed work is safe. Try again."), WorkshopQuestion);
             });
         }
         void Garden()
@@ -161,7 +165,7 @@ namespace AmbrosJourney.Summer
             if (!Progress.HintChosen)
                 Ask("Training garden / Keep your practice", "Warrior: You're stuck on a three-stone pattern. The device can give you a hint or show all the steps. Which help leaves you something to practice?", new[] { "Show me the first step so I can try the rest", "Show me the full pattern so I can follow it" }, c => {
                     bool right = Progress.ChooseHint(c); Effect(right);
-                    Show(right ? "A helpful hint" : "Keep something to practice", right ? "Start with SUN. Then follow the garden's clue: sun wakes the SEED; the seed grows into a LEAF.\n\nClose this message. Walk to each stepping stone and press E: Sun, Seed, Leaf. The labels stay visible." : "If the device does every step, you miss the practice. A hint can help you begin while leaving the rest for you to work out.", right ? (Action)Close : Garden);
+                    Show(right ? "A helpful hint" : "Keep something to practice", right ? "Correct! Start with SUN. Then follow the garden's clue: sun wakes the SEED; the seed grows into a LEAF.\n\nClose this message. Walk to each stepping stone and press E: Sun, Seed, Leaf. The labels stay visible." : "If the device does every step, you miss the practice. A hint can help you begin while leaving the rest for you to work out.", right ? (Action)Close : Garden);
                 });
             else if (!Progress.PatternComplete) Show("Your stepping-stone practice", "Walk to the stones and press E in order: SUN, SEED, LEAF.\nProgress: " + Progress.PatternStep + " / 3.\nA mistake resets only this short pattern. You can retry immediately.", Close);
             else GardenQuestion();
@@ -172,15 +176,15 @@ namespace AmbrosJourney.Summer
             if (!Progress.HintChosen) { Show("Training stones", "Speak with the Warrior at the training garden first. Choose how you want help with this exercise.", Close); return; }
             if (Progress.PatternComplete) { GardenQuestion(); return; }
             bool right = Progress.StepOnStone(index); Effect(right);
-            if (Progress.PatternComplete) Show("You completed the pattern!", "You used a hint and worked out the remaining steps yourself. Now apply that idea to schoolwork.", GardenQuestion);
-            else Show(right ? "Step " + Progress.PatternStep + " / 3" : "Try the pattern again", right ? "Good step. Close this message and find the next stone." : "Start with SUN, then SEED, then LEAF. Your other missions are unchanged.", Close);
+            if (Progress.PatternComplete) Show("You completed the pattern!", "Correct! You used a hint and worked out the remaining steps yourself. Now apply that idea to schoolwork.", GardenQuestion);
+            else Show(right ? "Step " + Progress.PatternStep + " / 3" : "Try the pattern again", right ? "Correct! Good step. Close this message and find the next stone." : "Start with SUN, then SEED, then LEAF. Your other missions are unchanged.", Close);
         }
         void GardenQuestion()
         {
             if (Progress.Wards[1]) { Show("Keep your practice", SummerContent.Notes[1], Close); return; }
             Ask("Training garden / Put learning first", "You have a draft for an assignment. Your teacher allows feedback, but the ideas must be yours. What should you ask for?", new[] { "Point out one unclear part so I can revise it", "Rewrite the draft so I can turn in the improved version" }, c => {
                 bool right = Progress.AnswerGarden(c); Effect(right);
-                Show(right ? "Your practice matters" : "Keep the thinking", "Use feedback to improve your own work. If the tool rewrites it all, you miss the practice. Follow your teacher's rules about help.", right ? (Action)(() => Reward(1)) : GardenQuestion);
+                Show(right ? "Your practice matters" : "Keep the thinking", SeasonOverlay.AnswerFeedback(right,"Use feedback to improve your own work. If the tool rewrites it all, you miss the practice. Follow your teacher's rules about help."), right ? (Action)(() => Reward(1)) : GardenQuestion);
             });
         }
         void Message()
@@ -192,13 +196,13 @@ namespace AmbrosJourney.Summer
                 for (int i = 0; i < 3; i++) labels[i] = (Progress.RemovedPrivateDetails[i] ? "Removed: " : "Keep out: ") + details[i];
                 Ask("Message post / Remove private details", "Read Ambros’ made-up message. Pick the details you'd leave out before sending it.\n\nI am Ambros, I live at 123 Mystical View Rd, and my password is IWantToGoHome987. Help me plan a birthday treasure hunt.", labels, c => {
                     Progress.AnswerMessage(c); effects.PlayOneShot(good, .25f);
-                    if (Progress.PrivacyComplete) Show("A safer request", "Help me brainstorm a birthday treasure hunt with five clues for a small garden.\n\nThis gives enough context without identifying anyone. Next, consider when a real person can help.", Message);
+                    if (Progress.PrivacyComplete) Show("A safer request", "Correct! Help me brainstorm a birthday treasure hunt with five clues for a small garden.\n\nThis gives enough context without identifying anyone. Next, consider when a real person can help.", Message);
                     else Message();
                 });
             }
             else Ask("Message post / People matter", "Your friend has stopped replying in the group chat. You aren't sure why. What should you do?", new[] { "Paste the chat into AI and ask what my friend is thinking", "Check in with my friend and ask an adult for help if needed" }, c => {
                 bool right = Progress.AnswerMessage(c); Effect(right);
-                Show(right ? "Ask safely" : "AI cannot know your friend's feelings", "A chat tool doesn't know what your friend is feeling. Talk to them kindly. If you're worried about them, get a trusted adult's help.", right ? (Action)(() => Reward(2)) : Message);
+                Show(right ? "Ask safely" : "AI cannot know your friend's feelings", SeasonOverlay.AnswerFeedback(right,"A chat tool doesn't know what your friend is feeling. Talk to them kindly. If you're worried about them, get a trusted adult's help."), right ? (Action)(() => Reward(2)) : Message);
             });
         }
         void Reward(int mission)
@@ -230,13 +234,13 @@ namespace AmbrosJourney.Summer
                 bool right = Progress.AnswerBoss(c); Effect(right);
                 if (right) player.Strike(); else orc.Strike();
                 effects.PlayOneShot(strike, .35f);
-                Show(right ? "A shield cracks!" : "The Suncrest Guardian attacks", q.Explanation + "\n\nScore: " + Progress.BossScore + " / " + Progress.BossQuestion + " answered. Courage: " + Progress.Courage + " / 3.", BossQuestion);
+                Show(right ? "A shield cracks!" : "The Suncrest Guardian attacks", SeasonOverlay.AnswerFeedback(right,q.Explanation,Progress.BossScore,SummerContent.Boss.Length), BossQuestion);
             });
         }
         void ShowPages(string[] pages, int index, Action complete)
         { Show("Summer / The village ward", pages[index], () => { if (index + 1 < pages.Length) ShowPages(pages, index + 1, complete); else { complete(); Close(); } }); }
         void Effect(bool right) { effects.PlayOneShot(right ? good : bad, .45f); presentation.Feedback(right); }
-        void Close() { dialog.SetActive(false); actions.Clear(); next = null; if (music) music.pitch = 1; }
+        void Close() { if(readingGardenWarrior){Progress.GardenWarriorRead=true;readingGardenWarrior=false;}dialog.SetActive(false); actions.Clear(); next = null; if (music) music.pitch = 1; }
         void Show(string title, string body, Action onContinue)
         {
             currentTitle = title; heading.text = title; copy.text = body; dialog.SetActive(true); journal.SetActive(false);
@@ -279,10 +283,11 @@ namespace AmbrosJourney.Summer
         }
         void RefreshWorld()
         {
+            if(gardenWarriorLabel)gardenWarriorLabel.enabled=GardenWarriorHasMore;
             arenaSeal.SetActive(!Progress.CanFight); exitSeal.SetActive(!Progress.Complete);
             for (int i = 0; i < 3; i++) wardLights[i].color = Progress.Wards[i] ? new Color(.5f, 1, .75f) : new Color(.7f, .55f, .30f);
             for (int i = 0; i < shields.Length; i++) shields[i].enabled = !Progress.Complete && i >= Progress.BossScore;
-            objective.text = "WARD " + Progress.WardCount + " / 3   |   COURAGE " + Progress.Courage + " / 3\n" + (Progress.Complete ? "Walk through the Fall gate" : Progress.CanFight ? "Challenge the Suncrest Guardian / 4 of 5 to pass" : !Progress.Wards[0] ? "Workshop / Choose the right tool" : !Progress.Wards[1] ? "Training garden / Keep your practice" : "Message post / Ask safely");
+            objective.text = "WARD " + Progress.WardCount + " / 3\n" + (Progress.Complete ? "Walk through the Fall gate" : Progress.CanFight ? "Challenge the Suncrest Guardian / 4 of 5 to pass" : !Progress.Wards[0] ? "Workshop / Choose the right tool" : !Progress.Wards[1] ? "Training garden / Keep your practice" : "Message post / Ask safely");
             if(Progress.Introduced&&!Progress.GuideArrived)objective.text="Walk with the Warriors to the workshop. They will wait for you.";
             var destination=Destination();
             if(!InputBlocked)presentation.SetCompass(player.transform.position,navigation.Next(player.transform.position,destination),destination);
@@ -291,6 +296,7 @@ namespace AmbrosJourney.Summer
         }
         void CreateUI()
         {
+            gardenWarriorLabel=femaleWarrior.GetComponentInChildren<SeasonWorldLabel>(true);
             var ui=new GameObject("Summer interface");ui.transform.SetParent(transform,false);
             presentation=ui.AddComponent<SeasonOverlay>();presentation.Initialize(font,false);
             canvas=presentation.Canvas;dialog=presentation.Dialog;journal=presentation.Journal;

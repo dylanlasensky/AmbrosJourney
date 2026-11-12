@@ -17,8 +17,8 @@ Original, short mono PCM cues replace the per-level synthesized pitch sweeps. Ge
 
 The four seasonal MP3 assets and their music volume/loop/pitch settings are unchanged. Sound cues are preloaded/decompressed short PCM assets, avoiding the latency and unnecessary streaming overhead of using long-song import settings.
 
-## Validation
+## Original audio validation snapshot
 
 Unity 6000.6.2f1 `AmbrosJourney.Journey.Editor.SoundEffectsChecks.Run` passed: eight mono cues, duration and waveform limits, non-clipping headroom, smooth endpoints, four original music mappings, shared-clip ownership, click deduplication, paused-menu playback, and mute inheritance/unmute. The fixture also ran the complete certificate reward regression (pixel breakup, fast scroll drop, pickup, reload recovery, name/date and PDF).
 
-The .NET lesson/guardian suite passed 22,927 assertions plus save/name/recovery checks. Cue files are generated from deterministic synthesis and use no third-party audio samples.
+That earlier .NET lesson/guardian pass had 22,927 assertions plus save/name/recovery checks. The current suite has 22,652 progression assertions after removing courage-only checks, plus legacy-save compatibility; see [current validation](../CurrentValidation.md). Audio cues and music are unchanged by the feedback update. Cue files are generated from deterministic synthesis and use no third-party audio samples.

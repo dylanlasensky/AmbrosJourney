@@ -1,3 +1,5 @@
+> Asset provenance: original prompts and generation records are retained. Current interactions, cave collision, compass notice and UI behavior are documented in [User-testing feedback](UserTestingFeedback.md) and [current validation](CurrentValidation.md).
+
 # Seasonal worldcraft artwork
 
 Generated November 6, 2026 using the built-in image generation tool. New assets use existing VillageDetails.png as a style reference; winter also references the existing full winter map capture. Source PNGs are preserved in the local generated_images folder. Production copies live in `capstone/Assets/Journey/Resources/Journey/`.

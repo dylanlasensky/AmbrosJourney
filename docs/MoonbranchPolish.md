@@ -1,13 +1,13 @@
 # Moonbranch compass and world polish
 
-Based on main `69c2564`, including the certificate reward changes.
+The original polish pass was based on `69c2564`. Current behavior below includes the November 12 feedback; the validation section remains evidence from the earlier pass. See [current validation](CurrentValidation.md).
 
-- Four seasonal branch rings share one independently rotating moonstone needle. Its bright long tip points toward the route; the short tail ends in a bead. The compact HUD keeps cardinal letters stationary and eases through arbitrary angles, including the 360-degree wrap. Existing Explorer snowfall and assisted guidance behavior remain.
-- Escape closes the active conversation, journal, artifact collection, settings, reset confirmation or certificate. Artifacts opened from Pause return to Pause; artifacts opened from gameplay return to gameplay. `I` opens artifacts. Menu focus, Tab/Shift-Tab, arrow navigation and Enter support keyboard use alongside the existing mouse buttons and dialogue shortcuts.
+- Four seasonal branch rings share one independently rotating moonstone needle. Its bright long tip points toward the route; the short tail ends in a bead. The compact HUD keeps cardinal letters stationary and eases through arbitrary angles, including the 360-degree wrap. Explorer snowfall is still temporary and Assisted keeps guidance available. The first snowy outage now shows a saved, once-only icicle-edged notice with the next unfinished Winter landmark; it does not interrupt dialogue or appear in the cave.
+- Escape closes the active conversation, journal, artifact collection, settings or reset confirmation. From the earned certificate, Escape and Return open the main menu rather than resuming play. Artifacts opened from Pause return to Pause; artifacts opened from gameplay return to gameplay. `I` opens artifacts. Menu focus, Tab/Shift-Tab, arrow navigation and Enter support keyboard use alongside the existing mouse buttons and dialogue shortcuts.
 - Companions use separate nearby positions around Ambros in open ground, slower arrival movement and staggered resting adjustments. Narrow passages use checked breadcrumbs. Formation queries are cached; checkpoint/region relocations regroup around the leader.
 - Ground cover is composed around existing tree clusters with asymmetrical offsets. Paths and collectible approaches stay clear. Fall supplies form orchard and kiln work areas. Summer has a cleared garden plot and short approach. Winter firewood is beside the research shelter. Prop placement considers other decorative footprints as well as paths and collision.
 
-## Validation
+## Earlier validation snapshot
 
 Unity 6000.6.2f1:
 

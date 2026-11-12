@@ -6,10 +6,10 @@ namespace AmbrosJourney.Journey
     [Serializable] public sealed class SpringState
     {
         public bool explored,lessonComplete,complete;
-        public int missions,bossScore,hearts=3;
+        public int missions,bossScore;
         public bool[] cleared=new bool[3],studied=new bool[3];
         public int[] trials=new int[3];
-        public bool Valid(){if(cleared==null||cleared.Length!=3||studied==null||studied.Length!=3||trials==null||trials.Length!=3||hearts<1||hearts>3||missions<0||missions>3||bossScore<0||bossScore>5)return false;int count=0;for(int i=0;i<3;i++){if(trials[i]<0||trials[i]>2||cleared[i]!=(trials[i]==2))return false;if(cleared[i])count++;}return count==missions&&(!complete||(missions==3&&bossScore>=4));}
+        public bool Valid(){if(cleared==null||cleared.Length!=3||studied==null||studied.Length!=3||trials==null||trials.Length!=3||missions<0||missions>3||bossScore<0||bossScore>5)return false;int count=0;for(int i=0;i<3;i++){if(trials[i]<0||trials[i]>2||cleared[i]!=(trials[i]==2))return false;if(cleared[i])count++;}return count==missions&&(!complete||(missions==3&&bossScore>=4));}
     }
     [Serializable] public sealed class ChapterSave
     {

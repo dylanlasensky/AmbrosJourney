@@ -1,3 +1,5 @@
+> Asset provenance: original prompts and generation records are retained. Current interactions, cave collision, compass notice and UI behavior are documented in [User-testing feedback](UserTestingFeedback.md) and [current validation](CurrentValidation.md).
+
 # Moonbranch production artwork
 
 Generated using the built-in image tool. Approved concept: compass-concept-v5-seasonal-rings.png.

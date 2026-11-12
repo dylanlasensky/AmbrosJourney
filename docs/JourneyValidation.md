@@ -1,4 +1,4 @@
-> **Dated validation snapshot.** Counts, captures and limitations below describe the version tested at that time. For the current bosses, Determination UI, mixed finale, persistent saves and latest results, see [current validation](CurrentValidation.md) and [documentation index](README.md).
+> **Dated validation snapshot.** Counts, captures and limitations below describe the version tested at that time. Courage, old UI prompts and previous counts below describe that older version. For the current feedback, bosses, Determination UI, mixed finale, persistent saves and latest results, see [current validation](CurrentValidation.md) and [documentation index](README.md).
 
 # Journey update validation
 
