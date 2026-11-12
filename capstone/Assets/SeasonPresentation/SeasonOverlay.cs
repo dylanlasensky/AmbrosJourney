@@ -17,6 +17,11 @@ namespace AmbrosJourney.Presentation
         public float ObjectiveDistance { get; private set; }
         public RectTransform Arrow { get; private set; }
         public bool Asking { get; private set; }
+        public bool CompassObscured { get; private set; }
+        bool frostNotice;FrostNoticeFrame frostFrame;
+        static readonly Color FrostPaper=new Color(.89f,.96f,1);
+        public static string AnswerFeedback(bool right,string explanation,int score=-1,int total=0)
+        {return (right?"Correct! ":"")+explanation+(score<0?"":"\n\n"+score+" / "+total+" correct.");}
         RectTransform root, dialogueRect, headerRect, bodyRect, objectiveRect, context, controls, compassBox, worldLabels;
         UnityEngine.UI.Image dialogFill;
         TMP_FontAsset font;int season;
@@ -24,6 +29,7 @@ namespace AmbrosJourney.Presentation
         MoonbranchCompass moonbranch;
         Color ink, accent, paper = new Color(.98f,.94f,.81f), border = new Color(.55f,.35f,.22f);
         readonly Dictionary<SeasonWorldLabel,RectTransform> labels = new Dictionary<SeasonWorldLabel,RectTransform>();
+        readonly List<Rect> labelAreas=new List<Rect>();
         float openedAt, feedbackUntil; bool positive;
         public void Initialize(TMP_FontAsset typeface, bool autumn) => Initialize(typeface, autumn ? 3 : 2);
         public void Initialize(TMP_FontAsset typeface, int chapter)
@@ -95,11 +101,25 @@ namespace AmbrosJourney.Presentation
             bool assisted=AmbrosJourney.Journey.JourneySession.Instance&&AmbrosJourney.Journey.JourneySession.Instance.Data.assistedGuidance;
             bool distant=Vector2.Distance(player,destination)>14;
             bool whiteout=season==4&&player.x<80&&Mathf.Repeat(Time.time,48)>26;
-            Arrow.gameObject.SetActive(assisted||!whiteout);
+            CompassObscured=!assisted&&whiteout;
+            Arrow.gameObject.SetActive(!CompassObscured);
             if(!assisted&&season>=3&&distant)waypoint=destination;
             CompassDelta=waypoint-player;ObjectiveDistance=Vector2.Distance(player,destination);
             moonbranch.Point(CompassDelta);
             CompassText.text=!assisted&&whiteout?"Snowfall":!assisted&&season>=3&&distant?"Explore":Mathf.CeilToInt(ObjectiveDistance)+" steps";
+        }
+        public void SetFrostNotice(bool active)
+        {
+            frostNotice=active;
+            if(active&&!frostFrame)
+            {
+                var obj=new GameObject("Icicle frame",typeof(RectTransform),typeof(FrostNoticeFrame));obj.transform.SetParent(dialogueRect,false);
+                Stretch(obj.GetComponent<RectTransform>());frostFrame=obj.GetComponent<FrostNoticeFrame>();frostFrame.raycastTarget=false;
+            }
+            if(frostFrame)frostFrame.gameObject.SetActive(active);
+            dialogFill.sprite=active?rounded:card?card:rounded;dialogFill.color=active?FrostPaper:paper;
+            closeHint.text=active?"ESC Close message":"ESC Close conversation";
+            LayoutDialogue();
         }
         public void Present(bool asking)
         {
@@ -120,6 +140,19 @@ namespace AmbrosJourney.Presentation
         void LayoutDialogue()
         {
             if(!Copy)return;
+            if(frostNotice)
+            {
+                float bodyHeight=Mathf.Clamp(Copy.GetPreferredValues(Copy.text,672,0).y+8,86,190),boxHeight=61+bodyHeight+78;
+                Place(dialogueRect,new Vector2(.5f,.5f),new Rect(-360,-boxHeight*.5f,720,boxHeight));
+                Place(headerRect,Vector2.up,new Rect(24,15,672,38));Place(bodyRect,Vector2.up,new Rect(24,61,672,bodyHeight));
+                foreach(var b in Choices)if(b.gameObject.activeSelf)
+                {
+                    Place(b.GetComponent<RectTransform>(),Vector2.up,new Rect(441,boxHeight-58,255,40));
+                    Place(b.GetComponentInChildren<TextMeshProUGUI>().rectTransform,Vector2.up,new Rect(16,4,223,32));
+                }
+                Place(closeHint.rectTransform,Vector2.up,new Rect(24,boxHeight-44,380,29));return;
+            }
+            Place(headerRect,Vector2.up,new Rect(24,15,850,38));
             float textHeight=Mathf.Max(Asking?90:64,Copy.GetPreferredValues(Copy.text,850,0).y+8);
             textHeight=Mathf.Min(250,textHeight);
             int count=0;foreach(var b in Choices)if(b.gameObject.activeSelf)count++;
@@ -144,11 +177,12 @@ namespace AmbrosJourney.Presentation
             if(!root)return;
             string text=Objective.text;int newline=text.IndexOf('\n');
             if(newline>=0){trackerText.text=text.Substring(0,newline);Objective.text=text.Substring(newline+1);}
-            bool modal=Dialog.activeSelf||Journal.activeSelf;controls.gameObject.SetActive(!modal);context.gameObject.SetActive(!modal&&!string.IsNullOrEmpty(Prompt.text));compassBox.gameObject.SetActive(!modal);
+            bool modal=Dialog.activeSelf||Journal.activeSelf;controls.gameObject.SetActive(!modal);compassBox.gameObject.SetActive(!modal);
+            context.gameObject.SetActive(false); // Interaction hints belong above their world targets.
             if(Dialog.activeSelf)
             {
                 LayoutDialogue();float t=Mathf.Clamp01((Time.unscaledTime-openedAt)/.14f);dialogueRect.anchoredPosition+=Vector2.down*(1-t)*12;
-                dialogFill.color=Time.unscaledTime<feedbackUntil?Color.Lerp(paper,positive?new Color(.75f,.94f,.69f):new Color(1,.78f,.65f),Mathf.Clamp01((feedbackUntil-Time.unscaledTime)/.55f)*.35f):paper;
+                dialogFill.color=frostNotice?FrostPaper:Time.unscaledTime<feedbackUntil?Color.Lerp(paper,positive?new Color(.75f,.94f,.69f):new Color(1,.78f,.65f),Mathf.Clamp01((feedbackUntil-Time.unscaledTime)/.55f)*.35f):paper;
             }
             UpdateLabels();
         }
@@ -157,14 +191,21 @@ namespace AmbrosJourney.Presentation
             var camera=Camera.main;if(!camera)return;
             var expired=new List<SeasonWorldLabel>();foreach(var pair in labels){if(!pair.Key){Destroy(pair.Value.gameObject);expired.Add(pair.Key);}else pair.Value.gameObject.SetActive(false);}foreach(var marker in expired)labels.Remove(marker);
             var player=AmbrosJourney.Journey.JourneySession.Instance?AmbrosJourney.Journey.JourneySession.Instance.Player():null;
+            labelAreas.Clear();
             foreach(var marker in SeasonWorldLabel.Active)
             {
-                if(!marker||player&&Vector2.Distance(marker.transform.position,player.position)>8)continue;
+                if(!marker||!marker.Visible||player&&Vector2.Distance(marker.transform.position,player.position)>8)continue;
                 float width=Mathf.Clamp(marker.Width,80,310);
                 if(!labels.TryGetValue(marker,out var panel)){panel=Panel(marker.Caption,worldLabels,Vector2.up,new Rect(0,0,width,44));var label=Text("Label",panel,new Rect(12,8,width-24,30),marker.Caption,14);label.enableAutoSizing=true;label.fontSizeMin=11;label.fontSizeMax=14;labels.Add(marker,panel);}
-                var p=camera.WorldToViewportPoint(marker.transform.position);
+                var p=camera.WorldToViewportPoint(marker.Position);
                 bool visible=p.z>0&&p.x>=0&&p.x<=1&&p.y>=0&&p.y<=1&&!Journal.activeSelf&&!Dialog.activeSelf;panel.gameObject.SetActive(visible);
-                if(visible)Place(panel,Vector2.up,new Rect(p.x*root.rect.width-width/2,(1-p.y)*root.rect.height,width,44));
+                if(visible)
+                {
+                    var area=new Rect(p.x*root.rect.width-width/2,(1-p.y)*root.rect.height-(marker.Anchored?44:0),width,44);
+                    // Nearby guides can stand together; keep their name cards readable.
+                    for(int n=0;n<4&&area.y>=48&&labelAreas.Exists(other=>other.Overlaps(area));n++)area.y-=48;
+                    labelAreas.Add(area);Place(panel,Vector2.up,area);
+                }
             }
         }
         RectTransform Panel(string name,Transform parent,Vector2 anchor,Rect area)

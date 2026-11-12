@@ -10,6 +10,10 @@ static class JourneyTests
         Check(JourneyData.CleanName(" <Ada>\n ")=="Ada","Names remove markup and controls");Check(JourneyData.CleanName(new string('x',60)).Length==32,"Names bounded");
         var data=new JourneyData{playerName="Zoë",started=true,chapter=4,unlocked=4,finished=true,certificatePending=true,completedOn="2026-10-30"};data.chapters[3]=new ChapterSave{visited=true,inCave=true,x=108.25f,y=12.5f,progress="{\"Complete\":true}"};data.artifacts[11]=true;
         var options=new JsonSerializerOptions{IncludeFields=true};Func<string,JourneyData> parse=s=>{try{return JsonSerializer.Deserialize<JourneyData>(s,options);}catch(JsonException){return null;}};
+        Check(JsonSerializer.Deserialize<SpringState>("{\"hearts\":1,\"explored\":true}",options) is {explored:true} oldSpring&&oldSpring.Valid(),"Legacy Spring checkpoint ignores removed heart field");
+        Check(JsonSerializer.Deserialize<AmbrosJourney.Summer.SummerProgress>("{\"Courage\":2,\"Introduced\":true}",options) is {Introduced:true} oldSummer&&oldSummer.Valid(),"Legacy Summer checkpoint remains valid");
+        Check(JsonSerializer.Deserialize<AmbrosJourney.Fall.FallProgress>("{\"Courage\":1,\"Introduced\":true}",options) is {Introduced:true} oldFall&&oldFall.Valid(),"Legacy Fall checkpoint remains valid");
+        Check(JsonSerializer.Deserialize<AmbrosJourney.Winter.WinterProgress>("{\"Courage\":3,\"Introduced\":true}",options) is {Introduced:true} oldWinter&&oldWinter.Valid(),"Legacy Winter checkpoint remains valid");
         string directory=Path.Combine(Path.GetTempPath(),"ambros-tests-"+Guid.NewGuid().ToString("N"));string path=Path.Combine(directory,"save.json");
         try
         {
@@ -19,6 +23,6 @@ static class JourneyTests
             data.chapters[3].x=float.NaN;Check(!data.Valid(),"Reject nonfinite position");data.chapters[3].x=120;data.artifacts=new bool[2];Check(!data.Valid(),"Reject truncated collectible array");
         }
         finally{if(Directory.Exists(directory))Directory.Delete(directory,true);}
-        Console.WriteLine("PASS: save round trip, recovery, full reset, bounds and names.");
+        Console.WriteLine("PASS: legacy checkpoint compatibility, save round trip, recovery, full reset, bounds and names.");
     }
 }

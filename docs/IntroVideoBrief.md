@@ -1,6 +1,6 @@
 # Teammate intro and outro brief
 
-**Current status:** the teammate's final clips are not supplied. The game is playable: New Journey enters Spring directly, and final victory goes directly to the certificate when the outro is absent. The generated pixel intro and its generator were retired. This brief remains the intended illustrated story direction, not a claim that the film exists.
+**Current status:** the teammate's final clips are not supplied. The game is playable: New Journey enters Spring directly, and final victory crumbles the Keeper and drops a scroll whose E pickup opens the certificate. Return/Escape then opens the main menu. The generated pixel intro and its generator were retired. This brief remains the intended illustrated story direction, not a claim that the film exists.
 
 ## Intro direction
 
@@ -16,6 +16,6 @@ Audio moves from keyboard/bedroom ambience through a magical whoosh to forest wi
 
 Intro: provide `capstone/Assets/Resources/Journey/Intro.mp4` with its `.meta`, or assign a VideoClip to `OpeningCinematic.clip` in `Assets/Opening/Intro.unity`. The existing loader hands control to Spring when playback ends; absent clips start Spring directly and failed playback has an Enter fallback.
 
-Outro: provide `capstone/Assets/Resources/Journey/Outro.mp4` with its `.meta`. The final Echo Keeper's successful 7/8 activity challenge invokes the ending hook, which plays the clip and then shows the personalized certificate. Missing/unplayable outro goes straight to the certificate. The older required walk back to Spring is not implemented; the clip can resolve the return-home story.
+Outro: provide `capstone/Assets/Resources/Journey/Outro.mp4` with its `.meta`. The retained `JourneyEnding.Play` helper can play that clip and fall back to the certificate if it is missing or fails. The current `FinishJourney` pickup path opens the certificate directly and does not invoke this helper. Adding the clip alone will not play it: wire the agreed teammate handoff into that path and revalidate collection/Return behavior. The older required walk back to Spring is not implemented; the clip can resolve the return-home story.
 
-Review identity, anatomy, continuity, visible cause/effect and sound before integration. See [Journey completion](JourneyCompletion.md) for runtime behavior and [current design](GameDesign.md) for the completed learning route. This change generates boss sprites, not replacement videos.
+Review identity, anatomy, continuity, visible cause/effect and sound before integration. See [Journey completion](JourneyCompletion.md) for runtime behavior and [current design](GameDesign.md) for the completed learning route. Boss and scenery art are already integrated; no replacement video is supplied by the feedback update.

@@ -80,7 +80,7 @@ namespace AmbrosJourney.Fall.Editor
                 Require(p.BossFinished&&p.BossScore==score&&p.Complete==(score>=4),"All 243 guardian combinations");Require(p.RuneCount==3,"Retry preserves runes");
             }
             p.Complete=false;p.BeginBoss();for(int i=0;i<5;i++)p.AnswerBoss(i<4?FallContent.Boss[i].Correct:(FallContent.Boss[i].Correct+1)%3);
-            Require(p.Complete&&!p.BeginBoss()&&!p.AnswerBoss(0),"80 percent final success");for(int i=0;i<12;i++)p.LoseCourage();Require(p.Courage>0&&p.RuneCount==3,"Courage recovery");
+            Require(p.Complete&&!p.BeginBoss()&&!p.AnswerBoss(0),"80 percent final success");
             Require(AssetDatabase.LoadAssetAtPath<GameObject>(Root+"/Resources/FallLevel.prefab"),"Portal prefab present");
             Debug.Log("FALL_VALIDATION_PASS: note prerequisites, seven challenges, retries, 243 guardian outcomes, 80% pass and progress preservation.");
         }

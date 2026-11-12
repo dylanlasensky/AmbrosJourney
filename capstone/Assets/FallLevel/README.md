@@ -25,6 +25,10 @@ Keep `Assets/SummerLevel` and the shared Journey/SeasonPresentation folders inta
 
 **Rebuild Fall Definition** regenerates Fall's art, Resources prefab and scene. Coordinate scene ownership and preserve unsaved work first. It does not rebuild other seasons. Normal gameplay does not read source packs or write asset files.
 
+## Interaction feedback
+
+Interactive people and lesson objects have overhead **[E]** cards; artifacts use **[F]**. Cards follow their targets, avoid overlap and hide during conversations/journal views. The duplicate bottom interaction popup is removed; the controls bar remains. Correct answers explicitly say **Correct!** and displayed quiz scores use a fixed total. Courage/hearts and wrong-answer penalties are removed; retries retain completed lessons. [Current feedback changes](../../../docs/UserTestingFeedback.md)
+
 ## Checks
 
 Fall progression checks cover note prerequisites, seven choices, wrong answers, duplicate rewards, all 243 guardian combinations, the 4/5 threshold and retained progress. Live route checks verify station access and locked/unlocked barriers. The connected suite adds real portal transitions, text fitting, saves, artifacts and the mixed finale.

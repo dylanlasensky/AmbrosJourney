@@ -6,7 +6,7 @@ namespace AmbrosJourney.Winter
     {
         public bool Valid()
         {
-            if(Courage<1||Courage>3||BossQuestion<0||BossQuestion>8||BossScore<0||BossScore>BossQuestion||Studied==null||Studied.Length!=3||Steps==null||Steps.Length!=3)return false;
+            if(BossQuestion<0||BossQuestion>8||BossScore<0||BossScore>BossQuestion||Studied==null||Studied.Length!=3||Steps==null||Steps.Length!=3)return false;
             for(int i=0;i<3;i++)if(Steps[i]<0||Steps[i]>WinterContent.Missions[i].Length)return false;
             if(BossFinished!=(BossQuestion==8))return false;
             if(WinterBossQuestion<0||WinterBossQuestion>5||WinterBossScore<0||WinterBossScore>WinterBossQuestion||WinterBossFinished!=(WinterBossQuestion==5)||WinterComplete&&(!WinterBossFinished||WinterBossScore<4)||InCave&&!WinterComplete)return false;
@@ -15,27 +15,28 @@ namespace AmbrosJourney.Winter
         public bool WinterBossStarted,WinterBossFinished,WinterComplete;
         public int WinterBossQuestion,WinterBossScore;
         public bool Introduced, CaveDiscovered, InCave, BossStarted, BossFinished, Complete;
+        public bool CompassWarningShown;
         public bool[] Studied = new bool[3];
         public int[] Steps = new int[3];
-        public int Courage=3, BossQuestion, BossScore;
+        public int BossQuestion, BossScore;
         public bool MissionComplete(int i)=>Steps[i]==WinterContent.Missions[i].Length;
         public int RuneCount {get {int n=0;for(int i=0;i<3;i++)if(MissionComplete(i))n++;return n;}}
         public bool CanFightWinter=>Introduced&&MissionComplete(0)&&MissionComplete(1)&&!InCave;
         public bool CanFight=>WinterComplete&&Introduced&&CaveDiscovered&&InCave&&RuneCount==3;
-        public void LoseCourage(){if(--Courage<=0)Courage=3;}
+
         public bool EnterCave(){if(!WinterComplete)return false;CaveDiscovered=InCave=true;return true;}
         public void LeaveCave(){InCave=false;}
         public bool ReadNote(int m){if(!Introduced||m<0||m>2||(m==2&&!InCave))return false;Studied[m]=true;return true;}
         public bool AnswerMission(int m,int c)
         {
             if(m<0||m>2||c<0||c>2||!Introduced||!Studied[m]||MissionComplete(m)||(m==2&&!InCave))return false;
-            bool right=c==WinterContent.Missions[m][Steps[m]].Correct;if(right)Steps[m]++;else LoseCourage();return right;
+            bool right=c==WinterContent.Missions[m][Steps[m]].Correct;if(right)Steps[m]++;return right;
         }
         public bool BeginWinterBoss(){if(!CanFightWinter||WinterComplete)return false;WinterBossStarted=true;WinterBossFinished=false;WinterBossQuestion=WinterBossScore=0;return true;}
         public bool AnswerWinterBoss(int c)
         {
             if(!CanFightWinter||!WinterBossStarted||WinterBossFinished||WinterComplete||c<0||c>2)return false;
-            bool right=c==WinterContent.Boss[WinterBossQuestion].Correct;if(right)WinterBossScore++;else LoseCourage();
+            bool right=c==WinterContent.Boss[WinterBossQuestion].Correct;if(right)WinterBossScore++;
             if(++WinterBossQuestion==WinterContent.Boss.Length){WinterBossFinished=true;WinterComplete=WinterBossScore>=4;}return right;
         }
         public bool BeginBoss(){if(!CanFight||Complete)return false;BossStarted=true;BossFinished=false;BossQuestion=BossScore=0;return true;}
@@ -48,7 +49,7 @@ namespace AmbrosJourney.Winter
         {
             if(!CanFight||!BossStarted||BossFinished||Complete)return false;
             bool right;if(!WinterContent.Final[BossQuestion].TryEvaluate(response,out right))return false;
-            if(right)BossScore++;else LoseCourage();
+            if(right)BossScore++;
             if(++BossQuestion==WinterContent.Final.Length){BossFinished=true;Complete=BossScore>=7;}
             return right;
         }

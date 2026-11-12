@@ -1,6 +1,6 @@
 # Seasonal scenery and portal placement
 
-This update includes main `64f380a`: the team's sound-effects refresh and the open-journal pause screen from PR #13.
+The scenery pass was based on `64f380a`, including the sound-effects refresh and open-journal pause screen from PR #13. This page is reconciled with the November 12 feedback changes; older captures remain evidence of the earlier art pass.
 
 ## What changed
 
@@ -10,8 +10,10 @@ This update includes main `64f380a`: the team's sound-effects refresh and the op
 - Spring gets woodland logs, ferns and gardening supplies; Summer gets watering supplies, pollinator hives and shoreline reeds; Fall gets harvest baskets, mushroom stumps and fuel; Winter gets snow-covered expedition supplies, shrubs and stones.
 - New props use authored anchors with at most 1.2 units of adjustment. Their bases avoid routes, collision, collectible approaches, existing mission props and one another. Crowded candidates are omitted. Foreground canopies are cleared where they hide landmarks or new details.
 - The Summer garden bench moves below the planting beds. Fall's orchard and kiln supply stacks are reduced and spaced. Winter's redundant entrance lantern is removed.
-- Echo Cavern uses a modest entrance backed by overlapping snow-covered ridge and foothill pieces, with a snow apron at ground level. Existing mountain collision and the five-unit doorway remain authoritative. Archive crystals form small wall-side mineral groups instead of a straight row.
+- Echo Cavern uses a modest entrance backed by overlapping snow-covered ridge and foothill pieces, with a snow apron at ground level. Continuous frontage/rear collision now prevents walking behind the ridge. The three-unit doorway automatically enters after the Warden challenge; a separate Little Mage conversation is optional before walking inside. Archive crystals form small wall-side mineral groups instead of a straight row.
 - Spring's Mage collider is now a trigger: conversation still uses proximity, but the companion cannot physically block a doorway or be treated as a wall by the compass. A focused probe reproduced a blocked route when the Mage stood at the portal and verified a 67-step route after the fix.
+
+Overhead interaction cards now follow the actual targets, use [E] where required, and avoid duplicates and overlaps. The artifact HUD says 0/12 Artifacts. The compass's first snowy outage has an icicle-edged hint for the next unfinished landmark. [Current feedback record](UserTestingFeedback.md)
 
 ## Review and validation
 

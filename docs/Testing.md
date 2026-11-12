@@ -5,7 +5,7 @@
 GitHub Actions runs **Game checks** for PRs and pushes to main with read-only permissions and no Unity/API credentials.
 
 - Actual Summer/Fall/Winter progression sources compile with .NET 8. Tests cover all 32 Summer, 243 Fall and 243 outdoor Winter boss answer combinations, plus all **256 pass/fail combinations of the eight mixed final activities**. The old 6,561 three-choice final combinations no longer describe this finale.
-- Checks include prerequisites, wrong answers, invalid/incomplete activity responses, duplicate picks, score thresholds, retries, retained missions/crests, courage recovery, save round trips, backup recovery, reset and name/bounds validation.
+- Checks include prerequisites, wrong answers, invalid/incomplete activity responses, duplicate picks, score thresholds, retries, retained missions/crests, save round trips, backup recovery, reset and name/bounds validation.
 - Asset integrity checks tracked gameplay `.meta` files, GUID uniqueness, prefab artwork/video references, Resources portals, build scenes and package JSON. New assets and their metadata must both be staged before this check represents the PR.
 
 From the repository root:
@@ -30,6 +30,19 @@ The wrapper prepares the baked Determination asset if missing, imports the four 
 Coverage includes the actual four-season portals, locked/modal guards, mission/boss retries, new final pointer drag/drop handlers and submission, all four seasonal UIs, menu callbacks, pause, exact outdoor/cave saves, chapter revisits, all twelve F-key pickups, certificate PDF export, reset and fresh Spring startup. Boss checks confirm two idle frames, distinct windup/impact frames, actor-to-visual strike signals and four in-world renders per replaced boss. Fall's existing boss is preserved.
 
 Read `Logs/SeasonChecks/Integration.txt`: it must say **PASS**. The runner has a twelve-minute post-import deadline and fails on errors during the active checks. Text-overflow and render checks cover **1280x720 and 1024x768**. Reports/captures go to ignored `Logs/SeasonChecks` and `Logs/BossChecks`. The world audit also checks building counts, doorstep routes, winter tree art, maps and survey views.
+
+## Focused user-feedback checks
+
+Use the same disposable copy and batch-mode invocation above, replacing `-executeMethod` with one of:
+
+| Method | Result | Coverage |
+| --- | --- | --- |
+| `GeneralFeedbackChecks.Run` | `Logs/SeasonChecks/GeneralFeedback.txt` | Correct explanations and fixed score totals across four chapters/finale; no courage text; artifact counter at empty/full count; actual body collisions and doorway access; old ridge checkpoint recovery; no cave Mage interaction; Activity 5 cycling; certificate Return/Escape to menu. |
+| `CompassNoticeChecks.Run` | `Logs/SeasonChecks/CompassNotice.txt` | Actual first whiteout; saved once-only notice; four progress hints; rendered icicle mesh; text at both resolutions; Continue/Escape; normal layout restoration; pause/dialogue, Assisted and cave guards. |
+
+Both methods reject non-batch use, use separate save files, and exit the Editor after their checks. `PASS` in the result file is required; also inspect the fresh log for compile/runtime errors rather than trusting an older result file. The compass fixture waits for the real snowfall phase, so allow it to run after startup. These fixtures do not modify a player's regular profile.
+
+The pure suite has **22,652 progression assertions** after removing the retired courage-only checks. Additional save tests load legacy checkpoints containing old heart/courage fields and retain the current learning state. Staged asset integrity includes the three new scripts and their metadata; no new packages are required.
 
 ## Standalone build
 

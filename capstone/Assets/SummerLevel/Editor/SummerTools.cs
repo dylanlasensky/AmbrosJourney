@@ -54,8 +54,7 @@ namespace AmbrosJourney.Summer.Editor
             Require(p.WardCount == 3 && p.BeginBoss(), "Retry preserves all missions");
             for (int i = 0; i < 5; i++) p.AnswerBoss(i < 4 ? SummerContent.Boss[i].Correct : 1-SummerContent.Boss[i].Correct);
             Require(p.Complete && p.BossScore == 4 && !p.BeginBoss(), "80 percent passes and is final");
-            for (int i = 0; i < 9; i++) p.LoseCourage();
-            Require(p.Courage > 0 && p.WardCount == 3 && p.Complete, "Courage recovery preserves progress");
+
             Require(AssetDatabase.LoadAssetAtPath<GameObject>("Assets/SummerLevel/Resources/SummerLevel.prefab"), "Portal prefab present");
             Debug.Log("SUMMER_VALIDATION_PASS: lesson gates, pattern retry, privacy removal, 60% failure, 80% success and progress preservation.");
         }

@@ -109,17 +109,17 @@ namespace AmbrosJourney.Fall
             level.mage=Actor("Ancient Mage","MageIdle",4,new Vector2(-40,33));level.mage.walk=Frames("MageWalk",8);
             level.maleWarrior=Actor("Married Warrior","MaleIdle",4,new Vector2(-42,33));level.maleWarrior.walk=Frames("MaleWalk",6);
             level.femaleWarrior=Actor("Married Warrior","FemaleIdle",4,new Vector2(-44,33));level.femaleWarrior.walk=Frames("FemaleWalk",6);
-            level.ember=Actor("Emberfist Warrior","EmberIdle",4,new Vector2(-36,31));level.ember.walk=Frames("EmberWalk",8);
+            level.ember=Actor("Emberfist Warrior","EmberIdle",4,new Vector2(-36,31));level.ember.walk=Frames("EmberWalk",8);SeasonWorldLabel.Attach(level.ember.transform,"[E] EMBERFIST");
             Visual("Emberfist's forge","Workbench",new Vector2(-32,29),1.5f);Visual("Forge shelter","Shelter",new Vector2(-34,32),1.3f);Label("EMBERFIST'S FORGE",new Vector2(-29,32));
             level.stations=new Transform[3];level.runes=new SpriteRenderer[3];string[] props={"Noticeboard","Noticeboard","Workbench"};
-            for(int i=0;i<3;i++){var pos=MissionPositions[i];level.stations[i]=Visual(FallContent.Landmarks[i],props[i],pos,1.5f).transform;Label(FallContent.Landmarks[i].ToUpper(),pos+new Vector2(0,3.6f),12);level.runes[i]=Visual("Prompt rune "+(i+1),"Ward",pos+new Vector2(2,0));}
+            for(int i=0;i<3;i++){var pos=MissionPositions[i];level.stations[i]=Visual(FallContent.Landmarks[i],props[i],pos,1.5f).transform;SeasonWorldLabel.Attach(level.stations[i],"[E] FIELD NOTE / "+FallContent.Landmarks[i].ToUpper());level.runes[i]=Visual("Prompt rune "+(i+1),"Ward",pos+new Vector2(2,0));}
             // Two small harvest stacks beside the orchard; the center trail stays open.
             foreach(var position in new[]{new Vector2(-34,5),new Vector2(-36,5.7f)})Visual("Harvest supplies","Crate",position);
             Visual("Archive shelter","Shelter",new Vector2(24,31),1.6f);
             foreach(var position in new[]{new Vector2(32,-21),new Vector2(34,-22.6f)})Visual("Kiln fuel","Crate",position);
             Sign("ORCHARD  SOUTH",new Vector2(-24,22));Sign("ARCHIVE  EAST / NORTH BRIDGE",new Vector2(-12,22));Sign("KILN  EAST THEN SOUTH",new Vector2(29,16));Sign("KILN  WEST AT NEXT TURN",new Vector2(36,4));Sign("KILN  SOUTH THEN EAST",new Vector2(16,-6));Sign("LOWER BRIDGE  WEST",new Vector2(7,-11));Sign("SENTINEL  SOUTH",new Vector2(5,-28));
             Visual("Quiet overlook","Shelter",new Vector2(-38,-26));Label("OLD WATCH / OPTIONAL DETOUR",new Vector2(-38,-23),14);
-            level.guardian=Actor("Bramble Sentinel","SentinelIdle",4,GuardianPosition,"SentinelIdle",4,2.1f);Label("BRAMBLE SENTINEL",GuardianPosition+new Vector2(0,4),13);
+            level.guardian=Actor("Bramble Sentinel","SentinelIdle",4,GuardianPosition,"SentinelIdle",4,2.1f);SeasonWorldLabel.Attach(level.guardian.transform,"[E] BRAMBLE SENTINEL");
             var seal=Visual("Three-rune arena barrier","Barrier",new Vector2(0,-34));seal.transform.localScale=new Vector3(8,2,1);seal.gameObject.AddComponent<BoxCollider2D>();level.arenaSeal=seal.gameObject;
             level.shields=new SpriteRenderer[5];for(int i=0;i<5;i++)level.shields[i]=Visual("Sentinel seal "+(i+1),"Shield",new Vector2(-4+i*2,-42));
             level.winterGate=Visual("Winter portal","Portal",GatePosition,1.5f).transform;level.winterGate.GetComponent<SpriteRenderer>().color=new Color(.65f,.85f,1);Label("WINTER / VERIFICATION",new Vector2(0,-44),14);

@@ -9,9 +9,19 @@ namespace AmbrosJourney.Journey
     public sealed class JourneyUI : MonoBehaviour
     {
         Sprite rounded;
+        TMP_InputField nameHint;
+        UnityEngine.UI.Outline nameGlow, nameHalo;
         public bool KeyboardNavigation=true;
         void LateUpdate()
         {
+            if(nameHint)
+            {
+                bool empty=string.IsNullOrWhiteSpace(nameHint.text);
+                nameGlow.enabled=nameHalo.enabled=empty;
+                float pulse=.5f+.5f*Mathf.Sin(Time.unscaledTime*2.5f);
+                var gold=JourneyMenu.Gold;gold.a=Mathf.Lerp(.30f,.55f,pulse);nameGlow.effectColor=gold;
+                gold.a=Mathf.Lerp(.08f,.18f,pulse);nameHalo.effectColor=gold;
+            }
             if(!KeyboardNavigation||!EventSystem.current)return;
             var keyboard=UnityEngine.InputSystem.Keyboard.current;if(keyboard==null)return;
             var selected=EventSystem.current.currentSelectedGameObject;
@@ -58,6 +68,9 @@ namespace AmbrosJourney.Journey
             var r=Panel(parent,"Player name",b,Color.white);var field=r.gameObject.AddComponent<TMP_InputField>();
             var t=Text(r,"Name",initial,new Rect(-b.width/2+15,-b.height/2+9,b.width-30,b.height-18),24);t.raycastTarget=true;
             var placeholder=Text(r,"Placeholder","Your explorer name",new Rect(-b.width/2+15,-b.height/2+9,b.width-30,b.height-18),24,new Color(.4f,.47f,.45f));
+            nameHint=field;
+            nameHalo=r.gameObject.AddComponent<UnityEngine.UI.Outline>();nameHalo.effectDistance=new Vector2(6,6);nameHalo.useGraphicAlpha=false;
+            nameGlow=r.gameObject.AddComponent<UnityEngine.UI.Outline>();nameGlow.effectDistance=new Vector2(3,3);nameGlow.useGraphicAlpha=false;
             field.textViewport=r;field.textComponent=t;field.placeholder=placeholder;field.characterLimit=32;field.lineType=TMP_InputField.LineType.SingleLine;field.text=initial;return field;
         }
         void OnDestroy(){if(rounded){Destroy(rounded.texture);Destroy(rounded);}}

@@ -9,26 +9,26 @@ namespace AmbrosJourney.Fall
         public bool Introduced, GuideArrived;
         public bool Valid()
         {
-            if(Courage<1||Courage>3||BossQuestion<0||BossQuestion>5||BossScore<0||BossScore>BossQuestion||Studied==null||Studied.Length!=3||Steps==null||Steps.Length!=3)return false;
+            if(BossQuestion<0||BossQuestion>5||BossScore<0||BossScore>BossQuestion||Studied==null||Studied.Length!=3||Steps==null||Steps.Length!=3)return false;
             for(int i=0;i<3;i++)if(Steps[i]<0||Steps[i]>FallContent.Missions[i].Length)return false;
             if(BossFinished!=(BossQuestion==5))return false;
             return !Complete||(BossFinished&&BossScore>=4&&RuneCount==3);
         }
         public bool[] Studied = new bool[3];
         public int[] Steps = new int[3];
-        public int Courage = 3, BossQuestion, BossScore;
+        public int BossQuestion, BossScore;
         public bool BossStarted, BossFinished, Complete;
         public bool MissionComplete(int i) => Steps[i] == FallContent.Missions[i].Length;
         public int RuneCount { get { int n=0; for(int i=0;i<3;i++) if(MissionComplete(i))n++; return n; } }
         public bool CanFight => Introduced && RuneCount == 3;
-        public void LoseCourage() { if(--Courage<=0) Courage=3; }
+
         public bool ReadNote(int mission)
         { if(!Introduced || mission<0 || mission>=3)return false; Studied[mission]=true;return true; }
         public bool AnswerMission(int mission,int choice)
         {
             if(!Introduced || mission<0 || mission>=3 || !Studied[mission] || MissionComplete(mission) || choice<0 || choice>=3)return false;
             bool right=choice==FallContent.Missions[mission][Steps[mission]].Correct;
-            if(right)Steps[mission]++;else LoseCourage();return right;
+            if(right)Steps[mission]++;return right;
         }
         public bool BeginBoss()
         { if(!CanFight || Complete)return false;BossStarted=true;BossFinished=false;BossQuestion=BossScore=0;return true; }
@@ -36,7 +36,7 @@ namespace AmbrosJourney.Fall
         {
             if(!CanFight || !BossStarted || BossFinished || Complete || choice<0 || choice>=3)return false;
             bool right=choice==FallContent.Boss[BossQuestion].Correct;
-            if(right)BossScore++;else LoseCourage();
+            if(right)BossScore++;
             if(++BossQuestion==FallContent.Boss.Length){BossFinished=true;Complete=BossScore>=4;}
             return right;
         }

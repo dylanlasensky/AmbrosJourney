@@ -1,6 +1,6 @@
 # Seasonal guardians and the final AI Keeper
 
-Four new original sprite atlases bring the remaining bosses into the same visual family as Fall. **Fall's Bramble Sentinel texture, four-pose animation and scale are unchanged.** Boss locations, learning prerequisites, save state and passing scores are preserved.
+Four new original sprite atlases bring the remaining bosses into the same visual family as Fall. **Fall's Bramble Sentinel texture, four-pose animation and scale are unchanged.** Learning prerequisites and passing scores remain. Winter's Warden now stands at (28.5, 25), to the right of the cave entrance at (24, 27), so the doorway stays visible during questions. All correct responses explicitly say Correct! and use fixed quiz totals; courage is removed.
 
 | Encounter | Active design | Animation and threshold |
 | --- | --- | --- |
@@ -23,7 +23,7 @@ Each original is a transparent **1254 x 1254**, equal **2 x 2** atlas. Reading l
 
 `SeasonBossVisual` slices equal cells once, anchors their ground contact from opaque foot rows while keeping horizontal pivots fixed, and gives each boss its own material. Idle frames loop; strikes play one non-looping windup/impact sequence using scaled game time so pause freezes them. Existing answer callbacks trigger the animation. Spring also flashes its boss on a correct answer; Summer/Winter retain their established player/boss feedback. Sorting stays grounded at the actor position. The final cell width is 8.6 world units, compared with 5.8/6.0/6.2 for the new seasonal bosses; transparent padding makes visible bounds smaller than cell width.
 
-World setup attaches the visual at the existing encounter position. Legacy Hero Pack `Orc`/`Skeleton` frame references and the `SummerLevel.orc` field remain for compatibility; they are not the rendered boss forms. Original licensed source packs are not altered or removed.
+World setup attaches each visual at its authored encounter position; the Warden position was adjusted in the November 12 feedback pass. Legacy Hero Pack `Orc`/`Skeleton` frame references and the `SummerLevel.orc` field remain for compatibility; they are not the rendered boss forms. Original licensed source packs are not altered or removed.
 
 ## Generation record
 
@@ -42,4 +42,4 @@ Texture imports use Default, point filtering, no mipmaps, uncompressed alpha, re
 | Winter | [Idle](BossScreenshots/WinterFrostbound-0.png) | [Impact](BossScreenshots/WinterFrostbound-3.png) |
 | Final robot | [Idle](BossScreenshots/FinalEchoKeeper-0.png) | [Impact](BossScreenshots/FinalEchoKeeper-3.png) |
 
-These are actual Unity renders. Automated art checks confirm frame assignment and strike signals; people should still judge motion, intimidation, world scale and readability in play. [Current validation](CurrentValidation.md)
+These are actual Unity renders from the earlier boss-art pass, before the November 12 positioning and UI feedback changes. Automated art checks confirm frame assignment and strike signals; people should still judge motion, intimidation, world scale and readability in play. [Current validation](CurrentValidation.md)
