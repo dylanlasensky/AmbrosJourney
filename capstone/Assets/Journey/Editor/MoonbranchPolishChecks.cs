@@ -16,8 +16,7 @@ namespace AmbrosJourney.Journey.Editor
         public static void Verify(int chapter)
         {
             var compass=UnityEngine.Object.FindAnyObjectByType<MoonbranchCompass>();Check(compass,"Compass exists in season "+chapter);
-            var ring=compass.transform.Find("Seasonal moon branches").GetComponent<UnityEngine.UI.RawImage>();
-            Check(ring.texture&&ring.uvRect.x==((chapter-1)%2)*.5f&&ring.uvRect.y==(chapter<=2?.5f:0),"Correct seasonal frame");
+            Check(compass.Needle.sizeDelta.x<=44,"Compact player direction arrow");
             Check(compass.Needle.GetComponent<UnityEngine.UI.RawImage>().texture,"Needle texture loaded");
             compass.Point(new Vector2(.321f,.731f));
             float before=compass.Needle.localEulerAngles.z;Call(compass,"Update");

@@ -12,6 +12,33 @@ namespace AmbrosJourney.Journey.Editor
         public static void Verify(int chapter)
         {
             Check(!UnityEngine.Object.FindObjectsByType<SpriteRenderer>().Any(r=>r.sprite&&r.sprite.name=="Letter"),"No decorative envelopes resemble an interaction");
+            var session=JourneySession.Instance;var player=session.Player();var saved=player.position;
+            object controller;Transform boss;string method;int expected;
+            var winterCheck=UnityEngine.Object.FindAnyObjectByType<WinterLevel>();bool wasCave=winterCheck&&winterCheck.Progress.InCave;if(winterCheck){winterCheck.Progress.InCave=false;winterCheck.World.RestoreRegion(false);}
+            if(chapter==1){controller=UnityEngine.Object.FindAnyObjectByType<SpringGuide>();boss=(Transform)typeof(SpringGuide).GetField("boss",System.Reflection.BindingFlags.Instance|System.Reflection.BindingFlags.NonPublic).GetValue(controller);method="Nearby";expected=3;}
+            else if(chapter==2){var level=UnityEngine.Object.FindAnyObjectByType<AmbrosJourney.Summer.SummerLevel>();controller=level;boss=level.orc.transform;method="Nearest";expected=4;}
+            else if(chapter==3){var level=UnityEngine.Object.FindAnyObjectByType<AmbrosJourney.Fall.FallLevel>();controller=level;boss=level.guardian.transform;method="Nearest";expected=4;}
+            else{var level=UnityEngine.Object.FindAnyObjectByType<WinterLevel>();controller=level;boss=level.winterGuardian.transform;method="Nearest";expected=8;}
+            try{player.position=boss.position+(chapter==4?Vector3.down:Vector3.left)*4.5f;int target=(int)controller.GetType().GetMethod(method,System.Reflection.BindingFlags.Instance|System.Reflection.BindingFlags.NonPublic).Invoke(controller,null);Check(target==expected,"Boss can be reached with E from 4.5 units away in season "+chapter);}
+            finally{player.position=saved;if(winterCheck){winterCheck.Progress.InCave=wasCave;winterCheck.World.RestoreRegion(wasCave);}}
+            if(winterCheck)
+            {
+                bool complete=winterCheck.Progress.Complete;
+                try
+                {
+                    winterCheck.Progress.InCave=true;winterCheck.Progress.Complete=false;winterCheck.World.RestoreRegion(true);
+                    player.position=winterCheck.guardian.transform.position+Vector3.down*4.5f;
+                    int target=(int)typeof(WinterLevel).GetMethod("Nearest",System.Reflection.BindingFlags.Instance|System.Reflection.BindingFlags.NonPublic).Invoke(winterCheck,null);
+                    Check(target==4,"Final cave boss can be reached with E from 4.5 units away");
+                }
+                finally{player.position=saved;winterCheck.Progress.InCave=wasCave;winterCheck.Progress.Complete=complete;winterCheck.World.RestoreRegion(wasCave);}
+            }
+            var overlay=UnityEngine.Object.FindAnyObjectByType<SeasonOverlay>();var camera=Camera.main;var oldCamera=camera.transform.position;
+            camera.transform.position=player.position+Vector3.back*10;
+            overlay.SetCompass(player.position,(Vector2)player.position+new Vector2(4,3),(Vector2)player.position+new Vector2(8,6));
+            overlay.GetComponentInChildren<MoonbranchCompass>(true).Advance(1);
+            typeof(SeasonOverlay).GetMethod("LateUpdate",System.Reflection.BindingFlags.Instance|System.Reflection.BindingFlags.NonPublic).Invoke(overlay,null);
+            SeasonIntegrationChecks.Capture("PlayerArrow"+chapter);camera.transform.position=oldCamera;
             var cohesion=UnityEngine.Object.FindAnyObjectByType<WorldCohesion>();
             var world=UnityEngine.Object.FindAnyObjectByType<JourneyWorld>();
             Check(cohesion.SeasonalDetails.Count>=4,"At least four authored seasonal vignettes, season "+chapter+": "+cohesion.SeasonalDetails.Count);

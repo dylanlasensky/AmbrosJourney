@@ -23,19 +23,19 @@ Every season now has its own animated guardian. Spring has a blossom-covered woo
 ## Controls and progress
 
 - **WASD / arrows:** move. **E / Enter:** interact and continue. **1/2** answers Spring's claims; later choices also use **3** or the mouse.
-- **J:** field journal. **Esc** or Pause: pause/menu controls. **R:** return to the current region's arrival. **F:** collect a nearby artifact. **M:** mute/unmute seasonal audio.
+- **J:** field journal. **Esc** or Pause: pause/menu controls. **R:** return to the current region's arrival. **E:** collect a nearby artifact. **M:** mute/unmute seasonal audio.
 - Finale: select details, match jobs, or drag cards into order. Clicking a card and a slot works too; number keys and Enter provide alternatives. Match rows cycle through options when clicked repeatedly; Check submits the completed activity.
 - Pause offers Resume, Save and return, reset with confirmation, artifacts, Explorer/Assisted guidance and travel to unlocked seasons.
 - Progress saves locally, including exact chapter/region coordinates, partial lessons, bosses, artifacts and completion. Autosave runs every five seconds during exploration. There is one profile per device with a recovery copy, not cloud accounts.
 - The HUD explicitly reads **0/12 Artifacts**. Three optional artifacts in each season unlock the **Evidence Keeper** achievement and Evidence Compass collection lesson. The final's evidence topic is also taught in Winter; collecting all artifacts is not required to understand or enter the finale.
 
-Interactive helpers, field notes, challenges and pickups use one overhead key/name card. E interactions show **[E]**; artifacts retain **[F]**. Captions follow moving targets and avoid overlapping; the redundant bottom interaction popup is removed. The Garden Warrior stops offering her finished repeat dialogue. Automatic portals are labeled as walk-through destinations.
+Interactive helpers, field notes, challenges and pickups use one overhead key/name card. All interactions, including artifacts, show **[E]**. Bosses can be approached from up to 5.5 world units away; nearby notes and helpers retain priority. Captions follow moving targets and avoid overlapping; the redundant bottom interaction popup is removed. The Garden Warrior stops offering her finished repeat dialogue. Automatic portals are labeled as walk-through destinations.
 
 Correct responses say **Correct!** before their explanation. Scores keep the full quiz total throughout an attempt: five for seasonal guardians, eight for the final review, and the actual fixed count for individual lessons. Courage/hearts and their penalties are removed; retries keep completed learning.
 
 Winter's arrival Mage is clear of the portal, and the Warden stands beside the visible cave opening. After the outdoor challenge, Little Mage waits nearby for a separate briefing; walking through the opening enters Echo Cavern. He follows inside without a dialogue prompt. Continuous ridge barriers stop travel behind the cave; older saves in that newly blocked area recover at the approach.
 
-The first Explorer-mode snowstorm that obscures the compass opens an icicle-edged notice with the next unfinished landmark. It appears once per saved journey, waits for dialogue to end, and leaves Assisted guidance and the cave compass working. This is the existing temporary snowfall effect; the needle returns when it clears.
+A small gold arrow follows Ambros and rotates continuously toward the next waypoint around obstacles. The first Explorer-mode snowstorm that hides the guide arrow opens an icicle-edged notice with the next unfinished landmark. It appears once per saved journey, waits for dialogue to end, and leaves Assisted guidance and the cave arrow working. This is the existing temporary snowfall effect; the arrow returns when it clears.
 
 All four seasons, menus, controls, notes and activities use the supplied **Determination** font with the existing point sizes and shared parchment UI. Minor labels are shortened to fit. [Current questions and notes](docs/QuestionRefresh.md)
 

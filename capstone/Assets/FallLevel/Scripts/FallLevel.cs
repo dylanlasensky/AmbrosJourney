@@ -96,7 +96,7 @@ namespace AmbrosJourney.Fall
         int Nearest()
         {
             Transform[] targets={ember.transform,stations[0],stations[1],stations[2],guardian.transform,winterGate};
-            int result=-1;float best=2.8f;for(int i=1;i<targets.Length;i++){float d=Vector2.Distance(player.transform.position,targets[i].position);if(d<best){best=d;result=i;}}if(result<0&&Vector2.Distance(player.transform.position,ember.transform.position)<2.8f)result=0;return result;
+            int result=-1;float best=2.8f;for(int i=1;i<targets.Length;i++){float d=Vector2.Distance(player.transform.position,targets[i].position);if(d<best){best=d;result=i;}}if(result<0&&Vector2.Distance(player.transform.position,ember.transform.position)<2.8f)result=0;if(result<0&&Vector2.Distance(player.transform.position,guardian.transform.position)<5.5f)result=4;return result;
         }
         public void Interact(int target)
         {
@@ -114,7 +114,7 @@ namespace AmbrosJourney.Fall
         }
         void MissionQuestion(int mission)
         {
-            if(Progress.MissionComplete(mission)){effects.PlayOneShot(ward,.6f);SeasonFeedback.Burst(stations[mission].position,new Color(1,.75f,.3f),24);Show("Prompt rune restored / "+Progress.RuneCount+" of 3",FallContent.Notes[mission]+(Progress.CanFight?"\n\nThe southern arena opens. Follow the compass to the Bramble Sentinel.":"\n\nThe journal records this lesson. Follow the compass to another station."),Close);return;}
+            if(Progress.MissionComplete(mission)){effects.PlayOneShot(ward,.6f);SeasonFeedback.Burst(stations[mission].position,new Color(1,.75f,.3f),24);Show("Prompt rune restored / "+Progress.RuneCount+" of 3",FallContent.Notes[mission]+(Progress.CanFight?"\n\nThe southern arena opens. Follow the guide arrow to the Bramble Sentinel.":"\n\nThe journal records this lesson. Follow the guide arrow to another station."),Close);return;}
             var q=FallContent.Missions[mission][Progress.Steps[mission]];
             Ask(FallContent.Landmarks[mission]+" / "+(Progress.Steps[mission]+1)+" of "+FallContent.Missions[mission].Length,q.Prompt,q.Choices,c=>{
                 bool right=Progress.AnswerMission(mission,c);Effect(right);

@@ -53,7 +53,7 @@ namespace AmbrosJourney.Presentation
             var compassObject=new GameObject("Moonbranch compass",typeof(RectTransform));compassObject.transform.SetParent(transform,false);
             compassBox=compassObject.GetComponent<RectTransform>();Place(compassBox,Vector2.one,new Rect(-136,126,112,126));
             moonbranch=compassObject.AddComponent<MoonbranchCompass>();moonbranch.Initialize(chapter,font);
-            Arrow=moonbranch.Needle;
+            Arrow=moonbranch.Needle;Arrow.SetParent(transform,false);Arrow.sizeDelta=new Vector2(38,38);
             CompassText=Text("Distance",compassBox,new Rect(0,105,112,24),"",14);CompassText.alignment=TextAlignmentOptions.Center;CompassText.color=new Color(1,.96f,.84f);
             var distanceShadow=CompassText.gameObject.AddComponent<UnityEngine.UI.Shadow>();distanceShadow.effectColor=new Color(.08f,.09f,.13f,.95f);distanceShadow.effectDistance=new Vector2(1,-1);
             controls=Panel("Controls",transform,Vector2.zero,new Rect(24,-62,780,38));
@@ -103,7 +103,7 @@ namespace AmbrosJourney.Presentation
             bool whiteout=season==4&&player.x<80&&Mathf.Repeat(Time.time,48)>26;
             CompassObscured=!assisted&&whiteout;
             Arrow.gameObject.SetActive(!CompassObscured);
-            if(!assisted&&season>=3&&distant)waypoint=destination;
+            // Follow the route waypoint even when the destination is behind a wall.
             CompassDelta=waypoint-player;ObjectiveDistance=Vector2.Distance(player,destination);
             moonbranch.Point(CompassDelta);
             CompassText.text=!assisted&&whiteout?"Snowfall":!assisted&&season>=3&&distant?"Explore":Mathf.CeilToInt(ObjectiveDistance)+" steps";
@@ -178,6 +178,11 @@ namespace AmbrosJourney.Presentation
             string text=Objective.text;int newline=text.IndexOf('\n');
             if(newline>=0){trackerText.text=text.Substring(0,newline);Objective.text=text.Substring(newline+1);}
             bool modal=Dialog.activeSelf||Journal.activeSelf;controls.gameObject.SetActive(!modal);compassBox.gameObject.SetActive(!modal);
+            compassBox.localScale=Vector3.zero;
+            var guidePlayer=AmbrosJourney.Journey.JourneySession.Instance?AmbrosJourney.Journey.JourneySession.Instance.Player():null;
+            bool guideVisible=!modal&&!AmbrosJourney.Journey.JourneySession.Blocked&&!CompassObscured&&guidePlayer&&ObjectiveDistance>1;
+            Arrow.gameObject.SetActive(guideVisible);
+            if(guideVisible&&Camera.main){var direction=CompassDelta.normalized;var point=Camera.main.WorldToViewportPoint(guidePlayer.position+(Vector3)(Vector2.up*.8f+direction*1.8f));Arrow.anchorMin=Arrow.anchorMax=Vector2.zero;Arrow.pivot=Vector2.one*.5f;Arrow.anchoredPosition=new Vector2(point.x*root.rect.width,point.y*root.rect.height);}
             context.gameObject.SetActive(false); // Interaction hints belong above their world targets.
             if(Dialog.activeSelf)
             {
