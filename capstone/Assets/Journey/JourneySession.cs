@@ -189,7 +189,7 @@ namespace AmbrosJourney.Journey
                 catch(Exception e)when(e is IOException||e is UnauthorizedAccessException){Data.assistedGuidance=old;notice="Settings could not be saved. Check available disk space.";ShowMenu();return;}
                 ShowMenuSettings();
             });
-            var description=JourneyMenu.Text(ui,"Guidance description",Data.assistedGuidance?"Assisted keeps the compass available in every season.":"Explorer lets winter snowfall obscure your compass.",new Rect(-534,78,360,65),19,JourneyMenu.Muted);description.textWrappingMode=TextWrappingModes.Normal;
+            var description=JourneyMenu.Text(ui,"Guidance description",Data.assistedGuidance?"Assisted keeps the guide arrow available in every season.":"Explorer lets winter snowfall hide your guide arrow.",new Rect(-534,78,360,65),19,JourneyMenu.Muted);description.textWrappingMode=TextWrappingModes.Normal;
             JourneyMenu.Button(ui,"Back",177,ShowMenu,true);
         }
         void QuitGame()

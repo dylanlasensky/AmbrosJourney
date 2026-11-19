@@ -92,7 +92,7 @@ namespace AmbrosJourney.Winter
                 !Progress.MissionComplete(1)?"Stay on the lantern trail around the frozen lake to the Frozen Observatory on the eastern ridge.":
                 !Progress.WinterComplete?"Follow the lanterns north to the ridge. The Frostbound Warden waits beside the cave.":
                 "Look for the lantern-lit cave entrance beside the Warden. Walk into the opening when you are ready.";
-            Show("Uh oh! Your compass has frozen!","The snow has covered its needle. Follow the lanterns and trail signs to find your own way for now.\n\nNext: "+hint,()=>{Close();AmbrosJourney.Journey.JourneySession.Instance?.Save();});
+            Show("Uh oh! Your guide arrow is hidden!","The snow has hidden your direction arrow. Follow the lanterns and trail signs to find your own way for now.\n\nNext: "+hint,()=>{Close();AmbrosJourney.Journey.JourneySession.Instance?.Save();});
             presentation.SetFrostNotice(true);
         }
         public bool CanEnterCave=>AmbrosJourney.Journey.JourneySession.CanUsePortals&&!InputBlocked&&Progress.WinterComplete&&!Progress.InCave&&player&&caveEntrance&&Vector2.Distance(player.transform.position,caveEntrance.position)<1.1f;
@@ -106,7 +106,7 @@ namespace AmbrosJourney.Winter
         int Nearest()
         {
             Transform[] targets={littleMage.transform,stations[0],stations[1],stations[2],guardian.transform,winterGate,caveEntrance,caveExit,winterGuardian.transform};
-            int result=-1;float best=2.8f;for(int i=0;i<targets.Length;i++){if((i==0&&Progress.InCave)||(i==4&&Progress.Complete)||(i==6&&Progress.WinterComplete)||!targets[i].gameObject.activeInHierarchy)continue;float d=Vector2.Distance(player.transform.position,targets[i].position);if(d<best){best=d;result=i;}}return result;
+            int result=-1;float best=2.8f;for(int i=0;i<targets.Length;i++){if((i==0&&Progress.InCave)||(i==4&&Progress.Complete)||(i==6&&Progress.WinterComplete)||!targets[i].gameObject.activeInHierarchy)continue;float d=Vector2.Distance(player.transform.position,targets[i].position);if(d<best){best=d;result=i;}}if(result<0)foreach(int i in new[]{4,8})if(targets[i].gameObject.activeInHierarchy&&!(i==4&&Progress.Complete)&&Vector2.Distance(player.transform.position,targets[i].position)<5.5f){result=i;break;}return result;
         }
         public void Interact(int target)
         {
@@ -128,7 +128,7 @@ namespace AmbrosJourney.Winter
         }
         void MissionQuestion(int mission)
         {
-            if(Progress.MissionComplete(mission)){effects.PlayOneShot(ward,.6f);SeasonFeedback.Burst(stations[mission].position,new Color(1,.75f,.3f),24);Show("Evidence seal restored / "+Progress.RuneCount+" of 3",WinterContent.Notes[mission]+(Progress.CanFight?"\n\nThe northern cave seal opens. Follow the compass to the Echo Keeper.":"\n\nThe journal records this lesson. Follow the compass to another station."),Close);return;}
+            if(Progress.MissionComplete(mission)){effects.PlayOneShot(ward,.6f);SeasonFeedback.Burst(stations[mission].position,new Color(1,.75f,.3f),24);Show("Evidence seal restored / "+Progress.RuneCount+" of 3",WinterContent.Notes[mission]+(Progress.CanFight?"\n\nThe northern cave seal opens. Follow the guide arrow to the Echo Keeper.":"\n\nThe journal records this lesson. Follow the guide arrow to another station."),Close);return;}
             var q=WinterContent.Missions[mission][Progress.Steps[mission]];
             Ask(WinterContent.Landmarks[mission]+" / "+(Progress.Steps[mission]+1)+" of "+WinterContent.Missions[mission].Length,q.Prompt,q.Choices,c=>{
                 bool right=Progress.AnswerMission(mission,c);Effect(right);

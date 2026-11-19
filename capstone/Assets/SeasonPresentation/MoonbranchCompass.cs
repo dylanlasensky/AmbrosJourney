@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace AmbrosJourney.Presentation
 {
-    // Stationary seasonal branch frame; only the single-ended moonstone needle rotates.
+    // A single-headed marker that rotates continuously toward the next route waypoint.
     public sealed class MoonbranchCompass : MonoBehaviour
     {
         public RectTransform Needle { get; private set; }
@@ -11,24 +11,15 @@ namespace AmbrosJourney.Presentation
         Texture2D backing;
         public void Initialize(int season,TMP_FontAsset font)
         {
-            backing=new Texture2D(64,64,TextureFormat.RGBA32,false);
-            for(int y=0;y<64;y++)for(int x=0;x<64;x++)
+            backing=new Texture2D(32,32,TextureFormat.RGBA32,false);
+            for(int y=0;y<32;y++)for(int x=0;x<32;x++)
             {
-                float a=Mathf.Clamp01((30-Vector2.Distance(new Vector2(x,y),new Vector2(31.5f,31.5f)))*.5f);
-                backing.SetPixel(x,y,new Color(.10f,.075f,.07f,a*.8f));
+                float dx=Mathf.Abs(x-15.5f);bool head=y>=13&&dx<(31-y)*.72f;bool shaft=y>=3&&y<18&&dx<3;
+                bool rim=(y>=12&&dx<(32-y)*.72f+1)||(y>=2&&y<19&&dx<4);
+                backing.SetPixel(x,y,head||shaft?new Color(1,.86f,.36f):rim?new Color(.12f,.15f,.18f):Color.clear);
             }
             backing.Apply();backing.filterMode=FilterMode.Bilinear;
-            Image("Quiet backing",backing,88,new Vector2(56,-56));
-            var ring=Image("Seasonal moon branches",Resources.Load<Texture2D>("Journey/MoonbranchRings"),112,new Vector2(56,-56));
-            int cell=Mathf.Clamp(season-1,0,3);ring.uvRect=new Rect(cell%2*.5f,cell<2?.5f:0,.5f,.5f);
-            string[] letters={"N","E","S","W"};
-            Vector2[] offsets={new Vector2(0,29),new Vector2(29,0),new Vector2(0,-29),new Vector2(-29,0)};
-            for(int i=0;i<4;i++)
-            {
-                var o=new GameObject(letters[i],typeof(RectTransform),typeof(TextMeshProUGUI));o.transform.SetParent(transform,false);
-                var t=o.GetComponent<TextMeshProUGUI>();Center(t.rectTransform,24,new Vector2(56,-56)+offsets[i]);t.font=font;t.fontSize=12;t.text=letters[i];t.alignment=TextAlignmentOptions.Center;t.color=new Color(1,.91f,.69f);t.raycastTarget=false;
-            }
-            Needle=Image("Moonstone guide / rounded counterweight",Resources.Load<Texture2D>("Journey/MoonbranchNeedle"),84,new Vector2(56,-56)).rectTransform;
+            Needle=Image("Direction arrow",backing,38,Vector2.zero).rectTransform;
         }
         UnityEngine.UI.RawImage Image(string label,Texture texture,float size,Vector2 position)
         {

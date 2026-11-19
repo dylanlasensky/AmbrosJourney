@@ -92,7 +92,7 @@ namespace AmbrosJourney.Journey.Editor
             {
                 Check(SceneManager.GetActiveScene().name=="Spring","Missing teammate intro starts Spring immediately without an error screen");Check(!UnityEngine.Object.FindAnyObjectByType<UnityEngine.Video.VideoPlayer>(),"Retired opening player is gone");
             }
-            else if(stage==14){Check(SceneManager.GetActiveScene().name=="Spring","New Journey enters fresh Spring");Check(!UnityEngine.Object.FindAnyObjectByType<SpringGuide>().LessonComplete,"Reset starts with no lessons");if(testKeyboard!=null){InputSystem.RemoveDevice(testKeyboard);testKeyboard=null;}Debug.Log("JOURNEY_PLAY_PASS: menu, exact outdoor/cave save, pause, chapter travel, all 12 F-key pickups, achievement, certificate export, reset and direct-to-Spring start.");return true;}
+            else if(stage==14){Check(SceneManager.GetActiveScene().name=="Spring","New Journey enters fresh Spring");Check(!UnityEngine.Object.FindAnyObjectByType<SpringGuide>().LessonComplete,"Reset starts with no lessons");if(testKeyboard!=null){InputSystem.RemoveDevice(testKeyboard);testKeyboard=null;}Debug.Log("JOURNEY_PLAY_PASS: menu, exact outdoor/cave save, pause, chapter travel, all 12 E-key pickups, achievement, certificate export, reset and direct-to-Spring start.");return true;}
             return false;
         }
         static void Click(string name)
@@ -113,8 +113,8 @@ namespace AmbrosJourney.Journey.Editor
                 Vector2 from=player.position,to=item.transform.position;Vector2 min=JourneySession.CurrentChapter()==4&&i==2?WinterWorld.CaveMin:new Vector2(-49,-48);Vector2 max=JourneySession.CurrentChapter()==4&&i==2?WinterWorld.CaveMax:new Vector2(49,44);
                 Physics2D.SyncTransforms();Check(SeasonNavigation.FindPath(from,to,min,max).Count>0,"Artifact has a traversable route: "+item.name);
                 player.position=to;player.GetComponent<Rigidbody2D>().position=to;Physics2D.SyncTransforms();
-                InputSystem.QueueStateEvent(Keyboard.current,new KeyboardState(Key.F));InputSystem.Update();Call(world,"Update");InputSystem.QueueStateEvent(Keyboard.current,new KeyboardState());InputSystem.Update();
-                Check(session.Data.artifacts[(JourneySession.CurrentChapter()-1)*3+i],"F collects "+item.name);Inspect();
+                InputSystem.QueueStateEvent(Keyboard.current,new KeyboardState(Key.E));InputSystem.Update();Call(world,"Update");InputSystem.QueueStateEvent(Keyboard.current,new KeyboardState());InputSystem.Update();
+                Check(session.Data.artifacts[(JourneySession.CurrentChapter()-1)*3+i],"E collects "+item.name);Inspect();
                 InputSystem.QueueStateEvent(Keyboard.current,new KeyboardState(i%2==0?Key.Space:Key.Escape));InputSystem.Update();Call(session,"Update");
                 Check(!session.Paused&&Time.timeScale==1&&!AudioListener.pause,"Space or Escape closes collected artifact and restores gameplay");
                 InputSystem.QueueStateEvent(Keyboard.current,new KeyboardState());InputSystem.Update();

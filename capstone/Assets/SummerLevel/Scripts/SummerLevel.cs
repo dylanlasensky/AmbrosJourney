@@ -125,6 +125,7 @@ namespace AmbrosJourney.Summer
             }
             // Nearby lesson objects take priority over a companion standing beside Ambros.
             if(result<0)foreach(int i in new[]{0,9}){if(i==9&&!GardenWarriorHasMore)continue;float d=Vector2.Distance(player.transform.position,targets[i].position);if(d<best){best=d;result=i;}}
+            if(result<0&&Vector2.Distance(player.transform.position,orc.transform.position)<5.5f)result=4;
             return result;
         }
         public void Interact(int target)
@@ -208,7 +209,7 @@ namespace AmbrosJourney.Summer
         void Reward(int mission)
         {
             effects.PlayOneShot(ward, .6f);
-            Show("Ward piece restored / " + Progress.WardCount + " of 3", SummerContent.Notes[mission] + (Progress.CanFight ? "\n\nThe village ward opens the Suncrest Guardian's clearing. Follow the compass south." : "\n\nYour journal now holds this lesson. Follow the compass to the next ward."), Close);
+            Show("Ward piece restored / " + Progress.WardCount + " of 3", SummerContent.Notes[mission] + (Progress.CanFight ? "\n\nThe village ward opens the Suncrest Guardian's clearing. Follow the guide arrow south." : "\n\nYour journal now holds this lesson. Follow the guide arrow to the next ward."), Close);
         }
         void Boss()
         {

@@ -38,7 +38,7 @@ public class SpringGuide : MonoBehaviour
     readonly string[] lessons = {
         "You're stuck here too? I was about your age when I arrived. Now everyone calls me the Ancient Mage. We need to get through all four seasons to find a way home.",
         "Let's start with what AI can and can't do. Read the notes along the trail, then try the two claims at each bat. You can look back at your notes whenever you need them.",
-        "Use WASD or the arrows to move, E to talk, and J for your notes. The compass points to your next stop. Finish the three lessons, then get at least four of Blossom Guardian's five questions right. I'll come with you after that."
+        "Use WASD or the arrows to move, E to talk, and J for your notes. The guide arrow points to your next stop. Finish the three lessons, then get at least four of Blossom Guardian's five questions right. I'll come with you after that."
     };
     int QuestionIndex(int mission)=>mission*3+(trials[mission]==0?0:mission==2?1:2);
     readonly string[] claims = {
@@ -64,12 +64,12 @@ public class SpringGuide : MonoBehaviour
         "A made-up example gives the tool something to work with without identifying you.",
         "You can stop and ask for help. You don't have to share something just to keep a conversation going."
     };
-    readonly string[] questions = { "An AI sorts new leaf pictures badly. What should its makers look at?", "Who decides which examples an AI learns from?", "A chatbot gives a date you have never heard before. What should you do before using it?", "You want help planning a party. Which detail should you leave out?", "You used AI to explain a science topic. What would show that you understood it?" };
-    readonly string[,] answers = { { "Its training examples and how it was tested", "How quickly it gives each answer" }, { "The people building and training it", "The people who ask it questions afterward" }, { "Use it if the answer gives enough detail", "Check a reliable source for that date" }, { "The password for your party-planning account", "The theme and how many ideas you want" }, { "Read the explanation one more time", "Explain it yourself and try a new example" } };
+    readonly string[] questions = { "An AI sorts new leaf pictures badly. What should its makers look at?", "Your class is training an AI to sort leaf photos. What should you give it?", "A chatbot gives a date you have never heard before. What should you do before using it?", "You ask an AI chatbot for party ideas. Which detail should you leave out?", "You used AI to explain a science topic. What would show that you understood it?" };
+    readonly string[,] answers = { { "Its training examples and how it was tested", "How quickly it gives each answer" }, { "Different leaf photos with correct labels", "Only one photo copied many times" }, { "Use it if the answer gives enough detail", "Check a reliable source for that date" }, { "The password for your party-planning account", "The theme and how many ideas you want" }, { "Read the explanation one more time", "Explain it yourself and try a new example" } };
     readonly int[] correct = { 0, 0, 1, 0, 1 };
     readonly string[] reasons = {
         "Look at what it learned from and how it handles new examples. Speed doesn't tell you whether its answers are useful.",
-        "People choose the training examples and check the system. That means their choices matter.",
+        "A variety of correctly labeled photos helps the AI learn useful patterns. Students can train a model too; copying one photo does not show it different leaves.",
         "Check the date in a reliable source before using it. A detailed answer can still contain a mistake.",
         "A password gives access to your account. A party theme is enough context for brainstorming.",
         "Explaining it yourself and trying a new example help you see what you actually understand." };
@@ -126,7 +126,7 @@ public class SpringGuide : MonoBehaviour
         int best=-99;float distance=2.6f;
         if(Distance(mage)<distance){best=-1;distance=Distance(mage);}
         for(int i=0;i<3;i++) if(!cleared[i] && Distance(bats[i])<distance){best=i;distance=Distance(bats[i]);}
-        if(Distance(boss)<distance){best=3;distance=Distance(boss);}
+        if(Distance(boss)<5.5f&&best==-99){best=3;}
         if(Distance(gate)<distance){best=4;distance=Distance(gate);}
         for(int i=0;i<3;i++)if(Distance(stones[i])<distance){best=5+i;distance=Distance(stones[i]);}
         return best;
@@ -185,7 +185,7 @@ public class SpringGuide : MonoBehaviour
         else {bool right=selected==correct[bossQuestion];GameAudio.Play(right?SoundCue.Correct:SoundCue.Incorrect,.45f);if(right){BossScore++;boss.GetComponent<SeasonBossVisual>().Flash(new Color(1,.85f,.55f));}else boss.GetComponent<SeasonBossVisual>().Strike();feedback=(right?"Correct! ":"Not quite. ")+reasons[bossQuestion]+"\n\n"+BossScore+" / "+questions.Length+" correct.";}
     }
     Transform Destination(){if(!LessonComplete)return mage;for(int i=0;i<3;i++)if(!cleared[i])return studied[i]?bats[i]:stones[i];return SpringComplete?gate:boss;}
-    string Quest()=>SpringComplete?"Step through the Summer gate":!explored?"Stretch your legs! Follow the compass.":!LessonComplete?"Meet the Mage beside his cottage":MissionsComplete<3?new[]{"Blossom Grove: learn how AI learns","Lakeside: separate people from AI","Southern ruins: protect your privacy"}[NextBat()]:"Head south to challenge Blossom Guardian";
+    string Quest()=>SpringComplete?"Step through the Summer gate":!explored?"Stretch your legs! Follow the guide arrow.":!LessonComplete?"Meet the Mage beside his cottage":MissionsComplete<3?new[]{"Blossom Grove: learn how AI learns","Lakeside: separate people from AI","Southern ruins: protect your privacy"}[NextBat()]:"Head south to challenge Blossom Guardian";
     int NextBat(){for(int i=0;i<3;i++)if(!cleared[i])return i;return 2;}
     void LateUpdate()
     {

@@ -44,9 +44,9 @@ Try the two claims at the ruins bat.
 ### Blossom Guardian
 
 1. An AI sorts new leaf pictures badly. What should its makers look at? **Its training examples and how it was tested**
-2. Who decides which examples an AI learns from? **The people building and training it**
+2. Your class is training an AI to sort leaf photos. What should you give it? **Different leaf photos with correct labels**
 3. A chatbot gives a date you have never heard before. What should you do before using it? **Check a reliable source for that date**
-4. You want help planning a party. Which detail should you leave out? **The password for your party-planning account**
+4. You ask an AI chatbot for party ideas. Which detail should you leave out? **The password for your party-planning account**
 5. You used AI to explain a science topic. What would show that you understood it? **Explain it yourself and try a new example**
 
 ## Summer
@@ -87,18 +87,18 @@ READ IT, THEN MAKE A CHANGE
 
 Compare the reply with what you asked for. If it misses something, say what needs changing. A reply can follow every instruction and still get a fact wrong. Check important claims before using them.
 
-- The orchard needs a name for its autumn fair. Which opening gives the tool a clear job? **Suggest names for our autumn fair**
-- What background would help it suggest names for this fair? **It's an apple fair for middle-school students**
-- You want a few names you can compare quickly. What should you add? **Give three short names in a numbered list**
+- You want an AI chatbot to help you learn about apple trees. Which request gives it a clear job? **Explain how an apple tree grows from a seed**
+- What detail would help the AI explain apple trees at the right level? **I'm a middle-school student learning about plants**
+- You want a short AI explanation you can study. What should you add to your request? **Use three short steps with simple words**
 - New students need a short introduction to AI. Which request gives enough direction? **Explain AI to a 12-year-old in three sentences with one example**
-- Your teacher allows hints, but the work must be yours. Which request fits? **Give me one clue for this made-up example, then let me try**
-- You asked for three short fair names and got ten paragraphs. Which follow-up is most useful? **Cut this to three names of four words or fewer, in a list**
+- Your teacher allows AI hints, but the work must be yours. Which request fits? **Give me one clue for this made-up example, then let me try**
+- You asked AI for three short steps about plant growth, but it gave ten paragraphs. What should you ask next? **Rewrite this as three short steps using simple words**
 - The reply now fits your format, but it calls a wild plant edible. What should you do? **Check with a trusted adult and a reliable plant guide before acting**
-- A club wants short slogans for a recycling poster. Which request will be easiest to use? **Give four recycling slogans for a school poster, each under six words**
-- Your reply uses words a younger class won't know. What is the most useful change? **Name the age group and ask for familiar words with an example**
-- You asked for a hint, but got the full solution. What should your next request say? **Give only the first clue, then wait for my attempt**
-- Which background would help a tool brainstorm a mystery story? **A made-up setting, the reader's age and the kind of mystery**
-- A careful prompt gets a clear reply with a few facts. What still needs checking? **Whether the facts are supported by reliable sources**
+- You are asking an AI chatbot for recycling poster ideas. Which prompt gives the clearest instructions? **Give four recycling slogans for a school poster, each under six words**
+- The AI reply uses words a younger class won't know. What should you ask the AI to change? **Name the age group and ask for familiar words with an example**
+- You asked AI for a math hint, but it gave the full answer. What should your next request say? **Give only the first clue, then wait for my attempt**
+- Which details can you safely give an AI chatbot for a made-up mystery story? **A made-up setting, the reader's age and the kind of mystery**
+- An AI follows your prompt and gives a clear answer. What should you still check? **Whether the facts are supported by reliable sources**
 
 ## Winter
 
@@ -116,14 +116,14 @@ If you can't check a claim, say what is still uncertain. If you shared a mistake
 
 - AI says the cave was mapped in 1840 and names a book. What would actually help you check it? **Find the book and read the part about the cave**
 - A dated ledger says 1890, but AI says 1840. Before correcting the date, what should you check? **That the ledger is about this cave and what its date refers to**
-- Three posts describe the same storm using identical sentences. What can you conclude? **They may all come from one report; find separate evidence**
-- An old trail guide says a path is open. Today's ranger notice says it is closed. Which detail matters most? **The ranger notice is current and covers this exact trail**
-- An echo describes a shortcut, but you can't find a record of it. What should you tell the party? **We haven't checked this route, so we shouldn't rely on it yet**
-- You shared the wrong cave date. A reliable record now shows the error. What should you send? **A correction with the record and what it shows**
-- The Warden quotes a researcher. You find the quote in a blog. What is the next useful check? **Find the researcher's original work and read the quote in context**
-- Two sites cite the same anonymous post. What would add stronger evidence? **A reliable report based on its own observations**
+- AI points to three posts about a storm. They all copy the same sentences. Does this prove the AI answer is right? **They may all come from one report; find separate evidence**
+- AI uses an old guide to say a trail is open. Today's ranger notice says it is closed. Which detail matters most? **The ranger notice is current and covers this exact trail**
+- AI suggests a shortcut, but you cannot check that it exists. What should you tell your friends? **We haven't checked this route, so we shouldn't rely on it yet**
+- You shared a wrong date from an AI answer. A reliable source shows the correct date. What should you send? **A correction with the record and what it shows**
+- AI gives you a quote from a scientist. You find it on a blog. How can you check whether the quote is real? **Find the researcher's original work and read the quote in context**
+- AI links to two sites that copied the same unknown author. What would help you check the answer? **A reliable report based on its own observations**
 - A link in an AI reply opens a real page, but it doesn't mention the claimed discovery. What does that tell you? **This page doesn't support that claim**
-- You have to present a claim today, but haven't confirmed it. What is the fairest wording? **This is not confirmed; here is what we still need to check**
+- An AI says a planet has 20 moons. You have not checked a reliable source yet. What should you tell your class? **The AI said 20, but I still need to check a reliable source**
 - A route app using AI says the ice crossing is safe. Yesterday's photo looks fine. What should you do? **Stay back and check current advice from the local ranger**
 
 ## Echo Keeper: eight new safety activities
