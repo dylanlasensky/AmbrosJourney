@@ -118,11 +118,11 @@ namespace AmbrosJourney.Summer
         }
         int Nearest()
         {
-            Transform[] targets = { maleWarrior.transform, workshop, garden, messagePost, orc.transform, fallGate, stones[0], stones[1], stones[2], femaleWarrior.transform };
+            Transform[] targets = { maleWarrior.transform, workshop, garden, messagePost, orc.transform, fallGate, null, null, null, femaleWarrior.transform };
             float best = 2.8f; int result = -1;
             for (int i = 1; i < targets.Length-1; i++)
             {
-                if(!targets[i].gameObject.activeInHierarchy || i==4&&Progress.Complete)continue;
+                if(!targets[i]||!targets[i].gameObject.activeInHierarchy || i==4&&Progress.Complete)continue;
                 float d = Vector2.Distance(player.transform.position, targets[i].position);
                 if (d < best) { best = d; result = i; }
             }
@@ -146,7 +146,7 @@ namespace AmbrosJourney.Summer
                 case 4: Boss(); break;
                 case 5:
                     Show("The Fall gate", Progress.Complete ? "SUMMER COMPLETE\nRank earned: Independent Thinker\nThe married Warriors join your party.\n\nEmberfist's trail marker: Good help begins with a clear request.\n\nEmberfist awaits in Emberwood. Close this conversation and walk through the unlocked portal to begin Fall." : "The Fall gate is sealed. Restore all three wards and score at least 4/5 against the Suncrest Guardian.", Close); break;
-                default: Stone(target - 6); break;
+                default: break;
             }
         }
         void Workshop()
@@ -163,26 +163,7 @@ namespace AmbrosJourney.Summer
                 Show(right ? "Good choice" : "Try a different approach", SeasonOverlay.AnswerFeedback(right,q.Explanation,Progress.WorkshopQuestion,SummerContent.Workshop.Length) + (right ? "" : "\nYour completed work is safe. Try again."), WorkshopQuestion);
             });
         }
-        void Garden()
-        {
-            if (Progress.Wards[1]) { Show("Training garden restored", SummerContent.Notes[1], Close); return; }
-            if (!Progress.HintChosen)
-                Ask("Training garden / Keep your practice", "Warrior: You're stuck on a three-stone pattern. The device can give you a hint or show all the steps. Which help leaves you something to practice?", new[] { "Show me the first step so I can try the rest", "Show me the full pattern so I can follow it" }, c => {
-                    bool right = Progress.ChooseHint(c); Effect(right);
-                    Show(right ? "A helpful hint" : "Keep something to practice", right ? "Correct! Start with SUN. Then follow the garden's clue: sun wakes the SEED; the seed grows into a LEAF.\n\nClose this message. Walk to each stepping stone and press E: Sun, Seed, Leaf. The labels stay visible." : "If the device does every step, you miss the practice. A hint can help you begin while leaving the rest for you to work out.", right ? (Action)Close : Garden);
-                });
-            else if (!Progress.PatternComplete) Show("Your stepping-stone practice", "Walk to the stones and press E in order: SUN, SEED, LEAF.\nProgress: " + Progress.PatternStep + " / 3.\nA mistake resets only this short pattern. You can retry immediately.", Close);
-            else GardenQuestion();
-        }
-        void Stone(int index)
-        {
-            if (index < 0 || index > 2) return;
-            if (!Progress.HintChosen) { Show("Training stones", "Speak with the Warrior at the training garden first. Choose how you want help with this exercise.", Close); return; }
-            if (Progress.PatternComplete) { GardenQuestion(); return; }
-            bool right = Progress.StepOnStone(index); Effect(right);
-            if (Progress.PatternComplete) Show("You completed the pattern!", "Correct! You used a hint and worked out the remaining steps yourself. Now apply that idea to schoolwork.", GardenQuestion);
-            else Show(right ? "Step " + Progress.PatternStep + " / 3" : "Try the pattern again", right ? "Correct! Good step. Close this message and find the next stone." : "Start with SUN, then SEED, then LEAF. Your other missions are unchanged.", Close);
-        }
+        void Garden()=>GardenQuestion();
         void GardenQuestion()
         {
             if (Progress.Wards[1]) { Show("Keep your practice", SummerContent.Notes[1], Close); return; }
@@ -281,7 +262,7 @@ namespace AmbrosJourney.Summer
         {
             if (!Progress.Introduced) return maleWarrior.transform.position;
             if (!Progress.Wards[0]) return workshop.position;
-            if (!Progress.Wards[1]) return Progress.HintChosen && !Progress.PatternComplete ? stones[SummerContent.Pattern[Progress.PatternStep]].position : garden.position;
+            if (!Progress.Wards[1]) return garden.position;
             if (!Progress.Wards[2]) return messagePost.position;
             return Progress.Complete ? (Vector2)fallGate.position : orc.transform.position;
         }
@@ -295,7 +276,7 @@ namespace AmbrosJourney.Summer
             if(Progress.Introduced&&!Progress.GuideArrived)objective.text="Walk with the Warriors to the workshop. They will wait for you.";
             var destination=Destination();
             if(!InputBlocked)presentation.SetCompass(player.transform.position,navigation.Next(player.transform.position,destination),destination);
-            prompt.text=InputBlocked||nearby<0?"":"[ E ]  "+new[]{"Talk to the Warrior","Visit the workshop","Practice in the garden","Read the message post","Face the Suncrest Guardian","Enter the Fall gate","SUN stone","LEAF stone","SEED stone","Talk to the Warrior"}[nearby];
+            prompt.text=InputBlocked||nearby<0?"":"[ E ]  "+new[]{"Talk to the Warrior","Visit the workshop","Practice in the garden","Read the message post","Face the Suncrest Guardian","Enter the Fall gate","","","","Talk to the Warrior"}[nearby];
             party.text = Progress.Complete ? "PARTY / Ambros + Mage + both Warriors" : "PARTY / Ambros + Ancient Mage";
         }
         void CreateUI()

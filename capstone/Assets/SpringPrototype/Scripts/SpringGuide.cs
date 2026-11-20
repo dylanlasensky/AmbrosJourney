@@ -10,7 +10,7 @@ public class SpringGuide : MonoBehaviour
     public Transform player, mage;
     public Texture2D batSheet, guardianSheet;
     public Vector2 StartPosition = new Vector2(-18,16);
-    bool explored;
+    bool explored, controlsSeen, welcomeOpen;
     public Sprite gateSprite;
     GameObject gateSeal;
     public bool DialogueOpen { get; private set; }
@@ -41,7 +41,7 @@ public class SpringGuide : MonoBehaviour
     readonly string[] lessons = {
         "You're stuck here too? I was about your age when I arrived. Now everyone calls me the Ancient Mage. We need to get through all four seasons to find a way home.",
         "Let's start with what AI can and can't do. Read the notes along the trail, then try the two claims at each bat. You can look back at your notes whenever you need them.",
-        "Use WASD or the arrows to move, E to talk, and J for your notes. The guide arrow points to your next stop. Finish the three lessons, then get at least four of Blossom Guardian's five questions right. I'll come with you after that."
+        "Finish the three lessons, then get at least four of Blossom Guardian's five questions right. I'll come with you after that."
     };
     int QuestionIndex(int mission)=>mission*3+(trials[mission]==0?0:mission==2?1:2);
     readonly string[] claims = {
@@ -76,10 +76,11 @@ public class SpringGuide : MonoBehaviour
         "Check the date in a reliable source before using it. A detailed answer can still contain a mistake.",
         "A password gives access to your account. A party theme is enough context for brainstorming.",
         "Explaining it yourself and trying a new example help you see what you actually understand." };
-    public AmbrosJourney.Journey.SpringState CaptureProgress()=>new AmbrosJourney.Journey.SpringState{explored=explored,lessonComplete=LessonComplete,complete=SpringComplete,missions=MissionsComplete,bossScore=BossScore,cleared=(bool[])cleared.Clone(),studied=(bool[])studied.Clone(),trials=(int[])trials.Clone()};
+    public AmbrosJourney.Journey.SpringState CaptureProgress()=>new AmbrosJourney.Journey.SpringState{explored=explored,controlsSeen=controlsSeen,lessonComplete=LessonComplete,complete=SpringComplete,missions=MissionsComplete,bossScore=BossScore,cleared=(bool[])cleared.Clone(),studied=(bool[])studied.Clone(),trials=(int[])trials.Clone()};
     public void RestoreProgress(AmbrosJourney.Journey.SpringState state)
     {
         if(state==null||!state.Valid())throw new System.ArgumentException("Invalid Spring checkpoint");
+        controlsSeen=state.controlsSeen||state.explored||state.lessonComplete;welcomeOpen=false;
         explored=state.explored;LessonComplete=state.lessonComplete;SpringComplete=state.complete;MissionsComplete=state.missions;BossScore=state.bossScore;cleared=state.cleared;studied=state.studied;trials=state.trials;
         DialogueOpen=journalOpen=false;target=-1;feedback="";bossQuestion=0;bossResult=false;
         for(int i=0;i<3;i++)bats[i].gameObject.SetActive(!cleared[i]);boss.gameObject.SetActive(!SpringComplete);gateSeal.SetActive(!SpringComplete);AmbrosJourney.Journey.BossPortalSequence.RestoreCheckpoint();
@@ -135,12 +136,24 @@ public class SpringGuide : MonoBehaviour
         for(int i=0;i<3;i++)if(Distance(stones[i])<distance){best=5+i;distance=Distance(stones[i]);}
         return best;
     }
-    public bool DismissPanel(){if(!DialogueOpen&&!journalOpen)return false;journalOpen=false;DialogueOpen=false;return true;}
+    public bool DismissPanel(){if(welcomeOpen){CloseWelcome();return true;}if(!DialogueOpen&&!journalOpen)return false;journalOpen=false;DialogueOpen=false;return true;}
+    void CloseWelcome()
+    {
+        controlsSeen=true;welcomeOpen=false;DialogueOpen=false;
+        var session=AmbrosJourney.Journey.JourneySession.Instance;if(session)session.Save();
+    }
     readonly AmbrosJourney.Presentation.SeasonTrail companionTrail=new AmbrosJourney.Presentation.SeasonTrail();
     int companionRevision=-1;
     void Update()
     {
         if(AmbrosJourney.Journey.JourneySession.Blocked)return;
+        if(!controlsSeen&&!welcomeOpen){welcomeOpen=true;DialogueOpen=true;}
+        if(welcomeOpen)
+        {
+            var keyboard=Keyboard.current;
+            if(keyboard!=null&&(keyboard.eKey.wasPressedThisFrame||keyboard.enterKey.wasPressedThisFrame))CloseWelcome();
+            return;
+        }
         if(Vector2.Distance(player.position,StartPosition)>3)explored=true;
         companionTrail.Record(player.position);
         if(SpringComplete&&!DialogueOpen)
@@ -167,6 +180,7 @@ public class SpringGuide : MonoBehaviour
     void Continue()
     {
         GameAudio.Click();
+        if(welcomeOpen){CloseWelcome();return;}
         if(target>=5){if(LessonComplete)studied[target-5]=true;DialogueOpen=false;return;}
         if(target==-1){if(page<lessons.Length-1 && !LessonComplete)page++;else{LessonComplete=true;DialogueOpen=false;}return;}
         if(target>=0 && target<=2 && feedback!="")
@@ -204,6 +218,20 @@ public class SpringGuide : MonoBehaviour
         presentation.Objective.text="LESSONS "+MissionsComplete+" / 3\n"+Quest();
         presentation.Prompt.text=Nearby()!=-99?"[ E ]  Explore / interact":"";
         presentation.Dialog.SetActive(DialogueOpen&&!journalOpen);presentation.Journal.SetActive(journalOpen);
+        if(welcomeOpen)
+        {
+            presentation.Prompt.text="";
+            presentation.SetCompass(player.position,mage.position,mage.position);
+            presentation.Heading.text="Welcome to Spring";
+            presentation.Copy.text="WASD / Arrow keys: Move\nE: Talk, read and interact   |   1 / 2: Choose an answer\nJ: Field notes   |   I: Artifacts   |   Esc: Back / pause\n\nLook for the compass arrow beside your character to find your next stop. Follow it to the Ancient Mage beside his cottage.";
+            for(int i=0;i<presentation.Choices.Count;i++)
+            {
+                var button=presentation.Choices[i];button.gameObject.SetActive(i==0);button.onClick.RemoveAllListeners();
+                if(i==0){button.GetComponentInChildren<TextMeshProUGUI>().text="Let's explore [ E ]";button.onClick.AddListener(Continue);}
+            }
+            if(lastBody!="Spring welcome"){presentation.Present(false);lastBody="Spring welcome";}
+            return;
+        }
         if(journalOpen){var titles=new string[3];var notes=new string[3];for(int i=0;i<3;i++){titles[i]=locations[i]+" / "+trials[i]+" of 2 challenges";notes[i]=studied[i]?fieldNotes[i].Split('\n')[1]:"Find the field note at this landmark.";}presentation.SetJournal(titles,notes,SpringComplete?"PARTY / Ambros + Ancient Mage":"PARTY / Ambros");return;}
         var dest=Destination();if(dest&&!DialogueOpen){Vector2 waypoint=dest.position;if(LessonComplete&&MissionsComplete==1){if(player.position.x< -10&&player.position.y> -5)waypoint=new Vector2(-15,-7);else if(player.position.x<2)waypoint=new Vector2(3,-7);}presentation.SetCompass(player.position,waypoint,dest.position);}
         if(!DialogueOpen)return;

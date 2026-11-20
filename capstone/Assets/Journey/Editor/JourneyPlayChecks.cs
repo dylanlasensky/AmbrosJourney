@@ -71,7 +71,7 @@ namespace AmbrosJourney.Journey.Editor
                 var w=UnityEngine.Object.FindAnyObjectByType<WinterLevel>();Check(w.Progress.InCave&&Vector2.Distance(w.player.transform.position,savedPosition)<.01f,"Exact cave location and region restored");Check(session.Data.ArtifactCount==12,"Collection retained through menu");
                 JourneyCertificate.OutputDirectoryOverride=Path.GetFullPath("Logs/SeasonChecks");session.FinishJourney();
             }
-            else if(stage==10){Check(session.Data.finished&&!session.Data.outroSeen,"Missing-outro fallback reaches certificate without claiming playback");Inspect();SeasonIntegrationChecks.Capture("CertificateScreen");JourneyCertificate.Export(session.Data,UI);}
+            else if(stage==10){Check(session.Data.finished&&!session.Data.outroSeen,"Certificate is shown before outro playback");Inspect();SeasonIntegrationChecks.Capture("CertificateScreen");JourneyCertificate.Export(session.Data,UI);}
             else if(stage==11)
             {
                 Check(JourneyCertificate.LastExportPath!=null&&File.Exists(JourneyCertificate.LastExportPath),"PDF exported");Check(new FileInfo(JourneyCertificate.LastExportPath).Length>10000,"Certificate contains rendered page");
@@ -86,7 +86,7 @@ namespace AmbrosJourney.Journey.Editor
                 string normalSave=JourneySession.SavePathOverride;string directory=Path.GetFullPath("Logs/SeasonChecks/menu-save-directory");Directory.CreateDirectory(directory);
                 try{JourneySession.SavePathOverride=directory;UI.GetComponentInChildren<TMP_InputField>().text="Test Explorer";session.NewJourney();Check(!session.Data.started&&UI.GetComponentInChildren<TMP_InputField>(),"Failed save stays on name-entry menu");Inspect();}
                 finally{JourneySession.SavePathOverride=normalSave;}
-                UI.GetComponentInChildren<TMP_InputField>().text="Zoë Explorer";var opening=UnityEngine.Object.FindAnyObjectByType<OpeningCinematic>();Check(!opening.clip&&!Resources.Load<UnityEngine.Video.VideoClip>("Journey/Intro"),"No placeholder intro video ships");Click("New Journey");Check(session.Data.started&&session.Data.playerName=="Zoë Explorer"&&session.Data.assistedGuidance,"Named journey starts with chosen settings");
+                UI.GetComponentInChildren<TMP_InputField>().text="Zoë Explorer";var opening=UnityEngine.Object.FindAnyObjectByType<OpeningCinematic>();Check(Resources.Load<UnityEngine.Video.VideoClip>("Journey/Intro"),"Supplied original intro is included");Click("New Journey");Check(session.Data.started&&session.Data.playerName=="Zoë Explorer"&&session.Data.assistedGuidance,"Named journey starts with chosen settings");
             }
             else if(stage==13)
             {

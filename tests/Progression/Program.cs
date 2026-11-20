@@ -14,15 +14,12 @@ static class Program
     static SummerProgress Summer()
     {
         var p = new SummerProgress();
-        Check(!p.BeginBoss() && !p.AnswerWorkshop(0) && !p.AnswerMessage(0), "Summer requires introduction");
+        Check(!p.BeginBoss() && !p.AnswerWorkshop(0) && !p.AnswerGarden(0) && !p.AnswerMessage(0), "Summer requires introduction");
         p.Introduced = true;
         Check(!p.AnswerWorkshop(1) && p.WorkshopQuestion == 0, "Wrong answer preserves workshop step");
         Check(p.AnswerWorkshop(0) && p.AnswerWorkshop(1), "Workshop completes");
         Check(!p.BeginBoss(), "One ward cannot unlock boss");
-        Check(!p.StepOnStone(0), "Stones require hint");
-        Check(!p.ChooseHint(1) && p.ChooseHint(0), "Hint retry");
-        Check(p.StepOnStone(0) && !p.StepOnStone(1) && p.PatternStep == 0, "Wrong stone resets only pattern");
-        foreach (int i in new[]{0,2,1}) Check(p.StepOnStone(i), "Sun, seed, leaf order");
+        Check(!p.PatternComplete && p.PatternStep == 0, "Garden starts without a stepping-stone requirement");
         Check(!p.AnswerGarden(1) && p.AnswerGarden(0), "Garden retry");
         Check(!p.BeginBoss(), "Two wards cannot unlock boss");
         p.AnswerMessage(0); p.AnswerMessage(0);
