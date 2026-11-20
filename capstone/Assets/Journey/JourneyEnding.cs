@@ -6,7 +6,7 @@ namespace AmbrosJourney.Journey
 {
     public static class JourneyEnding
     {
-        // Play the supplied ending after the collected certificate is closed.
+        // Play the supplied ending when the player walks through the final home portal.
         public static IEnumerator Play(JourneySession session,Action finished)
         {
             var clip=Resources.Load<VideoClip>("Journey/Outro");

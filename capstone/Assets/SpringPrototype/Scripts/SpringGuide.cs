@@ -230,6 +230,12 @@ public class SpringGuide : MonoBehaviour
         if(welcomeOpen){presentation.Dialog.SetActive(false);presentation.Prompt.text="";return;}
         if(journalOpen){var titles=new string[3];var notes=new string[3];for(int i=0;i<3;i++){titles[i]=locations[i]+" / "+trials[i]+" of 2 challenges";notes[i]=studied[i]?fieldNotes[i].Split('\n')[1]:"Find the field note at this landmark.";}presentation.SetJournal(titles,notes,SpringComplete?"PARTY / Ambros + Ancient Mage":"PARTY / Ambros");return;}
         var dest=Destination();if(dest&&!DialogueOpen){Vector2 waypoint=dest.position;if(LessonComplete&&MissionsComplete==1){if(player.position.x< -10&&player.position.y> -5)waypoint=new Vector2(-15,-7);else if(player.position.x<2)waypoint=new Vector2(3,-7);}presentation.SetCompass(player.position,waypoint,dest.position);}
+        if(DialogueOpen&&target==3)
+        {
+            var atmosphere=FindAnyObjectByType<SpringAtmosphere>();
+            BossBattleMusic.Play(this,atmosphere?atmosphere.GetComponent<AudioSource>():null);
+        }
+        else BossBattleMusic.Stop(this);
         if(!DialogueOpen)return;
         string heading="Ancient Mage",body="";
         if(target==-1)body=SpringComplete?"You did it, Ambros! I will travel with you. The Summer gate is open beyond the guardian clearing.":LessonComplete?"Find the three myth bats, then face the Blossom Guardian. Pass its five-question quiz with at least 80%. I will join you after we clear Spring.":lessons[page];

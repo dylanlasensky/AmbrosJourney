@@ -102,7 +102,7 @@ namespace AmbrosJourney.Winter
         {
             if(CanEnterCave)World.ChangeRegion(true);
             if(Progress.InCave&&AmbrosJourney.Journey.JourneySession.CanUsePortals&&!InputBlocked&&AmbrosJourney.Journey.BossPortalSequence.AllowsEntry(winterGate)&&Vector2.Distance(player.transform.position,winterGate.position)<1.1f)
-                AmbrosJourney.Journey.JourneySession.Instance?.ReturnToMenu();
+                AmbrosJourney.Journey.JourneySession.Instance?.EnterHomePortal();
         }
         void PlaceLittleMage()
         {
@@ -144,6 +144,7 @@ namespace AmbrosJourney.Winter
         }
         void WinterBoss()
         {
+            BossBattleMusic.Play(this,music);
             if(Progress.WinterComplete){Show("Frostbound Warden / Restored","The Winter crest is yours. Enter the cave behind me, find the Echo Archive, then face the final Keeper.",Close);return;}
             if(!Progress.CanFightWinter){Show("The Warden guards the entrance","Finish the Wayfarer's Ledger and Frozen Observatory first. Their two evidence seals unlock this challenge.",Close);return;}
             Show("Winter boss / Frostbound Warden","Five claims guard this cave. Score at least 4/5 to earn Winter's crest and enter. Your two outdoor lessons stay complete when you retry.",()=>{Progress.BeginWinterBoss();WinterBossQuestion();});
@@ -161,6 +162,7 @@ namespace AmbrosJourney.Winter
         }
         void Boss()
         {
+            BossBattleMusic.Play(this,music);
             if(Progress.Complete){Close();BeginCertificateReward(false);return;}
             if(!Progress.CanFight){Show("The final seal is closed","Earn the Winter crest outside, then complete the Echo Archive. All three evidence seals are needed.",Close);return;}
             Show("Final boss / The Echo Keeper","Eight activities put your AI safety skills to work in new situations. Pick details, build a request, match jobs and check evidence. Get at least 7/8 right.\n\nYou can revisit any unlocked season from Pause to find missed artifacts and review notes. Your lessons stay safe on a retry.",()=>{Progress.BeginBoss();BossQuestion();});
@@ -197,7 +199,7 @@ namespace AmbrosJourney.Winter
             player.Flash(right?new Color(.65f,1,.65f):new Color(1,.5f,.4f));
             if(right)SeasonFeedback.Burst(player.transform.position,new Color(1,.8f,.3f));
         }
-        void Close(){presentation.SetFrostNotice(false);if(finalPanel)finalPanel.Hide();dialog.SetActive(false);actions.Clear();next=null;if(music)music.pitch=1;}
+        void Close(){BossBattleMusic.Stop(this);presentation.SetFrostNotice(false);if(finalPanel)finalPanel.Hide();dialog.SetActive(false);actions.Clear();next=null;if(music)music.pitch=1;}
         void Show(string title,string body,Action onContinue)
         {
             presentation.SetFrostNotice(false);

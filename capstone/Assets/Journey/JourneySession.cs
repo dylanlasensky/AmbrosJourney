@@ -300,18 +300,18 @@ namespace AmbrosJourney.Journey
         public void ShowCertificate()
         {
             if(!Data.finished||Data.certificatePending)return;
-            backAction=CloseCertificate;ui.KeyboardNavigation=true;
+            backAction=ExitCertificate;ui.KeyboardNavigation=true;
             Paused=true;Time.timeScale=0;AudioListener.pause=true;ui.gameObject.SetActive(true);ui.Clear();
             var backdrop=ui.Panel(ui.Root,"Certificate backdrop",new Rect(-5000,-5000,10000,10000),new Color(.06f,.12f,.11f,.96f));backdrop.GetComponent<UnityEngine.UI.Image>().raycastTarget=true;
             JourneyCertificateView.Draw(ui,Data,.86f);
             ui.Button(ui.Root,"Download PDF certificate",new Rect(-430,312,410,40),()=>JourneyCertificate.Export(Data,ui));
-            ui.Button(ui.Root,"Exit",new Rect(20,312,410,40),CloseCertificate);
+            ui.Button(ui.Root,"Exit",new Rect(20,312,410,40),ExitCertificate);
         }
-        void CloseCertificate()
+        public void EnterHomePortal()
         {
-            if(cinematic)return;
-            if(!Data.outroSeen)StartCoroutine(JourneyEnding.Play(this,ExitCertificate));
-            else ExitCertificate();
+            if(!CanUsePortals||!Data.finished||Data.certificatePending||!Data.homePortalOpened)return;
+            Paused=true;Time.timeScale=0;AudioListener.pause=true;Save();
+            StartCoroutine(JourneyEnding.Play(this,ReturnToMenu));
         }
         public void ExitCertificate()
         {
