@@ -23,7 +23,7 @@ namespace AmbrosJourney.Summer
         static Transform Player(MonoBehaviour guide)
         { return guide ? guide.GetType().GetField("player")?.GetValue(guide) as Transform : null; }
         public static bool GateAllowsEntry(MonoBehaviour guide, Vector2 playerPosition, Vector2 gatePosition)
-        { return guide && Vector2.Distance(playerPosition, gatePosition) < 1.1f && Flag(guide, "SpringComplete") && !Flag(guide, "DialogueOpen"); }
+        { return guide && Vector2.Distance(playerPosition, gatePosition) < 1.1f && AmbrosJourney.Journey.BossPortalSequence.AllowsEntry(gatePosition) && Flag(guide, "SpringComplete") && !Flag(guide, "DialogueOpen"); }
         void LateUpdate()
         {
             if(!AmbrosJourney.Journey.JourneySession.CanUsePortals)return;

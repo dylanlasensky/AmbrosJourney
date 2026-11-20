@@ -12,9 +12,7 @@ namespace AmbrosJourney.Winter
     {
         WinterLevel level;
         SpriteRenderer item;
-        readonly List<GameObject> dust=new List<GameObject>();
         Texture2D paperTexture;Sprite paperSprite;Material material;
-        readonly List<Sprite> fragments=new List<Sprite>();
         public int DetachedPixelCount {get;private set;}
         public int TotalPixelCount {get;private set;}
         public bool Dropping {get;private set;}
@@ -37,6 +35,7 @@ namespace AmbrosJourney.Winter
         }
         void HideBoss()
         {
+            PixelBossDissolve.StopBoss(level.guardian.gameObject);
             level.guardian.enabled=false;
             var animation=level.guardian.GetComponent<SeasonBossVisual>();if(animation)animation.enabled=false;
             foreach(var collider in level.guardian.GetComponents<Collider2D>())collider.enabled=false;
@@ -60,54 +59,13 @@ namespace AmbrosJourney.Winter
                 focusedCamera.orthographicSize=Mathf.Max(originalSize,(top-bottom)*.5f+1.8f);
                 focusedCamera.transform.position=new Vector3(bounds.center.x,(top+bottom)*.5f,-10);
             }
-            var random=new System.Random(40);
-            Rect region=sprite.textureRect;Color32[] pixels=sprite.texture.GetPixels32();const int cell=12;
-            // Texture-backed fragments initially reconstruct the exact boss. Each chunk then leaves
-            // the silhouette individually: top details first, followed by the collapsing body.
-            for(int y=0;y<(int)region.height;y+=cell)for(int x=0;x<(int)region.width;x+=cell)
-            {
-                int width=Mathf.Min(cell,(int)region.width-x),height=Mathf.Min(cell,(int)region.height-y);bool solid=false;
-                for(int dy=0;dy<height&&!solid;dy++)for(int dx=0;dx<width;dx++)
-                    if(pixels[((int)region.y+y+dy)*sprite.texture.width+(int)region.x+x+dx].a>40){solid=true;break;}
-                if(!solid)continue;
-                var piece=Sprite.Create(sprite.texture,new Rect(region.x+x,region.y+y,width,height),Vector2.one*.5f,sprite.pixelsPerUnit,0,SpriteMeshType.FullRect);fragments.Add(piece);
-                var host=new GameObject("Falling Keeper dust",typeof(SpriteRenderer));host.transform.SetParent(boss.transform.parent,true);
-                var renderer=host.GetComponent<SpriteRenderer>();renderer.sprite=piece;renderer.sharedMaterial=material;renderer.sortingOrder=visual.sortingOrder+1;renderer.enabled=false;
-                Vector3 local=new Vector3(sprite.bounds.min.x+(x+width*.5f)/sprite.pixelsPerUnit,sprite.bounds.min.y+(y+height*.5f)/sprite.pixelsPerUnit,0);
-                if(visual.flipX)local.x=-local.x;if(visual.flipY)local.y=-local.y;
-                Vector3 position=boss.transform.TransformPoint(local);host.transform.position=position;host.transform.localScale=boss.transform.lossyScale;
-                float fromTop=1-Mathf.InverseLerp(bounds.min.y,bounds.max.y,position.y);
-                dust.Add(host);renderers.Add(renderer);origins.Add(position);
-                releaseTimes.Add(.18f+fromTop*.42f+(float)random.NextDouble()*.12f);
-                lifetimes.Add(.40f+(float)random.NextDouble()*.12f);
-                velocities.Add(new Vector3(((float)random.NextDouble()-.5f)*2.4f,.15f+(float)random.NextDouble()*.9f,0));spins.Add(((float)random.NextDouble()-.5f)*100);
-            }
-            TotalPixelCount=dust.Count;float elapsed=0;Vector3 bossPosition=boss.transform.position;
-            while(elapsed<1.30f)
-            {
-                elapsed+=Time.deltaTime;AnimationElapsed=elapsed;DetachedPixelCount=0;
-                visual.enabled=elapsed<.18f;
-                visual.color=Color.Lerp(Color.white,new Color(.65f,.95f,1),Mathf.Sin(Mathf.Clamp01(elapsed/.18f)*Mathf.PI)*.55f);
-                if(visual.enabled)boss.transform.position=bossPosition+Vector3.right*(Mathf.Sin(elapsed*90)*.035f);
-                for(int i=0;i<dust.Count;i++)
-                {
-                    var renderer=renderers[i];renderer.enabled=elapsed>=.18f;
-                    float t=elapsed-releaseTimes[i];float collapse=Mathf.SmoothStep(0,.85f,Mathf.InverseLerp(.30f,.75f,Mathf.Min(elapsed,releaseTimes[i])));
-                    var origin=origins[i];origin.y=bounds.min.y+(origin.y-bounds.min.y)*(1-collapse);
-                    if(t<0){dust[i].transform.position=origin;continue;}
-                    DetachedPixelCount++;
-                    dust[i].transform.position=origin+velocities[i]*t+Vector3.down*(5.5f*t*t);
-                    dust[i].transform.rotation=Quaternion.Euler(0,0,spins[i]*t);
-                    float remaining=1-t/lifetimes[i];renderer.color=new Color(1,1,1,Mathf.Clamp01(remaining*3));
-                    if(remaining<=0)renderer.enabled=false;
-                }
+            var crumble=gameObject.AddComponent<PixelBossDissolve>();
+            yield return crumble.Play(visual,elapsed=>{
+                AnimationElapsed=elapsed;DetachedPixelCount=crumble.DetachedPixelCount;TotalPixelCount=crumble.TotalPixelCount;
                 if(!item&&elapsed>=DropDelay){Dropping=true;Drop();}
                 if(item&&Dropping)AnimateDrop(elapsed-DropDelay);
-                yield return null;
-            }
-            boss.transform.position=bossPosition;HideBoss();
-            foreach(var host in dust)if(host)Destroy(host);dust.Clear();
-            foreach(var fragment in fragments)if(fragment)Destroy(fragment);fragments.Clear();
+            });
+            HideBoss();Destroy(crumble);
             if(Dropping)AnimateDrop(FallDuration+BounceDuration);
             RestoreCamera();level.Transitioning=false;
         }
@@ -185,8 +143,8 @@ namespace AmbrosJourney.Winter
         void OnDestroy()
         {
             RestoreCamera();
-            foreach(var p in dust)if(p)Destroy(p);if(item)Destroy(item.gameObject);
-            if(paperSprite)Destroy(paperSprite);if(paperTexture)Destroy(paperTexture);foreach(var fragment in fragments)if(fragment)Destroy(fragment);if(material)Destroy(material);
+            if(item)Destroy(item.gameObject);
+            if(paperSprite)Destroy(paperSprite);if(paperTexture)Destroy(paperTexture);if(material)Destroy(material);
         }
     }
 }

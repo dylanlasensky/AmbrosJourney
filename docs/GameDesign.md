@@ -6,7 +6,7 @@ This is the current design/implementation handoff. Dated validation reports rema
 
 Ambros, represented by the Chibi Assassin character, is pulled into a game while using his laptop. Four seasons teach middle-school players to understand AI, keep their own judgment, ask useful questions and check evidence. The Ancient Mage is another trapped child who has grown old. Summer's married Warriors, Fall's Emberfist and Winter's Little Mage provide the later lessons.
 
-The teammate owns the final intro/outro videos. The generated placeholder intro and its tools were retired. Until the intro is supplied, name entry leads straight into Spring. The current final victory crumbles the Keeper, drops an E-pickup scroll, and opens the certificate directly. Return/Escape opens the main menu. The retained outro helper still needs a teammate handoff connection; the earlier proposal for a required interactive return to Spring is not implemented.
+The teammate owns the final intro/outro videos. The generated placeholder intro and its tools were retired. Until the intro is supplied, name entry leads straight into Spring. The current final victory crumbles the Keeper, drops an E-pickup scroll, and opens the certificate directly. Exit/Escape returns to the cave and forms a home portal. Walking through it opens the main menu. The retained outro helper still needs a teammate handoff connection; the earlier proposal for a required interactive return to Spring is not implemented.
 
 ## Progression contract
 
@@ -16,7 +16,7 @@ The teammate owns the final intro/outro videos. The generated placeholder intro 
 | Summer | Useful tool choices; hint then Sun > Seed > Leaf practice; permitted draft feedback; fictional privacy redaction and human support | Suncrest Guardian, 4/5 after three wards | Independent Thinker; both Warriors |
 | Fall | Goal/context/format; audience and permitted hints; specific revisions and factual limits; seven choices across three notes | Existing Bramble Sentinel, 4/5 after three runes | Prompt Pathfinder; Emberfist |
 | Winter outdoors | Original sources, source context, independent evidence and current local information; four choices after two notes | Frostbound Warden, 4/5 | Winter crest; Little Mage; cave access |
-| Cave/finale | Echo Archive uncertainty/correction note and two choices; eight new cumulative AI safety activities | Echo Keeper, 7/8 | Keeper disintegration; dropped scroll and E pickup; personalized PDF; Return to main menu |
+| Cave/finale | Echo Archive uncertainty/correction note and two choices; eight new cumulative AI safety activities | Echo Keeper, 7/8 | Keeper disintegration; dropped scroll and E pickup; personalized PDF; Exit to cave, animated home portal to main menu |
 
 Teach before testing. Spring is approachable; later scenarios require applying concepts and distinguishing plausible shortcuts. Wording is concise and conversational, with no em dashes in runtime copy. Explanations should help the player understand a mistake. Mission retries retain completed choices; failed guardians retain missions. There are no artificial waiting timers.
 

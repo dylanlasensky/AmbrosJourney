@@ -68,7 +68,7 @@ namespace AmbrosJourney.Journey.Editor
                     session.BeginTestProfile();session.Resume();Call(level,"Close");SoundEffectsChecks.InspectIfRequested();
                     var p=new WinterProgress{Introduced=true};
                     for(int m=0;m<2;m++){p.ReadNote(m);foreach(var q in WinterContent.Missions[m])p.AnswerMission(m,q.Correct);}
-                    p.BeginWinterBoss();foreach(var q in WinterContent.Boss)p.AnswerWinterBoss(q.Correct);p.EnterCave();p.ReadNote(2);foreach(var q in WinterContent.Missions[2])p.AnswerMission(2,q.Correct);
+                    p.BeginWinterBoss();foreach(var q in WinterContent.Boss)p.AnswerWinterBoss(q.Correct);p.ReadCaveGuide();p.EnterCave();p.ReadNote(2);foreach(var q in WinterContent.Missions[2])p.AnswerMission(2,q.Correct);
                     p.BeginBoss();foreach(var q in WinterContent.Final)p.AnswerFinal(q.Expected);
                     Check(p.Complete&&p.Valid(),"Genuine final pass state");level.Progress=p;level.World.RestoreRegion(true);
                     level.player.transform.position=WinterWorld.BossPosition+Vector2.down*4;level.player.GetComponent<Rigidbody2D>().position=level.player.transform.position;Camera.main.transform.position=level.player.transform.position+Vector3.back*10;

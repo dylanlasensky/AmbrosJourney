@@ -126,7 +126,7 @@ public static class GeneralFeedbackChecks
         var l=UnityEngine.Object.FindAnyObjectByType<WinterLevel>();l.DismissPanel();var ui=l.GetComponentInChildren<SeasonOverlay>();
         l.Interact(1);Next(ui);Choice(ui,WinterContent.Missions[0][0].Correct);Feedback(ui,true,1,2,"FeedbackWinterLesson");Next(ui);Choice(ui,(WinterContent.Missions[0][1].Correct+1)%3);Feedback(ui,false,1,2);Call(l,"Close");Boundaries(l);
         l.RestoreProgress(WinterReady());l.Interact(8);Next(ui);Choice(ui,WinterContent.Boss[0].Correct);Feedback(ui,true,1,5,"FeedbackWinterBoss");Next(ui);Choice(ui,(WinterContent.Boss[1].Correct+1)%3);Feedback(ui,false,1,5);
-        var p=WinterReady();p.BeginWinterBoss();foreach(var q in WinterContent.Boss)p.AnswerWinterBoss(q.Correct);l.RestoreProgress(p);Move(l,WinterWorld.Entrance);Call(l,"LateUpdate");Check(p.InCave,"Walk-in cave entrance still works");
+        var p=WinterReady();p.BeginWinterBoss();foreach(var q in WinterContent.Boss)p.AnswerWinterBoss(q.Correct);l.RestoreProgress(p);Move(l,WinterWorld.Entrance);Call(l,"LateUpdate");Check(!p.InCave,"Cave requires Mage conversation");Move(l,l.littleMage.transform.position);l.Interact(0);Next(ui);Move(l,WinterWorld.Entrance);Call(l,"LateUpdate");Check(p.InCave,"Walk-in cave entrance works after Mage conversation");
         Check(!l.littleMage.GetComponentInChildren<SeasonWorldLabel>(true).enabled,"Little Mage has no E label inside");
         l.Interact(0);Check(!l.IsDialogueOpen,"Little Mage cannot start outdoor dialogue inside");
         Move(l,l.littleMage.transform.position);Check((int)typeof(WinterLevel).GetMethod("Nearest",Flags).Invoke(l,null)!=0,"Little Mage excluded from cave interactions");
@@ -152,18 +152,24 @@ public static class GeneralFeedbackChecks
                 var l=UnityEngine.Object.FindAnyObjectByType<WinterLevel>();if(l.Transitioning||!l.CertificateReward.Ready)return;
                 Move(l,l.CertificateReward.Position+Vector2.down*.7f);Check(l.CertificateReward.TryCollect(),"Certificate pickup opens certificate");
                 var ui=JourneySession.Instance.GetComponentInChildren<JourneyUI>();Check(JourneySession.Instance.Paused,"Certificate modal");
-                ui.GetComponentsInChildren<UnityEngine.UI.Button>().Single(b=>b.name=="Return").onClick.Invoke();
+                ui.GetComponentsInChildren<UnityEngine.UI.Button>().Single(b=>b.name=="Exit").onClick.Invoke();
             }
             else if(stage==5)
             {
-                Check(SceneManager.GetActiveScene().name=="Intro","Certificate Return opens main menu scene");
+                if(SceneManager.GetActiveScene().name=="Winter")
+                {
+                    var l=UnityEngine.Object.FindAnyObjectByType<WinterLevel>();var sequence=UnityEngine.Object.FindAnyObjectByType<BossPortalSequence>();
+                    Check(l.Progress.InCave,"Certificate Exit resumes cave");if(!sequence.Home.Ready)return;
+                    Move(l,sequence.Home.Portal.position);return;
+                }
+                Check(SceneManager.GetActiveScene().name=="Intro","Home portal opens main menu");
                 var ui=JourneySession.Instance.GetComponentInChildren<JourneyUI>();Check(ui.GetComponentsInChildren<UnityEngine.UI.Button>().Any(b=>b.name=="New Journey"),"Main menu is visible");Check(JourneySession.Instance.Data.finished,"Completed progress retained");
                 JourneySession.Instance.ShowCertificate();JourneySession.Instance.HandleBack();
             }
             else if(stage==6)
             {
                 Check(SceneManager.GetActiveScene().name=="Intro"&&!JourneySession.Instance.Paused,"Certificate Escape also returns to main menu");
-                File.WriteAllText(Report,"PASS\n"+checks+" assertions: all-season Correct feedback and fixed totals, no courage/hearts on screen, artifact label/full-count fit, physical ridge boundaries and walk-in entry, no cave mage interaction, Activity 5 cycling note, certificate Return/Escape to menu with completion saved.");
+                File.WriteAllText(Report,"PASS\n"+checks+" assertions: all-season Correct feedback and fixed totals, no courage/hearts on screen, artifact label/full-count fit, physical ridge boundaries and walk-in entry, no cave mage interaction, Activity 5 cycling note, certificate Exit to cave, home portal to menu, and menu certificate Escape with completion saved.");
                 SessionState.SetBool(Key,false);EditorApplication.Exit(0);return;
             }
             stage++;ready=EditorApplication.timeSinceStartup+(stage==4?1:4);if(stage<4)JourneySession.Instance.LoadChapter(stage+1);

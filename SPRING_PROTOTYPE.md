@@ -23,7 +23,7 @@ Spring uses the same Canvas/TMP parchment UI and Determination font as later cha
 
 ## Interaction feedback
 
-Interactive people and lesson objects have overhead **[E]** cards; artifacts use **[F]**. Cards follow their targets, avoid overlap and hide during conversations/journal views. The duplicate bottom interaction popup is removed; the controls bar remains. Correct answers explicitly say **Correct!** and displayed quiz scores use a fixed total. Courage/hearts and wrong-answer penalties are removed; retries retain completed lessons. [Current feedback changes](docs/UserTestingFeedback.md)
+Interactive people and lesson objects have overhead **[E]** cards; artifacts use **[E]**. Cards follow their targets, avoid overlap and hide during conversations/journal views. The duplicate bottom interaction popup is removed; the controls bar remains. Correct answers explicitly say **Correct!** and displayed quiz scores use a fixed total. Courage/hearts and wrong-answer penalties are removed; retries retain completed lessons. [Current feedback changes](docs/UserTestingFeedback.md)
 
 ## Tools and limits
 

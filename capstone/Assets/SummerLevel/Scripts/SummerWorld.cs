@@ -135,7 +135,7 @@ namespace AmbrosJourney.Summer
             Label("SUNCREST'S CLEARING",new Vector2(0,-16));
             for(int x=-29;x<=29;x+=2) if(Mathf.Abs(x)>3) {Visual("Arena perimeter","Rock",new Vector2(x,-18));Block("Arena wall",new Vector2(x,-18),new Vector2(2,1));}
             var seal=Visual("Village ward barrier","Barrier",new Vector2(0,-18));seal.transform.localScale=new Vector3(8.4f,2,1);seal.gameObject.AddComponent<BoxCollider2D>(); level.arenaSeal=seal.gameObject;
-            level.shields=new SpriteRenderer[5];for(int i=0;i<5;i++)level.shields[i]=Visual("Suncrest seal "+(i+1),"Shield",new Vector2(-3+i*1.5f,-24));
+            level.shields=new SpriteRenderer[0];
 
             level.fallGate=Visual("Fall portal","Portal",new Vector2(0,-30),1.5f).transform;level.fallGate.GetComponent<SpriteRenderer>().color=new Color(1,.69f,.4f);Label("FALL / PROMPT ENGINEERING",new Vector2(0,-27));
             var exit=Visual("Fall seal","Barrier",new Vector2(0,-28.7f));exit.transform.localScale=new Vector3(5,1,1);exit.gameObject.AddComponent<BoxCollider2D>();level.exitSeal=exit.gameObject;

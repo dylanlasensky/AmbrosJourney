@@ -15,7 +15,10 @@ namespace AmbrosJourney.Winter
         public bool WinterBossStarted,WinterBossFinished,WinterComplete;
         public int WinterBossQuestion,WinterBossScore;
         public bool Introduced, CaveDiscovered, InCave, BossStarted, BossFinished, Complete;
-        public bool CompassWarningShown;
+        public bool CompassWarningShown, CaveGuideRead;
+        public bool CaveEntryExplained=>CaveGuideRead||CaveDiscovered;
+        public bool CanEnterCave=>WinterComplete&&CaveEntryExplained;
+        public bool ReadCaveGuide(){if(!WinterComplete||InCave)return false;CaveGuideRead=true;return true;}
         public bool[] Studied = new bool[3];
         public int[] Steps = new int[3];
         public int BossQuestion, BossScore;
@@ -24,7 +27,7 @@ namespace AmbrosJourney.Winter
         public bool CanFightWinter=>Introduced&&MissionComplete(0)&&MissionComplete(1)&&!InCave;
         public bool CanFight=>WinterComplete&&Introduced&&CaveDiscovered&&InCave&&RuneCount==3;
 
-        public bool EnterCave(){if(!WinterComplete)return false;CaveDiscovered=InCave=true;return true;}
+        public bool EnterCave(){if(!CanEnterCave)return false;CaveDiscovered=InCave=true;return true;}
         public void LeaveCave(){InCave=false;}
         public bool ReadNote(int m){if(!Introduced||m<0||m>2||(m==2&&!InCave))return false;Studied[m]=true;return true;}
         public bool AnswerMission(int m,int c)

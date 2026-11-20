@@ -16,7 +16,7 @@ namespace AmbrosJourney.Winter
             var host=new GameObject("Winter portal connector (runtime only)");Object.DontDestroyOnLoad(host);host.AddComponent<WinterPortalBridge>();
         }
         public static bool GateAllowsEntry(AmbrosJourney.Fall.FallLevel source)
-        {return source && source.Progress.Complete && !source.InputBlocked && source.player && source.winterGate && Vector2.Distance(source.player.transform.position,source.winterGate.position)<1.1f;}
+        {return source && source.Progress.Complete && AmbrosJourney.Journey.BossPortalSequence.AllowsEntry(source.winterGate) && !source.InputBlocked && source.player && source.winterGate && Vector2.Distance(source.player.transform.position,source.winterGate.position)<1.1f;}
         void LateUpdate()
         {
             if(!AmbrosJourney.Journey.JourneySession.CanUsePortals)return;

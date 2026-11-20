@@ -90,7 +90,7 @@ namespace AmbrosJourney.Journey.Editor
                 }
                 else if(stage==7)
                 {
-                    Click("Certificate");Check(UI.transform.Find("Personalized certificate"),"Certificate action unchanged");Click("Return");session.Data.playerName=new string('W',32);session.Pause();Inspect();
+                    Click("Certificate");Check(UI.transform.Find("Personalized certificate"),"Certificate action unchanged");Click("Exit");session.Data.playerName=new string('W',32);session.Pause();Inspect();
                 }
                 else if(stage==8){Inspect();}
                 else if(stage==9){Inspect();Capture("Journal-"+Screen.width+"x"+Screen.height+"-LongName");}

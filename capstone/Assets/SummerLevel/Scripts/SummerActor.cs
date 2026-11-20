@@ -30,7 +30,6 @@ namespace AmbrosJourney.Summer
                 {
                     var k=Keyboard.current;
                     movement=new Vector2((k.dKey.isPressed||k.rightArrowKey.isPressed?1:0)-(k.aKey.isPressed||k.leftArrowKey.isPressed?1:0),(k.wKey.isPressed||k.upArrowKey.isPressed?1:0)-(k.sKey.isPressed||k.downArrowKey.isPressed?1:0)).normalized;
-                    if(k.rKey.wasPressedThisFrame&&body){body.position=SummerLevel.Spawn;transform.position=SummerLevel.Spawn;body.linearVelocity=Vector2.zero;trail.Reset(SummerLevel.Spawn);}
                 }
             }
             else if(Guidance!=null)movement=Guidance.Step(transform,level.player.transform,blocked);

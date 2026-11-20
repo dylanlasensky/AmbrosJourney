@@ -62,6 +62,12 @@ namespace AmbrosJourney.Journey
             var obj=new GameObject(label,typeof(SpriteRenderer));obj.transform.SetParent(parent?parent:outside,false);obj.transform.position=position;
             var r=obj.GetComponent<SpriteRenderer>();Skin(r,"VillageDetails",index,width);var bounds=r.bounds;bounds.Expand(.35f);propFootprints.Add(bounds);return r;
         }
+        public void Portal(Transform target,int chapter)
+        {
+            var renderer=target.GetComponent<SpriteRenderer>();if(!renderer)renderer=target.gameObject.AddComponent<SpriteRenderer>();
+            Skin(renderer,"SeasonPortals",chapter-1,3.2f);
+            foreach(var tree in original)if(tree&&Tree(tree)&&tree.sortingOrder>renderer.sortingOrder&&tree.bounds.Intersects(renderer.bounds))Remove(tree.gameObject);
+        }
         public Sprite ArtifactIcon(int id)=>Art("SeasonalRelics",id,1.15f);
         public void Relic(SpriteRenderer renderer,int id)=>Skin(renderer,"SeasonalRelics",id,1.15f);
         public void Sign(Vector2 position)=>Prop("Carved trail sign",1,position,1.25f);

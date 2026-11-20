@@ -23,7 +23,6 @@ public class SpringPlayer : MonoBehaviour
             input.x = ((k.dKey.isPressed || k.rightArrowKey.isPressed) ? 1 : 0) - ((k.aKey.isPressed || k.leftArrowKey.isPressed) ? 1 : 0);
             input.y = ((k.wKey.isPressed || k.upArrowKey.isPressed) ? 1 : 0) - ((k.sKey.isPressed || k.downArrowKey.isPressed) ? 1 : 0);
             input = input.normalized;
-            if (k.rKey.wasPressedThisFrame) { body.position = spawnPoint; body.linearVelocity = Vector2.zero; }
         }
         if (Mathf.Abs(input.x) > .01f) visual.flipX = input.x < 0;
         float actualSpeed=body.linearVelocity.magnitude;int state=actualSpeed>.10f?1:0;if(state!=animationState){clock=0;animationState=state;}clock+=Time.deltaTime*(state==1?actualSpeed*1.9f:5);

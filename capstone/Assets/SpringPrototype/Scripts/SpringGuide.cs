@@ -23,6 +23,9 @@ public class SpringGuide : MonoBehaviour
     string feedback = "";
     Transform[] bats = new Transform[3];
     Transform boss, gate;
+    public Transform Boss=>boss;
+    public Transform ExitPortal=>gate;
+    public GameObject ExitBarrier=>gateSeal;
     bool[] cleared = new bool[3];
     bool[] studied=new bool[3];
     int[] trials=new int[3];
@@ -79,7 +82,7 @@ public class SpringGuide : MonoBehaviour
         if(state==null||!state.Valid())throw new System.ArgumentException("Invalid Spring checkpoint");
         explored=state.explored;LessonComplete=state.lessonComplete;SpringComplete=state.complete;MissionsComplete=state.missions;BossScore=state.bossScore;cleared=state.cleared;studied=state.studied;trials=state.trials;
         DialogueOpen=journalOpen=false;target=-1;feedback="";bossQuestion=0;bossResult=false;
-        for(int i=0;i<3;i++)bats[i].gameObject.SetActive(!cleared[i]);boss.gameObject.SetActive(!SpringComplete);gateSeal.SetActive(!SpringComplete);
+        for(int i=0;i<3;i++)bats[i].gameObject.SetActive(!cleared[i]);boss.gameObject.SetActive(!SpringComplete);gateSeal.SetActive(!SpringComplete);AmbrosJourney.Journey.BossPortalSequence.RestoreCheckpoint();
     }
     void Start()
     {
@@ -102,6 +105,7 @@ public class SpringGuide : MonoBehaviour
         gateSeal=new GameObject("Sealed path to Summer");gateSeal.transform.position=new Vector3(0,-32.5f,0);
         var seal=gateSeal.AddComponent<SpriteRenderer>();seal.sprite=Sprite.Create(Texture2D.whiteTexture,new Rect(0,0,1,1),new Vector2(.5f,.5f),1);seal.sharedMaterial=mage.GetComponent<SpriteRenderer>().sharedMaterial;seal.color=new Color(.16f,.8f,.72f,.25f);seal.sortingOrder=420;gateSeal.transform.localScale=new Vector3(1.6f,1.5f,1);
         gateSeal.AddComponent<BoxCollider2D>();
+        gate.gameObject.SetActive(false);
         NaturalTrail.Spring();
 
     }
@@ -126,8 +130,8 @@ public class SpringGuide : MonoBehaviour
         int best=-99;float distance=2.6f;
         if(Distance(mage)<distance){best=-1;distance=Distance(mage);}
         for(int i=0;i<3;i++) if(!cleared[i] && Distance(bats[i])<distance){best=i;distance=Distance(bats[i]);}
-        if(Distance(boss)<5.5f&&best==-99){best=3;}
-        if(Distance(gate)<distance){best=4;distance=Distance(gate);}
+        if(!SpringComplete&&boss.gameObject.activeInHierarchy&&Distance(boss)<5.5f&&best==-99){best=3;}
+        if(AmbrosJourney.Journey.BossPortalSequence.AllowsEntry(gate)&&Distance(gate)<distance){best=4;distance=Distance(gate);}
         for(int i=0;i<3;i++)if(Distance(stones[i])<distance){best=5+i;distance=Distance(stones[i]);}
         return best;
     }
@@ -167,7 +171,7 @@ public class SpringGuide : MonoBehaviour
         if(target==-1){if(page<lessons.Length-1 && !LessonComplete)page++;else{LessonComplete=true;DialogueOpen=false;}return;}
         if(target>=0 && target<=2 && feedback!="")
         {if(cleared[target])DialogueOpen=false;else feedback="";return;}
-        if(target==3 && feedback!="" && !bossResult){feedback="";bossQuestion++;if(bossQuestion>=questions.Length){bossResult=true;SpringComplete=BossScore>=4;if(SpringComplete){GameAudio.Play(SoundCue.Complete,.65f);boss.gameObject.SetActive(false);gateSeal.SetActive(false);}}return;}
+        if(target==3 && feedback!="" && !bossResult){feedback="";bossQuestion++;if(bossQuestion>=questions.Length){bossResult=true;SpringComplete=BossScore>=4;if(SpringComplete){GameAudio.Play(SoundCue.Complete,.65f);}}return;}
         if(target==3 && bossResult && !SpringComplete){bossQuestion=0;BossScore=0;bossResult=false;feedback="";return;}
         if(!IsQuestion() || SpringComplete)DialogueOpen=false;
     }
@@ -206,7 +210,7 @@ public class SpringGuide : MonoBehaviour
         string heading="Ancient Mage",body="";
         if(target==-1)body=SpringComplete?"You did it, Ambros! I will travel with you. The Summer gate is open beyond the guardian clearing.":LessonComplete?"Find the three myth bats, then face the Blossom Guardian. Pass its five-question quiz with at least 80%. I will join you after we clear Spring.":lessons[page];
         else if(target<3){heading=locations[target]+" / Challenge "+Mathf.Min(2,trials[target]+1)+" of 2";body=!LessonComplete?"Meet the Ancient Mage first.":!studied[target]?"Find the field note near this landmark first. Read it with E, then come back to apply what you learned.":feedback!=""?feedback:"TRUE OR FALSE?\n\n"+claims[QuestionIndex(target)];}
-        else if(target==3){heading="Spring Blossom Guardian";body=SpringComplete?"Spring cleared! Your grade: "+BossScore+" / 5 ("+(BossScore*20)+"%). You earned Apprentice rank. The Ancient Mage joins your party. The Summer gate is now open.":MissionsComplete<3?"Dispel all three myth bats before challenging the guardian.":bossResult?"Your grade: "+BossScore+" / 5 ("+(BossScore*20)+"%). You need 80% to pass. Review your mistakes and try again. No progress is lost.":feedback!=""?feedback:"QUESTION "+(bossQuestion+1)+" / 5  /  80% TO PASS\n\n"+questions[bossQuestion];}
+        else if(target==3){heading="Spring Blossom Guardian";body=SpringComplete?"Spring cleared! Your grade: "+BossScore+" / 5 ("+(BossScore*20)+"%). You earned Apprentice rank. The Ancient Mage joins your party. Close this message to watch the Guardian fade and the Summer portal form.":MissionsComplete<3?"Dispel all three myth bats before challenging the guardian.":bossResult?"Your grade: "+BossScore+" / 5 ("+(BossScore*20)+"%). You need 80% to pass. Review your mistakes and try again. No progress is lost.":feedback!=""?feedback:"QUESTION "+(bossQuestion+1)+" / 5  /  80% TO PASS\n\n"+questions[bossQuestion];}
         else if(target>=5){heading=locations[target-5]+" / Field Note";body=LessonComplete?fieldNotes[target-5]:"Visit the Mage at his cottage first. He will help you read these trail notes.";}
         else {heading="The Summer Gate";body=SpringComplete?"You have unlocked Summer! The next season teaches when AI is useful and when to do the thinking yourself. Close this conversation and walk through the unlocked gate to continue your adventure in Summer.":"The path is sealed. Finish the Mage's lessons, defeat the myth bats and score at least 80% against the Blossom Guardian.";}
         presentation.Heading.text=heading;presentation.Copy.text=body;

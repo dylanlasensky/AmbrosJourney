@@ -43,3 +43,12 @@ Texture imports use Default, point filtering, no mipmaps, uncompressed alpha, re
 | Final robot | [Idle](BossScreenshots/FinalEchoKeeper-0.png) | [Impact](BossScreenshots/FinalEchoKeeper-3.png) |
 
 These are actual Unity renders from the earlier boss-art pass, before the November 12 positioning and UI feedback changes. Automated art checks confirm frame assignment and strike signals; people should still judge motion, intimidation, world scale and readability in play. [Current validation](CurrentValidation.md)
+
+
+## Victory and exit behavior
+
+All seasonal guardians now use the same texture-backed pixel disintegration as the Echo Keeper. Their shield banners are removed. Close the final results message to play the effect; movement, interaction and menus are blocked until it finishes. Failed attempts retain the boss and completed lessons.
+
+Spring, Summer and Fall then assemble their exit portal from square pixels and allow entry only after the finished portal appears. Winter's Warden instead leaves the original cave visible, with no portal overlay or portal-building animation. Finish the Little Mage's outside briefing before first cave entry, then walk through the doorway automatically.
+
+The final Keeper still drops the certificate scroll with its existing fall/bounce timing. Download PDF remains available. Exit/Escape resumes the cave and assembles the home portal; walking through it opens the main menu. Saved completed encounters restore without replaying their victory effects. [Full change description](SecondUserTesting.md).

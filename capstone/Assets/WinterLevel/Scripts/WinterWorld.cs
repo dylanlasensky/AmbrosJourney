@@ -115,7 +115,7 @@ namespace AmbrosJourney.Winter
             for(int i=0;i<5;i++)Visual("Archive crystal","Crystal",new Vector2(98+i*2,15),.4f);
             level.guardian=Actor("Echo Keeper / ancient AI robot","SkeletonIdle",4,BossPosition,"SkeletonAttack",6,2.2f);SeasonBossVisual.Attach(level.guardian.gameObject,"FinalEchoKeeperAtlas",8.6f);SeasonWorldLabel.Attach(level.guardian.transform,"[E] ECHO KEEPER");
             var seal=Visual("Three-seal frozen barrier","Barrier",new Vector2(134,16));seal.transform.localScale=new Vector3(9,1.3f,1);seal.gameObject.AddComponent<BoxCollider2D>();level.arenaSeal=seal.gameObject;
-            level.shields=new SpriteRenderer[5];for(int i=0;i<5;i++)level.shields[i]=Visual("Warden ice seal","Shield",BossPosition+new Vector2(-4+i*2,-2));
+            level.shields=new SpriteRenderer[0];
             level.winterGate=Visual("Winter crest","Ward",new Vector2(140,30),2).transform;SeasonWorldLabel.Attach(level.winterGate,"[E] WINTER CREST");
             level.exitSeal=ObjectAt("Crest ward",new Vector2(140,29)); // Interaction is gated by progress; no invisible collision.
             region=null;

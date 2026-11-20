@@ -39,10 +39,12 @@ namespace AmbrosJourney.Fall
         public void RestoreProgress(FallProgress p)
         {
             if(p==null||!p.Valid())throw new ArgumentException("Invalid Fall checkpoint");
-            Progress=p;if(p.Introduced){Close();RestoreGuide();}journal.SetActive(false);if(p.Complete){ember.Guidance=null;ember.follow=femaleWarrior.transform;}RefreshWorld();
+            Progress=p;if(p.Introduced){Close();RestoreGuide();}journal.SetActive(false);if(p.Complete){ember.Guidance=null;ember.follow=femaleWarrior.transform;}RefreshWorld();AmbrosJourney.Journey.BossPortalSequence.RestoreCheckpoint();
         }
         void Start()
         {
+            foreach(var flag in shields)if(flag)flag.gameObject.SetActive(false);
+            winterGate.gameObject.SetActive(false);
             Application.runInBackground=false;CreateUI();CreateAudio();
             mage.follow=player.transform;maleWarrior.follow=mage.transform;femaleWarrior.follow=maleWarrior.transform;
             Show("Fall / Emberfist's trail","Emberfist: Welcome to Emberwood! Our machines keep getting requests mixed up. Help me work out how to give them clearer instructions.",()=>{BeginGuidance();Close();});
@@ -96,11 +98,11 @@ namespace AmbrosJourney.Fall
         int Nearest()
         {
             Transform[] targets={ember.transform,stations[0],stations[1],stations[2],guardian.transform,winterGate};
-            int result=-1;float best=2.8f;for(int i=1;i<targets.Length;i++){float d=Vector2.Distance(player.transform.position,targets[i].position);if(d<best){best=d;result=i;}}if(result<0&&Vector2.Distance(player.transform.position,ember.transform.position)<2.8f)result=0;if(result<0&&Vector2.Distance(player.transform.position,guardian.transform.position)<5.5f)result=4;return result;
+            int result=-1;float best=2.8f;for(int i=1;i<targets.Length;i++){if(!targets[i].gameObject.activeInHierarchy || i==4&&Progress.Complete)continue;float d=Vector2.Distance(player.transform.position,targets[i].position);if(d<best){best=d;result=i;}}if(result<0&&Vector2.Distance(player.transform.position,ember.transform.position)<2.8f)result=0;if(result<0&&!Progress.Complete&&Vector2.Distance(player.transform.position,guardian.transform.position)<5.5f)result=4;return result;
         }
         public void Interact(int target)
         {
-            if(!Progress.Introduced || Transitioning)return;
+            if(AmbrosJourney.Journey.JourneySession.Blocked || !Progress.Introduced || Transitioning || target==4&&Progress.Complete || target==5&&!AmbrosJourney.Journey.BossPortalSequence.AllowsEntry(winterGate))return;
             GameAudio.Click();
             if(target==0)Show("Emberfist / The prompt forge",Progress.Complete?"I will travel with you! In Winter, keep checking what a tool tells you. Your own judgment still matters.":"Read the three station notes, then repair their requests. Follow the paths: the north bridge reaches the archive; its east opening leads into the switchbacks. The lower bridge loops back to the orchard.",Close);
             else if(target>=1 && target<=3)Mission(target-1);
@@ -131,7 +133,7 @@ namespace AmbrosJourney.Fall
         {
             if(Progress.BossFinished)
             {
-                if(Progress.Complete){ember.Guidance=null;ember.follow=femaleWarrior.transform;effects.PlayOneShot(ward,.7f);Show("Fall cleared / "+Progress.BossScore+" of 5","The Bramble Sentinel's tangled ward falls away. Emberfist joins your party!\n\nRank earned: PROMPT PATHFINDER\nGive a goal, context and format. Set useful limits, check the response and revise. Never confuse clear wording with guaranteed truth.\n\nThe Winter gate is open.",Close);}
+                if(Progress.Complete){ember.Guidance=null;ember.follow=femaleWarrior.transform;effects.PlayOneShot(ward,.7f);Show("Fall cleared / "+Progress.BossScore+" of 5","The Bramble Sentinel's tangled ward falls away. Emberfist joins your party!\n\nRank earned: PROMPT PATHFINDER\nGive a goal, context and format. Set useful limits, check the response and revise. Never confuse clear wording with guaranteed truth.\n\nClose this message to see the Sentinel fade and the Winter portal form.",Close);}
                 else Show("Your score / "+Progress.BossScore+" of 5","You need 4/5 (80%). All rune missions remain complete. Review the journal or continue to retry the five questions.",()=>{Progress.BeginBoss();BossQuestion();});
                 return;
             }
@@ -184,7 +186,7 @@ namespace AmbrosJourney.Fall
         {
             arenaSeal.SetActive(!Progress.CanFight);exitSeal.SetActive(!Progress.Complete);
             for(int i=0;i<3;i++)runes[i].color=Progress.MissionComplete(i)?new Color(.6f,1,.7f):new Color(1,.65f,.3f);
-            for(int i=0;i<shields.Length;i++)shields[i].enabled=!Progress.Complete && i>=Progress.BossScore;
+            for(int i=0;i<shields.Length;i++)shields[i].enabled=false;
             string quest=Progress.Complete?"Walk through the unlocked Winter gate":Progress.CanFight?"Challenge the Sentinel / 4 of 5 to pass":!Progress.MissionComplete(0)?"Harvest Orchard / Goal + context + format":!Progress.MissionComplete(1)?"Lantern Archive / Audience + limits":"Revision Kiln / Check + improve";
             objective.text="RUNES "+Progress.RuneCount+" / 3\n"+quest;
             if(Progress.Introduced&&!Progress.GuideArrived)objective.text="Walk with Emberfist to Harvest Orchard. He will wait for you.";

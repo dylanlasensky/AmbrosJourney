@@ -55,7 +55,7 @@ public static class CompassNoticeChecks
             Check(l.IsDialogueOpen&&l.Progress.CompassWarningShown&&l.InputBlocked,"First snow opens modal once");Inspect(ui);Check(ui.Copy.text.Contains("Wayfarer's Ledger"),"Next landmark matches first lesson");
             SeasonIntegrationChecks.Capture("FrozenCompassPopup");ui.Choices[0].onClick.Invoke();Check(!l.IsDialogueOpen&&!ui.GetComponentInChildren<FrostNoticeFrame>(),"Continue closes frame");
             var saved=JsonUtility.FromJson<WinterProgress>(JsonUtility.ToJson(l.Progress));Check(saved.CompassWarningShown&&saved.Valid(),"Notice state serializes safely");l.RestoreProgress(saved);Call(l,"RefreshWorld");Call(l,"MaybeShowCompassWarning");Check(!l.IsDialogueOpen,"Notice does not repeat after reload");
-            string[] next={"Wayfarer's Ledger","Frozen Observatory","Frostbound Warden","cave entrance"};
+            string[] next={"Wayfarer's Ledger","Frozen Observatory","Frostbound Warden","Little Mage"};
             for(int i=0;i<4;i++)
             {
                 l.RestoreProgress(Ready(i));Call(l,"RefreshWorld");Call(l,"MaybeShowCompassWarning");Check(l.IsDialogueOpen&&ui.Copy.text.Contains(next[i]),"Progress-specific landmark "+i);Inspect(ui);
@@ -63,7 +63,7 @@ public static class CompassNoticeChecks
             }
             l.RestoreProgress(Ready(0));l.Interact(0);Call(l,"MaybeShowCompassWarning");Check(!l.Progress.CompassWarningShown&&l.CurrentTitle.Contains("Little Mage"),"Does not interrupt another conversation");l.DismissPanel();
             session.Pause();Call(l,"MaybeShowCompassWarning");Check(!l.Progress.CompassWarningShown,"Does not interrupt pause");session.Resume();
-            var cave=Ready(3);cave.EnterCave();l.RestoreProgress(cave);l.player.transform.position=WinterWorld.CaveSpawn;l.player.GetComponent<Rigidbody2D>().position=l.player.transform.position;Call(l,"RefreshWorld");Call(l,"MaybeShowCompassWarning");Check(!l.IsDialogueOpen&&!cave.CompassWarningShown&&!ui.CompassObscured,"Cave compass and lessons unaffected");
+            var cave=Ready(3);cave.ReadCaveGuide();cave.EnterCave();l.RestoreProgress(cave);l.player.transform.position=WinterWorld.CaveSpawn;l.player.GetComponent<Rigidbody2D>().position=l.player.transform.position;Call(l,"RefreshWorld");Call(l,"MaybeShowCompassWarning");Check(!l.IsDialogueOpen&&!cave.CompassWarningShown&&!ui.CompassObscured,"Cave compass and lessons unaffected");
             l.Interact(3);Call(ui,"LateUpdate");Check(ui.Dialog.GetComponent<RectTransform>().rect.width==900&&!ui.GetComponentInChildren<FrostNoticeFrame>(),"Ordinary dialogue layout restored");
             File.WriteAllText(Report,"PASS: real snow trigger; once-only saved notice; four progress-specific hints; compact icy UI at 1280x720 and 1024x768; Continue/Escape; normal dialogue restored; no interruption during pause/dialogues; Assisted and cave behavior retained.");
             SessionState.SetBool(Key,false);EditorApplication.Exit(0);

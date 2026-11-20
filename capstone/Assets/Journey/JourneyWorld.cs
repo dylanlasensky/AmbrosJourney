@@ -54,6 +54,7 @@ namespace AmbrosJourney.Journey
                 for(int i=0;i<4;i++){frames[i]=Sprite.Create(sentinel,new Rect((i%2)*w,(i<2?1:0)*h,w,h),new Vector2(.5f,.09f),w/6);owned.Add(frames[i]);}
                 fall.guardian.idle=frames;fall.guardian.attack=frames;fall.guardian.transform.localScale=Vector3.one;
             }
+            gameObject.AddComponent<BossPortalSequence>().Initialize(chapter,cohesion);
             AddWaterMotion();
             if(chapter>=3)AddClues();
             Physics2D.SyncTransforms();

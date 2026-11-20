@@ -6,9 +6,9 @@
 2. The HUD counter reads **0/12 Artifacts**, using the actual twelve-item collection. Its full-count form fits at the original point size.
 3. Correct responses explicitly say **Correct!** before the explanation across all chapters and final activity types.
 4. Quiz scores use the full question count throughout an attempt: five for seasonal guardians, eight for the finale, and the actual fixed count for each lesson. An incorrect answer changes no denominator.
-5. Continuous Winter ridge barriers prevent walking around or behind the cave artwork. The intended doorway stays open and enters automatically after the Warden is passed. Older saves behind the ridge recover at the approach.
+5. Continuous Winter ridge barriers prevent walking around or behind the cave artwork. The intended doorway stays open and enters automatically after the Warden is passed and the Little Mage cave briefing is completed. Older saves behind the ridge recover at the approach.
 6. Little Mage still accompanies the party in the cavern, but has no dialogue interaction or [E] caption there. His outdoor dialogue stays available outside.
-7. The certificate's Return action and Escape lead to the main menu, retaining the completed journey and certificate.
+7. The certificate's Exit action and Escape now resume the cave and form the home portal. Walking through that portal returns to the main menu, retaining the completed journey and certificate.
 8. Final Activity 5 says: “Click each answer box repeatedly to see all options. Fill every row, then check.”
 
 ## Earlier changes in this same feedback batch
@@ -19,7 +19,7 @@ Winter's arrival Mage is clear of its portal; the Warden stands beside the visib
 
 ## Winter compass notice
 
-The first heavy-snow compass outage in Explorer mode opens an icy popup: “Uh oh! Your compass has frozen!” It directs the player toward the next unfinished landmark using lanterns and trail signs. Its pixel icicles are native uGUI geometry. The message appears once per saved journey, waits for conversations to finish, and supports Continue/E/Enter or Escape. The existing temporary snowfall behavior, Assisted setting and functioning cave compass are retained.
+The first heavy-snow compass outage in Explorer mode opens an icy popup: “Uh oh! Your compass has frozen!” It directs the player toward the next unfinished landmark using lanterns and trail signs. Its pixel icicles are native uGUI geometry. The message appears once per saved journey, waits for conversations to finish, and supports Continue/E/Enter or Escape. After the notice, the outdoor arrow stays hidden for the rest of Winter, even when weather clears or the save reloads. It returns in the cave and hides outside again. Assisted guidance avoids the initial freeze only if selected before the notice.
 
 ## Documentation handoff
 

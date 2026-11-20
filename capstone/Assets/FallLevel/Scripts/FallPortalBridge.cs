@@ -16,7 +16,7 @@ namespace AmbrosJourney.Fall
             var host=new GameObject("Fall portal connector (runtime only)");Object.DontDestroyOnLoad(host);host.AddComponent<FallPortalBridge>();
         }
         public static bool GateAllowsEntry(AmbrosJourney.Summer.SummerLevel source)
-        {return source && source.Progress.Complete && !source.InputBlocked && source.player && source.fallGate && Vector2.Distance(source.player.transform.position,source.fallGate.position)<1.1f;}
+        {return source && source.Progress.Complete && AmbrosJourney.Journey.BossPortalSequence.AllowsEntry(source.fallGate) && !source.InputBlocked && source.player && source.fallGate && Vector2.Distance(source.player.transform.position,source.fallGate.position)<1.1f;}
         void LateUpdate()
         {
             if(!AmbrosJourney.Journey.JourneySession.CanUsePortals)return;

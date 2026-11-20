@@ -128,7 +128,7 @@ namespace AmbrosJourney.Journey
 
         void ClearLandmarkSightlines()
         {
-            var landmarks=original.Where(r=>r&&r.gameObject.activeInHierarchy&&r.sprite&&
+            var landmarks=original.Where(r=>r&&(r.gameObject.activeInHierarchy||r.sprite&&r.sprite.name.StartsWith("SeasonPortals"))&&r.sprite&&
                 (r.sprite.name.StartsWith("VillageDetails")||r.sprite.name.StartsWith("UtilityDetails")||r.sprite.name.StartsWith("SeasonCottages")||r.sprite.name.StartsWith("SeasonPortals"))).ToArray();
             foreach(var tree in original)if(tree&&tree.gameObject.activeInHierarchy&&Tree(tree)&&
                 landmarks.Any(r=>tree.sortingOrder>r.sortingOrder&&tree.bounds.Intersects(r.bounds)))Remove(tree.gameObject);

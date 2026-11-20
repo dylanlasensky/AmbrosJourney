@@ -26,7 +26,7 @@ The existing Summer terrain, character packs, supporting props, font/shader lice
 
 ## Interaction feedback
 
-Interactive people and lesson objects have overhead **[E]** cards; artifacts use **[F]**. Cards follow their targets, avoid overlap and hide during conversations/journal views. The duplicate bottom interaction popup is removed; the controls bar remains. Correct answers explicitly say **Correct!** and displayed quiz scores use a fixed total. Courage/hearts and wrong-answer penalties are removed; retries retain completed lessons. [Current feedback changes](../../../docs/UserTestingFeedback.md)
+Interactive people and lesson objects have overhead **[E]** cards; artifacts use **[E]**. Cards follow their targets, avoid overlap and hide during conversations/journal views. The duplicate bottom interaction popup is removed; the controls bar remains. Correct answers explicitly say **Correct!** and displayed quiz scores use a fixed total. Courage/hearts and wrong-answer penalties are removed; retries retain completed lessons. [Current feedback changes](../../../docs/UserTestingFeedback.md)
 
 The Garden Warrior's label and repeated conversation retire after her guidance is finished, her dialogue has been read, or the garden is complete. Saved progress remembers the read dialogue; fresh journeys show the initial prompt again. The workshop Warrior and lesson targets remain available.
 

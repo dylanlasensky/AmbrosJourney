@@ -42,10 +42,12 @@ namespace AmbrosJourney.Summer
         public void RestoreProgress(SummerProgress p)
         {
             if(p==null||!p.Valid())throw new ArgumentException("Invalid Summer checkpoint");
-            readingGardenWarrior=false;Progress=p;if(p.Introduced){Close();RestoreGuides();}journal.SetActive(false);if(p.Complete){maleWarrior.follow=mage.transform;femaleWarrior.follow=maleWarrior.transform;}RefreshWorld();
+            readingGardenWarrior=false;Progress=p;if(p.Introduced){Close();RestoreGuides();}journal.SetActive(false);if(p.Complete){maleWarrior.follow=mage.transform;femaleWarrior.follow=maleWarrior.transform;}RefreshWorld();AmbrosJourney.Journey.BossPortalSequence.RestoreCheckpoint();
         }
         void Start()
         {
+            foreach(var flag in shields)if(flag)flag.gameObject.SetActive(false);
+            fallGate.gameObject.SetActive(false);
             Application.runInBackground = false;
             CreateUI(); CreateAudio();
             mage.follow = player.transform;
@@ -120,17 +122,18 @@ namespace AmbrosJourney.Summer
             float best = 2.8f; int result = -1;
             for (int i = 1; i < targets.Length-1; i++)
             {
+                if(!targets[i].gameObject.activeInHierarchy || i==4&&Progress.Complete)continue;
                 float d = Vector2.Distance(player.transform.position, targets[i].position);
                 if (d < best) { best = d; result = i; }
             }
             // Nearby lesson objects take priority over a companion standing beside Ambros.
             if(result<0)foreach(int i in new[]{0,9}){if(i==9&&!GardenWarriorHasMore)continue;float d=Vector2.Distance(player.transform.position,targets[i].position);if(d<best){best=d;result=i;}}
-            if(result<0&&Vector2.Distance(player.transform.position,orc.transform.position)<5.5f)result=4;
+            if(result<0&&!Progress.Complete&&Vector2.Distance(player.transform.position,orc.transform.position)<5.5f)result=4;
             return result;
         }
         public void Interact(int target)
         {
-            if (!Progress.Introduced||target==9&&!GardenWarriorHasMore) return;
+            if (AmbrosJourney.Journey.JourneySession.Blocked || target==4&&Progress.Complete || target==5&&!AmbrosJourney.Journey.BossPortalSequence.AllowsEntry(fallGate) || !Progress.Introduced||target==9&&!GardenWarriorHasMore) return;
             GameAudio.Click();
             switch (target)
             {
@@ -215,7 +218,7 @@ namespace AmbrosJourney.Summer
         {
             if (Progress.Complete) { Show("The Suncrest Guardian is learning too", "Suncrest Guardian: What if I get it wrong?\nAmbros: Then you practice. You can ask for help without giving up.", Close); return; }
             if (!Progress.CanFight) { Show("The Suncrest Guardian's clearing is sealed", "Restore all three ward pieces first. The journal records your lessons, and the compass points toward your next mission.", Close); return; }
-            Show("The Suncrest Guardian / Five shields", "Suncrest Guardian: I've been using these tools for everything. How do you decide when to step in?\n\nWarrior: Let's see what you've learned. Get four of five questions right to open Fall. You can retry without redoing the village jobs.", () => { Progress.BeginBoss(); BossQuestion(); });
+            Show("The Suncrest Guardian / Five questions", "Suncrest Guardian: I've been using these tools for everything. How do you decide when to step in?\n\nWarrior: Let's see what you've learned. Get four of five questions right to open Fall. You can retry without redoing the village jobs.", () => { Progress.BeginBoss(); BossQuestion(); });
         }
         void BossQuestion()
         {
@@ -225,7 +228,7 @@ namespace AmbrosJourney.Summer
                 {
                     maleWarrior.Guidance=null;femaleWarrior.Guidance=null;maleWarrior.follow = mage.transform; femaleWarrior.follow = maleWarrior.transform;
                     effects.PlayOneShot(ward, .7f);
-                    Show("Summer cleared / " + Progress.BossScore + " of 5", "Suncrest Guardian: What if I get it wrong?\nAmbros: Then you practice. You can ask for help without giving up.\n\nThe Warriors restore the village ward and join your party.\nRank earned: INDEPENDENT THINKER\n\nAI can support your ideas and learning. You are responsible for your choices.\n\nThe Fall gate is open.", Close);
+                    Show("Summer cleared / " + Progress.BossScore + " of 5", "Suncrest Guardian: What if I get it wrong?\nAmbros: Then you practice. You can ask for help without giving up.\n\nThe Warriors restore the village ward and join your party.\nRank earned: INDEPENDENT THINKER\n\nAI can support your ideas and learning. You are responsible for your choices.\n\nClose this message to see the Guardian fade and the Fall portal form.", Close);
                 }
                 else Show("Your score / " + Progress.BossScore + " of 5", "You need 4/5 (80%) to pass. Review the explanations or open your journal. All three missions remain complete.\n\nContinue to try again, or press Escape to return to the village.", () => { Progress.BeginBoss(); BossQuestion(); });
                 return;
@@ -235,7 +238,7 @@ namespace AmbrosJourney.Summer
                 bool right = Progress.AnswerBoss(c); Effect(right);
                 if (right) player.Strike(); else orc.Strike();
                 effects.PlayOneShot(strike, .35f);
-                Show(right ? "A shield cracks!" : "The Suncrest Guardian attacks", SeasonOverlay.AnswerFeedback(right,q.Explanation,Progress.BossScore,SummerContent.Boss.Length), BossQuestion);
+                Show(right ? "Good answer!" : "The Suncrest Guardian attacks", SeasonOverlay.AnswerFeedback(right,q.Explanation,Progress.BossScore,SummerContent.Boss.Length), BossQuestion);
             });
         }
         void ShowPages(string[] pages, int index, Action complete)
@@ -287,7 +290,7 @@ namespace AmbrosJourney.Summer
             if(gardenWarriorLabel)gardenWarriorLabel.enabled=GardenWarriorHasMore;
             arenaSeal.SetActive(!Progress.CanFight); exitSeal.SetActive(!Progress.Complete);
             for (int i = 0; i < 3; i++) wardLights[i].color = Progress.Wards[i] ? new Color(.5f, 1, .75f) : new Color(.7f, .55f, .30f);
-            for (int i = 0; i < shields.Length; i++) shields[i].enabled = !Progress.Complete && i >= Progress.BossScore;
+            for (int i = 0; i < shields.Length; i++) shields[i].enabled=false;
             objective.text = "WARD " + Progress.WardCount + " / 3\n" + (Progress.Complete ? "Walk through the Fall gate" : Progress.CanFight ? "Challenge the Suncrest Guardian / 4 of 5 to pass" : !Progress.Wards[0] ? "Workshop / Choose the right tool" : !Progress.Wards[1] ? "Training garden / Keep your practice" : "Message post / Ask safely");
             if(Progress.Introduced&&!Progress.GuideArrived)objective.text="Walk with the Warriors to the workshop. They will wait for you.";
             var destination=Destination();

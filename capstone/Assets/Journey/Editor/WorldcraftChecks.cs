@@ -19,17 +19,17 @@ namespace AmbrosJourney.Journey.Editor
             else if(chapter==2){var level=UnityEngine.Object.FindAnyObjectByType<AmbrosJourney.Summer.SummerLevel>();controller=level;boss=level.orc.transform;method="Nearest";expected=4;}
             else if(chapter==3){var level=UnityEngine.Object.FindAnyObjectByType<AmbrosJourney.Fall.FallLevel>();controller=level;boss=level.guardian.transform;method="Nearest";expected=4;}
             else{var level=UnityEngine.Object.FindAnyObjectByType<WinterLevel>();controller=level;boss=level.winterGuardian.transform;method="Nearest";expected=8;}
-            try{player.position=boss.position+(chapter==4?Vector3.down:Vector3.left)*4.5f;int target=(int)controller.GetType().GetMethod(method,System.Reflection.BindingFlags.Instance|System.Reflection.BindingFlags.NonPublic).Invoke(controller,null);Check(target==expected,"Boss can be reached with E from 4.5 units away in season "+chapter);}
+            try{player.position=boss.position+(chapter==4?Vector3.down:Vector3.left)*4.5f;int target=(int)controller.GetType().GetMethod(method,System.Reflection.BindingFlags.Instance|System.Reflection.BindingFlags.NonPublic).Invoke(controller,null);Check(boss.gameObject.activeInHierarchy?target==expected:target!=expected,"Active boss is reachable; defeated boss has no E interaction in season "+chapter);}
             finally{player.position=saved;if(winterCheck){winterCheck.Progress.InCave=wasCave;winterCheck.World.RestoreRegion(wasCave);}}
             if(winterCheck)
             {
                 bool complete=winterCheck.Progress.Complete;
                 try
                 {
-                    winterCheck.Progress.InCave=true;winterCheck.Progress.Complete=false;winterCheck.World.RestoreRegion(true);
+                    winterCheck.Progress.InCave=true;winterCheck.Progress.Complete=complete;winterCheck.World.RestoreRegion(true);
                     player.position=winterCheck.guardian.transform.position+Vector3.down*4.5f;
                     int target=(int)typeof(WinterLevel).GetMethod("Nearest",System.Reflection.BindingFlags.Instance|System.Reflection.BindingFlags.NonPublic).Invoke(winterCheck,null);
-                    Check(target==4,"Final cave boss can be reached with E from 4.5 units away");
+                    Check(complete?target!=4:target==4,"Active final boss is reachable; defeated final boss has no interaction");
                 }
                 finally{player.position=saved;winterCheck.Progress.InCave=wasCave;winterCheck.Progress.Complete=complete;winterCheck.World.RestoreRegion(wasCave);}
             }

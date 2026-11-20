@@ -20,7 +20,7 @@ namespace AmbrosJourney.Journey
         public int version=1,chapter=1,unlocked=1;
         public string playerName="",completedOn="";
         public bool started,finished,outroSeen,assistedGuidance;
-        public bool certificatePending;
+        public bool certificatePending,homePortalOpened;
         public bool[] artifacts=new bool[12];
         public ChapterSave[] chapters={new ChapterSave(),new ChapterSave(),new ChapterSave(),new ChapterSave()};
         public int ArtifactCount {get{int n=0;foreach(bool found in artifacts)if(found)n++;return n;}}

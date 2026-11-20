@@ -27,7 +27,7 @@ Use Unity **6000.6.2f1** and an isolated checkout/project copy. The runner enter
 
 The wrapper prepares the baked Determination asset if missing, imports the four boss atlases with alpha/point filtering, waits for Editor startup work, then runs the connected suite. Required assets are committed; ordinary gameplay needs no generation step or extra package.
 
-Coverage includes the actual four-season portals, locked/modal guards, mission/boss retries, new final pointer drag/drop handlers and submission, all four seasonal UIs, menu callbacks, pause, exact outdoor/cave saves, chapter revisits, all twelve F-key pickups, certificate PDF export, reset and fresh Spring startup. Boss checks confirm two idle frames, distinct windup/impact frames, actor-to-visual strike signals and four in-world renders per replaced boss. Fall's existing boss is preserved.
+Coverage includes the actual four-season portals, locked/modal guards, mission/boss retries, new final pointer drag/drop handlers and submission, all four seasonal UIs, menu callbacks, pause, exact outdoor/cave saves, chapter revisits, all twelve E-key pickups, certificate PDF export, reset and fresh Spring startup. Boss checks confirm two idle frames, distinct windup/impact frames, actor-to-visual strike signals and four in-world renders per replaced boss. Fall's existing boss is preserved.
 
 Read `Logs/SeasonChecks/Integration.txt`: it must say **PASS**. The runner has a twelve-minute post-import deadline and fails on errors during the active checks. Text-overflow and render checks cover **1280x720 and 1024x768**. Reports/captures go to ignored `Logs/SeasonChecks` and `Logs/BossChecks`. The world audit also checks building counts, doorstep routes, winter tree art, maps and survey views.
 
@@ -37,7 +37,7 @@ Use the same disposable copy and batch-mode invocation above, replacing `-execut
 
 | Method | Result | Coverage |
 | --- | --- | --- |
-| `GeneralFeedbackChecks.Run` | `Logs/SeasonChecks/GeneralFeedback.txt` | Correct explanations and fixed score totals across four chapters/finale; no courage text; artifact counter at empty/full count; actual body collisions and doorway access; old ridge checkpoint recovery; no cave Mage interaction; Activity 5 cycling; certificate Return/Escape to menu. |
+| `GeneralFeedbackChecks.Run` | `Logs/SeasonChecks/GeneralFeedback.txt` | Correct explanations and fixed score totals across four chapters/finale; no courage text; artifact counter at empty/full count; actual body collisions and doorway access; old ridge checkpoint recovery; no cave Mage interaction; Activity 5 cycling; certificate Exit/Escape to cave, then home portal to menu. |
 | `CompassNoticeChecks.Run` | `Logs/SeasonChecks/CompassNotice.txt` | Actual first whiteout; saved once-only notice; four progress hints; rendered icicle mesh; text at both resolutions; Continue/Escape; normal layout restoration; pause/dialogue, Assisted and cave guards. |
 
 Both methods reject non-batch use, use separate save files, and exit the Editor after their checks. `PASS` in the result file is required; also inspect the fresh log for compile/runtime errors rather than trusting an older result file. The compass fixture waits for the real snowfall phase, so allow it to run after startup. These fixtures do not modify a player's regular profile.
@@ -53,3 +53,11 @@ The pure suite has **22,652 progression assertions** after removing the retired 
 This makes a macOS release player at `Logs/BossChecks/AmbrosJourney-BossPreview.app`; Intro and Spring are build scenes and later worlds/art are retained through Resources. Check `Logs/BossChecks/Build.txt`. It uses a separate output from the earlier preview so building does not overwrite a running copy.
 
 See [current validation](CurrentValidation.md) for results rather than inferring success from a command launch. A full human standalone playthrough, target-hardware measurements, accessibility, audio and first-time learning/pacing tests remain necessary. Hosted Unity builds require a separate licensing setup; no paid service or self-hosted runner is added.
+
+
+## Second-round boss and portal regression
+
+Run `BossExitChecks.Run` with the same disposable-project batch-mode setup. It writes `Logs/BossExitChecks/Results.txt` and exercises real seasonal boss answer buttons, failed/pass thresholds, progressive boss dust, fully gated portal assembly, automatic transitions, R-key input in all four player controllers, every final activity type, certificate pickup/PDF/Exit, certificate Escape, completed save reload, and the final walk-home portal. It checks UI at 1280x720 and 1024x768 and uses a separate save. `SeasonIntegrationChecks.Run` has also been updated to wait across the new multi-frame effects and to expect no interaction with defeated bosses.
+
+
+For the Winter follow-up, run `WinterRefinementChecks.Run` in the disposable project. It writes `Logs/WinterRefinements/Results.txt` and renders the frozen notice, natural cave and restored cave arrow at both standard test sizes. `BossExitChecks.Run` now expects Winter's cave exception and completes the required Little Mage conversation before walking inside.

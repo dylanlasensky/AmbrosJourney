@@ -1,6 +1,6 @@
 # Teammate intro and outro brief
 
-**Current status:** the teammate's final clips are not supplied. The game is playable: New Journey enters Spring directly, and final victory crumbles the Keeper and drops a scroll whose E pickup opens the certificate. Return/Escape then opens the main menu. The generated pixel intro and its generator were retired. This brief remains the intended illustrated story direction, not a claim that the film exists.
+**Current status:** the teammate's final clips are not supplied. The game is playable: New Journey enters Spring directly, and final victory crumbles the Keeper and drops a scroll whose E pickup opens the certificate. Exit/Escape resumes the cave and assembles the home portal. Walking through it opens the main menu. The generated pixel intro and its generator were retired. This brief remains the intended illustrated story direction, not a claim that the film exists.
 
 ## Intro direction
 

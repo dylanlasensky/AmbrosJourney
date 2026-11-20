@@ -10,10 +10,10 @@
 - Summer's training target has an interaction label. Sun, Seed and Leaf use narrow labels; the message post says “Ambros’”. Nearby task objects take priority over talking to a companion.
 - Decorative letters and unused instruction books/devices are removed. Several outlying baskets, supplies and a sled become seasonal ferns, mushrooms or snow-covered rocks. Settlement furnishings and real lesson objects remain.
 
-- All interactive helpers, notes and challenges use a single overhead [E] card. Artifacts retain [F]; automatic portals remain walk-through destinations. The bottom duplicate interaction card is hidden, while controls remain.
-- Winter's Mage is clear of the arrival portal; the Warden leaves the cave visible. After the Warden, Little Mage offers the cave briefing outside, the doorway enters automatically, and his cave interaction is disabled.
+- All interactive helpers, notes and challenges use a single overhead [E] card. Artifacts use [E]; automatic portals remain walk-through destinations. The bottom duplicate interaction card is hidden, while controls remain.
+- Winter's Mage is clear of the arrival portal; the Warden leaves the cave visible. After the Warden, Little Mage must finish his cave briefing outside before the doorway enters automatically, and his cave interaction is disabled.
 - Empty name entry pulses gold until filled. Correct answers explicitly say Correct!, quiz totals are fixed, courage/hearts are removed, and the counter says 0/12 Artifacts.
-- The first Explorer whiteout opens an icy notice with the next landmark; the existing temporary weather, Assisted setting and cave guidance remain. Certificate Return/Escape leads to the main menu.
+- The first Explorer whiteout opens an icy notice with the next landmark; the outdoor arrow then stays frozen for the rest of Winter, including after clear weather or reload. It works inside the cave and hides again outside. Assisted selected before the notice prevents the initial freeze. Certificate Exit/Escape resumes the cave; a newly assembled home portal leads to the main menu.
 
 ## Validation
 

@@ -17,7 +17,7 @@ The 99 x 93-tile map is about 2.5 times Summer's area. Two river crossings, hedg
 
 ## Shared systems and ownership
 
-`FallWorld` builds the runtime map/Resources prefab; `FallLevel` owns interactions; `FallProgress` owns guarded lesson and boss rules; `FallPortalBridge` supplies the Summer transition. JourneySession persistently saves partial work, exact positions and artifacts. The shared trail/formation system follows corners and resets the party on return to arrival.
+`FallWorld` builds the runtime map/Resources prefab; `FallLevel` owns interactions; `FallProgress` owns guarded lesson and boss rules; `FallPortalBridge` supplies the Summer transition. JourneySession persistently saves partial work, exact positions and artifacts. The shared trail/formation system follows corners and restores the party formation when loading a checkpoint.
 
 All four seasons use the shared Determination/parchment UI, with copper accents in Fall, answer feedback and seasonal leaves. The existing **Bramble Sentinel artwork, scale and four-pose animation are unchanged by the seasonal boss refresh**. It remains the visual reference for the new Spring, Summer, Winter and final bosses.
 
@@ -27,7 +27,7 @@ Keep `Assets/SummerLevel` and the shared Journey/SeasonPresentation folders inta
 
 ## Interaction feedback
 
-Interactive people and lesson objects have overhead **[E]** cards; artifacts use **[F]**. Cards follow their targets, avoid overlap and hide during conversations/journal views. The duplicate bottom interaction popup is removed; the controls bar remains. Correct answers explicitly say **Correct!** and displayed quiz scores use a fixed total. Courage/hearts and wrong-answer penalties are removed; retries retain completed lessons. [Current feedback changes](../../../docs/UserTestingFeedback.md)
+Interactive people and lesson objects have overhead **[E]** cards; artifacts use **[E]**. Cards follow their targets, avoid overlap and hide during conversations/journal views. The duplicate bottom interaction popup is removed; the controls bar remains. Correct answers explicitly say **Correct!** and displayed quiz scores use a fixed total. Courage/hearts and wrong-answer penalties are removed; retries retain completed lessons. [Current feedback changes](../../../docs/UserTestingFeedback.md)
 
 ## Checks
 

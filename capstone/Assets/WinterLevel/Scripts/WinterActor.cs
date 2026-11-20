@@ -29,7 +29,6 @@ namespace AmbrosJourney.Winter
                 {
                     var k=Keyboard.current;
                     movement=new Vector2((k.dKey.isPressed||k.rightArrowKey.isPressed?1:0)-(k.aKey.isPressed||k.leftArrowKey.isPressed?1:0),(k.wKey.isPressed||k.upArrowKey.isPressed?1:0)-(k.sKey.isPressed||k.downArrowKey.isPressed?1:0)).normalized;
-                    if(k.rKey.wasPressedThisFrame&&body){body.position=level.Arrival;transform.position=level.Arrival;body.linearVelocity=Vector2.zero;trail.Reset(level.Arrival);}
                 }
             }
             else if(follow&&!blocked)

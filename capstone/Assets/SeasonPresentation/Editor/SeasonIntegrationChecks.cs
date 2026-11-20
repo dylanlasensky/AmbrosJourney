@@ -79,7 +79,7 @@ public static class SeasonIntegrationChecks
                 Check(g, "Spring scene has its guide");
                 BossRefreshChecks.CheckAndCapture(GameObject.Find("Blossom Guardian").GetComponent<SeasonBossVisual>(),"SpringBlossom");
                 CheckMotion(UnityEngine.Object.FindAnyObjectByType<SpringPlayer>(), "input", 4);
-                var gate = GameObject.Find("Summer Gate (unlocks after 80 percent)").transform;
+                var gate = g.ExitPortal;
                 Check(!SummerPortalBridge.GateAllowsEntry(g, gate.position, gate.position), "Locked Spring gate blocks entry");
                 Set(g, "target", -1); typeof(SpringGuide).GetProperty("DialogueOpen").SetValue(g,true); Call(g,"LateUpdate"); CheckOverlay(g); Capture("SpringInterface"); for (int i = 0; i < 3; i++) Call(g, "Continue");
                 for (int i = 0; i < 3; i++) { Set(g, "target", 5 + i);typeof(SpringGuide).GetProperty("DialogueOpen").SetValue(g,true);Call(g,"LateUpdate");CheckOverlay(g); Call(g, "Continue"); }
@@ -110,8 +110,8 @@ public static class SeasonIntegrationChecks
                 Check(!FallPortalBridge.GateAllowsEntry(l), "Summer gate conversation blocks exit");
                 Call(l, "Close"); Call(l, "ToggleJournal");
                 Check(!FallPortalBridge.GateAllowsEntry(l), "Summer journal blocks exit"); Call(l, "ToggleJournal");
-                Check(FallPortalBridge.GateAllowsEntry(l), "Completed Summer permits entry");
-                Advance(2);
+                l.player.transform.position=l.fallGate.position+Vector3.up*4;l.player.GetComponent<Rigidbody2D>().position=l.player.transform.position;
+                Advance(101);
             }
             else if (stage == 2 && SceneManager.GetActiveScene().name == "Fall")
             {
@@ -125,9 +125,19 @@ public static class SeasonIntegrationChecks
                 Check(l.Progress.Complete && l.ember.follow == l.femaleWarrior.transform, "Fall completed and Emberfist recruited");
                 Call(l,"Close");
                 l.player.transform.position=l.winterGate.position;l.player.GetComponent<Rigidbody2D>().position=l.winterGate.position;
-                Check(WinterPortalBridge.GateAllowsEntry(l),"Completed Fall allows Winter entry");
+                Check(!WinterPortalBridge.GateAllowsEntry(l),"Fall portal waits for the victory sequence");
                 Call(l,"ToggleJournal");Check(!WinterPortalBridge.GateAllowsEntry(l),"Fall journal blocks Winter entry");Call(l,"ToggleJournal");
-                Advance(3);
+                l.player.transform.position=l.winterGate.position+Vector3.up*4;l.player.GetComponent<Rigidbody2D>().position=l.player.transform.position;
+                Advance(102);
+            }
+            else if(stage==101||stage==102)
+            {
+                var sequence=UnityEngine.Object.FindAnyObjectByType<AmbrosJourney.Journey.BossPortalSequence>();
+                if(!sequence||!sequence.Exit.Ready)return;
+                var player=AmbrosJourney.Journey.JourneySession.Instance.Player();player.position=sequence.Exit.Portal.position;player.GetComponent<Rigidbody2D>().position=player.position;
+                if(stage==101)Check(FallPortalBridge.GateAllowsEntry(UnityEngine.Object.FindAnyObjectByType<SummerLevel>()),"Revealed Summer portal permits entry");
+                else Check(WinterPortalBridge.GateAllowsEntry(UnityEngine.Object.FindAnyObjectByType<FallLevel>()),"Revealed Fall portal permits entry");
+                Advance(stage==101?2:3);
             }
             else if(stage==3&&SceneManager.GetActiveScene().name=="Winter")
             {
@@ -135,7 +145,7 @@ public static class SeasonIntegrationChecks
                 CheckMotion(UnityEngine.Object.FindAnyObjectByType<WinterLevel>().player,"movement",4.6f);BossRefreshChecks.CheckAndCapture(UnityEngine.Object.FindAnyObjectByType<WinterLevel>().winterGuardian.GetComponent<SeasonBossVisual>(),"WinterFrostbound");Capture("WinterArrival");Advance(4);
             }
             else if(stage==4){AmbrosJourney.Winter.Editor.WinterPlayChecks.Run();Advance(5);}
-            else if(stage==5){BossRefreshChecks.CheckAndCapture(UnityEngine.Object.FindAnyObjectByType<WinterLevel>().guardian.GetComponent<SeasonBossVisual>(),"FinalEchoKeeper");Capture("WinterCavern");Advance(6);}
+            else if(stage==5){if(AmbrosJourney.Winter.Editor.WinterPlayChecks.Running)return;BossRefreshChecks.CheckAndCapture(UnityEngine.Object.FindAnyObjectByType<WinterLevel>().guardian.GetComponent<SeasonBossVisual>(),"FinalEchoKeeper");Capture("WinterCavern");Advance(6);}
             else if(stage==6)
             {
                 var l=UnityEngine.Object.FindAnyObjectByType<WinterLevel>();l.player.transform.position=l.caveExit.position;l.player.GetComponent<Rigidbody2D>().position=l.caveExit.position;l.World.ChangeRegion(false);l.player.transform.position=WinterWorld.Entrance+Vector2.down*1.5f;l.player.GetComponent<Rigidbody2D>().position=l.player.transform.position;Advance(7);

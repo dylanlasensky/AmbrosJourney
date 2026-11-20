@@ -5,6 +5,7 @@
 - [Repository overview](../README.md): play, controls, feature status and remaining work.
 - [Game design](GameDesign.md): story, learning goals, rewards and progression contracts.
 - [Journey completion](JourneyCompletion.md): menu, saves, artifacts, guidance, performance and teammate video hooks.
+- [Second-round changes](SecondUserTesting.md): removed R shortcut, shared boss disintegration, gated pixel portal assembly, Winter cave/Mage/frozen-arrow rules, certificate home portal and save compatibility.
 - [User-testing feedback](UserTestingFeedback.md): the current Winter, menu, interaction and general game changes.
 - [Question refresh](QuestionRefresh.md): current notes, questions, correct answers and final activity structure.
 - [Bosses](Bosses.md): active seasonal forms, frame setup, generated-art prompts and review images.

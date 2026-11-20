@@ -121,7 +121,7 @@ namespace AmbrosJourney.Fall
             Visual("Quiet overlook","Shelter",new Vector2(-38,-26));Label("OLD WATCH / OPTIONAL DETOUR",new Vector2(-38,-23),14);
             level.guardian=Actor("Bramble Sentinel","SentinelIdle",4,GuardianPosition,"SentinelIdle",4,2.1f);SeasonWorldLabel.Attach(level.guardian.transform,"[E] BRAMBLE SENTINEL");
             var seal=Visual("Three-rune arena barrier","Barrier",new Vector2(0,-34));seal.transform.localScale=new Vector3(8,2,1);seal.gameObject.AddComponent<BoxCollider2D>();level.arenaSeal=seal.gameObject;
-            level.shields=new SpriteRenderer[5];for(int i=0;i<5;i++)level.shields[i]=Visual("Sentinel seal "+(i+1),"Shield",new Vector2(-4+i*2,-42));
+            level.shields=new SpriteRenderer[0];
             level.winterGate=Visual("Winter portal","Portal",GatePosition,1.5f).transform;level.winterGate.GetComponent<SpriteRenderer>().color=new Color(.65f,.85f,1);Label("WINTER / VERIFICATION",new Vector2(0,-44),14);
             for(int x=-48;x<=48;x+=2)if(Mathf.Abs(x)>3){Visual("Winter approach wall","Rock",new Vector2(x,-44.5f));Block("Winter approach wall",new Vector2(x,-44.5f),new Vector2(2,1));}
             var exit=Visual("Winter seal","Barrier",new Vector2(0,-44.5f));exit.transform.localScale=new Vector3(5,1,1);exit.gameObject.AddComponent<BoxCollider2D>();level.exitSeal=exit.gameObject;

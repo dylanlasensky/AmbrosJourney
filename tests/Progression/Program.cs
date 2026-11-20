@@ -99,11 +99,12 @@ static class Program
             for(int i=0;i<5;i++){int c=code%3;code/=3;if(c==WinterContent.Boss[i].Correct)score++;p.AnswerWinterBoss(c);}
             Check(p.WinterBossFinished&&p.WinterComplete==(score>=4),"All Winter boss outcomes");Check(!p.AnswerWinterBoss(0),"No duplicate Winter boss reward");
             if(!p.WinterComplete){Check(!p.EnterCave(),"Failed Winter attempt cannot enter cave");p.BeginWinterBoss();foreach(var q in WinterContent.Boss)p.AnswerWinterBoss(q.Correct);}
-            Check(p.EnterCave()&&p.WinterComplete&&!p.BeginBoss(),"Winter crest opens cave but not final boss");
+            Check(!p.EnterCave(),"Winter crest still requires the Little Mage conversation");
+            Check(p.ReadCaveGuide()&&p.EnterCave()&&p.WinterComplete&&!p.BeginBoss(),"Crest and cave guidance open cave but not final boss");
         }
         for(int mask=0;mask<256;mask++)
         {
-            var p=ReadyWinter();p.BeginWinterBoss();foreach(var q in WinterContent.Boss)p.AnswerWinterBoss(q.Correct);p.EnterCave();p.ReadNote(2);foreach(var q in WinterContent.Missions[2])p.AnswerMission(2,q.Correct);
+            var p=ReadyWinter();p.BeginWinterBoss();foreach(var q in WinterContent.Boss)p.AnswerWinterBoss(q.Correct);p.ReadCaveGuide();p.EnterCave();p.ReadNote(2);foreach(var q in WinterContent.Missions[2])p.AnswerMission(2,q.Correct);
             Check(p.BeginBoss(),"Final begins after all seals");
             Check(!p.AnswerFinal(null)&&!p.AnswerFinal(new[]{-1})&&p.BossQuestion==0,"Invalid final responses do not consume an activity");
             Check(!p.AnswerFinal(new[]{1,1})&&p.BossQuestion==0,"Duplicate privacy picks cannot submit");

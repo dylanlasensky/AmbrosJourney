@@ -15,7 +15,7 @@ namespace AmbrosJourney.Journey
     public sealed class JourneySession : MonoBehaviour
     {
         public static JourneySession Instance {get;private set;}
-        public static bool Blocked=>Instance&&(Instance.Paused||Instance.loading||Instance.menu||Instance.cinematic||Instance.resumeFrame==Time.frameCount&&Keyboard.current!=null&&Keyboard.current.escapeKey.wasPressedThisFrame);
+        public static bool Blocked=>BossPortalSequence.Busy||Instance&&(Instance.Paused||Instance.loading||Instance.menu||Instance.cinematic||Instance.resumeFrame==Time.frameCount&&Keyboard.current!=null&&Keyboard.current.escapeKey.wasPressedThisFrame);
         public static bool TestMode;
         public static bool CanUsePortals=>!Blocked&&(!Instance||!Instance.portalProtected);
         bool portalProtected;Vector2 protectedPosition;
@@ -89,7 +89,7 @@ namespace AmbrosJourney.Journey
         // One owner consumes Escape before world scripts, so closing a panel never also pauses.
         public void HandleBack()
         {
-            if(cinematic||loading)return;
+            if(cinematic||loading||BossPortalSequence.Busy)return;
             if(backAction!=null){var back=backAction;resumeFrame=Time.frameCount;back();return;}
             if(menu)return;
             bool dismissed=false;
@@ -226,7 +226,7 @@ namespace AmbrosJourney.Journey
             }
             yield return null;yield return null;Restore(chapter);Data.chapter=chapter;loading=false;yield return WorldReady(false);Save();
         }
-        public void Pause(){if(menu||loading)return;Paused=true;Time.timeScale=0;AudioListener.pause=true;Save();ShowPause();}
+        public void Pause(){if(menu||loading||BossPortalSequence.Busy)return;Paused=true;Time.timeScale=0;AudioListener.pause=true;Save();ShowPause();}
         public void Resume(){resumeFrame=Time.frameCount;Paused=false;Time.timeScale=1;AudioListener.pause=false;ShowHUD();}
         void ShowHUD()
         {
@@ -300,12 +300,19 @@ namespace AmbrosJourney.Journey
         public void ShowCertificate()
         {
             if(!Data.finished||Data.certificatePending)return;
-            backAction=ReturnToMenu;ui.KeyboardNavigation=true;
+            backAction=ExitCertificate;ui.KeyboardNavigation=true;
             Paused=true;Time.timeScale=0;AudioListener.pause=true;ui.gameObject.SetActive(true);ui.Clear();
             var backdrop=ui.Panel(ui.Root,"Certificate backdrop",new Rect(-5000,-5000,10000,10000),new Color(.06f,.12f,.11f,.96f));backdrop.GetComponent<UnityEngine.UI.Image>().raycastTarget=true;
             JourneyCertificateView.Draw(ui,Data,.86f);
             ui.Button(ui.Root,"Download PDF certificate",new Rect(-430,312,410,40),()=>JourneyCertificate.Export(Data,ui));
-            ui.Button(ui.Root,"Return",new Rect(20,312,410,40),ReturnToMenu);
+            ui.Button(ui.Root,"Exit",new Rect(20,312,410,40),ExitCertificate);
+        }
+        public void ExitCertificate()
+        {
+            var winter=FindAnyObjectByType<WinterLevel>();
+            if(menu||!winter||!winter.Progress.InCave){BackToMenu();return;}
+            Data.homePortalOpened=true;Resume();
+            FindAnyObjectByType<BossPortalSequence>()?.RevealHomePortal();Save();
         }
         void OnApplicationFocus(bool focused){if(TestMode)return;if(!focused&&!Paused&&Data.started&&!menu&&!loading&&CurrentChapter()>0)Pause();}
         void OnApplicationPause(bool paused){if(paused&&!TestMode)Save();}

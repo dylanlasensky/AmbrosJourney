@@ -1,5 +1,6 @@
 #if UNITY_EDITOR
 using System;
+using System.Collections;
 using System.Reflection;
 using UnityEngine;
 using TMPro;
@@ -22,16 +23,21 @@ namespace AmbrosJourney.Winter.Editor
         static void Choice(int c){Inspect();ui.Choices[c].onClick.Invoke();}
         static void Move(Vector2 p){level.player.transform.position=p;level.player.GetComponent<Rigidbody2D>().position=p;Physics2D.SyncTransforms();}
         static bool Route(Vector2 from,Vector2 to,bool cave)=>SeasonNavigation.FindPath(from,to,cave?WinterWorld.CaveMin:WinterWorld.Min,cave?WinterWorld.CaveMax:WinterWorld.Max).Count>0;
-        public static void Run()
+        public static bool Running {get;private set;}
+        public static void Run()=>UnityEngine.Object.FindAnyObjectByType<WinterLevel>().StartCoroutine(RunSequence());
+        static IEnumerator RunSequence()
         {
+            Running=true;
             level=UnityEngine.Object.FindAnyObjectByType<WinterLevel>();Check(level,"Winter loaded");ui=level.GetComponentInChildren<SeasonOverlay>();States=0;
-            Check(level.InputBlocked&&!level.Progress.Introduced,"Intro blocks movement");Next();Next();Next();Check(!level.InputBlocked,"Intro completes");
+            Check(level.InputBlocked&&!level.Progress.Introduced,"Intro blocks movement");Next();Next();Next();Check(!level.InputBlocked,"Intro completes");level.Progress.CompassWarningShown=true;
             foreach(var p in new[]{WinterWorld.MissionPositions[0],WinterWorld.MissionPositions[1],WinterWorld.Entrance})Check(Route(WinterLevel.Spawn,p,false),"Outdoor destination reachable: "+p);
             Move(WinterWorld.Entrance);level.Interact(6);Next();Check(!level.Progress.InCave,"Cave guard blocks early entry");
             for(int m=0;m<2;m++)Mission(m);
             Move(WinterWorld.WardenPosition+Vector2.down);level.Interact(8);Next();
             for(int i=0;i<5;i++){int c=WinterContent.Boss[i].Correct;Choice(i<3?c:(c+1)%3);Next();}Check(!level.Progress.WinterComplete,"Winter 3/5 fails");Next();
             for(int i=0;i<5;i++){int c=WinterContent.Boss[i].Correct;Choice(i<4?c:(c+1)%3);Next();}Check(level.Progress.WinterComplete,"Winter 4/5 passes");Next();
+            yield return null;
+            while(AmbrosJourney.Journey.BossPortalSequence.Busy||!AmbrosJourney.Journey.BossPortalSequence.AllowsEntry(level.caveEntrance))yield return null;
             Check(!level.littleMage.follow&&(Vector2)level.littleMage.transform.position==WinterWorld.CaveGuide,"Little Mage waits beside cave after Winter crest");
             Move(WinterWorld.CaveGuide);level.Interact(0);Check(level.IsDialogueOpen,"Mage explains cave separately");Next();Check(!level.Progress.InCave,"Mage dialogue does not enter cave");
             Move(WinterWorld.Entrance);Call("LateUpdate");Check(level.Progress.InCave,"Walking into cleared doorway automatically enters cave");
@@ -41,10 +47,12 @@ namespace AmbrosJourney.Winter.Editor
             Move(WinterWorld.BossPosition+Vector2.down*2);level.Interact(4);Next();
             for(int i=0;i<8;i++){Activity(i,i<6);Next();}Check(!level.Progress.Complete,"Final 6/8 fails");Next();
             for(int i=0;i<8;i++){Activity(i,i<7);Next();}Check(level.Progress.Complete,"Final 7/8 passes");Inspect();Call("Close");
+            while(level.Transitioning)yield return null;
             Call("ToggleJournal");Inspect();Call("ToggleJournal");
             Move(level.caveExit.position);level.Interact(7);Next();Check(level.Progress.Complete&&level.Progress.RuneCount==3,"Leaving preserves completed season");
             Move(WinterWorld.Entrance);Call("LateUpdate");Check(level.Progress.InCave&&level.Progress.Complete,"Automatic re-entry preserves completion");
             Move(WinterWorld.BossPosition+Vector2.down*3);Call("RefreshWorld");
+            Running=false;
             Debug.Log("WINTER_PLAY_PASS: "+States+" UI states, outdoor and cave routes, cave guard, return trips, Winter 3/5 retry and 4/5 pass, cumulative final 6/8 retry and 7/8 pass.");
         }
         static void Activity(int index,bool correct)

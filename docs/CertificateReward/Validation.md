@@ -6,7 +6,7 @@ After passing the final Echo Keeper challenge (7/8), the completion date is reco
 
 ## Current Return behavior
 
-The scroll has one overhead [E] pickup label; the duplicate bottom interaction prompt is hidden. After collection, Return and Escape open the main menu with the saved name, completion date and claimed state intact. The current pickup flow opens the certificate directly; `JourneyEnding.Play` is retained but not invoked. [Latest validation](../CurrentValidation.md) / [feedback changes](../UserTestingFeedback.md).
+The scroll has one overhead [E] pickup label; the duplicate bottom interaction prompt is hidden. After collection, Exit and Escape resume the cave and assemble the home portal. Walking through it opens the main menu with the saved name, completion date and claimed state intact. The current pickup flow opens the certificate directly; `JourneyEnding.Play` is retained but not invoked. [Latest validation](../CurrentValidation.md) / [feedback changes](../UserTestingFeedback.md).
 
 ## Original reward validation snapshot
 

@@ -96,17 +96,17 @@ namespace AmbrosJourney.Presentation
             }
             for(int i=0;i<3;i++){journalTitles[i].text=titles[i];journalNotes[i].text=notes[i];}
         }
-        public void SetCompass(Vector2 player,Vector2 waypoint,Vector2 destination)
+        public void SetCompass(Vector2 player,Vector2 waypoint,Vector2 destination,bool frozen=false)
         {
             bool assisted=AmbrosJourney.Journey.JourneySession.Instance&&AmbrosJourney.Journey.JourneySession.Instance.Data.assistedGuidance;
             bool distant=Vector2.Distance(player,destination)>14;
             bool whiteout=season==4&&player.x<80&&Mathf.Repeat(Time.time,48)>26;
-            CompassObscured=!assisted&&whiteout;
+            CompassObscured=frozen||!assisted&&whiteout;
             Arrow.gameObject.SetActive(!CompassObscured);
             // Follow the route waypoint even when the destination is behind a wall.
             CompassDelta=waypoint-player;ObjectiveDistance=Vector2.Distance(player,destination);
             moonbranch.Point(CompassDelta);
-            CompassText.text=!assisted&&whiteout?"Snowfall":!assisted&&season>=3&&distant?"Explore":Mathf.CeilToInt(ObjectiveDistance)+" steps";
+            CompassText.text=frozen?"Frozen":!assisted&&whiteout?"Snowfall":!assisted&&season>=3&&distant?"Explore":Mathf.CeilToInt(ObjectiveDistance)+" steps";
         }
         public void SetFrostNotice(bool active)
         {
