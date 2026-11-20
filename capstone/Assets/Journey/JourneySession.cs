@@ -24,7 +24,7 @@ namespace AmbrosJourney.Journey
         public JourneyData Data {get;private set;}
         public bool Paused {get;private set;}
         Action backAction;bool artifactsOpen;
-        int resumeFrame=-1;JourneyUI ui;bool menu,loading,cinematic;float nextSave;string notice="";Action beginIntro;TMP_InputField nameInput;
+        int resumeFrame=-1;JourneyUI ui;bool menu,loading,cinematic,ending;float nextSave;string notice="";Action beginIntro;TMP_InputField nameInput;
         public static readonly string[] ChapterNames={"Spring Valley","Summer Valley","Emberwood","Frostveil"};
         public const string ArtifactLesson="THE EVIDENCE COMPASS\nBefore sharing, leave out private details, check the original source and look for separate evidence. Say what you still haven't checked.\n\nSeveral AI tools can agree and still be wrong. They may repeat the same mistake, so matching replies don't count as separate checks.";
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]static void ResetStatics(){Instance=null;TestMode=false;SavePathOverride=null;}
@@ -125,7 +125,7 @@ namespace AmbrosJourney.Journey
         }
         public void OpenMenu(Action playIntro)
         {
-            beginIntro=playIntro;menu=true;Paused=false;Time.timeScale=1;AudioListener.pause=false;ShowMenu();
+            beginIntro=playIntro;ending=false;menu=true;Paused=false;Time.timeScale=1;AudioListener.pause=false;ShowMenu();
         }
         void Background(string eyebrow,string title,string subtitle)
         {
@@ -309,8 +309,8 @@ namespace AmbrosJourney.Journey
         }
         public void EnterHomePortal()
         {
-            if(!CanUsePortals||!Data.finished||Data.certificatePending||!Data.homePortalOpened)return;
-            Paused=true;Time.timeScale=0;AudioListener.pause=true;Save();
+            if(ending||!CanUsePortals||!Data.finished||Data.certificatePending||!Data.homePortalOpened)return;
+            ending=true;Paused=true;Time.timeScale=0;AudioListener.pause=true;Save();
             StartCoroutine(JourneyEnding.Play(this,ReturnToMenu));
         }
         public void ExitCertificate()

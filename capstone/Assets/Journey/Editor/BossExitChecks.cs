@@ -168,7 +168,18 @@ public static class BossExitChecks
             else if(stage==21){Move(seq.Home.Portal.position);Advance(22,2);}
             else if(stage==22)
             {
-                if(SceneManager.GetActiveScene().name!="Intro")return; // Wait for the final video before checking the menu.
+                if(SceneManager.GetActiveScene().name!="Intro")
+                {
+                    var video=UnityEngine.Object.FindAnyObjectByType<UnityEngine.Video.VideoPlayer>();
+                    if(video&&video.isPlaying)
+                    {
+                        Check(video.renderMode==UnityEngine.Video.VideoRenderMode.RenderTexture&&video.aspectRatio==UnityEngine.Video.VideoAspectRatio.FitOutside,"Outro fills its own screen surface");
+                        Check(UnityEngine.Object.FindObjectsByType<Camera>(FindObjectsSortMode.None).All(camera=>!camera.enabled),"Game cameras hidden during outro");
+                        Check(UnityEngine.Object.FindObjectsByType<Canvas>(FindObjectsSortMode.None).All(canvas=>canvas.gameObject==video.gameObject||!canvas.enabled),"Game UI hidden during outro");
+                        Check(AudioListener.pause&&UnityEngine.Object.FindObjectsByType<AudioSource>(FindObjectsSortMode.None).All(source=>source.gameObject==video.gameObject||source.mute),"Game soundtrack suppressed during outro");
+                    }
+                    return;
+                }
                 Check(session.Data.outroSeen,"Home portal finishes the final video");
                 Check(SceneManager.GetActiveScene().name=="Intro","Walking through home portal plays final video then loads main menu");session.ShowCertificate();session.HandleBack();Check(SceneManager.GetActiveScene().name=="Intro"&&!session.Paused,"Certificate from main menu returns to menu");
                 Finish(true,"All four seasonal boss quizzes, failure/pass thresholds, progressive boss dissolves, pixel portal builds, real automatic transitions, R removal in all controllers, final interactive quiz, certificate PDF and cave Exit/Escape, saved completed portals and home-to-menu ending passed.");
