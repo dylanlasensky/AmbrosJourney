@@ -24,7 +24,7 @@ namespace AmbrosJourney.Journey
         public JourneyData Data {get;private set;}
         public bool Paused {get;private set;}
         Action backAction;bool artifactsOpen;
-        int resumeFrame=-1;JourneyUI ui;bool menu,loading,cinematic;float nextSave;string notice="";Action beginIntro;TMP_InputField nameInput;
+        int resumeFrame=-1;JourneyUI ui;bool menu,loading,cinematic,ending;float nextSave;string notice="";Action beginIntro;TMP_InputField nameInput;
         public static readonly string[] ChapterNames={"Spring Valley","Summer Valley","Emberwood","Frostveil"};
         public const string ArtifactLesson="THE EVIDENCE COMPASS\nBefore sharing, leave out private details, check the original source and look for separate evidence. Say what you still haven't checked.\n\nSeveral AI tools can agree and still be wrong. They may repeat the same mistake, so matching replies don't count as separate checks.";
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]static void ResetStatics(){Instance=null;TestMode=false;SavePathOverride=null;}
@@ -125,7 +125,7 @@ namespace AmbrosJourney.Journey
         }
         public void OpenMenu(Action playIntro)
         {
-            beginIntro=playIntro;menu=true;Paused=false;Time.timeScale=1;AudioListener.pause=false;ShowMenu();
+            beginIntro=playIntro;ending=false;menu=true;Paused=false;Time.timeScale=1;AudioListener.pause=false;ShowMenu();
         }
         void Background(string eyebrow,string title,string subtitle)
         {
@@ -300,18 +300,18 @@ namespace AmbrosJourney.Journey
         public void ShowCertificate()
         {
             if(!Data.finished||Data.certificatePending)return;
-            backAction=CloseCertificate;ui.KeyboardNavigation=true;
+            backAction=ExitCertificate;ui.KeyboardNavigation=true;
             Paused=true;Time.timeScale=0;AudioListener.pause=true;ui.gameObject.SetActive(true);ui.Clear();
             var backdrop=ui.Panel(ui.Root,"Certificate backdrop",new Rect(-5000,-5000,10000,10000),new Color(.06f,.12f,.11f,.96f));backdrop.GetComponent<UnityEngine.UI.Image>().raycastTarget=true;
             JourneyCertificateView.Draw(ui,Data,.86f);
             ui.Button(ui.Root,"Download PDF certificate",new Rect(-430,312,410,40),()=>JourneyCertificate.Export(Data,ui));
-            ui.Button(ui.Root,"Exit",new Rect(20,312,410,40),CloseCertificate);
+            ui.Button(ui.Root,"Exit",new Rect(20,312,410,40),ExitCertificate);
         }
-        void CloseCertificate()
+        public void EnterHomePortal()
         {
-            if(cinematic)return;
-            if(!Data.outroSeen)StartCoroutine(JourneyEnding.Play(this,ExitCertificate));
-            else ExitCertificate();
+            if(ending||!CanUsePortals||!Data.finished||Data.certificatePending||!Data.homePortalOpened)return;
+            ending=true;Paused=true;Time.timeScale=0;AudioListener.pause=true;Save();
+            StartCoroutine(JourneyEnding.Play(this,ReturnToMenu));
         }
         public void ExitCertificate()
         {

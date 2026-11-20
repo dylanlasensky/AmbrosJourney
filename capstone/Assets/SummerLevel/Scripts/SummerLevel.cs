@@ -197,6 +197,7 @@ namespace AmbrosJourney.Summer
         }
         void Boss()
         {
+            BossBattleMusic.Play(this,music);
             if (Progress.Complete) { Show("The Suncrest Guardian is learning too", "Suncrest Guardian: What if I get it wrong?\nAmbros: Then you practice. You can ask for help without giving up.", Close); return; }
             if (!Progress.CanFight) { Show("The Suncrest Guardian's clearing is sealed", "Restore all three ward pieces first. The journal records your lessons, and the compass points toward your next mission.", Close); return; }
             Show("The Suncrest Guardian / Five questions", "Suncrest Guardian: I've been using these tools for everything. How do you decide when to step in?\n\nWarrior: Let's see what you've learned. Get four of five questions right to open Fall. You can retry without redoing the village jobs.", () => { Progress.BeginBoss(); BossQuestion(); });
@@ -225,7 +226,7 @@ namespace AmbrosJourney.Summer
         void ShowPages(string[] pages, int index, Action complete)
         { Show("Summer / The village ward", pages[index], () => { if (index + 1 < pages.Length) ShowPages(pages, index + 1, complete); else { complete(); Close(); } }); }
         void Effect(bool right) { effects.PlayOneShot(right ? good : bad, .45f); presentation.Feedback(right); }
-        void Close() { if(readingGardenWarrior){Progress.GardenWarriorRead=true;readingGardenWarrior=false;}dialog.SetActive(false); actions.Clear(); next = null; if (music) music.pitch = 1; }
+        void Close() { BossBattleMusic.Stop(this); if(readingGardenWarrior){Progress.GardenWarriorRead=true;readingGardenWarrior=false;}dialog.SetActive(false); actions.Clear(); next = null; if (music) music.pitch = 1; }
         void Show(string title, string body, Action onContinue)
         {
             currentTitle = title; heading.text = title; copy.text = body; dialog.SetActive(true); journal.SetActive(false);

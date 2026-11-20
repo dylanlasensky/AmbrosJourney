@@ -125,6 +125,7 @@ namespace AmbrosJourney.Fall
         }
         void Boss()
         {
+            BossBattleMusic.Play(this,music);
             if(Progress.Complete){Show("Bramble Sentinel / Restored", "Sentinel: A clear request gives me direction, not wisdom.\nEmberfist: Exactly. We still inspect the answer.",Close);return;}
             if(!Progress.CanFight){Show("The rune barrier is sealed","Restore the Orchard, Archive and Kiln runes before challenging the Sentinel.",Close);return;}
             Show("Bramble Sentinel / Five tangled instructions","Sentinel: Let's try a few new requests. Can you spot what each one needs?\n\nGet four of five questions right to open Winter. Your runes stay safe if you need another try.",()=>{Progress.BeginBoss();BossQuestion();});
@@ -151,7 +152,7 @@ namespace AmbrosJourney.Fall
             player.Flash(right?new Color(.65f,1,.65f):new Color(1,.5f,.4f));
             if(right)SeasonFeedback.Burst(player.transform.position,new Color(1,.8f,.3f));
         }
-        void Close(){dialog.SetActive(false);actions.Clear();next=null;if(music)music.pitch=1;}
+        void Close(){BossBattleMusic.Stop(this);dialog.SetActive(false);actions.Clear();next=null;if(music)music.pitch=1;}
         void Show(string title,string body,Action onContinue)
         {
             currentTitle=title;heading.text=title;copy.text=body;dialog.SetActive(true);journal.SetActive(false);next=onContinue==null?null:()=>{GameAudio.Click();onContinue();};actions.Clear();
