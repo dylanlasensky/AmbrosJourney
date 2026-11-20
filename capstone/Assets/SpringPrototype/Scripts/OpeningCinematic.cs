@@ -1,24 +1,22 @@
 using UnityEngine;
 using UnityEngine.Video;
 
-// Play the opening once per application, then show the name/load menu.
+// Name entry -> supplied opening -> loading -> Spring.
 [RequireComponent(typeof(VideoPlayer))]
 public class OpeningCinematic : MonoBehaviour
 {
     public VideoClip clip;
     VideoPlayer video;
     bool loading;
-    static bool openingShown;
     string error;
     float elapsed;
     void Start()
     {
         GetComponent<VideoPlayer>().playOnAwake=false;
         GetComponent<VideoPlayer>().Stop();
-        if(openingShown){ShowMenu();return;}
-        openingShown=true;PlayOpening();
+        ShowMenu();
     }
-    public void Begin()=>AmbrosJourney.Journey.JourneySession.Instance.LoadChapter(1);
+    public void Begin()=>PlayOpening();
     void ShowMenu()
     {
         var session=AmbrosJourney.Journey.JourneySession.Instance;
@@ -37,13 +35,13 @@ public class OpeningCinematic : MonoBehaviour
         video.Prepare();
     }
     void Prepared(VideoPlayer source){source.Play();Debug.Log("OPENING_CINEMATIC_STARTED");}
-    void Failed(VideoPlayer source,string message){error="The opening could not play. Press Enter to continue to the menu.";Debug.LogWarning("Opening video: "+message);}
-    void Finished(VideoPlayer source){if(loading)return;loading=true;Debug.Log("OPENING_CINEMATIC_COMPLETE: opening menu");if(video){video.loopPointReached-=Finished;video.errorReceived-=Failed;video.prepareCompleted-=Prepared;video.Stop();video=null;}ShowMenu();}
+    void Failed(VideoPlayer source,string message){error="The opening could not play. Press Enter to begin Spring.";Debug.LogWarning("Opening video: "+message);}
+    void Finished(VideoPlayer source){if(loading)return;loading=true;Debug.Log("OPENING_CINEMATIC_COMPLETE: loading Spring");if(video){video.loopPointReached-=Finished;video.errorReceived-=Failed;video.prepareCompleted-=Prepared;video.Stop();video=null;}var session=AmbrosJourney.Journey.JourneySession.Instance;session.SetCinematicVisible(false);session.LoadChapter(1);}
     void Update()
     {
         if(video==null)return;
         elapsed+=Time.unscaledDeltaTime;
-        if(video!=null && !video.isPrepared && elapsed>20 && error==null)error="The opening is taking too long to load. Press Enter to continue to the menu.";
+        if(video!=null && !video.isPrepared && elapsed>20 && error==null)error="The opening is taking too long to load. Press Enter to begin Spring.";
         if(error!=null && UnityEngine.InputSystem.Keyboard.current!=null && UnityEngine.InputSystem.Keyboard.current.enterKey.wasPressedThisFrame)Finished(video);
     }
     void OnGUI()

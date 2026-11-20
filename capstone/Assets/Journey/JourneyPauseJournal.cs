@@ -9,7 +9,7 @@ namespace AmbrosJourney.Journey
     {
         static readonly Color Ink=new Color(.22f,.26f,.20f),Muted=new Color(.43f,.40f,.30f),Rule=new Color(.57f,.43f,.25f,.34f);
         static readonly Color[] Seasons={new Color(.71f,.43f,.52f),new Color(.43f,.54f,.30f),new Color(.70f,.38f,.22f),new Color(.38f,.58f,.65f)};
-        public static void Open(JourneyUI ui,JourneyData data,string notice)
+        public static void Book(JourneyUI ui,JourneyData data)
         {
             ui.Clear();
             var dim=ui.Panel(ui.Root,"Journal dimmer",new Rect(-640,-360,1280,720),new Color(.025f,.045f,.035f,.76f));
@@ -34,6 +34,10 @@ namespace AmbrosJourney.Journey
                 Paint(ui,"Season tab "+i,new Rect(557,-221+i*67,25,48),color);
                 var tab=Text(ui,"Season tab number "+i,(i+1).ToString(),new Rect(559,-211+i*67,20,26),17,new Color(1,.95f,.80f));tab.alignment=TextAlignmentOptions.Center;
             }
+        }
+        public static void Open(JourneyUI ui,JourneyData data,string notice)
+        {
+            Book(ui,data);
             Text(ui,"Journal eyebrow","AMBROS' JOURNEY",new Rect(-510,-252,440,24),15,Muted);
             Text(ui,"Journal title","Field journal",new Rect(-510,-221,440,48),38,Ink);
             Text(ui,"Explorer name",data.playerName,new Rect(-510,-168,440,32),23,Muted);

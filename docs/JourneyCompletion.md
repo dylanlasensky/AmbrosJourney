@@ -4,7 +4,7 @@
 
 ## Play and save
 
-Open `capstone` in Unity **6000.6.2f1**, open `Assets/Opening/Intro.unity`, and press Play. The opening scene plays the original intro once, then shows the name-entry/Continue menu. New Journey shows loading and enters Spring; Continue restores the last saved location.
+Open `capstone` in Unity **6000.6.2f1**, open `Assets/Opening/Intro.unity`, and press Play. The opening scene shows the name-entry/Continue menu. New Journey plays the October intro after name entry, then shows loading and enters Spring; Continue restores the last saved location.
 
 Pause is always available on the right side of every season, or with **Esc**. It stops physics, animation and audio, and offers Resume, Save and return to menu, artifacts, guidance, reset, and travel to unlocked seasons. The same profile has one checkpoint per season. Travel lets players recover missed collectibles without restarting lessons. Returning to a checkpoint on a portal does not immediately send the player through it: step away first.
 
@@ -21,7 +21,7 @@ Saves contain the explorer name, exact player coordinates, Winter outdoor/cave r
 
 ## Intro and outro videos
 
-The original `Ambros-Journey-Intro-40s.mp4` is included as `Assets/Journey/Resources/Journey/Intro.mp4`. It plays once when the application opens, before the name/Continue menu. Starting a new journey then shows the loading screen and enters Spring. Returning to the menu during the same application session does not replay the opening.
+The original October opening is restored from repository commit `62196e5` (`Assets/Opening/Opening.mp4`) into `Assets/Journey/Resources/Journey/Intro.mp4`. The name/Continue menu opens first. After entering a name and choosing New Journey, the 34-second opening plays, followed by loading and Spring. Continue restores a saved journey without replaying the opening.
 
 `Ambros-Journey-Outro-20s.mp4` is included as `Assets/Journey/Resources/Journey/Outro.mp4`. Collecting the certificate opens it first. Closing it with Exit or Esc plays the outro, then preserves the existing home-portal/menu flow. Download PDF keeps the certificate open. A successfully watched outro is recorded in the save so reopening the certificate does not replay it. Video preparation failures retain a way back to the menu or gameplay.
 
@@ -69,3 +69,7 @@ The blossom-valley homepage follows the supplied visual reference. Returning exp
 
 
 See [second-round feedback changes](SecondUserTesting.md) for the removed R shortcut, shared boss crumble, animated seasonal exits and cave-to-menu home portal.
+
+## Spring controls journal
+
+First-time explorers see a large two-page controls book at Spring spawn, matching the pause journal frame. Pixel key diagrams show WASD, arrow keys, E, 1/2, J, I and Esc. The guide explains the compass arrow beside the player and directs them to the Ancient Mage. E, Enter, the button or Esc dismisses it; the saved dismissal flag prevents repeats.

@@ -11,6 +11,7 @@ public class SpringGuide : MonoBehaviour
     public Texture2D batSheet, guardianSheet;
     public Vector2 StartPosition = new Vector2(-18,16);
     bool explored, controlsSeen, welcomeOpen;
+    AmbrosJourney.Journey.JourneyUI welcomeUI;
     public Sprite gateSprite;
     GameObject gateSeal;
     public bool DialogueOpen { get; private set; }
@@ -81,6 +82,7 @@ public class SpringGuide : MonoBehaviour
     {
         if(state==null||!state.Valid())throw new System.ArgumentException("Invalid Spring checkpoint");
         controlsSeen=state.controlsSeen||state.explored||state.lessonComplete;welcomeOpen=false;
+        if(welcomeUI){Destroy(welcomeUI.gameObject);welcomeUI=null;}
         explored=state.explored;LessonComplete=state.lessonComplete;SpringComplete=state.complete;MissionsComplete=state.missions;BossScore=state.bossScore;cleared=state.cleared;studied=state.studied;trials=state.trials;
         DialogueOpen=journalOpen=false;target=-1;feedback="";bossQuestion=0;bossResult=false;
         for(int i=0;i<3;i++)bats[i].gameObject.SetActive(!cleared[i]);boss.gameObject.SetActive(!SpringComplete);gateSeal.SetActive(!SpringComplete);AmbrosJourney.Journey.BossPortalSequence.RestoreCheckpoint();
@@ -140,6 +142,7 @@ public class SpringGuide : MonoBehaviour
     void CloseWelcome()
     {
         controlsSeen=true;welcomeOpen=false;DialogueOpen=false;
+        if(welcomeUI){Destroy(welcomeUI.gameObject);welcomeUI=null;}
         var session=AmbrosJourney.Journey.JourneySession.Instance;if(session)session.Save();
     }
     readonly AmbrosJourney.Presentation.SeasonTrail companionTrail=new AmbrosJourney.Presentation.SeasonTrail();
@@ -147,7 +150,13 @@ public class SpringGuide : MonoBehaviour
     void Update()
     {
         if(AmbrosJourney.Journey.JourneySession.Blocked)return;
-        if(!controlsSeen&&!welcomeOpen){welcomeOpen=true;DialogueOpen=true;}
+        if(!controlsSeen&&!welcomeOpen)
+        {
+            welcomeOpen=true;DialogueOpen=true;
+            var book=new GameObject("Spring controls journal");book.transform.SetParent(transform,false);
+            welcomeUI=book.AddComponent<AmbrosJourney.Journey.JourneyUI>();welcomeUI.Initialize();welcomeUI.Canvas.sortingOrder=31001;
+            AmbrosJourney.Journey.JourneyWelcome.Draw(welcomeUI,CloseWelcome);
+        }
         if(welcomeOpen)
         {
             var keyboard=Keyboard.current;
@@ -218,20 +227,7 @@ public class SpringGuide : MonoBehaviour
         presentation.Objective.text="LESSONS "+MissionsComplete+" / 3\n"+Quest();
         presentation.Prompt.text=Nearby()!=-99?"[ E ]  Explore / interact":"";
         presentation.Dialog.SetActive(DialogueOpen&&!journalOpen);presentation.Journal.SetActive(journalOpen);
-        if(welcomeOpen)
-        {
-            presentation.Prompt.text="";
-            presentation.SetCompass(player.position,mage.position,mage.position);
-            presentation.Heading.text="Welcome to Spring";
-            presentation.Copy.text="WASD / Arrow keys: Move\nE: Talk, read and interact   |   1 / 2: Choose an answer\nJ: Field notes   |   I: Artifacts   |   Esc: Back / pause\n\nLook for the compass arrow beside your character to find your next stop. Follow it to the Ancient Mage beside his cottage.";
-            for(int i=0;i<presentation.Choices.Count;i++)
-            {
-                var button=presentation.Choices[i];button.gameObject.SetActive(i==0);button.onClick.RemoveAllListeners();
-                if(i==0){button.GetComponentInChildren<TextMeshProUGUI>().text="Let's explore [ E ]";button.onClick.AddListener(Continue);}
-            }
-            if(lastBody!="Spring welcome"){presentation.Present(false);lastBody="Spring welcome";}
-            return;
-        }
+        if(welcomeOpen){presentation.Dialog.SetActive(false);presentation.Prompt.text="";return;}
         if(journalOpen){var titles=new string[3];var notes=new string[3];for(int i=0;i<3;i++){titles[i]=locations[i]+" / "+trials[i]+" of 2 challenges";notes[i]=studied[i]?fieldNotes[i].Split('\n')[1]:"Find the field note at this landmark.";}presentation.SetJournal(titles,notes,SpringComplete?"PARTY / Ambros + Ancient Mage":"PARTY / Ambros");return;}
         var dest=Destination();if(dest&&!DialogueOpen){Vector2 waypoint=dest.position;if(LessonComplete&&MissionsComplete==1){if(player.position.x< -10&&player.position.y> -5)waypoint=new Vector2(-15,-7);else if(player.position.x<2)waypoint=new Vector2(3,-7);}presentation.SetCompass(player.position,waypoint,dest.position);}
         if(!DialogueOpen)return;

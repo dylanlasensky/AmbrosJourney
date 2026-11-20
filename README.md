@@ -8,7 +8,7 @@ A top-down pixel-art adventure for middle-school players learning to use AI thou
 
 Open the **inner `capstone` folder** in Unity **6000.6.2f1**. Open `Assets/Opening/Intro.unity` and press Play, or use **Capstone > Play From Opening**. The Blossom Valley main menu supports New Journey, Continue, Settings, Quit, and a completed explorer's certificate. New Journey requires an explorer name, highlights the empty name box with a gold pulse, and confirms before replacing an existing save.
 
-The original intro plays before the name/Continue menu. New Journey then loads Spring. The supplied outro plays after the collected certificate is closed. Close the conversation at each unlocked seasonal gate, then walk through it to continue.
+The name/Continue menu opens first. New Journey plays the original October intro after name entry, then loads Spring. The supplied outro plays after the collected certificate is closed. Close the conversation at each unlocked seasonal gate, then walk through it to continue.
 
 | Progression | Helper and teaching goal | Encounter and reward |
 | --- | --- | --- |
