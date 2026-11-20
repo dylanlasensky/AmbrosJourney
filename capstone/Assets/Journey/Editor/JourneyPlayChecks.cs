@@ -87,6 +87,8 @@ namespace AmbrosJourney.Journey.Editor
                 try{JourneySession.SavePathOverride=directory;UI.GetComponentInChildren<TMP_InputField>().text="Test Explorer";session.NewJourney();Check(!session.Data.started&&UI.GetComponentInChildren<TMP_InputField>(),"Failed save stays on name-entry menu");Inspect();}
                 finally{JourneySession.SavePathOverride=normalSave;}
                 UI.GetComponentInChildren<TMP_InputField>().text="Zoë Explorer";var opening=UnityEngine.Object.FindAnyObjectByType<OpeningCinematic>();Check(Resources.Load<UnityEngine.Video.VideoClip>("Journey/Intro"),"Supplied original intro is included");Click("New Journey");Check(session.Data.started&&session.Data.playerName=="Zoë Explorer"&&session.Data.assistedGuidance,"Named journey starts with chosen settings");
+                // Playback has its own checks; advance the clip to keep this progression suite focused.
+                opening.GetType().GetMethod("Finished",Private).Invoke(opening,new object[]{null});
             }
             else if(stage==13)
             {
