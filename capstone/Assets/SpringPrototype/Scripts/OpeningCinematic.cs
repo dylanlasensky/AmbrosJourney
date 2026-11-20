@@ -1,26 +1,33 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.Video;
 
-// No movement or input is active in the opening scene. Playback ends in Spring.
+// Play the opening once per application, then show the name/load menu.
 [RequireComponent(typeof(VideoPlayer))]
 public class OpeningCinematic : MonoBehaviour
 {
     public VideoClip clip;
     VideoPlayer video;
     bool loading;
+    static bool openingShown;
     string error;
     float elapsed;
     void Start()
     {
         GetComponent<VideoPlayer>().playOnAwake=false;
         GetComponent<VideoPlayer>().Stop();
-        AmbrosJourney.Journey.JourneySession.Instance.OpenMenu(Begin);
+        if(openingShown){ShowMenu();return;}
+        openingShown=true;PlayOpening();
     }
-    public void Begin()
+    public void Begin()=>AmbrosJourney.Journey.JourneySession.Instance.LoadChapter(1);
+    void ShowMenu()
+    {
+        var session=AmbrosJourney.Journey.JourneySession.Instance;
+        session.SetCinematicVisible(false);session.OpenMenu(Begin);
+    }
+    void PlayOpening()
     {
         elapsed=0;error=null;loading=false;
-        // Videos belong to the teammate. With no supplied clip, start playing immediately.
+        AmbrosJourney.Journey.JourneySession.Instance.SetCinematicVisible(true);
         if(!clip)clip=Resources.Load<VideoClip>("Journey/Intro");
         if(!clip){Finished(null);return;}
         video=GetComponent<VideoPlayer>();video.clip=clip;video.renderMode=VideoRenderMode.CameraNearPlane;video.targetCamera=Object.FindAnyObjectByType<Camera>();video.targetCameraAlpha=1;video.aspectRatio=VideoAspectRatio.FitInside;video.playOnAwake=false;video.isLooping=false;video.waitForFirstFrame=true;
@@ -30,13 +37,13 @@ public class OpeningCinematic : MonoBehaviour
         video.Prepare();
     }
     void Prepared(VideoPlayer source){source.Play();Debug.Log("OPENING_CINEMATIC_STARTED");}
-    void Failed(VideoPlayer source,string message){error="The opening could not play. Press Enter to begin Spring.";Debug.LogWarning("Opening video: "+message);}
-    void Finished(VideoPlayer source){if(loading)return;loading=true;Debug.Log("OPENING_CINEMATIC_COMPLETE: entering Spring");SceneManager.LoadScene("Spring");}
+    void Failed(VideoPlayer source,string message){error="The opening could not play. Press Enter to continue to the menu.";Debug.LogWarning("Opening video: "+message);}
+    void Finished(VideoPlayer source){if(loading)return;loading=true;Debug.Log("OPENING_CINEMATIC_COMPLETE: opening menu");if(video){video.loopPointReached-=Finished;video.errorReceived-=Failed;video.prepareCompleted-=Prepared;video.Stop();video=null;}ShowMenu();}
     void Update()
     {
         if(video==null)return;
         elapsed+=Time.unscaledDeltaTime;
-        if(video!=null && !video.isPrepared && elapsed>20 && error==null)error="The opening is taking too long to load. Press Enter to begin Spring.";
+        if(video!=null && !video.isPrepared && elapsed>20 && error==null)error="The opening is taking too long to load. Press Enter to continue to the menu.";
         if(error!=null && UnityEngine.InputSystem.Keyboard.current!=null && UnityEngine.InputSystem.Keyboard.current.enterKey.wasPressedThisFrame)Finished(video);
     }
     void OnGUI()

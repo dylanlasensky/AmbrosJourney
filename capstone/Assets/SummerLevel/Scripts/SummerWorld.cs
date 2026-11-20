@@ -122,10 +122,6 @@ namespace AmbrosJourney.Summer
             Visual("Workshop shelter","Shelter",new Vector2(-21,17),1.3f);
             level.garden=Visual("Training garden","Target",new Vector2(-15,-6),1.3f).transform; SeasonWorldLabel.Attach(level.garden,"[E] TRAINING TARGET");
             for(int i=0;i<4;i++)Visual("Garden bed","GardenBed",new Vector2(-24+(i%2)*2.5f,-11-(i/2)*2.2f));
-            level.stones=new Transform[3];
-            Vector2[] stonePositions={new Vector2(-21,-4),new Vector2(-18,-8),new Vector2(-23,-8)};
-            string[] stoneNames={"SUN","LEAF","SEED"};
-            for(int i=0;i<3;i++){level.stones[i]=Visual(stoneNames[i]+" stepping stone","Stone"+i,stonePositions[i],1.2f).transform;SeasonWorldLabel.Attach(level.stones[i],"[E] "+stoneNames[i],110);}
             level.messagePost=Visual("Message post","Noticeboard",new Vector2(19,8),1.3f).transform;SeasonWorldLabel.Attach(level.messagePost,"[E] FIELD NOTE / MESSAGE POST");
             Visual("Message shelter","Shelter",new Vector2(24,14));
             // Short ruined bridge is a visual teaching prop, outside the navigable route.

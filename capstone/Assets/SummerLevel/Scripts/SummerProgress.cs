@@ -44,7 +44,7 @@ namespace AmbrosJourney.Summer
         }
         public bool AnswerGarden(int choice)
         {
-            if (!PatternComplete || Wards[1] || choice < 0 || choice > 1) return false;
+            if (!Introduced || Wards[1] || choice < 0 || choice > 1) return false;
             bool correct = choice == 0;
             if (correct) { GardenQuestion = 1; Wards[1] = true; }
             return correct;

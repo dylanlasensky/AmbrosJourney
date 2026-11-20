@@ -39,10 +39,7 @@ namespace AmbrosJourney.Summer.Editor
             p.Introduced = true;
             Require(!p.AnswerWorkshop(1) && p.WorkshopQuestion == 0, "Wrong workshop answer retries");
             Require(p.AnswerWorkshop(0) && p.AnswerWorkshop(1) && p.Wards[0], "Workshop complete");
-            Require(!p.ChooseHint(1), "Copying is explained before practice");
-            Require(p.ChooseHint(0), "Hint chosen");
-            Require(!p.StepOnStone(1) && p.PatternStep == 0, "Pattern mistake retries");
-            foreach (int stone in SummerContent.Pattern) Require(p.StepOnStone(stone), "Pattern step");
+            Require(!p.PatternComplete, "Garden has no stepping-stone prerequisite");
             Require(!p.AnswerGarden(1), "Garden misconception retries"); Require(p.AnswerGarden(0), "Practice ward earned");
             Require(!p.BeginBoss(), "All three wards required");
             p.AnswerMessage(0); p.AnswerMessage(0); Require(!p.PrivacyComplete, "Duplicate removal cannot finish privacy");

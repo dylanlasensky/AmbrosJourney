@@ -5,7 +5,7 @@ namespace AmbrosJourney.Journey
 {
     [Serializable] public sealed class SpringState
     {
-        public bool explored,lessonComplete,complete;
+        public bool explored,controlsSeen,lessonComplete,complete;
         public int missions,bossScore;
         public bool[] cleared=new bool[3],studied=new bool[3];
         public int[] trials=new int[3];

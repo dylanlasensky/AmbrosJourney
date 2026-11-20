@@ -300,12 +300,18 @@ namespace AmbrosJourney.Journey
         public void ShowCertificate()
         {
             if(!Data.finished||Data.certificatePending)return;
-            backAction=ExitCertificate;ui.KeyboardNavigation=true;
+            backAction=CloseCertificate;ui.KeyboardNavigation=true;
             Paused=true;Time.timeScale=0;AudioListener.pause=true;ui.gameObject.SetActive(true);ui.Clear();
             var backdrop=ui.Panel(ui.Root,"Certificate backdrop",new Rect(-5000,-5000,10000,10000),new Color(.06f,.12f,.11f,.96f));backdrop.GetComponent<UnityEngine.UI.Image>().raycastTarget=true;
             JourneyCertificateView.Draw(ui,Data,.86f);
             ui.Button(ui.Root,"Download PDF certificate",new Rect(-430,312,410,40),()=>JourneyCertificate.Export(Data,ui));
-            ui.Button(ui.Root,"Exit",new Rect(20,312,410,40),ExitCertificate);
+            ui.Button(ui.Root,"Exit",new Rect(20,312,410,40),CloseCertificate);
+        }
+        void CloseCertificate()
+        {
+            if(cinematic)return;
+            if(!Data.outroSeen)StartCoroutine(JourneyEnding.Play(this,ExitCertificate));
+            else ExitCertificate();
         }
         public void ExitCertificate()
         {
