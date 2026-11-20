@@ -58,18 +58,14 @@ public static class WinterRefinementChecks
             }
             else if(stage==1)
             {
-                if(!l.Progress.CompassWarningShown)return;Time.timeScale=1;
-                Check(l.IsDialogueOpen&&l.CurrentTitle.Contains("frozen"),"Actual snowfall opens frozen-arrow notice");Call(ui,"LateUpdate");
-                Check(!ui.Arrow.gameObject.activeSelf&&ui.CompassObscured,"Arrow disappears when notice opens");
-                SeasonIntegrationChecks.Capture("WinterFrozenArrowNotice");Next(l);Check(!l.IsDialogueOpen,"Notice continues normally");
-                Time.timeScale=16;stage=2;
-            }
-            else if(stage==2)
-            {
-                if(Mathf.Repeat(Time.time,48)>12)return;Time.timeScale=1;
-                Call(l,"RefreshWorld");Call(ui,"LateUpdate");Check(l.Progress.CompassWarningShown&&ui.CompassObscured&&!ui.Arrow.gameObject.activeSelf,"Arrow remains gone after the weather cycle ends");
-                session.Data.assistedGuidance=true;Call(l,"RefreshWorld");Call(ui,"LateUpdate");Check(!ui.Arrow.gameObject.activeSelf,"Guidance toggle cannot revive an already frozen outdoor arrow");session.Data.assistedGuidance=false;
-                var saved=JsonUtility.FromJson<WinterProgress>(JsonUtility.ToJson(l.Progress));l.RestoreProgress(saved);Call(l,"RefreshWorld");Call(ui,"LateUpdate");Check(!ui.Arrow.gameObject.activeSelf,"Frozen state survives checkpoint reload");
+                Time.timeScale=1;Call(l,"RefreshWorld");Call(ui,"LateUpdate");
+                Check(!l.IsDialogueOpen&&!ui.CompassObscured&&ui.Arrow.gameObject.activeSelf,"Winter keeps guidance visible without a frozen notice");
+                var saved=JsonUtility.FromJson<WinterProgress>(JsonUtility.ToJson(l.Progress));saved.CompassWarningShown=true;
+                l.RestoreProgress(saved);Call(l,"RefreshWorld");Call(ui,"LateUpdate");
+                Check(!ui.CompassObscured&&ui.Arrow.gameObject.activeSelf,"Old frozen-arrow saves regain guidance");
+                Check(Mathf.Abs(WinterWorld.WardenPosition.x-WinterWorld.Entrance.x)<.01f&&WinterWorld.WardenPosition.y<WinterWorld.Entrance.y,"Warden guards the front of the doorway");
+                Check(!l.runes[0].sprite&&!l.runes[1].sprite,"Outdoor note crystals removed");
+                SeasonIntegrationChecks.Capture("WinterPermanentGuidance");
                 Move(l,WinterWorld.WardenPosition+Vector2.down*2);l.Interact(8);Next(l);
                 for(int i=0;i<5;i++){ui.Choices[WinterContent.Boss[i].Correct].onClick.Invoke();Next(l);}
                 Check(l.Progress.WinterComplete&&!l.Progress.CaveEntryExplained,"Warden victory alone does not unlock first cave entry");Next(l);stage=3;
@@ -92,15 +88,20 @@ public static class WinterRefinementChecks
             else if(stage==4)
             {
                 Check(l.Progress.InCave,"Walking into doorway after Mage conversation automatically enters cave");Call(l,"RefreshWorld");Call(ui,"LateUpdate");
-                Check(!ui.CompassObscured&&ui.Arrow.gameObject.activeSelf,"Arrow returns inside Echo Chamber");SeasonIntegrationChecks.Capture("EchoChamberArrowRestored");
+                Check(!ui.CompassObscured&&ui.Arrow.gameObject.activeSelf,"Arrow stays visible inside Echo Cavern");
+                var visibility=l.World.GetComponent<CaveVisibility>();Call(visibility,"LateUpdate");
+                Check(visibility.IsVisible&&visibility.LanternCount==WinterWorld.CaveLanterns.Length,"Cave veil and all lantern pools activate");
+                Check(visibility.Reveals(l.player.transform.position)&&!visibility.Reveals(new Vector2(140,-25)),"Player circle reveals nearby floor but conceals distant cavern");
+                Check(visibility.Reveals(WinterWorld.CaveLanterns[0]),"Lanterns reveal their immediate surroundings");
+                SeasonIntegrationChecks.Capture("EchoCavernLanternLight");
                 Move(l,l.caveExit.position);l.World.ChangeRegion(false);stage=5;ready=EditorApplication.timeSinceStartup+.3;
             }
             else if(stage==5)
             {
-                Call(l,"RefreshWorld");Call(ui,"LateUpdate");Check(!l.Progress.InCave&&ui.CompassObscured&&!ui.Arrow.gameObject.activeSelf,"Returning outdoors freezes the arrow again");
+                Call(l,"RefreshWorld");Call(ui,"LateUpdate");Check(!l.Progress.InCave&&!ui.CompassObscured&&ui.Arrow.gameObject.activeSelf,"Outdoor guidance remains visible after exiting cave");var visibility=l.World.GetComponent<CaveVisibility>();Call(visibility,"LateUpdate");Check(!visibility.IsVisible,"Cave darkness switches off outside");
                 var legacy=JsonUtility.FromJson<WinterProgress>(JsonUtility.ToJson(l.Progress));legacy.CaveGuideRead=false;
                 Check(legacy.CaveDiscovered&&legacy.Valid()&&legacy.CanEnterCave,"Older saves which already visited the cave remain usable");
-                Finish(true,"Frozen arrow hides immediately, survives clear weather/settings/reload, returns only in cave; Warden dissolves without a portal overlay/build; cave entry requires completed Mage dialogue, survives reload, supports old cave saves and remains automatic afterward.");
+                Finish(true,"Permanent guidance including old saves; centered Warden; no outdoor note crystals; player visibility circle and six lantern pools; Warden dissolves without a portal overlay/build; cave entry requires completed Mage dialogue, survives reload, supports old cave saves and remains automatic afterward.");
             }
         }
         catch(Exception e){Finish(false,e.ToString());}

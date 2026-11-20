@@ -37,7 +37,7 @@ public static class GeneralFeedbackChecks
     static void Move(WinterLevel l,Vector2 p){l.player.transform.position=p;l.player.GetComponent<Rigidbody2D>().position=p;Physics2D.SyncTransforms();}
     static void Feedback(SeasonOverlay ui,bool right,int score,int total,string capture=null)
     {
-        Check(ui.Copy.text.StartsWith("Correct!")==right,"Explicit correct feedback: "+ui.Copy.text);
+        Check(ui.Copy.text.StartsWith(right?"Correct!":"Incorrect."),"Explicit answer feedback: "+ui.Copy.text);
         Check(ui.Copy.text.Contains(score+" / "+total+" correct."),"Fixed quiz denominator: "+ui.Copy.text);
         Call(ui,"LateUpdate");Canvas.ForceUpdateCanvases();
         foreach(var text in ui.GetComponentsInChildren<TMP_Text>())
@@ -75,8 +75,19 @@ public static class GeneralFeedbackChecks
     static void Summer()
     {
         var l=UnityEngine.Object.FindAnyObjectByType<SummerLevel>();l.DismissPanel();var ui=l.GetComponentInChildren<SeasonOverlay>();
-        l.Interact(1);Next(ui);Choice(ui,SummerContent.Workshop[0].Correct);Feedback(ui,true,1,2,"FeedbackSummerLesson");Next(ui);Choice(ui,1-SummerContent.Workshop[1].Correct);Feedback(ui,false,1,2);
+        l.Interact(1);Next(ui);var oldAnswer=((System.Collections.Generic.List<Action>)Get(l,"actions"))[SummerContent.Workshop[0].Correct];Choice(ui,SummerContent.Workshop[0].Correct);oldAnswer();Check(l.Progress.WorkshopQuestion==1,"Duplicate lesson callback cannot grade another question");Feedback(ui,true,1,2,"FeedbackSummerLesson");Next(ui);oldAnswer();Check(l.Progress.WorkshopQuestion==1&&!ui.Copy.text.StartsWith("Incorrect."),"Stale callback cannot answer the next question");Choice(ui,1-SummerContent.Workshop[1].Correct);Feedback(ui,false,1,2);
+        Check(l.Progress.WorkshopQuestion==1,"Wrong workshop choice keeps the current question");
+        Check(l.garden.name=="Garden field note","Summer practice stop is a field note board");
+        Check(l.garden.GetComponentInChildren<SeasonWorldLabel>().Caption.Contains("[E] FIELD NOTE"),"Garden board has a clear interaction label");
+        Check(l.wardLights.All(r=>!r.enabled),"Outdoor Summer ward crystals are hidden");
+        l.DismissPanel();l.Interact(2);Choice(ui,1);Check(ui.Copy.text.StartsWith("Incorrect.")&&!l.Progress.Wards[1],"Garden mistake explains failure without advancing");
+        Next(ui);Choice(ui,0);Check(l.Progress.Wards[1],"Garden accepts a correct retry");
+        l.DismissPanel();l.Interact(3);Choice(ui,0);Check(ui.Copy.text.StartsWith("Incorrect.")&&!l.Progress.PrivacyComplete,"Message board privacy mistake stays retryable");
+        Next(ui);Choice(ui,1);Next(ui);Choice(ui,0);Check(ui.Copy.text.StartsWith("Incorrect.")&&!l.Progress.Wards[2],"Human-help mistake stays retryable");
+        Next(ui);Choice(ui,1);Check(l.Progress.Wards[2],"Message board completes only after both correct answers");
         l.RestoreProgress(SummerReady());l.Interact(4);Next(ui);Choice(ui,SummerContent.Boss[0].Correct);Feedback(ui,true,1,5,"FeedbackSummerBoss");Next(ui);Choice(ui,1-SummerContent.Boss[1].Correct);Feedback(ui,false,1,5);
+        Check(l.Progress.BossQuestion==2&&l.Progress.BossScore==1,"Wrong Summer boss answer consumes one question without a retry");
+        Next(ui);Check(ui.Heading.text.Contains("Question 3"),"Boss feedback continues to the next question");
     }
     static void Fall()
     {

@@ -112,7 +112,7 @@ namespace AmbrosJourney.Fall
             level.ember=Actor("Emberfist Warrior","EmberIdle",4,new Vector2(-36,31));level.ember.walk=Frames("EmberWalk",8);SeasonWorldLabel.Attach(level.ember.transform,"[E] EMBERFIST");
             Visual("Emberfist's forge","Workbench",new Vector2(-32,29),1.5f);Visual("Forge shelter","Shelter",new Vector2(-34,32),1.3f);Label("EMBERFIST'S FORGE",new Vector2(-29,32));
             level.stations=new Transform[3];level.runes=new SpriteRenderer[3];string[] props={"Noticeboard","Noticeboard","Workbench"};
-            for(int i=0;i<3;i++){var pos=MissionPositions[i];level.stations[i]=Visual(FallContent.Landmarks[i],props[i],pos,1.5f).transform;SeasonWorldLabel.Attach(level.stations[i],"[E] FIELD NOTE / "+FallContent.Landmarks[i].ToUpper());level.runes[i]=Visual("Prompt rune "+(i+1),"Ward",pos+new Vector2(2,0));}
+            for(int i=0;i<3;i++){var pos=MissionPositions[i];level.stations[i]=Visual(FallContent.Landmarks[i],props[i],pos,1.5f).transform;SeasonWorldLabel.Attach(level.stations[i],"[E] FIELD NOTE / "+FallContent.Landmarks[i].ToUpper());level.runes[i]=Visual("Prompt rune "+(i+1),"Ward",pos+new Vector2(2,0));level.runes[i].enabled=false;}
             // Two small harvest stacks beside the orchard; the center trail stays open.
             foreach(var position in new[]{new Vector2(-34,5),new Vector2(-36,5.7f)})Visual("Harvest supplies","Crate",position);
             Visual("Archive shelter","Shelter",new Vector2(24,31),1.6f);

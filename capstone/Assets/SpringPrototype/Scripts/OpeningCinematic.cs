@@ -26,9 +26,15 @@ public class OpeningCinematic : MonoBehaviour
     {
         elapsed=0;error=null;loading=false;
         AmbrosJourney.Journey.JourneySession.Instance.SetCinematicVisible(true);
+        video=GetComponent<VideoPlayer>();
+#if UNITY_WEBGL && !UNITY_EDITOR
+        video.source=VideoSource.Url;video.url=Application.streamingAssetsPath+"/JourneyVideos/Intro.mp4";
+#else
         if(!clip)clip=Resources.Load<VideoClip>("Journey/Intro");
         if(!clip){Finished(null);return;}
-        video=GetComponent<VideoPlayer>();video.clip=clip;video.renderMode=VideoRenderMode.CameraNearPlane;video.targetCamera=Object.FindAnyObjectByType<Camera>();video.targetCameraAlpha=1;video.aspectRatio=VideoAspectRatio.FitInside;video.playOnAwake=false;video.isLooping=false;video.waitForFirstFrame=true;
+        video.clip=clip;
+#endif
+        video.renderMode=VideoRenderMode.CameraNearPlane;video.targetCamera=Object.FindAnyObjectByType<Camera>();video.targetCameraAlpha=1;video.aspectRatio=VideoAspectRatio.FitInside;video.playOnAwake=false;video.isLooping=false;video.waitForFirstFrame=true;
         video.audioOutputMode=VideoAudioOutputMode.Direct;video.SetDirectAudioVolume(0,.4f);
         video.loopPointReached+=Finished;video.errorReceived+=Failed;
         video.prepareCompleted+=Prepared;

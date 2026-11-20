@@ -43,6 +43,8 @@ public static class SeasonIntegrationChecks
         SummerToolsValidate();
         FallToolsValidate();
         PresentationTools.ValidateMath();
+        TrailNavigationChecks.Verify();
+        CinematicIsolationChecks.Run();
         EditorSceneManager.OpenScene("Assets/Scenes/Spring.unity");
         EditorWindow.GetWindow(Type.GetType("UnityEditor.GameView,UnityEditor")).Focus();
         Application.runInBackground = true;
@@ -77,14 +79,17 @@ public static class SeasonIntegrationChecks
                 AmbrosJourney.Journey.JourneySession.Instance.Resume(); // A background Editor may have auto-paused before test mode began.
                 var g = UnityEngine.Object.FindAnyObjectByType<SpringGuide>();
                 Check(g, "Spring scene has its guide");
+                g.DismissPanel(); // The controls welcome is separate from the Mage lesson pages.
                 BossRefreshChecks.CheckAndCapture(GameObject.Find("Blossom Guardian").GetComponent<SeasonBossVisual>(),"SpringBlossom");
                 CheckMotion(UnityEngine.Object.FindAnyObjectByType<SpringPlayer>(), "input", 4);
                 var gate = g.ExitPortal;
                 Check(!SummerPortalBridge.GateAllowsEntry(g, gate.position, gate.position), "Locked Spring gate blocks entry");
                 Set(g, "target", -1); typeof(SpringGuide).GetProperty("DialogueOpen").SetValue(g,true); Call(g,"LateUpdate"); CheckOverlay(g); Capture("SpringInterface"); for (int i = 0; i < 3; i++) Call(g, "Continue");
+                Check(g.LessonComplete,"Mage lesson pages completed after dismissing controls welcome");
                 for (int i = 0; i < 3; i++) { Set(g, "target", 5 + i);typeof(SpringGuide).GetProperty("DialogueOpen").SetValue(g,true);Call(g,"LateUpdate");CheckOverlay(g); Call(g, "Continue"); }
                 int[][] answers = {new[]{0,0}, new[]{1,0}, new[]{1,0}};
                 for (int i = 0; i < 3; i++) { Set(g, "target", i); Set(g, "feedback", ""); foreach (int a in answers[i]) { Call(g, "Answer", a); Call(g, "Continue"); } }
+                Check(g.MissionsComplete==3,"All three myth-bat lessons complete before guardian quiz");
                 Set(g, "target", 3); Set(g, "bossQuestion", 0); Set(g, "feedback", ""); Set(g, "bossResult", false);
                 foreach (int a in new[]{0,0,1,1,0}) { Call(g, "Answer", a); Call(g, "Continue"); }
                 Check(!g.SpringComplete && g.BossScore == 3, "Spring 3/5 fails"); Call(g, "Continue");
@@ -191,16 +196,20 @@ public static class SeasonIntegrationChecks
         {
             var camera=Camera.main;if(!camera)camera=UnityEngine.Object.FindAnyObjectByType<Camera>();Check(camera,"Screenshot camera");
             var canvases=UnityEngine.Object.FindObjectsByType<Canvas>();var modes=canvases.Select(c=>c.renderMode).ToArray();var cameras=canvases.Select(c=>c.worldCamera).ToArray();var planes=canvases.Select(c=>c.planeDistance).ToArray();var orders=canvases.Select(c=>c.sortingOrder).ToArray();
+            // Lift UI above world sprites while preserving the overlay stack (veil < HUD < dialogs).
+            var rankedOrders=orders.Distinct().OrderBy(order=>order).ToArray();
+            var visibility=UnityEngine.Object.FindAnyObjectByType<CaveVisibility>();
             var oldTarget=camera.targetTexture;float aspect=camera.aspect;var active=RenderTexture.active;var rt=new RenderTexture(size.x,size.y,24);var pixels=new Texture2D(size.x,size.y,TextureFormat.RGB24,false);
             try
             {
                 camera.targetTexture=rt;camera.aspect=(float)size.x/size.y;
-                foreach(var canvas in canvases){canvas.renderMode=RenderMode.ScreenSpaceCamera;canvas.worldCamera=camera;canvas.planeDistance=1;canvas.sortingOrder=Mathf.Max(30000,canvas.sortingOrder);}
+                foreach(var canvas in canvases){canvas.renderMode=RenderMode.ScreenSpaceCamera;canvas.worldCamera=camera;canvas.planeDistance=1;canvas.sortingOrder=30000+Array.IndexOf(rankedOrders,canvas.sortingOrder);}
+                if(visibility)Call(visibility,"LateUpdate");
                 Canvas.ForceUpdateCanvases();var overlay=UnityEngine.Object.FindAnyObjectByType<SeasonOverlay>();if(overlay)Call(overlay,"LateUpdate");Canvas.ForceUpdateCanvases();
                 foreach(var canvas in canvases)foreach(var t in canvas.GetComponentsInChildren<TMPro.TextMeshProUGUI>()){t.ForceMeshUpdate();Check(!t.isTextOverflowing,name+" overflow at "+size+": "+t.name+" / "+t.text+" rect="+t.rectTransform.rect.size+" preferred="+t.GetPreferredValues()+" pointSize="+t.fontSize);}
                 camera.Render();RenderTexture.active=rt;pixels.ReadPixels(new Rect(0,0,size.x,size.y),0,0);pixels.Apply();File.WriteAllBytes("Logs/SeasonChecks/"+name+"-"+size.x+".png",pixels.EncodeToPNG());
             }
-            finally{for(int i=0;i<canvases.Length;i++){canvases[i].renderMode=modes[i];canvases[i].worldCamera=cameras[i];canvases[i].planeDistance=planes[i];canvases[i].sortingOrder=orders[i];}camera.targetTexture=oldTarget;camera.aspect=aspect;RenderTexture.active=active;UnityEngine.Object.DestroyImmediate(pixels);UnityEngine.Object.DestroyImmediate(rt);Canvas.ForceUpdateCanvases();}
+            finally{for(int i=0;i<canvases.Length;i++){canvases[i].renderMode=modes[i];canvases[i].worldCamera=cameras[i];canvases[i].planeDistance=planes[i];canvases[i].sortingOrder=orders[i];}camera.targetTexture=oldTarget;camera.aspect=aspect;if(visibility)Call(visibility,"LateUpdate");RenderTexture.active=active;UnityEngine.Object.DestroyImmediate(pixels);UnityEngine.Object.DestroyImmediate(rt);Canvas.ForceUpdateCanvases();}
         }
     }
     static void Advance(int stage) { Debug.Log("SEASON_CHECK_STAGE: " + stage); SessionState.SetInt(Key + "stage", stage); readyAt = EditorApplication.timeSinceStartup + 4; }

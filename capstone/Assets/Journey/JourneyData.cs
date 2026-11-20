@@ -40,18 +40,42 @@ namespace AmbrosJourney.Journey
     // Write a complete replacement before touching the last known-good save. Keep a recovery copy.
     public static class JourneyStorage
     {
+#if UNITY_WEBGL && !UNITY_EDITOR
+        const string BrowserKey="ambros-journey:checkpoint:v1";
+        [System.Runtime.InteropServices.DllImport("__Internal")]static extern int AmbrosWriteSave(string key,string json);
+        [System.Runtime.InteropServices.DllImport("__Internal")]static extern string AmbrosReadSave(string key,int backup);
+        [System.Runtime.InteropServices.DllImport("__Internal")]static extern int AmbrosResetSave(string key);
+#endif
         public static void Write(string path,string json)
         {
+#if UNITY_WEBGL && !UNITY_EDITOR
+            // This write completes synchronously before a refresh can tear down the player.
+            if(AmbrosWriteSave(BrowserKey,json)==0)throw new IOException("Browser storage is unavailable.");
+#else
             Directory.CreateDirectory(Path.GetDirectoryName(path));
             string pending=path+".tmp";File.WriteAllText(pending,json,new UTF8Encoding(false));
             if(File.Exists(path))File.Replace(pending,path,path+".bak");else File.Move(pending,path);
+#endif
         }
         public static T Read<T>(string path,Func<string,T> parse,Func<T,bool> valid) where T:class
         {
+#if UNITY_WEBGL && !UNITY_EDITOR
+            for(int backup=0;backup<2;backup++)
+                try{string json=AmbrosReadSave(BrowserKey,backup);if(string.IsNullOrEmpty(json)||json.Length>131072)continue;var data=parse(json);if(data!=null&&valid(data))return data;}catch(ArgumentException){ }
+            // A browser reset writes a tombstone, so an old IDBFS checkpoint cannot reappear.
+            if(AmbrosReadSave(BrowserKey,2)=="reset")return null;
+#endif
             foreach(var candidate in new[]{path,path+".bak"})
                 try{if(!File.Exists(candidate)||new FileInfo(candidate).Length>131072)continue;var data=parse(File.ReadAllText(candidate));if(data!=null&&valid(data))return data;}catch(Exception e)when(e is IOException||e is ArgumentException||e is UnauthorizedAccessException){ }
             return null;
         }
-        public static void Reset(string path){foreach(string suffix in new[]{"",".bak",".tmp"})if(File.Exists(path+suffix))File.Delete(path+suffix);}
+        public static void Reset(string path)
+        {
+#if UNITY_WEBGL && !UNITY_EDITOR
+            if(AmbrosResetSave(BrowserKey)==0)throw new IOException("Browser storage is unavailable.");
+#else
+            foreach(string suffix in new[]{"",".bak",".tmp"})if(File.Exists(path+suffix))File.Delete(path+suffix);
+#endif
+        }
     }
 }

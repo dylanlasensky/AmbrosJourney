@@ -31,6 +31,7 @@ namespace AmbrosJourney.Winter
         readonly List<UnityEngine.UI.Button> choices=new List<UnityEngine.UI.Button>();
         readonly List<Action> actions=new List<Action>();
         Action next;
+        int dialogVersion;
         AudioSource effects,music;
         AudioClip good,bad,ward,strike;
         Canvas canvas;
@@ -84,18 +85,6 @@ namespace AmbrosJourney.Winter
             }
             if(Progress.Complete&&!CertificateReward&&!dialog.activeSelf)BeginCertificateReward(true);
             RefreshWorld();
-            MaybeShowCompassWarning();
-        }
-        void MaybeShowCompassWarning()
-        {
-            if(InputBlocked||!Progress.Introduced||Progress.InCave||Progress.Complete||Progress.CompassWarningShown||!presentation.CompassObscured)return;
-            Progress.CompassWarningShown=true;
-            string hint=!Progress.MissionComplete(0)?"Follow the lanterns to the Wayfarer's Ledger in the western clearing.":
-                !Progress.MissionComplete(1)?"Stay on the lantern trail around the frozen lake to the Frozen Observatory on the eastern ridge.":
-                !Progress.WinterComplete?"Follow the lanterns north to the ridge. The Frostbound Warden waits beside the cave.":
-                "Talk to the Little Mage beside the cave, then walk into its lantern-lit opening when you are ready.";
-            Show("Uh oh! Your guide arrow has frozen!","Your guide arrow has frozen. You will have to find your own way through the rest of Winter. Follow the lanterns and trail signs to find your next stop.\n\nNext: "+hint,()=>{Close();AmbrosJourney.Journey.JourneySession.Instance?.Save();});
-            presentation.SetFrostNotice(true);
         }
         public bool CanEnterCave=>AmbrosJourney.Journey.JourneySession.CanUsePortals&&!InputBlocked&&AmbrosJourney.Journey.BossPortalSequence.AllowsEntry(caveEntrance)&&Progress.CanEnterCave&&!Progress.InCave&&player&&caveEntrance&&Vector2.Distance(player.transform.position,caveEntrance.position)<1.1f;
         void LateUpdate()
@@ -139,7 +128,7 @@ namespace AmbrosJourney.Winter
             var q=WinterContent.Missions[mission][Progress.Steps[mission]];
             Ask(WinterContent.Landmarks[mission]+" / "+(Progress.Steps[mission]+1)+" of "+WinterContent.Missions[mission].Length,q.Prompt,q.Choices,c=>{
                 bool right=Progress.AnswerMission(mission,c);Effect(right);
-                Show(right?"The evidence holds":"Check the evidence again",SeasonOverlay.AnswerFeedback(right,q.Explanation,Progress.Steps[mission],WinterContent.Missions[mission].Length)+(right?"":"\n\nTry again. Your completed choices stay safe."),()=>MissionQuestion(mission));
+                Show(right?"The evidence holds":"Incorrect / Try again",SeasonOverlay.AnswerFeedback(right,q.Explanation,Progress.Steps[mission],WinterContent.Missions[mission].Length)+(right?"":"\n\nTry again. Your completed choices stay safe."),()=>MissionQuestion(mission));
             });
         }
         void WinterBoss()
@@ -158,7 +147,7 @@ namespace AmbrosJourney.Winter
                 return;
             }
             var q=WinterContent.Boss[Progress.WinterBossQuestion];
-            Ask("Winter Warden / "+(Progress.WinterBossQuestion+1)+" of 5",q.Prompt,q.Choices,c=>{bool right=Progress.AnswerWinterBoss(c);Effect(right);if(right){player.Strike();winterGuardian.Flash(new Color(1,.8f,.3f));}else winterGuardian.Strike();Show(right?"Evidence accepted":"Check that claim",SeasonOverlay.AnswerFeedback(right,q.Explanation,Progress.WinterBossScore,WinterContent.Boss.Length),WinterBossQuestion);});
+            Ask("Winter Warden / "+(Progress.WinterBossQuestion+1)+" of 5",q.Prompt,q.Choices,c=>{bool right=Progress.AnswerWinterBoss(c);Effect(right);if(right){player.Strike();winterGuardian.Flash(new Color(1,.8f,.3f));}else winterGuardian.Strike();Show(right?"Evidence accepted":"Incorrect / Answer recorded",SeasonOverlay.AnswerFeedback(right,q.Explanation,Progress.WinterBossScore,WinterContent.Boss.Length),WinterBossQuestion);});
         }
         void Boss()
         {
@@ -183,7 +172,7 @@ namespace AmbrosJourney.Winter
                 if(Progress.Complete)AmbrosJourney.Journey.JourneySession.Instance?.RecordFinalVictory();
                 if(right){player.Strike();guardian.Flash(new Color(1,.8f,.3f));}else guardian.Strike();
                 effects.PlayOneShot(strike,.35f);
-                Show(right?"That works":"Let's look at that again",SeasonOverlay.AnswerFeedback(right,q.Explanation,Progress.BossScore,WinterContent.Final.Length),BossQuestion);
+                Show(right?"That works":"Incorrect / Answer recorded",SeasonOverlay.AnswerFeedback(right,q.Explanation,Progress.BossScore,WinterContent.Final.Length),BossQuestion);
             });
         }
         void BeginCertificateReward(bool animate)
@@ -199,19 +188,19 @@ namespace AmbrosJourney.Winter
             player.Flash(right?new Color(.65f,1,.65f):new Color(1,.5f,.4f));
             if(right)SeasonFeedback.Burst(player.transform.position,new Color(1,.8f,.3f));
         }
-        void Close(){BossBattleMusic.Stop(this);presentation.SetFrostNotice(false);if(finalPanel)finalPanel.Hide();dialog.SetActive(false);actions.Clear();next=null;if(music)music.pitch=1;}
+        void Close(){dialogVersion++;BossBattleMusic.Stop(this);presentation.SetFrostNotice(false);if(finalPanel)finalPanel.Hide();dialog.SetActive(false);actions.Clear();next=null;if(music)music.pitch=1;}
         void Show(string title,string body,Action onContinue)
         {
             presentation.SetFrostNotice(false);
             if(finalPanel)finalPanel.Hide();
-            currentTitle=title;heading.text=title;copy.text=body;dialog.SetActive(true);journal.SetActive(false);next=onContinue==null?null:()=>{GameAudio.Click();onContinue();};actions.Clear();
+            dialogVersion++;currentTitle=title;heading.text=title;copy.text=body;dialog.SetActive(true);journal.SetActive(false);next=onContinue==null?null:()=>{GameAudio.Click();onContinue();};actions.Clear();
             foreach(var c in choices)c.gameObject.SetActive(false);
             choices[0].gameObject.SetActive(true);SetButton(choices[0],"Continue [ E ]",()=>{if(next!=null){var n=next;next=null;n();}});
             presentation.Present(false);
         }
         void Ask(string title,string body,string[] options,Action<int> answer)
         {
-            Show(title,body,null);for(int i=0;i<choices.Count;i++){choices[i].gameObject.SetActive(i<options.Length);if(i>=options.Length)continue;int index=i;Action choose=()=>{GameAudio.Click();answer(index);};actions.Add(choose);SetButton(choices[i],(i+1)+".  "+options[i],choose);}
+            Show(title,body,null);int version=dialogVersion;for(int i=0;i<choices.Count;i++){choices[i].gameObject.SetActive(i<options.Length);if(i>=options.Length)continue;int index=i;Action choose=()=>{if(version!=dialogVersion||!dialog.activeSelf||AmbrosJourney.Journey.JourneySession.Blocked)return;dialogVersion++;GameAudio.Click();answer(index);};actions.Add(choose);SetButton(choices[i],(i+1)+".  "+options[i],choose);}
             presentation.Present(true);
         }
         void SetButton(UnityEngine.UI.Button button,string label,Action action)
@@ -242,7 +231,7 @@ namespace AmbrosJourney.Winter
             for(int i=0;i<shields.Length;i++)shields[i].enabled=false;
             string quest=Progress.Complete&&Transitioning?"The Echo Keeper is crumbling...":Progress.Complete?(CertificateReward&&CertificateReward.Ready?"Collect the certificate dropped by the Echo Keeper":(AmbrosJourney.Journey.JourneySession.Instance.Data.homePortalOpened?"Walk through the portal to go home":"View your certificate, then choose Exit to open the way home")):!Progress.InCave?(Progress.MissionComplete(0)?Progress.MissionComplete(1)?(Progress.WinterComplete?(Progress.CaveEntryExplained?"Walk into the cave opening":"Talk to the Little Mage beside the cave"):"North ridge / Challenge the Winter Warden"):"Frozen Observatory / Compare evidence":"Wayfarer's Ledger / Check the source"):(Progress.RuneCount==3?"Echo Keeper / Final challenge: 7 of 8":!Progress.MissionComplete(0)||!Progress.MissionComplete(1)?"Return outside for the two field lessons":"Explore the passages to the Echo Archive");
             objective.text=(Progress.InCave?"ECHO CAVERN":"FROSTVEIL")+"  |  SEALS "+Progress.RuneCount+" / 3\n"+quest;
-            var destination=Destination();if(!InputBlocked)presentation.SetCompass(player.transform.position,navigation.Next(player.transform.position,destination),destination,Progress.CompassWarningShown&&!Progress.InCave);
+            var destination=Destination();if(!InputBlocked)presentation.SetCompass(player.transform.position,navigation.Next(player.transform.position,destination),destination,false);
             prompt.text=CertificateReward&&CertificateReward.CanCollect&&!InputBlocked?"[ E ]  Pick up your certificate":InputBlocked||nearby<0?"":"[ E ]  "+new[]{"Talk to the Little Mage","Wayfarer's Ledger","Frozen Observatory","Echo Archive","Face the Warden","Winter crest","Enter Echo Cavern","Return outside","Challenge the Winter Warden"}[nearby];
             if(!InputBlocked&&!Progress.InCave&&Progress.WinterComplete&&nearby<0&&Vector2.Distance(player.transform.position,caveEntrance.position)<3)prompt.text=Progress.CaveEntryExplained?"Walk into the cave opening":"Talk to the Little Mage first";
             party.text=Progress.WinterComplete?"PARTY / Ambros + Ancient Mage + Warriors + Emberfist + Little Mage":"PARTY / Ambros + Ancient Mage + Warriors + Emberfist";

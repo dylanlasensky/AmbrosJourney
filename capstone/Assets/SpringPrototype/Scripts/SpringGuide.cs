@@ -32,6 +32,7 @@ public class SpringGuide : MonoBehaviour
     int[] trials=new int[3];
     Transform[] stones=new Transform[3];
     bool journalOpen;
+    SeasonNavigation navigation;
     readonly string[] locations={"Blossom Grove", "Stillwater Lake", "Whispering Ruins"};
     readonly string[] fieldNotes={
         "LEARNING FROM EXAMPLES\nPeople train AI by giving it examples. A flower sorter that mostly sees pink flowers may struggle with other colors. People need to check its labels and test it on different flowers, even when it gets the practice examples right.\nRead this, then try the two claims at the nearby bat. J opens your notes.",
@@ -206,10 +207,10 @@ public class SpringGuide : MonoBehaviour
         {
             int question=QuestionIndex(target);bool right=(selected==0)==truth[question];GameAudio.Play(right?SoundCue.Correct:SoundCue.Incorrect,.45f);
             if(right){trials[target]++;feedback="Correct! "+explanations[question];if(trials[target]==2){cleared[target]=true;MissionsComplete++;GameAudio.Play(SoundCue.Complete,.55f);bats[target].gameObject.SetActive(false);feedback+="\nLesson complete. Your journal has been updated.";}}
-            else{feedback="Not quite. "+explanations[question]+" Try that claim again.";}
+            else{feedback="Incorrect. "+explanations[question]+" Try that claim again.";}
             feedback+="\n\n"+trials[target]+" / 2 correct.";
         }
-        else {bool right=selected==correct[bossQuestion];GameAudio.Play(right?SoundCue.Correct:SoundCue.Incorrect,.45f);if(right){BossScore++;boss.GetComponent<SeasonBossVisual>().Flash(new Color(1,.85f,.55f));}else boss.GetComponent<SeasonBossVisual>().Strike();feedback=(right?"Correct! ":"Not quite. ")+reasons[bossQuestion]+"\n\n"+BossScore+" / "+questions.Length+" correct.";}
+        else {bool right=selected==correct[bossQuestion];GameAudio.Play(right?SoundCue.Correct:SoundCue.Incorrect,.45f);if(right){BossScore++;boss.GetComponent<SeasonBossVisual>().Flash(new Color(1,.85f,.55f));}else boss.GetComponent<SeasonBossVisual>().Strike();feedback=(right?"Correct! ":"Incorrect. ")+reasons[bossQuestion]+"\n\n"+BossScore+" / "+questions.Length+" correct.";}
     }
     Transform Destination(){if(!LessonComplete)return mage;for(int i=0;i<3;i++)if(!cleared[i])return studied[i]?bats[i]:stones[i];return SpringComplete?gate:boss;}
     string Quest()=>SpringComplete?"Step through the Summer gate":!explored?"Stretch your legs! Follow the guide arrow.":!LessonComplete?"Meet the Mage beside his cottage":MissionsComplete<3?new[]{"Blossom Grove: learn how AI learns","Lakeside: separate people from AI","Southern ruins: protect your privacy"}[NextBat()]:"Head south to challenge Blossom Guardian";
@@ -229,7 +230,7 @@ public class SpringGuide : MonoBehaviour
         presentation.Dialog.SetActive(DialogueOpen&&!journalOpen);presentation.Journal.SetActive(journalOpen);
         if(welcomeOpen){presentation.Dialog.SetActive(false);presentation.Prompt.text="";return;}
         if(journalOpen){var titles=new string[3];var notes=new string[3];for(int i=0;i<3;i++){titles[i]=locations[i]+" / "+trials[i]+" of 2 challenges";notes[i]=studied[i]?fieldNotes[i].Split('\n')[1]:"Find the field note at this landmark.";}presentation.SetJournal(titles,notes,SpringComplete?"PARTY / Ambros + Ancient Mage":"PARTY / Ambros");return;}
-        var dest=Destination();if(dest&&!DialogueOpen){Vector2 waypoint=dest.position;if(LessonComplete&&MissionsComplete==1){if(player.position.x< -10&&player.position.y> -5)waypoint=new Vector2(-15,-7);else if(player.position.x<2)waypoint=new Vector2(3,-7);}presentation.SetCompass(player.position,waypoint,dest.position);}
+        var dest=Destination();if(dest&&!DialogueOpen){if(navigation==null)navigation=new SeasonNavigation(new Vector2(-32,-38),new Vector2(32,26));presentation.SetCompass(player.position,navigation.Next(player.position,dest.position),dest.position);}
         if(DialogueOpen&&target==3)
         {
             var atmosphere=FindAnyObjectByType<SpringAtmosphere>();
