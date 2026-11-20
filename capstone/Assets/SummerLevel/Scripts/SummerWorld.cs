@@ -120,14 +120,14 @@ namespace AmbrosJourney.Summer
             SeasonWorldLabel.Attach(level.workshop,"[E] VILLAGE WORKSHOP");
             Visual("Festival supplies","Crate",new Vector2(-22,12)); Visual("Repair supplies","Crate",new Vector2(-22,10));
             Visual("Workshop shelter","Shelter",new Vector2(-21,17),1.3f);
-            level.garden=Visual("Training garden","Target",new Vector2(-15,-6),1.3f).transform; SeasonWorldLabel.Attach(level.garden,"[E] TRAINING TARGET");
+            level.garden=Visual("Garden field note","Noticeboard",new Vector2(-15,-6),1.3f).transform; SeasonWorldLabel.Attach(level.garden,"[E] FIELD NOTE / PRACTICE GARDEN");
             for(int i=0;i<4;i++)Visual("Garden bed","GardenBed",new Vector2(-24+(i%2)*2.5f,-11-(i/2)*2.2f));
             level.messagePost=Visual("Message post","Noticeboard",new Vector2(19,8),1.3f).transform;SeasonWorldLabel.Attach(level.messagePost,"[E] FIELD NOTE / MESSAGE POST");
             Visual("Message shelter","Shelter",new Vector2(24,14));
             // Short ruined bridge is a visual teaching prop, outside the navigable route.
             Visual("Damaged bridge - ask the builder","Bridge",new Vector2(8,5));Block("Broken bridge approach",new Vector2(7,5),new Vector2(2,5));
             level.wardLights=new SpriteRenderer[3]; Vector2[] wp={new Vector2(-16,12),new Vector2(-12,-6),new Vector2(21,8)};
-            for(int i=0;i<3;i++)level.wardLights[i]=Visual("Ward piece "+(i+1),"Ward",wp[i]);
+            for(int i=0;i<3;i++){level.wardLights[i]=Visual("Ward piece "+(i+1),"Ward",wp[i]);level.wardLights[i].enabled=false;}
             Label("SUNCREST'S CLEARING",new Vector2(0,-16));
             for(int x=-29;x<=29;x+=2) if(Mathf.Abs(x)>3) {Visual("Arena perimeter","Rock",new Vector2(x,-18));Block("Arena wall",new Vector2(x,-18),new Vector2(2,1));}
             var seal=Visual("Village ward barrier","Barrier",new Vector2(0,-18));seal.transform.localScale=new Vector3(8.4f,2,1);seal.gameObject.AddComponent<BoxCollider2D>(); level.arenaSeal=seal.gameObject;

@@ -51,14 +51,14 @@ namespace AmbrosJourney.Summer
         }
         public bool AnswerMessage(int choice)
         {
-            if (!Introduced || Wards[2] || choice < 0 || choice > (PrivacyComplete ? 1 : 2)) return false;
+            if (!Introduced || Wards[2] || choice < 0 || choice > 1) return false;
             if (!PrivacyComplete)
             {
-                if (choice >= 0 && choice < 3) RemovedPrivateDetails[choice] = true;
-                PrivacyComplete = RemovedPrivateDetails[0] && RemovedPrivateDetails[1] && RemovedPrivateDetails[2];
-                return true;
+                bool safe=choice==SummerContent.Message[0].Correct;
+                if(safe){PrivacyComplete=true;for(int i=0;i<RemovedPrivateDetails.Length;i++)RemovedPrivateDetails[i]=true;}
+                return safe;
             }
-            bool correct = choice == 1;
+            bool correct = choice == SummerContent.Message[1].Correct;
             if (correct) Wards[2] = true;
             return correct;
         }
@@ -94,8 +94,12 @@ namespace AmbrosJourney.Summer
             "SHARE LESS, ASK PEOPLE TOO\nA useful request doesn't need your password or home address. Use made-up details when you can. If someone is upset or you need personal support, talk to a real person you trust."
         };
         public static readonly SummerQuestion[] Workshop = {
-            new SummerQuestion("The village is naming its summer festival. How could AI help?","Suggest a few names for the group to discuss","Choose the name and send it straight to the printer",0,"Suggestions can get you started. The people planning the festival know what fits their village."),
-            new SummerQuestion("A plank on the bridge has cracked. What is the best next step?","Describe it to AI and use its repair steps","Ask the builder to look at the bridge",1,"The builder can inspect the real bridge. A chat description can't show everything that matters.")
+            new SummerQuestion("You want to understand a science idea. How can AI help without doing your learning for you?","Ask for a simple example, then explain it in your own words","Copy its explanation into your homework without checking it",0,"AI can explain ideas, but you need to check the explanation and practice using it yourself."),
+            new SummerQuestion("An AI chatbot says a cracked bridge is safe. What should the village do?","Cross because the AI sounds confident","Ask a qualified person to inspect the bridge before anyone crosses",1,"AI cannot inspect the bridge from a chat. Safety decisions need a person who can examine the real problem.")
+        };
+        public static readonly SummerQuestion[] Message = {
+            new SummerQuestion("You want AI to suggest clues for a made-up treasure hunt. Which request protects your privacy?","Use my home address and account password to plan the hunt","Suggest five clues for an imaginary garden, without personal details",1,"AI needs the task, not your password or home address. Use made-up places and leave private information out."),
+            new SummerQuestion("A friend tells you they are upset. What is a better first step than asking AI to guess their feelings?","Paste their private messages into an AI chat","Listen to your friend and ask a trusted adult for help if needed",1,"AI cannot know how your friend feels. Listen kindly, protect their private messages, and involve a trusted adult when you need help.")
         };
         public static readonly SummerQuestion[] Boss = {
             new SummerQuestion("You read an AI explanation but still can't start the homework. What would help most?","Ask for a small example, then try a similar one","Ask it to finish this question so you can study the answer",0,"An example can help you get going. Trying a new one shows which parts you understand."),

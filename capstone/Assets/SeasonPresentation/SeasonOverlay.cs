@@ -21,7 +21,7 @@ namespace AmbrosJourney.Presentation
         bool frostNotice;FrostNoticeFrame frostFrame;
         static readonly Color FrostPaper=new Color(.89f,.96f,1);
         public static string AnswerFeedback(bool right,string explanation,int score=-1,int total=0)
-        {return (right?"Correct! ":"")+explanation+(score<0?"":"\n\n"+score+" / "+total+" correct.");}
+        {return (right?"Correct! ":"Incorrect. ")+explanation+(score<0?"":"\n\n"+score+" / "+total+" correct.");}
         RectTransform root, dialogueRect, headerRect, bodyRect, objectiveRect, context, controls, compassBox, worldLabels;
         UnityEngine.UI.Image dialogFill;
         TMP_FontAsset font;int season;
@@ -98,16 +98,13 @@ namespace AmbrosJourney.Presentation
         }
         public void SetCompass(Vector2 player,Vector2 waypoint,Vector2 destination,bool frozen=false)
         {
-            bool assisted=AmbrosJourney.Journey.JourneySession.Instance&&AmbrosJourney.Journey.JourneySession.Instance.Data.assistedGuidance;
-            bool distant=Vector2.Distance(player,destination)>14;
-            bool whiteout=season==4&&player.x<80&&Mathf.Repeat(Time.time,48)>26;
-            CompassObscured=frozen||!assisted&&whiteout;
-            Arrow.gameObject.SetActive(!CompassObscured);
-            // Follow the route waypoint even when the destination is behind a wall.
+            CompassObscured=false;
+            Arrow.gameObject.SetActive(true);
             CompassDelta=waypoint-player;ObjectiveDistance=Vector2.Distance(player,destination);
             moonbranch.Point(CompassDelta);
-            CompassText.text=frozen?"Frozen":!assisted&&whiteout?"Snowfall":!assisted&&season>=3&&distant?"Explore":Mathf.CeilToInt(ObjectiveDistance)+" steps";
+            CompassText.text=Mathf.CeilToInt(ObjectiveDistance)+" steps";
         }
+
         public void SetFrostNotice(bool active)
         {
             frostNotice=active;
@@ -197,9 +194,10 @@ namespace AmbrosJourney.Presentation
             var expired=new List<SeasonWorldLabel>();foreach(var pair in labels){if(!pair.Key){Destroy(pair.Value.gameObject);expired.Add(pair.Key);}else pair.Value.gameObject.SetActive(false);}foreach(var marker in expired)labels.Remove(marker);
             var player=AmbrosJourney.Journey.JourneySession.Instance?AmbrosJourney.Journey.JourneySession.Instance.Player():null;
             labelAreas.Clear();
+            float labelRange=season==4&&player&&player.position.x>80?3.8f:8;
             foreach(var marker in SeasonWorldLabel.Active)
             {
-                if(!marker||!marker.Visible||player&&Vector2.Distance(marker.transform.position,player.position)>8)continue;
+                if(!marker||!marker.Visible||player&&Vector2.Distance(marker.transform.position,player.position)>labelRange)continue;
                 float width=Mathf.Clamp(marker.Width,80,310);
                 if(!labels.TryGetValue(marker,out var panel)){panel=Panel(marker.Caption,worldLabels,Vector2.up,new Rect(0,0,width,44));var label=Text("Label",panel,new Rect(12,8,width-24,30),marker.Caption,14);label.enableAutoSizing=true;label.fontSizeMin=11;label.fontSizeMax=14;labels.Add(marker,panel);}
                 var p=camera.WorldToViewportPoint(marker.Position);

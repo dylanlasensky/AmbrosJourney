@@ -11,16 +11,32 @@ namespace AmbrosJourney.Presentation
         Texture2D backing;
         public void Initialize(int season,TMP_FontAsset font)
         {
-            backing=new Texture2D(32,32,TextureFormat.RGBA32,false);
-            for(int y=0;y<32;y++)for(int x=0;x<32;x++)
+            // An ivory spearhead, dark indigo edge and seasonal jewel read as one clear tip.
+            // Pixel construction matches the game's sprites and stays legible on snow and grass.
+            backing=new Texture2D(48,48,TextureFormat.RGBA32,false);
+            Color jewel=new[]{new Color(.77f,.48f,.61f),new Color(.40f,.67f,.65f),new Color(.77f,.48f,.29f),new Color(.50f,.67f,.84f)}[Mathf.Clamp(season-1,0,3)];
+            for(int y=0;y<48;y++)for(int x=0;x<48;x++)
             {
-                float dx=Mathf.Abs(x-15.5f);bool head=y>=13&&dx<(31-y)*.72f;bool shaft=y>=3&&y<18&&dx<3;
-                bool rim=(y>=12&&dx<(32-y)*.72f+1)||(y>=2&&y<19&&dx<4);
-                backing.SetPixel(x,y,head||shaft?new Color(1,.86f,.36f):rim?new Color(.12f,.15f,.18f):Color.clear);
+                float dx=Mathf.Abs(x-23.5f);
+                bool head=y>=19&&y<=43&&dx<(44-y)*.55f;
+                bool rim=y>=17&&y<=45&&dx<(46-y)*.55f+1;
+                bool stem=y>=8&&y<24&&dx<2.5f;
+                bool stemRim=y>=7&&y<25&&dx<4;
+                // Curving silver branch feathers at the base, not a second needle.
+                float branchX=5+(19-y)*.48f;
+                bool branch=y>=8&&y<=19&&Mathf.Abs(dx-branchX)<1.4f;
+                bool gem=Mathf.Abs(x-23.5f)+Mathf.Abs(y-19)<5;
+                Color color=Color.clear;
+                if(rim||stemRim)color=new Color(.13f,.17f,.24f);
+                if(head||stem)color=x<24?new Color(.96f,.91f,.76f):new Color(.65f,.66f,.69f);
+                if(branch)color=new Color(.73f,.70f,.59f);
+                if(gem)color=jewel;
+                backing.SetPixel(x,y,color);
             }
-            backing.Apply();backing.filterMode=FilterMode.Bilinear;
+            backing.Apply();backing.filterMode=FilterMode.Point;
             Needle=Image("Direction arrow",backing,38,Vector2.zero).rectTransform;
         }
+
         UnityEngine.UI.RawImage Image(string label,Texture texture,float size,Vector2 position)
         {
             var obj=new GameObject(label,typeof(RectTransform),typeof(UnityEngine.UI.RawImage));obj.transform.SetParent(transform,false);

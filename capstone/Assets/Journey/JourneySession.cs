@@ -24,7 +24,15 @@ namespace AmbrosJourney.Journey
         public JourneyData Data {get;private set;}
         public bool Paused {get;private set;}
         Action backAction;bool artifactsOpen;
-        int resumeFrame=-1;JourneyUI ui;bool menu,loading,cinematic,ending;float nextSave;string notice="";Action beginIntro;TMP_InputField nameInput;
+        int resumeFrame=-1;JourneyUI ui;bool menu,loading,cinematic,ending;float nextSave;string notice="";Action beginIntro;TMP_InputField nameInput;TextMeshProUGUI saveWarning;
+#if UNITY_WEBGL && !UNITY_EDITOR
+        const float SaveInterval=1;
+        const string SaveFailureMessage="Your browser could not save. Keep this tab open; allow site storage and try again.";
+        [System.Runtime.InteropServices.DllImport("__Internal")]static extern void AmbrosInstallSaveHooks(string objectName);
+#else
+        const float SaveInterval=5;
+        const string SaveFailureMessage="Could not save. Your session is still open. Free some disk space and try again.";
+#endif
         public static readonly string[] ChapterNames={"Spring Valley","Summer Valley","Emberwood","Frostveil"};
         public const string ArtifactLesson="THE EVIDENCE COMPASS\nBefore sharing, leave out private details, check the original source and look for separate evidence. Say what you still haven't checked.\n\nSeveral AI tools can agree and still be wrong. They may repeat the same mistake, so matching replies don't count as separate checks.";
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]static void ResetStatics(){Instance=null;TestMode=false;SavePathOverride=null;}
@@ -47,6 +55,9 @@ namespace AmbrosJourney.Journey
             if(Instance){Destroy(gameObject);return;}Instance=this;Data=JourneyStorage.Read(SavePath,JsonUtility.FromJson<JourneyData>,ValidSave)??new JourneyData();
             var canvas=new GameObject("Journey interface");canvas.transform.SetParent(transform,false);ui=canvas.AddComponent<JourneyUI>();ui.Initialize();
             ApplyPerformance();SceneManager.activeSceneChanged+=SceneChanged;
+#if UNITY_WEBGL && !UNITY_EDITOR
+            AmbrosInstallSaveHooks(gameObject.name);
+#endif
             if(SceneManager.GetActiveScene().name!="Intro")StartCoroutine(WorldReady(false));
         }
         public static void ApplyPerformance()
@@ -65,7 +76,7 @@ namespace AmbrosJourney.Journey
             Data.chapter=chapter;Data.unlocked=Math.Max(Data.unlocked,chapter);
             if(restore&&Data.chapters[chapter-1].visited)Restore(chapter);
             if(!FindAnyObjectByType<JourneyWorld>()){var world=new GameObject("Journey exploration");world.AddComponent<JourneyWorld>();}
-            if(!menu&&!Paused)ShowHUD();nextSave=Time.unscaledTime+5;
+            if(!menu&&!Paused)ShowHUD();nextSave=Time.unscaledTime+SaveInterval;
         }
         public static int CurrentChapter(){switch(SceneManager.GetActiveScene().name){case "Spring":return 1;case "Summer":return 2;case "Fall":return 3;case "Winter":return 4;default:return 0;}}
         public Transform Player()
@@ -84,7 +95,7 @@ namespace AmbrosJourney.Journey
                 else if(artifactsOpen&&Keyboard.current.spaceKey.wasPressedThisFrame){GameAudio.Click();HandleBack();}
                 else if(!menu&&!Paused&&Keyboard.current.iKey.wasPressedThisFrame){GameAudio.Click();ShowArtifacts();}
             }
-            if(!TestMode&&Data.started&&!Blocked&&Time.unscaledTime>=nextSave){Save();nextSave=Time.unscaledTime+5;}
+            if(!TestMode&&Data.started&&!Blocked&&Time.unscaledTime>=nextSave){Save();nextSave=Time.unscaledTime+SaveInterval;}
         }
         // One owner consumes Escape before world scripts, so closing a panel never also pauses.
         public void HandleBack()
@@ -107,7 +118,7 @@ namespace AmbrosJourney.Journey
             int chapter=CurrentChapter();var player=Player();if(!player)return false;
             var entry=Data.chapters[chapter-1];entry.visited=true;entry.x=player.position.x;entry.y=player.position.y;Data.chapter=chapter;Data.unlocked=Math.Max(Data.unlocked,chapter);
             switch(chapter){case 1:entry.progress=JsonUtility.ToJson(FindAnyObjectByType<SpringGuide>().CaptureProgress());break;case 2:entry.progress=JsonUtility.ToJson(FindAnyObjectByType<SummerLevel>().Progress);break;case 3:entry.progress=JsonUtility.ToJson(FindAnyObjectByType<FallLevel>().Progress);break;case 4:var w=FindAnyObjectByType<WinterLevel>();entry.inCave=w.Progress.InCave;entry.progress=JsonUtility.ToJson(w.Progress);break;}
-            try{JourneyStorage.Write(SavePath,JsonUtility.ToJson(Data));notice="Progress saved on this device.";return true;}catch(Exception e)when(e is IOException||e is UnauthorizedAccessException){notice="Could not save. Your session is still open. Free some disk space and try again.";Debug.LogWarning("Journey save failed: "+e.Message);return false;}
+            try{JourneyStorage.Write(SavePath,JsonUtility.ToJson(Data));notice="Progress saved on this device.";if(saveWarning)saveWarning.text="";return true;}catch(Exception e)when(e is IOException||e is UnauthorizedAccessException){notice=SaveFailureMessage;if(saveWarning)saveWarning.text=notice;Debug.LogWarning("Journey save failed: "+e.Message);return false;}
         }
         void Restore(int chapter)
         {
@@ -182,14 +193,8 @@ namespace AmbrosJourney.Journey
             if(nameInput)Data.playerName=JourneyData.CleanName(nameInput.text);
             JourneyMenu.Background(ui);nameInput=null;
             JourneyMenu.Text(ui,"Settings heading","Journey settings",new Rect(-550,-45,420,46),30);
-            JourneyMenu.Button(ui,"Guidance: "+(Data.assistedGuidance?"Assisted":"Explorer"),20,()=>
-            {
-                bool old=Data.assistedGuidance;Data.assistedGuidance=!old;
-                try{if(Data.started)JourneyStorage.Write(SavePath,JsonUtility.ToJson(Data));}
-                catch(Exception e)when(e is IOException||e is UnauthorizedAccessException){Data.assistedGuidance=old;notice="Settings could not be saved. Check available disk space.";ShowMenu();return;}
-                ShowMenuSettings();
-            });
-            var description=JourneyMenu.Text(ui,"Guidance description",Data.assistedGuidance?"Assisted keeps the guide arrow available in every season.":"Explorer lets winter snowfall hide your guide arrow.",new Rect(-534,78,360,65),19,JourneyMenu.Muted);description.textWrappingMode=TextWrappingModes.Normal;
+            JourneyMenu.Text(ui,"Guidance status","Trail guidance: always on",new Rect(-534,20,410,40),24,JourneyMenu.Cream);
+            var description=JourneyMenu.Text(ui,"Guidance description","The guide arrow stays visible in every season and follows the trail to your next task.",new Rect(-534,78,360,65),19,JourneyMenu.Muted);description.textWrappingMode=TextWrappingModes.Normal;
             JourneyMenu.Button(ui,"Back",177,ShowMenu,true);
         }
         void QuitGame()
@@ -208,7 +213,7 @@ namespace AmbrosJourney.Journey
             string name=JourneyData.CleanName(nameInput?nameInput.text:Data.playerName);
             if(name.Length==0){notice="Enter an explorer name to start.";ShowMenu();return;}
             var fresh=new JourneyData{playerName=name,started=true,assistedGuidance=Data.assistedGuidance};
-            try{JourneyStorage.Write(SavePath,JsonUtility.ToJson(fresh));}catch(Exception e)when(e is IOException||e is UnauthorizedAccessException){notice="Could not create your save. Check available disk space.";ShowMenu();return;}
+            try{JourneyStorage.Write(SavePath,JsonUtility.ToJson(fresh));}catch(Exception e)when(e is IOException||e is UnauthorizedAccessException){notice=SaveFailureMessage;ShowMenu();return;}
             Data=fresh;
             menu=false;ui.Clear();beginIntro?.Invoke();
         }
@@ -226,13 +231,14 @@ namespace AmbrosJourney.Journey
             }
             yield return null;yield return null;Restore(chapter);Data.chapter=chapter;loading=false;yield return WorldReady(false);Save();
         }
-        public void Pause(){if(menu||loading||BossPortalSequence.Busy)return;Paused=true;Time.timeScale=0;AudioListener.pause=true;Save();ShowPause();}
+        public void Pause(){if(menu||loading||cinematic||BossPortalSequence.Busy)return;Paused=true;Time.timeScale=0;AudioListener.pause=true;Save();ShowPause();}
         public void Resume(){resumeFrame=Time.frameCount;Paused=false;Time.timeScale=1;AudioListener.pause=false;ShowHUD();}
         void ShowHUD()
         {
             artifactsOpen=false;backAction=null;ui.KeyboardNavigation=false;
             if(UnityEngine.EventSystems.EventSystem.current)UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(null);
-            ui.Clear();var pause=ui.Button(ui.Root,"Pause / Esc",new Rect(470,298,145,38),Pause);var rect=pause.GetComponent<RectTransform>();rect.anchorMin=rect.anchorMax=Vector2.one;rect.anchoredPosition=new Vector2(-169,-264);
+            ui.Clear();saveWarning=ui.Text(ui.Root,"Save warning",notice==SaveFailureMessage?notice:"",new Rect(-565,268,770,44),16,JourneyUI.Paper);
+            var pause=ui.Button(ui.Root,"Pause / Esc",new Rect(470,298,145,38),Pause);var rect=pause.GetComponent<RectTransform>();rect.anchorMin=rect.anchorMax=Vector2.one;rect.anchoredPosition=new Vector2(-169,-264);
             var b=ui.Button(ui.Root,Data.ArtifactCount+"/"+Data.artifacts.Length+" Artifacts",new Rect(300,298,190,38),ShowArtifacts);var br=b.GetComponent<RectTransform>();br.anchorMin=br.anchorMax=Vector2.one;br.anchoredPosition=new Vector2(-214,-310);
         }
         void ShowPause()
@@ -242,7 +248,7 @@ namespace AmbrosJourney.Journey
             JourneyPauseJournal.Button(ui,"Resume",new Rect(-510,-68,445,49),Resume,true);
             JourneyPauseJournal.Button(ui,"Save and return to menu",new Rect(-510,-7,445,42),ReturnToMenu);
             JourneyPauseJournal.Button(ui,"Artifacts / "+Data.ArtifactCount+" of 12",new Rect(-510,44,445,42),ShowArtifacts);
-            JourneyPauseJournal.Button(ui,"Guidance: "+(Data.assistedGuidance?"Assisted":"Explorer"),new Rect(-510,95,445,42),()=>{Data.assistedGuidance=!Data.assistedGuidance;Save();ShowPause();});
+            ui.Text(ui.Root,"Guidance status","Trail guidance: always on",new Rect(-490,95,405,42),20,new Color(.43f,.40f,.30f));
             JourneyPauseJournal.Button(ui,"Reset journey",new Rect(-510,230,445,36),ConfirmReset,quiet:true);
             if(Data.finished&&!Data.certificatePending)JourneyPauseJournal.Button(ui,"Certificate",new Rect(-510,146,445,42),ShowCertificate);
             for(int i=0;i<Data.unlocked;i++){int c=i+1;JourneyPauseJournal.Chapter(ui,i,ChapterNames[i],()=>{if(Save())LoadChapter(c);else ShowPause();},c==Data.chapter);}
@@ -320,6 +326,9 @@ namespace AmbrosJourney.Journey
             Data.homePortalOpened=true;Resume();
             FindAnyObjectByType<BossPortalSequence>()?.RevealHomePortal();Save();
         }
+        // Browser visibility/pagehide callbacks are best effort; periodic saves already persist.
+        [UnityEngine.Scripting.Preserve]
+        public void SaveBeforeBrowserHide(){if(!TestMode)Save();}
         void OnApplicationFocus(bool focused){if(TestMode)return;if(!focused&&!Paused&&Data.started&&!menu&&!loading&&CurrentChapter()>0)Pause();}
         void OnApplicationPause(bool paused){if(paused&&!TestMode)Save();}
         void OnApplicationQuit(){Save();Time.timeScale=1;AudioListener.pause=false;}

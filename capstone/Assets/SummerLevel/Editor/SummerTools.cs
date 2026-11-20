@@ -42,8 +42,8 @@ namespace AmbrosJourney.Summer.Editor
             Require(!p.PatternComplete, "Garden has no stepping-stone prerequisite");
             Require(!p.AnswerGarden(1), "Garden misconception retries"); Require(p.AnswerGarden(0), "Practice ward earned");
             Require(!p.BeginBoss(), "All three wards required");
-            p.AnswerMessage(0); p.AnswerMessage(0); Require(!p.PrivacyComplete, "Duplicate removal cannot finish privacy");
-            p.AnswerMessage(1); p.AnswerMessage(2); Require(p.PrivacyComplete, "All private details removed");
+            Require(!p.AnswerMessage(0)&&!p.AnswerMessage(0)&&!p.PrivacyComplete, "Wrong privacy answers retry the same question");
+            Require(!p.AnswerMessage(2)&&!p.PrivacyComplete,"Invalid privacy choice is rejected"); Require(p.AnswerMessage(SummerContent.Message[0].Correct)&&p.PrivacyComplete,"Correct privacy answer advances");
             Require(!p.AnswerMessage(0), "Friendship misconception retries"); Require(p.AnswerMessage(1), "Message ward earned");
             Require(p.WardCount == 3 && p.BeginBoss(), "Orc opens after missions");
             for (int i = 0; i < 5; i++) p.AnswerBoss(i < 3 ? SummerContent.Boss[i].Correct : 1-SummerContent.Boss[i].Correct);
@@ -53,7 +53,7 @@ namespace AmbrosJourney.Summer.Editor
             Require(p.Complete && p.BossScore == 4 && !p.BeginBoss(), "80 percent passes and is final");
 
             Require(AssetDatabase.LoadAssetAtPath<GameObject>("Assets/SummerLevel/Resources/SummerLevel.prefab"), "Portal prefab present");
-            Debug.Log("SUMMER_VALIDATION_PASS: lesson gates, pattern retry, privacy removal, 60% failure, 80% success and progress preservation.");
+            Debug.Log("SUMMER_VALIDATION_PASS: lesson gates, practice and privacy retries, 60% failure, 80% success and progress preservation.");
         }
         static void Require(bool condition, string message) { if (!condition) throw new InvalidOperationException("SUMMER VALIDATION: " + message); }
     }

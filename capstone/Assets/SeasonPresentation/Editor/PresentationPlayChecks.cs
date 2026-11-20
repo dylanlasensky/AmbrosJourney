@@ -75,11 +75,11 @@ namespace AmbrosJourney.Presentation.Editor
             {
                 var l=UnityEngine.Object.FindAnyObjectByType<SummerLevel>();Check(l,"Run Summer first");level=l;ui=l.GetComponentInChildren<SeasonOverlay>();Check(!l.Progress.Introduced,"Start a fresh Summer session for UI regression");inspected.Clear();Common();
                 Next();Next();GuideArrivalChecks.Summer(l);Next();Next();Choice(0);Next();Choice(1);Next();Next();
-                l.Interact(2);Choice(0);Next();l.Interact(6);Next();l.Interact(8);Next();l.Interact(7);Next();Choice(0);Next();Next();
-                l.Interact(3);Choice(0);Choice(1);Choice(2);Next();Choice(1);Next();Next();
+                l.Interact(2);Choice(1);Check(ui.Copy.text.StartsWith("Incorrect.")&&!l.Progress.Wards[1],"Garden mistake is explicit and retryable");Next();Choice(0);Next();Next();
+                l.Interact(3);Choice(0);Check(ui.Copy.text.StartsWith("Incorrect.")&&!l.Progress.PrivacyComplete,"Privacy mistake stays on the first question");Next();Choice(1);Next();Choice(0);Check(ui.Copy.text.StartsWith("Incorrect.")&&!l.Progress.Wards[2],"Human-help mistake stays retryable");Next();Choice(1);Next();Next();
                 l.Interact(4);Next();for(int q=0;q<5;q++){Choice(SummerContent.Boss[q].Correct);Next();}Next();
                 level.GetType().GetMethod("ToggleJournal",Flags).Invoke(level,null);Inspect();level.GetType().GetMethod("ToggleJournal",Flags).Invoke(level,null);
-                Check(l.Progress.Complete,"Summer progression preserved");Save("Summer",true,"Visible button flow, three-option privacy question, journal, shared compass and existing progression.");l.Interact(5);Inspect();
+                Check(l.Progress.Complete,"Summer progression preserved");Save("Summer",true,"Visible button flow, explicit wrong-answer feedback, garden and privacy retries, journal, shared compass and existing progression.");l.Interact(5);Inspect();
             }
             catch(Exception e){Save("Summer",false,e.ToString());Debug.LogException(e);}
         }

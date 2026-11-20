@@ -22,9 +22,9 @@ static class Program
         Check(!p.PatternComplete && p.PatternStep == 0, "Garden starts without a stepping-stone requirement");
         Check(!p.AnswerGarden(1) && p.AnswerGarden(0), "Garden retry");
         Check(!p.BeginBoss(), "Two wards cannot unlock boss");
-        p.AnswerMessage(0); p.AnswerMessage(0);
-        Check(!p.PrivacyComplete, "Duplicate privacy selection cannot bypass exercise");
-        p.AnswerMessage(1); p.AnswerMessage(2);
+        Check(!p.AnswerMessage(0)&&!p.AnswerMessage(0)&&!p.PrivacyComplete&&!p.Wards[2], "Wrong privacy answers keep the same lesson open");
+        Check(!p.AnswerMessage(2)&&!p.PrivacyComplete,"Invalid privacy choices cannot advance the lesson");
+        Check(p.AnswerMessage(SummerContent.Message[0].Correct)&&p.PrivacyComplete,"Correct privacy retry advances to human-help question");
         Check(p.PrivacyComplete && !p.AnswerMessage(0) && p.AnswerMessage(1), "Privacy and human support complete");
         Check(p.WardCount == 3, "Three wards earned");
         return p;
@@ -67,6 +67,7 @@ static class Program
                 int answer = (mask >> q) & 1;
                 if (answer == SummerContent.Boss[q].Correct) score++;
                 p.AnswerBoss(answer);
+                Check(p.BossQuestion==q+1,"Every boss answer consumes exactly one question, including mistakes");
             }
             Check(p.BossScore == score && p.Complete == (score >= 4) && p.BossFinished, "Summer exact 80 percent threshold");
             Check(!p.AnswerBoss(0) && p.BossScore == score, "Summer finished attempt cannot accept extra answers");

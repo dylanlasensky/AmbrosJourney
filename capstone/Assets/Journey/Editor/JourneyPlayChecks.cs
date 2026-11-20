@@ -42,9 +42,9 @@ namespace AmbrosJourney.Journey.Editor
                 Check(SceneManager.GetActiveScene().name=="Intro","Return to menu");Inspect();SeasonIntegrationChecks.Capture("MainMenu");
                 Check(UI.transform.Find("Blossom valley painting").GetComponent<UnityEngine.UI.RawImage>().texture,"Menu painting imported");
                 Check(UI.transform.Find("Saved season").GetComponent<TMP_Text>().text=="Winter · Frostveil","Menu shows actual saved chapter");
-                Click("Settings");Inspect();bool assisted=session.Data.assistedGuidance;Click("Guidance: "+(assisted?"Assisted":"Explorer"));Check(session.Data.assistedGuidance!=assisted,"Settings toggle guidance");
-                var disk=JsonUtility.FromJson<JourneyData>(File.ReadAllText(JourneySession.SavePath));Check(disk.assistedGuidance==session.Data.assistedGuidance,"Menu settings persist to save");
-                Click("Guidance: "+(!assisted?"Assisted":"Explorer"));SeasonIntegrationChecks.Capture("MenuSettings");Click("Back");
+                Click("Settings");Inspect();Check(UI.transform.Find("Guidance status").GetComponent<TMP_Text>().text=="Trail guidance: always on","Settings explain continuous trail guidance");
+                Check(!UI.transform.Find("Guidance status").GetComponent<UnityEngine.UI.Button>(),"Guidance has no ineffective toggle");
+                SeasonIntegrationChecks.Capture("MenuSettings");Click("Back");
                 Click("New Journey");Check(session.Data.started,"New Journey asks before discarding a save");Click("Keep my progress");Check(File.Exists(JourneySession.SavePath),"Cancel reset retains save");
                 session.Data.finished=true;session.Data.certificatePending=false;Call(session,"ShowMenu");Inspect();SeasonIntegrationChecks.Capture("CompletedJourneyMenu");
                 var quit=UI.transform.Find("Quit").GetComponent<RectTransform>();var certificate=UI.transform.Find("View Certificate").GetComponent<RectTransform>();Check(-certificate.anchoredPosition.y>=-quit.anchoredPosition.y+quit.rect.height,"Completed menu actions do not overlap");
@@ -81,12 +81,12 @@ namespace AmbrosJourney.Journey.Editor
             else if(stage==12)
             {
                 Check(SceneManager.GetActiveScene().name=="Intro"&&!session.Data.started&&session.Data.ArtifactCount==0,"Full reset returns fresh menu");Check(!File.Exists(JourneySession.SavePath)&&!File.Exists(JourneySession.SavePath+".bak"),"Reset deletes recovery copy too");Inspect();
-                UI.GetComponentInChildren<TMP_InputField>().text="Zoë Explorer";Click("Settings");Inspect();Click("Guidance: Explorer");Click("Back");Check(UI.GetComponentInChildren<TMP_InputField>().text=="Zoë Explorer","Settings retains draft explorer name");SeasonIntegrationChecks.Capture("NewJourneyMenu");
+                UI.GetComponentInChildren<TMP_InputField>().text="Zoë Explorer";Click("Settings");Inspect();Click("Back");Check(UI.GetComponentInChildren<TMP_InputField>().text=="Zoë Explorer","Settings retains draft explorer name");SeasonIntegrationChecks.Capture("NewJourneyMenu");
                 var input=UI.GetComponentInChildren<TMP_InputField>();input.text=" ";session.NewJourney();Check(!session.Data.started,"Blank name rejected");
                 string normalSave=JourneySession.SavePathOverride;string directory=Path.GetFullPath("Logs/SeasonChecks/menu-save-directory");Directory.CreateDirectory(directory);
                 try{JourneySession.SavePathOverride=directory;UI.GetComponentInChildren<TMP_InputField>().text="Test Explorer";session.NewJourney();Check(!session.Data.started&&UI.GetComponentInChildren<TMP_InputField>(),"Failed save stays on name-entry menu");Inspect();}
                 finally{JourneySession.SavePathOverride=normalSave;}
-                UI.GetComponentInChildren<TMP_InputField>().text="Zoë Explorer";var opening=UnityEngine.Object.FindAnyObjectByType<OpeningCinematic>();Check(Resources.Load<UnityEngine.Video.VideoClip>("Journey/Intro"),"Supplied original intro is included");Click("New Journey");Check(session.Data.started&&session.Data.playerName=="Zoë Explorer"&&session.Data.assistedGuidance,"Named journey starts with chosen settings");
+                UI.GetComponentInChildren<TMP_InputField>().text="Zoë Explorer";var opening=UnityEngine.Object.FindAnyObjectByType<OpeningCinematic>();Check(Resources.Load<UnityEngine.Video.VideoClip>("Journey/Intro"),"Supplied original intro is included");Click("New Journey");Check(session.Data.started&&session.Data.playerName=="Zoë Explorer","Named journey starts with continuous guidance");
                 // Playback has its own checks; advance the clip to keep this progression suite focused.
                 opening.GetType().GetMethod("Finished",Private).Invoke(opening,new object[]{null});
             }

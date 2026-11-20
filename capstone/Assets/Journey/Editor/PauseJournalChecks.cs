@@ -66,11 +66,11 @@ namespace AmbrosJourney.Journey.Editor
                     session.BeginTestProfile();session.Data.unlocked=4;session.Data.artifacts[0]=session.Data.artifacts[4]=session.Data.artifacts[8]=true;
                     session.Resume();var winter=UnityEngine.Object.FindAnyObjectByType<AmbrosJourney.Winter.WinterLevel>();winter.Progress.Introduced=true;Call(winter,"Close");winterPosition=winter.player.transform.position;
                     session.Pause();Check(session.Paused&&Time.timeScale==0&&AudioListener.pause&&winter.InputBlocked,"Pause still freezes world, sound and input");Inspect();
-                    Check(!HasButton("Certificate")&&UI.GetComponentsInChildren<UnityEngine.UI.Button>().Length==9,"Original actions and four unlocked chapters only");Capture("Journal-Winter-"+Screen.width+"x"+Screen.height);
+                    Check(!HasButton("Certificate")&&UI.GetComponentsInChildren<UnityEngine.UI.Button>().Length==8,"Pause actions and four unlocked chapters only");Capture("Journal-Winter-"+Screen.width+"x"+Screen.height);
                 }
                 else if(stage==1)
                 {
-                    bool old=session.Data.assistedGuidance;Click("Guidance: "+(old?"Assisted":"Explorer"));Check(session.Data.assistedGuidance!=old,"Guidance toggles");Check(JsonUtility.FromJson<JourneyData>(File.ReadAllText(JourneySession.SavePath)).assistedGuidance==!old,"Guidance persists");Inspect();
+                    Check(UI.transform.Find("Guidance status").GetComponent<TMP_Text>().text=="Trail guidance: always on","Journal explains continuous guidance");Check(!UI.transform.Find("Guidance status").GetComponent<UnityEngine.UI.Button>(),"Guidance is a label rather than a toggle");Inspect();
                     Click("Artifacts / 3 of 12");Check(Array.Exists(UI.GetComponentsInChildren<TMP_Text>(),text=>text.text.Contains("3 of 12 recovered")),"Artifact view opens");Click("Return / Esc");Check(session.Paused&&Time.timeScale==0&&AudioListener.pause,"Return restores pause journal");
                     session.Pause();Click("Reset journey");Check(HasButton("Keep my progress"),"Reset still requires confirmation");Click("Keep my progress");Check(session.Data.started&&session.Data.ArtifactCount==3,"Cancel reset preserves progress");Inspect();
                     Click("Resume");Check(!session.Paused&&Time.timeScale==1,"Resume button resumes");

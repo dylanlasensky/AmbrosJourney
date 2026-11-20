@@ -75,7 +75,7 @@ namespace AmbrosJourney.Winter
         public static readonly Vector2 Min=new Vector2(-40,-34),Max=new Vector2(40,36);
         public static readonly Vector2 CaveMin=new Vector2(90,-34),CaveMax=new Vector2(150,36);
         public static readonly Vector2 CaveSpawn=new Vector2(100,-26),Entrance=new Vector2(24,27),BossPosition=new Vector2(134,25);
-        public static readonly Vector2 ArrivalGuide=WinterLevel.Spawn+new Vector2(5.5f,0),CaveGuide=Entrance+new Vector2(-2.5f,-2.5f),WardenPosition=Entrance+new Vector2(4.5f,-2);
+        public static readonly Vector2 ArrivalGuide=WinterLevel.Spawn+new Vector2(5.5f,0),CaveGuide=Entrance+new Vector2(-2.5f,-2.5f),WardenPosition=Entrance+new Vector2(0,-3.5f);
         // Old saves may stand behind the ridge that is now blocked. Keep valid locations exact.
         public static Vector2 ConstrainOutdoorCheckpoint(Vector2 position)
         {return position.y>Entrance.y-1.45f&&(Mathf.Abs(position.x-Entrance.x)>1.2f||position.y>Entrance.y+.25f)?Entrance+Vector2.down*3:position;}
@@ -106,7 +106,7 @@ namespace AmbrosJourney.Winter
             Block("Cave doorway back wall",new Vector2(24,29.2f),new Vector2(3,3));
             Label("FOLLOW THE LANTERNS NORTH",new Vector2(23,13));Label("THIN ICE / STAY ON THE TRAIL",new Vector2(-3,-11));
             level.stations=new Transform[3];level.runes=new SpriteRenderer[3];
-            for(int i=0;i<2;i++){level.stations[i]=Visual(WinterContent.Landmarks[i],"Noticeboard",MissionPositions[i],1.5f).transform;level.runes[i]=Visual("Evidence seal","Ward",MissionPositions[i]+Vector2.right*2);SeasonWorldLabel.Attach(level.stations[i],"[E] FIELD NOTE / "+WinterContent.Landmarks[i].ToUpper());Visual("Research shelter","Shelter",MissionPositions[i]+new Vector2(-4,3),1.1f);}
+            for(int i=0;i<2;i++){level.stations[i]=Visual(WinterContent.Landmarks[i],"Noticeboard",MissionPositions[i],1.5f).transform;level.runes[i]=ObjectAt("Evidence progress "+i,MissionPositions[i]).AddComponent<SpriteRenderer>();SeasonWorldLabel.Attach(level.stations[i],"[E] FIELD NOTE / "+WinterContent.Landmarks[i].ToUpper());Visual("Research shelter","Shelter",MissionPositions[i]+new Vector2(-4,3),1.1f);}
             level.winterGuardian=Actor("Frostbound Warden / Winter boss","SkeletonIdle",4,WardenPosition,"SkeletonAttack",6,1.8f);SeasonBossVisual.Attach(level.winterGuardian.gameObject,"WinterFrostboundAtlas",6.2f);SeasonWorldLabel.Attach(level.winterGuardian.transform,"[E] FROSTBOUND WARDEN");
             Cavern=new GameObject("Echo Cavern / interior map");Cavern.transform.SetParent(transform);region=Cavern.transform;
             BuildCave();
@@ -130,7 +130,8 @@ namespace AmbrosJourney.Winter
             AmbrosJourney.Presentation.NaturalTrail.Apply(path,4);
             var camera=ObjectAt("Winter Camera",WinterLevel.Spawn);camera.tag="MainCamera";camera.transform.position=new Vector3(WinterLevel.Spawn.x,WinterLevel.Spawn.y,-10);
             var cam=camera.AddComponent<Camera>();cam.orthographic=true;cam.orthographicSize=7;cam.backgroundColor=new Color(.07f,.10f,.17f);cam.clearFlags=CameraClearFlags.SolidColor;camera.AddComponent<AudioListener>();followCamera=camera.AddComponent<WinterCamera>();followCamera.target=level.player.transform;followCamera.worldMin=Min;followCamera.worldMax=Max;
-            gameObject.AddComponent<WinterSnow>().level=level;Cavern.SetActive(false);
+            gameObject.AddComponent<WinterSnow>().level=level;
+            gameObject.AddComponent<CaveVisibility>().Initialize(level,cam,CaveLanterns);Cavern.SetActive(false);
         }
         bool SceneryAllowed(Vector2 p)
         {
@@ -140,6 +141,7 @@ namespace AmbrosJourney.Winter
             for(int i=1;i<trail.Length;i++)if(SegmentDistance(p,trail[i-1],trail[i])<4)return false;
             return !(p.x>-10&&p.x<6&&p.y>-12&&p.y<12);
         }
+        public static readonly Vector2[] CaveLanterns={new Vector2(108,-24),new Vector2(126,-19),new Vector2(119,-5),new Vector2(104,1),new Vector2(135,8),new Vector2(135,21)};
         void BuildCave()
         {
             // Four chambers joined by bent passages; the west archive is a meaningful detour.
@@ -153,7 +155,7 @@ namespace AmbrosJourney.Winter
             var boundary=new HashSet<Vector2Int>();foreach(var p in cells)foreach(var d in new[]{Vector2Int.up,Vector2Int.down,Vector2Int.left,Vector2Int.right})if(!cells.Contains(p+d))boundary.Add(p+d);
             foreach(var p in boundary){walls.SetTile(new Vector3Int(p.x,p.y,0),ice);Block("Cavern wall",(Vector2)p+Vector2.one*.5f,Vector2.one);}
             foreach(var p in new[]{new Vector2(97,-29),new Vector2(108,-20),new Vector2(119,-15),new Vector2(138,-4),new Vector2(98,5),new Vector2(111,15),new Vector2(125,23),new Vector2(144,31)})Visual("Cyan crystal formation","Crystal",p,.65f);
-            foreach(var p in new[]{new Vector2(108,-24),new Vector2(126,-19),new Vector2(119,-5),new Vector2(104,1),new Vector2(135,8),new Vector2(135,21)})Visual("Cave lantern","Lantern",p,.7f);
+            foreach(var p in CaveLanterns)Visual("Cave lantern","Lantern",p,.7f);
             Label("ECHO ARCHIVE / WEST PASSAGE",new Vector2(122,-9));Label("FINAL KEEPER / NORTHERN HALL",new Vector2(132,2));
         }
         public void RestoreRegion(bool cave)

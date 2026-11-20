@@ -29,6 +29,7 @@ namespace AmbrosJourney.Fall
         readonly List<UnityEngine.UI.Button> choices=new List<UnityEngine.UI.Button>();
         readonly List<Action> actions=new List<Action>();
         Action next;
+        int dialogVersion;
         AudioSource effects,music;
         AudioClip good,bad,ward,strike;
         Canvas canvas;
@@ -120,7 +121,7 @@ namespace AmbrosJourney.Fall
             var q=FallContent.Missions[mission][Progress.Steps[mission]];
             Ask(FallContent.Landmarks[mission]+" / "+(Progress.Steps[mission]+1)+" of "+FallContent.Missions[mission].Length,q.Prompt,q.Choices,c=>{
                 bool right=Progress.AnswerMission(mission,c);Effect(right);
-                Show(right?"The request takes shape":"Revise your approach",SeasonOverlay.AnswerFeedback(right,q.Explanation,Progress.Steps[mission],FallContent.Missions[mission].Length)+(right?"":"\n\nTry again. Your completed choices stay safe."),()=>MissionQuestion(mission));
+                Show(right?"The request takes shape":"Incorrect / Try again",SeasonOverlay.AnswerFeedback(right,q.Explanation,Progress.Steps[mission],FallContent.Missions[mission].Length)+(right?"":"\n\nTry again. Your completed choices stay safe."),()=>MissionQuestion(mission));
             });
         }
         void Boss()
@@ -141,7 +142,7 @@ namespace AmbrosJourney.Fall
             var q=FallContent.Boss[Progress.BossQuestion];
             Ask("Sentinel / Question "+(Progress.BossQuestion+1)+" of 5",q.Prompt,q.Choices,c=>{
                 bool right=Progress.AnswerBoss(c);Effect(right);if(right){player.Strike();guardian.Flash(new Color(1,.8f,.3f));}else guardian.Strike();effects.PlayOneShot(strike,.35f);
-                Show(right?"A tangled seal breaks!":"The Sentinel pushes back",SeasonOverlay.AnswerFeedback(right,q.Explanation,Progress.BossScore,FallContent.Boss.Length),BossQuestion);
+                Show(right?"A tangled seal breaks!":"Incorrect / The Sentinel pushes back",SeasonOverlay.AnswerFeedback(right,q.Explanation,Progress.BossScore,FallContent.Boss.Length),BossQuestion);
             });
         }
         void ShowPages(string[] pages,int index,Action complete)
@@ -152,17 +153,17 @@ namespace AmbrosJourney.Fall
             player.Flash(right?new Color(.65f,1,.65f):new Color(1,.5f,.4f));
             if(right)SeasonFeedback.Burst(player.transform.position,new Color(1,.8f,.3f));
         }
-        void Close(){BossBattleMusic.Stop(this);dialog.SetActive(false);actions.Clear();next=null;if(music)music.pitch=1;}
+        void Close(){dialogVersion++;BossBattleMusic.Stop(this);dialog.SetActive(false);actions.Clear();next=null;if(music)music.pitch=1;}
         void Show(string title,string body,Action onContinue)
         {
-            currentTitle=title;heading.text=title;copy.text=body;dialog.SetActive(true);journal.SetActive(false);next=onContinue==null?null:()=>{GameAudio.Click();onContinue();};actions.Clear();
+            dialogVersion++;currentTitle=title;heading.text=title;copy.text=body;dialog.SetActive(true);journal.SetActive(false);next=onContinue==null?null:()=>{GameAudio.Click();onContinue();};actions.Clear();
             foreach(var c in choices)c.gameObject.SetActive(false);
             choices[0].gameObject.SetActive(true);SetButton(choices[0],"Continue [ E ]",()=>{if(next!=null){var n=next;next=null;n();}});
             presentation.Present(false);
         }
         void Ask(string title,string body,string[] options,Action<int> answer)
         {
-            Show(title,body,null);for(int i=0;i<choices.Count;i++){choices[i].gameObject.SetActive(i<options.Length);if(i>=options.Length)continue;int index=i;Action choose=()=>{GameAudio.Click();answer(index);};actions.Add(choose);SetButton(choices[i],(i+1)+".  "+options[i],choose);}
+            Show(title,body,null);int version=dialogVersion;for(int i=0;i<choices.Count;i++){choices[i].gameObject.SetActive(i<options.Length);if(i>=options.Length)continue;int index=i;Action choose=()=>{if(version!=dialogVersion||!dialog.activeSelf||AmbrosJourney.Journey.JourneySession.Blocked)return;dialogVersion++;GameAudio.Click();answer(index);};actions.Add(choose);SetButton(choices[i],(i+1)+".  "+options[i],choose);}
             presentation.Present(true);
         }
         void SetButton(UnityEngine.UI.Button button,string label,Action action)
