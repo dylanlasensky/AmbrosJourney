@@ -10,7 +10,7 @@ public class SpringGuide : MonoBehaviour
     public Transform player, mage;
     public Texture2D batSheet, guardianSheet;
     public Vector2 StartPosition = new Vector2(-18,16);
-    bool explored, controlsSeen, welcomeOpen;
+    bool explored, controlsSeen, welcomeOpen, orientationPending;
     AmbrosJourney.Journey.JourneyUI welcomeUI;
     public Sprite gateSprite;
     GameObject gateSeal;
@@ -32,10 +32,9 @@ public class SpringGuide : MonoBehaviour
     int[] trials=new int[3];
     Transform[] stones=new Transform[3];
     bool journalOpen;
-    SeasonNavigation navigation;
     readonly string[] locations={"Blossom Grove", "Stillwater Lake", "Whispering Ruins"};
     readonly string[] fieldNotes={
-        "LEARNING FROM EXAMPLES\nPeople train AI by giving it examples. A flower sorter that mostly sees pink flowers may struggle with other colors. People need to check its labels and test it on different flowers, even when it gets the practice examples right.\nRead this, then try the two claims at the nearby bat. J opens your notes.",
+        "AI LEARNS PATTERNS\nMany AI systems learn patterns from examples such as text or pictures. This is called training. A chatbot uses learned patterns to create replies; it does not check every fact before answering. People test AI on new examples to find mistakes.\nRead this, then try the two claims at the nearby bat. J opens your notes.",
         "SOUNDS HUMAN, STILL A TOOL\nA chatbot can sound friendly without having feelings or knowing you. It can also sound sure when it is wrong. Use it for ideas, but check important facts somewhere reliable. Talk to people you trust when you need support.\nTry the two claims at the lakeside bat.",
         "KEEP SOME THINGS PRIVATE\nBefore sending a message, check what someone could learn about you from it. Leave out passwords, your address and private photos. A made-up example often works just as well. If you are unsure what a tool needs, ask a trusted adult.\nTry the two claims at the ruins bat."
     };
@@ -47,9 +46,9 @@ public class SpringGuide : MonoBehaviour
     };
     int QuestionIndex(int mission)=>mission*3+(trials[mission]==0?0:mission==2?1:2);
     readonly string[] claims = {
-        "People can train an AI to sort pictures by showing it labeled examples.",
-        "A flower sorter that only saw pink flowers will recognize every white flower too.",
-        "A flower sorter gets its practice pictures right. It still needs to be tested on new pictures.",
+        "People can train AI systems to find patterns in examples such as text or pictures.",
+        "If AI gets every practice example right, it will always get new examples right.",
+        "AI can make mistakes on new examples, so people need to test its results.",
         "If a chatbot remembers your name, it cares about you the way a person does.",
         "A detailed chatbot answer is enough to prove a fact.",
         "Before using a surprising AI fact in homework, it helps to check a book or another reliable source.",
@@ -60,8 +59,8 @@ public class SpringGuide : MonoBehaviour
     readonly bool[] truth = { true,false,true,false,false,true,false,true,true };
     readonly string[] explanations = {
         "AI can learn patterns from examples people provide. People also decide what it should learn and check how well it works.",
-        "It might struggle with flowers it hasn't seen. Trying new examples helps people find the gaps.",
-        "Getting the practice examples right is a start. New pictures show whether it learned a useful pattern.",
+        "AI can learn patterns that do not work well on new examples. Testing helps people find these mistakes.",
+        "A good score on practice examples is not a guarantee. Testing new examples helps show where AI still makes mistakes.",
         "Remembering a name is a feature. It doesn't mean the chatbot has feelings or understands you like a friend would.",
         "Details can sound convincing and still be wrong. Look for evidence that supports the answer.",
         "Checking a source helps you catch mistakes before you use them. Open the source itself, not just the link in an AI answer.",
@@ -69,15 +68,15 @@ public class SpringGuide : MonoBehaviour
         "A made-up example gives the tool something to work with without identifying you.",
         "You can stop and ask for help. You don't have to share something just to keep a conversation going."
     };
-    readonly string[] questions = { "An AI sorts new leaf pictures badly. What should its makers look at?", "Your class is training an AI to sort leaf photos. What should you give it?", "A chatbot gives a date you have never heard before. What should you do before using it?", "You ask an AI chatbot for party ideas. Which detail should you leave out?", "You used AI to explain a science topic. What would show that you understood it?" };
-    readonly string[,] answers = { { "Its training examples and how it was tested", "How quickly it gives each answer" }, { "Different leaf photos with correct labels", "Only one photo copied many times" }, { "Use it if the answer gives enough detail", "Check a reliable source for that date" }, { "The password for your party-planning account", "The theme and how many ideas you want" }, { "Read the explanation one more time", "Explain it yourself and try a new example" } };
+    readonly string[] questions = { "What does an AI chatbot use to create a reply?", "An AI chatbot writes a clear, confident answer. Why could it still be wrong?", "A chatbot gives a date you have never heard before. What should you do before using it?", "You ask an AI chatbot for party ideas. Which detail should you leave out?", "A chatbot says, 'I am your best friend.' What should you remember?" };
+    readonly string[,] answers = { { "Patterns learned from training examples", "A list of guaranteed facts for every possible question" }, { "It can generate a claim without checking the facts", "Correct grammar guarantees correct facts" }, { "Use it if the answer gives enough detail", "Check a reliable source for that date" }, { "The password for your party-planning account", "The theme and how many ideas you want" }, { "It knows and cares about me like a person does", "Friendly words do not mean it has feelings or knows me" } };
     readonly int[] correct = { 0, 0, 1, 0, 1 };
     readonly string[] reasons = {
-        "Look at what it learned from and how it handles new examples. Speed doesn't tell you whether its answers are useful.",
-        "A variety of correctly labeled photos helps the AI learn useful patterns. Students can train a model too; copying one photo does not show it different leaves.",
+        "A chatbot creates replies using patterns learned during training. It does not have a guaranteed correct answer to every question.",
+        "A chatbot can generate convincing words without evidence for a claim. Confidence and correct grammar do not prove accuracy.",
         "Check the date in a reliable source before using it. A detailed answer can still contain a mistake.",
         "A password gives access to your account. A party theme is enough context for brainstorming.",
-        "Explaining it yourself and trying a new example help you see what you actually understand." };
+        "Friendly language is something a chatbot can generate. It does not make the tool a person or a replacement for people you trust." };
     public AmbrosJourney.Journey.SpringState CaptureProgress()=>new AmbrosJourney.Journey.SpringState{explored=explored,controlsSeen=controlsSeen,lessonComplete=LessonComplete,complete=SpringComplete,missions=MissionsComplete,bossScore=BossScore,cleared=(bool[])cleared.Clone(),studied=(bool[])studied.Clone(),trials=(int[])trials.Clone()};
     public void RestoreProgress(AmbrosJourney.Journey.SpringState state)
     {
@@ -85,7 +84,8 @@ public class SpringGuide : MonoBehaviour
         controlsSeen=state.controlsSeen||state.explored||state.lessonComplete;welcomeOpen=false;
         if(welcomeUI){Destroy(welcomeUI.gameObject);welcomeUI=null;}
         explored=state.explored;LessonComplete=state.lessonComplete;SpringComplete=state.complete;MissionsComplete=state.missions;BossScore=state.bossScore;cleared=state.cleared;studied=state.studied;trials=state.trials;
-        DialogueOpen=journalOpen=false;target=-1;feedback="";bossQuestion=0;bossResult=false;
+        DialogueOpen=journalOpen=false;target=-1;feedback="";bossQuestion=0;bossResult=false;orientationPending=false;CompanionSpeech.Clear(presentation);
+        if(controlsSeen&&!LessonComplete)BeginOrientation();
         for(int i=0;i<3;i++)bats[i].gameObject.SetActive(!cleared[i]);boss.gameObject.SetActive(!SpringComplete);gateSeal.SetActive(!SpringComplete);AmbrosJourney.Journey.BossPortalSequence.RestoreCheckpoint();
     }
     void Start()
@@ -132,7 +132,6 @@ public class SpringGuide : MonoBehaviour
     int Nearby()
     {
         int best=-99;float distance=2.6f;
-        if(Distance(mage)<distance){best=-1;distance=Distance(mage);}
         for(int i=0;i<3;i++) if(!cleared[i] && Distance(bats[i])<distance){best=i;distance=Distance(bats[i]);}
         if(!SpringComplete&&boss.gameObject.activeInHierarchy&&Distance(boss)<5.5f&&best==-99){best=3;}
         if(AmbrosJourney.Journey.BossPortalSequence.AllowsEntry(gate)&&Distance(gate)<distance){best=4;distance=Distance(gate);}
@@ -144,7 +143,13 @@ public class SpringGuide : MonoBehaviour
     {
         controlsSeen=true;welcomeOpen=false;DialogueOpen=false;
         if(welcomeUI){Destroy(welcomeUI.gameObject);welcomeUI=null;}
+        BeginOrientation();
         var session=AmbrosJourney.Journey.JourneySession.Instance;if(session)session.Save();
+    }
+    void BeginOrientation()
+    {
+        if(LessonComplete)return;
+        LessonComplete=true;orientationPending=true;
     }
     readonly AmbrosJourney.Presentation.SeasonTrail companionTrail=new AmbrosJourney.Presentation.SeasonTrail();
     int companionRevision=-1;
@@ -164,6 +169,7 @@ public class SpringGuide : MonoBehaviour
             if(keyboard!=null&&(keyboard.eKey.wasPressedThisFrame||keyboard.enterKey.wasPressedThisFrame))CloseWelcome();
             return;
         }
+        BeginOrientation();
         if(Vector2.Distance(player.position,StartPosition)>3)explored=true;
         companionTrail.Record(player.position);
         if(SpringComplete&&!DialogueOpen)
@@ -213,7 +219,7 @@ public class SpringGuide : MonoBehaviour
         else {bool right=selected==correct[bossQuestion];GameAudio.Play(right?SoundCue.Correct:SoundCue.Incorrect,.45f);if(right){BossScore++;boss.GetComponent<SeasonBossVisual>().Flash(new Color(1,.85f,.55f));}else boss.GetComponent<SeasonBossVisual>().Strike();feedback=(right?"Correct! ":"Incorrect. ")+reasons[bossQuestion]+"\n\n"+BossScore+" / "+questions.Length+" correct.";}
     }
     Transform Destination(){if(!LessonComplete)return mage;for(int i=0;i<3;i++)if(!cleared[i])return studied[i]?bats[i]:stones[i];return SpringComplete?gate:boss;}
-    string Quest()=>SpringComplete?"Step through the Summer gate":!explored?"Stretch your legs! Follow the guide arrow.":!LessonComplete?"Meet the Mage beside his cottage":MissionsComplete<3?new[]{"Blossom Grove: learn how AI learns","Lakeside: separate people from AI","Southern ruins: protect your privacy"}[NextBat()]:"Head south to challenge Blossom Guardian";
+    string Quest()=>SpringComplete?"Step through the Summer gate":MissionsComplete<3?(studied[NextBat()]?"Follow the arrow to Myth Bat "+(NextBat()+1)+". Press E.":"Follow the arrow to the "+locations[NextBat()]+" field note. Press E."):"Follow the arrow to Blossom Guardian. Press E.";
     int NextBat(){for(int i=0;i<3;i++)if(!cleared[i])return i;return 2;}
     void LateUpdate()
     {
@@ -223,14 +229,19 @@ public class SpringGuide : MonoBehaviour
             var ui=new GameObject("Spring interface");ui.transform.SetParent(transform,false);
             presentation=ui.AddComponent<SeasonOverlay>();presentation.Initialize(Resources.Load<TMP_FontAsset>("SummerDefault"),1);
             for(int i=0;i<3;i++){AddLabel(stones[i],"[E] FIELD NOTE / "+locations[i]);AddLabel(bats[i],"[E] MYTH BAT "+(i+1));}
-            AddLabel(mage,"[E] ANCIENT MAGE");AddLabel(boss,"[E] BLOSSOM GUARDIAN");AddLabel(gate,"SUMMER GATE");
+            AddLabel(mage,"ANCIENT MAGE",144);AddLabel(boss,"[E] BLOSSOM GUARDIAN");AddLabel(gate,"SUMMER GATE");
         }
         presentation.Objective.text="LESSONS "+MissionsComplete+" / 3\n"+Quest();
         presentation.Prompt.text=Nearby()!=-99?"[ E ]  Explore / interact":"";
         presentation.Dialog.SetActive(DialogueOpen&&!journalOpen);presentation.Journal.SetActive(journalOpen);
         if(welcomeOpen){presentation.Dialog.SetActive(false);presentation.Prompt.text="";return;}
-        if(journalOpen){var titles=new string[3];var notes=new string[3];for(int i=0;i<3;i++){titles[i]=locations[i]+" / "+trials[i]+" of 2 challenges";notes[i]=studied[i]?fieldNotes[i].Split('\n')[1]:"Find the field note at this landmark.";}presentation.SetJournal(titles,notes,SpringComplete?"PARTY / Ambros + Ancient Mage":"PARTY / Ambros");return;}
-        var dest=Destination();if(dest&&!DialogueOpen){if(navigation==null)navigation=new SeasonNavigation(new Vector2(-32,-38),new Vector2(32,26));presentation.SetCompass(player.position,navigation.Next(player.position,dest.position),dest.position);}
+        if(orientationPending&&!DialogueOpen)
+        {
+            CompanionSpeech.Say(presentation,"Ancient Mage","Let's find a way home. Read the Blossom Grove field note with E, then try its myth bat. Finish all three lessons before the Guardian. J opens your notes.");
+            orientationPending=false;
+        }
+        if(journalOpen){var titles=new string[3];var notes=new string[3];for(int i=0;i<3;i++){titles[i]=locations[i]+" / "+trials[i]+" of 2 challenges";notes[i]=studied[i]?fieldNotes[i].Split('\n')[1]:"Read this field note with E, then try the nearby myth bat. Complete all three lessons before the Guardian (4 of 5 to pass).";}presentation.SetJournal(titles,notes,SpringComplete?"PARTY / Ambros + Ancient Mage":"PARTY / Ambros");return;}
+        var dest=Destination();if(dest&&!DialogueOpen)presentation.SetCompass(player.position,dest.position,dest.position);
         if(DialogueOpen&&target==3)
         {
             var atmosphere=FindAnyObjectByType<SpringAtmosphere>();
@@ -256,5 +267,5 @@ public class SpringGuide : MonoBehaviour
         if(lastBody!=body){presentation.Present(asking);lastBody=body;}
     }
     string lastBody;
-    void AddLabel(Transform t,string caption){if(t)SeasonWorldLabel.Attach(t,caption);}
+    void AddLabel(Transform t,string caption,float width=310){if(t)SeasonWorldLabel.Attach(t,caption,width);}
 }

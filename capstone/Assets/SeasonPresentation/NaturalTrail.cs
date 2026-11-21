@@ -73,7 +73,7 @@ namespace AmbrosJourney.Presentation
         {
             Cells=cells;
             var chunks=new HashSet<Vector2Int>();foreach(var p in cells)for(int y=-1;y<=1;y++)for(int x=-1;x<=1;x++)chunks.Add(new Vector2Int(Mathf.FloorToInt((p.x+x)/(float)Chunk),Mathf.FloorToInt((p.y+y)/(float)Chunk)));
-            Color soil=season==4?new Color(.64f,.73f,.80f):season==3?new Color(.53f,.40f,.29f):new Color(.62f,.51f,.34f);
+            Color soil=season==4?new Color(.77f,.82f,.84f):season==3?new Color(.53f,.40f,.29f):new Color(.62f,.51f,.34f);
             foreach(var chunk in chunks)
             {
                 int size=Chunk*Pixels;var colors=new Color32[size*size];bool visible=false;
@@ -87,13 +87,13 @@ namespace AmbrosJourney.Presentation
                     if(alpha<=0||alpha<noise)continue;visible=true;
                     float grain=(Noise(wx/3,wy/3)-.5f)*.075f+(noise-.5f)*.025f;
                     var color=soil+new Color(grain,grain,grain,0);
-                    if(coverage<.67f)color=Color.Lerp(color,season==4?new Color(.84f,.89f,.93f):new Color(.38f,.40f,.24f),.38f);
+                    if(coverage<.67f)color=Color.Lerp(color,season==4?new Color(.89f,.93f,.95f):new Color(.38f,.40f,.24f),.38f);
                     if(Noise(wx/2,wy/2)>.982f)color=Color.Lerp(color,season==4?new Color(.86f,.91f,.96f):new Color(.76f,.68f,.51f),.55f);
                     color.a=1;colors[py*size+px]=color;
                 }
                 if(!visible)continue;
-                var texture=new Texture2D(size,size,TextureFormat.RGBA32,false);texture.filterMode=FilterMode.Point;texture.wrapMode=TextureWrapMode.Clamp;texture.SetPixels32(colors);texture.Apply();owned.Add(texture);
-                var sprite=Sprite.Create(texture,new Rect(0,0,size,size),Vector2.zero,Pixels);owned.Add(sprite);
+                var texture=new Texture2D(size,size,TextureFormat.RGBA32,false);texture.filterMode=FilterMode.Point;texture.wrapMode=TextureWrapMode.Clamp;texture.SetPixels32(colors);owned.Add(texture);
+                var sprite=Sprite.Create(texture,new Rect(0,0,size,size),Vector2.zero,Pixels);texture.Apply(false,true);owned.Add(sprite);
                 var part=new GameObject("Worn trail patch");part.transform.SetParent(transform,false);part.transform.localPosition=new Vector3(chunk.x*Chunk,chunk.y*Chunk,0);
                 var renderer=part.AddComponent<SpriteRenderer>();renderer.sprite=sprite;renderer.sortingOrder=order;var material=new Material(Shader.Find("Sprites/Default"));material.mainTexture=texture;renderer.sharedMaterial=material;owned.Add(material);
             }

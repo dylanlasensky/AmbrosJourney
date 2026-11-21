@@ -6,16 +6,16 @@ This is the current design/implementation handoff. Dated validation reports rema
 
 Ambros, represented by the Chibi Assassin character, is pulled into a game while using his laptop. Four seasons teach middle-school players to understand AI, keep their own judgment, ask useful questions and check evidence. The Ancient Mage is another trapped child who has grown old. Summer's married Warriors, Fall's Emberfist and Winter's Little Mage provide the later lessons.
 
-The teammate owns the final intro/outro videos. The generated placeholder intro and its tools were retired. Until the intro is supplied, name entry leads straight into Spring. The current final victory crumbles the Keeper, drops an E-pickup scroll, and opens the certificate directly. Exit/Escape returns to the cave and forms a home portal. Walking through it opens the main menu. The retained outro helper still needs a teammate handoff connection; the earlier proposal for a required interactive return to Spring is not implemented.
+The team's original intro and outro clips are connected and remain unchanged by this polish. New Journey plays the intro after name entry. Final victory crumbles the Keeper and drops an E-pickup certificate scroll. Exit/Escape from the certificate returns to the cave and forms a home portal; walking through it plays the outro, then returns to the main menu. The film uses an aspect-preserving screen overlay, with game overlays and other audio suppressed. Browser fullscreen playback still needs the [release checks](CinematicFullscreenChecks.md).
 
 ## Progression contract
 
 | Stage | Teaching and application | Guardian threshold | Companion/reward |
 | --- | --- | --- | --- |
-| Spring | Meet Mage; three landmark notes; six true/false claims about training, humanlike responses, verification and privacy | Blossom Guardian, 4/5 | Apprentice; Ancient Mage |
-| Summer | Useful tool choices; hint then Sun > Seed > Leaf practice; permitted draft feedback; fictional privacy redaction and human support | Suncrest Guardian, 4/5 after three wards | Independent Thinker; both Warriors |
+| Spring | Automatic Mage orientation; three landmark notes; six true/false claims about training, humanlike responses, verification and privacy | Blossom Guardian, 4/5 | Apprentice; Ancient Mage |
+| Summer | Useful tool choices; practice-garden field note; permitted draft feedback; privacy in AI prompts and human support | Suncrest Guardian, 4/5 after three wards | Independent Thinker; both Warriors |
 | Fall | Goal/context/format; audience and permitted hints; specific revisions and factual limits; seven choices across three notes | Existing Bramble Sentinel, 4/5 after three runes | Prompt Pathfinder; Emberfist |
-| Winter outdoors | Original sources, source context, independent evidence and current local information; four choices after two notes | Frostbound Warden, 4/5 | Winter crest; Little Mage; cave access |
+| Winter outdoors | Original sources, source context, independent evidence and current local information; four choices after two notes | Frostbound Warden, 4/5 | Winter crest; Little Mage; automatic cave tip and permission |
 | Cave/finale | Echo Archive uncertainty/correction note and two choices; eight new cumulative AI safety activities | Echo Keeper, 7/8 | Keeper disintegration; dropped scroll and E pickup; personalized PDF; Exit to cave, animated home portal to main menu |
 
 Teach before testing. Spring is approachable; later scenarios require applying concepts and distinguishing plausible shortcuts. Wording is concise and conversational, with no em dashes in runtime copy. Explanations should help the player understand a mistake. Mission retries retain completed choices; failed guardians retain missions. There are no artificial waiting timers.
@@ -30,7 +30,7 @@ Spring targets about five minutes within a roughly thirty-minute full journey; S
 
 Keep routes readable, doorsteps connected and interaction areas clear. The world is whimsical top-down pixel art with natural seasonal scenery and signs of machine takeover. The new Blossom Guardian, Suncrest Guardian and Frostbound Warden use seasonal silhouettes and materials. The final Keeper is a larger ancient AI robot. Fall's existing Sentinel remains unchanged.
 
-All four seasons and menus use Determination, existing point sizes and shared parchment cards. Font leading is normalized without scaling glyphs; short labels are adjusted to fit rather than making the text smaller. Explorer guidance uses broad bearings in distant Fall/Winter areas and Winter whiteouts; Assisted restores exact route guidance. Companions follow a safe breadcrumb spine with varied spacing/offsets and obstacle-aware narrowing.
+All four seasons and menus use Determination, existing point sizes and shared parchment cards. Font leading is normalized without scaling glyphs; short labels are adjusted to fit rather than making the text smaller. A bright gold-and-cream, dark-outlined arrow rotates continuously toward the next required destination in every season. It stays available outdoors in Winter and inside the cave; players choose their walkable route. Companion captions appear automatically without stopping movement. First lessons still require E, and cave permission follows Warden victory without a separate NPC interaction. See [companion guidance](CompanionGuidance.md). Companions follow a safe breadcrumb spine with varied spacing/offsets and obstacle-aware narrowing.
 
 ## Persistent journey
 
@@ -42,6 +42,6 @@ Three artifacts per season encourage revisits. Completing the collection reveals
 
 Open `capstone/` in Unity 6000.6.2f1. Runtime world builders and Resources prefabs own later seasons; coordinate before rebuilding scenes or assets. Commit required `.meta` files and preserve pack/font licenses. Keep Library, Temp, Logs and player builds out of source control. Legacy `orc` and skeleton fields remain compatibility/source references, not the displayed boss forms.
 
-The original Sprint Three deadline was Nov 4; the original weekly schedule remains planning context in the root README. The teammate's clips/outro handoff, further audience comprehension/difficulty/pacing tests, target-hardware/audio checks, and broader inventory/customization remain outstanding. Implemented features are not proof that the game meets learning or performance goals.
+The original Sprint Three deadline was Nov 4; the original weekly schedule remains planning context in the root README. Final Web/itch video and save checks, audience comprehension/difficulty/pacing tests, and target-hardware/audio checks remain outstanding release evidence. Implemented features are not proof that the game meets learning or performance goals.
 
 Use [Journey completion](JourneyCompletion.md), [current questions](QuestionRefresh.md), [boss artwork](Bosses.md), [testing](Testing.md) and [current validation](CurrentValidation.md).

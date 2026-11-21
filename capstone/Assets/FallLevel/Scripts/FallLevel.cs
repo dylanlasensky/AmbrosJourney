@@ -34,13 +34,12 @@ namespace AmbrosJourney.Fall
         AudioClip good,bad,ward,strike;
         Canvas canvas;
         SeasonOverlay presentation;
-        SeasonNavigation navigation;
         int nearby=-1;
         string currentTitle;
         public void RestoreProgress(FallProgress p)
         {
             if(p==null||!p.Valid())throw new ArgumentException("Invalid Fall checkpoint");
-            Progress=p;if(p.Introduced){Close();RestoreGuide();}journal.SetActive(false);if(p.Complete){ember.Guidance=null;ember.follow=femaleWarrior.transform;}RefreshWorld();AmbrosJourney.Journey.BossPortalSequence.RestoreCheckpoint();
+            CompanionSpeech.Clear(presentation);Progress=p;Close();journal.SetActive(false);if(p.Introduced)RestoreGuide();else{BeginGuidance();Welcome();}if(p.Complete){ember.Guidance=null;ember.follow=femaleWarrior.transform;}RefreshWorld();AmbrosJourney.Journey.BossPortalSequence.RestoreCheckpoint();
         }
         void Start()
         {
@@ -48,7 +47,7 @@ namespace AmbrosJourney.Fall
             winterGate.gameObject.SetActive(false);
             Application.runInBackground=false;CreateUI();CreateAudio();
             mage.follow=player.transform;maleWarrior.follow=mage.transform;femaleWarrior.follow=maleWarrior.transform;
-            Show("Fall / Emberfist's trail","Emberfist: Welcome to Emberwood! Our machines keep getting requests mixed up. Help me work out how to give them clearer instructions.",()=>{BeginGuidance();Close();});
+            Close();BeginGuidance();Welcome();
             Debug.Log("FALL_READY: Emberwood, three prompt missions, seven applied choices and five-question guardian.");
         }
         public bool DismissPanel()
@@ -76,6 +75,7 @@ namespace AmbrosJourney.Fall
             UpdateGuidance();
             RefreshWorld();
         }
+        void Welcome()=>CompanionSpeech.Say(presentation,"Emberfist","Welcome to Emberwood! A prompt is a request to an AI tool. Walk with me to Harvest Orchard, then read its board with E. We'll practice making clear requests.");
         public static readonly Vector2 OrchardGuide=new Vector2(-27,9);
         void BeginGuidance()
         {
@@ -89,29 +89,28 @@ namespace AmbrosJourney.Fall
         }
         void UpdateGuidance()
         {
-            if(InputBlocked||!Progress.Introduced||Progress.GuideArrived||ember.Guidance==null||!ember.Guidance.Arrived||Vector2.Distance(player.transform.position,stations[0].position)>4)return;
+            if(InputBlocked||!Progress.Introduced||ember.Guidance==null||!ember.Guidance.Arrived||!Progress.GuideArrived&&Vector2.Distance(player.transform.position,stations[0].position)>4)return;
+            bool announce=!Progress.GuideArrived;
             Progress.GuideArrived=true;ember.Guidance=null;
-            ShowPages(new[]{
-                "A prompt is what you ask an AI tool to do. Say what you need, give useful background and explain how you want the reply. Then read it and ask for changes if needed. You still have to check the facts.",
-                "Start at Harvest Orchard, cross the north bridge to Lantern Archive, then find Revision Kiln. Read each note and fix the requests there. Three runes open the Sentinel's clearing. Get four of five questions right to reach Winter."
-            },0,()=>{});
+            if(announce)CompanionSpeech.Say(presentation,"Emberfist","Start at this board with E. Then visit Lantern Archive and Revision Kiln. Tell AI the job, useful details and the format you need. J keeps your lesson notes.");
         }
         int Nearest()
         {
             Transform[] targets={ember.transform,stations[0],stations[1],stations[2],guardian.transform,winterGate};
-            int result=-1;float best=2.8f;for(int i=1;i<targets.Length;i++){if(!targets[i].gameObject.activeInHierarchy || i==4&&Progress.Complete)continue;float d=Vector2.Distance(player.transform.position,targets[i].position);if(d<best){best=d;result=i;}}if(result<0&&Vector2.Distance(player.transform.position,ember.transform.position)<2.8f)result=0;if(result<0&&!Progress.Complete&&Vector2.Distance(player.transform.position,guardian.transform.position)<5.5f)result=4;return result;
+            int result=-1;float best=2.8f;for(int i=1;i<targets.Length;i++){if(!targets[i].gameObject.activeInHierarchy || i==4&&Progress.Complete)continue;float d=Vector2.Distance(player.transform.position,targets[i].position);if(d<best){best=d;result=i;}}if(result<0&&!Progress.Complete&&Vector2.Distance(player.transform.position,guardian.transform.position)<5.5f)result=4;return result;
         }
         public void Interact(int target)
         {
             if(AmbrosJourney.Journey.JourneySession.Blocked || !Progress.Introduced || Transitioning || target==4&&Progress.Complete || target==5&&!AmbrosJourney.Journey.BossPortalSequence.AllowsEntry(winterGate))return;
             GameAudio.Click();
-            if(target==0)Show("Emberfist / The prompt forge",Progress.Complete?"I will travel with you! In Winter, keep checking what a tool tells you. Your own judgment still matters.":"Read the three station notes, then repair their requests. Follow the paths: the north bridge reaches the archive; its east opening leads into the switchbacks. The lower bridge loops back to the orchard.",Close);
+            if(target==0)CompanionSpeech.Say(presentation,"Emberfist",Progress.Complete?"I will travel with you! Keep checking what AI tells you. Your own judgment still matters.":"Read the three station boards with E and repair their AI requests. J keeps your lesson notes.");
             else if(target>=1 && target<=3)Mission(target-1);
             else if(target==4)Boss();
-            else if(target==5)Show("The Winter gate",Progress.Complete?"FALL COMPLETE / PROMPT PATHFINDER\nEmberfist joins your party.\n\nClose this conversation and walk through the unlocked gate to reach Frostveil. Find the Little Mage and discover the cave beyond the snowy ridge.":"Collect the three prompt runes and pass the Sentinel's quiz with at least 4/5. The Winter gate will then open.",Close);
+            else if(target==5)Show("The Winter gate",Progress.Complete?"FALL COMPLETE / PROMPT PATHFINDER\nEmberfist joins your party.\n\nClose this conversation and walk through the unlocked gate to reach Frostveil. Read the two outdoor field notes, then face the Warden at the snowy cave.":"Collect the three prompt runes and pass the Sentinel's quiz with at least 4/5. The Winter gate will then open.",Close);
         }
         void Mission(int mission)
         {
+            if(mission==0){Progress.GuideArrived=true;if(ember.Guidance!=null)ember.Guidance.WaitForPlayer=false;}
             if(Progress.MissionComplete(mission)){Show(FallContent.Landmarks[mission]+" / Rune restored",FallContent.Notes[mission],Close);return;}
             Show(FallContent.Landmarks[mission]+" / Field note",FallContent.Notes[mission],()=>{Progress.ReadNote(mission);MissionQuestion(mission);});
         }
@@ -193,7 +192,7 @@ namespace AmbrosJourney.Fall
             objective.text="RUNES "+Progress.RuneCount+" / 3\n"+quest;
             if(Progress.Introduced&&!Progress.GuideArrived)objective.text="Walk with Emberfist to Harvest Orchard. He will wait for you.";
             var destination=Destination();
-            if(!InputBlocked)presentation.SetCompass(player.transform.position,navigation.Next(player.transform.position,destination),destination);
+            if(!InputBlocked)presentation.SetCompass(player.transform.position,destination,destination);
             prompt.text=InputBlocked||nearby<0?"":"[ E ]  "+new[]{"Talk to Emberfist","Harvest Orchard","Lantern Archive","Revision Kiln","Face the Sentinel","Winter gate"}[nearby];
             party.text=Progress.Complete?"PARTY / Ambros + Mage + Warriors + Emberfist":"PARTY / Ambros + Mage + both Warriors";
         }
@@ -204,7 +203,6 @@ namespace AmbrosJourney.Fall
             canvas=presentation.Canvas;dialog=presentation.Dialog;journal=presentation.Journal;
             heading=presentation.Heading;copy=presentation.Copy;objective=presentation.Objective;compass=presentation.CompassText;prompt=presentation.Prompt;journalCopy=presentation.JournalCopy;party=presentation.Party;
             choices.AddRange(presentation.Choices);
-            navigation=new SeasonNavigation(FallWorld.Min,FallWorld.Max);
         }
         void CreateAudio()
         {

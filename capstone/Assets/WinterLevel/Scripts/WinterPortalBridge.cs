@@ -35,7 +35,7 @@ namespace AmbrosJourney.Winter
             foreach (var motor in player.GetComponents<MonoBehaviour>())
                 if (motor.GetType().Name == "FallActor") motor.enabled = false;
             var body = player.GetComponent<Rigidbody2D>(); if (body) body.linearVelocity = Vector2.zero;
-            var overlay = new GameObject("Season transition", typeof(Canvas), typeof(CanvasGroup));
+            var overlay = new GameObject("Season transition", typeof(Canvas), typeof(CanvasGroup), typeof(AmbrosJourney.Presentation.SeasonTransition));
             overlay.transform.SetParent(transform);
             overlay.GetComponent<Canvas>().renderMode = RenderMode.ScreenSpaceOverlay;
             overlay.GetComponent<Canvas>().sortingOrder = 30000;

@@ -1,5 +1,7 @@
 # First-player guidance fixes
 
+**Historical feedback record.** November 21, 2026 guidance now uses a direct gold-and-cream arrow that remains available in Winter. Companion advice and post-Warden cave permission are automatic; the frozen-arrow and required-NPC-conversation rules below are superseded. See the [current overview](../README.md) and [companion guidance](CompanionGuidance.md).
+
 ## Player-facing changes
 
 - Spring's Mage refers to the compass. Interactive labels in every season show `[E]`, and the Blossom Guardian label shows `[E]` without a score requirement in its name.

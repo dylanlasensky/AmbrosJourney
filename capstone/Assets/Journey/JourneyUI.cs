@@ -9,6 +9,7 @@ namespace AmbrosJourney.Journey
     public sealed class JourneyUI : MonoBehaviour
     {
         Sprite rounded;
+        readonly System.Collections.Generic.List<UnityEngine.UI.Selectable> navigationControls=new System.Collections.Generic.List<UnityEngine.UI.Selectable>(16);
         TMP_InputField nameHint;
         UnityEngine.UI.Outline nameGlow, nameHalo;
         public bool KeyboardNavigation=true;
@@ -18,24 +19,33 @@ namespace AmbrosJourney.Journey
             {
                 bool empty=string.IsNullOrWhiteSpace(nameHint.text);
                 nameGlow.enabled=nameHalo.enabled=empty;
-                float pulse=.5f+.5f*Mathf.Sin(Time.unscaledTime*2.5f);
-                var gold=JourneyMenu.Gold;gold.a=Mathf.Lerp(.30f,.55f,pulse);nameGlow.effectColor=gold;
-                gold.a=Mathf.Lerp(.08f,.18f,pulse);nameHalo.effectColor=gold;
+                if(empty)
+                {
+                    float pulse=.5f+.5f*Mathf.Sin(Time.unscaledTime*2.5f);
+                    var gold=JourneyMenu.Gold;gold.a=Mathf.Lerp(.30f,.55f,pulse);nameGlow.effectColor=gold;
+                    gold.a=Mathf.Lerp(.08f,.18f,pulse);nameHalo.effectColor=gold;
+                }
             }
             if(!KeyboardNavigation||!EventSystem.current)return;
             var keyboard=UnityEngine.InputSystem.Keyboard.current;if(keyboard==null)return;
             var selected=EventSystem.current.currentSelectedGameObject;
-            var controls=GetComponentsInChildren<UnityEngine.UI.Selectable>();
-            var usable=System.Array.FindAll(controls,c=>c.IsActive()&&c.IsInteractable());
-            if(usable.Length==0)return;
-            if(keyboard.tabKey.wasPressedThisFrame)
+            bool tab=keyboard.tabKey.wasPressedThisFrame;
+            var selectedControl=selected?selected.GetComponent<UnityEngine.UI.Selectable>():null;
+            // Keep ordinary frames allocation-free; rediscover controls when focus needs to move.
+            if(!tab&&selectedControl&&selectedControl.IsActive()&&selectedControl.IsInteractable()&&selected.transform.IsChildOf(transform))return;
+            GetComponentsInChildren(false,navigationControls);
+            for(int i=navigationControls.Count-1;i>=0;i--)
+                if(!navigationControls[i].IsActive()||!navigationControls[i].IsInteractable())navigationControls.RemoveAt(i);
+            if(navigationControls.Count==0)return;
+            int index=-1;
+            for(int i=0;i<navigationControls.Count;i++)if(navigationControls[i].gameObject==selected){index=i;break;}
+            int next=0;
+            if(tab)
             {
-                int index=System.Array.FindIndex(usable,c=>c.gameObject==selected);
                 int step=keyboard.shiftKey.isPressed?-1:1;
-                EventSystem.current.SetSelectedGameObject(usable[(index+step+usable.Length)%usable.Length].gameObject);
+                next=index<0?(step<0?navigationControls.Count-1:0):(index+step+navigationControls.Count)%navigationControls.Count;
             }
-            else if(!selected||!selected.activeInHierarchy||!selected.transform.IsChildOf(transform))
-                EventSystem.current.SetSelectedGameObject(usable[0].gameObject);
+            EventSystem.current.SetSelectedGameObject(navigationControls[next].gameObject);
         }
         public TMP_FontAsset MenuFont => Font;
         public Canvas Canvas;public RectTransform Root;public TMP_FontAsset Font;

@@ -68,26 +68,24 @@ public static class WinterRefinementChecks
                 SeasonIntegrationChecks.Capture("WinterPermanentGuidance");
                 Move(l,WinterWorld.WardenPosition+Vector2.down*2);l.Interact(8);Next(l);
                 for(int i=0;i<5;i++){ui.Choices[WinterContent.Boss[i].Correct].onClick.Invoke();Next(l);}
-                Check(l.Progress.WinterComplete&&!l.Progress.CaveEntryExplained,"Warden victory alone does not unlock first cave entry");Next(l);stage=3;
+                Check(l.Progress.WinterComplete&&!l.Progress.CaveEntryExplained,"Cave tip waits while victory message is open");Next(l);stage=3;
             }
             else if(stage==3)
             {
                 Check(!sequence.Exit.Playing&&!l.caveEntrance.GetComponent<SpriteRenderer>(),"Winter never creates portal-building pixels or a portal overlay");
                 if(sequence.Dissolve&&sequence.Dissolve.DetachedPixelCount>0)sawDust=true;
                 if(!sequence.Exit.Ready||BossPortalSequence.Busy)return;Check(sawDust,"Warden still disintegrates");
-                Move(l,WinterWorld.Entrance);Call(l,"LateUpdate");l.World.ChangeRegion(true);
-                Check(!l.Progress.InCave&&!l.CanEnterCave,"Walking or region-change call cannot bypass Mage conversation");
-                Check(l.Destination()==(Vector2)l.littleMage.transform.position,"Next objective points to Little Mage");
-                Move(l,WinterWorld.CaveGuide);l.Interact(0);Check(l.IsDialogueOpen&&!l.Progress.CaveGuideRead,"Opening cave dialogue alone is insufficient");
-                l.DismissPanel();Move(l,WinterWorld.Entrance);Call(l,"LateUpdate");Check(!l.Progress.InCave,"Escape does not finish the Mage conversation");
-                Move(l,WinterWorld.CaveGuide);l.Interact(0);Next(l);Check(l.Progress.CaveGuideRead,"Continue finishes cave guidance");
+                Check(l.Progress.CaveGuideRead&&l.Progress.CanEnterCave&&!l.Progress.InCave&&!l.InputBlocked,"Victory closes into passive cave guidance without a required NPC stop");
+                Check(l.Destination()==(Vector2)l.caveEntrance.position,"Next objective points straight to the cave entrance");
+                var beforeGuide=JsonUtility.FromJson<WinterProgress>(JsonUtility.ToJson(l.Progress));beforeGuide.CaveGuideRead=false;
+                l.RestoreProgress(beforeGuide);Call(l,"OfferCaveGuidance");Check(l.Progress.CaveGuideRead&&!l.IsDialogueOpen,"Older completed-Warden checkpoint receives automatic cave guidance");
                 var saved=JsonUtility.FromJson<WinterProgress>(JsonUtility.ToJson(l.Progress));Check(saved.CaveGuideRead&&saved.CanEnterCave&&saved.Valid(),"Cave permission is saved");
                 l.RestoreProgress(saved);Move(l,WinterWorld.Entrance+Vector2.down*1.6f);SeasonIntegrationChecks.Capture("WinterNaturalCaveAfterWarden");
                 Move(l,WinterWorld.Entrance);stage=4;ready=EditorApplication.timeSinceStartup+.3;
             }
             else if(stage==4)
             {
-                Check(l.Progress.InCave,"Walking into doorway after Mage conversation automatically enters cave");Call(l,"RefreshWorld");Call(ui,"LateUpdate");
+                Check(l.Progress.InCave,"Walking into doorway after passive guidance automatically enters cave");Call(l,"RefreshWorld");Call(ui,"LateUpdate");
                 Check(!ui.CompassObscured&&ui.Arrow.gameObject.activeSelf,"Arrow stays visible inside Echo Cavern");
                 var visibility=l.World.GetComponent<CaveVisibility>();Call(visibility,"LateUpdate");
                 Check(visibility.IsVisible&&visibility.LanternCount==WinterWorld.CaveLanterns.Length,"Cave veil and all lantern pools activate");
@@ -101,7 +99,7 @@ public static class WinterRefinementChecks
                 Call(l,"RefreshWorld");Call(ui,"LateUpdate");Check(!l.Progress.InCave&&!ui.CompassObscured&&ui.Arrow.gameObject.activeSelf,"Outdoor guidance remains visible after exiting cave");var visibility=l.World.GetComponent<CaveVisibility>();Call(visibility,"LateUpdate");Check(!visibility.IsVisible,"Cave darkness switches off outside");
                 var legacy=JsonUtility.FromJson<WinterProgress>(JsonUtility.ToJson(l.Progress));legacy.CaveGuideRead=false;
                 Check(legacy.CaveDiscovered&&legacy.Valid()&&legacy.CanEnterCave,"Older saves which already visited the cave remain usable");
-                Finish(true,"Permanent guidance including old saves; centered Warden; no outdoor note crystals; player visibility circle and six lantern pools; Warden dissolves without a portal overlay/build; cave entry requires completed Mage dialogue, survives reload, supports old cave saves and remains automatic afterward.");
+                Finish(true,"Permanent guidance including old saves; centered Warden; no outdoor note crystals; player visibility circle and six lantern pools; Warden dissolves without a portal overlay/build; cave guidance unlocks automatically after victory feedback, survives reload, supports older completed-Warden saves and permits automatic doorway entry.");
             }
         }
         catch(Exception e){Finish(false,e.ToString());}

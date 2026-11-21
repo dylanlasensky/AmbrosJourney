@@ -34,3 +34,5 @@ jobs:
         with:
           node-version: '22'
       - run: node tests/check_browser_save.cjs
+      - run: node tests/check_web_template.cjs
+      - run: node tests/check_cinematic_focus.cjs

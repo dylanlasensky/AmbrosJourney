@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ambros’ Journey</title>
+  <style>
+    html, body { width: 100%; height: 100%; margin: 0; overflow: hidden; background: #101416; }
+    #unity-canvas { display: block; width: 100%; height: 100%; outline: none; }
+    #loading { position: fixed; inset: 0; display: grid; place-content: center; gap: 14px;
+      padding: 24px; color: #f3e5c4; background: #101416; text-align: center; font: 18px Georgia, serif; }
+    #loading[hidden] { display: none; }
+    progress { width: min(280px, 70vw); height: 8px; margin: auto; accent-color: #c4a567; }
+    button { padding: 10px 20px; color: #f3e5c4; background: #273333; border: 1px solid #c4a567; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <canvas id="unity-canvas" width="{{{ WIDTH }}}" height="{{{ HEIGHT }}}" tabindex="0" aria-label="Ambros’ Journey game"></canvas>
+  <div id="loading" role="status" aria-live="polite">
+    <span id="loading-message">Preparing your journey…</span>
+    <progress id="loading-progress" max="1" value="0" aria-label="Game loading progress"></progress>
+    <button id="retry" hidden>Try again</button>
+  </div>
+  <script>
+    const canvas = document.getElementById("unity-canvas");
+    const loading = document.getElementById("loading");
+    const progress = document.getElementById("loading-progress");
+    const retry = document.getElementById("retry");
+    function loadingFailed(message) {
+      console.error(message);
+      loading.hidden = false;
+      progress.hidden = true;
+      document.getElementById("loading-message").textContent = "The game could not load. Please try again.";
+      retry.hidden = false;
+    }
+    retry.addEventListener("click", () => location.reload());
+    canvas.addEventListener("pointerdown", () => canvas.focus({ preventScroll: true }));
+    const loader = document.createElement("script");
+    loader.src = "Build/{{{ LOADER_FILENAME }}}";
+    loader.onerror = () => loadingFailed("Could not load the Unity loader.");
+    loader.onload = () => {
+      createUnityInstance(canvas, {
+        arguments: [],
+        dataUrl: "Build/{{{ DATA_FILENAME }}}",
+        frameworkUrl: "Build/{{{ FRAMEWORK_FILENAME }}}",
+#if USE_WASM
+        codeUrl: "Build/{{{ CODE_FILENAME }}}",
+#endif
+#if SYMBOLS_FILENAME
+        symbolsUrl: "Build/{{{ SYMBOLS_FILENAME }}}",
+#endif
+        streamingAssetsUrl: "StreamingAssets",
+        companyName: {{{ JSON.stringify(COMPANY_NAME) }}},
+        productName: {{{ JSON.stringify(PRODUCT_NAME) }}},
+        productVersion: {{{ JSON.stringify(PRODUCT_VERSION) }}},
+        showBanner: (message, type) => {
+          if (type === "error") loadingFailed(message);
+          else if (type === "warning") console.warn(message);
+          else console.log(message);
+        },
+        // Keep automatic canvas/backing-size synchronization, capped at one pixel per CSS pixel.
+        devicePixelRatio: 1,
+      }, value => { progress.value = value; }).then(() => {
+        loading.hidden = true;
+        canvas.focus({ preventScroll: true });
+      }).catch(loadingFailed);
+    };
+    document.body.appendChild(loader);
+  </script>
+</body>
+</html>

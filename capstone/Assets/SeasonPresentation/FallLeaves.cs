@@ -5,7 +5,7 @@ namespace AmbrosJourney.Presentation
     public sealed class FallLeaves : MonoBehaviour
     {
         readonly Transform[] leaves=new Transform[32];
-        Sprite leaf;
+        Sprite leaf;Camera view;
         void Start()
         {
             var texture=new Texture2D(5,3,TextureFormat.RGBA32,false);for(int y=0;y<3;y++)for(int x=0;x<5;x++)texture.SetPixel(x,y,(x==0||x==4)&&(y==0||y==2)?Color.clear:Color.white);texture.filterMode=FilterMode.Point;texture.Apply();leaf=Sprite.Create(texture,new Rect(0,0,5,3),Vector2.one*.5f,32);
@@ -13,8 +13,10 @@ namespace AmbrosJourney.Presentation
         }
         void Update()
         {
-            var camera=Camera.main;if(!camera)return;float h=camera.orthographicSize+2,w=h*camera.aspect;
-            for(int i=0;i<leaves.Length;i++){float x=Mathf.Repeat(i*3.731f+Time.time*.45f,w*2)-w,y=Mathf.Repeat(i*2.17f-Time.time*.36f,h*2)-h;leaves[i].position=new Vector3(camera.transform.position.x+x+Mathf.Sin(Time.time+i)*.3f,camera.transform.position.y+y,0);leaves[i].rotation=Quaternion.Euler(0,0,Mathf.Sin(Time.time+i)*35);}
+            if(Time.deltaTime==0)return;
+            if(!view)view=Camera.main;if(!view)return;
+            float h=view.orthographicSize+2,w=h*view.aspect;var center=view.transform.position;float time=Time.time;
+            for(int i=0;i<leaves.Length;i++){float x=Mathf.Repeat(i*3.731f+time*.45f,w*2)-w,y=Mathf.Repeat(i*2.17f-time*.36f,h*2)-h;leaves[i].position=new Vector3(center.x+x+Mathf.Sin(time+i)*.3f,center.y+y,0);leaves[i].rotation=Quaternion.Euler(0,0,Mathf.Sin(time+i)*35);}
         }
         void OnDestroy(){if(leaf){Destroy(leaf.texture);Destroy(leaf);}}
     }

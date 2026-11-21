@@ -1,5 +1,7 @@
 # Second-round user testing: controls and portal exits
 
+**Historical feedback record.** November 21, 2026 guidance now uses a direct gold-and-cream arrow that remains available in Winter. Companion advice and post-Warden cave permission are automatic; the frozen-arrow and required-NPC-conversation rules below are superseded. See the [current overview](../README.md) and [companion guidance](CompanionGuidance.md).
+
 These changes build on main `865a5c7` and preserve the latest guidance, water, artifact-interaction and lesson changes.
 
 ## Controls

@@ -8,6 +8,8 @@ namespace AmbrosJourney.Winter
     public sealed class CaveVisibility : MonoBehaviour
     {
         public const float PlayerRadius=3.2f, LanternRadius=2.5f;
+        static readonly int WorldRectId=Shader.PropertyToID("_WorldRect"),PlayerId=Shader.PropertyToID("_Player");
+        Vector4 lastWorldRect,lastPlayer;
         WinterLevel level;
         Camera view;
         Canvas veil;
@@ -40,12 +42,14 @@ namespace AmbrosJourney.Winter
         void LateUpdate()
         {
             if(!veil||!level||!view)return;
-            veil.enabled=level.Progress.InCave&&view.enabled;
+            bool visible=level.Progress.InCave&&view.enabled;if(veil.enabled!=visible)veil.enabled=visible;
             if(!veil.enabled)return;
             var low=view.ViewportToWorldPoint(new Vector3(0,0,-view.transform.position.z));
             var high=view.ViewportToWorldPoint(new Vector3(1,1,-view.transform.position.z));
-            material.SetVector("_WorldRect",new Vector4(low.x,low.y,high.x-low.x,high.y-low.y));
-            var p=level.player.transform.position;material.SetVector("_Player",new Vector4(p.x,p.y+.7f,PlayerRadius,0));
+            var worldRect=new Vector4(low.x,low.y,high.x-low.x,high.y-low.y);
+            if(lastWorldRect!=worldRect){material.SetVector(WorldRectId,worldRect);lastWorldRect=worldRect;}
+            var p=level.player.transform.position;var player=new Vector4(p.x,p.y+.7f,PlayerRadius,0);
+            if(lastPlayer!=player){material.SetVector(PlayerId,player);lastPlayer=player;}
         }
         void OnDestroy(){if(material)Destroy(material);}
     }
