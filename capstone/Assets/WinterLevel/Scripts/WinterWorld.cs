@@ -160,11 +160,12 @@ namespace AmbrosJourney.Winter
             for(int i=1;i<trail.Length;i++)if(SegmentDistance(p,trail[i-1],trail[i])<4)return false;
             return !(p.x>-10&&p.x<6&&p.y>-12&&p.y<12);
         }
+        public static readonly RectInt BossChamber=new RectInt(123,20,23,14);
         public static readonly Vector2[] CaveLanterns={new Vector2(108,-24),new Vector2(126,-19),new Vector2(119,-5),new Vector2(104,1),new Vector2(135,8),new Vector2(135,21)};
         void BuildCave()
         {
             // Four chambers joined by bent passages; the west archive is a meaningful detour.
-            var rooms=new[]{new RectInt(95,-31,16,13),new RectInt(117,-18,23,17),new RectInt(96,3,17,15),new RectInt(123,20,23,14)};
+            var rooms=new[]{new RectInt(95,-31,16,13),new RectInt(117,-18,23,17),new RectInt(96,3,17,15),BossChamber};
             var passages=new[]{new RectInt(106,-26,24,5),new RectInt(124,-24,5,18),new RectInt(102,-7,24,5),new RectInt(102,-5,5,13),new RectInt(131,-3,7,26)};
             var floor=Map("Cavern stone",-1000);var walls=Map("Faceted ice walls",-900);var stone=Tile("CaveFloor");stone.color=new Color(.68f,.80f,1);var ice=Tile("CaveWall");ice.color=new Color(.72f,.86f,1);
             var cells=new HashSet<Vector2Int>();foreach(var r in rooms)foreach(var p in r.allPositionsWithin)cells.Add(p);foreach(var r in passages)foreach(var p in r.allPositionsWithin)cells.Add(p);

@@ -44,3 +44,27 @@ Target export: `capstone/Builds/Web/Submission-20261121-reviewed`, including the
 - **Outro scope:** fullscreen picture and no-click menu handoff passed on `Submission-20261121-final` as recorded above. The reviewed export only changes name-card clearance; the unchanged outro was not replayed on this third build. Music isolation remains a native/code assertion, not a listening result.
 
 The pre-outro browser fixture came from a native checkpoint and passed current C# save validators. It tests restoration and movie playback, not completion of every browser lesson. Fixture tools remain outside the repository/build and do not access the real itch save. Local browser tests do not establish performance on a teammate's low-end laptop. Hidden-tab behavior and additional target browsers remain part of the [browser check procedure](BrowserBuildChecks.md). Repeat the critical checks on the actual itch upload after the team publishes it.
+
+## Final boss chamber follow-up
+
+The Echo Keeper's chamber now becomes fully visible as Ambros crosses its entrance. A short position-based fade keeps the transition consistent when pausing or restoring a saved game. Defeating the final boss keeps that chamber illuminated; the other rooms and tunnels retain their player/lantern visibility pools. Lighting reuses the existing single overlay and adds no real-time lights.
+
+The chamber camera frames the entire Keeper and its E prompt. It returns to the normal close view in tunnels. Name cards use the same visibility test as the scene, with the normal interaction range restored inside the bright room.
+
+- Targeted native checks: PASS in `ambros-chamber-final-checks.log`. Covers entry fade thresholds, chamber corners, concealed tunnel/archive, normal label range, pause, failed quiz, persistent victory light, outdoor exit, and a disk round-trip of the exact saved chamber position/progress.
+- Visual inspection: `EchoChamberApproach`, `EchoChamberLit`, `EchoChamberQuiz` and `EchoChamberVictory` under `Logs/SeasonChecks`, at 1280x720 and 1024x768. The first capture revealed a cropped boss; the final framing fix shows the whole silhouette and interaction card.
+
+Scoped 2D visual review of those frames (not a score for every map):
+
+Palette discipline: 4/5 — retained blue stone, amber lanterns and violet/cyan Keeper accents; named texture materials preserve their authored colors.
+Style uniformity: 3/5 — existing pixel artwork and parchment remain consistent with the surrounding game; no new asset style introduced.
+Lighting depth: 4/5 — the clear chamber is distinct from the soft lantern pools and dark approach.
+Silhouette: 4/5 — the whole Keeper and Ambros fit the final view at both checked aspect ratios.
+UI intentionality: 4/5 — the E card sits above the boss and between the fixed HUD panels.
+Feedback visibility: 4/5 — quiz feedback and the post-victory certificate remain readable in the lit room.
+
+Final candidate integration: **PASS** in `ambros-chamber-integration.log` (`SEASON_INTEGRATION_PASS` at line 2245): all four seasons, both Winter bosses, menus, save/restore, artifacts, certificate and reset. Independent source review found no blockers; progression (22,959 assertions), browser helper checks and tracked asset integrity (442 GUIDs) passed.
+
+Final chamber Web export: **Succeeded, 0 errors, 6 warnings.** `Submission-20261121-chamber` contains all final runtime changes. Independent ZIP CRC/content, gzip, generated URL and original video hash checks passed. Seven files; ZIP 119,930,124 bytes, SHA-256 `e0b6e0a9fca57db30509bf55099704c32838a1947f78d48300d62852ca832b88`. No test fixtures are included.
+
+Chrome checks on this exact export: restored the validated local pre-boss checkpoint; confirmed the full Keeper, name card and lit chamber; walked south into dark tunnels and back into the lit room; opened boss dialogue and the first final activity with E; paused, refreshed from the outer page and continued at the same visible position with chamber lighting restored. Gameplay rendered in outer-control fullscreen after focusing the canvas and resuming the focus-loss pause. This run did not replay every browser quiz, the defeat animation or films; those paths remain covered by the native integration and the earlier explicitly named cinematic builds. The current chamber build was tested locally, not uploaded to itch.

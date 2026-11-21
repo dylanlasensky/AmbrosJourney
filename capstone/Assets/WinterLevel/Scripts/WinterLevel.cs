@@ -250,7 +250,7 @@ namespace AmbrosJourney.Winter
         {
             littleMageLabel=littleMage.GetComponentInChildren<SeasonWorldLabel>(true);
             var ui=new GameObject("Winter interface");ui.transform.SetParent(transform,false);
-            presentation=ui.AddComponent<SeasonOverlay>();presentation.Initialize(font,4);
+            presentation=ui.AddComponent<SeasonOverlay>();presentation.Initialize(font,4);presentation.CaveLighting=World.GetComponent<CaveVisibility>();
             canvas=presentation.Canvas;dialog=presentation.Dialog;journal=presentation.Journal;
             heading=presentation.Heading;copy=presentation.Copy;objective=presentation.Objective;compass=presentation.CompassText;prompt=presentation.Prompt;journalCopy=presentation.JournalCopy;party=presentation.Party;
             choices.AddRange(presentation.Choices);

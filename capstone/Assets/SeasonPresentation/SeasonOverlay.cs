@@ -10,6 +10,7 @@ namespace AmbrosJourney.Presentation
     public sealed class SeasonOverlay : MonoBehaviour
     {
         public Canvas Canvas;
+        public AmbrosJourney.Winter.CaveVisibility CaveLighting;
         public GameObject Dialog, Journal;
         public TextMeshProUGUI Heading, Copy, Objective, Prompt, JournalCopy, Party, CompassText;
         public readonly List<UnityEngine.UI.Button> Choices = new List<UnityEngine.UI.Button>();
@@ -198,10 +199,11 @@ namespace AmbrosJourney.Presentation
             expiredLabels.Clear();foreach(var pair in labels){if(!pair.Key){Destroy(pair.Value.gameObject);expiredLabels.Add(pair.Key);}else pair.Value.gameObject.SetActive(false);}foreach(var marker in expiredLabels)labels.Remove(marker);
             var player=AmbrosJourney.Journey.JourneySession.Instance?AmbrosJourney.Journey.JourneySession.Instance.Player():null;
             labelAreas.Clear();ReserveHud(chapterPanel);ReserveHud(objectivePanel);ReserveHud(controls);ReservePlayer(camera,player);
-            float labelRange=season==4&&player&&player.position.x>80?3.8f:8;
+            float labelRange=CaveLighting?CaveLighting.LabelRange:8;
             foreach(var marker in SeasonWorldLabel.Active)
             {
                 if(!marker||!marker.Visible||player&&Vector2.Distance(marker.transform.position,player.position)>labelRange)continue;
+                if(CaveLighting&&!CaveLighting.Reveals(marker.transform.position))continue;
                 float width=Mathf.Clamp(marker.Width,80,310);
                 if(!labels.TryGetValue(marker,out var panel)){panel=Panel(marker.Caption,worldLabels,Vector2.up,new Rect(0,0,width,44));var label=Text("Label",panel,new Rect(12,8,width-24,30),marker.Caption,14);label.enableAutoSizing=true;label.fontSizeMin=11;label.fontSizeMax=14;labels.Add(marker,panel);}
                 var p=camera.WorldToViewportPoint(marker.Position);
