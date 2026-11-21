@@ -15,48 +15,50 @@ The name/Continue menu opens first. New Journey plays the original October intro
 | Spring Valley | Ancient Mage: examples and training limits, humanlike language, verification and privacy | Three notes and six true/false claims; **Blossom Guardian**, 4/5. Apprentice rank; Mage joins. |
 | Summer Valley | Married Warriors: useful assistance, independent practice, classroom rules, privacy and real support | Workshop, practice-garden field note and message post; **Suncrest Guardian**, 4/5. Independent Thinker; both Warriors join. |
 | Fall / Emberwood | Emberfist: goals, context, audience, format, useful revisions and factual limits | Three notes and seven choices; **Bramble Sentinel**, 4/5. Prompt Pathfinder; Emberfist joins. |
-| Winter / Frostveil | Little Mage: original sources, independent evidence, dates, uncertainty and corrections | Two outdoor notes with four choices; **Frostbound Warden**, 4/5. Winter crest; finish Little Mage's cave briefing, then walk inside. |
+| Winter / Frostveil | Little Mage: original sources, independent evidence, dates, uncertainty and corrections | Two outdoor notes with four choices; **Frostbound Warden**, 4/5. Winter crest; Little Mage gives an automatic cave tip, then walk inside. |
 | Echo Cavern finale | Apply AI safety across the whole journey | Echo Archive note and two choices, then **Echo Keeper**, an ancient AI robot: eight new activities, **7/8**. Defeat animation, dropped certificate scroll, E pickup and personalized PDF; Exit returns to the cave, where an animated portal leads to the main menu. |
 
-Spring, Summer and Fall exit portals appear only after their guardian dissolves into pixels and the portal finishes assembling. Winter keeps its natural cave without a portal overlay or building animation; the Warden still dissolves, then Little Mage's completed briefing permits entry. The final certificate retains Download PDF; Exit/Escape returns to the cave and builds a home portal that leads to the menu.
+Spring, Summer and Fall exit portals appear only after their guardian dissolves into pixels and the portal finishes assembling. Winter keeps its natural cave without a portal overlay or building animation; the Warden still dissolves, and cave permission is granted automatically after its victory message closes. Little Mage explains the next step in a passive caption. The final certificate retains Download PDF; Exit/Escape returns to the cave and builds a home portal that leads to the menu.
 
 Every season now has its own animated guardian. Spring has a blossom-covered woodland tortoise, Summer a golden sunflower-maned lion, Winter a snowy ice-armored bear, and the final Keeper is a towering rune-powered machine. Fall's existing autumn stone-and-bramble boss is preserved. The new bosses have two idle poses and separate windup/impact poses tied to answer feedback. [Boss art and animations](docs/Bosses.md)
 
 ## Controls and progress
 
-- **WASD / arrows:** move. **E / Enter:** interact and continue. **1/2** answers Spring's claims; later choices also use **3** or the mouse.
+- **WASD / arrows:** move. **E:** interact. **E / Enter:** continue a conversation. **1/2** answers Spring's claims; later choices also use **3** or the mouse.
 - **J:** field journal. **Esc** or Pause: pause/menu controls. **E:** collect a nearby artifact. **M:** mute/unmute seasonal audio.
 - Finale: select details, match jobs, or drag cards into order. Clicking a card and a slot works too; number keys and Enter provide alternatives. Match rows cycle through options when clicked repeatedly; Check submits the completed activity.
 - Pause offers Resume, Save and return, reset with confirmation, artifacts, always-on trail guidance and travel to unlocked seasons.
 - Progress saves locally, including exact chapter/region coordinates, partial lessons, bosses, artifacts and completion. Autosave runs every five seconds in native builds and every second in browser builds, with browser page-hide checkpoints. Each browser profile/game origin has one local save and a recovery copy. See [browser saving and release checks](docs/BrowserSaving.md).
 - The HUD explicitly reads **0/12 Artifacts**. Three optional artifacts in each season unlock the **Evidence Keeper** achievement and Evidence Compass collection lesson. The final's evidence topic is also taught in Winter; collecting all artifacts is not required to understand or enter the finale.
 
-Interactive helpers, field notes, challenges and pickups use one overhead key/name card. All interactions, including artifacts, show **[E]**. Bosses can be approached from up to 5.5 world units away; nearby notes and helpers retain priority. Captions follow moving targets and avoid overlapping; the redundant bottom interaction popup is removed. The Garden Warrior stops offering her finished repeat dialogue. Automatic portals are labeled as walk-through destinations.
+Field notes, challenges and pickups use one overhead **[E]** key/name card. Bosses can be approached from up to 5.5 world units away; nearby lesson objects retain priority. Passive companions have compact name cards without an interaction key. Their advice appears automatically while the player can keep walking; reading timers pause during lessons, menus, portal effects and videos. Summer's Warriors and Fall's Emberfist escort the player without opening a quiz on arrival. Press E at a lesson board when ready. Automatic portals are labeled as walk-through destinations. See [companion guidance](docs/CompanionGuidance.md).
 
 Correct responses say **Correct!** and wrong responses say **Incorrect** before their explanation. Field notes let players retry the same question; bosses record each answer once and advance. A failed boss attempt restarts the full quiz. Scores keep the full quiz total throughout an attempt: five for seasonal guardians, eight for the final review, and the actual fixed count for individual lessons. Courage/hearts and their penalties are removed; retries keep completed learning.
 
-Winter's arrival Mage is clear of the portal, and the Warden stands directly in front of the visible cave opening. After the outdoor challenge, finish Little Mage's nearby briefing before the cave unlocks; walking through the opening then enters Echo Cavern. He follows inside without a dialogue prompt. Continuous ridge barriers stop travel behind the cave; older saves in that newly blocked area recover at the approach.
+Winter's arrival Mage is clear of the portal, and the Warden stands directly in front of the visible cave opening. Closing the Warden victory message enables the cave guidance automatically; after the victory effect finishes, walking through the opening enters Echo Cavern. No separate NPC conversation is required, including when restoring an older completed-Warden save. He follows inside without a dialogue prompt. Continuous ridge barriers stop travel behind the cave; older saves in that newly blocked area recover at the approach. The former frozen pond is now a snowy fir grove with a walking gap. Extended ground and a viewport-aware camera clamp keep the outdoor map edge out of view.
 
-A compact ivory-and-silver arrow with a seasonal jewel follows Ambros and rotates continuously toward nearby waypoints along authored trails and around obstacles. Guidance stays on throughout Winter. Echo Cavern has a small visibility circle around Ambros and warm light pools at its lanterns; the HUD remains fully readable.
+A bright gold-and-cream arrow with a dark outline follows Ambros and rotates smoothly through 360 degrees toward the next required destination. Its broad single head and slow, slight size pulse make the direction easier to notice. It points directly to the objective, so players choose a walkable route around scenery. Guidance stays on throughout Winter, with no frozen-arrow popup. Echo Cavern has a small visibility circle around Ambros and warm light pools at its lanterns; the HUD remains fully readable.
 
 All four seasons, menus, controls, notes and activities use the supplied **Determination** font with the existing point sizes and shared parchment UI. Minor labels are shortened to fit. [Current questions and notes](docs/QuestionRefresh.md)
 
 ## Documentation and checks
 
-- [Final playtest changes and verified results](docs/FinalPlaytestChanges.md)
-- [Current user-testing changes](docs/UserTestingFeedback.md)
+- [November 21 changes and submission validation](docs/SubmissionValidation.md)
+- [Companion guidance](docs/CompanionGuidance.md), [cinematic fullscreen checks](docs/CinematicFullscreenChecks.md), and [Web export and browser checks](docs/BrowserBuildChecks.md)
+- [November 20 playtest changes and verified results](docs/FinalPlaytestChanges.md)
+- [Earlier user-testing changes](docs/UserTestingFeedback.md)
 - [Game design and progression](docs/GameDesign.md)
 - [Menus, saves, artifacts and teammate video handoff](docs/JourneyCompletion.md)
 - [Spring setup](SPRING_PROTOTYPE.md), [Summer](capstone/Assets/SummerLevel/README.md), [Fall](capstone/Assets/FallLevel/README.md), [Winter](capstone/Assets/WinterLevel/README.md)
-- [Testing and builds](docs/Testing.md), [latest combined validation](docs/CurrentValidation.md), [documentation index](docs/README.md)
+- [Testing and builds](docs/Testing.md), [dated validation record](docs/CurrentValidation.md), [documentation index](docs/README.md)
 
-The hosted Game checks workflow runs progression, asset-integrity and browser-save regression checks. Unity playthrough, rendering and player builds are additional local checks; a passing source test alone is not a complete release test. Commit required `.meta` files with assets and keep generated caches/builds/logs out of Git. Preserve existing art and font licenses.
+The hosted Game checks workflow runs progression, asset-integrity, browser-save, Web-template and cinematic-focus regression checks. Unity playthrough, rendering and player builds are additional local checks; a passing source test alone is not a complete release test. Commit required `.meta` files with assets and keep generated caches/builds/logs out of Git. Preserve existing art and font licenses.
 
 ## Design targets and remaining work
 
 Spring targets about five minutes; the whole journey targets roughly thirty minutes. These are unmeasured first-time-player targets, not promised durations. Navigation becomes more complex in Fall and Winter without artificial waiting timers. Trail guidance remains available through every season, including Winter snow.
 
-The teammates' intro and outro clips are connected. The outro plays above game overlays with other music muted. Local Unity playthroughs and the Mac build passed for this update. The final Web build and live itch.io checks for refresh persistence, video playback, audio balance and target browsers remain release checks for the team. User testing should also confirm comprehension, difficulty and pacing; passing automated checks does not measure those outcomes.
+The teammates' intro and outro clips are connected. The outro plays above game overlays with other music muted. The [November 21 validation record](docs/SubmissionValidation.md) records the final native suite and local browser fullscreen, keyboard handoff, refresh and certificate checks, with results separated by build, including the reviewed export's intro keyboard handoff, reset and checkpoint restoration. The repository PR remains for user review; the team will upload to itch and run the [hosted browser checks](docs/BrowserBuildChecks.md). Full manual browser completion, low-end hardware performance and first-time-player comprehension/pacing have not been measured.
 
 The team's original Fall 2026 milestones remain planning context: Oct 19-23 rough Spring/Summer; Oct 26-30 rough Fall/Winter/finale; Sprint Three due Nov 4; later November polish, audience testing and post-Thanksgiving demo preparation. A milestone date is not evidence of completion.
 

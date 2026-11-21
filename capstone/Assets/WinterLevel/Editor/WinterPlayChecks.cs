@@ -29,7 +29,14 @@ namespace AmbrosJourney.Winter.Editor
         {
             Running=true;
             level=UnityEngine.Object.FindAnyObjectByType<WinterLevel>();Check(level,"Winter loaded");ui=level.GetComponentInChildren<SeasonOverlay>();States=0;
-            Check(level.InputBlocked&&!level.Progress.Introduced,"Intro blocks movement");Next();Next();Next();Check(!level.InputBlocked,"Intro completes");level.Progress.CompassWarningShown=true;
+            Check(!level.InputBlocked&&level.Progress.Introduced,"Winter orientation permits movement immediately");AmbrosJourney.Presentation.Editor.CompanionGuidanceChecks.Winter(level);level.Progress.CompassWarningShown=true;
+            foreach(var map in level.World.Outdoors.GetComponentsInChildren<UnityEngine.Tilemaps.Tilemap>(true))Check(!map.name.Contains("Frozen lake"),"Frozen lake surface removed");
+            foreach(var label in level.World.Outdoors.GetComponentsInChildren<SeasonWorldLabel>(true))Check(!(label.Caption??"").Contains("THIN ICE"),"Ice warning removed with the lake");
+            foreach(var block in level.World.Outdoors.GetComponentsInChildren<Collider2D>(true))Check(block.name!="Thin ice","No invisible ice blockers remain");
+            var grove=level.World.Outdoors.transform.Find("Snowy woodland clearing");Check(grove&&grove.GetComponentsInChildren<SpriteRenderer>().Length>=4,"Former lake is an authored snow grove");
+            foreach(var trunk in grove.GetComponentsInChildren<Collider2D>())Check(trunk.GetComponent<SpriteRenderer>()&&trunk.GetComponent<SpriteRenderer>().sprite,"Grove collision belongs to a visible tree");
+            Check(!Physics2D.OverlapCircle(new Vector2(-2,0),.4f)&&Route(new Vector2(-8,0),new Vector2(5,0),false),"Snowy gap through the former lake is walkable");
+            var border=level.World.Outdoors.transform.Find("Arrival fir border");Check(border&&border.GetComponentsInChildren<SpriteRenderer>().Length>=2,"Arrival is framed by a visible fir border");
             foreach(var p in new[]{WinterWorld.MissionPositions[0],WinterWorld.MissionPositions[1],WinterWorld.Entrance})Check(Route(WinterLevel.Spawn,p,false),"Outdoor destination reachable: "+p);
             Move(WinterWorld.Entrance);level.Interact(6);Next();Check(!level.Progress.InCave,"Cave guard blocks early entry");
             for(int m=0;m<2;m++)Mission(m);
@@ -39,7 +46,7 @@ namespace AmbrosJourney.Winter.Editor
             yield return null;
             while(AmbrosJourney.Journey.BossPortalSequence.Busy||!AmbrosJourney.Journey.BossPortalSequence.AllowsEntry(level.caveEntrance))yield return null;
             Check(!level.littleMage.follow&&(Vector2)level.littleMage.transform.position==WinterWorld.CaveGuide,"Little Mage waits beside cave after Winter crest");
-            Move(WinterWorld.CaveGuide);level.Interact(0);Check(level.IsDialogueOpen,"Mage explains cave separately");Next();Check(!level.Progress.InCave,"Mage dialogue does not enter cave");
+            Check(level.Progress.CaveGuideRead&&level.Progress.CanEnterCave&&!level.IsDialogueOpen&&!level.InputBlocked,"Cave guidance is automatic after victory");Check(!level.Progress.InCave,"Passive cave tip does not teleport the player");
             Move(WinterWorld.Entrance);Call("LateUpdate");Check(level.Progress.InCave,"Walking into cleared doorway automatically enters cave");
             Check(level.littleMage.follow==level.ember.transform,"Little Mage follows inside cave");
             Check(Route(WinterWorld.CaveSpawn,WinterWorld.MissionPositions[2],true),"Archive reachable");Check(!Route(WinterWorld.CaveSpawn,WinterWorld.BossPosition,true),"Final physically sealed before Archive");

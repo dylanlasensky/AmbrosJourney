@@ -25,16 +25,41 @@ namespace AmbrosJourney.Presentation.Editor
             }
             Check(route.Arrived,"Guide reaches the first task along a collision-free route; stopped at "+guide.position+"; blockers: "+string.Join(", ",System.Array.ConvertAll(Physics2D.OverlapCircleAll((Vector2)guide.position+Vector2.up*.22f,.4f),c=>c.name)));
         }
+        static void SlowFrameWait()
+        {
+            var player=new GameObject("Guide wait test player");var guide=new GameObject("Guide wait test actor");
+            Vector2 origin=new Vector2(-500,-500),destination=origin+Vector2.right*20;
+            try
+            {
+                player.transform.position=origin;
+                foreach(float elapsed in new[]{1f/60,1f/15,.33333334f})
+                {
+                    guide.transform.position=origin+new Vector2(4.8f,0);
+                    var route=new GuideWalk(destination,origin-Vector2.one*30,origin+Vector2.one*30);
+                    var before=(Vector2)guide.transform.position;
+                    route.Step(guide.transform,player.transform,false,elapsed);
+                    Check(Vector2.Distance(guide.transform.position,origin)<=5.001f,"A slow frame cannot carry a waiting guide past five units");
+                    Check(guide.transform.position.x>before.x&&Mathf.Abs(guide.transform.position.y-before.y)<.001f,"Wait boundary preserves progress along the clear route");
+                }
+                var catchup=new GuideWalk(destination,origin-Vector2.one*30,origin+Vector2.one*30);
+                guide.transform.position=origin-Vector2.right*8;catchup.Step(guide.transform,player.transform,false,.33333334f);
+                Check(Vector2.Distance(guide.transform.position,origin)<8,"A guide behind the player can still catch up");
+                guide.transform.position=origin+Vector2.right*4.8f;catchup.WaitForPlayer=false;catchup.Step(guide.transform,player.transform,false,.33333334f);
+                Check(Vector2.Distance(guide.transform.position,origin)>5.3f,"Visited-station guide can finish walking when waiting is disabled");
+            }
+            finally{UnityEngine.Object.DestroyImmediate(player);UnityEngine.Object.DestroyImmediate(guide);}
+        }
         public static void Summer(SummerLevel level)
         {
-            Check(Vector2.Distance(level.maleWarrior.transform.position,SummerLevel.Spawn)<4&&Vector2.Distance(level.femaleWarrior.transform.position,SummerLevel.Spawn)<4,"Both Warriors welcome player at portal");
+            SlowFrameWait();
+            Check(Vector2.Distance(level.maleWarrior.transform.position,SummerLevel.Spawn)<5.3f&&Vector2.Distance(level.femaleWarrior.transform.position,SummerLevel.Spawn)<5.3f,"Warriors stay within view of the portal while the player waits: male="+level.maleWarrior.transform.position+", female="+level.femaleWarrior.transform.position+", player="+level.player.transform.position);
             Check(!level.InputBlocked,"Walking phase permits player movement");
             Walk(level.maleWarrior.Guidance,level.maleWarrior.transform,level.player.transform);
             // Walk the second guide with a fresh nearby player for the wait assertion.
             level.player.transform.position=level.femaleWarrior.transform.position;
             Walk(level.femaleWarrior.Guidance,level.femaleWarrior.transform,level.player.transform);
             level.player.transform.position=level.workshop.position;level.player.GetComponent<Rigidbody2D>().position=level.player.transform.position;
-            Call(level,"UpdateGuidance");Check(level.Progress.GuideArrived&&level.IsDialogueOpen,"Explanation resumes at workshop");
+            Call(level,"UpdateGuidance");Check(level.Progress.GuideArrived&&!level.IsDialogueOpen&&!level.InputBlocked&&level.Progress.WorkshopQuestion==0,"Workshop arrival gives a passive tip without starting the lesson");
             var female=level.femaleWarrior.GetComponent<SpriteRenderer>();
             Check(!System.Linq.Enumerable.Any(UnityEngine.Object.FindObjectsByType<SpriteRenderer>(),r=>r.name=="Summer canopy"&&r.sortingOrder>female.sortingOrder&&r.bounds.Intersects(female.bounds)),"Female Warrior visible outside foreground trees");
             Camera.main.transform.position=level.player.transform.position+Vector3.back*10;
@@ -46,16 +71,14 @@ namespace AmbrosJourney.Presentation.Editor
             int nearest=(int)level.GetType().GetMethod("Nearest",BindingFlags.Instance|BindingFlags.NonPublic).Invoke(level,null);
             Check(nearest==1,"Workshop interaction wins over nearby companion");
             level.femaleWarrior.transform.position=SummerLevel.WorkshopPartner;
-            // Restore the visible arrival explanation for the button-flow checks.
-            level.Progress.GuideArrived=false;level.maleWarrior.Guidance=new GuideWalk(SummerLevel.WorkshopGuide,new Vector2(-30,-32),new Vector2(30,28));level.femaleWarrior.Guidance=new GuideWalk(SummerLevel.WorkshopPartner,new Vector2(-30,-32),new Vector2(30,28));
-            level.maleWarrior.Guidance.Step(level.maleWarrior.transform,level.player.transform,false,.05f);level.femaleWarrior.Guidance.Step(level.femaleWarrior.transform,level.player.transform,false,.05f);Call(level,"UpdateGuidance");
+
         }
         public static void Fall(FallLevel level)
         {
-            Check(Vector2.Distance(level.ember.transform.position,FallLevel.Spawn)<4,"Emberfist welcomes player at portal");
+            Check(Vector2.Distance(level.ember.transform.position,FallLevel.Spawn)<5.3f,"Emberfist stays within view of the portal while the player waits");
             Walk(level.ember.Guidance,level.ember.transform,level.player.transform);
             level.player.transform.position=level.stations[0].position;level.player.GetComponent<Rigidbody2D>().position=level.player.transform.position;
-            Call(level,"UpdateGuidance");Check(level.Progress.GuideArrived&&level.IsDialogueOpen,"Explanation resumes at orchard");
+            Call(level,"UpdateGuidance");Check(level.Progress.GuideArrived&&!level.IsDialogueOpen&&!level.InputBlocked&&!level.Progress.Studied[0],"Orchard arrival gives a passive tip without reading the note");
             Camera.main.transform.position=level.player.transform.position+Vector3.back*10;
             SeasonIntegrationChecks.Capture("EmberfistAtOrchard");
         }

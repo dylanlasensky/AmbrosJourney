@@ -3,38 +3,39 @@ using UnityEngine;
 
 namespace AmbrosJourney.Presentation
 {
-    // A single-headed marker that rotates continuously toward the next route waypoint.
+    // A single-headed marker that rotates continuously toward the next required lesson or interaction.
     public sealed class MoonbranchCompass : MonoBehaviour
     {
+        public const float MarkerSize=52;
         public RectTransform Needle { get; private set; }
         float targetAngle; bool hasHeading;
         Texture2D backing;
         public void Initialize(int season,TMP_FontAsset font)
         {
-            // An ivory spearhead, dark indigo edge and seasonal jewel read as one clear tip.
-            // Pixel construction matches the game's sprites and stays legible on snow and grass.
+            // The same clear gold arrow in every season: a broad head, short flat tail,
+            // and an opaque dark outline that stays distinct against snow, grass and cave rock.
             backing=new Texture2D(48,48,TextureFormat.RGBA32,false);
-            Color jewel=new[]{new Color(.77f,.48f,.61f),new Color(.40f,.67f,.65f),new Color(.77f,.48f,.29f),new Color(.50f,.67f,.84f)}[Mathf.Clamp(season-1,0,3)];
+            Color cream=new Color32(255,246,202,255),gold=new Color32(255,204,62,255),outline=new Color32(21,28,43,255);
             for(int y=0;y<48;y++)for(int x=0;x<48;x++)
             {
-                float dx=Mathf.Abs(x-23.5f);
-                bool head=y>=19&&y<=43&&dx<(44-y)*.55f;
-                bool rim=y>=17&&y<=45&&dx<(46-y)*.55f+1;
-                bool stem=y>=8&&y<24&&dx<2.5f;
-                bool stemRim=y>=7&&y<25&&dx<4;
-                // Curving silver branch feathers at the base, not a second needle.
-                float branchX=5+(19-y)*.48f;
-                bool branch=y>=8&&y<=19&&Mathf.Abs(dx-branchX)<1.4f;
-                bool gem=Mathf.Abs(x-23.5f)+Mathf.Abs(y-19)<5;
                 Color color=Color.clear;
-                if(rim||stemRim)color=new Color(.13f,.17f,.24f);
-                if(head||stem)color=x<24?new Color(.96f,.91f,.76f):new Color(.65f,.66f,.69f);
-                if(branch)color=new Color(.73f,.70f,.59f);
-                if(gem)color=jewel;
+                if(Silhouette(x,y))color=x<24?cream:gold;
+                else
+                {
+                    bool edge=false;
+                    for(int dy=-2;dy<=2&&!edge;dy++)for(int dx=-2;dx<=2;dx++)
+                        if(Silhouette(x+dx,y+dy)){edge=true;break;}
+                    if(edge)color=outline;
+                }
                 backing.SetPixel(x,y,color);
             }
-            backing.Apply();backing.filterMode=FilterMode.Point;
-            Needle=Image("Direction arrow",backing,38,Vector2.zero).rectTransform;
+            backing.Apply();backing.filterMode=FilterMode.Point;backing.wrapMode=TextureWrapMode.Clamp;
+            Needle=Image("Direction arrow",backing,MarkerSize,Vector2.zero).rectTransform;
+        }
+        static bool Silhouette(int x,int y)
+        {
+            float dx=Mathf.Abs(x-23.5f);
+            return y>=20&&y<=43&&dx<=(44-y)*.75f||y>=6&&y<23&&dx<=4.5f;
         }
 
         UnityEngine.UI.RawImage Image(string label,Texture texture,float size,Vector2 position)
@@ -50,7 +51,12 @@ namespace AmbrosJourney.Presentation
             targetAngle=Mathf.Atan2(direction.y,direction.x)*Mathf.Rad2Deg-90;
             if(!hasHeading){Needle.localRotation=Quaternion.Euler(0,0,targetAngle);hasHeading=true;}
         }
-        void Update()=>Advance(Time.deltaTime);
+        void Update()
+        {
+            Advance(Time.deltaTime);
+            // A slow 0-5% size change draws the eye without flashing or fading the pointer.
+            if(Needle)Needle.localScale=Vector3.one*(1.025f+.025f*Mathf.Sin(Time.time*Mathf.PI*.8f));
+        }
         public void Advance(float deltaTime)
         {
             if(!hasHeading||!Needle)return;

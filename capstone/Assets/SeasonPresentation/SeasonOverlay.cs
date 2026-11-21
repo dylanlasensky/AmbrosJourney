@@ -10,6 +10,7 @@ namespace AmbrosJourney.Presentation
     public sealed class SeasonOverlay : MonoBehaviour
     {
         public Canvas Canvas;
+        public AmbrosJourney.Winter.CaveVisibility CaveLighting;
         public GameObject Dialog, Journal;
         public TextMeshProUGUI Heading, Copy, Objective, Prompt, JournalCopy, Party, CompassText;
         public readonly List<UnityEngine.UI.Button> Choices = new List<UnityEngine.UI.Button>();
@@ -22,7 +23,7 @@ namespace AmbrosJourney.Presentation
         static readonly Color FrostPaper=new Color(.89f,.96f,1);
         public static string AnswerFeedback(bool right,string explanation,int score=-1,int total=0)
         {return (right?"Correct! ":"Incorrect. ")+explanation+(score<0?"":"\n\n"+score+" / "+total+" correct.");}
-        RectTransform root, dialogueRect, headerRect, bodyRect, objectiveRect, context, controls, compassBox, worldLabels;
+        RectTransform root, dialogueRect, headerRect, bodyRect, objectiveRect, context, controls, compassBox, worldLabels, chapterPanel, objectivePanel;
         UnityEngine.UI.Image dialogFill;
         TMP_FontAsset font;int season;
         Sprite rounded, card;
@@ -30,6 +31,8 @@ namespace AmbrosJourney.Presentation
         Color ink, accent, paper = new Color(.98f,.94f,.81f), border = new Color(.55f,.35f,.22f);
         readonly Dictionary<SeasonWorldLabel,RectTransform> labels = new Dictionary<SeasonWorldLabel,RectTransform>();
         readonly List<Rect> labelAreas=new List<Rect>();
+        readonly List<SeasonWorldLabel> expiredLabels=new List<SeasonWorldLabel>();
+        Transform labelPlayer;SpriteRenderer labelPlayerVisual;
         float openedAt, feedbackUntil; bool positive;
         public void Initialize(TMP_FontAsset typeface, bool autumn) => Initialize(typeface, autumn ? 3 : 2);
         public void Initialize(TMP_FontAsset typeface, int chapter)
@@ -43,17 +46,17 @@ namespace AmbrosJourney.Presentation
             var scaler=gameObject.AddComponent<UnityEngine.UI.CanvasScaler>();scaler.uiScaleMode=UnityEngine.UI.CanvasScaler.ScaleMode.ScaleWithScreenSize;scaler.referenceResolution=new Vector2(1280,720);scaler.screenMatchMode=UnityEngine.UI.CanvasScaler.ScreenMatchMode.Expand;
             gameObject.AddComponent<UnityEngine.UI.GraphicRaycaster>();
             if(!EventSystem.current){var e=new GameObject("Season EventSystem",typeof(EventSystem),typeof(InputSystemUIInputModule));e.transform.SetParent(transform,false);}
-            var title=Panel("Chapter",transform,Vector2.up,new Rect(24,24,290,83));
+            var title=Panel("Chapter",transform,Vector2.up,new Rect(24,24,290,83));chapterPanel=title;
             Text("Title",title,new Rect(18,10,260,32),new[]{"Spring Valley","Summer Valley","Emberwood","Frostveil"}[chapter-1],25,true);
             Text("Chapter",title,new Rect(18,48,260,27),new[]{"01  /  THE AWAKENING","02  /  INDEPENDENCE","03  /  PROMPT FORGE","04  /  SEEK THE EVIDENCE"}[chapter-1],14);
-            var tracker=Panel("Objectives",transform,Vector2.one,new Rect(-428,24,404,100));
+            var tracker=Panel("Objectives",transform,Vector2.one,new Rect(-428,24,404,100));objectivePanel=tracker;
             Objective=Text("Objective",tracker,new Rect(18,37,365,57),"",19);objectiveRect=Objective.rectTransform;
             // Kept as one text field for the established level contract; split visually in LateUpdate.
             trackerText=Text("Progress",tracker,new Rect(18,10,365,26),"",14);
             var compassObject=new GameObject("Moonbranch compass",typeof(RectTransform));compassObject.transform.SetParent(transform,false);
             compassBox=compassObject.GetComponent<RectTransform>();Place(compassBox,Vector2.one,new Rect(-136,126,112,126));
             moonbranch=compassObject.AddComponent<MoonbranchCompass>();moonbranch.Initialize(chapter,font);
-            Arrow=moonbranch.Needle;Arrow.SetParent(transform,false);Arrow.sizeDelta=new Vector2(38,38);
+            Arrow=moonbranch.Needle;Arrow.SetParent(transform,false);Arrow.sizeDelta=Vector2.one*MoonbranchCompass.MarkerSize;
             CompassText=Text("Distance",compassBox,new Rect(0,105,112,24),"",14);CompassText.alignment=TextAlignmentOptions.Center;CompassText.color=new Color(1,.96f,.84f);
             var distanceShadow=CompassText.gameObject.AddComponent<UnityEngine.UI.Shadow>();distanceShadow.effectColor=new Color(.08f,.09f,.13f,.95f);distanceShadow.effectDistance=new Vector2(1,-1);
             controls=Panel("Controls",transform,Vector2.zero,new Rect(24,-62,780,38));
@@ -62,6 +65,7 @@ namespace AmbrosJourney.Presentation
             // Party membership belongs in the journal, rather than floating over the scenery.
             Party=Text("Party",transform,new Rect(0,0,1,1),"",14);Party.gameObject.SetActive(false);
             var labelLayer=new GameObject("Landmark labels",typeof(RectTransform));labelLayer.transform.SetParent(transform,false);worldLabels=labelLayer.GetComponent<RectTransform>();Stretch(worldLabels);
+            Arrow.SetSiblingIndex(worldLabels.GetSiblingIndex()+1); // Name cards must not hide the direction marker. Dialogs are created above it.
             dialogueRect=Panel("Conversation",transform,new Vector2(.5f,0),new Rect(-450,-355,900,330));Dialog=dialogueRect.gameObject;dialogFill=dialogueRect.Find("Parchment").GetComponent<UnityEngine.UI.Image>();
             Heading=Text("Speaker",dialogueRect,new Rect(24,15,850,38),"",25,true);headerRect=Heading.rectTransform;
             Copy=Text("Dialogue",dialogueRect,new Rect(24,61,850,145),"",19);bodyRect=Copy.rectTransform;
@@ -100,7 +104,8 @@ namespace AmbrosJourney.Presentation
         {
             CompassObscured=false;
             Arrow.gameObject.SetActive(true);
-            CompassDelta=waypoint-player;ObjectiveDistance=Vector2.Distance(player,destination);
+            // The player guide always points to the required destination. NPC pathfinding is separate.
+            CompassDelta=destination-player;ObjectiveDistance=CompassDelta.magnitude;
             moonbranch.Point(CompassDelta);
             CompassText.text=Mathf.CeilToInt(ObjectiveDistance)+" steps";
         }
@@ -191,13 +196,14 @@ namespace AmbrosJourney.Presentation
         void UpdateLabels()
         {
             var camera=Camera.main;if(!camera)return;
-            var expired=new List<SeasonWorldLabel>();foreach(var pair in labels){if(!pair.Key){Destroy(pair.Value.gameObject);expired.Add(pair.Key);}else pair.Value.gameObject.SetActive(false);}foreach(var marker in expired)labels.Remove(marker);
+            expiredLabels.Clear();foreach(var pair in labels){if(!pair.Key){Destroy(pair.Value.gameObject);expiredLabels.Add(pair.Key);}else pair.Value.gameObject.SetActive(false);}foreach(var marker in expiredLabels)labels.Remove(marker);
             var player=AmbrosJourney.Journey.JourneySession.Instance?AmbrosJourney.Journey.JourneySession.Instance.Player():null;
-            labelAreas.Clear();
-            float labelRange=season==4&&player&&player.position.x>80?3.8f:8;
+            labelAreas.Clear();ReserveHud(chapterPanel);ReserveHud(objectivePanel);ReserveHud(controls);ReservePlayer(camera,player);
+            float labelRange=CaveLighting?CaveLighting.LabelRange:8;
             foreach(var marker in SeasonWorldLabel.Active)
             {
                 if(!marker||!marker.Visible||player&&Vector2.Distance(marker.transform.position,player.position)>labelRange)continue;
+                if(CaveLighting&&!CaveLighting.Reveals(marker.transform.position))continue;
                 float width=Mathf.Clamp(marker.Width,80,310);
                 if(!labels.TryGetValue(marker,out var panel)){panel=Panel(marker.Caption,worldLabels,Vector2.up,new Rect(0,0,width,44));var label=Text("Label",panel,new Rect(12,8,width-24,30),marker.Caption,14);label.enableAutoSizing=true;label.fontSizeMin=11;label.fontSizeMax=14;labels.Add(marker,panel);}
                 var p=camera.WorldToViewportPoint(marker.Position);
@@ -205,11 +211,50 @@ namespace AmbrosJourney.Presentation
                 if(visible)
                 {
                     var area=new Rect(p.x*root.rect.width-width/2,(1-p.y)*root.rect.height-(marker.Anchored?44:0),width,44);
-                    // Nearby guides can stand together; keep their name cards readable.
-                    for(int n=0;n<4&&area.y>=48&&labelAreas.Exists(other=>other.Overlaps(area));n++)area.y-=48;
-                    labelAreas.Add(area);Place(panel,Vector2.up,area);
+                    // Keep nearby name cards clear of Ambros, fixed HUD panels and one another.
+                    if(!TryPlaceLabel(area,root.rect.size,labelAreas,out var placed)){panel.gameObject.SetActive(false);continue;}
+                    labelAreas.Add(placed);Place(panel,Vector2.up,placed);
                 }
             }
+        }
+        void ReservePlayer(Camera camera,Transform player)
+        {
+            if(labelPlayer!=player){labelPlayer=player;labelPlayerVisual=player?player.GetComponent<SpriteRenderer>():null;}
+            if(!labelPlayerVisual||!labelPlayerVisual.enabled||!labelPlayerVisual.sprite||!labelPlayerVisual.gameObject.activeInHierarchy)return;
+            var bounds=labelPlayerVisual.bounds;var low=new Vector2(float.PositiveInfinity,float.PositiveInfinity);var high=new Vector2(float.NegativeInfinity,float.NegativeInfinity);
+            // Project the current animation frame without allocations. Name cards may move;
+            // the player's silhouette stays clear, including when the camera reaches a map edge.
+            for(int corner=0;corner<4;corner++)
+            {
+                var point=camera.WorldToViewportPoint(new Vector3((corner&1)==0?bounds.min.x:bounds.max.x,(corner&2)==0?bounds.min.y:bounds.max.y,bounds.center.z));
+                if(point.z<=0)return;
+                low=Vector2.Min(low,point);high=Vector2.Max(high,point);
+            }
+            if(high.x<0||low.x>1||high.y<0||low.y>1)return;
+            labelAreas.Add(Rect.MinMaxRect(low.x*root.rect.width-8,(1-high.y)*root.rect.height-8,high.x*root.rect.width+8,(1-low.y)*root.rect.height+8));
+        }
+        void ReserveHud(RectTransform panel)
+        {
+            if(!panel||!panel.gameObject.activeInHierarchy)return;
+            var position=panel.anchoredPosition;
+            labelAreas.Add(new Rect(root.rect.width*panel.anchorMin.x+position.x-8,root.rect.height*(1-panel.anchorMin.y)-position.y-8,panel.rect.width+16,panel.rect.height+16));
+        }
+        static bool TryPlaceLabel(Rect desired,Vector2 size,List<Rect> occupied,out Rect placed)
+        {
+            const float margin=8,step=48;
+            placed=desired;
+            if(size.x<desired.width+margin*2||size.y<desired.height+margin*2)return false;
+            desired.x=Mathf.Clamp(desired.x,margin,size.x-desired.width-margin);
+            desired.y=Mathf.Clamp(desired.y,margin,size.y-desired.height-margin);
+            for(int attempt=0;attempt<=8;attempt++)
+            {
+                var candidate=desired;
+                if(attempt>0)candidate.y+=((attempt+1)/2)*step*(attempt%2==1?-1:1);
+                if(candidate.y<margin||candidate.yMax>size.y-margin)continue;
+                bool overlap=false;foreach(var area in occupied)if(candidate.Overlaps(area)){overlap=true;break;}
+                if(!overlap){placed=candidate;return true;}
+            }
+            return false;
         }
         RectTransform Panel(string name,Transform parent,Vector2 anchor,Rect area)
         {

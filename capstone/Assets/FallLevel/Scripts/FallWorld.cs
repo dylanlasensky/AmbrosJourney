@@ -109,7 +109,7 @@ namespace AmbrosJourney.Fall
             level.mage=Actor("Ancient Mage","MageIdle",4,new Vector2(-40,33));level.mage.walk=Frames("MageWalk",8);
             level.maleWarrior=Actor("Married Warrior","MaleIdle",4,new Vector2(-42,33));level.maleWarrior.walk=Frames("MaleWalk",6);
             level.femaleWarrior=Actor("Married Warrior","FemaleIdle",4,new Vector2(-44,33));level.femaleWarrior.walk=Frames("FemaleWalk",6);
-            level.ember=Actor("Emberfist Warrior","EmberIdle",4,new Vector2(-36,31));level.ember.walk=Frames("EmberWalk",8);SeasonWorldLabel.Attach(level.ember.transform,"[E] EMBERFIST");
+            level.ember=Actor("Emberfist Warrior","EmberIdle",4,new Vector2(-36,31));level.ember.walk=Frames("EmberWalk",8);SeasonWorldLabel.Attach(level.ember.transform,"EMBERFIST",128);
             Visual("Emberfist's forge","Workbench",new Vector2(-32,29),1.5f);Visual("Forge shelter","Shelter",new Vector2(-34,32),1.3f);Label("EMBERFIST'S FORGE",new Vector2(-29,32));
             level.stations=new Transform[3];level.runes=new SpriteRenderer[3];string[] props={"Noticeboard","Noticeboard","Workbench"};
             for(int i=0;i<3;i++){var pos=MissionPositions[i];level.stations[i]=Visual(FallContent.Landmarks[i],props[i],pos,1.5f).transform;SeasonWorldLabel.Attach(level.stations[i],"[E] FIELD NOTE / "+FallContent.Landmarks[i].ToUpper());level.runes[i]=Visual("Prompt rune "+(i+1),"Ward",pos+new Vector2(2,0));level.runes[i].enabled=false;}

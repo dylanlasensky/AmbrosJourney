@@ -1,5 +1,7 @@
 # Final playtest changes
 
+**Snapshot and supersession:** The implementation table and verification below record November 20, 2026. On November 21, follow-up feedback replaced the ivory waypoint marker with a brighter gold-and-cream arrow pointing directly at the next objective, and made companion advice and post-Warden cave permission automatic. See the [current overview](../README.md), [companion guidance](CompanionGuidance.md), [cinematic fullscreen checks](CinematicFullscreenChecks.md) and [Web export/browser procedure](BrowserBuildChecks.md). The November 20 results do not validate those later changes or a new Web build.
+
 This pass implements the team's November playtest feedback. It preserves the existing story, supplied intro/outro videos, and saved progression format.
 
 | Requested change | Implementation |
@@ -40,7 +42,7 @@ Useful checks: `TrailNavigationChecks`, `WinterRefinementChecks`, `GeneralFeedba
 
 ## Browser release gate
 
-The locally installed Unity 6000.6.2f1 has Mac build support but no Web build module. A Web build and a live itch.io refresh test have therefore not been verified in this pass. Install matching Web support on the release machine before exporting.
+At the November 20 check, the installed Unity 6000.6.2f1 had Mac support but no Web build module, so that pass did not verify a Web build or live itch.io refresh. Use the matching Web module and [current export procedure](BrowserBuildChecks.md) for the release candidate; record its results separately.
 
 The Web post-build step packages the teammates' unchanged MP4 files in `StreamingAssets/JourneyVideos`, and Web playback uses those URLs because Unity Web cannot play embedded `VideoClip` assets. Include that entire folder in the upload ZIP.
 

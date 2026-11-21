@@ -11,6 +11,7 @@ namespace AmbrosJourney.Journey
     {
         readonly List<Object> owned=new List<Object>();
         readonly Dictionary<string,Sprite> sprites=new Dictionary<string,Sprite>();
+        readonly Dictionary<string,Rect[]> atlasBounds=new Dictionary<string,Rect[]>();
         readonly Dictionary<Texture,Material> materials=new Dictionary<Texture,Material>();
         public readonly List<Vector2> Doorsteps=new List<Vector2>();
         public int Buildings {get;private set;}
@@ -27,14 +28,23 @@ namespace AmbrosJourney.Journey
             int columns=worldcraft||atlas=="VillageDetails"?3:2;
             float[] xs=worldcraft?new[]{0f,1f/3,2f/3,1f}:columns==3?new[]{0f,.35f,.64f,1f}:atlas=="DiscoveryDetails"?new[]{0f,.55f,1f}:new[]{0f,.5f,1f};
             float[] ys=atlas=="SeasonalRelics"?new[]{0f,.25f,.495f,.735f,1f}:worldcraft?new[]{0f,.25f,.5f,.75f,1f}:atlas=="WinterNature"?new[]{0f,.66f,1f}:columns==3?new[]{0f,.39f,.665f,1f}:atlas=="DiscoveryDetails"?new[]{0f,.55f,1f}:new[]{0f,.5f,1f};
-            int column=index%columns,row=index/columns;
-            int left=Mathf.RoundToInt(xs[column]*texture.width),right=Mathf.RoundToInt(xs[column+1]*texture.width);
-            int bottom=Mathf.RoundToInt((1-ys[row+1])*texture.height),top=Mathf.RoundToInt((1-ys[row])*texture.height);
-            // Trim transparent padding once, so every root and doorstep has an honest ground pivot.
-            var pixels=texture.GetPixels32();int x0=right,y0=top,x1=left,y1=bottom;
-            for(int y=bottom;y<top;y++)for(int x=left;x<right;x++)if(pixels[y*texture.width+x].a>100){x0=Mathf.Min(x0,x);x1=Mathf.Max(x1,x);y0=Mathf.Min(y0,y);y1=Mathf.Max(y1,y);}
-            if(x0>x1||y0>y1)throw new System.InvalidOperationException("Empty cohesion sprite: "+key);
-            var rect=new Rect(x0,y0,x1-x0+1,y1-y0+1);
+            if(!atlasBounds.TryGetValue(atlas,out var bounds))
+            {
+                // Read each atlas once. Repeating GetPixels32 per prop can exhaust a browser's heap during one frame.
+                var pixels=texture.GetPixels32();bounds=new Rect[columns*(ys.Length-1)];
+                for(int cell=0;cell<bounds.Length;cell++)
+                {
+                    int column=cell%columns,row=cell/columns;
+                    int left=Mathf.RoundToInt(xs[column]*texture.width),right=Mathf.RoundToInt(xs[column+1]*texture.width);
+                    int bottom=Mathf.RoundToInt((1-ys[row+1])*texture.height),top=Mathf.RoundToInt((1-ys[row])*texture.height);
+                    int x0=right,y0=top,x1=left,y1=bottom;
+                    for(int y=bottom;y<top;y++)for(int x=left;x<right;x++)if(pixels[y*texture.width+x].a>100){x0=Mathf.Min(x0,x);x1=Mathf.Max(x1,x);y0=Mathf.Min(y0,y);y1=Mathf.Max(y1,y);}
+                    if(x0<=x1&&y0<=y1)bounds[cell]=new Rect(x0,y0,x1-x0+1,y1-y0+1);
+                }
+                atlasBounds[atlas]=bounds;
+            }
+            var rect=bounds[index];
+            if(rect.width<=0||rect.height<=0)throw new System.InvalidOperationException("Empty cohesion sprite: "+key);
             var sprite=Sprite.Create(texture,rect,new Vector2(.5f,0),rect.width/width);sprite.name=atlas+" / "+index;sprites[key]=sprite;owned.Add(sprite);return sprite;
         }
         void Skin(SpriteRenderer renderer,string atlas,int index,float width)

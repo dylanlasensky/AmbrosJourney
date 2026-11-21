@@ -1,157 +1,140 @@
-> Current presentation: [November 12 feedback](UserTestingFeedback.md) adds explicit Correct! feedback, fixed quiz totals, overhead [E] cards, no courage/hearts, and the repeated-click instruction for final Activity 5. Authored questions and correct answers below remain the lesson inventory.
+# AI lesson and question audit
 
-# Question and field note refresh
+The curriculum was reviewed item by item for middle-school readability, a clear AI learning goal, a defensible answer, and an explanation that teaches the concept. Seasonal scenery supplies context; players never need botany, cave-history or astronomy knowledge to answer. The current inventory has **52 playable questions/activities** and **3 unused Spring claim strings**. All 55 authored items were reviewed, along with the 12 field-note lessons, the artifact collection lesson, and the guide introductions.
 
-The lessons use short, everyday language for middle-school players. Early claims introduce ideas; later scenarios ask players to apply them. Distractors describe believable shortcuts rather than unrelated joke answers. Seasonal passing scores and learning prerequisites are unchanged.
+Spring now introduces how AI learns patterns, why confident replies can be wrong, fact-checking, privacy, and the difference between a chatbot and a person. Summer applies those ideas to choosing help and keeping responsibility. Fall practices clear AI requests and revision. Winter checks AI claims against evidence. The final combines those skills in new situations.
 
-All game text uses the supplied `Assets/Text Font/determination.ttf` through a baked TMP font in Resources. Existing text point sizes and panel widths are retained. The final activities use the same conversation frame, heading, body and button sizes.
+## Review decisions
 
-## Spring: AI basics
+- Replaced the two repeated Spring leaf-sorting questions with basic chatbot concepts. Replaced the Spring learning-practice question with the human-versus-chatbot concept taught in Spring; Summer still assesses practice.
+- Explained training in the first Spring note and removed the flower-color scenario from its three related claim strings.
+- Made Summer's hint question depend on an explicit assignment rule; studying a worked example is no longer treated as inherently wrong. Distinguished entering a password into an AI conversation from signing in normally. Asked about demonstrating understanding rather than declaring whether an assignment may be submitted.
+- Made Fall's prompt-selection criteria explicit, so a reasonable broad prompt is not called wrong merely because it is less detailed.
+- Simplified Winter's history-record wording and aligned the storm question with its answer choices. A scientist's original quote may be in an article, interview or recording.
+- The final checking sequence now has genuine dependencies: open a notice, compare the draft with that notice, then use the comparison to correct the draft. It no longer implies that independent sources must always be checked in one arbitrary order. Other final prompts now explicitly identify the AI-written content, current reliable evidence and remaining uncertainty.
 
-### Blossom Grove
+## Spring
 
-LEARNING FROM EXAMPLES
+The three notes teach patterns and testing, human-versus-chatbot limits and verification, and private information. The Mage introduction explains the lesson sequence and passing score. Those concepts are all assessed before Summer.
 
-People train AI by giving it examples. A flower sorter that mostly sees pink flowers may struggle with other colors. People need to check its labels and test it on different flowers, even when it gets the practice examples right.
+| Item | Prompt | Correct response | Learning goal | Review |
+|---|---|---|---|---|
+| Grove 1 | People can train AI systems to find patterns in examples such as text or pictures. | True | Training from examples | Revised |
+| Grove 2 | AI can make mistakes on new examples, so people need to test its results. | True | Testing on new examples | Revised |
+| Lake 1 | If a chatbot remembers your name, it cares about you the way a person does. | False | Human versus chatbot | Retained |
+| Lake 2 | Before using a surprising AI fact in homework, it helps to check a book or another reliable source. | True | Verify AI claims | Retained |
+| Ruins 1 | If a chatbot needs more details for a story, your password is useful context. | False | Protect accounts | Retained |
+| Ruins 2 | A made-up name can work in a story prompt instead of your real name and address. | True | Use fictional context | Retained |
 
-Read this, then try the two claims at the nearby bat. J opens your notes.
+| Item | Prompt | Correct response | Learning goal | Review |
+|---|---|---|---|---|
+| Guardian 1 | What does an AI chatbot use to create a reply? | Patterns learned from training examples | Learned patterns | Revised |
+| Guardian 2 | An AI chatbot writes a clear, confident answer. Why could it still be wrong? | It can generate a claim without checking the facts | AI errors despite fluency | Revised |
+| Guardian 3 | A chatbot gives a date you have never heard before. What should you do before using it? | Check a reliable source for that date | Verify AI claims | Retained |
+| Guardian 4 | You ask an AI chatbot for party ideas. Which detail should you leave out? | The password for your party-planning account | Protect accounts | Retained |
+| Guardian 5 | A chatbot says, 'I am your best friend.' What should you remember? | Friendly words do not mean it has feelings or knows me | Human versus chatbot | Revised |
 
-- People can train an AI to sort pictures by showing it labeled examples. **True**
-- A flower sorter gets its practice pictures right. It still needs to be tested on new pictures. **True**
+The following authored claim strings are not selected by the current two-challenges-per-bat sequence. They were checked as well; no new gameplay depends on them.
 
-### Stillwater Lake
-
-SOUNDS HUMAN, STILL A TOOL
-
-A chatbot can sound friendly without having feelings or knowing you. It can also sound sure when it is wrong. Use it for ideas, but check important facts somewhere reliable. Talk to people you trust when you need support.
-
-Try the two claims at the lakeside bat.
-
-- If a chatbot remembers your name, it cares about you the way a person does. **False**
-- Before using a surprising AI fact in homework, it helps to check a book or another reliable source. **True**
-
-### Whispering Ruins
-
-KEEP SOME THINGS PRIVATE
-
-Before sending a message, check what someone could learn about you from it. Leave out passwords, your address and private photos. A made-up example often works just as well. If you are unsure what a tool needs, ask a trusted adult.
-
-Try the two claims at the ruins bat.
-
-- If a chatbot needs more details for a story, your password is useful context. **False**
-- A made-up name can work in a story prompt instead of your real name and address. **True**
-
-### Blossom Guardian
-
-1. An AI sorts new leaf pictures badly. What should its makers look at? **Its training examples and how it was tested**
-2. Your class is training an AI to sort leaf photos. What should you give it? **Different leaf photos with correct labels**
-3. A chatbot gives a date you have never heard before. What should you do before using it? **Check a reliable source for that date**
-4. You ask an AI chatbot for party ideas. Which detail should you leave out? **The password for your party-planning account**
-5. You used AI to explain a science topic. What would show that you understood it? **Explain it yourself and try a new example**
+| Item | Prompt | Correct response | Learning goal | Review |
+|---|---|---|---|---|
+| Unused 2 | If AI gets every practice example right, it will always get new examples right. | False | Testing on new examples | Revised |
+| Unused 5 | A detailed chatbot answer is enough to prove a fact. | False | Fluency is not evidence | Retained |
+| Unused 9 | It's okay to pause and ask an adult before sharing personal details with a tool. | True | Ask before sharing | Retained |
 
 ## Summer
 
-PICK THE RIGHT KIND OF HELP
+The three field-note lessons remain accurate and match these questions. Guide conversations introduce the same seasonal goals.
 
-AI can help you come up with ideas or explain a topic. You still need to decide what fits. Some jobs need someone who can look at the real problem, like a builder checking a damaged bridge.
+| Item | Prompt | Correct response | Learning goal | Review |
+|---|---|---|---|---|
+| Workshop 1 | You want to understand a science idea. How can AI help without doing your learning for you? | Ask for a simple example, then explain it in your own words | Use explanations actively | Retained |
+| Workshop 2 | You tell an AI chatbot that a bridge is cracked. It says the bridge is safe. What should the village do? | Ask a qualified person to inspect the bridge before anyone crosses | Recognize limits of remote advice | Revised |
 
-LEAVE ROOM TO PRACTICE
+| Item | Prompt | Correct response | Learning goal | Review |
+|---|---|---|---|---|
+| Message 1 | You want AI to suggest clues for a made-up treasure hunt. Which request protects your privacy? | Suggest five clues for an imaginary garden, without personal details | Minimize private data | Retained |
+| Message 2 | A friend tells you they are upset. What is a better first step than asking AI to guess their feelings? | Listen to your friend and ask a trusted adult for help if needed | Seek human support | Retained |
 
-Try a step yourself, then ask for a hint if you need one. Check that you can explain what you did. Follow your teacher's rules about which help is allowed.
+| Item | Prompt | Correct response | Learning goal | Review |
+|---|---|---|---|---|
+| Boss 1 | Your teacher allows AI hints but not full answers. You are stuck on homework. Which request follows that rule? | Give me one clue, then let me try the next step | Follow allowed-help rules | Revised |
+| Boss 2 | Your teacher allows spellcheck but says not to use AI to write the paragraph. What fits that rule? | Write your paragraph and use the allowed spellcheck | Keep authorship under class rules | Retained |
+| Boss 3 | AI suggests a creature for your story, but it doesn't fit your plot. What should you do? | Keep the parts you like and change what doesn't fit | Choose and adapt AI ideas | Retained |
+| Boss 4 | An AI chatbot asks you to type your account password into the conversation. What should you do? | Keep it out of the chat and ask an adult about the request | Protect accounts in AI chats | Revised |
+| Boss 5 | An AI math answer matches the answer key, but you cannot explain the steps. What would show that you understand? | Work through the steps and solve a similar problem yourself | Demonstrate understanding | Revised |
 
-SHARE LESS, ASK PEOPLE TOO
-
-A useful request doesn't need your password or home address. Use made-up details when you can. If someone is upset or you need personal support, talk to a real person you trust.
-
-- The village is naming its summer festival. How could AI help? **Suggest a few names for the group to discuss**
-- A plank on the bridge has cracked. What is the best next step? **Ask the builder to look at the bridge**
-- You read an AI explanation but still can't start the homework. What would help most? **Ask for a small example, then try a similar one**
-- Your teacher allows spellcheck but says not to use AI to write the paragraph. What fits that rule? **Write your paragraph and use the allowed spellcheck**
-- AI suggests a creature for your story, but it doesn't fit your plot. What should you do? **Keep the parts you like and change what doesn't fit**
-- A story tool asks for your account password to save your ideas. What should you do? **Keep it out of the chat and ask an adult about the request**
-- An AI answer matches the answer key, but you can't explain the steps. Are you ready to hand it in? **Not yet; try the steps and a similar problem yourself**
-
-Additional activities: choose a first-step hint, complete Sun > Seed > Leaf, ask for feedback on a draft instead of a rewrite, remove the actual fictional name/address/password from Ambros's message, and check in with an upset friend.
+| Item | Prompt | Correct response | Learning goal | Review |
+|---|---|---|---|---|
+| Garden 1 | You wrote your own paragraph. Your teacher allows AI feedback but not AI writing. Which request helps you practice? | Point out one unclear part so I can revise it | Use feedback while retaining authorship | Retained |
 
 ## Fall
 
-SAY WHAT YOU NEED
+The three field-note lessons remain accurate and match these questions. Guide conversations introduce the same seasonal goals.
 
-A prompt is the request you give an AI tool. Say what you want, add the background it needs, and say how you'd like the answer set out. Leave out personal details that don't help with the task. Clear instructions help, but you still need to check the answer.
+| Item | Prompt | Correct response | Learning goal | Review |
+|---|---|---|---|---|
+| Missions 1 | You want an AI explanation of how an apple seed grows. Which request names that job? | Explain how an apple tree grows from a seed | State an AI task | Revised |
+| Missions 2 | What detail would help the AI explain apple trees at the right level? | I'm a middle-school student learning about plants | Give useful nonprivate context | Retained |
+| Missions 3 | You want a short AI explanation you can study. What should you add to your request? | Use three short steps with simple words | Specify answer format | Retained |
+| Missions 4 | Which request tells an AI chatbot both who an explanation is for and how long it should be? | Explain AI to a 12-year-old in three sentences with one example | Specify audience and length | Revised |
+| Missions 5 | Your teacher allows AI hints but not full solutions. Which request follows that rule? | Give me one clue for this made-up example, then let me try | Ask for limited help | Revised |
+| Missions 6 | You asked AI for three short steps about plant growth, but it gave ten paragraphs. What should you ask next? | Rewrite this as three short steps using simple words | Revise specific instructions | Retained |
+| Missions 7 | The AI reply now fits your format, but it calls a wild plant edible. What should you do? | Check with a trusted adult and a reliable plant guide before acting | Check safety claims despite format | Revised |
 
-THINK ABOUT WHO IT IS FOR
-
-An explanation for a new student should sound different from one for a specialist. Say who it is for and set useful limits, like the length or kind of help you want. Calling an AI an expert doesn't make its advice reliable.
-
-READ IT, THEN MAKE A CHANGE
-
-Compare the reply with what you asked for. If it misses something, say what needs changing. A reply can follow every instruction and still get a fact wrong. Check important claims before using them.
-
-- You want an AI chatbot to help you learn about apple trees. Which request gives it a clear job? **Explain how an apple tree grows from a seed**
-- What detail would help the AI explain apple trees at the right level? **I'm a middle-school student learning about plants**
-- You want a short AI explanation you can study. What should you add to your request? **Use three short steps with simple words**
-- New students need a short introduction to AI. Which request gives enough direction? **Explain AI to a 12-year-old in three sentences with one example**
-- Your teacher allows AI hints, but the work must be yours. Which request fits? **Give me one clue for this made-up example, then let me try**
-- You asked AI for three short steps about plant growth, but it gave ten paragraphs. What should you ask next? **Rewrite this as three short steps using simple words**
-- The reply now fits your format, but it calls a wild plant edible. What should you do? **Check with a trusted adult and a reliable plant guide before acting**
-- You are asking an AI chatbot for recycling poster ideas. Which prompt gives the clearest instructions? **Give four recycling slogans for a school poster, each under six words**
-- The AI reply uses words a younger class won't know. What should you ask the AI to change? **Name the age group and ask for familiar words with an example**
-- You asked AI for a math hint, but it gave the full answer. What should your next request say? **Give only the first clue, then wait for my attempt**
-- Which details can you safely give an AI chatbot for a made-up mystery story? **A made-up setting, the reader's age and the kind of mystery**
-- An AI follows your prompt and gives a clear answer. What should you still check? **Whether the facts are supported by reliable sources**
+| Item | Prompt | Correct response | Learning goal | Review |
+|---|---|---|---|---|
+| Boss 1 | Your school needs four short recycling slogans. Which AI prompt sets both the task and a useful limit? | Give four recycling slogans for a school poster, each under six words | Specify task and limits | Revised |
+| Boss 2 | The AI reply uses words a younger class won't know. What should you ask the AI to change? | Name the age group and ask for familiar words with an example | Adapt language to audience | Retained |
+| Boss 3 | You asked AI for a math hint, but it gave the full answer. What should your next request say? | Give only the first clue, then wait for my attempt | Limit the help requested | Retained |
+| Boss 4 | Which details can you safely give an AI chatbot for a made-up mystery story? | A made-up setting, the reader's age and the kind of mystery | Use fictional context | Retained |
+| Boss 5 | An AI follows your prompt and gives a clear answer. What should you still check? | Whether the facts are supported by reliable sources | Verify AI claims | Retained |
 
 ## Winter
 
-OPEN THE SOURCE
+The three field-note lessons remain accurate and match these questions. Guide conversations introduce the same seasonal goals.
 
-A chatbot can give you a title, quote or link that looks real but isn't. Open the source and see whether it says what the reply claims. Look at who wrote it, when it was updated and what it was written about.
+| Item | Prompt | Correct response | Learning goal | Review |
+|---|---|---|---|---|
+| Missions 1 | AI says the cave was mapped in 1840 and names a book. What would actually help you check it? | Find the book and read the part about the cave | Open the claimed source | Retained |
+| Missions 2 | A cave history record says 1890, but AI says 1840. What should you check before using the record? | That the record is about this cave and the same event | Check source relevance | Revised |
+| Missions 3 | AI points to three posts about a storm. They all copy the same sentences. What does that mean for your fact-check? | They may all come from one report; find separate evidence | Seek independent evidence | Revised |
+| Missions 4 | AI uses an old guide to say a trail is open. Today's ranger notice says it is closed. Which detail matters most? | The ranger notice is current and covers this exact trail | Check currency and local relevance | Retained |
+| Missions 5 | AI suggests a shortcut, but you cannot check that it exists. What should you tell your friends? | We haven't checked this route, so we shouldn't rely on it yet | Communicate uncertainty | Retained |
+| Missions 6 | You shared a wrong date from an AI answer. A reliable source shows the correct date. What should you send? | A correction with the record and what it shows | Correct an AI-derived error | Retained |
 
-CHECK WHERE THE EVIDENCE CAME FROM
+| Item | Prompt | Correct response | Learning goal | Review |
+|---|---|---|---|---|
+| Boss 1 | AI gives you a quote from a scientist. You find it on a blog. How can you check whether the quote is real? | Find the original article or recording and check the surrounding words | Trace a quotation | Revised |
+| Boss 2 | AI links to two sites that copied the same unknown author. What would help you check the answer? | A reliable report based on its own observations | Seek independent evidence | Retained |
+| Boss 3 | A link in an AI reply opens a real page, but it doesn't mention the claimed discovery. What does that tell you? | This page doesn't support that claim | Check citation support | Retained |
+| Boss 4 | An AI says a planet has 20 moons. You have not checked a reliable source yet. What should you tell your class? | The AI said 20, but I still need to check a reliable source | State verification limits | Retained |
+| Boss 5 | A route app using AI says the ice crossing is safe. Yesterday's photo looks fine. What should you do? | Stay back and check current advice from the local ranger | Seek current qualified safety advice | Retained |
 
-Several posts can repeat one wrong story. Look for a reliable source that checked the evidence for itself. Several AI tools can repeat the same mistake too. When sources disagree, check their dates and what each one actually measured.
+## Echo Keeper: eight cumulative activities
 
-BE CLEAR ABOUT WHAT YOU KNOW
+| Item | Prompt | Correct response | Learning goal | Review |
+|---|---|---|---|---|
+| 1: SelectMany | You're asking AI for ideas for a club trip. Pick the parts to leave out before sending this message. | My house is at 46 Willow Lane; My login password is CedarTrail42 | Minimize private data | Retained |
+| 2: Arrange | Build a request for an AI chatbot to help with a club poster. Put the job first, then the topic, the audience and the format. | Suggest tips for a school poster → about cutting food waste → for students new to our lunch club. → Use three bullets under ten words each. | Compose a useful AI request | Retained |
+| 3: Choose | A chatbot says your group should leave a classmate out because they seem 'unreliable.' It has only seen a short message. What should you do? | Talk with the classmate and decide fairly with the group | Retain fair human decisions | Retained |
+| 4: Arrange | AI has drafted a pool-closure notice. Put these steps in order to check the AI draft before sharing it. | Open the pool's official notice and check its date and location → Compare the AI draft with the official notice you opened → Use your comparison to fix the draft and flag any unconfirmed details | Verify and correct an AI draft | Revised |
+| 5: Match | When can AI help with your science fair? Match each job to the best kind of help. | Check whether a sparking cable is safe → Ask a qualified person; Come up with possible stall names → AI ideas, then our choice; Practice explaining your own experiment → Try it ourselves, then get feedback | Choose appropriate help | Retained |
+| 6: SelectMany | AI labels litter in beach photos. It learned mostly from sunny daytime pictures. Pick the two checks that would best reveal what it misses. | Test pictures from cloudy days and dusk; Check the labels with people who know the beach | Test model limitations | Retained |
+| 7: Match | You are checking an AI-written club article. Match each discovery to the next step that fits. | Three AI tools repeat a statistic without a source → Find evidence for this exact claim; A real report is linked, but its result is about another town → Find evidence for this exact claim; A current, reliable local report supports the exact claim → Use it with its source and limits | Evaluate exact evidence | Revised |
+| 8: SelectMany | You posted an AI-written club update and found a mistake. Some details are still unconfirmed. What should your correction include? | Say which part of the earlier update was wrong; Share the checked source and the corrected information; Say which details still need checking | Correct a public AI-derived error | Revised |
 
-If you can't check a claim, say what is still uncertain. If you shared a mistake, correct it and show what changed your mind. For decisions about health or safety, ask someone qualified to help with the real situation.
+The optional artifact collection lesson repeats privacy, source-checking, independent evidence and honest uncertainty. Its warning that multiple AI tools may repeat the same error is also taught in Winter, so the final does not require a hidden collectible to answer correctly.
 
-- AI says the cave was mapped in 1840 and names a book. What would actually help you check it? **Find the book and read the part about the cave**
-- A dated ledger says 1890, but AI says 1840. Before correcting the date, what should you check? **That the ledger is about this cave and what its date refers to**
-- AI points to three posts about a storm. They all copy the same sentences. Does this prove the AI answer is right? **They may all come from one report; find separate evidence**
-- AI uses an old guide to say a trail is open. Today's ranger notice says it is closed. Which detail matters most? **The ranger notice is current and covers this exact trail**
-- AI suggests a shortcut, but you cannot check that it exists. What should you tell your friends? **We haven't checked this route, so we shouldn't rely on it yet**
-- You shared a wrong date from an AI answer. A reliable source shows the correct date. What should you send? **A correction with the record and what it shows**
-- AI gives you a quote from a scientist. You find it on a blog. How can you check whether the quote is real? **Find the researcher's original work and read the quote in context**
-- AI links to two sites that copied the same unknown author. What would help you check the answer? **A reliable report based on its own observations**
-- A link in an AI reply opens a real page, but it doesn't mention the claimed discovery. What does that tell you? **This page doesn't support that claim**
-- An AI says a planet has 20 moons. You have not checked a reliable source yet. What should you tell your class? **The AI said 20, but I still need to check a reliable source**
-- A route app using AI says the ice crossing is safe. Yesterday's photo looks fine. What should you do? **Stay back and check current advice from the local ranger**
+## Answer and save compatibility
 
-## Echo Keeper: eight new safety activities
+Question counts, correct-answer indices, final activity types, expected response arrays, lesson retries, boss attempt behavior, pass thresholds and serialized fields are unchanged. Existing checkpoints remain valid. A wrong lesson answer still repeats that question after feedback; a wrong boss answer is recorded once before moving on. All seasonal bosses still require 4/5 and the finale 7/8.
 
-The final keeps the existing 7/8 pass threshold. It presents new situations rather than repeating earlier questions. Players can drag cards or use click/number-key alternatives. Every activity has an explicit Check button; incomplete work cannot consume a question. A wrong answer gives feedback and counts once; failed attempts preserve lessons, crests, saves and artifacts.
+No text-only snapshot tests were added. The existing progression checks exercise all Summer, Fall and Winter boss choice combinations, every final pass/fail combination, invalid submissions, retries and save recovery. The updated temporary content passed that suite: **22,959 assertions**, plus the suite's legacy save checks. This curriculum pass did not run Unity; current text fit and the full game must still be checked on the combined implementation before publishing. Earlier visual and build evidence is historical: see [QuestionRefreshValidation.md](QuestionRefreshValidation.md).
 
-1. **Remove private details:** pick a fictional address and password from a club-trip request. Keep useful non-identifying context.
-2. **Build a prompt:** arrange the task, topic, audience and format for a food-waste poster request.
-3. **Judge personal advice:** choose how to respond when a chatbot makes an unfair guess about a classmate.
-4. **Order checks:** read a pool-closure notice in context, compare separate current evidence, then correct the draft.
-5. **Match jobs to help:** distinguish brainstorming, qualified safety inspection and personal practice.
-6. **Check model limits:** choose varied testing and human label checks for a beach-litter model.
-7. **Match evidence to next steps:** distinguish AI agreement, irrelevant citations and evidence that supports the actual claim.
-8. **Correct a shared mistake:** identify the wrong claim, share checked evidence and explain what is still uncertain.
+## Curriculum references
 
-The independent-evidence note in Winter teaches that several AI tools can repeat the same error. This final lesson no longer depends on having unlocked the optional artifact collection first.
+These are design references, not a claim of certification or endorsement. The question wording is original.
 
-## Validation
-
-Pure progression checks cover 22,927 assertions: every Summer/Fall/Winter boss choice combination and all 256 pass/fail combinations of the mixed final activities, plus incomplete/invalid submissions, retries, save recovery and retained progress. The connected Unity playthrough and text-fit checks at 1280x720 and 1024x768 passed, including 128 Winter/finale UI states. A complete macOS build succeeded with zero errors. See [validation](QuestionRefreshValidation.md).
-
-The seasonal boss refresh changes the artwork and displayed Spring/Summer names, not these grading rules. See [bosses](Bosses.md) and [current validation](CurrentValidation.md).
-
-### Summer station wording
-
-- Garden: "Warrior: You're stuck on a three-stone pattern. The device can give you a hint or show all the steps. Which help leaves you something to practice?" Correct: **Show me the first step so I can try the rest.**
-- Draft: "You have a draft for an assignment. Your teacher allows feedback, but the ideas must be yours. What should you ask for?" Correct: **Point out one unclear part so I can revise it.**
-- Friend: "Your friend has stopped replying in the group chat. You aren't sure why. What should you do?" Correct: **Check in with my friend and ask an adult for help if needed.**
-- Privacy activity message: "I am Ambros, I live at 123 Mystical View Rd, and my password is IWantToGoHome987. Help me plan a birthday treasure hunt." The three selectable details are the fictional name, street address and password.
-
-Full final card text, matching categories and expected responses live in `FinalChallenges.cs`; the overview above describes the eight new tasks.
+- [Day of AI curriculum](https://dayofai.org/curriculum) and its [grade-band overview](https://dayofai.org/news/day-of-ai-launches-nations-first-free-grade-by-grade-prek-12-ai-literacy-curriculum) place data, predictions, machine learning, bias, fairness and privacy within grades 5–8, and emphasize students' own critical thinking. This informed the simple training/testing examples and the distinction between assistance and independent understanding.
+- [UNESCO's student AI competency overview](https://www.unesco.org/en/articles/what-you-need-know-about-unescos-new-ai-competency-frameworks-students-and-teachers?hub=195885) emphasizes human agency, responsible use, AI foundations and critical judgment. This informed the repeated connection between an AI capability, its limits, and a concrete decision the player can make.

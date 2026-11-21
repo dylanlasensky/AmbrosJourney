@@ -112,7 +112,7 @@ namespace AmbrosJourney.Summer
             level.mage=Actor("Ancient Mage","MageIdle",4,new Vector2(-2,22)); level.mage.walk=Frames("MageWalk",8);
             level.maleWarrior=Actor("Warrior - Workshop guide","MaleIdle",4,new Vector2(-2,20)); level.maleWarrior.walk=Frames("MaleWalk",6);
             level.femaleWarrior=Actor("Warrior - Garden guide","FemaleIdle",4,new Vector2(2,20)); level.femaleWarrior.walk=Frames("FemaleWalk",6);
-            SeasonWorldLabel.Attach(level.maleWarrior.transform,"[E] WORKSHOP WARRIOR");SeasonWorldLabel.Attach(level.femaleWarrior.transform,"[E] GARDEN WARRIOR");
+            SeasonWorldLabel.Attach(level.maleWarrior.transform,"WORKSHOP WARRIOR",176);SeasonWorldLabel.Attach(level.femaleWarrior.transform,"GARDEN WARRIOR",160);
             level.orc=Actor("Suncrest Guardian","OrcIdle",5,new Vector2(0,-23),"OrcAttack",6,1.7f);
             SeasonBossVisual.Attach(level.orc.gameObject,"SummerSuncrestAtlas",6f);SeasonWorldLabel.Attach(level.orc.transform,"[E] SUNCREST GUARDIAN");
             // Readable landmarks with new supporting props; original character art is retained.

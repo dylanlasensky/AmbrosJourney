@@ -78,7 +78,7 @@ public static class BossExitChecks
             else if(stage==3||stage==7||stage==11){SeasonIntegrationChecks.Capture(SceneManager.GetActiveScene().name+"PortalReady");Move(seq.Exit.Portal.position);Advance(stage+1,2);}
             else if(stage==4)
             {
-                if(SceneManager.GetActiveScene().name!="Summer"||!seq)return;var l=Find<SummerLevel>();Check(l&&l.IsDialogueOpen,"Summer introduction preserved");
+                if(SceneManager.GetActiveScene().name!="Summer"||!seq)return;var l=Find<SummerLevel>();Check(l&&l.Progress.Introduced&&!l.InputBlocked,"Summer orientation leaves control with player");
                 Check(!seq.Exit.Ready&&!seq.Exit.Portal.gameObject.activeSelf&&l.shields.Length==0,"Summer starts without portal or flags");
                 l.RestoreProgress(new SummerProgress{Introduced=true,GuideArrived=true,Wards=new[]{true,true,true},WorkshopQuestion=2,HintChosen=true,PatternStep=3,GardenQuestion=1,PatternComplete=true,PrivacyComplete=true,RemovedPrivateDetails=new[]{true,true,true}});
                 Move(new Vector2(0,-20));RDown(2);Advance(5);
@@ -89,7 +89,7 @@ public static class BossExitChecks
             }
             else if(stage==8)
             {
-                if(SceneManager.GetActiveScene().name!="Fall"||!seq)return;var l=Find<FallLevel>();Check(l&&l.IsDialogueOpen,"Fall introduction preserved");Check(!seq.Exit.Ready&&l.shields.Length==0,"Fall portal hidden and no flags");
+                if(SceneManager.GetActiveScene().name!="Fall"||!seq)return;var l=Find<FallLevel>();Check(l&&l.Progress.Introduced&&!l.InputBlocked,"Fall orientation leaves control with player");Check(!seq.Exit.Ready&&l.shields.Length==0,"Fall portal hidden and no flags");
                 l.RestoreProgress(new FallProgress{Introduced=true,GuideArrived=true,Studied=new[]{true,true,true},Steps=FallContent.Missions.Select(q=>q.Length).ToArray()});Move(new Vector2(0,-38));RDown(3);Advance(9);
             }
             else if(stage==9)
@@ -108,9 +108,8 @@ public static class BossExitChecks
             else if(stage==15)
             {
                 var l=Find<WinterLevel>();Check(!l.caveEntrance.GetComponent<SpriteRenderer>(),"Natural cave has no portal overlay");
-                Move(l.caveEntrance.position);Call(l,"LateUpdate");Check(!l.Progress.InCave&&!l.CanEnterCave,"Cave rejects entry before talking to Mage");
-                Move(l.littleMage.transform.position);l.Interact(0);Check(!l.Progress.CaveEntryExplained,"Opening the message alone does not finish it");Next(l);
-                Check(l.Progress.CaveGuideRead,"Finishing the Mage conversation unlocks cave");
+                Check(l.Progress.CaveGuideRead&&l.Progress.CanEnterCave&&!l.IsDialogueOpen,"Cave guidance unlocks automatically after Warden victory");
+                Move(l.littleMage.transform.position);l.Interact(0);Check(!l.IsDialogueOpen&&!l.InputBlocked,"Repeating a companion tip remains passive");
                 SeasonIntegrationChecks.Capture("WinterPortalReady");Move(seq.Exit.Portal.position);Advance(16,1);
             }
             else if(stage==16)
@@ -173,7 +172,7 @@ public static class BossExitChecks
                     var video=UnityEngine.Object.FindAnyObjectByType<UnityEngine.Video.VideoPlayer>();
                     if(video&&video.isPlaying)
                     {
-                        Check(video.renderMode==UnityEngine.Video.VideoRenderMode.RenderTexture&&video.aspectRatio==UnityEngine.Video.VideoAspectRatio.FitOutside,"Outro fills its own screen surface");
+                        Check(video.renderMode==UnityEngine.Video.VideoRenderMode.APIOnly&&video.GetComponent<JourneyVideoScreen>(),"Outro uses its resize-independent overlay");
                         Check(UnityEngine.Object.FindObjectsByType<Camera>(FindObjectsSortMode.None).All(camera=>!camera.enabled),"Game cameras hidden during outro");
                         Check(UnityEngine.Object.FindObjectsByType<Canvas>(FindObjectsSortMode.None).All(canvas=>canvas.gameObject==video.gameObject||!canvas.enabled),"Game UI hidden during outro");
                         Check(AudioListener.pause&&UnityEngine.Object.FindObjectsByType<AudioSource>(FindObjectsSortMode.None).All(source=>source.gameObject==video.gameObject||source.mute),"Game soundtrack suppressed during outro");

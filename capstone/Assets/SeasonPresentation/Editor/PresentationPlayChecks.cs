@@ -50,8 +50,8 @@ namespace AmbrosJourney.Presentation.Editor
         {
             try
             {
-                var l=UnityEngine.Object.FindAnyObjectByType<FallLevel>();Check(l,"Run Fall first");level=l;ui=l.GetComponentInChildren<SeasonOverlay>();Check(!l.Progress.Introduced,"Start a fresh Fall session for UI regression");inspected.Clear();Common();
-                Next();GuideArrivalChecks.Fall(l);Next();Next();Check(!l.InputBlocked,"Introduction unlocks movement");
+                var l=UnityEngine.Object.FindAnyObjectByType<FallLevel>();Check(l,"Run Fall first");level=l;ui=l.GetComponentInChildren<SeasonOverlay>();Check(l.Progress.Introduced&&!l.IsDialogueOpen&&l.Progress.RuneCount==0,"Fresh Fall starts without a blocking introduction");inspected.Clear();Common();
+                CompanionGuidanceChecks.Fall(l);GuideArrivalChecks.Fall(l);Check(!l.InputBlocked,"Guide arrival preserves movement");
                 for(int m=0;m<3;m++)
                 {
                     l.player.transform.position=l.stations[m].position+Vector3.down;l.player.GetComponent<Rigidbody2D>().position=l.player.transform.position;l.Interact(m+1);Next();
@@ -73,8 +73,8 @@ namespace AmbrosJourney.Presentation.Editor
         {
             try
             {
-                var l=UnityEngine.Object.FindAnyObjectByType<SummerLevel>();Check(l,"Run Summer first");level=l;ui=l.GetComponentInChildren<SeasonOverlay>();Check(!l.Progress.Introduced,"Start a fresh Summer session for UI regression");inspected.Clear();Common();
-                Next();Next();GuideArrivalChecks.Summer(l);Next();Next();Choice(0);Next();Choice(1);Next();Next();
+                var l=UnityEngine.Object.FindAnyObjectByType<SummerLevel>();Check(l,"Run Summer first");level=l;ui=l.GetComponentInChildren<SeasonOverlay>();Check(l.Progress.Introduced&&!l.IsDialogueOpen&&l.Progress.WardCount==0,"Fresh Summer starts without a blocking introduction");inspected.Clear();Common();
+                CompanionGuidanceChecks.Summer(l);GuideArrivalChecks.Summer(l);l.Interact(1);Next();Choice(0);Next();Choice(1);Next();Next();
                 l.Interact(2);Choice(1);Check(ui.Copy.text.StartsWith("Incorrect.")&&!l.Progress.Wards[1],"Garden mistake is explicit and retryable");Next();Choice(0);Next();Next();
                 l.Interact(3);Choice(0);Check(ui.Copy.text.StartsWith("Incorrect.")&&!l.Progress.PrivacyComplete,"Privacy mistake stays on the first question");Next();Choice(1);Next();Choice(0);Check(ui.Copy.text.StartsWith("Incorrect.")&&!l.Progress.Wards[2],"Human-help mistake stays retryable");Next();Choice(1);Next();Next();
                 l.Interact(4);Next();for(int q=0;q<5;q++){Choice(SummerContent.Boss[q].Correct);Next();}Next();

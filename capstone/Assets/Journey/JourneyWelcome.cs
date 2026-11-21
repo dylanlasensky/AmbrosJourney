@@ -19,18 +19,18 @@ namespace AmbrosJourney.Journey
             Text(ui,"Movement caption","WASD",new Rect(-484,16,160,28),20);
             Text(ui,"Arrows caption","ARROW KEYS",new Rect(-270,16,184,28),20);
             Text(ui,"Movement description","Use either set of keys to walk around Spring.",new Rect(-510,65,440,61),21);
-            Text(ui,"Compass heading","FOLLOW THE COMPASS",new Rect(-510,145,440,27),18,Muted);
+            Text(ui,"Compass heading","FOLLOW THE ARROW",new Rect(-510,145,440,27),18,Muted);
             Arrow(ui,-500,194,5,3);
             Text(ui,"Compass explanation","Look for the arrow beside your character. It points toward your next stop.",new Rect(-445,185,375,88),21);
             Text(ui,"Controls eyebrow","KEEP THIS GUIDE HANDY",new Rect(58,-253,440,24),15,Muted);
             Text(ui,"Controls title","Your controls",new Rect(58,-219,440,49),34);
-            Row(ui,"E","Talk, read & collect",-144);
+            Row(ui,"E","Read, collect & interact",-144);
             Row(ui,"1  2","Choose an answer",-80,90);
             Row(ui,"J","Open your field notes",-16);
             Row(ui,"I","View your artifacts",48);
             Row(ui,"Esc","Go back / pause",112,90);
-            Text(ui,"First destination","FIRST STOP: ANCIENT MAGE",new Rect(58,185,440,27),16,Muted);
-            Text(ui,"First destination detail","Close this guide, then follow the arrow to his cottage.",new Rect(58,213,440,47),20);
+            Text(ui,"First destination","FIRST STOP: BLOSSOM GROVE",new Rect(58,185,440,27),16,Muted);
+            Text(ui,"First destination detail","Follow the arrow to the first field note. Press E to read it.",new Rect(58,213,440,47),20);
             JourneyPauseJournal.Button(ui,"Let's explore  [ E / Enter ]",new Rect(-210,266,420,37),close,true);
         }
         static void Row(JourneyUI ui,string key,string description,float y,float width=58)

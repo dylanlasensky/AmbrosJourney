@@ -7,6 +7,8 @@ public class OpeningCinematic : MonoBehaviour
 {
     public VideoClip clip;
     VideoPlayer video;
+    GameObject screen;
+    AmbrosJourney.Journey.JourneyVideoScreen presentation;
     bool loading;
     string error;
     float elapsed;
@@ -34,27 +36,25 @@ public class OpeningCinematic : MonoBehaviour
         if(!clip){Finished(null);return;}
         video.clip=clip;
 #endif
-        video.renderMode=VideoRenderMode.CameraNearPlane;video.targetCamera=Object.FindAnyObjectByType<Camera>();video.targetCameraAlpha=1;video.aspectRatio=VideoAspectRatio.FitInside;video.playOnAwake=false;video.isLooping=false;video.waitForFirstFrame=true;
+        screen=new GameObject("Opening video screen",typeof(RectTransform));
+        presentation=AmbrosJourney.Journey.JourneyVideoScreen.Create(screen,video);
+        presentation.SetMessage("AMBROS' JOURNEY\nPreparing the opening...");
+        video.aspectRatio=VideoAspectRatio.FitInside;video.playOnAwake=false;video.isLooping=false;video.waitForFirstFrame=true;video.timeUpdateMode=VideoTimeUpdateMode.UnscaledGameTime;
         video.audioOutputMode=VideoAudioOutputMode.Direct;video.SetDirectAudioVolume(0,.4f);
         video.loopPointReached+=Finished;video.errorReceived+=Failed;
         video.prepareCompleted+=Prepared;
         video.Prepare();
     }
-    void Prepared(VideoPlayer source){source.Play();Debug.Log("OPENING_CINEMATIC_STARTED");}
+    void Prepared(VideoPlayer source){error=null;elapsed=0;presentation.SetMessage(null);source.Play();Debug.Log("OPENING_CINEMATIC_STARTED");}
     void Failed(VideoPlayer source,string message){error="The opening could not play. Press Enter to begin Spring.";Debug.LogWarning("Opening video: "+message);}
-    void Finished(VideoPlayer source){if(loading)return;loading=true;Debug.Log("OPENING_CINEMATIC_COMPLETE: loading Spring");if(video){video.loopPointReached-=Finished;video.errorReceived-=Failed;video.prepareCompleted-=Prepared;video.Stop();video=null;}var session=AmbrosJourney.Journey.JourneySession.Instance;session.SetCinematicVisible(false);session.LoadChapter(1);}
+    void Finished(VideoPlayer source){if(loading)return;loading=true;Debug.Log("OPENING_CINEMATIC_COMPLETE: loading Spring");if(video){video.loopPointReached-=Finished;video.errorReceived-=Failed;video.prepareCompleted-=Prepared;video.Stop();video=null;}if(presentation)presentation.ReturnFocusAfterPlayback();if(screen){Destroy(screen);screen=null;}var session=AmbrosJourney.Journey.JourneySession.Instance;session.SetCinematicVisible(false);session.LoadChapter(1);}
     void Update()
     {
         if(video==null)return;
         elapsed+=Time.unscaledDeltaTime;
         if(video!=null && !video.isPrepared && elapsed>20 && error==null)error="The opening is taking too long to load. Press Enter to begin Spring.";
+        if(error!=null && presentation)presentation.SetMessage(error);
         if(error!=null && UnityEngine.InputSystem.Keyboard.current!=null && UnityEngine.InputSystem.Keyboard.current.enterKey.wasPressedThisFrame)Finished(video);
     }
-    void OnGUI()
-    {
-        if(video==null || (video.isPrepared && error==null))return;
-        GUI.color=Color.black;GUI.DrawTexture(new Rect(0,0,Screen.width,Screen.height),Texture2D.whiteTexture);GUI.color=Color.white;
-        var style=new GUIStyle(GUI.skin.label){fontSize=22,alignment=TextAnchor.MiddleCenter,wordWrap=true};GUI.Label(new Rect(30,Screen.height/2-50,Screen.width-60,100),error??"AMBROS' JOURNEY\nPreparing the opening...",style);
-    }
-    void OnDestroy(){if(video!=null){video.loopPointReached-=Finished;video.errorReceived-=Failed;video.prepareCompleted-=Prepared;}}
+    void OnDestroy(){if(screen)Destroy(screen);if(video!=null){video.loopPointReached-=Finished;video.errorReceived-=Failed;video.prepareCompleted-=Prepared;}}
 }

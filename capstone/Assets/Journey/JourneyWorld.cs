@@ -67,7 +67,7 @@ namespace AmbrosJourney.Journey
         void AddClues()
         {
             Vector2[] places=chapter==3?new[]{new Vector2(-29,10),new Vector2(10,20),new Vector2(32,5)}:new[]{new Vector2(-26,-16),new Vector2(8,22)};
-            string[] clues=chapter==3?new[]{"ORCHARD WEST / ARCHIVE ACROSS NORTH BRIDGE","FOLLOW THE RIVER NORTH, THEN TURN EAST","KILN: TAKE THE SOUTHERN SWITCHBACK"}:new[]{"LEDGER NORTH / OBSERVATORY EAST OF THE LAKE","FOLLOW THIS RIDGE EAST TO THE WARDEN"};
+            string[] clues=chapter==3?new[]{"ORCHARD WEST / ARCHIVE ACROSS NORTH BRIDGE","FOLLOW THE RIVER NORTH, THEN TURN EAST","KILN: TAKE THE SOUTHERN SWITCHBACK"}:new[]{"LEDGER NORTH / OBSERVATORY EAST OF THE GROVE","FOLLOW THIS RIDGE EAST TO THE WARDEN"};
             for(int i=0;i<places.Length;i++){var o=new GameObject("Trail directions");o.transform.SetParent(winter?winter.World.Outdoors.transform:transform);o.transform.position=places[i];o.AddComponent<SeasonWorldLabel>().Caption=clues[i];GetComponent<WorldCohesion>().Sign(places[i]-Vector2.up*1.7f);}
         }
         void AddWaterMotion()
@@ -98,7 +98,7 @@ namespace AmbrosJourney.Journey
                             Color color=edge<bank?shore:Color.Lerp(Color.Lerp(water,shore,.45f),water,Mathf.Clamp01((edge-bank)/9f));
                             texture.SetPixel(x,y,color+new Color(grain,grain,grain,0));
                         }
-                        texture.Apply();var sprite=Sprite.Create(texture,new Rect(0,0,32,32),Vector2.one*.5f,32);owned.Add(sprite);
+                        var sprite=Sprite.Create(texture,new Rect(0,0,32,32),Vector2.one*.5f,32);texture.Apply(false,true);owned.Add(sprite);
                         tile=ScriptableObject.CreateInstance<Tile>();tile.sprite=sprite;owned.Add(tile);variants[key]=tile;
                     }
                     map.SetTile(cell,tile);
@@ -123,7 +123,7 @@ namespace AmbrosJourney.Journey
             if(fall&&fall.InputBlocked)interact=false;
             for(int i=0;i<artifacts.Count;i++)
             {
-                int id=(chapter-1)*3+i;var item=artifacts[i];item.SetActive(!session.Data.artifacts[id]);if(!item.activeInHierarchy)continue;
+                int id=(chapter-1)*3+i;var item=artifacts[i];bool visible=!session.Data.artifacts[id];if(item.activeSelf!=visible)item.SetActive(visible);if(!item.activeInHierarchy)continue;
                 // Only the collectible floats; buildings and collision stay still.
                 item.transform.position=artifactHomes[i]+Vector3.up*(Mathf.Sin(Time.time*1.5f+i)*.045f);
                 if(interact&&Vector2.Distance(player.position,artifactHomes[i])<2.3f&&Keyboard.current!=null&&Keyboard.current.eKey.wasPressedThisFrame){session.Collect(id);break;}

@@ -13,6 +13,8 @@ From the repository root:
 ```sh
 dotnet run --project tests/Progression/Progression.csproj --configuration Release
 python3 tests/check_assets.py
+node tests/check_browser_save.cjs
+node tests/check_web_template.cjs
 ```
 
 These checks do not compile every Unity script, render artwork or prove player behavior. They supplement review and playtesting.
@@ -38,11 +40,11 @@ Use the same disposable copy and batch-mode invocation above, replacing `-execut
 | Method | Result | Coverage |
 | --- | --- | --- |
 | `GeneralFeedbackChecks.Run` | `Logs/SeasonChecks/GeneralFeedback.txt` | Correct explanations and fixed score totals across four chapters/finale; no courage text; artifact counter at empty/full count; actual body collisions and doorway access; old ridge checkpoint recovery; no cave Mage interaction; Activity 5 cycling; certificate Exit/Escape to cave, then home portal to menu. |
-| `CompassNoticeChecks.Run` | `Logs/SeasonChecks/CompassNotice.txt` | Actual first whiteout; saved once-only notice; four progress hints; rendered icicle mesh; text at both resolutions; Continue/Escape; normal layout restoration; pause/dialogue, Assisted and cave guards. |
+| `WinterRefinementChecks.Run` | `Logs/WinterRefinements/Results.txt` | Always-visible Winter guidance, legacy frozen-arrow saves, centered Warden, automatic cave permission, natural cave entry, visibility circle and lantern light. `CompassNoticeChecks.Run` is a compatibility alias for this suite. |
 
-Both methods reject non-batch use, use separate save files, and exit the Editor after their checks. `PASS` in the result file is required; also inspect the fresh log for compile/runtime errors rather than trusting an older result file. The compass fixture waits for the real snowfall phase, so allow it to run after startup. These fixtures do not modify a player's regular profile.
+Both methods reject non-batch use, use separate save files, and exit the Editor after their checks. `PASS` in the result file is required; also inspect the fresh log for compile/runtime errors rather than trusting an older result file. These fixtures do not modify a player's regular profile.
 
-The pure suite has **22,652 progression assertions** after removing the retired courage-only checks. Additional save tests load legacy checkpoints containing old heart/courage fields and retain the current learning state. Staged asset integrity includes the three new scripts and their metadata; no new packages are required.
+Use the assertion count printed by the current pure suite; older dated counts describe earlier snapshots. Additional save tests load legacy checkpoints containing old heart/courage fields and retain the current learning state. Staged asset integrity includes the three new scripts and their metadata; no new packages are required.
 
 ## Standalone build
 
@@ -60,4 +62,6 @@ See [current validation](CurrentValidation.md) for results rather than inferring
 Run `BossExitChecks.Run` with the same disposable-project batch-mode setup. It writes `Logs/BossExitChecks/Results.txt` and exercises real seasonal boss answer buttons, failed/pass thresholds, progressive boss dust, fully gated portal assembly, automatic transitions, R-key input in all four player controllers, every final activity type, certificate pickup/PDF/Exit, certificate Escape, completed save reload, and the final walk-home portal. It checks UI at 1280x720 and 1024x768 and uses a separate save. `SeasonIntegrationChecks.Run` has also been updated to wait across the new multi-frame effects and to expect no interaction with defeated bosses.
 
 
-For the Winter follow-up, run `WinterRefinementChecks.Run` in the disposable project. It writes `Logs/WinterRefinements/Results.txt` and renders the frozen notice, natural cave and restored cave arrow at both standard test sizes. `BossExitChecks.Run` now expects Winter's cave exception and completes the required Little Mage conversation before walking inside.
+For the Winter follow-up, run `WinterRefinementChecks.Run` in the disposable project. It writes `Logs/WinterRefinements/Results.txt` and renders continuous guidance, the natural cave and lantern visibility at both standard test sizes. `BossExitChecks.Run` expects Winter's cave exception and automatic cave permission after the victory message closes. `CompanionGuidanceChecks` and `DirectGuidanceChecks` are included in the connected suite for nonblocking advice, save compatibility and direct objective guidance.
+
+For QA/release Web exports and actual browser testing, use [BrowserBuildChecks](BrowserBuildChecks.md) and [CinematicFullscreenChecks](CinematicFullscreenChecks.md). Source checks, native playthroughs and a successful export do not establish browser playback or itch save persistence.

@@ -1,5 +1,7 @@
 # User-testing feedback: November 12, 2026
 
+**Historical feedback record.** November 21, 2026 guidance now uses a direct gold-and-cream arrow that remains available in Winter. Companion advice and post-Warden cave permission are automatic; the frozen-arrow and required-NPC-conversation rules below are superseded. See the [current overview](../README.md) and [companion guidance](CompanionGuidance.md).
+
 ## General game changes
 
 1. Courage and hearts are removed from gameplay, question feedback, trackers and progress data. Wrong answers explain the issue and allow retries without a penalty meter. Existing saves are compatible.

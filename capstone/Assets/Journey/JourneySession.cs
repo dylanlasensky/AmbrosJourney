@@ -19,6 +19,7 @@ namespace AmbrosJourney.Journey
         public static bool TestMode;
         public static bool CanUsePortals=>!Blocked&&(!Instance||!Instance.portalProtected);
         bool portalProtected;Vector2 protectedPosition;
+        Transform cachedPlayer;
         public static string SavePathOverride;
         public static string SavePath=>SavePathOverride??Path.Combine(Application.persistentDataPath,"ambros-journey-v1.json");
         public JourneyData Data {get;private set;}
@@ -68,7 +69,7 @@ namespace AmbrosJourney.Journey
             QualitySettings.vSyncCount=refresh>=30&&divisor>=1&&divisor<=4?divisor:0;
             Application.targetFrameRate=60;Application.runInBackground=false;
         }
-        void SceneChanged(Scene previous,Scene current){if(!loading&&current.name!="Intro")StartCoroutine(WorldReady(true));}
+        void SceneChanged(Scene previous,Scene current){cachedPlayer=null;if(!loading&&current.name!="Intro")StartCoroutine(WorldReady(true));}
         IEnumerator WorldReady(bool restore)
         {
             yield return null;yield return null;
@@ -81,14 +82,21 @@ namespace AmbrosJourney.Journey
         public static int CurrentChapter(){switch(SceneManager.GetActiveScene().name){case "Spring":return 1;case "Summer":return 2;case "Fall":return 3;case "Winter":return 4;default:return 0;}}
         public Transform Player()
         {
-            var spring=FindAnyObjectByType<SpringPlayer>();if(spring)return spring.transform;
-            var summer=FindAnyObjectByType<SummerLevel>();if(summer)return summer.player.transform;
-            var fall=FindAnyObjectByType<FallLevel>();if(fall)return fall.player.transform;
-            var winter=FindAnyObjectByType<WinterLevel>();return winter?winter.player.transform:null;
+            if(cachedPlayer&&cachedPlayer.gameObject.activeInHierarchy&&cachedPlayer.gameObject.scene==SceneManager.GetActiveScene())return cachedPlayer;
+            cachedPlayer=null;
+            var spring=FindAnyObjectByType<SpringPlayer>();if(spring)cachedPlayer=spring.transform;
+            else
+            {
+                var summer=FindAnyObjectByType<SummerLevel>();
+                var fall=summer?null:FindAnyObjectByType<FallLevel>();
+                var winter=summer||fall?null:FindAnyObjectByType<WinterLevel>();
+                cachedPlayer=summer&&summer.player?summer.player.transform:fall&&fall.player?fall.player.transform:winter&&winter.player?winter.player.transform:null;
+            }
+            return cachedPlayer;
         }
         void Update()
         {
-            if(portalProtected&&Player()&&Vector2.Distance(Player().position,protectedPosition)>2)portalProtected=false;
+            if(portalProtected){var player=Player();if(player&&Vector2.Distance(player.position,protectedPosition)>2)portalProtected=false;}
             if(!cinematic&&!loading&&Keyboard.current!=null)
             {
                 if(Keyboard.current.escapeKey.wasPressedThisFrame){GameAudio.Click();HandleBack();}
@@ -194,7 +202,7 @@ namespace AmbrosJourney.Journey
             JourneyMenu.Background(ui);nameInput=null;
             JourneyMenu.Text(ui,"Settings heading","Journey settings",new Rect(-550,-45,420,46),30);
             JourneyMenu.Text(ui,"Guidance status","Trail guidance: always on",new Rect(-534,20,410,40),24,JourneyMenu.Cream);
-            var description=JourneyMenu.Text(ui,"Guidance description","The guide arrow stays visible in every season and follows the trail to your next task.",new Rect(-534,78,360,65),19,JourneyMenu.Muted);description.textWrappingMode=TextWrappingModes.Normal;
+            var description=JourneyMenu.Text(ui,"Guidance description","The guide arrow stays visible in every season and points toward your next lesson or goal.",new Rect(-534,78,360,65),19,JourneyMenu.Muted);description.textWrappingMode=TextWrappingModes.Normal;
             JourneyMenu.Button(ui,"Back",177,ShowMenu,true);
         }
         void QuitGame()
@@ -272,7 +280,7 @@ namespace AmbrosJourney.Journey
             Action returnTo=()=>{artifactsOpen=false;if(menu)BackToMenu();else if(fromPause)ShowPause();else Resume();};
             backAction=returnTo;ui.KeyboardNavigation=true;
             if(!menu){Paused=true;Time.timeScale=0;AudioListener.pause=true;Save();}
-            Background(Data.ArtifactCount==12?"ACHIEVEMENT / EVIDENCE KEEPER":"LOST ARTIFACTS",Data.ArtifactCount+" of 12 recovered",Data.ArtifactCount==12?"The compass is complete. Carry its lesson into the final challenge.":"Three artifacts are hidden in each season. Search clearings, shelters and the edges of landmarks.");
+            Background(Data.ArtifactCount==12?"ACHIEVEMENT / EVIDENCE KEEPER":"LOST ARTIFACTS",Data.ArtifactCount+" of 12 recovered",Data.ArtifactCount==12?"Your collection is complete. Carry its lesson into the final challenge.":"Three artifacts are hidden in each season. Search clearings, shelters and the edges of landmarks.");
             var world=FindAnyObjectByType<WorldCohesion>();
             for(int chapter=0;chapter<4;chapter++)
             {
