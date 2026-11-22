@@ -20,7 +20,7 @@ namespace AmbrosJourney.Journey
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]static void ResetStatics(){Busy=false;}
         public void Initialize(int chapter,WorldCohesion art)
         {
-            spring=FindAnyObjectByType<SpringGuide>();summer=FindAnyObjectByType<SummerLevel>();fall=FindAnyObjectByType<FallLevel>();winter=FindAnyObjectByType<WinterLevel>();
+            spring=JourneyWorld.FindInScene<SpringGuide>(this);summer=JourneyWorld.FindInScene<SummerLevel>(this);fall=JourneyWorld.FindInScene<FallLevel>(this);winter=JourneyWorld.FindInScene<WinterLevel>(this);
             player=JourneySession.Instance.Player();Transform portal;
             if(chapter==1){boss=spring.Boss.gameObject;portal=spring.ExitPortal;}
             else if(chapter==2){boss=summer.orc.gameObject;portal=summer.fallGate;RemoveFlags(summer.shields);summer.shields=new SpriteRenderer[0];}
@@ -38,7 +38,7 @@ namespace AmbrosJourney.Journey
             // Move standalone destination captions under their portal so they appear together.
             string caption=chapter==2?"FALL / PROMPT ENGINEERING":chapter==3?"WINTER / VERIFICATION":chapter==4?"ECHO CAVERN / WALK INSIDE":null;
             if(caption!=null)foreach(var label in FindObjectsByType<SeasonWorldLabel>(FindObjectsInactive.Include))
-                if(label.Caption==caption){label.transform.SetParent(portal,true);var visual=portal.GetComponent<SpriteRenderer>();if(visual)label.transform.position=portal.position+Vector3.up*(visual.bounds.size.y+.4f);}
+                if(label.gameObject.scene==gameObject.scene&&label.Caption==caption){label.transform.SetParent(portal,true);var visual=portal.GetComponent<SpriteRenderer>();if(visual)label.transform.position=portal.position+Vector3.up*(visual.bounds.size.y+.4f);}
             Exit=gameObject.AddComponent<PixelPortalReveal>();finished=Complete;Exit.Initialize(portal,finished);
             if(finished){boss.SetActive(false);if(spring)spring.ExitBarrier.SetActive(false);}
         }
@@ -83,7 +83,7 @@ namespace AmbrosJourney.Journey
             if(winter)Exit.SetReady(true); // Keep the natural cave; no portal-building effect here.
             else{GameAudio.Play(SoundCue.Portal,.6f);yield return Exit.Assemble();}
             if(spring)spring.ExitBarrier.SetActive(false);
-            RestoreCamera();finished=true;running=false;Busy=false;JourneySession.Instance?.SetCinematicVisible(false);JourneySession.Instance?.Save();
+            RestoreCamera();finished=true;running=false;Busy=false;JourneySession.Instance?.SetCinematicVisible(false);JourneySession.Instance?.CaptureChapter();
         }
         public void RevealHomePortal()
         {
@@ -95,7 +95,7 @@ namespace AmbrosJourney.Journey
             var body=player.GetComponent<Rigidbody2D>();if(body)body.linearVelocity=Vector2.zero;
             Focus(new Bounds(player.position,Vector3.one*2),Home.Portal.position);
             GameAudio.Play(SoundCue.Portal,.6f);yield return Home.Assemble();
-            RestoreCamera();running=false;Busy=false;JourneySession.Instance?.SetCinematicVisible(false);JourneySession.Instance?.Save();
+            RestoreCamera();running=false;Busy=false;JourneySession.Instance?.SetCinematicVisible(false);JourneySession.Instance?.CaptureChapter();
         }
         void Focus(Bounds bossBounds,Vector3 portal)
         {

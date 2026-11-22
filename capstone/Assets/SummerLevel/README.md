@@ -14,11 +14,11 @@ Open the inner `capstone` project with Unity **6000.6.2f1**. Use the main menu, 
 6. Three wards open the southern **Suncrest Guardian**, a golden sunflower-maned lion with leaf armor. Score **4/5** on its five questions. Wrong answers explain the issue; retries preserve missions.
 7. Earn Independent Thinker, recruit both Warriors, close the final conversation and walk through the unlocked Fall portal.
 
-Three optional artifacts are available. Progress, partial missions and exact locations are saved by JourneySession and survive chapter revisits. The 5-6 minute first-time pacing estimate remains unmeasured.
+Three optional artifacts are available. Progress, partial missions and chapter locations remain in memory for revisits during the current run. Closing or refreshing the game starts fresh. The 5-6 minute first-time pacing estimate remains unmeasured.
 
 ## Presentation and assets
 
-All seasons share Determination, parchment panels, question buttons, objective cards, framed labels, a journal and gold compass. Summer uses green accents. Its companions use the shared trail/formation behavior, including the Mage's walking frames. Normal controls, pause, saves and guidance are documented in the repository README and JourneyCompletion.
+All seasons share Determination, parchment panels, question buttons, objective cards, framed labels, a journal and gold compass. Summer uses green accents. Its companions use the shared trail/formation behavior, including the Mage's walking frames. Normal controls, pause, session behavior and guidance are documented in the repository README and JourneyCompletion.
 
 `SummerLevel` owns interactions; `SummerProgress` owns session state and guarded scoring; `SummerWorld` owns layout; `SummerPortalBridge` handles the Spring connection. The field named `orc` remains for source compatibility, but the active boss, labels and dialogue are Suncrest Guardian. `SeasonBossVisual` uses the new generated atlas and distinct idle/attack poses. Original Hero Pack art remains licensed source/fallback material; it is not the active guardian appearance.
 
@@ -28,10 +28,10 @@ The existing Summer terrain, character packs, supporting props, font/shader lice
 
 Interactive people and lesson objects have overhead **[E]** cards; artifacts use **[E]**. Cards follow their targets, avoid overlap and hide during conversations/journal views. The duplicate bottom interaction popup is removed; the controls bar remains. Correct answers explicitly say **Correct!** and displayed quiz scores use a fixed total. Courage/hearts and wrong-answer penalties are removed; retries retain completed lessons. [Current feedback changes](../../../docs/UserTestingFeedback.md)
 
-The Garden Warrior's label and repeated conversation retire after her guidance is finished, her dialogue has been read, or the garden is complete. Saved progress remembers the read dialogue; fresh journeys show the initial prompt again. The workshop Warrior and lesson targets remain available.
+The Garden Warrior's label and repeated conversation retire after her guidance is finished, her dialogue has been read, or the garden is complete. Current-run progress remembers the read dialogue; fresh journeys show the initial prompt again. The workshop Warrior and lesson targets remain available.
 
 ## Verification
 
-**Capstone > Summer > Validate Summer Progression** checks prerequisites, wrong answers, pattern order, privacy selection and boss thresholds. Hosted tests cover all 32 guardian combinations. The connected Unity checks cover live callbacks, portals, text fitting, boss animation hooks, saves and collection. Run them in an isolated checkout, not over unsaved Editor work.
+**Capstone > Summer > Validate Summer Progression** checks prerequisites, wrong answers, pattern order, privacy selection and boss thresholds. Hosted tests cover all 32 guardian combinations. The connected Unity checks cover live callbacks, portals, text fitting, boss animation hooks, current-run state and collection. Run them in an isolated checkout, not over unsaved Editor work.
 
 See `docs/Testing.md`, `docs/QuestionRefresh.md` and `docs/CurrentValidation.md`. First-time comprehension, pacing and audio balance still need people to play the game.

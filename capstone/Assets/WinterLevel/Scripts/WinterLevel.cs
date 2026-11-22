@@ -67,7 +67,7 @@ namespace AmbrosJourney.Winter
             if(restoringProgress||InputBlocked||!Progress.WinterComplete||Progress.InCave||Progress.CaveEntryExplained)return;
             if(!Progress.ReadCaveGuide())return;
             CompanionSpeech.Say(presentation,"Little Mage","The cave is open. Walk through the entrance when you are ready. Follow the lanterns, find the Echo Archive board, then face the final Keeper. J holds your notes.");
-            AmbrosJourney.Journey.JourneySession.Instance?.Save();
+            AmbrosJourney.Journey.JourneySession.Instance?.CaptureChapter();
         }
         public bool DismissPanel()
         {
@@ -151,7 +151,7 @@ namespace AmbrosJourney.Winter
         {
             if(Progress.WinterBossFinished)
             {
-                if(Progress.WinterComplete){PlaceLittleMage();Show("Winter crest earned / "+Progress.WinterBossScore+" of 5","The Winter crest is yours! Close this message to watch the Warden fade. The Little Mage will guide you as you walk. Enter the cave opening when you are ready.",()=>{Close();AmbrosJourney.Journey.JourneySession.Instance?.Save();});}
+                if(Progress.WinterComplete){PlaceLittleMage();Show("Winter crest earned / "+Progress.WinterBossScore+" of 5","The Winter crest is yours! Close this message to watch the Warden fade. The Little Mage will guide you as you walk. Enter the cave opening when you are ready.",()=>{Close();AmbrosJourney.Journey.JourneySession.Instance?.CaptureChapter();});}
                 else Show("Winter score / "+Progress.WinterBossScore+" of 5","Score 4/5 to pass. Review your field notes or try again; your lessons are safe.",()=>{Progress.BeginWinterBoss();WinterBossQuestion();});
                 return;
             }

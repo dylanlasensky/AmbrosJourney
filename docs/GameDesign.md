@@ -26,15 +26,15 @@ The final uses multi-selection, drag/click prompt assembly, ordering, matching a
 
 ## Exploration, art and presentation
 
-Spring targets about five minutes within a roughly thirty-minute full journey; Summer's 5-6 minute estimate and all pacing targets remain unmeasured. Fall's 99 x 93 tiles are about 2.5 times Summer's area. Rivers, branching paths and hedge turns make later navigation more complex. Winter adds snow, unsafe ice, landmark clues and a second map.
+Spring targets about five minutes within a roughly thirty-minute full journey; Summer's 5-6 minute estimate and all pacing targets remain unmeasured. Fall's 99 x 93 tiles are about 2.5 times Summer's area. Rivers, branching paths and hedge turns make later navigation more complex. Winter adds snow, fir groves, landmark clues and a second map.
 
 Keep routes readable, doorsteps connected and interaction areas clear. The world is whimsical top-down pixel art with natural seasonal scenery and signs of machine takeover. The new Blossom Guardian, Suncrest Guardian and Frostbound Warden use seasonal silhouettes and materials. The final Keeper is a larger ancient AI robot. Fall's existing Sentinel remains unchanged.
 
 All four seasons and menus use Determination, existing point sizes and shared parchment cards. Font leading is normalized without scaling glyphs; short labels are adjusted to fit rather than making the text smaller. A bright gold-and-cream, dark-outlined arrow rotates continuously toward the next required destination in every season. It stays available outdoors in Winter and inside the cave; players choose their walkable route. Companion captions appear automatically without stopping movement. First lessons still require E, and cave permission follows Warden victory without a separate NPC interaction. See [companion guidance](CompanionGuidance.md). Companions follow a safe breadcrumb spine with varied spacing/offsets and obstacle-aware narrowing.
 
-## Persistent journey
+## One-sitting journey
 
-Name entry, Continue, pause, save/return, confirmed reset, unlocked-season travel, twelve artifacts, Evidence Keeper and the PDF certificate are implemented. Saves retain exact positions/region, partial lessons, guardians and collectibles locally with a recovery copy. There are no cloud accounts or live AI calls. One profile is stored per device.
+Name entry, pause, confirmed end-run, unlocked-season travel, twelve artifacts, Evidence Keeper and the PDF certificate are implemented. Positions/region, partial lessons, guardians and collectibles remain in memory only for this run. Returning to an unlocked season keeps that run's progress. Closing or refreshing the game, or ending the run, starts fresh; previous saves are ignored without deletion. After the outro, the certificate stays available until a new journey or reload. There are no cloud accounts or live AI calls.
 
 Three artifacts per season encourage revisits. Completing the collection reveals the Evidence Compass lesson about privacy, original sources, independent evidence and uncertainty. These collectibles are optional; the final requires all lessons/crests, not all artifacts.
 
@@ -42,6 +42,6 @@ Three artifacts per season encourage revisits. Completing the collection reveals
 
 Open `capstone/` in Unity 6000.6.2f1. Runtime world builders and Resources prefabs own later seasons; coordinate before rebuilding scenes or assets. Commit required `.meta` files and preserve pack/font licenses. Keep Library, Temp, Logs and player builds out of source control. Legacy `orc` and skeleton fields remain compatibility/source references, not the displayed boss forms.
 
-The original Sprint Three deadline was Nov 4; the original weekly schedule remains planning context in the root README. Final Web/itch video and save checks, audience comprehension/difficulty/pacing tests, and target-hardware/audio checks remain outstanding release evidence. Implemented features are not proof that the game meets learning or performance goals.
+The original Sprint Three deadline was Nov 4; the original weekly schedule remains planning context in the root README. Final Web/itch video and session-lifecycle checks, audience comprehension/difficulty/pacing tests, and target-hardware/audio checks remain outstanding release evidence. Implemented features are not proof that the game meets learning or performance goals.
 
 Use [Journey completion](JourneyCompletion.md), [current questions](QuestionRefresh.md), [boss artwork](Bosses.md), [testing](Testing.md) and [current validation](CurrentValidation.md).

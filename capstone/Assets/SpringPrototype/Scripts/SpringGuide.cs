@@ -144,7 +144,7 @@ public class SpringGuide : MonoBehaviour
         controlsSeen=true;welcomeOpen=false;DialogueOpen=false;
         if(welcomeUI){Destroy(welcomeUI.gameObject);welcomeUI=null;}
         BeginOrientation();
-        var session=AmbrosJourney.Journey.JourneySession.Instance;if(session)session.Save();
+        var session=AmbrosJourney.Journey.JourneySession.Instance;if(session)session.CaptureChapter();
     }
     void BeginOrientation()
     {

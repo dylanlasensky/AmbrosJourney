@@ -2,7 +2,7 @@
 
 Use the project's exact Unity version, 6000.6.2f1, with its matching Web Build Support module. An older editor's Web module cannot substitute for it. Close other Editor instances for this project before a batch build.
 
-The editor methods `AmbrosJourney.Journey.Editor.JourneyWebBuild.BuildQA` and `BuildSubmission` build Intro followed by Spring. QA enables Unity development diagnostics and exports uncompressed files; submission uses release build options and writes a ZIP beside the exported folder. Neither mode adds gameplay shortcuts or changes saves. Both use the same responsive template and original MP4s. The methods reject a nonempty output directory, honor `-buildOutput`, check the build report, and verify that the videos match their source hashes. Submission also checks itch.io's default file count, path length and size limits before making the ZIP, with `index.html` at its root.
+The editor methods `AmbrosJourney.Journey.Editor.JourneyWebBuild.BuildQA` and `BuildSubmission` build Intro followed by Spring. QA enables Unity development diagnostics and exports uncompressed files; submission uses release build options and writes a ZIP beside the exported folder. Neither mode adds gameplay shortcuts; both use the same one-sitting session behavior. Both use the same responsive template and original MP4s. The methods reject a nonempty output directory, honor `-buildOutput`, check the build report, and verify that the videos match their source hashes. Submission also checks itch.io's default file count, path length and size limits before making the ZIP, with `index.html` at its root.
 
 Preferred CLI (from the repository root):
 
@@ -17,13 +17,13 @@ The canvas fills its iframe at embedded and fullscreen sizes. It keeps Unity's a
 
 ## Browser checks before submission
 
-Serve the build over HTTP with MP4 range support; the submission build also needs gzip headers for its compressed files. Put it in an iframe whose parent runs on a different localhost port. The parent's fullscreen button should request fullscreen for the iframe wrapper without refocusing the game. This reproduces the focus boundary of itch's outer fullscreen control while isolating local test saves from the real itch origin. Do not clear the user's normal browser storage.
+Serve the build over HTTP with MP4 range support; the submission build also needs gzip headers for its compressed files. Put it in an iframe whose parent runs on a different localhost port. The parent's fullscreen button should request fullscreen for the iframe wrapper without refocusing the game. This reproduces the focus boundary of itch's outer fullscreen control while keeping test browser state separate from the real itch origin. Do not clear the user's normal browser storage.
 
-1. Start a new local test profile. While the intro is visibly moving, press the parent's fullscreen button. Confirm picture, sound and captions continue without clicking the game afterward. Exit fullscreen, resize, and repeat. Play the intro through to Spring.
+1. Start a new local test run. While the intro is visibly moving, press the parent's fullscreen button. Confirm picture, sound and captions continue without clicking the game afterward. Exit fullscreen, resize, and repeat. Play the intro through to Spring.
 2. Verify keyboard movement and interaction, all four seasons, direct arrow guidance, boss questions, companion captions and the cave. Test keyboard pause/resume after a fullscreen change. Confirm returning from a hidden browser tab is usable; browsers may throttle hidden tabs.
-3. Save at a recognizable position with progress, refresh the iframe, and confirm Continue restores it. Reset the test profile, refresh, and confirm the old progress does not return. Leave the real itch save untouched.
+3. Make lesson/artifact progress, refresh the iframe, and confirm the game starts fresh with no resumed run. Existing legacy checkpoints must be ignored. Start another journey and confirm the previous run's lessons, artifacts and completion do not carry over. Pause/resume must retain the current run while the page stays open.
 4. Finish the final boss and repeat the fullscreen test during the outro. Confirm only the film's audio plays, no game titles/popups cover it, and the certificate flow works afterward. Gameplay should resume its normal background-pause behavior after films.
-5. Repeat critical checks on the release export, not only the development build. Check the browser console for errors and network requests for missing files. Inspect the ZIP's root before the team uploads it, then repeat intro/outro fullscreen and refresh persistence on the uploaded itch version.
+5. Repeat critical checks on the release export, not only the development build. Check the browser console for errors and network requests for missing files. Inspect the ZIP's root before the team uploads it, then repeat intro/outro fullscreen and fresh-start-after-refresh behavior on the uploaded itch version.
 
 `tests/check_web_template.cjs` checks template configuration and loading/error behavior; it does not execute WebAssembly or prove film playback. Native tests and a successful Web export also do not replace these browser checks. Record the actual build and browser results separately; this document is a procedure, not a claim that they passed.
 

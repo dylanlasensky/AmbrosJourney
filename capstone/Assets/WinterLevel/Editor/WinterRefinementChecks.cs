@@ -22,7 +22,7 @@ public static class WinterRefinementChecks
     }
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]static void Isolate()
     {
-        if(SessionState.GetBool(Active,false)){JourneySession.TestMode=true;JourneySession.SavePathOverride=Path.GetFullPath("Logs/WinterRefinements/save.json");}
+        if(SessionState.GetBool(Active,false)){JourneySession.TestMode=true;}
     }
     public static void Run()
     {
@@ -44,7 +44,7 @@ public static class WinterRefinementChecks
             Check(error==null,error);Check(DateTime.UtcNow<DateTime.Parse(SessionState.GetString(Active+"Deadline","")).ToUniversalTime(),"Timed out at stage "+stage);
             Application.runInBackground=true;EditorApplication.QueuePlayerLoopUpdate();typeof(EditorApplication).GetMethod("SignalTick",BindingFlags.Static|BindingFlags.NonPublic|BindingFlags.Public)?.Invoke(null,null);
             if(!EditorApplication.isPlaying)return;
-            JourneySession.TestMode=true;JourneySession.SavePathOverride=Path.GetFullPath("Logs/WinterRefinements/save.json");
+            JourneySession.TestMode=true;
             if(ready==0)ready=EditorApplication.timeSinceStartup+2;if(EditorApplication.timeSinceStartup<ready)return;
             var session=JourneySession.Instance;var l=UnityEngine.Object.FindAnyObjectByType<WinterLevel>();var sequence=UnityEngine.Object.FindAnyObjectByType<BossPortalSequence>();
             if(!l||!sequence)return;var ui=l.GetComponentInChildren<SeasonOverlay>();
@@ -78,8 +78,8 @@ public static class WinterRefinementChecks
                 Check(l.Progress.CaveGuideRead&&l.Progress.CanEnterCave&&!l.Progress.InCave&&!l.InputBlocked,"Victory closes into passive cave guidance without a required NPC stop");
                 Check(l.Destination()==(Vector2)l.caveEntrance.position,"Next objective points straight to the cave entrance");
                 var beforeGuide=JsonUtility.FromJson<WinterProgress>(JsonUtility.ToJson(l.Progress));beforeGuide.CaveGuideRead=false;
-                l.RestoreProgress(beforeGuide);Call(l,"OfferCaveGuidance");Check(l.Progress.CaveGuideRead&&!l.IsDialogueOpen,"Older completed-Warden checkpoint receives automatic cave guidance");
-                var saved=JsonUtility.FromJson<WinterProgress>(JsonUtility.ToJson(l.Progress));Check(saved.CaveGuideRead&&saved.CanEnterCave&&saved.Valid(),"Cave permission is saved");
+                l.RestoreProgress(beforeGuide);Call(l,"OfferCaveGuidance");Check(l.Progress.CaveGuideRead&&!l.IsDialogueOpen,"Completed-Warden chapter state receives automatic cave guidance");
+                var saved=JsonUtility.FromJson<WinterProgress>(JsonUtility.ToJson(l.Progress));Check(saved.CaveGuideRead&&saved.CanEnterCave&&saved.Valid(),"Cave permission remains in current-run progress");
                 l.RestoreProgress(saved);Move(l,WinterWorld.Entrance+Vector2.down*1.6f);SeasonIntegrationChecks.Capture("WinterNaturalCaveAfterWarden");
                 Move(l,WinterWorld.Entrance);stage=4;ready=EditorApplication.timeSinceStartup+.3;
             }
@@ -105,25 +105,24 @@ public static class WinterRefinementChecks
                 Check(visibility.Reveals(new Vector2(124,31))&&visibility.Reveals(new Vector2(145,32))&&visibility.Reveals(l.guardian.transform.position),"Whole boss chamber and Keeper are visible");
                 Check(!visibility.Reveals(new Vector2(134,12))&&!visibility.Reveals(new Vector2(104,10)),"Bright chamber does not reveal tunnels or archive");
                 var checkpoint=JsonUtility.FromJson<WinterProgress>(JsonUtility.ToJson(l.Progress));var position=l.player.transform.position;l.RestoreProgress(checkpoint);
-                Check(l.player.transform.position==position&&visibility.ChamberLight==1,"Reloading an in-room checkpoint restores light without moving the player");
+                Check(l.player.transform.position==position&&visibility.ChamberLight==1,"Restoring in-room chapter state retains light without moving the player");
                 Time.timeScale=0;Call(visibility,"LateUpdate");Check(visibility.ChamberLight==1,"Paused chamber remains lit");Time.timeScale=1;
                 Camera.main.transform.position=new Vector3(134.5f,27,-10);Call(Camera.main.GetComponent<WinterCamera>(),"LateUpdate");
                 var bossBounds=l.guardian.GetComponent<SpriteRenderer>().bounds;
                 Check(Camera.main.WorldToViewportPoint(bossBounds.min).y>0&&Camera.main.WorldToViewportPoint(bossBounds.max).y<.92f,"Chamber framing fits the Keeper including overhead label clearance");
                 SeasonIntegrationChecks.Capture("EchoChamberLit");
-                Check(session.Save(),"Save boss-room checkpoint to isolated test storage");
-                var disk=JourneyStorage.Read(JourneySession.SavePath,JsonUtility.FromJson<JourneyData>,d=>d.Valid());
-                Check(disk!=null&&disk.chapter==4&&disk.chapters[3].inCave&&disk.chapters[3].x==position.x&&disk.chapters[3].y==position.y,"Disk checkpoint retains the exact lit-room position");
-                var diskProgress=JsonUtility.FromJson<WinterProgress>(disk.chapters[3].progress);Check(diskProgress.Valid(),"Saved Winter progress passes its validator");
-                File.WriteAllText("Logs/WinterRefinements/chamber-profile.json",JsonUtility.ToJson(disk));
-                Move(l,new Vector2(134,12));l.RestoreProgress(diskProgress);Move(l,new Vector2(disk.chapters[3].x,disk.chapters[3].y));Call(visibility,"LateUpdate");
-                Check(visibility.ChamberLight==1,"Restoring the disk checkpoint immediately illuminates the chamber");
+                Check(session.CaptureChapter(),"Capture boss-room state for current-run revisits");
+                var captured=session.Data.chapters[3];
+                Check(captured.visited&&captured.inCave&&captured.x==position.x&&captured.y==position.y,"Current-run chapter state retains the exact lit-room position");
+                var capturedProgress=JsonUtility.FromJson<WinterProgress>(captured.progress);Check(capturedProgress.Valid(),"Captured Winter progress passes its validator");
+                Move(l,new Vector2(134,12));l.RestoreProgress(capturedProgress);Move(l,new Vector2(captured.x,captured.y));Call(visibility,"LateUpdate");
+                Check(visibility.ChamberLight==1,"Current-run chapter restoration immediately illuminates the chamber");
                 l.Interact(4);Next(l);Check(l.IsDialogueOpen,"Final quiz opens in the illuminated room");SeasonIntegrationChecks.Capture("EchoChamberQuiz");l.DismissPanel();
                 var failed=JsonUtility.FromJson<WinterProgress>(JsonUtility.ToJson(checkpoint));failed.BossStarted=failed.BossFinished=true;failed.BossQuestion=8;failed.BossScore=0;l.RestoreProgress(failed);
                 Check(!l.Progress.Complete&&visibility.ChamberLight==1,"A failed quiz does not darken the occupied room");
                 Move(l,new Vector2(134,12));Check(visibility.ChamberLight==0,"Leaving before victory restores exploration darkness");
                 var won=JsonUtility.FromJson<WinterProgress>(JsonUtility.ToJson(failed));won.BossScore=8;won.Complete=true;l.RestoreProgress(won);Call(visibility,"LateUpdate");
-                Check(visibility.ChamberLight==1&&visibility.Reveals(new Vector2(124,31))&&!visibility.Reveals(new Vector2(134,3)),"Victory keeps only the boss chamber illuminated even from a tunnel checkpoint");
+                Check(visibility.ChamberLight==1&&visibility.Reveals(new Vector2(124,31))&&!visibility.Reveals(new Vector2(134,3)),"Victory keeps only the boss chamber illuminated even from the tunnel");
                 Check(visibility.LabelRange==3.8f,"Completed-room light does not expand tunnel label range");
                 Move(l,new Vector2(134,23));Camera.main.transform.position=new Vector3(134.5f,27,-10);SeasonIntegrationChecks.Capture("EchoChamberVictory");
                 l.RestoreProgress(checkpoint);Move(l,l.caveExit.position);l.World.ChangeRegion(false);stage=5;ready=EditorApplication.timeSinceStartup+.3;
@@ -132,8 +131,8 @@ public static class WinterRefinementChecks
             {
                 Call(l,"RefreshWorld");Call(ui,"LateUpdate");Check(!l.Progress.InCave&&!ui.CompassObscured&&ui.Arrow.gameObject.activeSelf,"Outdoor guidance remains visible after exiting cave");var visibility=l.World.GetComponent<CaveVisibility>();Call(visibility,"LateUpdate");Check(!visibility.IsVisible,"Cave darkness switches off outside");
                 var legacy=JsonUtility.FromJson<WinterProgress>(JsonUtility.ToJson(l.Progress));legacy.CaveGuideRead=false;
-                Check(legacy.CaveDiscovered&&legacy.Valid()&&legacy.CanEnterCave,"Older saves which already visited the cave remain usable");
-                Finish(true,"Permanent guidance including old saves; centered Warden; no outdoor note crystals; player visibility circle and six lantern pools; localized boss chamber fade, full room visibility, matching labels, pause and checkpoint restore, failed quiz and persistent victory light; Warden dissolves without a portal overlay/build; cave guidance unlocks automatically after victory feedback, survives reload, supports older completed-Warden saves and permits automatic doorway entry.");
+                Check(legacy.CaveDiscovered&&legacy.Valid()&&legacy.CanEnterCave,"Current-run cave visits retain entry permission");
+                Finish(true,"Permanent guidance across chapter revisits; centered Warden; no outdoor note crystals; player visibility circle and six lantern pools; localized boss chamber fade, full room visibility, matching labels, pause and current-run chapter restore, failed quiz and persistent victory light; Warden dissolves without a portal overlay/build; cave guidance unlocks automatically after victory feedback, survives chapter revisit, supports pending completed-Warden guidance and permits automatic doorway entry.");
             }
         }
         catch(Exception e){Finish(false,e.ToString());}

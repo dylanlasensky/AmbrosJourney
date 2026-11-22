@@ -73,7 +73,6 @@ public static class SeasonIntegrationChecks
             SignalTick?.Invoke(null, null);
             if (!EditorApplication.isPlaying) return;
             AmbrosJourney.Journey.JourneySession.TestMode=true;
-            AmbrosJourney.Journey.JourneySession.SavePathOverride=Path.GetFullPath("Logs/SeasonChecks/test-save.json");
             if (readyAt == 0) readyAt = EditorApplication.timeSinceStartup + 3;
             if (EditorApplication.timeSinceStartup < readyAt) return;
             int stage = SessionState.GetInt(Key + "stage", 0);
@@ -171,7 +170,7 @@ public static class SeasonIntegrationChecks
                 var l=UnityEngine.Object.FindAnyObjectByType<WinterLevel>();l.player.transform.position=l.caveExit.position;l.player.GetComponent<Rigidbody2D>().position=l.caveExit.position;l.World.ChangeRegion(false);l.player.transform.position=WinterWorld.Entrance+Vector2.down*1.5f;l.player.GetComponent<Rigidbody2D>().position=l.player.transform.position;Advance(7);
             }
             else if(stage==7){Capture("WinterEntrance");Advance(8);}
-            else if(stage>=8){if(AmbrosJourney.Journey.Editor.JourneyPlayChecks.Step(stage-8))Finish(true,"All four seasons, both Winter bosses, menus, save/restore, artifacts, certificate and reset passed.");else Advance(stage+1);}
+            else if(stage>=8){if(AmbrosJourney.Journey.Editor.JourneyPlayChecks.Step(stage-8))Finish(true,"All four seasons, both Winter bosses, menus, current-run chapter revisits, artifacts, certificate and reset passed.");else Advance(stage+1);}
         }
         catch (Exception e) { Finish(false, e.ToString()); }
     }

@@ -1,5 +1,7 @@
 # Moonbranch compass and world polish
 
+**November 22 session policy:** Persistent progress saving has been removed. New launches and browser refreshes start fresh; unlocked-season revisits retain progress only during the current run. Older save files/storage are ignored and left untouched. Results below are historical evidence for their named builds, including their former save/Continue behavior; they do not verify this change.
+
 The original polish pass was based on `69c2564`. Current behavior below includes the November 21 feedback; the validation section remains evidence from the earlier pass. See [current validation](CurrentValidation.md).
 
 - The active guide is a 52-pixel gold-and-cream, single-headed arrow with an opaque dark outline near Ambros. It rotates continuously toward the next required destination and has a slow 0–5% size pulse. It draws above nearby name cards but below lessons and the journal. It stays available outdoors in Winter and inside Echo Cavern, with no frozen-arrow notice. Direct guidance does not run path searches; the player chooses a walkable route around scenery. Older seasonal compass artwork remains provenance.

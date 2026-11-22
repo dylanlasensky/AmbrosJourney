@@ -28,18 +28,28 @@ namespace AmbrosJourney.Journey
         {
             var o=new GameObject(name);o.transform.SetParent(parent?parent:transform);o.transform.position=position;var r=o.AddComponent<SpriteRenderer>();r.sprite=sprite;r.sharedMaterial=atlasMaterial;r.sortingOrder=100-Mathf.RoundToInt(position.y*10);return r;
         }
+        internal static T FindInScene<T>(Component owner) where T:Component
+        {
+            foreach(var root in owner.gameObject.scene.GetRootGameObjects())
+            {
+                if(!root.activeInHierarchy)continue;
+                var value=root.GetComponentInChildren<T>();if(value)return value;
+            }
+            return null;
+        }
         void Start()
         {
-            chapter=JourneySession.CurrentChapter();winter=FindAnyObjectByType<WinterLevel>();spring=FindAnyObjectByType<SpringGuide>();summer=FindAnyObjectByType<AmbrosJourney.Summer.SummerLevel>();fall=FindAnyObjectByType<AmbrosJourney.Fall.FallLevel>();player=JourneySession.Instance.Player();if(chapter==0)return;
+            chapter=JourneySession.CurrentChapter();winter=FindInScene<WinterLevel>(this);spring=FindInScene<SpringGuide>(this);summer=FindInScene<AmbrosJourney.Summer.SummerLevel>(this);fall=FindInScene<AmbrosJourney.Fall.FallLevel>(this);player=JourneySession.Instance.Player();if(chapter==0)return;
             var texture=Resources.Load<Texture2D>("Journey/WorldAtlas");atlasMaterial=new Material(Shader.Find("Sprites/Default")){mainTexture=texture};owned.Add(atlasMaterial);
             pixel=Sprite.Create(Texture2D.whiteTexture,new Rect(0,0,1,1),Vector2.one*.5f,1);owned.Add(pixel);pixelMaterial=new Material(Shader.Find("Sprites/Default")){mainTexture=Texture2D.whiteTexture};owned.Add(pixelMaterial);
             foreach(var r in FindObjectsByType<SpriteRenderer>())
             {
+                if(r.gameObject.scene!=gameObject.scene)continue;
                 string n=r.name.ToLowerInvariant();
                 if(n.Contains("lantern")&&r.sprite)lanterns.Add(r);
             }
             var cohesion=gameObject.AddComponent<WorldCohesion>();cohesion.Build(chapter,winter);
-            lanterns.Clear();foreach(var light in FindObjectsByType<SpriteRenderer>(FindObjectsInactive.Include))if(light.name.ToLowerInvariant().Contains("lantern"))lanterns.Add(light);
+            lanterns.Clear();foreach(var light in FindObjectsByType<SpriteRenderer>(FindObjectsInactive.Include))if(light.gameObject.scene==gameObject.scene&&light.name.ToLowerInvariant().Contains("lantern"))lanterns.Add(light);
             for(int i=0;i<3;i++)
             {
                 int id=(chapter-1)*3+i;var position=FindClear(ArtifactPositions[id]);
@@ -74,6 +84,7 @@ namespace AmbrosJourney.Journey
         {
             foreach(var map in FindObjectsByType<Tilemap>(FindObjectsInactive.Include))
             {
+                if(map.gameObject.scene!=gameObject.scene)continue;
                 string name=map.name.ToLowerInvariant();if(!name.Contains("pond")&&!name.Contains("river")&&!name.Contains("lake"))continue;
                 var cells=new HashSet<Vector3Int>();foreach(var cell in map.cellBounds.allPositionsWithin)if(map.HasTile(cell))cells.Add(cell);
                 var variants=new Dictionary<int,Tile>();

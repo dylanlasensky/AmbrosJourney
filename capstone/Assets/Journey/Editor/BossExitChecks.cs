@@ -18,7 +18,7 @@ using AmbrosJourney.Winter;
 public static class BossExitChecks
 {
     const string Key="BossExitChecks.";const BindingFlags Flags=BindingFlags.Instance|BindingFlags.NonPublic;
-    static double next;static int checks;static bool sawDust,sawAssembly;static Vector2 rPosition;static int rActor;
+    static double next;static int checks;static bool sawDust,sawAssembly;static Vector2 rPosition;static int rActor;static string certificateName,certificateDate;
     static readonly MethodInfo SignalTick=typeof(EditorApplication).GetMethod("SignalTick",BindingFlags.Static|BindingFlags.Public|BindingFlags.NonPublic);
     static BossExitChecks(){EditorApplication.update+=Tick;Application.logMessageReceived+=(m,s,t)=>{if(SessionState.GetBool(Key+"active",false)&&(t==LogType.Error||t==LogType.Exception||t==LogType.Assert))SessionState.SetString(Key+"error",m);};}
     public static void Run()
@@ -45,7 +45,7 @@ public static class BossExitChecks
             Check(SessionState.GetString(Key+"error","")=="",SessionState.GetString(Key+"error",""));
             Check(DateTime.UtcNow<DateTime.Parse(SessionState.GetString(Key+"deadline","")).ToUniversalTime(),"Timed out at stage "+SessionState.GetInt(Key+"stage",0));
             Application.runInBackground=true;EditorApplication.QueuePlayerLoopUpdate();SignalTick?.Invoke(null,null);
-            if(!EditorApplication.isPlaying)return;JourneySession.TestMode=true;JourneySession.SavePathOverride=Path.GetFullPath("Logs/BossExitChecks/save.json");
+            if(!EditorApplication.isPlaying)return;JourneySession.TestMode=true;
             if(next==0)next=EditorApplication.timeSinceStartup+3;if(EditorApplication.timeSinceStartup<next)return;
             var session=JourneySession.Instance;var seq=Find<BossPortalSequence>();int stage=SessionState.GetInt(Key+"stage",0);
             if(stage==0)
@@ -143,7 +143,7 @@ public static class BossExitChecks
                 Check(File.Exists(JourneyCertificate.LastExportPath),"Certificate PDF exports");
                 var ui=session.GetComponentInChildren<JourneyUI>();ui.GetComponentsInChildren<UnityEngine.UI.Button>().First(b=>b.GetComponentInChildren<TMPro.TMP_Text>().text=="Exit").onClick.Invoke();
                 Check(!session.Paused&&Find<WinterLevel>().Progress.InCave&&SceneManager.GetActiveScene().name=="Winter","Exit resumes cave without loading menu");
-                Check(BossPortalSequence.Busy&&!seq.Home.Ready&&session.Data.homePortalOpened,"Exit starts saved home portal assembly");sawAssembly=false;Advance(19);
+                Check(BossPortalSequence.Busy&&!seq.Home.Ready&&session.Data.homePortalOpened,"Exit starts current-run home portal assembly");sawAssembly=false;Advance(19);
             }
             else if(stage==19)
             {
@@ -154,14 +154,14 @@ public static class BossExitChecks
             else if(stage==190)
             {
                 SeasonIntegrationChecks.Capture("HomePortalReady");session.ShowCertificate();session.HandleBack();Check(!session.Paused&&seq.Home.Ready&&!BossPortalSequence.Busy,"Certificate Escape resumes cave without replay");
-                session.Save();session.ReturnToMenu();Advance(20,2);
+                certificateName=session.Data.playerName;certificateDate=session.Data.completedOn;session.CaptureChapter();session.LoadChapter(1);Advance(20,2);
             }
-            else if(stage==20){Check(SceneManager.GetActiveScene().name=="Intro","Save and return reaches menu");session.LoadChapter(4);Advance(201,3);}
+            else if(stage==20){Check(SceneManager.GetActiveScene().name=="Spring"&&session.Data.finished,"Current-run chapter revisit retains completion");session.LoadChapter(4);Advance(201,3);}
             else if(stage==201)
             {
                 if(!seq||!seq.Home)return;Check(seq.Exit.Ready&&seq.Home.Ready&&!BossPortalSequence.Busy,"Completed seasonal and home portals restore instantly");
-                Check(!Find<WinterLevel>().winterGuardian.gameObject.activeSelf,"Defeated Warden remains gone after reload");
-                Check(!Find<WinterLevel>().guardian.GetComponent<SpriteRenderer>().enabled,"Defeated final boss remains gone after reload");
+                Check(!Find<WinterLevel>().winterGuardian.gameObject.activeSelf,"Defeated Warden remains gone on current-run revisit");
+                Check(!Find<WinterLevel>().guardian.GetComponent<SpriteRenderer>().enabled,"Defeated final boss remains gone on current-run revisit");
                 Move(seq.Home.Portal.position+Vector3.down*3);Advance(21);
             }
             else if(stage==21){Move(seq.Home.Portal.position);Advance(22,2);}
@@ -179,9 +179,21 @@ public static class BossExitChecks
                     }
                     return;
                 }
-                Check(session.Data.outroSeen,"Home portal finishes the final video");
-                Check(SceneManager.GetActiveScene().name=="Intro","Walking through home portal plays final video then loads main menu");session.ShowCertificate();session.HandleBack();Check(SceneManager.GetActiveScene().name=="Intro"&&!session.Paused,"Certificate from main menu returns to menu");
-                Finish(true,"All four seasonal boss quizzes, failure/pass thresholds, progressive boss dissolves, pixel portal builds, real automatic transitions, R removal in all controllers, final interactive quiz, certificate PDF and cave Exit/Escape, saved completed portals and home-to-menu ending passed.");
+                var menuUI=session.GetComponentInChildren<JourneyUI>();var draft=menuUI.GetComponentInChildren<TMPro.TMP_InputField>();
+                if(!draft)return; // Intro must finish building its menu after the scene transition.
+                Check(session.Data.outroSeen&&session.Data.finished&&!session.Data.started,"Home portal finishes the final video and keeps only the earned certificate available");Check(!menuUI.transform.Find("Continue"),"Completed main menu has no Continue action");
+                Check(session.Data.playerName==certificateName&&session.Data.completedOn==certificateDate,"Completion menu retains the earned certificate identity");
+                draft.text="Next Explorer";
+                menuUI.GetComponentsInChildren<UnityEngine.UI.Button>().First(button=>button.name=="View Certificate").onClick.Invoke();
+                Check(menuUI.GetComponentsInChildren<TMPro.TMP_Text>().First(text=>text.name=="Certificate player name").text==certificateName&&menuUI.GetComponentsInChildren<TMPro.TMP_Text>().First(text=>text.name=="Certificate completion date").text==certificateDate,"Typing the next name never changes the earned certificate");
+                session.HandleBack();Check(SceneManager.GetActiveScene().name=="Intro"&&!session.Paused,"Certificate from main menu returns to menu");
+                Check(menuUI.GetComponentInChildren<TMPro.TMP_InputField>().text=="Next Explorer","Opening the certificate directly preserves the new explorer draft");
+                menuUI.GetComponentInChildren<TMPro.TMP_InputField>().text="Another Explorer";
+                menuUI.GetComponentsInChildren<UnityEngine.UI.Button>().First(button=>button.name=="Settings").onClick.Invoke();
+                menuUI.GetComponentsInChildren<UnityEngine.UI.Button>().First(button=>button.name=="Back").onClick.Invoke();
+                Check(menuUI.GetComponentInChildren<TMPro.TMP_InputField>().text=="Another Explorer","Settings retains the new explorer draft");
+                Check(session.Data.playerName==certificateName&&session.Data.completedOn==certificateDate,"Draft and settings callbacks preserve the original certificate identity");
+                Finish(true,"All four seasonal boss quizzes, failure/pass thresholds, progressive boss dissolves, pixel portal builds, real automatic transitions, R removal in all controllers, final interactive quiz, certificate PDF and cave Exit/Escape, current-run completed portals and certificate-only home-to-menu ending passed.");
             }
         }
         catch(Exception e){Finish(false,e.ToString());}

@@ -56,7 +56,7 @@ namespace AmbrosJourney.Journey
         SpriteRenderer Prop(string label,int index,Vector2 position,float width,Transform parent=null)
         {
             Vector2[][] keepClear={new[]{new Vector2(-18,16),new Vector2(-14,12),new Vector2(-21,5),new Vector2(7,1),new Vector2(21,-12)},new[]{new Vector2(0,22),new Vector2(-18,12),new Vector2(-15,-6),new Vector2(19,8)},new[]{new Vector2(-38,34),new Vector2(-29,28),new Vector2(-29,8),new Vector2(27,26),new Vector2(28,-22)},new[]{WinterLevel.Spawn,new Vector2(-26,-6),new Vector2(23,7),WinterWorld.Entrance}};
-            var trails=FindObjectsByType<NaturalTrail>();
+            var trails=FindObjectsByType<NaturalTrail>().Where(t=>t.gameObject.scene==gameObject.scene).ToArray();
             Vector2 chosen=position;bool found=false;
             foreach(var offset in new[]{Vector2.zero,Vector2.left*1.6f,Vector2.right*1.6f,Vector2.up*1.6f,Vector2.down*1.6f,Vector2.left*3,Vector2.right*3,Vector2.up*3,Vector2.down*3})
             {
@@ -84,7 +84,7 @@ namespace AmbrosJourney.Journey
         public void Build(int chapter,WinterLevel winter)
         {
             season=chapter;outside=winter?winter.World.Outdoors.transform:transform;
-            original=FindObjectsByType<SpriteRenderer>(FindObjectsInactive.Include);
+            original=FindObjectsByType<SpriteRenderer>(FindObjectsInactive.Include).Where(r=>r.gameObject.scene==gameObject.scene).ToArray();
             foreach(var r in original)
             {
                 string name=r.name.ToLowerInvariant();
@@ -109,7 +109,7 @@ namespace AmbrosJourney.Journey
                 }
             }
             AnchorPortals();
-            var trails=FindObjectsByType<NaturalTrail>();
+            var trails=FindObjectsByType<NaturalTrail>().Where(t=>t.gameObject.scene==gameObject.scene).ToArray();
             foreach(var r in original)if(r&&Loose(r)&&trails.Any(t=>t.Near(r.transform.position,Tree(r)?1.5f:.5f)))Remove(r.gameObject);
             ThinScenery();
             if(season==2)ClearRect(new Rect(-26,-16,8,7));

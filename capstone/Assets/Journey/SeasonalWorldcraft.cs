@@ -65,7 +65,7 @@ namespace AmbrosJourney.Journey
         void Detail(string label,int index,float x,float y,float width)
         {
             var sprite=Art("SeasonalDetails",index,width);
-            var trails=FindObjectsByType<NaturalTrail>();
+            var trails=FindObjectsByType<NaturalTrail>().Where(t=>t.gameObject.scene==gameObject.scene).ToArray();
             var anchor=new Vector2(x,y);
             // Search only within the authored cluster. Do not drift into an unrelated landmark.
             foreach(var offset in new[]{Vector2.zero,new Vector2(-1.2f,0),new Vector2(1.2f,0),new Vector2(0,-1.2f),new Vector2(0,1.2f)})
@@ -117,7 +117,7 @@ namespace AmbrosJourney.Journey
                 ClearSegment(position,connection);
                 NaturalTrail.Approach(portal.transform.parent,season,1.65f,position,connection);
                 PortalThresholds.Add(position);
-                foreach(var label in FindObjectsByType<SeasonWorldLabel>())
+                foreach(var label in FindObjectsByType<SeasonWorldLabel>().Where(l=>l.gameObject.scene==gameObject.scene))
                 {
                     if(Vector2.Distance(label.transform.position,previous+Vector2.up*3)<2&&
                        !string.IsNullOrEmpty(label.Caption)&&(label.Caption.Contains("ARRIVAL")||label.Caption.Contains(" / ")))

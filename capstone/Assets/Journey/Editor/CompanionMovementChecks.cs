@@ -30,7 +30,7 @@ namespace AmbrosJourney.Journey.Editor
             if(!SessionState.GetBool(Key,false))return;
             try
             {
-                JourneySession.TestMode=true;JourneySession.SavePathOverride=Path.GetFullPath("Logs/SeasonChecks/companion-save.json");
+                JourneySession.TestMode=true;
                 Application.runInBackground=true;EditorApplication.QueuePlayerLoopUpdate();Signal?.Invoke(null,null);
                 if(deadline==0)deadline=EditorApplication.timeSinceStartup+120;
                 Require(EditorApplication.timeSinceStartup<deadline,"Companion check timed out");

@@ -66,7 +66,7 @@ namespace AmbrosJourney.Presentation.Editor
                 Move(level.player,level.mage.position);Check((int)level.GetType().GetMethod("Nearby",Private).Invoke(level,null)!=-1,"Mage does not consume E");
                 PassiveNames(level.mage);Caption(level.GetComponentInChildren<SeasonOverlay>(),()=>level.DialogueOpen||JourneySession.Blocked);
             }
-            finally{level.RestoreProgress(initial);Move(level.player,position);JourneySession.Instance.Save();}
+            finally{level.RestoreProgress(initial);Move(level.player,position);JourneySession.Instance.CaptureChapter();}
         }
         public static void Summer(SummerLevel level)
         {
@@ -83,11 +83,11 @@ namespace AmbrosJourney.Presentation.Editor
                 Move(level.maleWarrior.transform,SummerLevel.WorkshopGuide);Move(level.femaleWarrior.transform,SummerLevel.WorkshopPartner);Move(level.player.transform,level.workshop.position);
                 level.maleWarrior.Guidance.Step(level.maleWarrior.transform,level.player.transform,false,.1f);level.femaleWarrior.Guidance.Step(level.femaleWarrior.transform,level.player.transform,false,.1f);Call(level,"UpdateGuidance");
                 Check(level.Progress.GuideArrived&&!level.InputBlocked&&level.Progress.WorkshopQuestion==0,"Arrival tip does not open or answer the workshop");FitCaption(level.GetComponentInChildren<SeasonOverlay>());
-                var arrived=JsonUtility.FromJson<SummerProgress>(JsonUtility.ToJson(level.Progress));level.RestoreProgress(arrived);Check(!level.InputBlocked&&level.maleWarrior.Guidance==null,"Reload preserves finished escort without reopening dialogue");
+                var arrived=JsonUtility.FromJson<SummerProgress>(JsonUtility.ToJson(level.Progress));level.RestoreProgress(arrived);Check(!level.InputBlocked&&level.maleWarrior.Guidance==null,"Chapter restoration preserves finished escort without reopening dialogue");
                 level.Interact(1);Check(level.IsDialogueOpen,"Workshop still opens deliberately with E");level.DismissPanel();
                 PassiveNames(level.maleWarrior.transform,level.femaleWarrior.transform);Caption(level.GetComponentInChildren<SeasonOverlay>(),()=>level.InputBlocked);
             }
-            finally{level.RestoreProgress(initial);Move(level.player.transform,positions[0]);Move(level.maleWarrior.transform,positions[1]);Move(level.femaleWarrior.transform,positions[2]);JourneySession.Instance.Save();}
+            finally{level.RestoreProgress(initial);Move(level.player.transform,positions[0]);Move(level.maleWarrior.transform,positions[1]);Move(level.femaleWarrior.transform,positions[2]);JourneySession.Instance.CaptureChapter();}
         }
         public static void Fall(FallLevel level)
         {
@@ -102,11 +102,11 @@ namespace AmbrosJourney.Presentation.Editor
                 level.RestoreProgress(new FallProgress());
                 Move(level.ember.transform,FallLevel.OrchardGuide);Move(level.player.transform,level.stations[0].position);level.ember.Guidance.Step(level.ember.transform,level.player.transform,false,.1f);Call(level,"UpdateGuidance");
                 Check(level.Progress.GuideArrived&&!level.InputBlocked&&!level.Progress.Studied[0],"Orchard arrival never auto-opens or reads a note");FitCaption(level.GetComponentInChildren<SeasonOverlay>());
-                var arrived=JsonUtility.FromJson<FallProgress>(JsonUtility.ToJson(level.Progress));level.RestoreProgress(arrived);Check(!level.InputBlocked&&level.ember.Guidance==null,"Fall reload keeps escort complete");
+                var arrived=JsonUtility.FromJson<FallProgress>(JsonUtility.ToJson(level.Progress));level.RestoreProgress(arrived);Check(!level.InputBlocked&&level.ember.Guidance==null,"Fall chapter restoration keeps escort complete");
                 level.Interact(1);Check(level.IsDialogueOpen,"Orchard note still uses E");level.DismissPanel();
                 PassiveNames(level.ember.transform);Caption(level.GetComponentInChildren<SeasonOverlay>(),()=>level.InputBlocked);
             }
-            finally{level.RestoreProgress(initial);Move(level.player.transform,positions[0]);Move(level.ember.transform,positions[1]);JourneySession.Instance.Save();}
+            finally{level.RestoreProgress(initial);Move(level.player.transform,positions[0]);Move(level.ember.transform,positions[1]);JourneySession.Instance.CaptureChapter();}
         }
         public static void Winter(WinterLevel level)
         {
@@ -115,20 +115,20 @@ namespace AmbrosJourney.Presentation.Editor
             {
                 level.RestoreProgress(new WinterProgress());Check(level.Progress.Introduced&&!level.InputBlocked,"Winter starts with passive orientation");FitCaption(level.GetComponentInChildren<SeasonOverlay>());
                 var ready=new WinterProgress{Introduced=true};for(int m=0;m<2;m++){ready.ReadNote(m);foreach(var q in WinterContent.Missions[m])ready.AnswerMission(m,q.Correct);}ready.BeginWinterBoss();foreach(var q in WinterContent.Boss)ready.AnswerWinterBoss(q.Correct);
-                Check(!ready.CanEnterCave,"Legacy completed-Warden save starts without guide flag");
+                Check(!ready.CanEnterCave,"Completed-Warden progress starts without a guide flag");
                 level.Progress=ready;Call(level,"Show","Winter crest","Victory",(Action)(()=>{}));Call(level,"OfferCaveGuidance");Check(!ready.CaveGuideRead,"Cave hint waits while victory feedback is open");
                 level.DismissPanel();Check(ready.CaveGuideRead&&ready.CanEnterCave&&!level.InputBlocked,"Closing victory automatically unlocks cave guidance");FitCaption(level.GetComponentInChildren<SeasonOverlay>());
-                var oldSave=JsonUtility.FromJson<WinterProgress>(JsonUtility.ToJson(ready));oldSave.CaveGuideRead=false;
-                var entry=JourneySession.Instance.Data.chapters[3];entry.x=19.25f;entry.y=-12.5f;entry.progress=JsonUtility.ToJson(oldSave);string beforeRestore=entry.progress;
-                level.RestoreProgress(oldSave);
-                Check(!oldSave.CaveGuideRead&&entry.x==19.25f&&entry.y==-12.5f&&entry.progress==beforeRestore,"Restoring progress cannot mutate or save cave guidance before saved coordinates are restored");
+                var pendingGuide=JsonUtility.FromJson<WinterProgress>(JsonUtility.ToJson(ready));pendingGuide.CaveGuideRead=false;
+                var entry=JourneySession.Instance.Data.chapters[3];entry.x=19.25f;entry.y=-12.5f;entry.progress=JsonUtility.ToJson(pendingGuide);string beforeRestore=entry.progress;
+                level.RestoreProgress(pendingGuide);
+                Check(!pendingGuide.CaveGuideRead&&entry.x==19.25f&&entry.y==-12.5f&&entry.progress==beforeRestore,"Restoring progress cannot capture cave guidance before current-run coordinates are restored");
                 Move(level.player.transform,new Vector2(entry.x,entry.y));Call(level,"OfferCaveGuidance");
                 Check(level.Progress.CanEnterCave&&level.Progress.Valid()&&entry.x==19.25f&&entry.y==-12.5f,"Deferred cave guidance preserves the restored position");
-                Check(JsonUtility.FromJson<WinterProgress>(entry.progress).CaveGuideRead,"Deferred guidance is saved after position restoration");
-                var saved=JsonUtility.FromJson<WinterProgress>(JsonUtility.ToJson(level.Progress));level.RestoreProgress(saved);Check(saved.CaveGuideRead&&saved.CanEnterCave,"Automatic guide flag survives save and reload");
+                Check(JsonUtility.FromJson<WinterProgress>(entry.progress).CaveGuideRead,"Deferred guidance is captured in memory after position restoration");
+                var saved=JsonUtility.FromJson<WinterProgress>(JsonUtility.ToJson(level.Progress));level.RestoreProgress(saved);Check(saved.CaveGuideRead&&saved.CanEnterCave,"Automatic guide flag survives current-run chapter restoration");
                 PassiveNames(level.littleMage.transform);Caption(level.GetComponentInChildren<SeasonOverlay>(),()=>level.InputBlocked);
             }
-            finally{level.RestoreProgress(initial);level.winterGuardian.gameObject.SetActive(wardenActive);Move(level.player.transform,position);JourneySession.Instance.Save();}
+            finally{level.RestoreProgress(initial);level.winterGuardian.gameObject.SetActive(wardenActive);Move(level.player.transform,position);JourneySession.Instance.CaptureChapter();}
         }
     }
 }
