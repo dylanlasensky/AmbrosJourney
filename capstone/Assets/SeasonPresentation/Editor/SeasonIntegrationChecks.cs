@@ -8,6 +8,9 @@ using UnityEditor.SceneManagement;
 using UnityEditor.Build.Reporting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.LowLevel;
+using InputKey=UnityEngine.InputSystem.Key;
 using AmbrosJourney.Summer;
 using AmbrosJourney.Fall;
 using AmbrosJourney.Winter;
@@ -20,6 +23,7 @@ public static class SeasonIntegrationChecks
     const string Key = "SeasonIntegrationChecks.";
     const BindingFlags Private = BindingFlags.Instance | BindingFlags.NonPublic;
     static double readyAt;
+    static readonly FieldInfo JourneyLoading=typeof(AmbrosJourney.Journey.JourneySession).GetField("loading",Private);
     static readonly MethodInfo SignalTick = typeof(EditorApplication).GetMethod("SignalTick", BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public);
     static SeasonIntegrationChecks()
     {
@@ -82,9 +86,10 @@ public static class SeasonIntegrationChecks
                 AmbrosJourney.Journey.JourneySession.Instance.Resume(); // A background Editor may have auto-paused before test mode began.
                 var g = UnityEngine.Object.FindAnyObjectByType<SpringGuide>();
                 Check(g, "Spring scene has its guide");
-                g.DismissPanel(); // Closing controls starts the passive Mage guidance.
-                Check(g.LessonComplete,"Controls dismissal enables exploration without a second Mage modal");
+                g.DismissPanel(); // Controls and the Mage conversation are separate, deliberate steps.
+                Check(!g.LessonComplete&&!g.DialogueOpen,"Closing controls does not skip the Mage lesson or start automatic speech");
                 CompanionGuidanceChecks.Spring(g);
+                CompleteSpringGreeting(g);
                 AmbrosJourney.Journey.Editor.JourneyPerformanceChecks.VerifyKeyboardNavigation();
                 DirectGuidanceChecks.Verify(1);
                 AmbrosJourney.Journey.Editor.JourneyPerformanceChecks.VerifyCurrentScene();
@@ -112,7 +117,7 @@ public static class SeasonIntegrationChecks
             else if (stage == 1 && ArrivalReady("Summer"))
             {
                 var l = UnityEngine.Object.FindAnyObjectByType<SummerLevel>();
-                Check(l && l.Progress.Introduced && !l.InputBlocked, "Summer arrives with passive guidance and free movement");
+                Check(l && !l.Progress.Introduced && !l.InputBlocked, "Summer arrives silently with free movement until E at the Warriors");
                 DirectGuidanceChecks.Verify(2);AmbrosJourney.Journey.Editor.JourneyPerformanceChecks.VerifyCurrentScene();
                 BossRefreshChecks.CheckAndCapture(l.orc.GetComponent<SeasonBossVisual>(),"SummerSuncrest");CheckMotion(l.player,"movement",4.6f);Capture("SummerInterface");
                 Check(!UnityEngine.Object.FindAnyObjectByType<SpringGuide>(), "Spring unloads after transition");
@@ -130,7 +135,7 @@ public static class SeasonIntegrationChecks
             else if (stage == 2 && ArrivalReady("Fall"))
             {
                 var l = UnityEngine.Object.FindAnyObjectByType<FallLevel>();
-                Check(l && l.Progress.Introduced && !l.InputBlocked, "Fall arrives with passive guidance and free movement");
+                Check(l && !l.Progress.Introduced && !l.InputBlocked, "Fall arrives silently with free movement until E at Emberfist");
                 DirectGuidanceChecks.Verify(3);AmbrosJourney.Journey.Editor.JourneyPerformanceChecks.VerifyCurrentScene();
                 CheckMotion(l.player,"movement",4.6f);Capture("FallInterface");
                 Check(!UnityEngine.Object.FindAnyObjectByType<SummerLevel>(), "Summer unloads after transition");
@@ -159,7 +164,7 @@ public static class SeasonIntegrationChecks
             {
                 Check(!UnityEngine.Object.FindAnyObjectByType<FallLevel>(),"Fall unloaded");
                 var winter=UnityEngine.Object.FindAnyObjectByType<WinterLevel>();
-                Check(winter&&winter.Progress.Introduced&&!winter.InputBlocked,"Winter arrives with passive guidance and free movement");
+                Check(winter&&!winter.Progress.Introduced&&!winter.InputBlocked,"Winter arrives silently with free movement until E at Little Mage");
                 DirectGuidanceChecks.Verify(4);AmbrosJourney.Journey.Editor.JourneyPerformanceChecks.VerifyCurrentScene();
                 CheckMotion(UnityEngine.Object.FindAnyObjectByType<WinterLevel>().player,"movement",4.6f);BossRefreshChecks.CheckAndCapture(UnityEngine.Object.FindAnyObjectByType<WinterLevel>().winterGuardian.GetComponent<SeasonBossVisual>(),"WinterFrostbound");Capture("WinterArrival");Advance(4);
             }
@@ -170,9 +175,50 @@ public static class SeasonIntegrationChecks
                 var l=UnityEngine.Object.FindAnyObjectByType<WinterLevel>();l.player.transform.position=l.caveExit.position;l.player.GetComponent<Rigidbody2D>().position=l.caveExit.position;l.World.ChangeRegion(false);l.player.transform.position=WinterWorld.Entrance+Vector2.down*1.5f;l.player.GetComponent<Rigidbody2D>().position=l.player.transform.position;Advance(7);
             }
             else if(stage==7){Capture("WinterEntrance");Advance(8);}
-            else if(stage>=8){if(AmbrosJourney.Journey.Editor.JourneyPlayChecks.Step(stage-8))Finish(true,"All four seasons, both Winter bosses, menus, current-run chapter revisits, artifacts, certificate and reset passed.");else Advance(stage+1);}
+            else if(stage>=8)
+            {
+                // LoadChapter activates its scene before restoring the in-memory chapter.
+                // Wall-clock delays cannot replace waiting for that operation to finish.
+                var session=AmbrosJourney.Journey.JourneySession.Instance;
+                if(session&&(bool)JourneyLoading.GetValue(session))return;
+                if(AmbrosJourney.Journey.Editor.JourneyPlayChecks.Step(stage-8))Finish(true,"All four seasons, both Winter bosses, menus, current-run chapter revisits, artifacts, certificate and reset passed.");
+                else Advance(stage+1);
+            }
         }
         catch (Exception e) { Finish(false, e.ToString()); }
+    }
+    static void CompleteSpringGreeting(SpringGuide guide)
+    {
+        var originalPosition=guide.player.position;var body=guide.player.GetComponent<Rigidbody2D>();var originalVelocity=body.linearVelocity;
+        var previousKeyboard=Keyboard.current;var keyboard=InputSystem.AddDevice<Keyboard>();keyboard.MakeCurrent();
+        Action<InputKey> press=key=>{
+            var keyDevice=InputSystem.AddDevice<Keyboard>();keyDevice.MakeCurrent();
+            try
+            {
+                InputSystem.QueueStateEvent(keyDevice,new KeyboardState(key));InputSystem.Update();
+                Check(keyDevice[key].wasPressedThisFrame,"Mage lesson receives the injected "+key+" edge");
+                Call(AmbrosJourney.Journey.JourneySession.Instance,"Update");Call(guide,"Update");
+                InputSystem.QueueStateEvent(keyDevice,new KeyboardState());InputSystem.Update();
+            }
+            finally{InputSystem.RemoveDevice(keyDevice);keyboard.MakeCurrent();}
+        };
+        try
+        {
+            guide.player.position=guide.mage.position+Vector3.right*.8f;body.position=guide.player.position;Physics2D.SyncTransforms();
+            Call(guide,"Update");Check(!guide.DialogueOpen&&!guide.LessonComplete,"Walking up to the Mage does not start dialogue");
+            press(InputKey.E);Check(guide.DialogueOpen&&!guide.LessonComplete,"E starts the Mage lesson");
+            for(int page=0;page<3;page++)
+            {
+                press(InputKey.Enter);
+                Check(guide.LessonComplete==(page==2),"Mage lesson completes only after all three pages");
+            }
+            Check(!guide.DialogueOpen,"Finishing the Mage lesson returns movement control");
+        }
+        finally
+        {
+            InputSystem.QueueStateEvent(keyboard,new KeyboardState());InputSystem.Update();InputSystem.RemoveDevice(keyboard);if(previousKeyboard!=null)previousKeyboard.MakeCurrent();
+            guide.player.position=originalPosition;body.position=originalPosition;body.linearVelocity=originalVelocity;Physics2D.SyncTransforms();
+        }
     }
     static void CheckMotion(MonoBehaviour actor,string input,float speed)
     {

@@ -10,7 +10,8 @@ public class SpringGuide : MonoBehaviour
     public Transform player, mage;
     public Texture2D batSheet, guardianSheet;
     public Vector2 StartPosition = new Vector2(-18,16);
-    bool explored, controlsSeen, welcomeOpen, orientationPending;
+    public const float GuideTalkRadius=4f;
+    bool explored, controlsSeen, welcomeOpen;
     AmbrosJourney.Journey.JourneyUI welcomeUI;
     public Sprite gateSprite;
     GameObject gateSeal;
@@ -39,6 +40,7 @@ public class SpringGuide : MonoBehaviour
         "KEEP SOME THINGS PRIVATE\nBefore sending a message, check what someone could learn about you from it. Leave out passwords, your address and private photos. A made-up example often works just as well. If you are unsure what a tool needs, ask a trusted adult.\nTry the two claims at the ruins bat."
     };
     SeasonOverlay presentation;
+    SeasonWorldLabel mageLabel;
     readonly string[] lessons = {
         "You're stuck here too? I was about your age when I arrived. Now everyone calls me the Ancient Mage. We need to get through all four seasons to find a way home.",
         "Let's start with what AI can and can't do. Read the notes along the trail, then try the two claims at each bat. You can look back at your notes whenever you need them.",
@@ -84,8 +86,7 @@ public class SpringGuide : MonoBehaviour
         controlsSeen=state.controlsSeen||state.explored||state.lessonComplete;welcomeOpen=false;
         if(welcomeUI){Destroy(welcomeUI.gameObject);welcomeUI=null;}
         explored=state.explored;LessonComplete=state.lessonComplete;SpringComplete=state.complete;MissionsComplete=state.missions;BossScore=state.bossScore;cleared=state.cleared;studied=state.studied;trials=state.trials;
-        DialogueOpen=journalOpen=false;target=-1;feedback="";bossQuestion=0;bossResult=false;orientationPending=false;CompanionSpeech.Clear(presentation);
-        if(controlsSeen&&!LessonComplete)BeginOrientation();
+        DialogueOpen=journalOpen=false;target=-1;feedback="";bossQuestion=0;bossResult=false;
         for(int i=0;i<3;i++)bats[i].gameObject.SetActive(!cleared[i]);boss.gameObject.SetActive(!SpringComplete);gateSeal.SetActive(!SpringComplete);AmbrosJourney.Journey.BossPortalSequence.RestoreCheckpoint();
     }
     void Start()
@@ -136,6 +137,7 @@ public class SpringGuide : MonoBehaviour
         if(!SpringComplete&&boss.gameObject.activeInHierarchy&&Distance(boss)<5.5f&&best==-99){best=3;}
         if(AmbrosJourney.Journey.BossPortalSequence.AllowsEntry(gate)&&Distance(gate)<distance){best=4;distance=Distance(gate);}
         for(int i=0;i<3;i++)if(Distance(stones[i])<distance){best=5+i;distance=Distance(stones[i]);}
+        if(best==-99&&!SpringComplete&&Distance(mage)<GuideTalkRadius)best=-1;
         return best;
     }
     public bool DismissPanel(){if(welcomeOpen){CloseWelcome();return true;}if(!DialogueOpen&&!journalOpen)return false;journalOpen=false;DialogueOpen=false;return true;}
@@ -143,13 +145,7 @@ public class SpringGuide : MonoBehaviour
     {
         controlsSeen=true;welcomeOpen=false;DialogueOpen=false;
         if(welcomeUI){Destroy(welcomeUI.gameObject);welcomeUI=null;}
-        BeginOrientation();
         var session=AmbrosJourney.Journey.JourneySession.Instance;if(session)session.CaptureChapter();
-    }
-    void BeginOrientation()
-    {
-        if(LessonComplete)return;
-        LessonComplete=true;orientationPending=true;
     }
     readonly AmbrosJourney.Presentation.SeasonTrail companionTrail=new AmbrosJourney.Presentation.SeasonTrail();
     int companionRevision=-1;
@@ -169,7 +165,6 @@ public class SpringGuide : MonoBehaviour
             if(keyboard!=null&&(keyboard.eKey.wasPressedThisFrame||keyboard.enterKey.wasPressedThisFrame))CloseWelcome();
             return;
         }
-        BeginOrientation();
         if(Vector2.Distance(player.position,StartPosition)>3)explored=true;
         companionTrail.Record(player.position);
         if(SpringComplete&&!DialogueOpen)
@@ -219,7 +214,7 @@ public class SpringGuide : MonoBehaviour
         else {bool right=selected==correct[bossQuestion];GameAudio.Play(right?SoundCue.Correct:SoundCue.Incorrect,.45f);if(right){BossScore++;boss.GetComponent<SeasonBossVisual>().Flash(new Color(1,.85f,.55f));}else boss.GetComponent<SeasonBossVisual>().Strike();feedback=(right?"Correct! ":"Incorrect. ")+reasons[bossQuestion]+"\n\n"+BossScore+" / "+questions.Length+" correct.";}
     }
     Transform Destination(){if(!LessonComplete)return mage;for(int i=0;i<3;i++)if(!cleared[i])return studied[i]?bats[i]:stones[i];return SpringComplete?gate:boss;}
-    string Quest()=>SpringComplete?"Step through the Summer gate":MissionsComplete<3?(studied[NextBat()]?"Follow the arrow to Myth Bat "+(NextBat()+1)+". Press E.":"Follow the arrow to the "+locations[NextBat()]+" field note. Press E."):"Follow the arrow to Blossom Guardian. Press E.";
+    string Quest()=>SpringComplete?"Step through the Summer gate":!LessonComplete?"Follow the arrow to the Ancient Mage. Press E to talk.":MissionsComplete<3?(studied[NextBat()]?"Follow the arrow to Myth Bat "+(NextBat()+1)+". Press E.":"Follow the arrow to the "+locations[NextBat()]+" field note. Press E."):"Follow the arrow to Blossom Guardian. Press E.";
     int NextBat(){for(int i=0;i<3;i++)if(!cleared[i])return i;return 2;}
     void LateUpdate()
     {
@@ -229,17 +224,14 @@ public class SpringGuide : MonoBehaviour
             var ui=new GameObject("Spring interface");ui.transform.SetParent(transform,false);
             presentation=ui.AddComponent<SeasonOverlay>();presentation.Initialize(Resources.Load<TMP_FontAsset>("SummerDefault"),1);
             for(int i=0;i<3;i++){AddLabel(stones[i],"[E] FIELD NOTE / "+locations[i]);AddLabel(bats[i],"[E] MYTH BAT "+(i+1));}
-            AddLabel(mage,"ANCIENT MAGE",144);AddLabel(boss,"[E] BLOSSOM GUARDIAN");AddLabel(gate,"SUMMER GATE");
+            mageLabel=SeasonWorldLabel.Attach(mage,"[E] Talk",112,GuideTalkRadius);AddLabel(boss,"[E] BLOSSOM GUARDIAN",310,5.5f);
         }
+        if(mageLabel)mageLabel.enabled=!SpringComplete;
         presentation.Objective.text="LESSONS "+MissionsComplete+" / 3\n"+Quest();
-        presentation.Prompt.text=Nearby()!=-99?"[ E ]  Explore / interact":"";
+        int nearby=Nearby();
+        presentation.Prompt.text=DialogueOpen||nearby==-99?"":nearby==-1?"[ E ]  Talk to the Ancient Mage":"[ E ]  Explore / interact";
         presentation.Dialog.SetActive(DialogueOpen&&!journalOpen);presentation.Journal.SetActive(journalOpen);
         if(welcomeOpen){presentation.Dialog.SetActive(false);presentation.Prompt.text="";return;}
-        if(orientationPending&&!DialogueOpen)
-        {
-            CompanionSpeech.Say(presentation,"Ancient Mage","Let's find a way home. Read the Blossom Grove field note with E, then try its myth bat. Finish all three lessons before the Guardian. J opens your notes.");
-            orientationPending=false;
-        }
         if(journalOpen){var titles=new string[3];var notes=new string[3];for(int i=0;i<3;i++){titles[i]=locations[i]+" / "+trials[i]+" of 2 challenges";notes[i]=studied[i]?fieldNotes[i].Split('\n')[1]:"Read this field note with E, then try the nearby myth bat. Complete all three lessons before the Guardian (4 of 5 to pass).";}presentation.SetJournal(titles,notes,SpringComplete?"PARTY / Ambros + Ancient Mage":"PARTY / Ambros");return;}
         var dest=Destination();if(dest&&!DialogueOpen)presentation.SetCompass(player.position,dest.position,dest.position);
         if(DialogueOpen&&target==3)
@@ -267,5 +259,5 @@ public class SpringGuide : MonoBehaviour
         if(lastBody!=body){presentation.Present(asking);lastBody=body;}
     }
     string lastBody;
-    void AddLabel(Transform t,string caption,float width=310){if(t)SeasonWorldLabel.Attach(t,caption,width);}
+    void AddLabel(Transform t,string caption,float width=310,float revealDistance=2.6f){if(t)SeasonWorldLabel.Attach(t,caption,width,revealDistance);}
 }

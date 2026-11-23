@@ -54,7 +54,8 @@ namespace AmbrosJourney.Journey
             {
                 int id=(chapter-1)*3+i;var position=FindClear(ArtifactPositions[id]);
                 Transform parent=winter?(i==2?winter.World.Cavern.transform:winter.World.Outdoors.transform):transform;
-                var r=Visual("Artifact / "+ArtifactNames[id],position,null,parent);cohesion.Relic(r,id);cohesion.FrameRelic(r);var label=new GameObject("Artifact caption");label.transform.SetParent(r.transform,false);label.transform.localPosition=new Vector3(0,2,0);label.AddComponent<SeasonWorldLabel>().Caption="[ E ] "+ArtifactNames[id];
+                var r=Visual("Artifact / "+ArtifactNames[id],position,null,parent);cohesion.Relic(r,id);cohesion.FrameRelic(r);
+                SeasonWorldLabel.Attach(r.transform,"[E] Collect artifact",184,2.3f);
                 artifacts.Add(r.gameObject);artifactHomes.Add(r.transform.position);
             }
             var sentinel=Resources.Load<Texture2D>("Journey/SentinelAtlas");
@@ -66,7 +67,7 @@ namespace AmbrosJourney.Journey
             }
             gameObject.AddComponent<BossPortalSequence>().Initialize(chapter,cohesion);
             AddWaterMotion();
-            if(chapter>=3)AddClues();
+            if(chapter>=3)AddTrailSigns();
             Physics2D.SyncTransforms();
         }
         static Vector2 FindClear(Vector2 point)
@@ -74,11 +75,11 @@ namespace AmbrosJourney.Journey
             for(int radius=0;radius<=4;radius++)for(int y=-radius;y<=radius;y++)for(int x=-radius;x<=radius;x++)
             {var p=point+new Vector2(x,y);if(!Physics2D.OverlapCircle(p+Vector2.up*.22f,.7f))return p;}return point;
         }
-        void AddClues()
+        void AddTrailSigns()
         {
             Vector2[] places=chapter==3?new[]{new Vector2(-29,10),new Vector2(10,20),new Vector2(32,5)}:new[]{new Vector2(-26,-16),new Vector2(8,22)};
-            string[] clues=chapter==3?new[]{"ORCHARD WEST / ARCHIVE ACROSS NORTH BRIDGE","FOLLOW THE RIVER NORTH, THEN TURN EAST","KILN: TAKE THE SOUTHERN SWITCHBACK"}:new[]{"LEDGER NORTH / OBSERVATORY EAST OF THE GROVE","FOLLOW THIS RIDGE EAST TO THE WARDEN"};
-            for(int i=0;i<places.Length;i++){var o=new GameObject("Trail directions");o.transform.SetParent(winter?winter.World.Outdoors.transform:transform);o.transform.position=places[i];o.AddComponent<SeasonWorldLabel>().Caption=clues[i];GetComponent<WorldCohesion>().Sign(places[i]-Vector2.up*1.7f);}
+            var cohesion=GetComponent<WorldCohesion>();
+            foreach(var place in places)cohesion.Sign(place-Vector2.up*1.7f);
         }
         void AddWaterMotion()
         {

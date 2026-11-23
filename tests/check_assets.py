@@ -1,4 +1,5 @@
 """Check tracked gameplay assets without importing or modifying the Unity project."""
+import hashlib
 import json
 from pathlib import Path
 import re
@@ -49,6 +50,23 @@ for name in ("SummerLevel", "FallLevel", "WinterLevel"):
 for path in re.findall(r"^\s+path: (.+)$", (root / "capstone/ProjectSettings/EditorBuildSettings.asset").read_text(), re.M):
     if "capstone/" + path not in tracked:
         errors.append(f"Missing build scene: {path}")
+# These are the supplied PR18 movies, not merely whichever MP4 currently occupies
+# the Resources path. Update the recorded provenance deliberately for future clips.
+video_sources = {
+    "Intro.mp4": "de4dba62d3607650b8157d0d7f29b027ac2574717bd896d6cd14f691ef4e14cf",
+    "Outro.mp4": "e2a89f9ea854fc0293d8acc25e4b9a8961dcf5271c38d386410bd436c7494a4f",
+}
+for name, expected in video_sources.items():
+    path = root / "capstone/Assets/Journey/Resources/Journey" / name
+    if not path.is_file():
+        errors.append(f"Missing teammate video: {name}")
+        continue
+    digest = hashlib.sha256()
+    with path.open("rb") as source:
+        for block in iter(lambda: source.read(1024 * 1024), b""):
+            digest.update(block)
+    if digest.hexdigest() != expected:
+        errors.append(f"Incorrect source video: {name}; see docs/IntroVideoSource.md")
 if errors:
     raise SystemExit("\n".join(errors))
-print(f"PASS: {len(guids)} tracked GUIDs; gameplay metadata, artwork references, portal resources and build scenes.")
+print(f"PASS: {len(guids)} tracked GUIDs; gameplay metadata, artwork references, portal resources, build scenes and teammate video identity.")

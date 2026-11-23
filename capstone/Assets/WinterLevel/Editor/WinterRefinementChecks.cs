@@ -68,24 +68,26 @@ public static class WinterRefinementChecks
                 SeasonIntegrationChecks.Capture("WinterPermanentGuidance");
                 Move(l,WinterWorld.WardenPosition+Vector2.down*2);l.Interact(8);Next(l);
                 for(int i=0;i<5;i++){ui.Choices[WinterContent.Boss[i].Correct].onClick.Invoke();Next(l);}
-                Check(l.Progress.WinterComplete&&!l.Progress.CaveEntryExplained,"Cave tip waits while victory message is open");Next(l);stage=3;
+                Check(l.Progress.WinterComplete&&!l.Progress.CaveEntryExplained,"Victory does not automatically complete the cave briefing");Next(l);stage=3;
             }
             else if(stage==3)
             {
                 Check(!sequence.Exit.Playing&&!l.caveEntrance.GetComponent<SpriteRenderer>(),"Winter never creates portal-building pixels or a portal overlay");
                 if(sequence.Dissolve&&sequence.Dissolve.DetachedPixelCount>0)sawDust=true;
                 if(!sequence.Exit.Ready||BossPortalSequence.Busy)return;Check(sawDust,"Warden still disintegrates");
-                Check(l.Progress.CaveGuideRead&&l.Progress.CanEnterCave&&!l.Progress.InCave&&!l.InputBlocked,"Victory closes into passive cave guidance without a required NPC stop");
-                Check(l.Destination()==(Vector2)l.caveEntrance.position,"Next objective points straight to the cave entrance");
-                var beforeGuide=JsonUtility.FromJson<WinterProgress>(JsonUtility.ToJson(l.Progress));beforeGuide.CaveGuideRead=false;
-                l.RestoreProgress(beforeGuide);Call(l,"OfferCaveGuidance");Check(l.Progress.CaveGuideRead&&!l.IsDialogueOpen,"Completed-Warden chapter state receives automatic cave guidance");
+                Check(!l.Progress.CaveGuideRead&&!l.Progress.CanEnterCave&&!l.Progress.InCave&&!l.InputBlocked,"Victory leaves control with the player and waits for E at the guide");
+                Check(l.Destination()==(Vector2)l.littleMage.transform.position,"Next objective points to the waiting Little Mage");
+                var beforeGuide=JsonUtility.FromJson<WinterProgress>(JsonUtility.ToJson(l.Progress));
+                l.RestoreProgress(beforeGuide);Call(l,"Update");Check(!l.Progress.CaveGuideRead&&!l.IsDialogueOpen,"Restoring completed-Warden progress cannot auto-read or auto-open cave speech");
+                Move(l,l.littleMage.transform.position);l.Interact(0);Check(l.InputBlocked&&l.IsDialogueOpen,"E opens the cave briefing");Next(l);
+                Check(l.Progress.CaveGuideRead&&l.Destination()==(Vector2)l.caveEntrance.position,"Finished briefing points to the cave entrance");
                 var saved=JsonUtility.FromJson<WinterProgress>(JsonUtility.ToJson(l.Progress));Check(saved.CaveGuideRead&&saved.CanEnterCave&&saved.Valid(),"Cave permission remains in current-run progress");
                 l.RestoreProgress(saved);Move(l,WinterWorld.Entrance+Vector2.down*1.6f);SeasonIntegrationChecks.Capture("WinterNaturalCaveAfterWarden");
                 Move(l,WinterWorld.Entrance);stage=4;ready=EditorApplication.timeSinceStartup+.3;
             }
             else if(stage==4)
             {
-                Check(l.Progress.InCave,"Walking into doorway after passive guidance automatically enters cave");Call(l,"RefreshWorld");Call(ui,"LateUpdate");
+                Check(l.Progress.InCave,"Walking into doorway after the deliberate briefing enters cave");Call(l,"RefreshWorld");Call(ui,"LateUpdate");
                 Check(!ui.CompassObscured&&ui.Arrow.gameObject.activeSelf,"Arrow stays visible inside Echo Cavern");
                 var visibility=l.World.GetComponent<CaveVisibility>();Call(visibility,"LateUpdate");
                 Check(visibility.IsVisible&&visibility.LanternCount==WinterWorld.CaveLanterns.Length,"Cave veil and all lantern pools activate");

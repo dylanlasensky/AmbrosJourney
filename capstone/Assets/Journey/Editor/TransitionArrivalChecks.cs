@@ -9,6 +9,9 @@ using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.LowLevel;
+using InputKey=UnityEngine.InputSystem.Key;
 using AmbrosJourney.Journey;
 using AmbrosJourney.Presentation;
 using AmbrosJourney.Summer;
@@ -52,6 +55,7 @@ public static class TransitionArrivalChecks
         SessionState.SetBool(Key+"active",true);SessionState.SetString(Key+"error","");
         SessionState.SetString(Key+"deadline",DateTime.UtcNow.AddMinutes(5).ToString("O"));
         EditorSceneManager.OpenScene("Assets/Scenes/Spring.unity");
+        EditorWindow.GetWindow(Type.GetType("UnityEditor.GameView,UnityEditor")).Focus();
         Application.runInBackground=true;EditorApplication.isPlaying=true;
     }
     static void Check(bool ok,string message){count++;if(!ok)throw new Exception(message);}
@@ -115,7 +119,7 @@ public static class TransitionArrivalChecks
         if(chapter==2)
         {
             var level=InScene<SummerLevel>(scene);var p=level.Progress;
-            Check(p.Introduced&&p.WardCount==0&&!p.Complete&&p.Valid(),"Fresh Summer starts with no completed lessons or guardian");
+            Check(!p.Introduced&&p.WardCount==0&&!p.Complete&&p.Valid(),"Fresh Summer starts with no completed lessons or guardian");
             Physics2D.SyncTransforms();
             var route=SeasonNavigation.FindPath(player.position,level.workshop.position,new Vector2(-30,-32),new Vector2(30,28));
             Check(route.Count>0,"Arrival has a real collision-aware path to the first workshop lesson");
@@ -123,8 +127,80 @@ public static class TransitionArrivalChecks
             foreach(var point in route){Check(SeasonNavigation.ClearSegment(previous,point),"Workshop approach does not cross scenery or a locked seal");previous=point;}
             Check(Vector2.Distance(previous,level.workshop.position)<.01f,"Workshop route reaches the actual lesson interaction point");
         }
-        else if(chapter==3){var p=InScene<FallLevel>(scene).Progress;Check(p.Introduced&&p.RuneCount==0&&!p.Complete&&p.Valid(),"Fresh Fall starts with no completed lessons or guardian");}
-        else {var p=InScene<WinterLevel>(scene).Progress;Check(p.Introduced&&!p.WinterComplete&&!p.Complete&&!p.InCave&&p.Valid(),"Fresh Winter starts outside with both bosses unfinished");}
+        else if(chapter==3){var p=InScene<FallLevel>(scene).Progress;Check(!p.Introduced&&p.RuneCount==0&&!p.Complete&&p.Valid(),"Fresh Fall starts with no completed lessons or guardian");}
+        else {var p=InScene<WinterLevel>(scene).Progress;Check(!p.Introduced&&!p.WinterComplete&&!p.Complete&&!p.InCave&&p.Valid(),"Fresh Winter starts outside with both bosses unfinished");}
+    }
+    static void VerifyManualGreeting(int chapter)
+    {
+        var scene=SceneManager.GetActiveScene();var player=JourneySession.Instance.Player();
+        MonoBehaviour level;Transform guide;Func<bool> introduced,open,blocked;Action restore;string initial;
+        Func<string> progress;
+        if(chapter==2)
+        {
+            var summer=InScene<SummerLevel>(scene);level=summer;guide=summer.maleWarrior.transform;
+            progress=()=>JsonUtility.ToJson(summer.Progress);initial=progress();
+            introduced=()=>summer.Progress.Introduced;open=()=>summer.IsDialogueOpen;blocked=()=>summer.InputBlocked;
+            restore=()=>summer.RestoreProgress(JsonUtility.FromJson<SummerProgress>(initial));
+        }
+        else if(chapter==3)
+        {
+            var fall=InScene<FallLevel>(scene);level=fall;guide=fall.ember.transform;
+            progress=()=>JsonUtility.ToJson(fall.Progress);initial=progress();
+            introduced=()=>fall.Progress.Introduced;open=()=>fall.IsDialogueOpen;blocked=()=>fall.InputBlocked;
+            restore=()=>fall.RestoreProgress(JsonUtility.FromJson<FallProgress>(initial));
+        }
+        else
+        {
+            var winter=InScene<WinterLevel>(scene);level=winter;guide=winter.littleMage.transform;
+            progress=()=>JsonUtility.ToJson(winter.Progress);initial=progress();
+            introduced=()=>winter.Progress.Introduced;open=()=>winter.IsDialogueOpen;blocked=()=>winter.InputBlocked;
+            restore=()=>winter.RestoreProgress(JsonUtility.FromJson<WinterProgress>(initial));
+        }
+        var position=player.position;var body=player.GetComponent<Rigidbody2D>();var velocity=body.linearVelocity;
+        var previousKeyboard=Keyboard.current;var keyboard=InputSystem.AddDevice<Keyboard>();keyboard.MakeCurrent();
+        Action tick=()=>level.GetType().GetMethod("Update",Hidden).Invoke(level,null);
+        Action<InputKey> press=key=>{
+            // Each synchronous assertion is a separate logical input frame. Give it a
+            // fresh device and restore the Escape-consumption guard after observing it.
+            var keyDevice=InputSystem.AddDevice<Keyboard>();keyDevice.MakeCurrent();
+            var session=JourneySession.Instance;var resume=typeof(JourneySession).GetField("resumeFrame",Hidden);var before=resume.GetValue(session);
+            try
+            {
+                InputSystem.QueueStateEvent(keyDevice,new KeyboardState(key));InputSystem.Update();
+                Check(Keyboard.current==keyDevice&&keyDevice[key].wasPressedThisFrame,"Injected "+key+" edge delivered for "+Names[chapter-1]+"; current="+(Keyboard.current==keyDevice)+", held="+keyDevice[key].isPressed);
+                typeof(JourneySession).GetMethod("Update",Hidden).Invoke(session,null);
+                if(key==InputKey.Escape)Check(JourneySession.Blocked,"Global Escape consumes the close before the chapter sees that same input");
+                tick();
+                InputSystem.QueueStateEvent(keyDevice,new KeyboardState());InputSystem.Update();
+            }
+            finally{resume.SetValue(session,before);InputSystem.RemoveDevice(keyDevice);keyboard.MakeCurrent();}
+        };
+        try
+        {
+            Check(!introduced()&&!open()&&!blocked(),Names[chapter-1]+" arrival is silent and permits movement until deliberate interaction");
+            Check(level.GetComponentsInChildren<CompanionSpeech>(true).All(speech=>!speech.Visible),"Arrival never starts an automatic companion caption");
+            Move(player,(Vector2)guide.position+Vector2.right*10);press(InputKey.E);
+            Check(!introduced()&&!open(),"E away from the guide cannot start an arrival conversation");
+            Move(player,(Vector2)guide.position+Vector2.right*.8f);tick();
+            Check(!introduced()&&!open()&&!blocked(),"Walking beside the guide never automatically opens dialogue");
+            int nearest=(int)level.GetType().GetMethod("Nearest",Hidden).Invoke(level,null);
+            Check(nearest==0||chapter==2&&nearest==9,"Nearby guide is selected by the actual "+Names[chapter-1]+" interaction resolver: "+nearest);
+            press(InputKey.E);
+            Check(open()&&blocked()&&!introduced(),"Nearby E opens the greeting; arrival progress waits for dismissal: chapter="+Names[chapter-1]+", nearest="+nearest+", open="+open()+", blocked="+blocked()+", introduced="+introduced()+", sessionBlocked="+JourneySession.Blocked+", transitioning="+level.GetType().GetField("Transitioning").GetValue(level));
+            press(InputKey.Enter);
+            Check(introduced()&&!open()&&!blocked(),"Enter closes the greeting and returns movement control");
+            if(chapter==2){var summer=(SummerLevel)level;Check(summer.maleWarrior.Guidance!=null&&summer.femaleWarrior.Guidance!=null,"Summer escort starts only after the greeting");}
+            else if(chapter==3)Check(((FallLevel)level).ember.Guidance!=null,"Fall escort starts only after the greeting");
+            press(InputKey.E);Check(open(),"An introduced guide still requires E to explain the next task");
+            press(InputKey.Escape);Check(!open()&&!blocked(),"Escape closes a guide conversation without trapping movement");
+        }
+        finally
+        {
+            InputSystem.QueueStateEvent(keyboard,new KeyboardState());InputSystem.Update();
+            InputSystem.RemoveDevice(keyboard);if(previousKeyboard!=null)previousKeyboard.MakeCurrent();
+            restore();Move(player,position);body.linearVelocity=velocity;
+        }
+        Check(progress()==initial,"Conversation checks restore exact fresh progression before the next handover");
     }
     static void BeginPortal(int chapter)
     {
@@ -188,7 +264,7 @@ public static class TransitionArrivalChecks
             }
             else if(stage==1&&Time.frameCount>=readyFrame)
             {
-                VerifyArrival(destination);unloading=SceneManager.UnloadSceneAsync(source);stage=2;
+                VerifyArrival(destination);VerifyManualGreeting(destination);unloading=SceneManager.UnloadSceneAsync(source);stage=2;
             }
             else if(stage==2&&(unloading==null||unloading.isDone))
             {
@@ -202,10 +278,10 @@ public static class TransitionArrivalChecks
             else if(stage==3&&Time.frameCount>=readyFrame&&InScene<JourneyWorld>(SceneManager.GetActiveScene()))BeginPortal(2);
             else if(stage==4&&Time.frameCount>=readyFrame&&observedPortal&&!SeasonTransition.Active)
             {
-                VerifyArrival(destination);expectedPortal=0;
+                VerifyArrival(destination);VerifyManualGreeting(destination);expectedPortal=0;
                 Check(SceneManager.sceneCount==1,"Outgoing gameplay scene has unloaded after portal fade");
                 if(destination<4)BeginPortal(destination+1);
-                else Finish(true,"All three active-scene player lookups, canonical arrival spawns, fresh in-memory progression and actual portal handovers passed; source roots retire before destination activation.");
+                else Finish(true,"All three active-scene player lookups, canonical arrival spawns, fresh in-memory progression, explicit E greetings and actual portal handovers passed; source roots retire before destination activation.");
             }
         }
         catch(Exception error){Finish(false,error.ToString());}

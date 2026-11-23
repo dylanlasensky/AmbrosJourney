@@ -31,6 +31,7 @@ namespace AmbrosJourney.Presentation
         Color ink, accent, paper = new Color(.98f,.94f,.81f), border = new Color(.55f,.35f,.22f);
         readonly Dictionary<SeasonWorldLabel,RectTransform> labels = new Dictionary<SeasonWorldLabel,RectTransform>();
         readonly List<Rect> labelAreas=new List<Rect>();
+        readonly Vector3[] arrowCorners=new Vector3[4];
         readonly List<SeasonWorldLabel> expiredLabels=new List<SeasonWorldLabel>();
         Transform labelPlayer;SpriteRenderer labelPlayerVisual;
         float openedAt, feedbackUntil; bool positive;
@@ -198,11 +199,12 @@ namespace AmbrosJourney.Presentation
             var camera=Camera.main;if(!camera)return;
             expiredLabels.Clear();foreach(var pair in labels){if(!pair.Key){Destroy(pair.Value.gameObject);expiredLabels.Add(pair.Key);}else pair.Value.gameObject.SetActive(false);}foreach(var marker in expiredLabels)labels.Remove(marker);
             var player=AmbrosJourney.Journey.JourneySession.Instance?AmbrosJourney.Journey.JourneySession.Instance.Player():null;
-            labelAreas.Clear();ReserveHud(chapterPanel);ReserveHud(objectivePanel);ReserveHud(controls);ReservePlayer(camera,player);
+            if(!player||Dialog.activeSelf||Journal.activeSelf||AmbrosJourney.Journey.JourneySession.Blocked||SeasonTransition.Active)return;
+            labelAreas.Clear();ReserveHud(chapterPanel);ReserveHud(objectivePanel);ReserveHud(controls);ReservePlayer(camera,player);ReserveArrow();
             float labelRange=CaveLighting?CaveLighting.LabelRange:8;
             foreach(var marker in SeasonWorldLabel.Active)
             {
-                if(!marker||!marker.Visible||player&&Vector2.Distance(marker.transform.position,player.position)>labelRange)continue;
+                if(!marker||!marker.Visible||!marker.InRange(player.position,labelRange))continue;
                 if(CaveLighting&&!CaveLighting.Reveals(marker.transform.position))continue;
                 float width=Mathf.Clamp(marker.Width,80,310);
                 if(!labels.TryGetValue(marker,out var panel)){panel=Panel(marker.Caption,worldLabels,Vector2.up,new Rect(0,0,width,44));var label=Text("Label",panel,new Rect(12,8,width-24,30),marker.Caption,14);label.enableAutoSizing=true;label.fontSizeMin=11;label.fontSizeMax=14;labels.Add(marker,panel);}
@@ -216,6 +218,20 @@ namespace AmbrosJourney.Presentation
                     labelAreas.Add(placed);Place(panel,Vector2.up,placed);
                 }
             }
+        }
+        void ReserveArrow()
+        {
+            if(!Arrow||!Arrow.gameObject.activeInHierarchy)return;
+            Arrow.GetWorldCorners(arrowCorners);
+            var low=new Vector2(float.PositiveInfinity,float.PositiveInfinity);var high=new Vector2(float.NegativeInfinity,float.NegativeInfinity);
+            // Include the current rotation and pulse, in the same top-down canvas units as cards.
+            for(int i=0;i<arrowCorners.Length;i++)
+            {
+                var local=root.InverseTransformPoint(arrowCorners[i]);
+                var point=new Vector2(local.x-root.rect.xMin,root.rect.yMax-local.y);
+                low=Vector2.Min(low,point);high=Vector2.Max(high,point);
+            }
+            labelAreas.Add(Rect.MinMaxRect(low.x-8,low.y-8,high.x+8,high.y+8));
         }
         void ReservePlayer(Camera camera,Transform player)
         {

@@ -50,10 +50,6 @@ namespace AmbrosJourney.Fall
         }
         void Block(string label, Vector2 p, Vector2 size)
         { var o = ObjectAt(label, p); o.AddComponent<BoxCollider2D>().size = size; }
-        void Label(string text, Vector2 p, float width = 8)
-        {
-            var o=ObjectAt(text,p);o.AddComponent<SeasonWorldLabel>().Caption=text;
-        }
         FallActor Actor(string label, string prefix, int count, Vector2 p, string attackPrefix = null, int attackCount = 0, float scale = 1)
         {
             var r = Visual(label, prefix + "1", p, scale); var actor = r.gameObject.AddComponent<FallActor>();
@@ -102,27 +98,27 @@ namespace AmbrosJourney.Fall
                 var r=Visual("Copper canopy","Tree",pos,.8f+(float)rng.NextDouble()*.2f);var c=r.gameObject.AddComponent<BoxCollider2D>();c.size=new Vector2(.6f,.4f);c.offset=new Vector2(0,.2f);
             }
             for(int i=0;i<95;i++){Vector2 pos=new Vector2(rng.Next(-48,49),rng.Next(-31,44));if(SceneryAllowed(pos))Visual("Autumn undergrowth",i%4==0?"Rock":"Bush",pos,.8f);}
-            Visual("Summer arrival portal","Portal",new Vector2(-38,38),1.4f);Label("SUMMER ARRIVAL",new Vector2(-38,41));
+            Visual("Summer arrival portal","Portal",new Vector2(-38,38),1.4f);
             level.player=Actor("Ambros","AmbrosIdle",4,FallLevel.Spawn,"AmbrosAttack",5);level.player.isPlayer=true;level.player.walk=Frames("AmbrosWalk",8);
             var body=level.player.gameObject.AddComponent<Rigidbody2D>();body.gravityScale=0;body.freezeRotation=true;body.interpolation=RigidbodyInterpolation2D.Interpolate;body.collisionDetectionMode=CollisionDetectionMode2D.Continuous;
             var capsule=level.player.gameObject.AddComponent<CapsuleCollider2D>();capsule.size=new Vector2(.55f,.38f);capsule.direction=CapsuleDirection2D.Horizontal;capsule.offset=new Vector2(0,.22f);
             level.mage=Actor("Ancient Mage","MageIdle",4,new Vector2(-40,33));level.mage.walk=Frames("MageWalk",8);
             level.maleWarrior=Actor("Married Warrior","MaleIdle",4,new Vector2(-42,33));level.maleWarrior.walk=Frames("MaleWalk",6);
             level.femaleWarrior=Actor("Married Warrior","FemaleIdle",4,new Vector2(-44,33));level.femaleWarrior.walk=Frames("FemaleWalk",6);
-            level.ember=Actor("Emberfist Warrior","EmberIdle",4,new Vector2(-36,31));level.ember.walk=Frames("EmberWalk",8);SeasonWorldLabel.Attach(level.ember.transform,"EMBERFIST",128);
-            Visual("Emberfist's forge","Workbench",new Vector2(-32,29),1.5f);Visual("Forge shelter","Shelter",new Vector2(-34,32),1.3f);Label("EMBERFIST'S FORGE",new Vector2(-29,32));
+            level.ember=Actor("Emberfist Warrior","EmberIdle",4,new Vector2(-36,31));level.ember.walk=Frames("EmberWalk",8);SeasonWorldLabel.Attach(level.ember.transform,"[E] Talk",112,FallLevel.GuideTalkRadius);
+            Visual("Emberfist's forge","Workbench",new Vector2(-32,29),1.5f);Visual("Forge shelter","Shelter",new Vector2(-34,32),1.3f);
             level.stations=new Transform[3];level.runes=new SpriteRenderer[3];string[] props={"Noticeboard","Noticeboard","Workbench"};
             for(int i=0;i<3;i++){var pos=MissionPositions[i];level.stations[i]=Visual(FallContent.Landmarks[i],props[i],pos,1.5f).transform;SeasonWorldLabel.Attach(level.stations[i],"[E] FIELD NOTE / "+FallContent.Landmarks[i].ToUpper());level.runes[i]=Visual("Prompt rune "+(i+1),"Ward",pos+new Vector2(2,0));level.runes[i].enabled=false;}
             // Two small harvest stacks beside the orchard; the center trail stays open.
             foreach(var position in new[]{new Vector2(-34,5),new Vector2(-36,5.7f)})Visual("Harvest supplies","Crate",position);
             Visual("Archive shelter","Shelter",new Vector2(24,31),1.6f);
             foreach(var position in new[]{new Vector2(32,-21),new Vector2(34,-22.6f)})Visual("Kiln fuel","Crate",position);
-            Sign("ORCHARD  SOUTH",new Vector2(-24,22));Sign("ARCHIVE  EAST / NORTH BRIDGE",new Vector2(-12,22));Sign("KILN  EAST THEN SOUTH",new Vector2(29,16));Sign("KILN  WEST AT NEXT TURN",new Vector2(36,4));Sign("KILN  SOUTH THEN EAST",new Vector2(16,-6));Sign("LOWER BRIDGE  WEST",new Vector2(7,-11));Sign("SENTINEL  SOUTH",new Vector2(5,-28));
-            Visual("Quiet overlook","Shelter",new Vector2(-38,-26));Label("OLD WATCH / OPTIONAL DETOUR",new Vector2(-38,-23),14);
-            level.guardian=Actor("Bramble Sentinel","SentinelIdle",4,GuardianPosition,"SentinelIdle",4,2.1f);SeasonWorldLabel.Attach(level.guardian.transform,"[E] BRAMBLE SENTINEL");
+            Sign(new Vector2(-24,22));Sign(new Vector2(-12,22));Sign(new Vector2(29,16));Sign(new Vector2(36,4));Sign(new Vector2(16,-6));Sign(new Vector2(7,-11));Sign(new Vector2(5,-28));
+            Visual("Quiet overlook","Shelter",new Vector2(-38,-26));
+            level.guardian=Actor("Bramble Sentinel","SentinelIdle",4,GuardianPosition,"SentinelIdle",4,2.1f);SeasonWorldLabel.Attach(level.guardian.transform,"[E] BRAMBLE SENTINEL",232,5.5f);
             var seal=Visual("Three-rune arena barrier","Barrier",new Vector2(0,-34));seal.transform.localScale=new Vector3(8,2,1);seal.gameObject.AddComponent<BoxCollider2D>();level.arenaSeal=seal.gameObject;
             level.shields=new SpriteRenderer[0];
-            level.winterGate=Visual("Winter portal","Portal",GatePosition,1.5f).transform;level.winterGate.GetComponent<SpriteRenderer>().color=new Color(.65f,.85f,1);Label("WINTER / VERIFICATION",new Vector2(0,-44),14);
+            level.winterGate=Visual("Winter portal","Portal",GatePosition,1.5f).transform;level.winterGate.GetComponent<SpriteRenderer>().color=new Color(.65f,.85f,1);
             for(int x=-48;x<=48;x+=2)if(Mathf.Abs(x)>3){Visual("Winter approach wall","Rock",new Vector2(x,-44.5f));Block("Winter approach wall",new Vector2(x,-44.5f),new Vector2(2,1));}
             var exit=Visual("Winter seal","Barrier",new Vector2(0,-44.5f));exit.transform.localScale=new Vector3(5,1,1);exit.gameObject.AddComponent<BoxCollider2D>();level.exitSeal=exit.gameObject;
             AmbrosJourney.Presentation.NaturalTrail.Apply(paths,3);
@@ -130,7 +126,7 @@ namespace AmbrosJourney.Fall
             var cam=camera.AddComponent<Camera>();cam.orthographic=true;cam.orthographicSize=7;cam.clearFlags=CameraClearFlags.SolidColor;cam.backgroundColor=new Color(.29f,.19f,.12f);camera.AddComponent<AudioListener>();
             var follow=camera.AddComponent<FallCamera>();follow.target=level.player.transform;follow.worldMin=Min;follow.worldMax=Max;
         }
-        void Sign(string text,Vector2 pos){Visual("Trail sign","Noticeboard",pos,.65f);Label(text,pos+Vector2.up*1.7f,14);}
+        void Sign(Vector2 pos){Visual("Trail sign","Noticeboard",pos,.65f);}
         void Hedge(int y,int from,int to){for(int x=from;x<=to;x+=2){Visual("Copper hedge","Bush",new Vector2(x,y),1.1f);Block("Hedge barrier",new Vector2(x,y+.3f),new Vector2(2.1f,1.2f));}}
         bool SceneryAllowed(Vector2 p)
         {

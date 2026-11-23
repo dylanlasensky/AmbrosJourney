@@ -50,10 +50,6 @@ namespace AmbrosJourney.Summer
         }
         void Block(string label, Vector2 p, Vector2 size)
         { var o = ObjectAt(label, p); o.AddComponent<BoxCollider2D>().size = size; }
-        void Label(string text, Vector2 p, float width = 8)
-        {
-            var o=ObjectAt(text,p);var label=o.AddComponent<SeasonWorldLabel>();label.Caption=text;label.Width=width<=4?110:310;
-        }
         SummerActor Actor(string label, string prefix, int count, Vector2 p, string attackPrefix = null, int attackCount = 0, float scale = 1)
         {
             var r = Visual(label, prefix + "1", p, scale); var actor = r.gameObject.AddComponent<SummerActor>();
@@ -104,7 +100,7 @@ namespace AmbrosJourney.Summer
             }
             Block("West world boundary",new Vector2(-31,0),new Vector2(1,66)); Block("East world boundary",new Vector2(31,0),new Vector2(1,66));
             Block("North world boundary",new Vector2(0,29),new Vector2(63,1)); Block("South world boundary",new Vector2(0,-33),new Vector2(63,1));
-            Visual("Spring arrival portal","Portal",new Vector2(0,24),1.3f); Label("SPRING ARRIVAL",new Vector2(0,26));
+            Visual("Spring arrival portal","Portal",new Vector2(0,24),1.3f);
             // The same extracted Chibi Assassin frames used in Spring, copied without recoloring.
             level.player = Actor("Ambros","AmbrosIdle",4,SummerLevel.Spawn,"AmbrosAttack",5); level.player.isPlayer = true; level.player.walk = Frames("AmbrosWalk",8);
             var body = level.player.gameObject.AddComponent<Rigidbody2D>(); body.gravityScale=0; body.freezeRotation=true; body.interpolation=RigidbodyInterpolation2D.Interpolate; body.collisionDetectionMode=CollisionDetectionMode2D.Continuous;
@@ -112,9 +108,9 @@ namespace AmbrosJourney.Summer
             level.mage=Actor("Ancient Mage","MageIdle",4,new Vector2(-2,22)); level.mage.walk=Frames("MageWalk",8);
             level.maleWarrior=Actor("Warrior - Workshop guide","MaleIdle",4,new Vector2(-2,20)); level.maleWarrior.walk=Frames("MaleWalk",6);
             level.femaleWarrior=Actor("Warrior - Garden guide","FemaleIdle",4,new Vector2(2,20)); level.femaleWarrior.walk=Frames("FemaleWalk",6);
-            SeasonWorldLabel.Attach(level.maleWarrior.transform,"WORKSHOP WARRIOR",176);SeasonWorldLabel.Attach(level.femaleWarrior.transform,"GARDEN WARRIOR",160);
+            SeasonWorldLabel.Attach(level.maleWarrior.transform,"[E] Talk",112,SummerLevel.GuideTalkRadius);SeasonWorldLabel.Attach(level.femaleWarrior.transform,"[E] Talk",112,SummerLevel.GuideTalkRadius);
             level.orc=Actor("Suncrest Guardian","OrcIdle",5,new Vector2(0,-23),"OrcAttack",6,1.7f);
-            SeasonBossVisual.Attach(level.orc.gameObject,"SummerSuncrestAtlas",6f);SeasonWorldLabel.Attach(level.orc.transform,"[E] SUNCREST GUARDIAN");
+            SeasonBossVisual.Attach(level.orc.gameObject,"SummerSuncrestAtlas",6f);SeasonWorldLabel.Attach(level.orc.transform,"[E] SUNCREST GUARDIAN",244,5.5f);
             // Readable landmarks with new supporting props; original character art is retained.
             level.workshop=Visual("Village workshop","Workbench",new Vector2(-18,12),1.5f).transform;
             SeasonWorldLabel.Attach(level.workshop,"[E] VILLAGE WORKSHOP");
@@ -128,12 +124,11 @@ namespace AmbrosJourney.Summer
             Visual("Damaged bridge - ask the builder","Bridge",new Vector2(8,5));Block("Broken bridge approach",new Vector2(7,5),new Vector2(2,5));
             level.wardLights=new SpriteRenderer[3]; Vector2[] wp={new Vector2(-16,12),new Vector2(-12,-6),new Vector2(21,8)};
             for(int i=0;i<3;i++){level.wardLights[i]=Visual("Ward piece "+(i+1),"Ward",wp[i]);level.wardLights[i].enabled=false;}
-            Label("SUNCREST'S CLEARING",new Vector2(0,-16));
             for(int x=-29;x<=29;x+=2) if(Mathf.Abs(x)>3) {Visual("Arena perimeter","Rock",new Vector2(x,-18));Block("Arena wall",new Vector2(x,-18),new Vector2(2,1));}
             var seal=Visual("Village ward barrier","Barrier",new Vector2(0,-18));seal.transform.localScale=new Vector3(8.4f,2,1);seal.gameObject.AddComponent<BoxCollider2D>(); level.arenaSeal=seal.gameObject;
             level.shields=new SpriteRenderer[0];
 
-            level.fallGate=Visual("Fall portal","Portal",new Vector2(0,-30),1.5f).transform;level.fallGate.GetComponent<SpriteRenderer>().color=new Color(1,.69f,.4f);Label("FALL / PROMPT ENGINEERING",new Vector2(0,-27));
+            level.fallGate=Visual("Fall portal","Portal",new Vector2(0,-30),1.5f).transform;level.fallGate.GetComponent<SpriteRenderer>().color=new Color(1,.69f,.4f);
             var exit=Visual("Fall seal","Barrier",new Vector2(0,-28.7f));exit.transform.localScale=new Vector3(5,1,1);exit.gameObject.AddComponent<BoxCollider2D>();level.exitSeal=exit.gameObject;
             AmbrosJourney.Presentation.NaturalTrail.Apply(paths,2);
             var camera=ObjectAt("Summer Camera",new Vector2(0,22));camera.tag="MainCamera";camera.transform.position=new Vector3(0,22,-10);

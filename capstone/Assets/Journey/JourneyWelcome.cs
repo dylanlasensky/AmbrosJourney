@@ -29,8 +29,8 @@ namespace AmbrosJourney.Journey
             Row(ui,"J","Open your field notes",-16);
             Row(ui,"I","View your artifacts",48);
             Row(ui,"Esc","Go back / pause",112,90);
-            Text(ui,"First destination","FIRST STOP: BLOSSOM GROVE",new Rect(58,185,440,27),16,Muted);
-            Text(ui,"First destination detail","Follow the arrow to the first field note. Press E to read it.",new Rect(58,213,440,47),20);
+            Text(ui,"First destination","FIRST STOP: ANCIENT MAGE",new Rect(58,185,440,27),16,Muted);
+            Text(ui,"First destination detail","Follow the arrow to the Ancient Mage. Press E to talk to him.",new Rect(58,213,440,47),20);
             JourneyPauseJournal.Button(ui,"Let's explore  [ E / Enter ]",new Rect(-210,266,420,37),close,true);
         }
         static void Row(JourneyUI ui,string key,string description,float y,float width=58)

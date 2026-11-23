@@ -12,6 +12,7 @@ namespace AmbrosJourney.Fall
 {
     public sealed class FallLevel : MonoBehaviour
     {
+        public const float GuideTalkRadius=4f;
         public static readonly Vector2 Spawn=new Vector2(-38,34);
         public FallActor player,mage,maleWarrior,femaleWarrior,ember,guardian;
         public Transform[] stations;
@@ -34,12 +35,17 @@ namespace AmbrosJourney.Fall
         AudioClip good,bad,ward,strike;
         Canvas canvas;
         SeasonOverlay presentation;
+        SeasonWorldLabel[] lessonLabels;
+        SeasonWorldLabel emberLabel;
         int nearby=-1;
         string currentTitle;
         public void RestoreProgress(FallProgress p)
         {
             if(p==null||!p.Valid())throw new ArgumentException("Invalid Fall checkpoint");
-            CompanionSpeech.Clear(presentation);Progress=p;Close();journal.SetActive(false);if(p.Introduced)RestoreGuide();else{BeginGuidance();Welcome();}if(p.Complete){ember.Guidance=null;ember.follow=femaleWarrior.transform;}RefreshWorld();AmbrosJourney.Journey.BossPortalSequence.RestoreCheckpoint();
+            Progress=p;Close();journal.SetActive(false);
+            if(p.Introduced)RestoreGuide();
+            else{ember.Guidance=null;ember.follow=null;ember.transform.position=Spawn+new Vector2(2,-3);}
+            if(p.Complete){ember.Guidance=null;ember.follow=femaleWarrior.transform;}RefreshWorld();AmbrosJourney.Journey.BossPortalSequence.RestoreCheckpoint();
         }
         void Start()
         {
@@ -47,7 +53,7 @@ namespace AmbrosJourney.Fall
             winterGate.gameObject.SetActive(false);
             Application.runInBackground=false;CreateUI();CreateAudio();
             mage.follow=player.transform;maleWarrior.follow=mage.transform;femaleWarrior.follow=maleWarrior.transform;
-            Close();BeginGuidance();Welcome();
+            Close();
             Debug.Log("FALL_READY: Emberwood, three prompt missions, seven applied choices and five-question guardian.");
         }
         public bool DismissPanel()
@@ -63,7 +69,7 @@ namespace AmbrosJourney.Fall
             if(k!=null && !Transitioning)
             {
                 if(k.mKey.wasPressedThisFrame){GameAudio.ToggleMute();}
-                if(k.escapeKey.wasPressedThisFrame){if(journal.activeSelf)journal.SetActive(false);else if(dialog.activeSelf && Progress.Introduced)Close();}
+                if(k.escapeKey.wasPressedThisFrame)DismissPanel();
                 else if(k.jKey.wasPressedThisFrame && !dialog.activeSelf)ToggleJournal();
                 else if(dialog.activeSelf)
                 {
@@ -75,35 +81,38 @@ namespace AmbrosJourney.Fall
             UpdateGuidance();
             RefreshWorld();
         }
-        void Welcome()=>CompanionSpeech.Say(presentation,"Emberfist","Welcome to Emberwood! A prompt is a request to an AI tool. Walk with me to Harvest Orchard, then read its board with E. We'll practice making clear requests.");
+        void Welcome()=>Show("Emberfist / Welcome to Emberwood","A prompt is a request to an AI tool. We will practice giving it a clear job, useful details and the format we want.\n\nWalk with me to Harvest Orchard. I will wait if you stop to explore.",()=>{BeginGuidance();Close();});
         public static readonly Vector2 OrchardGuide=new Vector2(-27,9);
         void BeginGuidance()
         {
-            Progress.Introduced=true;ember.Guidance=new GuideWalk(OrchardGuide,FallWorld.Min,FallWorld.Max);
+            Progress.Introduced=true;ember.follow=null;ember.Guidance=new GuideWalk(OrchardGuide,FallWorld.Min,FallWorld.Max);
         }
         void RestoreGuide()
         {
             if(Progress.GuideArrived||Progress.Studied[0]||Progress.RuneCount>0)
-            {Progress.GuideArrived=true;ember.Guidance=null;ember.transform.position=OrchardGuide;}
+            {Progress.GuideArrived=true;ember.Guidance=null;ember.follow=null;ember.transform.position=OrchardGuide;}
             else BeginGuidance();
         }
         void UpdateGuidance()
         {
             if(InputBlocked||!Progress.Introduced||ember.Guidance==null||!ember.Guidance.Arrived||!Progress.GuideArrived&&Vector2.Distance(player.transform.position,stations[0].position)>4)return;
-            bool announce=!Progress.GuideArrived;
             Progress.GuideArrived=true;ember.Guidance=null;
-            if(announce)CompanionSpeech.Say(presentation,"Emberfist","Start at this board with E. Then visit Lantern Archive and Revision Kiln. Tell AI the job, useful details and the format you need. J keeps your lesson notes.");
         }
         int Nearest()
         {
             Transform[] targets={ember.transform,stations[0],stations[1],stations[2],guardian.transform,winterGate};
-            int result=-1;float best=2.8f;for(int i=1;i<targets.Length;i++){if(!targets[i].gameObject.activeInHierarchy || i==4&&Progress.Complete)continue;float d=Vector2.Distance(player.transform.position,targets[i].position);if(d<best){best=d;result=i;}}if(result<0&&!Progress.Complete&&Vector2.Distance(player.transform.position,guardian.transform.position)<5.5f)result=4;return result;
+            if(!Progress.Introduced)return Vector2.Distance(player.transform.position,ember.transform.position)<GuideTalkRadius?0:-1;
+            int result=-1;float best=2.8f;for(int i=1;i<targets.Length;i++){if(!targets[i].gameObject.activeInHierarchy || i==4&&Progress.Complete)continue;float d=Vector2.Distance(player.transform.position,targets[i].position);if(d<best){best=d;result=i;}}if(result<0&&!Progress.Complete&&Vector2.Distance(player.transform.position,guardian.transform.position)<5.5f)result=4;if(result<0&&!Progress.Complete&&Vector2.Distance(player.transform.position,ember.transform.position)<GuideTalkRadius)result=0;return result;
         }
         public void Interact(int target)
         {
-            if(AmbrosJourney.Journey.JourneySession.Blocked || !Progress.Introduced || Transitioning || target==4&&Progress.Complete || target==5&&!AmbrosJourney.Journey.BossPortalSequence.AllowsEntry(winterGate))return;
+            if(AmbrosJourney.Journey.JourneySession.Blocked || !Progress.Introduced&&target!=0 || Transitioning || (target==0||target==4)&&Progress.Complete || target==5&&!AmbrosJourney.Journey.BossPortalSequence.AllowsEntry(winterGate))return;
             GameAudio.Click();
-            if(target==0)CompanionSpeech.Say(presentation,"Emberfist",Progress.Complete?"I will travel with you! Keep checking what AI tells you. Your own judgment still matters.":"Read the three station boards with E and repair their AI requests. J keeps your lesson notes.");
+            if(target==0)
+            {
+                if(!Progress.Introduced)Welcome();
+                else Show("Emberfist / The prompt forge",Progress.Complete?"I will travel with you! Keep checking what AI tells you. Your own judgment still matters.":!Progress.GuideArrived?"Come with me to Harvest Orchard. I will wait if you stop. Press E at its board when you are ready.":"Start at this board with E. Then visit Lantern Archive and Revision Kiln. Tell AI the job, useful details and the format you need. J keeps your lesson notes.",Close);
+            }
             else if(target>=1 && target<=3)Mission(target-1);
             else if(target==4)Boss();
             else if(target==5)Show("The Winter gate",Progress.Complete?"FALL COMPLETE / PROMPT PATHFINDER\nEmberfist joins your party.\n\nClose this conversation and walk through the unlocked gate to reach Frostveil. Read the two outdoor field notes, then face the Warden at the snowy cave.":"Collect the three prompt runes and pass the Sentinel's quiz with at least 4/5. The Winter gate will then open.",Close);
@@ -185,12 +194,15 @@ namespace AmbrosJourney.Fall
         }
         void RefreshWorld()
         {
+            if(lessonLabels!=null)foreach(var label in lessonLabels)if(label)label.enabled=Progress.Introduced;
+            if(emberLabel)emberLabel.enabled=!Progress.Complete;
             arenaSeal.SetActive(!Progress.CanFight);exitSeal.SetActive(!Progress.Complete);
             for(int i=0;i<3;i++)runes[i].color=Progress.MissionComplete(i)?new Color(.6f,1,.7f):new Color(1,.65f,.3f);
             for(int i=0;i<shields.Length;i++)shields[i].enabled=false;
             string quest=Progress.Complete?"Walk through the unlocked Winter gate":Progress.CanFight?"Challenge the Sentinel / 4 of 5 to pass":!Progress.MissionComplete(0)?"Harvest Orchard / Goal + context + format":!Progress.MissionComplete(1)?"Lantern Archive / Audience + limits":"Revision Kiln / Check + improve";
             objective.text="RUNES "+Progress.RuneCount+" / 3\n"+quest;
-            if(Progress.Introduced&&!Progress.GuideArrived)objective.text="Walk with Emberfist to Harvest Orchard. He will wait for you.";
+            if(!Progress.Introduced)objective.text="Press E to talk to Emberfist by the portal.";
+            else if(!Progress.GuideArrived)objective.text="Walk with Emberfist to Harvest Orchard. He will wait for you.";
             var destination=Destination();
             if(!InputBlocked)presentation.SetCompass(player.transform.position,destination,destination);
             prompt.text=InputBlocked||nearby<0?"":"[ E ]  "+new[]{"Talk to Emberfist","Harvest Orchard","Lantern Archive","Revision Kiln","Face the Sentinel","Winter gate"}[nearby];
@@ -198,6 +210,9 @@ namespace AmbrosJourney.Fall
         }
         void CreateUI()
         {
+            var targets=new[]{stations[0],stations[1],stations[2],guardian.transform};lessonLabels=new SeasonWorldLabel[targets.Length];
+            for(int i=0;i<targets.Length;i++)lessonLabels[i]=targets[i].GetComponentInChildren<SeasonWorldLabel>(true);
+            emberLabel=ember.GetComponentInChildren<SeasonWorldLabel>(true);
             var ui=new GameObject("Fall interface");ui.transform.SetParent(transform,false);
             presentation=ui.AddComponent<SeasonOverlay>();presentation.Initialize(font,true);
             canvas=presentation.Canvas;dialog=presentation.Dialog;journal=presentation.Journal;

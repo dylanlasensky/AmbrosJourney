@@ -117,12 +117,6 @@ namespace AmbrosJourney.Journey
                 ClearSegment(position,connection);
                 NaturalTrail.Approach(portal.transform.parent,season,1.65f,position,connection);
                 PortalThresholds.Add(position);
-                foreach(var label in FindObjectsByType<SeasonWorldLabel>().Where(l=>l.gameObject.scene==gameObject.scene))
-                {
-                    if(Vector2.Distance(label.transform.position,previous+Vector2.up*3)<2&&
-                       !string.IsNullOrEmpty(label.Caption)&&(label.Caption.Contains("ARRIVAL")||label.Caption.Contains(" / ")))
-                        label.transform.position=position+Vector2.up*(portal.bounds.size.y+.5f);
-                }
             }
         }
 

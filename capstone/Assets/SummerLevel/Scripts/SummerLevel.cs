@@ -12,6 +12,7 @@ namespace AmbrosJourney.Summer
 {
     public sealed class SummerLevel : MonoBehaviour
     {
+        public const float GuideTalkRadius=4f;
         public static readonly Vector2 Spawn = new Vector2(0, 22);
         public SummerActor player, mage, maleWarrior, femaleWarrior, orc;
         public Transform workshop, garden, messagePost, fallGate;
@@ -32,9 +33,8 @@ namespace AmbrosJourney.Summer
         AudioClip good, bad, ward, strike;
         Canvas canvas;
         SeasonOverlay presentation;
-        bool readingGardenWarrior;
-        SeasonWorldLabel gardenWarriorLabel;
-        bool GardenWarriorHasMore=>!Progress.GardenWarriorRead&&!Progress.GuideArrived&&!Progress.Wards[1];
+        SeasonWorldLabel[] lessonLabels;
+        SeasonWorldLabel workshopWarriorLabel,gardenWarriorLabel;
         int nearby = -1;
         string currentTitle;
         public bool IsDialogueOpen => dialog && dialog.activeSelf;
@@ -42,7 +42,14 @@ namespace AmbrosJourney.Summer
         public void RestoreProgress(SummerProgress p)
         {
             if(p==null||!p.Valid())throw new ArgumentException("Invalid Summer checkpoint");
-            readingGardenWarrior=false;CompanionSpeech.Clear(presentation);Progress=p;Close();journal.SetActive(false);if(p.Introduced)RestoreGuides();else{BeginGuidance();Welcome();}if(p.Complete){maleWarrior.follow=mage.transform;femaleWarrior.follow=maleWarrior.transform;}RefreshWorld();AmbrosJourney.Journey.BossPortalSequence.RestoreCheckpoint();
+            Progress=p;Close();journal.SetActive(false);
+            if(p.Introduced)RestoreGuides();
+            else
+            {
+                maleWarrior.Guidance=femaleWarrior.Guidance=null;maleWarrior.follow=femaleWarrior.follow=null;
+                maleWarrior.transform.position=Spawn+new Vector2(-2,-2);femaleWarrior.transform.position=Spawn+new Vector2(2,-2);
+            }
+            if(p.Complete){maleWarrior.follow=mage.transform;femaleWarrior.follow=maleWarrior.transform;}RefreshWorld();AmbrosJourney.Journey.BossPortalSequence.RestoreCheckpoint();
         }
         void Start()
         {
@@ -51,7 +58,7 @@ namespace AmbrosJourney.Summer
             Application.runInBackground = false;
             CreateUI(); CreateAudio();
             mage.follow = player.transform;
-            Close();BeginGuidance();Welcome();
+            Close();
             Debug.Log("SUMMER_READY: three missions, five-question Suncrest Guardian, journal, compass and companions.");
         }
         public bool DismissPanel()
@@ -71,8 +78,7 @@ namespace AmbrosJourney.Summer
                 if (k.mKey.wasPressedThisFrame) { GameAudio.ToggleMute(); }
                 if (k.escapeKey.wasPressedThisFrame)
                 {
-                    if (journal.activeSelf) journal.SetActive(false);
-                    else if (dialog.activeSelf && Progress.Introduced) Close();
+                    DismissPanel();
                 }
                 else if (k.jKey.wasPressedThisFrame && !dialog.activeSelf) ToggleJournal();
                 else if (dialog.activeSelf)
@@ -89,11 +95,11 @@ namespace AmbrosJourney.Summer
             UpdateGuidance();
             RefreshWorld();
         }
-        void Welcome()=>CompanionSpeech.Say(presentation,"The Warriors","Welcome to Summer! AI can help without making every decision for us. Come to the workshop; we'll walk with you. Read the lesson boards with E.");
+        void Welcome()=>Show("The Warriors / Welcome to Summer","AI can help without making every decision for us. We look after this village, and we need your help deciding when a tool is useful.\n\nCome with us to the workshop. We will wait if you stop to explore.",()=>{BeginGuidance();Close();});
         public static readonly Vector2 WorkshopGuide=new Vector2(-16,11), WorkshopPartner=new Vector2(-17,10);
         void BeginGuidance()
         {
-            Progress.Introduced=true;
+            Progress.Introduced=true;maleWarrior.follow=femaleWarrior.follow=null;
             maleWarrior.Guidance=new GuideWalk(WorkshopGuide,new Vector2(-30,-32),new Vector2(30,28));
             femaleWarrior.Guidance=new GuideWalk(WorkshopPartner,new Vector2(-30,-32),new Vector2(30,28));
         }
@@ -101,7 +107,7 @@ namespace AmbrosJourney.Summer
         {
             if(Progress.GuideArrived||Progress.WorkshopQuestion>0||Progress.HintChosen||Progress.WardCount>0)
             {
-                Progress.GuideArrived=true;maleWarrior.Guidance=null;femaleWarrior.Guidance=null;
+                Progress.GuideArrived=true;maleWarrior.Guidance=null;femaleWarrior.Guidance=null;maleWarrior.follow=null;
                 maleWarrior.transform.position=WorkshopGuide;femaleWarrior.transform.position=WorkshopPartner;
                 femaleWarrior.follow=mage.transform;
             }
@@ -111,13 +117,12 @@ namespace AmbrosJourney.Summer
         {
             if(InputBlocked||!Progress.Introduced||maleWarrior.Guidance==null||femaleWarrior.Guidance==null)return;
             if(!maleWarrior.Guidance.Arrived||!femaleWarrior.Guidance.Arrived||!Progress.GuideArrived&&Vector2.Distance(player.transform.position,workshop.position)>4)return;
-            bool announce=!Progress.GuideArrived;
             Progress.GuideArrived=true;maleWarrior.Guidance=null;femaleWarrior.Guidance=null;femaleWarrior.follow=mage.transform;
-            if(announce)CompanionSpeech.Say(presentation,"The Warriors","Here is the workshop. Press E at its board when you are ready. Finish the workshop, garden and message post to open the Guardian's clearing. J holds your notes.");
         }
         int Nearest()
         {
             Transform[] targets = { maleWarrior.transform, workshop, garden, messagePost, orc.transform, fallGate, null, null, null, femaleWarrior.transform };
+            if(!Progress.Introduced)return NearestWarrior();
             float best = 2.8f; int result = -1;
             for (int i = 1; i < targets.Length-1; i++)
             {
@@ -127,16 +132,25 @@ namespace AmbrosJourney.Summer
             }
             // Nearby lesson objects take priority over a companion standing beside Ambros.
             if(result<0&&!Progress.Complete&&Vector2.Distance(player.transform.position,orc.transform.position)<5.5f)result=4;
-            return result;
+            return result<0?NearestWarrior():result;
+        }
+        int NearestWarrior()
+        {
+            if(Progress.Complete)return -1;
+            float male=Vector2.Distance(player.transform.position,maleWarrior.transform.position),female=Progress.GuideArrived?float.PositiveInfinity:Vector2.Distance(player.transform.position,femaleWarrior.transform.position);
+            if(Mathf.Min(male,female)>=GuideTalkRadius)return -1;
+            return male<=female?0:9;
         }
         public void Interact(int target)
         {
-            if (AmbrosJourney.Journey.JourneySession.Blocked || target==4&&Progress.Complete || target==5&&!AmbrosJourney.Journey.BossPortalSequence.AllowsEntry(fallGate) || !Progress.Introduced||target==9&&!GardenWarriorHasMore) return;
+            if (AmbrosJourney.Journey.JourneySession.Blocked || target==4&&Progress.Complete || target==5&&!AmbrosJourney.Journey.BossPortalSequence.AllowsEntry(fallGate) || Transitioning || !Progress.Introduced&&target!=0&&target!=9 || target==9&&Progress.GuideArrived || Progress.Complete&&(target==0||target==9)) return;
             GameAudio.Click();
             switch (target)
             {
                 case 0: case 9:
-                    CompanionSpeech.Say(presentation,"The Warriors",Progress.Complete?"We will travel with you. AI can support your ideas, but your choices are still yours.":"Read the workshop, garden and message-post boards with E. Finish all three lessons to reach the Suncrest Guardian.");break;
+                    if(!Progress.Introduced)Welcome();
+                    else Show("The Warriors",Progress.Complete?"We will travel with you. AI can support your ideas, but your choices are still yours.":!Progress.GuideArrived?"Follow us to the workshop. We will wait nearby if you stop. Press E at the board when you are ready to try its lesson.":"Here is the workshop. Read its board with E, then visit the garden and message post. Finish all three lessons to open the Suncrest Guardian's clearing. J holds your notes.",Close);
+                    break;
                 case 1: Workshop(); break;
                 case 2: Garden(); break;
                 case 3: Message(); break;
@@ -229,7 +243,7 @@ namespace AmbrosJourney.Summer
         void ShowPages(string[] pages, int index, Action complete)
         { Show("Summer / The village ward", pages[index], () => { if (index + 1 < pages.Length) ShowPages(pages, index + 1, complete); else { complete(); Close(); } }); }
         void Effect(bool right) { effects.PlayOneShot(right ? good : bad, .45f); presentation.Feedback(right); }
-        void Close() { dialogVersion++;BossBattleMusic.Stop(this); if(readingGardenWarrior){Progress.GardenWarriorRead=true;readingGardenWarrior=false;}dialog.SetActive(false); actions.Clear(); next = null; if (music) music.pitch = 1; }
+        void Close() { dialogVersion++;BossBattleMusic.Stop(this); dialog.SetActive(false); actions.Clear(); next = null; if (music) music.pitch = 1; }
         void Show(string title, string body, Action onContinue)
         {
             dialogVersion++;currentTitle = title; heading.text = title; copy.text = body; dialog.SetActive(true); journal.SetActive(false);
@@ -272,12 +286,15 @@ namespace AmbrosJourney.Summer
         }
         void RefreshWorld()
         {
-            if(gardenWarriorLabel)gardenWarriorLabel.enabled=!Progress.Complete;
+            if(lessonLabels!=null)foreach(var label in lessonLabels)if(label)label.enabled=Progress.Introduced;
+            if(workshopWarriorLabel)workshopWarriorLabel.enabled=!Progress.Complete;
+            if(gardenWarriorLabel)gardenWarriorLabel.enabled=!Progress.Complete&&!Progress.GuideArrived;
             arenaSeal.SetActive(!Progress.CanFight); exitSeal.SetActive(!Progress.Complete);
             for (int i = 0; i < 3; i++) wardLights[i].color = Progress.Wards[i] ? new Color(.5f, 1, .75f) : new Color(.7f, .55f, .30f);
             for (int i = 0; i < shields.Length; i++) shields[i].enabled=false;
             objective.text = "WARD " + Progress.WardCount + " / 3\n" + (Progress.Complete ? "Walk through the Fall gate" : Progress.CanFight ? "Challenge the Suncrest Guardian / 4 of 5 to pass" : !Progress.Wards[0] ? "Workshop / Choose the right tool" : !Progress.Wards[1] ? "Training garden / Keep your practice" : "Message post / Ask safely");
-            if(Progress.Introduced&&!Progress.GuideArrived)objective.text="Walk with the Warriors to the workshop. They will wait for you.";
+            if(!Progress.Introduced)objective.text="Press E to talk to either Warrior by the portal.";
+            else if(!Progress.GuideArrived)objective.text="Walk with the Warriors to the workshop. They will wait for you.";
             var destination=Destination();
             if(!InputBlocked)presentation.SetCompass(player.transform.position,destination,destination);
             prompt.text=InputBlocked||nearby<0?"":"[ E ]  "+new[]{"Talk to the Warrior","Visit the workshop","Read the garden field note","Read the message post","Face the Suncrest Guardian","Enter the Fall gate","","","","Talk to the Warrior"}[nearby];
@@ -285,6 +302,9 @@ namespace AmbrosJourney.Summer
         }
         void CreateUI()
         {
+            var targets=new[]{workshop,garden,messagePost,orc.transform};lessonLabels=new SeasonWorldLabel[targets.Length];
+            for(int i=0;i<targets.Length;i++)lessonLabels[i]=targets[i].GetComponentInChildren<SeasonWorldLabel>(true);
+            workshopWarriorLabel=maleWarrior.GetComponentInChildren<SeasonWorldLabel>(true);
             gardenWarriorLabel=femaleWarrior.GetComponentInChildren<SeasonWorldLabel>(true);
             var ui=new GameObject("Summer interface");ui.transform.SetParent(transform,false);
             presentation=ui.AddComponent<SeasonOverlay>();presentation.Initialize(font,false);

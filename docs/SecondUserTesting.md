@@ -1,6 +1,6 @@
 # Second-round user testing: controls and portal exits
 
-**Historical feedback record.** November 21, 2026 guidance now uses a direct gold-and-cream arrow that remains available in Winter. Companion advice and post-Warden cave permission are automatic; the frozen-arrow and required-NPC-conversation rules below are superseded. See the [current overview](../README.md) and [companion guidance](CompanionGuidance.md).
+**Historical feedback record.** Current November 22 guidance uses a direct gold-and-cream arrow that remains available in Winter. Guides again require deliberate E-to-talk interaction, including the completed Little Mage cave briefing. The frozen-arrow and persistent-save rules below remain superseded. Earlier validation applies only to its dated build. See the [current overview](../README.md) and [companion guidance](CompanionGuidance.md).
 
 These changes build on main `865a5c7` and preserve the latest guidance, water, artifact-interaction and lesson changes.
 

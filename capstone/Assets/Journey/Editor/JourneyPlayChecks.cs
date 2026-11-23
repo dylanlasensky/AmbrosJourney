@@ -39,7 +39,7 @@ namespace AmbrosJourney.Journey.Editor
             else if(stage==1)
             {
                 Check(SceneManager.GetActiveScene().name=="Spring"&&session.Data.started,"Earlier season remains available during the current run");
-                session.Pause();string beforeEnd=JsonUtility.ToJson(session.Data);Call(session,"ShowConfirmEndRun");Inspect();
+                session.Pause();Check(session.Paused&&Time.timeScale==0,"Ready chapter enters Pause before the end-run confirmation");string beforeEnd=JsonUtility.ToJson(session.Data);Call(session,"ShowConfirmEndRun");Inspect();
                 Check(Array.Exists(UI.GetComponentsInChildren<UnityEngine.UI.Button>(),b=>b.name=="Keep playing")&&Array.Exists(UI.GetComponentsInChildren<UnityEngine.UI.Button>(),b=>b.name=="End run / Main menu"),"Ending an active run asks before clearing it");
                 Click("Keep playing");Check(session.Data.started&&session.Paused,"Cancel end-run keeps the current journey paused");Check(JsonUtility.ToJson(session.Data)==beforeEnd,"Cancel end-run preserves every chapter, artifact and completion field");
                 Check(!UI.transform.Find("Reset journey"),"Pause has one clear end-run action");

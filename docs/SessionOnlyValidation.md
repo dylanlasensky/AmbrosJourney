@@ -1,5 +1,7 @@
 # Session-only play and season handoffs — 22 November 2026
 
+**November 22 intro-source correction:** The earlier browser checks below used the 34-second October placeholder, not the teammate's 40-second PR18 film. They verify the presentation behavior of those named exports, not the identity/playback of the restored source. See [video provenance](IntroVideoSource.md); a new export must validate the restored film.
+
 This update starts every launch and browser refresh with a new journey. Old save files and browser records are ignored and left untouched. The native player save present during validation retained its original SHA-256 hash throughout the checks.
 
 ## Behavior

@@ -78,7 +78,8 @@ public static class BossExitChecks
             else if(stage==3||stage==7||stage==11){SeasonIntegrationChecks.Capture(SceneManager.GetActiveScene().name+"PortalReady");Move(seq.Exit.Portal.position);Advance(stage+1,2);}
             else if(stage==4)
             {
-                if(SceneManager.GetActiveScene().name!="Summer"||!seq)return;var l=Find<SummerLevel>();Check(l&&l.Progress.Introduced&&!l.InputBlocked,"Summer orientation leaves control with player");
+                if(SceneManager.GetActiveScene().name!="Summer"||!seq||SeasonTransition.Active)return;var l=Find<SummerLevel>();Check(l&&!l.Progress.Introduced&&!l.InputBlocked,"Summer waits for E at its portal guides");
+                Move(l.maleWarrior.transform.position);l.Interact(0);Check(l.IsDialogueOpen&&l.InputBlocked,"Deliberate Warrior greeting is modal");Next(l);Check(l.Progress.Introduced&&!l.InputBlocked,"Finishing Warrior greeting begins Summer");
                 Check(!seq.Exit.Ready&&!seq.Exit.Portal.gameObject.activeSelf&&l.shields.Length==0,"Summer starts without portal or flags");
                 l.RestoreProgress(new SummerProgress{Introduced=true,GuideArrived=true,Wards=new[]{true,true,true},WorkshopQuestion=2,HintChosen=true,PatternStep=3,GardenQuestion=1,PatternComplete=true,PrivacyComplete=true,RemovedPrivateDetails=new[]{true,true,true}});
                 Move(new Vector2(0,-20));RDown(2);Advance(5);
@@ -89,7 +90,8 @@ public static class BossExitChecks
             }
             else if(stage==8)
             {
-                if(SceneManager.GetActiveScene().name!="Fall"||!seq)return;var l=Find<FallLevel>();Check(l&&l.Progress.Introduced&&!l.InputBlocked,"Fall orientation leaves control with player");Check(!seq.Exit.Ready&&l.shields.Length==0,"Fall portal hidden and no flags");
+                if(SceneManager.GetActiveScene().name!="Fall"||!seq||SeasonTransition.Active)return;var l=Find<FallLevel>();Check(l&&!l.Progress.Introduced&&!l.InputBlocked,"Fall waits for E at Emberfist");
+                Move(l.ember.transform.position);l.Interact(0);Check(l.IsDialogueOpen&&l.InputBlocked,"Deliberate Emberfist greeting is modal");Next(l);Check(l.Progress.Introduced&&!l.InputBlocked,"Finishing Emberfist greeting begins Fall");Check(!seq.Exit.Ready&&l.shields.Length==0,"Fall portal hidden and no flags");
                 l.RestoreProgress(new FallProgress{Introduced=true,GuideArrived=true,Studied=new[]{true,true,true},Steps=FallContent.Missions.Select(q=>q.Length).ToArray()});Move(new Vector2(0,-38));RDown(3);Advance(9);
             }
             else if(stage==9)
@@ -108,8 +110,8 @@ public static class BossExitChecks
             else if(stage==15)
             {
                 var l=Find<WinterLevel>();Check(!l.caveEntrance.GetComponent<SpriteRenderer>(),"Natural cave has no portal overlay");
-                Check(l.Progress.CaveGuideRead&&l.Progress.CanEnterCave&&!l.IsDialogueOpen,"Cave guidance unlocks automatically after Warden victory");
-                Move(l.littleMage.transform.position);l.Interact(0);Check(!l.IsDialogueOpen&&!l.InputBlocked,"Repeating a companion tip remains passive");
+                Check(!l.Progress.CaveGuideRead&&!l.Progress.CanEnterCave&&!l.IsDialogueOpen,"Cave waits for the guide conversation after Warden victory");
+                Move(l.littleMage.transform.position);l.Interact(0);Check(l.IsDialogueOpen&&l.InputBlocked,"E opens the cave guide conversation");Next(l);Check(l.Progress.CanEnterCave&&!l.InputBlocked,"Finishing the guide conversation permits cave entry");
                 SeasonIntegrationChecks.Capture("WinterPortalReady");Move(seq.Exit.Portal.position);Advance(16,1);
             }
             else if(stage==16)
