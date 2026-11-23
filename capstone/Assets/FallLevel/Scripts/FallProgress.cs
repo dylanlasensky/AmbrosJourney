@@ -6,6 +6,7 @@ namespace AmbrosJourney.Fall
     [Serializable]
     public sealed class FallProgress
     {
+        public bool GuideBriefed;
         public bool Introduced, GuideArrived;
         public bool Valid()
         {

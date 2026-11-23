@@ -23,6 +23,7 @@ namespace AmbrosJourney.Journey
         public JourneyData Data {get;private set;}
         public bool Paused {get;private set;}
         Action backAction;bool artifactsOpen;
+        AudioSource menuMusic;
         int resumeFrame=-1;JourneyUI ui;bool menu,loading,cinematic,ending;string notice="",nameDraft="";Action beginIntro;TMP_InputField nameInput;
         public static readonly string[] ChapterNames={"Spring Valley","Summer Valley","Emberwood","Frostveil"};
         public const string ArtifactLesson="THE EVIDENCE COMPASS\nBefore sharing, leave out private details, check the original source and look for separate evidence. Say what you still haven't checked.\n\nSeveral AI tools can agree and still be wrong. They may repeat the same mistake, so matching replies don't count as separate checks.";
@@ -142,6 +143,7 @@ namespace AmbrosJourney.Journey
         }
         void ShowMenu()
         {
+            PlayMenuMusic();
             artifactsOpen=false;backAction=null;ui.KeyboardNavigation=true;
             JourneyMenu.Background(ui);
             nameInput=null;
@@ -189,12 +191,22 @@ namespace AmbrosJourney.Journey
             Application.Quit();
 #endif
         }
+        void PlayMenuMusic()
+        {
+            if(!menuMusic)
+            {
+                menuMusic=gameObject.AddComponent<AudioSource>();menuMusic.playOnAwake=false;menuMusic.loop=true;menuMusic.volume=.22f;menuMusic.spatialBlend=0;
+                menuMusic.clip=Resources.Load<AudioClip>("SeasonMusic/andriig-spring-easter-day-music-507171");GameAudio.Register(menuMusic);
+            }
+            if(menuMusic.clip&&!menuMusic.isPlaying)menuMusic.Play();
+        }
         public void NewJourney()
         {
             string name=JourneyData.CleanName(nameInput?nameInput.text:nameDraft);
             if(name.Length==0){notice="Enter an explorer name to start.";ShowMenu();return;}
             var fresh=new JourneyData{playerName=name,started=true,assistedGuidance=Data.assistedGuidance};
             Data=fresh;notice="";portalProtected=false;cachedPlayer=null;
+            if(menuMusic)menuMusic.Stop();
             menu=false;ui.Clear();beginIntro?.Invoke();
         }
         public void LoadChapter(int chapter){if(loading||SeasonTransition.Active||!Data.started||chapter<1||chapter>Data.unlocked)return;StartCoroutine(Load(chapter));}
@@ -218,8 +230,8 @@ namespace AmbrosJourney.Journey
             artifactsOpen=false;backAction=null;ui.KeyboardNavigation=false;
             if(UnityEngine.EventSystems.EventSystem.current)UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(null);
             ui.Clear();
-            var pause=ui.Button(ui.Root,"Pause / Esc",new Rect(470,298,145,38),Pause);var rect=pause.GetComponent<RectTransform>();rect.anchorMin=rect.anchorMax=Vector2.one;rect.anchoredPosition=new Vector2(-169,-264);
-            var b=ui.Button(ui.Root,Data.ArtifactCount+"/"+Data.artifacts.Length+" Artifacts",new Rect(300,298,190,38),ShowArtifacts);var br=b.GetComponent<RectTransform>();br.anchorMin=br.anchorMax=Vector2.one;br.anchoredPosition=new Vector2(-214,-310);
+            var pause=ui.Button(ui.Root,"Pause / Esc",new Rect(470,298,145,38),Pause);var rect=pause.GetComponent<RectTransform>();rect.anchorMin=rect.anchorMax=Vector2.one;rect.anchoredPosition=new Vector2(-379,-136);
+            var b=ui.Button(ui.Root,Data.ArtifactCount+"/"+Data.artifacts.Length+" Artifacts",new Rect(300,298,190,38),ShowArtifacts);var br=b.GetComponent<RectTransform>();br.anchorMin=br.anchorMax=Vector2.one;br.anchoredPosition=new Vector2(-214,-136);
         }
         void ShowPause()
         {

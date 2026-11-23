@@ -31,6 +31,8 @@ namespace AmbrosJourney.Fall
         readonly List<Action> actions=new List<Action>();
         Action next;
         int dialogVersion;
+        bool readingGuideBriefing;
+        public bool GuideNeedsTalk=>!Progress.Complete&&(!Progress.Introduced||Progress.GuideArrived&&!Progress.GuideBriefed);
         AudioSource effects,music;
         AudioClip good,bad,ward,strike;
         Canvas canvas;
@@ -42,7 +44,7 @@ namespace AmbrosJourney.Fall
         public void RestoreProgress(FallProgress p)
         {
             if(p==null||!p.Valid())throw new ArgumentException("Invalid Fall checkpoint");
-            Progress=p;Close();journal.SetActive(false);
+            readingGuideBriefing=false;Progress=p;Close();journal.SetActive(false);
             if(p.Introduced)RestoreGuide();
             else{ember.Guidance=null;ember.follow=null;ember.transform.position=Spawn+new Vector2(2,-3);}
             if(p.Complete){ember.Guidance=null;ember.follow=femaleWarrior.transform;}RefreshWorld();AmbrosJourney.Journey.BossPortalSequence.RestoreCheckpoint();
@@ -102,7 +104,7 @@ namespace AmbrosJourney.Fall
         {
             Transform[] targets={ember.transform,stations[0],stations[1],stations[2],guardian.transform,winterGate};
             if(!Progress.Introduced)return Vector2.Distance(player.transform.position,ember.transform.position)<GuideTalkRadius?0:-1;
-            int result=-1;float best=2.8f;for(int i=1;i<targets.Length;i++){if(!targets[i].gameObject.activeInHierarchy || i==4&&Progress.Complete)continue;float d=Vector2.Distance(player.transform.position,targets[i].position);if(d<best){best=d;result=i;}}if(result<0&&!Progress.Complete&&Vector2.Distance(player.transform.position,guardian.transform.position)<5.5f)result=4;if(result<0&&!Progress.Complete&&Vector2.Distance(player.transform.position,ember.transform.position)<GuideTalkRadius)result=0;return result;
+            int result=-1;float best=2.8f;for(int i=1;i<targets.Length;i++){if(!targets[i].gameObject.activeInHierarchy || i==4&&Progress.Complete)continue;float d=Vector2.Distance(player.transform.position,targets[i].position);if(d<best){best=d;result=i;}}if(result<0&&!Progress.Complete&&Vector2.Distance(player.transform.position,guardian.transform.position)<5.5f)result=4;if(result<0&&GuideNeedsTalk&&Vector2.Distance(player.transform.position,ember.transform.position)<GuideTalkRadius)result=0;return result;
         }
         public void Interact(int target)
         {
@@ -110,6 +112,8 @@ namespace AmbrosJourney.Fall
             GameAudio.Click();
             if(target==0)
             {
+                if(!GuideNeedsTalk)return;
+                readingGuideBriefing=Progress.Introduced&&Progress.GuideArrived;
                 if(!Progress.Introduced)Welcome();
                 else Show("Emberfist / The prompt forge",Progress.Complete?"I will travel with you! Keep checking what AI tells you. Your own judgment still matters.":!Progress.GuideArrived?"Come with me to Harvest Orchard. I will wait if you stop. Press E at its board when you are ready.":"Start at this board with E. Then visit Lantern Archive and Revision Kiln. Tell AI the job, useful details and the format you need. J keeps your lesson notes.",Close);
             }
@@ -143,7 +147,7 @@ namespace AmbrosJourney.Fall
         {
             if(Progress.BossFinished)
             {
-                if(Progress.Complete){ember.Guidance=null;ember.follow=femaleWarrior.transform;effects.PlayOneShot(ward,.7f);Show("Fall cleared / "+Progress.BossScore+" of 5","The Bramble Sentinel's tangled ward falls away. Emberfist joins your party!\n\nRank earned: PROMPT PATHFINDER\nGive a goal, context and format. Set useful limits, check the response and revise. Never confuse clear wording with guaranteed truth.\n\nClose this message to see the Sentinel fade and the Winter portal form.",Close);}
+                if(Progress.Complete){ember.Guidance=null;ember.follow=femaleWarrior.transform;effects.PlayOneShot(ward,.7f);Show("Fall cleared / "+Progress.BossScore+" of 5","Emberfist joins your party!\n\nRank earned: PROMPT PATHFINDER\nGive AI a clear goal, useful details and a format. Check the reply, then revise what needs work.",Close);}
                 else Show("Your score / "+Progress.BossScore+" of 5","You need 4/5 (80%). All rune missions remain complete. Review the journal or continue to retry the five questions.",()=>{Progress.BeginBoss();BossQuestion();});
                 return;
             }
@@ -161,7 +165,7 @@ namespace AmbrosJourney.Fall
             player.Flash(right?new Color(.65f,1,.65f):new Color(1,.5f,.4f));
             if(right)SeasonFeedback.Burst(player.transform.position,new Color(1,.8f,.3f));
         }
-        void Close(){dialogVersion++;BossBattleMusic.Stop(this);dialog.SetActive(false);actions.Clear();next=null;if(music)music.pitch=1;}
+        void Close(){if(readingGuideBriefing){Progress.GuideBriefed=true;readingGuideBriefing=false;}dialogVersion++;BossBattleMusic.Stop(this);dialog.SetActive(false);actions.Clear();next=null;if(music)music.pitch=1;}
         void Show(string title,string body,Action onContinue)
         {
             dialogVersion++;currentTitle=title;heading.text=title;copy.text=body;dialog.SetActive(true);journal.SetActive(false);next=onContinue==null?null:()=>{GameAudio.Click();onContinue();};actions.Clear();
@@ -195,7 +199,7 @@ namespace AmbrosJourney.Fall
         void RefreshWorld()
         {
             if(lessonLabels!=null)foreach(var label in lessonLabels)if(label)label.enabled=Progress.Introduced;
-            if(emberLabel)emberLabel.enabled=!Progress.Complete;
+            if(emberLabel)emberLabel.enabled=GuideNeedsTalk;
             arenaSeal.SetActive(!Progress.CanFight);exitSeal.SetActive(!Progress.Complete);
             for(int i=0;i<3;i++)runes[i].color=Progress.MissionComplete(i)?new Color(.6f,1,.7f):new Color(1,.65f,.3f);
             for(int i=0;i<shields.Length;i++)shields[i].enabled=false;

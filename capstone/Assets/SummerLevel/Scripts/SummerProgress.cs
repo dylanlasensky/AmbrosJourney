@@ -6,6 +6,7 @@ namespace AmbrosJourney.Summer
     [Serializable]
     public sealed class SummerProgress
     {
+        public bool GuideBriefed;
         public bool Introduced, GuideArrived, GardenWarriorRead;
         public bool Valid()
         {

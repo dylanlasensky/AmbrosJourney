@@ -137,7 +137,7 @@ public class SpringGuide : MonoBehaviour
         if(!SpringComplete&&boss.gameObject.activeInHierarchy&&Distance(boss)<5.5f&&best==-99){best=3;}
         if(AmbrosJourney.Journey.BossPortalSequence.AllowsEntry(gate)&&Distance(gate)<distance){best=4;distance=Distance(gate);}
         for(int i=0;i<3;i++)if(Distance(stones[i])<distance){best=5+i;distance=Distance(stones[i]);}
-        if(best==-99&&!SpringComplete&&Distance(mage)<GuideTalkRadius)best=-1;
+        if(best==-99&&!LessonComplete&&Distance(mage)<GuideTalkRadius)best=-1;
         return best;
     }
     public bool DismissPanel(){if(welcomeOpen){CloseWelcome();return true;}if(!DialogueOpen&&!journalOpen)return false;journalOpen=false;DialogueOpen=false;return true;}
@@ -224,9 +224,9 @@ public class SpringGuide : MonoBehaviour
             var ui=new GameObject("Spring interface");ui.transform.SetParent(transform,false);
             presentation=ui.AddComponent<SeasonOverlay>();presentation.Initialize(Resources.Load<TMP_FontAsset>("SummerDefault"),1);
             for(int i=0;i<3;i++){AddLabel(stones[i],"[E] FIELD NOTE / "+locations[i]);AddLabel(bats[i],"[E] MYTH BAT "+(i+1));}
-            mageLabel=SeasonWorldLabel.Attach(mage,"[E] Talk",112,GuideTalkRadius);AddLabel(boss,"[E] BLOSSOM GUARDIAN",310,5.5f);
+            mageLabel=SeasonWorldLabel.Attach(mage,"[E] Ancient Mage",240,GuideTalkRadius);AddLabel(boss,"[E] BLOSSOM GUARDIAN",310,5.5f);
         }
-        if(mageLabel)mageLabel.enabled=!SpringComplete;
+        if(mageLabel)mageLabel.enabled=!LessonComplete;
         presentation.Objective.text="LESSONS "+MissionsComplete+" / 3\n"+Quest();
         int nearby=Nearby();
         presentation.Prompt.text=DialogueOpen||nearby==-99?"":nearby==-1?"[ E ]  Talk to the Ancient Mage":"[ E ]  Explore / interact";
@@ -244,7 +244,7 @@ public class SpringGuide : MonoBehaviour
         string heading="Ancient Mage",body="";
         if(target==-1)body=SpringComplete?"You did it, Ambros! I will travel with you. The Summer gate is open beyond the guardian clearing.":LessonComplete?"Find the three myth bats, then face the Blossom Guardian. Pass its five-question quiz with at least 80%. I will join you after we clear Spring.":lessons[page];
         else if(target<3){heading=locations[target]+" / Challenge "+Mathf.Min(2,trials[target]+1)+" of 2";body=!LessonComplete?"Meet the Ancient Mage first.":!studied[target]?"Find the field note near this landmark first. Read it with E, then come back to apply what you learned.":feedback!=""?feedback:"TRUE OR FALSE?\n\n"+claims[QuestionIndex(target)];}
-        else if(target==3){heading="Spring Blossom Guardian";body=SpringComplete?"Spring cleared! Your grade: "+BossScore+" / 5 ("+(BossScore*20)+"%). You earned Apprentice rank. The Ancient Mage joins your party. Close this message to watch the Guardian fade and the Summer portal form.":MissionsComplete<3?"Dispel all three myth bats before challenging the guardian.":bossResult?"Your grade: "+BossScore+" / 5 ("+(BossScore*20)+"%). You need 80% to pass. Review your mistakes and try again. No progress is lost.":feedback!=""?feedback:"QUESTION "+(bossQuestion+1)+" / 5  /  80% TO PASS\n\n"+questions[bossQuestion];}
+        else if(target==3){heading="Spring Blossom Guardian";body=SpringComplete?"Spring cleared! Your grade: "+BossScore+" / 5 ("+(BossScore*20)+"%). You earned Apprentice rank. The Ancient Mage joins your party. Remember: check facts and keep private details to yourself.":MissionsComplete<3?"Dispel all three myth bats before challenging the guardian.":bossResult?"Your grade: "+BossScore+" / 5 ("+(BossScore*20)+"%). You need 80% to pass. Review your mistakes and try again. No progress is lost.":feedback!=""?feedback:"QUESTION "+(bossQuestion+1)+" / 5  /  80% TO PASS\n\n"+questions[bossQuestion];}
         else if(target>=5){heading=locations[target-5]+" / Field Note";body=LessonComplete?fieldNotes[target-5]:"Visit the Mage at his cottage first. He will help you read these trail notes.";}
         else {heading="The Summer Gate";body=SpringComplete?"You have unlocked Summer! The next season teaches when AI is useful and when to do the thinking yourself. Close this conversation and walk through the unlocked gate to continue your adventure in Summer.":"The path is sealed. Finish the Mage's lessons, defeat the myth bats and score at least 80% against the Blossom Guardian.";}
         presentation.Heading.text=heading;presentation.Copy.text=body;

@@ -29,6 +29,8 @@ namespace AmbrosJourney.Summer
         readonly List<Action> actions = new List<Action>();
         Action next;
         int dialogVersion;
+        bool readingGuideBriefing;
+        public bool GuideNeedsTalk=>!Progress.Complete&&(!Progress.Introduced||Progress.GuideArrived&&!Progress.GuideBriefed);
         AudioSource effects, music;
         AudioClip good, bad, ward, strike;
         Canvas canvas;
@@ -42,7 +44,7 @@ namespace AmbrosJourney.Summer
         public void RestoreProgress(SummerProgress p)
         {
             if(p==null||!p.Valid())throw new ArgumentException("Invalid Summer checkpoint");
-            Progress=p;Close();journal.SetActive(false);
+            readingGuideBriefing=false;Progress=p;Close();journal.SetActive(false);
             if(p.Introduced)RestoreGuides();
             else
             {
@@ -136,18 +138,19 @@ namespace AmbrosJourney.Summer
         }
         int NearestWarrior()
         {
-            if(Progress.Complete)return -1;
+            if(!GuideNeedsTalk)return -1;
             float male=Vector2.Distance(player.transform.position,maleWarrior.transform.position),female=Progress.GuideArrived?float.PositiveInfinity:Vector2.Distance(player.transform.position,femaleWarrior.transform.position);
             if(Mathf.Min(male,female)>=GuideTalkRadius)return -1;
             return male<=female?0:9;
         }
         public void Interact(int target)
         {
-            if (AmbrosJourney.Journey.JourneySession.Blocked || target==4&&Progress.Complete || target==5&&!AmbrosJourney.Journey.BossPortalSequence.AllowsEntry(fallGate) || Transitioning || !Progress.Introduced&&target!=0&&target!=9 || target==9&&Progress.GuideArrived || Progress.Complete&&(target==0||target==9)) return;
+            if (AmbrosJourney.Journey.JourneySession.Blocked || target==4&&Progress.Complete || target==5&&!AmbrosJourney.Journey.BossPortalSequence.AllowsEntry(fallGate) || Transitioning || !Progress.Introduced&&target!=0&&target!=9 || target==9&&Progress.GuideArrived || !GuideNeedsTalk&&(target==0||target==9)) return;
             GameAudio.Click();
             switch (target)
             {
                 case 0: case 9:
+                    readingGuideBriefing=Progress.Introduced&&Progress.GuideArrived;
                     if(!Progress.Introduced)Welcome();
                     else Show("The Warriors",Progress.Complete?"We will travel with you. AI can support your ideas, but your choices are still yours.":!Progress.GuideArrived?"Follow us to the workshop. We will wait nearby if you stop. Press E at the board when you are ready to try its lesson.":"Here is the workshop. Read its board with E, then visit the garden and message post. Finish all three lessons to open the Suncrest Guardian's clearing. J holds your notes.",Close);
                     break;
@@ -227,7 +230,7 @@ namespace AmbrosJourney.Summer
                 {
                     maleWarrior.Guidance=null;femaleWarrior.Guidance=null;maleWarrior.follow = mage.transform; femaleWarrior.follow = maleWarrior.transform;
                     effects.PlayOneShot(ward, .7f);
-                    Show("Summer cleared / " + Progress.BossScore + " of 5", "Suncrest Guardian: What if I get it wrong?\nAmbros: Then you practice. You can ask for help without giving up.\n\nThe Warriors restore the village ward and join your party.\nRank earned: INDEPENDENT THINKER\n\nAI can support your ideas and learning. You are responsible for your choices.\n\nClose this message to see the Guardian fade and the Fall portal form.", Close);
+                    Show("Summer cleared / " + Progress.BossScore + " of 5", "The village ward is restored, and the Warriors join your party!\n\nRank earned: INDEPENDENT THINKER\nAI can support your learning, but the choices are yours.", Close);
                 }
                 else Show("Your score / " + Progress.BossScore + " of 5", "You need 4/5 (80%) to pass. Review the explanations or open your journal. All three missions remain complete.\n\nContinue to try again, or press Escape to return to the village.", () => { Progress.BeginBoss(); BossQuestion(); });
                 return;
@@ -243,7 +246,7 @@ namespace AmbrosJourney.Summer
         void ShowPages(string[] pages, int index, Action complete)
         { Show("Summer / The village ward", pages[index], () => { if (index + 1 < pages.Length) ShowPages(pages, index + 1, complete); else { complete(); Close(); } }); }
         void Effect(bool right) { effects.PlayOneShot(right ? good : bad, .45f); presentation.Feedback(right); }
-        void Close() { dialogVersion++;BossBattleMusic.Stop(this); dialog.SetActive(false); actions.Clear(); next = null; if (music) music.pitch = 1; }
+        void Close() { if(readingGuideBriefing){Progress.GuideBriefed=true;readingGuideBriefing=false;} dialogVersion++;BossBattleMusic.Stop(this); dialog.SetActive(false); actions.Clear(); next = null; if (music) music.pitch = 1; }
         void Show(string title, string body, Action onContinue)
         {
             dialogVersion++;currentTitle = title; heading.text = title; copy.text = body; dialog.SetActive(true); journal.SetActive(false);
@@ -287,8 +290,8 @@ namespace AmbrosJourney.Summer
         void RefreshWorld()
         {
             if(lessonLabels!=null)foreach(var label in lessonLabels)if(label)label.enabled=Progress.Introduced;
-            if(workshopWarriorLabel)workshopWarriorLabel.enabled=!Progress.Complete;
-            if(gardenWarriorLabel)gardenWarriorLabel.enabled=!Progress.Complete&&!Progress.GuideArrived;
+            if(workshopWarriorLabel)workshopWarriorLabel.enabled=GuideNeedsTalk;
+            if(gardenWarriorLabel)gardenWarriorLabel.enabled=!Progress.Introduced&&!Progress.Complete;
             arenaSeal.SetActive(!Progress.CanFight); exitSeal.SetActive(!Progress.Complete);
             for (int i = 0; i < 3; i++) wardLights[i].color = Progress.Wards[i] ? new Color(.5f, 1, .75f) : new Color(.7f, .55f, .30f);
             for (int i = 0; i < shields.Length; i++) shields[i].enabled=false;

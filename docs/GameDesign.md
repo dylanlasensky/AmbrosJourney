@@ -6,7 +6,7 @@ This is the current design/implementation handoff. Dated validation reports rema
 
 Ambros, represented by the Chibi Assassin character, is pulled into a game while using his laptop. Four seasons teach middle-school players to understand AI, keep their own judgment, ask useful questions and check evidence. The Ancient Mage is another trapped child who has grown old. Summer's married Warriors, Fall's Emberfist and Winter's Little Mage provide the later lessons.
 
-The teammate's original 40-second PR18 intro is restored byte-for-byte; the outro remains unchanged. See [video provenance](IntroVideoSource.md). New Journey plays the intro after name entry. Final victory crumbles the Keeper and drops an E-pickup certificate scroll. Exit/Escape from the certificate returns to the cave and forms a home portal; walking through it plays the outro, then returns to the main menu. The film uses an aspect-preserving screen overlay, with game overlays and other audio suppressed. Browser fullscreen playback still needs the [release checks](CinematicFullscreenChecks.md).
+The teammate's original 40-second PR18 intro is restored byte-for-byte; the outro remains unchanged. See [video provenance](IntroVideoSource.md). The main menu loops Spring's music at the same volume and stops it immediately after a valid New Journey click. After name entry, a black screen fades in with an AI disclaimer in Determination, holds for seven seconds, then fades into the intro. The note says: "The opening video and some game artwork were created with AI. As you play, you'll learn how to use AI safely, check its answers and bring your own ideas to life." Final victory crumbles the Keeper and drops an E-pickup certificate scroll. Exit/Escape from the certificate returns to the cave and forms a home portal; walking through it plays the outro, then returns to the main menu. The film uses an aspect-preserving screen overlay, with game overlays and other audio suppressed. Browser fullscreen playback still needs the [release checks](CinematicFullscreenChecks.md).
 
 ## Progression contract
 
@@ -45,3 +45,7 @@ Open `capstone/` in Unity 6000.6.2f1. Runtime world builders and Resources prefa
 The original Sprint Three deadline was Nov 4; the original weekly schedule remains planning context in the root README. Final Web/itch video and session-lifecycle checks, audience comprehension/difficulty/pacing tests, and target-hardware/audio checks remain outstanding release evidence. Implemented features are not proof that the game meets learning or performance goals.
 
 Use [Journey completion](JourneyCompletion.md), [current questions](QuestionRefresh.md), [boss artwork](Bosses.md), [testing](Testing.md) and [current validation](CurrentValidation.md).
+
+## November 23 feedback polish
+
+Pause and Artifacts sit side by side immediately below the top-right lessons/objective panel in every season. NPC interaction cards use names and appear only while an unread conversation is available; later briefings can bring them back. Seasonal boss victory messages retain the score/rank and a short lesson takeaway, without instructions describing the dissolve or portal animation. Existing victory animation and portal/cave entry rules remain in place.

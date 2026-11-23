@@ -91,21 +91,22 @@ namespace AmbrosJourney.Winter
             if(Progress.InCave&&AmbrosJourney.Journey.JourneySession.CanUsePortals&&!InputBlocked&&AmbrosJourney.Journey.BossPortalSequence.AllowsEntry(winterGate)&&Vector2.Distance(player.transform.position,winterGate.position)<1.1f)
                 AmbrosJourney.Journey.JourneySession.Instance?.EnterHomePortal();
         }
+        public bool GuideNeedsTalk=>!Progress.InCave&&!Progress.Complete&&(!Progress.Introduced||Progress.WinterComplete&&!Progress.CaveEntryExplained);
         void PlaceLittleMage()
         {
             littleMage.follow=Progress.WinterComplete&&Progress.InCave?ember.transform:null;
-            if(littleMageLabel)littleMageLabel.enabled=!Progress.InCave&&!Progress.Complete;
+            if(littleMageLabel)littleMageLabel.enabled=GuideNeedsTalk;
             if(!littleMage.follow)littleMage.transform.position=Progress.WinterComplete?WinterWorld.CaveGuide:WinterWorld.ArrivalGuide;
         }
         int Nearest()
         {
             Transform[] targets={littleMage.transform,stations[0],stations[1],stations[2],guardian.transform,winterGate,caveEntrance,caveExit,winterGuardian.transform};
             if(!Progress.Introduced)return !Progress.InCave&&Vector2.Distance(player.transform.position,littleMage.transform.position)<GuideTalkRadius?0:-1;
-            int result=-1;float best=2.8f;for(int i=1;i<targets.Length;i++){if((i==0&&Progress.InCave)||(i==4&&Progress.Complete)||(i==5)||(i==8&&Progress.WinterComplete)||(i==6&&Progress.WinterComplete)||!targets[i].gameObject.activeInHierarchy)continue;float d=Vector2.Distance(player.transform.position,targets[i].position);if(d<best){best=d;result=i;}}if(result<0)foreach(int i in new[]{4,8})if(targets[i].gameObject.activeInHierarchy&&!(i==4&&Progress.Complete)&&!(i==8&&Progress.WinterComplete)&&Vector2.Distance(player.transform.position,targets[i].position)<5.5f){result=i;break;}if(result<0&&!Progress.InCave&&!Progress.Complete&&Vector2.Distance(player.transform.position,littleMage.transform.position)<GuideTalkRadius)result=0;return result;
+            int result=-1;float best=2.8f;for(int i=1;i<targets.Length;i++){if((i==0&&Progress.InCave)||(i==4&&Progress.Complete)||(i==5)||(i==8&&Progress.WinterComplete)||(i==6&&Progress.WinterComplete)||!targets[i].gameObject.activeInHierarchy)continue;float d=Vector2.Distance(player.transform.position,targets[i].position);if(d<best){best=d;result=i;}}if(result<0)foreach(int i in new[]{4,8})if(targets[i].gameObject.activeInHierarchy&&!(i==4&&Progress.Complete)&&!(i==8&&Progress.WinterComplete)&&Vector2.Distance(player.transform.position,targets[i].position)<5.5f){result=i;break;}if(result<0&&GuideNeedsTalk&&Vector2.Distance(player.transform.position,littleMage.transform.position)<GuideTalkRadius)result=0;return result;
         }
         public void Interact(int target)
         {
-            if(AmbrosJourney.Journey.JourneySession.Blocked || !Progress.Introduced&&target!=0 || Transitioning || target==8&&Progress.WinterComplete || target==5 || target==0&&(Progress.InCave||Progress.Complete))return;
+            if(AmbrosJourney.Journey.JourneySession.Blocked || !Progress.Introduced&&target!=0 || Transitioning || target==8&&Progress.WinterComplete || target==5 || target==0&&!GuideNeedsTalk)return;
             GameAudio.Click();
             if(target==0)
             {
@@ -145,7 +146,7 @@ namespace AmbrosJourney.Winter
         {
             if(Progress.WinterBossFinished)
             {
-                if(Progress.WinterComplete){PlaceLittleMage();Show("Winter crest earned / "+Progress.WinterBossScore+" of 5","The Winter crest is yours! Close this message to watch the Warden fade. Press E to talk to the Little Mage beside the entrance before entering the cave.",()=>{Close();AmbrosJourney.Journey.JourneySession.Instance?.CaptureChapter();});}
+                if(Progress.WinterComplete){PlaceLittleMage();Show("Winter crest earned / "+Progress.WinterBossScore+" of 5","The Winter crest is yours! Keep checking sources and comparing evidence. The Little Mage has one last tip before you enter the cave.",()=>{Close();AmbrosJourney.Journey.JourneySession.Instance?.CaptureChapter();});}
                 else Show("Winter score / "+Progress.WinterBossScore+" of 5","Score 4/5 to pass. Review your field notes or try again; your lessons are safe.",()=>{Progress.BeginWinterBoss();WinterBossQuestion();});
                 return;
             }

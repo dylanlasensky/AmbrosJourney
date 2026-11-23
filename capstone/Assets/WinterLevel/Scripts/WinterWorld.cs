@@ -123,7 +123,7 @@ namespace AmbrosJourney.Winter
             level.maleWarrior=Actor("Warrior","MaleIdle",4,WinterLevel.Spawn+Vector2.left*3);level.maleWarrior.walk=Frames("MaleWalk",6);
             level.femaleWarrior=Actor("Warrior","FemaleIdle",4,WinterLevel.Spawn+Vector2.left*4);level.femaleWarrior.walk=Frames("FemaleWalk",6);
             level.ember=Actor("Emberfist","EmberIdle",4,WinterLevel.Spawn+Vector2.left*5);level.ember.walk=Frames("EmberWalk",8);
-            level.littleMage=Actor("Little Mage","LittleIdle",4,ArrivalGuide);level.littleMage.walk=Frames("LittleWalk",4);SeasonWorldLabel.Attach(level.littleMage.transform,"[E] Talk",112,WinterLevel.GuideTalkRadius);
+            level.littleMage=Actor("Little Mage","LittleIdle",4,ArrivalGuide);level.littleMage.walk=Frames("LittleWalk",4);SeasonWorldLabel.Attach(level.littleMage.transform,"[E] Little Mage",220,WinterLevel.GuideTalkRadius);
             AmbrosJourney.Presentation.NaturalTrail.Apply(path,4);
             var camera=ObjectAt("Winter Camera",WinterLevel.Spawn);camera.tag="MainCamera";camera.transform.position=new Vector3(WinterLevel.Spawn.x,WinterLevel.Spawn.y,-10);
             var cam=camera.AddComponent<Camera>();cam.orthographic=true;cam.orthographicSize=7;cam.backgroundColor=new Color(.07f,.10f,.17f);cam.clearFlags=CameraClearFlags.SolidColor;camera.AddComponent<AudioListener>();followCamera=camera.AddComponent<WinterCamera>();followCamera.target=level.player.transform;followCamera.worldMin=Min;followCamera.worldMax=Max;

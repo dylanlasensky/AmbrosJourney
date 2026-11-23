@@ -19,6 +19,7 @@ namespace AmbrosJourney.Journey
         static extern int AmbrosReturnCinematicFocus();
 #endif
         public Canvas Canvas { get; private set; }
+        public void SetPictureOpacity(float alpha){if(picture)picture.color=new Color(1,1,1,Mathf.Clamp01(alpha));}
 
         public static JourneyVideoScreen Create(GameObject host, VideoPlayer player)
         {
