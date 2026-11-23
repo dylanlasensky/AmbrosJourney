@@ -1,5 +1,9 @@
 # Cinematic fullscreen regression
 
+**November 22 intro-source correction:** The earlier browser checks below used the 34-second October placeholder, not the teammate's 40-second PR18 film. They verify the presentation behavior of those named exports, not the identity/playback of the restored source. See [video provenance](IntroVideoSource.md); a new export must validate the restored film.
+
+**November 22 session policy:** Persistent progress saving has been removed. New launches and browser refreshes start fresh; unlocked-season revisits retain progress only during the current run. Older save files/storage are ignored and left untouched. Results below are historical evidence for their named builds, including their former save/Continue behavior; they do not verify this change.
+
 The previous itch build was reproduced in a fresh browser session: the opening was visible, clicking itch's fullscreen control made the game view blank, and clicking the game canvas restored the same advancing video. The fullscreen control is outside the game iframe. Losing focus paused Unity's render loop because gameplay sets `Application.runInBackground=false`.
 
 `JourneyVideoScreen` temporarily keeps that loop running while either film is active and restores the prior background setting on disable or destruction. Normal gameplay retains its 60 FPS limit and background pause policy. Both films now display the decoder's texture in a screen overlay, with aspect-preserving letterboxing recalculated for the current viewport. They no longer depend on an opening camera target or an ending RenderTexture allocated at the old window size. The original MP4 files and their authored dialogue/audio content are unchanged. Web outro playback uses Direct output so its volume and mute choice are respected.

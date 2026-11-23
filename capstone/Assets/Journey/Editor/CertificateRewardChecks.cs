@@ -21,7 +21,7 @@ namespace AmbrosJourney.Journey.Editor
         static CertificateRewardChecks()
         {
             EditorApplication.update+=Tick;
-            if(SessionState.GetBool(Key,false)){JourneySession.TestMode=true;JourneySession.SavePathOverride=Path.GetFullPath("Logs/CertificateChecks/save.json");}
+            if(SessionState.GetBool(Key,false)){JourneySession.TestMode=true;}
             Application.logMessageReceived+=(message,stack,type)=>{if(stack.Contains("UnityEditor.Search.SearchDatabase"))return;if(SessionState.GetBool(Key,false)&&EditorApplication.isPlaying&&(type==LogType.Error||type==LogType.Exception||type==LogType.Assert))SessionState.SetString(Key+"Error",message);};
         }
         public static void Run()
@@ -52,7 +52,7 @@ namespace AmbrosJourney.Journey.Editor
                 string error=SessionState.GetString(Key+"Error","");Check(error=="",error);
                 EditorApplication.QueuePlayerLoopUpdate();Signal?.Invoke(null,null);
                 if(!EditorApplication.isPlaying)return;
-                JourneySession.TestMode=true;JourneySession.SavePathOverride=Path.GetFullPath("Logs/CertificateChecks/save.json");Application.runInBackground=true;
+                JourneySession.TestMode=true;Application.runInBackground=true;
                 if(deadline==0){deadline=EditorApplication.timeSinceStartup+150;waitUntil=EditorApplication.timeSinceStartup+3;}
                 Check(EditorApplication.timeSinceStartup<deadline,"Timed out at stage "+stage+" frame "+Time.frameCount);
                 if(stage>=1&&stage<=2)
@@ -72,7 +72,7 @@ namespace AmbrosJourney.Journey.Editor
                     p.BeginBoss();foreach(var q in WinterContent.Final)p.AnswerFinal(q.Expected);
                     Check(p.Complete&&p.Valid(),"Genuine final pass state");level.Progress=p;level.World.RestoreRegion(true);
                     level.player.transform.position=WinterWorld.BossPosition+Vector2.down*4;level.player.GetComponent<Rigidbody2D>().position=level.player.transform.position;Camera.main.transform.position=level.player.transform.position+Vector3.back*10;
-                    session.RecordFinalVictory();date=session.Data.completedOn;Check(session.Data.certificatePending&&date==DateTime.Now.ToString("yyyy-MM-dd"),"Victory date saved before pickup");
+                    session.RecordFinalVictory();date=session.Data.completedOn;Check(session.Data.certificatePending&&date==DateTime.Now.ToString("yyyy-MM-dd"),"Victory date recorded before pickup");
                     session.ShowCertificate();Check(!session.Paused,"Certificate unavailable before pickup");
                     Call(level,"BossQuestion");Check(level.Transitioning&&level.CertificateReward&&!level.CertificateReward.Ready,"Victory starts crumble before item appears");
                     startFrame=Time.frameCount;stage++;waitUntil=EditorApplication.timeSinceStartup+.45;
@@ -95,7 +95,7 @@ namespace AmbrosJourney.Journey.Editor
                     var position=level.CertificateReward.Position;level.player.transform.position=position+Vector2.down*4;level.player.GetComponent<Rigidbody2D>().position=level.player.transform.position;
                     Check(!level.CertificateReward.TryCollect(),"Remote pickup rejected");
                     session.Data.completedOn="2026-10-01";date=session.Data.completedOn;session.RecordFinalVictory();Check(session.Data.completedOn==date,"Completion date never changes on replay");
-                    session.Save();var loaded=JsonUtility.FromJson<JourneyData>(File.ReadAllText(JourneySession.SavePath));Check(loaded.certificatePending&&loaded.completedOn==date,"Pending pickup survives save");
+                    Check(session.CaptureChapter(),"Capture completed chamber for this run");var captured=JsonUtility.FromJson<WinterProgress>(session.Data.chapters[3].progress);Check(captured.Complete&&session.Data.certificatePending&&session.Data.completedOn==date,"Current-run chapter capture retains pending pickup and completion date");
                     level.enabled=false;UnityEngine.Object.Destroy(level.CertificateReward);stage++;waitUntil=EditorApplication.timeSinceStartup+.2;
                 }
                 else if(stage==3)
@@ -127,15 +127,15 @@ namespace AmbrosJourney.Journey.Editor
                 {
                     level.RestoreProgress(level.Progress);level.enabled=true;Check(!level.CertificateReward.Ready&&!level.guardian.GetComponent<SpriteRenderer>().enabled,"Claimed reward does not respawn; boss remains defeated");
                     session.ShowCertificate();Inspect(session.Data.playerName);Check(session.Data.completedOn==date,"Reopened certificate retains name and date");
-                    Debug.Log("CERTIFICATE_REWARD_PASS: real final-pass state, advancing crumble/dust, dropped item, pickup, reload recovery, duplicate protection, saved date, long/accented names and PDF export.");Finish(0);
+                    Debug.Log("CERTIFICATE_REWARD_PASS: real final-pass state, advancing crumble/dust, dropped item, pickup, current-run reward recreation, duplicate protection, completion date, long/accented names and PDF export.");Finish(0);
                 }
             }
             catch(Exception e){Debug.LogException(e);Finish(1);}
         }
         static void Inspect(string name)
         {
-            Canvas.ForceUpdateCanvases();var field=Array.Find(UI.GetComponentsInChildren<TMP_Text>(),text=>text.name=="Certificate player name");Check(field.text==name,"Saved name populated");
-            var dateField=Array.Find(UI.GetComponentsInChildren<TMP_Text>(),text=>text.name=="Certificate completion date");Check(dateField.text==date,"Saved date populated");
+            Canvas.ForceUpdateCanvases();var field=Array.Find(UI.GetComponentsInChildren<TMP_Text>(),text=>text.name=="Certificate player name");Check(field.text==name,"Explorer name populated");
+            var dateField=Array.Find(UI.GetComponentsInChildren<TMP_Text>(),text=>text.name=="Certificate completion date");Check(dateField.text==date,"Completion date populated");
             foreach(var text in UI.GetComponentsInChildren<TMP_Text>()){text.ForceMeshUpdate();Check(!text.isTextOverflowing,"Text fits: "+text.name);}
         }
         static void Finish(int code){SessionState.SetBool(Key,false);JourneySession.TestMode=false;EditorApplication.Exit(code);}

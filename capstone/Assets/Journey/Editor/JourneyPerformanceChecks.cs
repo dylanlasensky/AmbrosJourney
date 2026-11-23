@@ -33,8 +33,34 @@ namespace AmbrosJourney.Journey.Editor
             long releasedBytes=0;
             foreach(var texture in textures){Check(!texture.isReadable,"Static terrain does not keep a duplicate CPU image");releasedBytes+=(long)texture.width*texture.height*4;}
             VerifyAtlasBounds(UnityEngine.Object.FindAnyObjectByType<WorldCohesion>());
-            VerifyLandmarkLayout();VerifyCameraResize();
+            VerifyContextualLabels();VerifyLandmarkLayout();VerifyCameraResize();
             Debug.Log("JOURNEY_PERFORMANCE_SCENE_PASS: "+SceneManager.GetActiveScene().name+"; terrain CPU copies released "+releasedBytes+" bytes; atlas bounds unchanged.");
+        }
+        static void VerifyContextualLabels()
+        {
+            var scene=SceneManager.GetActiveScene();int count=0,bossCount=0;
+            foreach(var marker in UnityEngine.Object.FindObjectsByType<SeasonWorldLabel>(FindObjectsInactive.Include))
+            {
+                if(marker.gameObject.scene!=scene)continue;count++;
+                Check(marker.Caption.StartsWith("[E] "),"World cards describe interactions, not decorative location headers: "+marker.Caption);
+                Check(marker.Anchored&&marker.RevealDistance>0&&marker.RevealDistance<=5.5f,"Prompt follows a real target and stays local: "+marker.Caption);
+                var origin=marker.InteractionPosition;
+                Check(marker.InRange(origin+Vector2.right*(marker.RevealDistance-.1f),8),"Prompt is available within its interaction range");
+                Check(!marker.InRange(origin+Vector2.right*(marker.RevealDistance+.1f),8),"Prompt hides before promising an out-of-range interaction");
+                if(marker.Caption.Contains("GUARDIAN")||marker.Caption.Contains("WARDEN")||marker.Caption.Contains("SENTINEL")||marker.Caption.Contains("ECHO KEEPER"))
+                {
+                    bossCount++;Check(marker.InRange(origin+Vector2.down*4.5f,8),"Boss prompt supports the larger battle radius");
+                    Check(!marker.InRange(origin+Vector2.down*4.5f,3.8f),"Cave tunnel visibility still limits distant labels");
+                }
+            }
+            Check(count>0&&bossCount>0,"Every chapter retains useful nearby prompts including its boss");
+            var world=UnityEngine.Object.FindAnyObjectByType<JourneyWorld>();
+            foreach(var artifact in world.Artifacts)
+            {
+                var marker=artifact.GetComponentInChildren<SeasonWorldLabel>(true);
+                Check(marker&&marker.Caption=="[E] Collect artifact"&&Mathf.Approximately(marker.RevealDistance,2.3f),"Collectible has one compact E prompt at pickup range");
+                Check(Vector2.Distance(marker.InteractionPosition,artifact.transform.position)<.001f,"Artifact range is measured from the item rather than its floating text");
+            }
         }
         static void VerifyCameraResize()
         {
@@ -118,10 +144,62 @@ namespace AmbrosJourney.Journey.Editor
                     var area=Rect.MinMaxRect(Mathf.Min(first.x,last.x),Mathf.Min(first.y,last.y),Mathf.Max(first.x,last.x),Mathf.Max(first.y,last.y));
                     Check(!area.Overlaps(silhouette),"World name card leaves Ambros visible: "+card.name);
                 }
+                VerifyArrowLabelClearance(overlay,layer,refresh,marker);
+                host.transform.position=player.position+Vector3.right*(marker.RevealDistance+.2f);
+                refresh.Invoke(overlay,null);Check(!sample.gameObject.activeSelf,"Walking out of interaction range hides the rendered prompt");
+                host.transform.position=player.position;
+                marker.enabled=false;refresh.Invoke(overlay,null);Check(!sample.gameObject.activeSelf,"Unavailable or completed interactions do not keep a name card");
+                marker.enabled=true;refresh.Invoke(overlay,null);
+                bool dialogOpen=overlay.Dialog.activeSelf;
+                try{overlay.Dialog.SetActive(true);refresh.Invoke(overlay,null);foreach(Transform card in layer)Check(!card.gameObject.activeSelf,"Conversation keeps world prompts out of the reading area");}
+                finally{overlay.Dialog.SetActive(dialogOpen);refresh.Invoke(overlay,null);}
             }
             finally
             {
                 host.SetActive(false);refresh.Invoke(overlay,null);UnityEngine.Object.DestroyImmediate(host);refresh.Invoke(overlay,null);Canvas.ForceUpdateCanvases();
+            }
+        }
+        static void VerifyArrowLabelClearance(SeasonOverlay overlay,Transform layer,MethodInfo refresh,SeasonWorldLabel marker)
+        {
+            var arrow=overlay.Arrow;bool active=arrow.gameObject.activeSelf;
+            var position=arrow.localPosition;var rotation=arrow.localRotation;var scale=arrow.localScale;
+            var view=Camera.main;var cameraPosition=view.transform.position;var markerPosition=marker.transform.position;
+            var otherMarkers=new List<SeasonWorldLabel>(SeasonWorldLabel.Active);
+            Camera uiCamera=overlay.Canvas.renderMode==RenderMode.ScreenSpaceOverlay?null:overlay.Canvas.worldCamera;
+            var corners=new Vector3[4];
+            Rect ScreenBounds(RectTransform target)
+            {
+                target.GetWorldCorners(corners);var low=new Vector2(float.PositiveInfinity,float.PositiveInfinity);var high=new Vector2(float.NegativeInfinity,float.NegativeInfinity);
+                foreach(var corner in corners){var point=RectTransformUtility.WorldToScreenPoint(uiCamera,corner);low=Vector2.Min(low,point);high=Vector2.Max(high,point);}
+                return Rect.MinMaxRect(low.x,low.y,high.x,high.y);
+            }
+            try
+            {
+                // Isolate this collision from a crowded arrival view. The preceding check still
+                // inspects real chapter cards; here the same renderer must keep both targets visible.
+                var player=JourneySession.Instance.Player();view.transform.position=new Vector3(player.position.x,player.position.y,cameraPosition.z);
+                marker.transform.position=player.position+Vector3.right*2;
+                foreach(var other in otherMarkers)if(other&&other!=marker)other.enabled=false;
+                foreach(float angle in new[]{0f,37f,90f,225f})foreach(float pulse in new[]{1f,1.05f})
+                {
+                    arrow.gameObject.SetActive(false);refresh.Invoke(overlay,null);Canvas.ForceUpdateCanvases();
+                    var covered=layer.Find(marker.Caption) as RectTransform;
+                    Check(covered&&covered.gameObject.activeInHierarchy,"Controlled nearby prompt is visible before every arrow collision");
+                    arrow.gameObject.SetActive(true);arrow.position=covered.TransformPoint(covered.rect.center);
+                    arrow.localRotation=Quaternion.Euler(0,0,angle);arrow.localScale=Vector3.one*pulse;
+                    Canvas.ForceUpdateCanvases();Check(ScreenBounds(arrow).Overlaps(ScreenBounds(covered)),"Regression begins with arrow overlapping the prompt");
+                    refresh.Invoke(overlay,null);Canvas.ForceUpdateCanvases();var arrowArea=ScreenBounds(arrow);
+                    Check(covered.gameObject.activeInHierarchy,"Collision moves the useful E card instead of removing it in a clear view");
+                    foreach(RectTransform card in layer)if(card.gameObject.activeInHierarchy)
+                        Check(!ScreenBounds(card).Overlaps(arrowArea),"Nearby E prompt stays clear of rotated and pulsing arrow: "+card.name);
+                }
+            }
+            finally
+            {
+                view.transform.position=cameraPosition;marker.transform.position=markerPosition;
+                foreach(var other in otherMarkers)if(other&&other!=marker)other.enabled=true;
+                arrow.localPosition=position;arrow.localRotation=rotation;arrow.localScale=scale;arrow.gameObject.SetActive(active);
+                refresh.Invoke(overlay,null);Canvas.ForceUpdateCanvases();
             }
         }
         static void VerifyAtlasBounds(WorldCohesion cohesion)

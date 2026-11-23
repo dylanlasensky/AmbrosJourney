@@ -1,5 +1,9 @@
 # Submission changes and validation — 21 November 2026
 
+**November 22 intro-source correction:** The earlier browser checks below used the 34-second October placeholder, not the teammate's 40-second PR18 film. They verify the presentation behavior of those named exports, not the identity/playback of the restored source. See [video provenance](IntroVideoSource.md); a new export must validate the restored film.
+
+**November 22 session policy:** Persistent progress saving has been removed. New launches and browser refreshes start fresh; unlocked-season revisits retain progress only during the current run. Older save files/storage are ignored and left untouched. Results below are historical evidence for their named builds, including their former save/Continue behavior; they do not verify this change.
+
 This repository update is prepared for PR review. The team will upload the game to itch; no deployment or full manual browser completion is claimed here.
 
 ## Changes

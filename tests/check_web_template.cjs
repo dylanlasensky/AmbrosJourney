@@ -23,12 +23,27 @@ function fixture(rejectBuild = false, development = false, pendingBuild = false)
     .map(id => [id, { hidden: id === 'retry', events: {}, focusCount: 0,
       addEventListener(name, action) { this.events[name] = action; }, focus() { this.focusCount++; } }]));
   let loader, configuration, reloads = 0;
+  const documentState = {
+    visibilityState: 'visible', activeElement: null,
+    body: { appendChild: element => { loader = element; } }, documentElement: {},
+  };
+  const screen = { width: 960, height: 540, devicePixelRatio: 2 };
+  const events = {}, documentEvents = {};
+  const canvas = elements['unity-canvas'];
+  canvas.getBoundingClientRect = () => ({width: screen.width, height: screen.height});
+  canvas.focus = options => {
+    assert.equal(options.preventScroll, true, 'Refocusing never scrolls the host page');
+    canvas.focusCount++; documentState.activeElement = canvas;
+  };
+  let observer;
   const buildScript = development ? script.replace(/game\.(data|wasm|framework\.js)\.gz/g, 'game.$1') : script;
   vm.runInNewContext(buildScript, {
-    document: {
+    document: Object.assign(documentState, {
       getElementById: id => elements[id], createElement: () => ({}),
-      body: { appendChild: element => { loader = element; } },
-    },
+      addEventListener: (name, action) => { documentEvents[name] = action; },
+    }),
+    window: { get devicePixelRatio() { return screen.devicePixelRatio; }, addEventListener: (name, action) => { events[name] = action; } },
+    ResizeObserver: class { constructor(action) { observer = action; } observe(target) { assert.equal(target, canvas); } },
     location: { reload: () => { reloads++; } }, console: { error() {}, warn() {}, log() {} },
     createUnityInstance: (canvas, config, progress) => {
       assert.equal(canvas, elements['unity-canvas']);
@@ -37,25 +52,74 @@ function fixture(rejectBuild = false, development = false, pendingBuild = false)
       return pendingBuild ? new Promise(() => {}) : rejectBuild ? Promise.reject(new Error('fixture loading failure')) : Promise.resolve({});
     },
   });
-  return { elements, get loader() { return loader; }, get configuration() { return configuration; }, get reloads() { return reloads; } };
+  return { elements, screen, events, documentEvents, documentState, get resizeObserver() { return observer; }, get loader() { return loader; }, get configuration() { return configuration; }, get reloads() { return reloads; } };
 }
 
 async function run() {
   const loaded = fixture();
   assert.equal(loaded.loader.src, 'Build/game.loader.js');
+  assert.equal(loaded.elements['unity-canvas'].focusCount, 0, 'Initial buffer sizing does not take focus before loading');
   loaded.loader.onload();
   await Promise.resolve();
   await Promise.resolve();
-  assert.equal(loaded.configuration.devicePixelRatio, 1, 'Retina screens do not multiply rendering pixels');
-  assert.notEqual(loaded.configuration.matchWebGLToCanvasSize, false, 'Unity still resizes its backing buffer');
+  assert.equal(loaded.configuration.matchWebGLToCanvasSize, false, 'One resize policy owns the backing buffer');
+  const canvas = loaded.elements['unity-canvas'];
+  assert.equal(canvas.focusCount, 1, 'Successful loading initially focuses the game');
+  loaded.resizeObserver(); loaded.events.resize(); loaded.documentEvents.fullscreenchange();
+  assert.equal(canvas.focusCount, 1, 'Unchanged backing size never takes focus again');
+  assert.deepEqual([canvas.width, canvas.height], [1920,1080], 'Retina embedded view renders sharp text at 2x');
+  for (const [width,height,dpr] of [[1280,720,2],[1920,1080,2],[3840,2160,2],[720,1280,3],[1024,768,1],[960,540,1.25]]) {
+    Object.assign(loaded.screen, {width,height,devicePixelRatio:dpr});
+    loaded.resizeObserver();
+    assert.ok(canvas.width * canvas.height <= 2560*1440, 'Large screens stay within the pixel budget');
+    assert.ok(Math.abs(canvas.width/canvas.height - width/height) < .003, 'Aspect ratio survives fullscreen/portrait changes');
+    if (dpr === 1) assert.deepEqual([canvas.width,canvas.height], [width,height], 'Standard-DPI laptop retains native resolution');
+  }
+  Object.assign(loaded.screen, {width:1280,height:720,devicePixelRatio:2});
+  loaded.documentEvents.fullscreenchange();
+  assert.deepEqual([canvas.width,canvas.height], [2560,1440], 'Fullscreen event refreshes backing size');
+  Object.assign(loaded.screen, {width:960,height:540,devicePixelRatio:1});
+  loaded.events.resize();
+  assert.deepEqual([canvas.width,canvas.height], [960,540], 'Moving to a standard-DPI display refreshes density');
+  Object.assign(loaded.screen, {width:0,height:0});
+  loaded.resizeObserver();
+  assert.deepEqual([canvas.width,canvas.height], [960,540], 'Hidden iframe cannot destroy the current video buffer');
   for (const key of ['dataUrl', 'frameworkUrl', 'codeUrl', 'streamingAssetsUrl'])
     assert.ok(!loaded.configuration[key].startsWith('/'), `${key} works under an itch subdirectory`);
   assert.equal(loaded.elements['loading-progress'].value, 0.65);
   assert.equal(loaded.elements.loading.hidden, true);
-  assert.equal(loaded.elements['unity-canvas'].focusCount, 1);
-  loaded.elements['unity-canvas'].events.pointerdown();
-  assert.equal(loaded.elements['unity-canvas'].focusCount, 2, 'Pointer input can restore keyboard focus');
+  const beforePointer = canvas.focusCount;
+  canvas.events.pointerdown();
+  assert.equal(canvas.focusCount, beforePointer + 1, 'Pointer input can restore keyboard focus');
   assert.match(template, /#unity-canvas\s*\{[^}]*width:\s*100%;[^}]*height:\s*100%/);
+
+  // Model an outer iframe fullscreen button retaining top-level focus. The child
+  // can report its canvas/body as active even though Unity has lost foreground focus.
+  const focusCase = fixture();
+  focusCase.loader.onload(); await Promise.resolve(); await Promise.resolve();
+  const game = focusCase.elements['unity-canvas'];
+  let expectedFocus = game.focusCount;
+  const resize = () => { focusCase.screen.width += 11; focusCase.resizeObserver(); };
+  for (const active of [game, focusCase.documentState.body, focusCase.documentState.documentElement, null]) {
+    focusCase.documentState.activeElement = active; resize();
+    assert.equal(game.focusCount, ++expectedFocus, 'Visible loaded game refocuses after its buffer is actually cleared');
+    assert.equal(focusCase.documentState.activeElement, game);
+  }
+  for (const active of [{tagName:'INPUT'}, {tagName:'TEXTAREA'}, {tagName:'SELECT'}, {tagName:'BUTTON'},
+    {tagName:'DIV', isContentEditable:true}, {tagName:'A'}, {tagName:'DIV', tabIndex:0}]) {
+    focusCase.documentState.activeElement = active; resize();
+    assert.equal(game.focusCount, expectedFocus, 'Canvas resize preserves another focused browser control');
+    assert.equal(focusCase.documentState.activeElement, active);
+  }
+  focusCase.documentState.activeElement = game;
+  focusCase.documentState.visibilityState = 'hidden'; resize();
+  assert.equal(game.focusCount, expectedFocus, 'Resizing a hidden tab never refocuses it');
+  focusCase.documentState.visibilityState = 'visible';
+  focusCase.configuration.showBanner('Fixture fatal error', 'error'); resize();
+  assert.equal(game.focusCount, expectedFocus, 'A game showing load recovery does not steal focus on resize');
+  const stillLoading = fixture(false, false, true); stillLoading.loader.onload();
+  stillLoading.screen.width = 1200; stillLoading.resizeObserver();
+  assert.equal(stillLoading.elements['unity-canvas'].focusCount, 0, 'Pending loading cannot steal focus on resize');
 
   const qa = fixture(false, true);
   qa.loader.onload();
@@ -90,7 +154,7 @@ async function run() {
   const missingLoader = fixture();
   missingLoader.loader.onerror();
   assert.equal(missingLoader.elements.retry.hidden, false, 'A missing loader offers recovery');
-  console.log('PASS: Web template configuration, responsive CSS, focus, loading progress and error recovery');
+  console.log('PASS: Web template configuration, bounded Retina resolution, fullscreen resize/refocus guards, loading progress and error recovery');
 }
 module.exports = run();
 if (require.main === module)

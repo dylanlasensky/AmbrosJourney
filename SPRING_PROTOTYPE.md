@@ -17,7 +17,7 @@ The 64 x 64-unit valley includes the Mage's cottage, winding woodland trails, a 
 
 ## Shared systems
 
-Spring uses the same Canvas/TMP parchment UI and Determination font as later chapters. The gold compass points to the next note, bat or guardian, with the existing lake detour. JourneySession adds pause, exact-location saves, artifacts, chapter revisits and certificate access. Progress is persistent, not session-only.
+Spring uses the same Canvas/TMP parchment UI and Determination font as later chapters. The gold-and-cream arrow points directly toward the next note, bat or guardian. JourneySession adds pause, artifacts, same-run chapter revisits and certificate access. Progress remains in memory only; closing or refreshing the game starts over.
 
 `SpringGuide` owns lesson/guardian rules; `SeasonBossVisual` supplies the new guardian's runtime artwork and one-shot attack. Existing bat art and licensed source-pack files remain. The guardian's previous texture assignment is retained as a source reference; active artwork comes from `Resources/Journey/Bosses/SpringBlossomAtlas`.
 
@@ -27,7 +27,7 @@ Interactive people and lesson objects have overhead **[E]** cards; artifacts use
 
 ## Tools and limits
 
-**Validate Spring Progression** covers prerequisites, six claims, wrong-answer retries, a 3/5 guardian failure and a 4/5 success. The connected integration suite additionally checks real portals, menus, saves, text fitting and the new boss poses.
+**Validate Spring Progression** covers prerequisites, six claims, wrong-answer retries, a 3/5 guardian failure and a 4/5 success. The connected integration suite additionally checks real portals, menus, current-run state, text fitting and the new boss poses.
 
 World rebuilding commands replace generated scene content. Coordinate scene ownership before using Upgrade Spring World or the cottage/trail polish commands. Do not use a Spring rebuild to generate another season. The retired generated opening and `AnimatedOpening.cs` are no longer shipped; old demo footage is historical, not a current visual reference.
 

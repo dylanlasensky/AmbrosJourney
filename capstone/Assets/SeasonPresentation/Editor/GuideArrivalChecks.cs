@@ -51,6 +51,9 @@ namespace AmbrosJourney.Presentation.Editor
         }
         public static void Summer(SummerLevel level)
         {
+            Check(!level.Progress.Introduced&&level.maleWarrior.Guidance==null&&!level.InputBlocked,"Summer waits for a deliberate greeting");
+            level.Interact(0);Check(level.IsDialogueOpen&&level.InputBlocked,"E opens Warrior dialogue");level.DismissPanel();
+            Check(level.Progress.Introduced&&level.maleWarrior.Guidance!=null,"Closing greeting starts the Summer escort");
             SlowFrameWait();
             Check(Vector2.Distance(level.maleWarrior.transform.position,SummerLevel.Spawn)<5.3f&&Vector2.Distance(level.femaleWarrior.transform.position,SummerLevel.Spawn)<5.3f,"Warriors stay within view of the portal while the player waits: male="+level.maleWarrior.transform.position+", female="+level.femaleWarrior.transform.position+", player="+level.player.transform.position);
             Check(!level.InputBlocked,"Walking phase permits player movement");
@@ -59,7 +62,7 @@ namespace AmbrosJourney.Presentation.Editor
             level.player.transform.position=level.femaleWarrior.transform.position;
             Walk(level.femaleWarrior.Guidance,level.femaleWarrior.transform,level.player.transform);
             level.player.transform.position=level.workshop.position;level.player.GetComponent<Rigidbody2D>().position=level.player.transform.position;
-            Call(level,"UpdateGuidance");Check(level.Progress.GuideArrived&&!level.IsDialogueOpen&&!level.InputBlocked&&level.Progress.WorkshopQuestion==0,"Workshop arrival gives a passive tip without starting the lesson");
+            Call(level,"UpdateGuidance");Check(level.Progress.GuideArrived&&!level.IsDialogueOpen&&!level.InputBlocked&&level.Progress.WorkshopQuestion==0,"Workshop arrival stays silent without starting the lesson");
             var female=level.femaleWarrior.GetComponent<SpriteRenderer>();
             Check(!System.Linq.Enumerable.Any(UnityEngine.Object.FindObjectsByType<SpriteRenderer>(),r=>r.name=="Summer canopy"&&r.sortingOrder>female.sortingOrder&&r.bounds.Intersects(female.bounds)),"Female Warrior visible outside foreground trees");
             Camera.main.transform.position=level.player.transform.position+Vector3.back*10;
@@ -75,10 +78,13 @@ namespace AmbrosJourney.Presentation.Editor
         }
         public static void Fall(FallLevel level)
         {
+            Check(!level.Progress.Introduced&&level.ember.Guidance==null&&!level.InputBlocked,"Fall waits for a deliberate greeting");
+            level.Interact(0);Check(level.IsDialogueOpen&&level.InputBlocked,"E opens Emberfist dialogue");level.DismissPanel();
+            Check(level.Progress.Introduced&&level.ember.Guidance!=null,"Closing greeting starts the Fall escort");
             Check(Vector2.Distance(level.ember.transform.position,FallLevel.Spawn)<5.3f,"Emberfist stays within view of the portal while the player waits");
             Walk(level.ember.Guidance,level.ember.transform,level.player.transform);
             level.player.transform.position=level.stations[0].position;level.player.GetComponent<Rigidbody2D>().position=level.player.transform.position;
-            Call(level,"UpdateGuidance");Check(level.Progress.GuideArrived&&!level.IsDialogueOpen&&!level.InputBlocked&&!level.Progress.Studied[0],"Orchard arrival gives a passive tip without reading the note");
+            Call(level,"UpdateGuidance");Check(level.Progress.GuideArrived&&!level.IsDialogueOpen&&!level.InputBlocked&&!level.Progress.Studied[0],"Orchard arrival stays silent without reading the note");
             Camera.main.transform.position=level.player.transform.position+Vector3.back*10;
             SeasonIntegrationChecks.Capture("EmberfistAtOrchard");
         }

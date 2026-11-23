@@ -1,5 +1,4 @@
 using System;
-using System.IO;
 using System.Text;
 namespace AmbrosJourney.Journey
 {
@@ -11,7 +10,7 @@ namespace AmbrosJourney.Journey
         public int[] trials=new int[3];
         public bool Valid(){if(cleared==null||cleared.Length!=3||studied==null||studied.Length!=3||trials==null||trials.Length!=3||missions<0||missions>3||bossScore<0||bossScore>5)return false;int count=0;for(int i=0;i<3;i++){if(trials[i]<0||trials[i]>2||cleared[i]!=(trials[i]==2))return false;if(cleared[i])count++;}return count==missions&&(!complete||(missions==3&&bossScore>=4));}
     }
-    [Serializable] public sealed class ChapterSave
+    [Serializable] public sealed class ChapterState
     {
         public bool visited,inCave; public float x,y; public string progress="";
     }
@@ -22,7 +21,7 @@ namespace AmbrosJourney.Journey
         public bool started,finished,outroSeen,assistedGuidance;
         public bool certificatePending,homePortalOpened;
         public bool[] artifacts=new bool[12];
-        public ChapterSave[] chapters={new ChapterSave(),new ChapterSave(),new ChapterSave(),new ChapterSave()};
+        public ChapterState[] chapters={new ChapterState(),new ChapterState(),new ChapterState(),new ChapterState()};
         public int ArtifactCount {get{int n=0;foreach(bool found in artifacts)if(found)n++;return n;}}
         public bool Valid()
         {
@@ -35,47 +34,6 @@ namespace AmbrosJourney.Journey
         {
             var b=new StringBuilder();foreach(char c in (value??"").Trim())if(!char.IsControl(c)&&c!='<'&&c!='>'&&b.Length<32)b.Append(c);
             return b.ToString().Trim();
-        }
-    }
-    // Write a complete replacement before touching the last known-good save. Keep a recovery copy.
-    public static class JourneyStorage
-    {
-#if UNITY_WEBGL && !UNITY_EDITOR
-        const string BrowserKey="ambros-journey:checkpoint:v1";
-        [System.Runtime.InteropServices.DllImport("__Internal")]static extern int AmbrosWriteSave(string key,string json);
-        [System.Runtime.InteropServices.DllImport("__Internal")]static extern string AmbrosReadSave(string key,int backup);
-        [System.Runtime.InteropServices.DllImport("__Internal")]static extern int AmbrosResetSave(string key);
-#endif
-        public static void Write(string path,string json)
-        {
-#if UNITY_WEBGL && !UNITY_EDITOR
-            // This write completes synchronously before a refresh can tear down the player.
-            if(AmbrosWriteSave(BrowserKey,json)==0)throw new IOException("Browser storage is unavailable.");
-#else
-            Directory.CreateDirectory(Path.GetDirectoryName(path));
-            string pending=path+".tmp";File.WriteAllText(pending,json,new UTF8Encoding(false));
-            if(File.Exists(path))File.Replace(pending,path,path+".bak");else File.Move(pending,path);
-#endif
-        }
-        public static T Read<T>(string path,Func<string,T> parse,Func<T,bool> valid) where T:class
-        {
-#if UNITY_WEBGL && !UNITY_EDITOR
-            for(int backup=0;backup<2;backup++)
-                try{string json=AmbrosReadSave(BrowserKey,backup);if(string.IsNullOrEmpty(json)||json.Length>131072)continue;var data=parse(json);if(data!=null&&valid(data))return data;}catch(ArgumentException){ }
-            // A browser reset writes a tombstone, so an old IDBFS checkpoint cannot reappear.
-            if(AmbrosReadSave(BrowserKey,2)=="reset")return null;
-#endif
-            foreach(var candidate in new[]{path,path+".bak"})
-                try{if(!File.Exists(candidate)||new FileInfo(candidate).Length>131072)continue;var data=parse(File.ReadAllText(candidate));if(data!=null&&valid(data))return data;}catch(Exception e)when(e is IOException||e is ArgumentException||e is UnauthorizedAccessException){ }
-            return null;
-        }
-        public static void Reset(string path)
-        {
-#if UNITY_WEBGL && !UNITY_EDITOR
-            if(AmbrosResetSave(BrowserKey)==0)throw new IOException("Browser storage is unavailable.");
-#else
-            foreach(string suffix in new[]{"",".bak",".tmp"})if(File.Exists(path+suffix))File.Delete(path+suffix);
-#endif
         }
     }
 }

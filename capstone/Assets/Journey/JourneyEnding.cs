@@ -11,7 +11,7 @@ namespace AmbrosJourney.Journey
         {
 #if !UNITY_WEBGL || UNITY_EDITOR
             var clip=Resources.Load<VideoClip>("Journey/Outro");
-            if(!clip){session.Data.outroSeen=false;session.Save();finished();yield break;}
+            if(!clip){session.Data.outroSeen=false;session.CaptureChapter();finished();yield break;}
 #endif
             bool done=false,failed=false,cleaned=false,returningNormally=false;
             var host=new GameObject("Return-home cinematic");
@@ -62,7 +62,7 @@ namespace AmbrosJourney.Journey
                 }
             }
             if(!session)yield break;
-            session.Data.outroSeen=done;session.Save();finished();
+            session.Data.outroSeen=done;session.CaptureChapter();finished();
         }
     }
 }

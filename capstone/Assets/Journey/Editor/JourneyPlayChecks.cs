@@ -13,7 +13,7 @@ namespace AmbrosJourney.Journey.Editor
 {
     public static class JourneyPlayChecks
     {
-        static Vector2 savedPosition;
+        static Vector2 rememberedPosition;
         static Keyboard testKeyboard;
         const BindingFlags Private=BindingFlags.Instance|BindingFlags.NonPublic;
         static void Check(bool condition,string why){if(!condition)throw new Exception("JOURNEY CHECK: "+why);}
@@ -32,59 +32,54 @@ namespace AmbrosJourney.Journey.Editor
                 testKeyboard=InputSystem.AddDevice<Keyboard>();testKeyboard.MakeCurrent();
                 var winter=UnityEngine.Object.FindAnyObjectByType<WinterLevel>();Check(winter.Progress.Complete&&winter.Progress.WinterComplete,"Both Winter bosses complete");
                 JourneySession.ApplyPerformance();double refresh=Screen.currentResolution.refreshRateRatio.value;double limit=QualitySettings.vSyncCount>0?refresh/QualitySettings.vSyncCount:Application.targetFrameRate;Check(limit<=60.01&&!Application.runInBackground,"Rendering limited to at most 60 FPS; background execution off");Application.runInBackground=true;
-                savedPosition=winter.player.transform.position;session.Pause();Inspect();Check(Time.timeScale==0&&AudioListener.pause&&winter.InputBlocked,"Pause freezes simulation, audio and input");
-                Check(session.Save(),"Save writes");Check(File.Exists(JourneySession.SavePath),"Save file exists");SeasonIntegrationChecks.Capture("PauseMenu");
-                session.Resume();winter.Interact(1);Check(winter.IsDialogueOpen,"Field note opens for pause regression");session.Pause();InputSystem.QueueStateEvent(Keyboard.current,new KeyboardState(Key.Escape));InputSystem.Update();Check(Keyboard.current.escapeKey.wasPressedThisFrame,"Synthetic Escape press delivered");Call(session,"Update");Check(!session.Paused,"Escape resumes pause menu");Call(winter,"Update");Check(winter.IsDialogueOpen,"Esc resumes without also closing the field note");InputSystem.QueueStateEvent(Keyboard.current,new KeyboardState());InputSystem.Update();Call(winter,"Close");session.ReturnToMenu();
+                rememberedPosition=winter.player.transform.position;session.Pause();Inspect();Check(Time.timeScale==0&&AudioListener.pause&&winter.InputBlocked,"Pause freezes simulation, audio and input");
+                Check(session.CaptureChapter(),"Current chapter is captured in memory");Check(session.Data.chapters[3].visited,"Winter is available for this run's revisits");SeasonIntegrationChecks.Capture("PauseMenu");
+                session.Resume();winter.Interact(1);Check(winter.IsDialogueOpen,"Field note opens for pause regression");session.Pause();InputSystem.QueueStateEvent(Keyboard.current,new KeyboardState(Key.Escape));InputSystem.Update();Check(Keyboard.current.escapeKey.wasPressedThisFrame,"Synthetic Escape press delivered");Call(session,"Update");Check(!session.Paused,"Escape resumes pause menu");Call(winter,"Update");Check(winter.IsDialogueOpen,"Esc resumes without also closing the field note");InputSystem.QueueStateEvent(Keyboard.current,new KeyboardState());InputSystem.Update();Call(winter,"Close");session.CaptureChapter();session.LoadChapter(1);
             }
             else if(stage==1)
             {
-                Check(SceneManager.GetActiveScene().name=="Intro","Return to menu");Inspect();SeasonIntegrationChecks.Capture("MainMenu");
-                Check(UI.transform.Find("Blossom valley painting").GetComponent<UnityEngine.UI.RawImage>().texture,"Menu painting imported");
-                Check(UI.transform.Find("Saved season").GetComponent<TMP_Text>().text=="Winter · Frostveil","Menu shows actual saved chapter");
-                Click("Settings");Inspect();Check(UI.transform.Find("Guidance status").GetComponent<TMP_Text>().text=="Trail guidance: always on","Settings explain continuous trail guidance");
-                Check(!UI.transform.Find("Guidance status").GetComponent<UnityEngine.UI.Button>(),"Guidance has no ineffective toggle");
-                SeasonIntegrationChecks.Capture("MenuSettings");Click("Back");
-                Click("New Journey");Check(session.Data.started,"New Journey asks before discarding a save");Click("Keep my progress");Check(File.Exists(JourneySession.SavePath),"Cancel reset retains save");
-                session.Data.finished=true;session.Data.certificatePending=false;Call(session,"ShowMenu");Inspect();SeasonIntegrationChecks.Capture("CompletedJourneyMenu");
-                var quit=UI.transform.Find("Quit").GetComponent<RectTransform>();var certificate=UI.transform.Find("View Certificate").GetComponent<RectTransform>();Check(-certificate.anchoredPosition.y>=-quit.anchoredPosition.y+quit.rect.height,"Completed menu actions do not overlap");
-                session.Data.finished=false;Call(session,"ShowMenu");
-                Click("Continue");
+                Check(SceneManager.GetActiveScene().name=="Spring"&&session.Data.started,"Earlier season remains available during the current run");
+                session.Pause();Check(session.Paused&&Time.timeScale==0,"Ready chapter enters Pause before the end-run confirmation");string beforeEnd=JsonUtility.ToJson(session.Data);Call(session,"ShowConfirmEndRun");Inspect();
+                Check(Array.Exists(UI.GetComponentsInChildren<UnityEngine.UI.Button>(),b=>b.name=="Keep playing")&&Array.Exists(UI.GetComponentsInChildren<UnityEngine.UI.Button>(),b=>b.name=="End run / Main menu"),"Ending an active run asks before clearing it");
+                Click("Keep playing");Check(session.Data.started&&session.Paused,"Cancel end-run keeps the current journey paused");Check(JsonUtility.ToJson(session.Data)==beforeEnd,"Cancel end-run preserves every chapter, artifact and completion field");
+                Check(!UI.transform.Find("Reset journey"),"Pause has one clear end-run action");
+                session.Resume();session.LoadChapter(4);
             }
             else if(stage==2)
             {
-                var winter=UnityEngine.Object.FindAnyObjectByType<WinterLevel>();Check(winter&&winter.Progress.Complete&&winter.Progress.WinterComplete,"Continue retains bosses");Check(Vector2.Distance(winter.player.transform.position,savedPosition)<.01f,"Exact outdoor position restored");
-                Check(Time.timeScale==1&&!AudioListener.pause,"Continue unpauses");session.LoadChapter(1);
+                var winter=UnityEngine.Object.FindAnyObjectByType<WinterLevel>();Check(winter&&winter.Progress.Complete&&winter.Progress.WinterComplete,"Current-run revisit retains both bosses");Check(Vector2.Distance(winter.player.transform.position,rememberedPosition)<.01f,"Current-run revisit restores the exact Winter position");
+                Check(Time.timeScale==1&&!AudioListener.pause,"Chapter travel unpauses");session.LoadChapter(1);
             }
             else if(stage>=3&&stage<=6)
             {
                 int chapter=stage-2;Check(JourneySession.CurrentChapter()==chapter,"Travel loads requested chapter");JourneyPerformanceChecks.VerifyCurrentScene();WorldcraftChecks.Verify(chapter);CollectAll();MoonbranchPolishChecks.Verify(chapter);WorldCohesionChecks.CheckAndCapture(chapter);Inspect();SeasonIntegrationChecks.Capture("Exploration"+chapter);
-                if(chapter<4){session.Save();session.LoadChapter(chapter+1);}else {Check(session.Data.ArtifactCount==12,"All artifacts survive chapter loads");session.ShowArtifacts();Inspect();SeasonIntegrationChecks.Capture("ArtifactAchievement");}
+                if(chapter<4){session.CaptureChapter();session.LoadChapter(chapter+1);}else {Check(session.Data.ArtifactCount==12,"All artifacts survive chapter loads");session.ShowArtifacts();Inspect();SeasonIntegrationChecks.Capture("ArtifactAchievement");}
             }
             else if(stage==7)
             {
-                session.Resume();var w=UnityEngine.Object.FindAnyObjectByType<WinterLevel>();Check(w.Progress.InCave,"Cave artifact collected inside cave");savedPosition=w.player.transform.position;session.Save();session.ReturnToMenu();
+                session.Resume();var w=UnityEngine.Object.FindAnyObjectByType<WinterLevel>();Check(w.Progress.InCave,"Cave artifact collected inside cave");rememberedPosition=w.player.transform.position;session.CaptureChapter();session.LoadChapter(1);
             }
-            else if(stage==8){session.LoadChapter(4);}
+            else if(stage==8){Check(SceneManager.GetActiveScene().name=="Spring"&&session.Data.ArtifactCount==12,"Current-run travel retains the completed collection");session.LoadChapter(4);}
             else if(stage==9)
             {
-                var w=UnityEngine.Object.FindAnyObjectByType<WinterLevel>();Check(w.Progress.InCave&&Vector2.Distance(w.player.transform.position,savedPosition)<.01f,"Exact cave location and region restored");Check(session.Data.ArtifactCount==12,"Collection retained through menu");
+                var w=UnityEngine.Object.FindAnyObjectByType<WinterLevel>();Check(w.Progress.InCave&&Vector2.Distance(w.player.transform.position,rememberedPosition)<.01f,"Current-run revisit restores exact cave location and region");Check(session.Data.ArtifactCount==12,"Collection retained across current-run chapter visits");
                 JourneyCertificate.OutputDirectoryOverride=Path.GetFullPath("Logs/SeasonChecks");session.FinishJourney();
             }
             else if(stage==10){Check(session.Data.finished&&!session.Data.outroSeen,"Certificate is shown before outro playback");Inspect();SeasonIntegrationChecks.Capture("CertificateScreen");JourneyCertificate.Export(session.Data,UI);}
             else if(stage==11)
             {
                 Check(JourneyCertificate.LastExportPath!=null&&File.Exists(JourneyCertificate.LastExportPath),"PDF exported");Check(new FileInfo(JourneyCertificate.LastExportPath).Length>10000,"Certificate contains rendered page");
-                session.Resume();session.Pause();Call(session,"ConfirmReset");Inspect();SeasonIntegrationChecks.Capture("ResetConfirmation");
-                foreach(var b in UI.GetComponentsInChildren<UnityEngine.UI.Button>())if(b.name=="Reset / Start from the beginning")b.onClick.Invoke();
+                session.Resume();session.Pause();Call(session,"ShowConfirmEndRun");Inspect();SeasonIntegrationChecks.Capture("EndRunConfirmation");
+                foreach(var b in UI.GetComponentsInChildren<UnityEngine.UI.Button>())if(b.name=="End run / Main menu")b.onClick.Invoke();
             }
             else if(stage==12)
             {
-                Check(SceneManager.GetActiveScene().name=="Intro"&&!session.Data.started&&session.Data.ArtifactCount==0,"Full reset returns fresh menu");Check(!File.Exists(JourneySession.SavePath)&&!File.Exists(JourneySession.SavePath+".bak"),"Reset deletes recovery copy too");Inspect();
-                UI.GetComponentInChildren<TMP_InputField>().text="Zoë Explorer";Click("Settings");Inspect();Click("Back");Check(UI.GetComponentInChildren<TMP_InputField>().text=="Zoë Explorer","Settings retains draft explorer name");SeasonIntegrationChecks.Capture("NewJourneyMenu");
+                Check(SceneManager.GetActiveScene().name=="Intro"&&!session.Data.started&&session.Data.ArtifactCount==0&&!session.Data.finished,"Ending a run returns to a fresh menu");
+                foreach(var chapter in session.Data.chapters)Check(!chapter.visited,"Ending a run clears every remembered chapter");
+                Check(!UI.transform.Find("Continue")&&!UI.transform.Find("Saved season"),"Main menu has no Continue or saved-season entry");
+                Check(UI.transform.Find("Blossom valley painting").GetComponent<UnityEngine.UI.RawImage>().texture,"Menu painting imported");Inspect();SeasonIntegrationChecks.Capture("MainMenu");
+                UI.GetComponentInChildren<TMP_InputField>().text="Zoë Explorer";Click("Settings");Inspect();Check(UI.transform.Find("Guidance status").GetComponent<TMP_Text>().text=="Trail guidance: always on","Settings explain continuous guidance");Check(!UI.transform.Find("Guidance status").GetComponent<UnityEngine.UI.Button>(),"Guidance has no ineffective toggle");SeasonIntegrationChecks.Capture("MenuSettings");Click("Back");Check(UI.GetComponentInChildren<TMP_InputField>().text=="Zoë Explorer","Settings retains draft explorer name");SeasonIntegrationChecks.Capture("NewJourneyMenu");
                 var input=UI.GetComponentInChildren<TMP_InputField>();input.text=" ";session.NewJourney();Check(!session.Data.started,"Blank name rejected");
-                string normalSave=JourneySession.SavePathOverride;string directory=Path.GetFullPath("Logs/SeasonChecks/menu-save-directory");Directory.CreateDirectory(directory);
-                try{JourneySession.SavePathOverride=directory;UI.GetComponentInChildren<TMP_InputField>().text="Test Explorer";session.NewJourney();Check(!session.Data.started&&UI.GetComponentInChildren<TMP_InputField>(),"Failed save stays on name-entry menu");Inspect();}
-                finally{JourneySession.SavePathOverride=normalSave;}
                 UI.GetComponentInChildren<TMP_InputField>().text="Zoë Explorer";var opening=UnityEngine.Object.FindAnyObjectByType<OpeningCinematic>();Check(Resources.Load<UnityEngine.Video.VideoClip>("Journey/Intro"),"Supplied original intro is included");Click("New Journey");Check(session.Data.started&&session.Data.playerName=="Zoë Explorer","Named journey starts with continuous guidance");
                 // Playback has its own checks; advance the clip to keep this progression suite focused.
                 opening.GetType().GetMethod("Finished",Private).Invoke(opening,new object[]{null});
@@ -93,7 +88,7 @@ namespace AmbrosJourney.Journey.Editor
             {
                 Check(SceneManager.GetActiveScene().name=="Spring","Completing the supplied intro loads Spring");Check(!UnityEngine.Object.FindAnyObjectByType<UnityEngine.Video.VideoPlayer>(),"Opening player is released after the cinematic");
             }
-            else if(stage==14){Check(SceneManager.GetActiveScene().name=="Spring","New Journey enters fresh Spring");Check(!UnityEngine.Object.FindAnyObjectByType<SpringGuide>().LessonComplete,"Reset starts with no lessons");if(testKeyboard!=null){InputSystem.RemoveDevice(testKeyboard);testKeyboard=null;}Debug.Log("JOURNEY_PLAY_PASS: menu, exact outdoor/cave save, pause, chapter travel, all 12 E-key pickups, achievement, certificate export, reset and direct-to-Spring start.");return true;}
+            else if(stage==14){Check(SceneManager.GetActiveScene().name=="Spring","New Journey enters fresh Spring");Check(!UnityEngine.Object.FindAnyObjectByType<SpringGuide>().LessonComplete,"New run starts with no lessons");if(testKeyboard!=null){InputSystem.RemoveDevice(testKeyboard);testKeyboard=null;}Debug.Log("JOURNEY_PLAY_PASS: fresh menu without Continue, exact current-run chapter/cave revisits, pause, all 12 E-key pickups, achievement, certificate export, end-run cancellation/reset and new named journey.");return true;}
             return false;
         }
         static void Click(string name)

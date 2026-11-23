@@ -30,7 +30,7 @@ namespace AmbrosJourney.Journey
             Text(ui,"Subtitle","Four Seasons of Discovery",new Rect(-554,-128,420,39),25,Gold);
             Rule(ui,-553,-86,352);
             Rule(ui,-562,275,108);
-            Text(ui,"Autosave footer","Your journey is saved automatically.",new Rect(-562,290,440,35),18,Muted);
+            Text(ui,"Run footer","Play in one sitting. Progress is not saved.",new Rect(-562,290,440,35),18,Muted);
         }
 
         public static TextMeshProUGUI Text(JourneyUI ui,string name,string value,Rect bounds,float size,Color? color=null)

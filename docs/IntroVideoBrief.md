@@ -1,8 +1,8 @@
 # Teammate intro and outro brief
 
-**Current status:** the teammate's final clips are not supplied. The game is playable: New Journey enters Spring directly, and final victory crumbles the Keeper and drops a scroll whose E pickup opens the certificate. Exit/Escape resumes the cave and assembles the home portal. Walking through it opens the main menu. The generated pixel intro and its generator were retired. This brief remains the intended illustrated story direction, not a claim that the film exists.
+**Current status, November 22:** the teammate's 40-second intro from PR18 and 20-second outro are supplied and connected. The intro was accidentally replaced in PR19 with the older October still-image sequence; the PR18 source has now been restored unchanged. See [source provenance](IntroVideoSource.md). The direction below is the earlier planning brief, not the duration or implementation of the finished clip.
 
-## Intro direction
+## Earlier intro direction
 
 Target approximately 20 seconds, 16:9, 1080p or higher. Use a coherent illustrated anime/storybook style with warm painterly detail, soft cinematic lighting and expressive natural motion. Match Ambros's tousled dark hair, black hoodie, age and face to the three original references in `tools/opening-art`. This illustrated cinematic style is distinct from the pixel-art gameplay.
 
@@ -14,8 +14,8 @@ Audio moves from keyboard/bedroom ambience through a magical whoosh to forest wi
 
 ## Integration contract
 
-Intro: provide `capstone/Assets/Resources/Journey/Intro.mp4` with its `.meta`, or assign a VideoClip to `OpeningCinematic.clip` in `Assets/Opening/Intro.unity`. The existing loader hands control to Spring when playback ends; absent clips start Spring directly and failed playback has an Enter fallback.
+Intro: the selected source is `capstone/Assets/Journey/Resources/Journey/Intro.mp4`. Keep its existing `.meta` GUID. `OpeningCinematic` loads `Journey/Intro` natively; Web builds copy the same bytes to `StreamingAssets/JourneyVideos/Intro.mp4`. New Journey plays it after name entry, then loads Spring. Preparation failure retains an Enter fallback.
 
-Outro: provide `capstone/Assets/Resources/Journey/Outro.mp4` with its `.meta`. The retained `JourneyEnding.Play` helper can play that clip and fall back to the certificate if it is missing or fails. The current `FinishJourney` pickup path opens the certificate directly and does not invoke this helper. Adding the clip alone will not play it: wire the agreed teammate handoff into that path and revalidate collection/Return behavior. The older required walk back to Spring is not implemented; the clip can resolve the return-home story.
+Outro: `capstone/Assets/Journey/Resources/Journey/Outro.mp4` remains unchanged. Collecting the final scroll opens the certificate. Exit resumes the cave and reveals the home portal; walking through that portal invokes the outro and returns to the main menu. The Web export includes it beside the intro.
 
-Review identity, anatomy, continuity, visible cause/effect and sound before integration. See [Journey completion](JourneyCompletion.md) for runtime behavior and [current design](GameDesign.md) for the completed learning route. Boss and scenery art are already integrated; no replacement video is supplied by the feedback update.
+Review identity, anatomy, continuity, visible cause/effect and sound before integration. See [Journey completion](JourneyCompletion.md) for runtime behavior and [current design](GameDesign.md) for the completed learning route. Boss and scenery art are separate from these teammate-owned movies. Restoring the intended source does not regenerate or re-encode either film.

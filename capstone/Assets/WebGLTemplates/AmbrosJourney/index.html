@@ -23,10 +23,35 @@
   </div>
   <script>
     const canvas = document.getElementById("unity-canvas");
+    let gameLoaded = false;
+    // Render Retina text at display density without allocating an unbounded 4K/5K buffer.
+    // Keep CSS sizing independent so entering/exiting itch fullscreen updates the buffer too.
+    function resizeGameCanvas() {
+      const bounds = canvas.getBoundingClientRect();
+      if (bounds.width <= 0 || bounds.height <= 0) return;
+      const density = Math.min(window.devicePixelRatio || 1, 2,
+        Math.sqrt((2560 * 1440) / (bounds.width * bounds.height)));
+      const width = Math.max(1, Math.floor(bounds.width * density));
+      const height = Math.max(1, Math.floor(bounds.height * density));
+      if (canvas.width === width && canvas.height === height) return;
+      if (canvas.width !== width) canvas.width = width;
+      if (canvas.height !== height) canvas.height = height;
+      // Changing the buffer clears it. Return focus after an outer iframe fullscreen
+      // click so foreground-only Unity can repaint, without enabling background play.
+      const active = document.activeElement;
+      if (gameLoaded && document.visibilityState === "visible" &&
+          (!active || active === canvas || active === document.body || active === document.documentElement))
+        canvas.focus({ preventScroll: true });
+    }
+    resizeGameCanvas();
+    new ResizeObserver(resizeGameCanvas).observe(canvas);
+    window.addEventListener("resize", resizeGameCanvas);
+    document.addEventListener("fullscreenchange", resizeGameCanvas);
     const loading = document.getElementById("loading");
     const progress = document.getElementById("loading-progress");
     const retry = document.getElementById("retry");
     function loadingFailed(message) {
+      gameLoaded = false;
       console.error(message);
       loading.hidden = false;
       progress.hidden = true;
@@ -58,9 +83,10 @@
           else if (type === "warning") console.warn(message);
           else console.log(message);
         },
-        // Keep automatic canvas/backing-size synchronization, capped at one pixel per CSS pixel.
-        devicePixelRatio: 1,
+        // The observer above owns the high-DPI backing size, including iframe/fullscreen changes.
+        matchWebGLToCanvasSize: false,
       }, value => { progress.value = value; }).then(() => {
+        gameLoaded = true;
         loading.hidden = true;
         canvas.focus({ preventScroll: true });
       }).catch(loadingFailed);

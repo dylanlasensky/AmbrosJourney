@@ -53,10 +53,6 @@ namespace AmbrosJourney.Winter
         }
         void Block(string label, Vector2 p, Vector2 size)
         { var o = ObjectAt(label, p); o.AddComponent<BoxCollider2D>().size = size; }
-        void Label(string text, Vector2 p, float width = 8)
-        {
-            var o=ObjectAt(text,p);o.AddComponent<SeasonWorldLabel>().Caption=text;
-        }
         WinterActor Actor(string label, string prefix, int count, Vector2 p, string attackPrefix = null, int attackCount = 0, float scale = 1)
         {
             var r = Visual(label, prefix + "1", p, scale); var actor = r.gameObject.AddComponent<WinterActor>();
@@ -75,7 +71,7 @@ namespace AmbrosJourney.Winter
         public static readonly Vector2 Min=new Vector2(-40,-34),Max=new Vector2(40,36);
         public static readonly Vector2 CaveMin=new Vector2(90,-34),CaveMax=new Vector2(150,36);
         public static readonly Vector2 CaveSpawn=new Vector2(100,-26),Entrance=new Vector2(24,27),BossPosition=new Vector2(134,25);
-        public static readonly Vector2 ArrivalGuide=WinterLevel.Spawn+new Vector2(5.5f,0),CaveGuide=Entrance+new Vector2(-2.5f,-2.5f),WardenPosition=Entrance+new Vector2(0,-3.5f);
+        public static readonly Vector2 ArrivalGuide=WinterLevel.Spawn+new Vector2(3,0),CaveGuide=Entrance+new Vector2(-2.5f,-2.5f),WardenPosition=Entrance+new Vector2(0,-3.5f);
         // Old saves may stand behind the ridge that is now blocked. Keep valid locations exact.
         public static Vector2 ConstrainOutdoorCheckpoint(Vector2 position)
         {return position.y>Entrance.y-1.45f&&(Mathf.Abs(position.x-Entrance.x)>1.2f||position.y>Entrance.y+.25f)?Entrance+Vector2.down*3:position;}
@@ -96,29 +92,28 @@ namespace AmbrosJourney.Winter
             for(int i=0;i<330;i++){var p=new Vector2(rng.Next(-38,39),rng.Next(-32,35));if(!SceneryAllowed(p))continue;var v=Visual("Snow fir","Tree",p,.8f+(float)rng.NextDouble()*.25f);var c=v.gameObject.AddComponent<BoxCollider2D>();c.size=new Vector2(.6f,.4f);c.offset=new Vector2(0,.2f);}
             for(int i=0;i<75;i++){var p=new Vector2(rng.Next(-38,39),rng.Next(-32,35));if(SceneryAllowed(p))Visual("Snowbank",i%3==0?"Rock":"Bush",p,.7f);}
             BuildSnowGroves();
-            Visual("Autumn arrival","Portal",WinterLevel.Spawn+Vector2.up*3,1.3f);Label("FROSTVEIL / ARRIVAL",WinterLevel.Spawn+Vector2.up*6);
+            Visual("Autumn arrival","Portal",WinterLevel.Spawn+Vector2.up*3,1.3f);
             for(int i=1;i<trail.Length;i+=2){Visual("Warm trail lantern","Lantern",trail[i]+new Vector2(2.4f,1),.75f);}
             level.caveEntrance=ObjectAt("Enter Echo Cavern",Entrance).transform;
-            Visual("Frostveil mountain ridge / integrated cave","MountainRidge",Entrance+Vector2.down*1.5f).sortingOrder=-500;Label("ECHO CAVERN / WALK INSIDE",Entrance+Vector2.up*3.5f);
+            Visual("Frostveil mountain ridge / integrated cave","MountainRidge",Entrance+Vector2.down*1.5f).sortingOrder=-500;
             Block("Mountain west shoulder",new Vector2(15,30),new Vector2(14,7));Block("Mountain east shoulder",new Vector2(34,30),new Vector2(14,7));Block("Mountain upper wall",new Vector2(24,33),new Vector2(32,1));
             // A continuous ridge frontage prevents circling behind the cave artwork.
             // Keep a three-unit doorway open, with a solid back wall behind its trigger.
             Block("Ridge west frontage",new Vector2(-9.25f,31.75f),new Vector2(63.5f,11.5f));
             Block("Ridge east frontage",new Vector2(33.25f,31.75f),new Vector2(15.5f,11.5f));
             Block("Cave doorway back wall",new Vector2(24,29.2f),new Vector2(3,3));
-            Label("FOLLOW THE LANTERNS NORTH",new Vector2(23,13));
             level.stations=new Transform[3];level.runes=new SpriteRenderer[3];
             for(int i=0;i<2;i++){level.stations[i]=Visual(WinterContent.Landmarks[i],"Noticeboard",MissionPositions[i],1.5f).transform;level.runes[i]=ObjectAt("Evidence progress "+i,MissionPositions[i]).AddComponent<SpriteRenderer>();SeasonWorldLabel.Attach(level.stations[i],"[E] FIELD NOTE / "+WinterContent.Landmarks[i].ToUpper());Visual("Research shelter","Shelter",MissionPositions[i]+new Vector2(-4,3),1.1f);}
-            level.winterGuardian=Actor("Frostbound Warden / Winter boss","SkeletonIdle",4,WardenPosition,"SkeletonAttack",6,1.8f);SeasonBossVisual.Attach(level.winterGuardian.gameObject,"WinterFrostboundAtlas",6.2f);SeasonWorldLabel.Attach(level.winterGuardian.transform,"[E] FROSTBOUND WARDEN");
+            level.winterGuardian=Actor("Frostbound Warden / Winter boss","SkeletonIdle",4,WardenPosition,"SkeletonAttack",6,1.8f);SeasonBossVisual.Attach(level.winterGuardian.gameObject,"WinterFrostboundAtlas",6.2f);SeasonWorldLabel.Attach(level.winterGuardian.transform,"[E] FROSTBOUND WARDEN",250,5.5f);
             Cavern=new GameObject("Echo Cavern / interior map");Cavern.transform.SetParent(transform);region=Cavern.transform;
             BuildCave();
             level.caveExit=Visual("Daylight exit","Portal",CaveSpawn+Vector2.down,1.2f).transform;SeasonWorldLabel.Attach(level.caveExit,"[E] RETURN OUTSIDE");
             level.stations[2]=Visual("Echo Archive","Noticeboard",MissionPositions[2],1.5f).transform;level.runes[2]=Visual("Archive evidence seal","Ward",MissionPositions[2]+Vector2.right*2);SeasonWorldLabel.Attach(level.stations[2],"[E] FIELD NOTE / ECHO ARCHIVE");
             for(int i=0;i<5;i++)Visual("Archive crystal","Crystal",new Vector2(98+i*2,15),.4f);
-            level.guardian=Actor("Echo Keeper / ancient AI robot","SkeletonIdle",4,BossPosition,"SkeletonAttack",6,2.2f);SeasonBossVisual.Attach(level.guardian.gameObject,"FinalEchoKeeperAtlas",8.6f);SeasonWorldLabel.Attach(level.guardian.transform,"[E] ECHO KEEPER");
+            level.guardian=Actor("Echo Keeper / ancient AI robot","SkeletonIdle",4,BossPosition,"SkeletonAttack",6,2.2f);SeasonBossVisual.Attach(level.guardian.gameObject,"FinalEchoKeeperAtlas",8.6f);SeasonWorldLabel.Attach(level.guardian.transform,"[E] ECHO KEEPER",180,5.5f);
             var seal=Visual("Three-seal frozen barrier","Barrier",new Vector2(134,16));seal.transform.localScale=new Vector3(9,1.3f,1);seal.gameObject.AddComponent<BoxCollider2D>();level.arenaSeal=seal.gameObject;
             level.shields=new SpriteRenderer[0];
-            level.winterGate=Visual("Winter crest","Ward",new Vector2(140,30),2).transform;SeasonWorldLabel.Attach(level.winterGate,"[E] WINTER CREST");
+            level.winterGate=Visual("Winter crest","Ward",new Vector2(140,30),2).transform;
             level.exitSeal=ObjectAt("Crest ward",new Vector2(140,29)); // Interaction is gated by progress; no invisible collision.
             region=null;
             level.player=Actor("Ambros","AmbrosIdle",4,WinterLevel.Spawn,"AmbrosAttack",5);level.player.isPlayer=true;level.player.walk=Frames("AmbrosWalk",8);
@@ -128,7 +123,7 @@ namespace AmbrosJourney.Winter
             level.maleWarrior=Actor("Warrior","MaleIdle",4,WinterLevel.Spawn+Vector2.left*3);level.maleWarrior.walk=Frames("MaleWalk",6);
             level.femaleWarrior=Actor("Warrior","FemaleIdle",4,WinterLevel.Spawn+Vector2.left*4);level.femaleWarrior.walk=Frames("FemaleWalk",6);
             level.ember=Actor("Emberfist","EmberIdle",4,WinterLevel.Spawn+Vector2.left*5);level.ember.walk=Frames("EmberWalk",8);
-            level.littleMage=Actor("Little Mage","LittleIdle",4,ArrivalGuide);level.littleMage.walk=Frames("LittleWalk",4);SeasonWorldLabel.Attach(level.littleMage.transform,"LITTLE MAGE",136);
+            level.littleMage=Actor("Little Mage","LittleIdle",4,ArrivalGuide);level.littleMage.walk=Frames("LittleWalk",4);SeasonWorldLabel.Attach(level.littleMage.transform,"[E] Talk",112,WinterLevel.GuideTalkRadius);
             AmbrosJourney.Presentation.NaturalTrail.Apply(path,4);
             var camera=ObjectAt("Winter Camera",WinterLevel.Spawn);camera.tag="MainCamera";camera.transform.position=new Vector3(WinterLevel.Spawn.x,WinterLevel.Spawn.y,-10);
             var cam=camera.AddComponent<Camera>();cam.orthographic=true;cam.orthographicSize=7;cam.backgroundColor=new Color(.07f,.10f,.17f);cam.clearFlags=CameraClearFlags.SolidColor;camera.AddComponent<AudioListener>();followCamera=camera.AddComponent<WinterCamera>();followCamera.target=level.player.transform;followCamera.worldMin=Min;followCamera.worldMax=Max;
@@ -176,7 +171,7 @@ namespace AmbrosJourney.Winter
             foreach(var p in boundary){walls.SetTile(new Vector3Int(p.x,p.y,0),ice);Block("Cavern wall",(Vector2)p+Vector2.one*.5f,Vector2.one);}
             foreach(var p in new[]{new Vector2(97,-29),new Vector2(108,-20),new Vector2(119,-15),new Vector2(138,-4),new Vector2(98,5),new Vector2(111,15),new Vector2(125,23),new Vector2(144,31)})Visual("Cyan crystal formation","Crystal",p,.65f);
             foreach(var p in CaveLanterns)Visual("Cave lantern","Lantern",p,.7f);
-            Label("ECHO ARCHIVE / WEST PASSAGE",new Vector2(122,-9));Label("FINAL KEEPER / NORTHERN HALL",new Vector2(132,2));
+
         }
         public void RestoreRegion(bool cave)
         {

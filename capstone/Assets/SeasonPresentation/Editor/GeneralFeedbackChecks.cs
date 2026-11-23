@@ -153,7 +153,7 @@ public static class GeneralFeedbackChecks
         {
             if(DateTime.UtcNow>=DateTime.Parse(SessionState.GetString(Key+"deadline","")).ToUniversalTime())throw new Exception("General feedback checks timed out");
             if(!EditorApplication.isPlaying)return;
-            JourneySession.TestMode=true;JourneySession.SavePathOverride=Path.GetFullPath("Logs/SeasonChecks/general-feedback-save.json");Application.runInBackground=true;EditorApplication.QueuePlayerLoopUpdate();
+            JourneySession.TestMode=true;Application.runInBackground=true;EditorApplication.QueuePlayerLoopUpdate();
             typeof(EditorApplication).GetMethod("SignalTick",BindingFlags.Static|BindingFlags.NonPublic|BindingFlags.Public)?.Invoke(null,null);
             if(ready==0)ready=EditorApplication.timeSinceStartup+3;if(EditorApplication.timeSinceStartup<ready)return;
             if(!JourneySession.Instance)return;

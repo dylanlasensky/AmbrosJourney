@@ -20,7 +20,7 @@ namespace AmbrosJourney.Journey.Editor
         static PauseJournalChecks()
         {
             EditorApplication.update+=Tick;
-            if(SessionState.GetBool(Key,false)){JourneySession.TestMode=true;JourneySession.SavePathOverride=Path.GetFullPath("Logs/PauseJournalChecks/save.json");}
+            if(SessionState.GetBool(Key,false)){JourneySession.TestMode=true;}
             Application.logMessageReceived+=(message,stack,type)=>{if(stack.Contains("UnityEditor.Search.SearchDatabase"))return;if(SessionState.GetBool(Key,false)&&EditorApplication.isPlaying&&(type==LogType.Error||type==LogType.Exception||type==LogType.Assert))SessionState.SetString(Key+"Error",message);};
         }
         public static void Run()
@@ -56,7 +56,7 @@ namespace AmbrosJourney.Journey.Editor
             try
             {
                 Check(SessionState.GetString(Key+"Error","")=="",SessionState.GetString(Key+"Error",""));EditorApplication.QueuePlayerLoopUpdate();Signal?.Invoke(null,null);
-                if(!EditorApplication.isPlaying)return;JourneySession.TestMode=true;JourneySession.SavePathOverride=Path.GetFullPath("Logs/PauseJournalChecks/save.json");Application.runInBackground=true;
+                if(!EditorApplication.isPlaying)return;JourneySession.TestMode=true;Application.runInBackground=true;
                 if(deadline==0){deadline=EditorApplication.timeSinceStartup+180;waitUntil=EditorApplication.timeSinceStartup+3;}
                 Check(EditorApplication.timeSinceStartup<deadline,"Timed out at stage "+stage);
                 if(EditorApplication.timeSinceStartup<waitUntil)return;
@@ -66,26 +66,26 @@ namespace AmbrosJourney.Journey.Editor
                     session.BeginTestProfile();session.Data.unlocked=4;session.Data.artifacts[0]=session.Data.artifacts[4]=session.Data.artifacts[8]=true;
                     session.Resume();var winter=UnityEngine.Object.FindAnyObjectByType<AmbrosJourney.Winter.WinterLevel>();winter.Progress.Introduced=true;Call(winter,"Close");winterPosition=winter.player.transform.position;
                     session.Pause();Check(session.Paused&&Time.timeScale==0&&AudioListener.pause&&winter.InputBlocked,"Pause still freezes world, sound and input");Inspect();
-                    Check(!HasButton("Certificate")&&UI.GetComponentsInChildren<UnityEngine.UI.Button>().Length==8,"Pause actions and four unlocked chapters only");Capture("Journal-Winter-"+Screen.width+"x"+Screen.height);
+                    Check(!HasButton("Certificate")&&UI.GetComponentsInChildren<UnityEngine.UI.Button>().Length==7,"Pause actions and four unlocked chapters only");Capture("Journal-Winter-"+Screen.width+"x"+Screen.height);
                 }
                 else if(stage==1)
                 {
                     Check(UI.transform.Find("Guidance status").GetComponent<TMP_Text>().text=="Trail guidance: always on","Journal explains continuous guidance");Check(!UI.transform.Find("Guidance status").GetComponent<UnityEngine.UI.Button>(),"Guidance is a label rather than a toggle");Inspect();
-                    Click("Artifacts / 3 of 12");Check(Array.Exists(UI.GetComponentsInChildren<TMP_Text>(),text=>text.text.Contains("3 of 12 recovered")),"Artifact view opens");Click("Return / Esc");Check(session.Paused&&Time.timeScale==0&&AudioListener.pause,"Return restores pause journal");
-                    session.Pause();Click("Reset journey");Check(HasButton("Keep my progress"),"Reset still requires confirmation");Click("Keep my progress");Check(session.Data.started&&session.Data.ArtifactCount==3,"Cancel reset preserves progress");Inspect();
+                    Click("Artifacts / 3 of 12");Check(Array.Exists(UI.GetComponentsInChildren<TMP_Text>(),text=>text.text.Contains("3 of 12 recovered")),"Artifact view opens");Click("Return / Esc / Space");Check(session.Paused&&Time.timeScale==0&&AudioListener.pause,"Return restores pause journal");
+                    session.Pause();string beforeEnd=JsonUtility.ToJson(session.Data);Click("End run and return to menu");Check(HasButton("Keep playing")&&HasButton("End run / Main menu"),"Ending the run requires confirmation");Click("Keep playing");Check(session.Data.started&&session.Data.ArtifactCount==3,"Cancel end-run preserves current progress");Check(JsonUtility.ToJson(session.Data)==beforeEnd,"Cancel end-run preserves the complete in-memory journey");Check(!HasButton("Reset journey"),"No redundant reset action");Inspect();
                     Click("Resume");Check(!session.Paused&&Time.timeScale==1,"Resume button resumes");
                     session.Pause();Click(JourneySession.ChapterNames[0]);
                 }
                 else if(stage==2)
                 {
-                    Check(SceneManager.GetActiveScene().name=="Spring","Spring travel preserved");session.Data.unlocked=1;session.Pause();Inspect();Check(UI.GetComponentsInChildren<UnityEngine.UI.Button>().Length==6,"Locked seasons are decoration, not new actions");Capture("Journal-Spring-Locked");
+                    Check(SceneManager.GetActiveScene().name=="Spring","Spring travel preserved");session.Data.unlocked=1;session.Pause();Inspect();Check(UI.GetComponentsInChildren<UnityEngine.UI.Button>().Length==4,"Locked seasons are decoration, not new actions");Capture("Journal-Spring-Locked");
                 }
                 else if(stage==3){session.Data.unlocked=4;session.Pause();Click(JourneySession.ChapterNames[1]);}
                 else if(stage==4){Check(SceneManager.GetActiveScene().name=="Summer","Summer travel preserved");session.Pause();Inspect();Click(JourneySession.ChapterNames[2]);}
                 else if(stage==5){Check(SceneManager.GetActiveScene().name=="Fall","Fall travel preserved");session.Pause();Inspect();Click(JourneySession.ChapterNames[3]);}
                 else if(stage==6)
                 {
-                    Check(SceneManager.GetActiveScene().name=="Winter"&&Vector2.Distance(session.Player().position,winterPosition)<.1f,"Winter travel restores saved location");
+                    Check(SceneManager.GetActiveScene().name=="Winter"&&Vector2.Distance(session.Player().position,winterPosition)<.1f,"Winter travel restores the current-run location");
                     session.Data.finished=true;session.Data.certificatePending=false;session.Data.completedOn="2026-11-03";session.Pause();Inspect();Check(HasButton("Certificate"),"Earned certificate remains available");Capture("Journal-Completed");
                 }
                 else if(stage==7)
@@ -94,12 +94,12 @@ namespace AmbrosJourney.Journey.Editor
                 }
                 else if(stage==8){Inspect();}
                 else if(stage==9){Inspect();Capture("Journal-"+Screen.width+"x"+Screen.height+"-LongName");}
-                else if(stage==10){session.Data.playerName="Zoë Explorer";session.Pause();Click("Save and return to menu");}
-                else if(stage==11){Check(SceneManager.GetActiveScene().name=="Intro"&&File.Exists(JourneySession.SavePath),"Save and return still opens menu");Click("Continue");}
+                else if(stage==10){session.Data.playerName="Zoë Explorer";session.Pause();Click("End run and return to menu");Check(HasButton("Keep playing"),"End-run confirmation appears");Click("End run / Main menu");}
+                else if(stage==11){Check(SceneManager.GetActiveScene().name=="Intro"&&!session.Data.started&&session.Data.ArtifactCount==0&&!session.Data.finished,"End-run returns to a fresh main menu");Check(!HasButton("Continue")&&UI.GetComponentInChildren<TMP_InputField>(),"Fresh menu has name entry and no Continue");Capture("Journal-EndedRun");}
                 else if(stage==12)
                 {
-                    Check(SceneManager.GetActiveScene().name=="Winter"&&session.Data.ArtifactCount==3&&!session.Paused,"Continue keeps season, artifacts and gameplay");session.Pause();Inspect();Capture("Journal-Returned");
-                    Debug.Log("PAUSE_JOURNAL_PASS: Viewport layout, long/accented names, pause/Resume, guidance persistence, artifact view, reset cancellation, all four chapter actions, earned certificate, exact saved location and save/return/continue.");Finish(0);return;
+                    Check(SceneManager.GetActiveScene().name=="Intro"&&!session.Paused,"Ended run remains at the fresh menu");foreach(var chapter in session.Data.chapters)Check(!chapter.visited,"Ended run releases remembered chapter state");
+                    Debug.Log("PAUSE_JOURNAL_PASS: Viewport layout, long/accented names, pause/Resume, artifact view, end-run cancellation, all four current-run chapter actions, earned certificate, exact revisit position and fresh menu without Continue.");Finish(0);return;
                 }
                 stage++;waitUntil=EditorApplication.timeSinceStartup+(stage==2||stage==4||stage==5||stage==6||stage==11||stage==12?2.5:.6);
             }

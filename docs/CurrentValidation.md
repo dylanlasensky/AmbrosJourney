@@ -1,5 +1,7 @@
 # Current combined validation
 
+**November 22 session policy:** Persistent progress saving has been removed. New launches and browser refreshes start fresh; unlocked-season revisits retain progress only during the current run. Older save files/storage are ignored and left untouched. Results below are historical evidence for their named builds, including their former save/Continue behavior; they do not verify this change.
+
 **November 21, 2026 update:** The results below preserve the November 20 snapshot and are not validation of the newer candidate. Current guidance is a direct gold-and-cream arrow that stays visible in Winter; companions speak automatically, and Warden victory enables cave permission without a separate NPC conversation. The earlier frozen-arrow and required-briefing expectations are superseded. See [companion guidance](CompanionGuidance.md), [cinematic fullscreen checks](CinematicFullscreenChecks.md) and [Web export/browser checks](BrowserBuildChecks.md). New build or browser results must be recorded separately; none are claimed by this note.
 
 Checked November 20, 2026 using Unity **6000.6.2f1** on macOS, for the second-round feedback changes based on main `865a5c7`. Earlier dated reports describe their original snapshots.

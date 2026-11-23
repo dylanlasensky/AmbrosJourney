@@ -45,7 +45,7 @@ namespace AmbrosJourney.Journey
             Text(ui,"Pause state","JOURNEY PAUSED",new Rect(-510,-109,440,23),13,Muted);
             Text(ui,"Travel eyebrow","CHAPTER MAP",new Rect(58,-252,440,24),15,Muted);
             Text(ui,"Travel heading","The four seasons",new Rect(58,-221,442,48),35,Ink);
-            var explanation=Text(ui,"Travel explanation","Each season remembers your location and lessons. Return for missed artifacts whenever you like.",new Rect(58,-165,440,63),18,Muted);explanation.textWrappingMode=TextWrappingModes.Normal;
+            var explanation=Text(ui,"Travel explanation","Revisit unlocked seasons during this run to collect missed artifacts. Your lessons stay complete.",new Rect(58,-165,440,63),18,Muted);explanation.textWrappingMode=TextWrappingModes.Normal;
             Paint(ui,"Right heading rule",new Rect(58,-90,442,2),Rule);
             for(int i=data.unlocked;i<4;i++)
             {
@@ -54,7 +54,7 @@ namespace AmbrosJourney.Journey
                 Paint(ui,"Locked season rule "+i,new Rect(58,y+59,442,1),new Color(.57f,.43f,.25f,.16f));
             }
             Paint(ui,"Reset separator",new Rect(-510,218,440,1),Rule);
-            Text(ui,"Save note",string.IsNullOrEmpty(notice)?"Your field notes are saved on this device.":notice,new Rect(58,223,442,43),14,Muted).textWrappingMode=TextWrappingModes.Normal;
+            Text(ui,"Run note",string.IsNullOrEmpty(notice)?"Progress lasts for this run. Closing or refreshing the game starts over.":notice,new Rect(58,223,442,43),14,Muted).textWrappingMode=TextWrappingModes.Normal;
             Text(ui,"Left page number","1  /  FIELD NOTES",new Rect(-510,273,440,18),10,Muted);
             var pageNumber=Text(ui,"Right page number","CHAPTER MAP  /  2",new Rect(58,273,442,18),10,Muted);pageNumber.alignment=TextAlignmentOptions.Right;
             for(int i=0;i<4;i++)Paint(ui,"Season seal "+i,new Rect(-282+i*23,197,9,9),Seasons[i]);

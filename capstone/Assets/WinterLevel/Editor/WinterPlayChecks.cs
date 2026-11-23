@@ -29,7 +29,8 @@ namespace AmbrosJourney.Winter.Editor
         {
             Running=true;
             level=UnityEngine.Object.FindAnyObjectByType<WinterLevel>();Check(level,"Winter loaded");ui=level.GetComponentInChildren<SeasonOverlay>();States=0;
-            Check(!level.InputBlocked&&level.Progress.Introduced,"Winter orientation permits movement immediately");AmbrosJourney.Presentation.Editor.CompanionGuidanceChecks.Winter(level);level.Progress.CompassWarningShown=true;
+            Check(!level.InputBlocked&&!level.Progress.Introduced,"Winter waits for E while permitting movement immediately");AmbrosJourney.Presentation.Editor.CompanionGuidanceChecks.Winter(level);
+            Move(level.littleMage.transform.position);level.Interact(0);Check(level.IsDialogueOpen&&level.InputBlocked,"E opens Winter greeting");Next();Check(level.Progress.Introduced&&!level.InputBlocked,"Finishing greeting enables Winter lessons");level.Progress.CompassWarningShown=true;
             foreach(var map in level.World.Outdoors.GetComponentsInChildren<UnityEngine.Tilemaps.Tilemap>(true))Check(!map.name.Contains("Frozen lake"),"Frozen lake surface removed");
             foreach(var label in level.World.Outdoors.GetComponentsInChildren<SeasonWorldLabel>(true))Check(!(label.Caption??"").Contains("THIN ICE"),"Ice warning removed with the lake");
             foreach(var block in level.World.Outdoors.GetComponentsInChildren<Collider2D>(true))Check(block.name!="Thin ice","No invisible ice blockers remain");
@@ -46,7 +47,10 @@ namespace AmbrosJourney.Winter.Editor
             yield return null;
             while(AmbrosJourney.Journey.BossPortalSequence.Busy||!AmbrosJourney.Journey.BossPortalSequence.AllowsEntry(level.caveEntrance))yield return null;
             Check(!level.littleMage.follow&&(Vector2)level.littleMage.transform.position==WinterWorld.CaveGuide,"Little Mage waits beside cave after Winter crest");
-            Check(level.Progress.CaveGuideRead&&level.Progress.CanEnterCave&&!level.IsDialogueOpen&&!level.InputBlocked,"Cave guidance is automatic after victory");Check(!level.Progress.InCave,"Passive cave tip does not teleport the player");
+            Check(!level.Progress.CaveGuideRead&&!level.Progress.CanEnterCave&&!level.IsDialogueOpen&&!level.InputBlocked,"Victory leaves a deliberate cave conversation available");
+            Move(WinterWorld.Entrance);Call("LateUpdate");Check(!level.Progress.InCave,"Cave stays closed until the guide briefing is finished");
+            Move(level.littleMage.transform.position);level.Interact(0);Check(level.IsDialogueOpen&&level.InputBlocked,"E opens cave briefing");Next();
+            Check(level.Progress.CaveGuideRead&&level.Progress.CanEnterCave&&!level.Progress.InCave&&!level.InputBlocked,"Finishing briefing permits entry without teleporting the player");
             Move(WinterWorld.Entrance);Call("LateUpdate");Check(level.Progress.InCave,"Walking into cleared doorway automatically enters cave");
             Check(level.littleMage.follow==level.ember.transform,"Little Mage follows inside cave");
             Check(Route(WinterWorld.CaveSpawn,WinterWorld.MissionPositions[2],true),"Archive reachable");Check(!Route(WinterWorld.CaveSpawn,WinterWorld.BossPosition,true),"Final physically sealed before Archive");

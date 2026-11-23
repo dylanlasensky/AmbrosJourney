@@ -17,7 +17,7 @@ The 99 x 93-tile map is about 2.5 times Summer's area. Two river crossings, hedg
 
 ## Shared systems and ownership
 
-`FallWorld` builds the runtime map/Resources prefab; `FallLevel` owns interactions; `FallProgress` owns guarded lesson and boss rules; `FallPortalBridge` supplies the Summer transition. JourneySession persistently saves partial work, exact positions and artifacts. The shared trail/formation system follows corners and restores the party formation when loading a checkpoint.
+`FallWorld` builds the runtime map/Resources prefab; `FallLevel` owns interactions; `FallProgress` owns guarded lesson and boss rules; `FallPortalBridge` supplies the Summer transition. JourneySession retains partial work, chapter locations and artifacts only during the current run. Closing or refreshing the game starts fresh. The shared trail/formation system follows corners and restores the party formation when revisiting a chapter during the run.
 
 All four seasons use the shared Determination/parchment UI, with copper accents in Fall, answer feedback and seasonal leaves. The existing **Bramble Sentinel artwork, scale and four-pose animation are unchanged by the seasonal boss refresh**. It remains the visual reference for the new Spring, Summer, Winter and final bosses.
 
@@ -31,6 +31,6 @@ Interactive people and lesson objects have overhead **[E]** cards; artifacts use
 
 ## Checks
 
-Fall progression checks cover note prerequisites, seven choices, wrong answers, duplicate rewards, all 243 guardian combinations, the 4/5 threshold and retained progress. Live route checks verify station access and locked/unlocked barriers. The connected suite adds real portal transitions, text fitting, saves, artifacts and the mixed finale.
+Fall progression checks cover note prerequisites, seven choices, wrong answers, duplicate rewards, all 243 guardian combinations, the 4/5 threshold and retained progress. Live route checks verify station access and locked/unlocked barriers. The connected suite adds real portal transitions, text fitting, current-run state, artifacts and the mixed finale.
 
 `docs/FallValidation.md` is an older dated snapshot. Use `docs/CurrentValidation.md` and `docs/Testing.md` for the current game. Audience comprehension and timing still need first-time players.

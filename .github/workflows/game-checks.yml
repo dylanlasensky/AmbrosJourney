@@ -24,8 +24,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: python3 tests/check_assets.py
-  browser-save:
-    name: Browser checkpoint regression tests
+      - run: python3 tests/check_session_only.py
+  browser-helpers:
+    name: Browser presentation regression tests
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
@@ -33,6 +34,5 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - run: node tests/check_browser_save.cjs
       - run: node tests/check_web_template.cjs
       - run: node tests/check_cinematic_focus.cjs

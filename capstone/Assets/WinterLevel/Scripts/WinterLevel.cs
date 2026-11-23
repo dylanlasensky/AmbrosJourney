@@ -12,6 +12,7 @@ namespace AmbrosJourney.Winter
 {
     public sealed class WinterLevel : MonoBehaviour
     {
+        public const float GuideTalkRadius=4f;
         public static readonly Vector2 Spawn=new Vector2(-32,-25);
         public WinterActor player,mage,maleWarrior,femaleWarrior,ember,littleMage,guardian,winterGuardian;
         public Transform[] stations;
@@ -32,11 +33,11 @@ namespace AmbrosJourney.Winter
         readonly List<Action> actions=new List<Action>();
         Action next;
         int dialogVersion;
-        bool restoringProgress;
         AudioSource effects,music;
         AudioClip good,bad,ward,strike;
         Canvas canvas;
         SeasonOverlay presentation;
+        SeasonWorldLabel[] lessonLabels;
         FinalActivityPanel finalPanel;
         public WinterCertificateReward CertificateReward {get;private set;}
         SeasonWorldLabel littleMageLabel;
@@ -45,12 +46,7 @@ namespace AmbrosJourney.Winter
         public void RestoreProgress(WinterProgress p)
         {
             if(p==null||!p.Valid())throw new ArgumentException("Invalid Winter checkpoint");
-            restoringProgress=true;
-            try
-            {
-                CompanionSpeech.Clear(presentation);Progress=p;Close();journal.SetActive(false);if(!p.Introduced){p.Introduced=true;Welcome();}World.RestoreRegion(p.InCave);if(p.Complete)BeginCertificateReward(false);RefreshWorld();AmbrosJourney.Journey.BossPortalSequence.RestoreCheckpoint();
-            }
-            finally{restoringProgress=false;}
+            Progress=p;Close();journal.SetActive(false);World.RestoreRegion(p.InCave);if(p.Complete)BeginCertificateReward(false);RefreshWorld();AmbrosJourney.Journey.BossPortalSequence.RestoreCheckpoint();
         }
         void Start()
         {
@@ -58,17 +54,10 @@ namespace AmbrosJourney.Winter
             winterGate.gameObject.SetActive(false);
             Application.runInBackground=false;CreateUI();CreateAudio();
             mage.follow=player.transform;maleWarrior.follow=mage.transform;femaleWarrior.follow=maleWarrior.transform;ember.follow=femaleWarrior.transform;
-            Close();Progress.Introduced=true;Welcome();
+            Close();
             Debug.Log("WINTER_READY: Frostveil and Echo Cavern, six evidence challenges and cave guardian.");
         }
-        void Welcome()=>CompanionSpeech.Say(presentation,"Little Mage","Welcome to Frostveil! Read the Ledger and Observatory boards with E to check AI claims. Then face the Warden at the cave. Your field notes stay in J.");
-        void OfferCaveGuidance()
-        {
-            if(restoringProgress||InputBlocked||!Progress.WinterComplete||Progress.InCave||Progress.CaveEntryExplained)return;
-            if(!Progress.ReadCaveGuide())return;
-            CompanionSpeech.Say(presentation,"Little Mage","The cave is open. Walk through the entrance when you are ready. Follow the lanterns, find the Echo Archive board, then face the final Keeper. J holds your notes.");
-            AmbrosJourney.Journey.JourneySession.Instance?.Save();
-        }
+        void Welcome()=>Show("Little Mage / Welcome to Frostveil","Some AI claims sound convincing but need checking. Read the Wayfarer's Ledger and Frozen Observatory boards with E. They will help you check sources and compare evidence.\n\nThen face the Warden at the cave. Your field notes stay in J.",()=>{Progress.Introduced=true;Close();});
         public bool DismissPanel()
         {
             if(journal&&journal.activeSelf){journal.SetActive(false);return true;}
@@ -82,7 +71,7 @@ namespace AmbrosJourney.Winter
             if(k!=null && !Transitioning)
             {
                 if(k.mKey.wasPressedThisFrame){GameAudio.ToggleMute();}
-                if(k.escapeKey.wasPressedThisFrame){if(journal.activeSelf)journal.SetActive(false);else if(dialog.activeSelf && Progress.Introduced)Close();}
+                if(k.escapeKey.wasPressedThisFrame)DismissPanel();
                 else if(k.jKey.wasPressedThisFrame && !dialog.activeSelf)ToggleJournal();
                 else if(finalPanel&&finalPanel.IsOpen)finalPanel.HandleKeyboard(k);
                 else if(dialog.activeSelf)
@@ -92,7 +81,6 @@ namespace AmbrosJourney.Winter
                 }
                 else if(!journal.activeSelf && k.eKey.wasPressedThisFrame){if(CertificateReward&&CertificateReward.CanCollect)CertificateReward.TryCollect();else if(nearby>=0)Interact(nearby);}
             }
-            OfferCaveGuidance();
             if(Progress.Complete&&!CertificateReward&&!dialog.activeSelf)BeginCertificateReward(true);
             RefreshWorld();
         }
@@ -106,19 +94,25 @@ namespace AmbrosJourney.Winter
         void PlaceLittleMage()
         {
             littleMage.follow=Progress.WinterComplete&&Progress.InCave?ember.transform:null;
-            if(littleMageLabel)littleMageLabel.enabled=!Progress.InCave;
+            if(littleMageLabel)littleMageLabel.enabled=!Progress.InCave&&!Progress.Complete;
             if(!littleMage.follow)littleMage.transform.position=Progress.WinterComplete?WinterWorld.CaveGuide:WinterWorld.ArrivalGuide;
         }
         int Nearest()
         {
             Transform[] targets={littleMage.transform,stations[0],stations[1],stations[2],guardian.transform,winterGate,caveEntrance,caveExit,winterGuardian.transform};
-            int result=-1;float best=2.8f;for(int i=1;i<targets.Length;i++){if((i==0&&Progress.InCave)||(i==4&&Progress.Complete)||(i==5)||(i==8&&Progress.WinterComplete)||(i==6&&Progress.WinterComplete)||!targets[i].gameObject.activeInHierarchy)continue;float d=Vector2.Distance(player.transform.position,targets[i].position);if(d<best){best=d;result=i;}}if(result<0)foreach(int i in new[]{4,8})if(targets[i].gameObject.activeInHierarchy&&!(i==4&&Progress.Complete)&&!(i==8&&Progress.WinterComplete)&&Vector2.Distance(player.transform.position,targets[i].position)<5.5f){result=i;break;}return result;
+            if(!Progress.Introduced)return !Progress.InCave&&Vector2.Distance(player.transform.position,littleMage.transform.position)<GuideTalkRadius?0:-1;
+            int result=-1;float best=2.8f;for(int i=1;i<targets.Length;i++){if((i==0&&Progress.InCave)||(i==4&&Progress.Complete)||(i==5)||(i==8&&Progress.WinterComplete)||(i==6&&Progress.WinterComplete)||!targets[i].gameObject.activeInHierarchy)continue;float d=Vector2.Distance(player.transform.position,targets[i].position);if(d<best){best=d;result=i;}}if(result<0)foreach(int i in new[]{4,8})if(targets[i].gameObject.activeInHierarchy&&!(i==4&&Progress.Complete)&&!(i==8&&Progress.WinterComplete)&&Vector2.Distance(player.transform.position,targets[i].position)<5.5f){result=i;break;}if(result<0&&!Progress.InCave&&!Progress.Complete&&Vector2.Distance(player.transform.position,littleMage.transform.position)<GuideTalkRadius)result=0;return result;
         }
         public void Interact(int target)
         {
-            if(AmbrosJourney.Journey.JourneySession.Blocked || !Progress.Introduced || Transitioning || target==8&&Progress.WinterComplete || target==5 || target==0&&Progress.InCave)return;
+            if(AmbrosJourney.Journey.JourneySession.Blocked || !Progress.Introduced&&target!=0 || Transitioning || target==8&&Progress.WinterComplete || target==5 || target==0&&(Progress.InCave||Progress.Complete))return;
             GameAudio.Click();
-            if(target==0)CompanionSpeech.Say(presentation,"Little Mage",Progress.WinterComplete?"Walk into the cave, find the Echo Archive board, then challenge the final Keeper.":"Read the Ledger and Observatory boards with E, then face the Warden at the cave.");
+            if(target==0)
+            {
+                if(!Progress.Introduced)Welcome();
+                else if(Progress.WinterComplete)Show("Little Mage / Echo Cavern","The cave is open. Walk through the entrance when you are ready. Follow the lanterns, find the Echo Archive board, then face the final Keeper. J holds your notes.",()=>{Progress.ReadCaveGuide();Close();AmbrosJourney.Journey.JourneySession.Instance?.CaptureChapter();});
+                else Show("Little Mage / Follow the evidence","Read the Ledger and Observatory boards with E, then face the Warden at the cave. Check where an AI claim came from and compare it with reliable evidence.",Close);
+            }
             else if(target>=1&&target<=3){if(stations[target-1].gameObject.activeInHierarchy)Mission(target-1);}
             else if(target==4&&Progress.InCave)Boss();
             else if(target==8&&!Progress.InCave)WinterBoss();
@@ -151,7 +145,7 @@ namespace AmbrosJourney.Winter
         {
             if(Progress.WinterBossFinished)
             {
-                if(Progress.WinterComplete){PlaceLittleMage();Show("Winter crest earned / "+Progress.WinterBossScore+" of 5","The Winter crest is yours! Close this message to watch the Warden fade. The Little Mage will guide you as you walk. Enter the cave opening when you are ready.",()=>{Close();AmbrosJourney.Journey.JourneySession.Instance?.Save();});}
+                if(Progress.WinterComplete){PlaceLittleMage();Show("Winter crest earned / "+Progress.WinterBossScore+" of 5","The Winter crest is yours! Close this message to watch the Warden fade. Press E to talk to the Little Mage beside the entrance before entering the cave.",()=>{Close();AmbrosJourney.Journey.JourneySession.Instance?.CaptureChapter();});}
                 else Show("Winter score / "+Progress.WinterBossScore+" of 5","Score 4/5 to pass. Review your field notes or try again; your lessons are safe.",()=>{Progress.BeginWinterBoss();WinterBossQuestion();});
                 return;
             }
@@ -197,7 +191,7 @@ namespace AmbrosJourney.Winter
             player.Flash(right?new Color(.65f,1,.65f):new Color(1,.5f,.4f));
             if(right)SeasonFeedback.Burst(player.transform.position,new Color(1,.8f,.3f));
         }
-        void Close(){dialogVersion++;BossBattleMusic.Stop(this);presentation.SetFrostNotice(false);if(finalPanel)finalPanel.Hide();dialog.SetActive(false);actions.Clear();next=null;if(music)music.pitch=1;OfferCaveGuidance();}
+        void Close(){dialogVersion++;BossBattleMusic.Stop(this);presentation.SetFrostNotice(false);if(finalPanel)finalPanel.Hide();dialog.SetActive(false);actions.Clear();next=null;if(music)music.pitch=1;}
         void Show(string title,string body,Action onContinue)
         {
             presentation.SetFrostNotice(false);
@@ -226,7 +220,7 @@ namespace AmbrosJourney.Winter
         }
         public Vector2 Destination()
         {
-            if(!Progress.Introduced)return stations[0].position;
+            if(!Progress.Introduced||Progress.WinterComplete&&!Progress.InCave&&!Progress.CaveEntryExplained)return littleMage.transform.position;
             if(!Progress.InCave){for(int i=0;i<2;i++)if(!Progress.MissionComplete(i))return stations[i].position;return Progress.WinterComplete?caveEntrance.position:winterGuardian.transform.position;}
             for(int i=0;i<2;i++)if(!Progress.MissionComplete(i))return caveExit.position;
             if(!Progress.MissionComplete(2))return stations[2].position;
@@ -235,19 +229,24 @@ namespace AmbrosJourney.Winter
         }
         void RefreshWorld()
         {
+            if(lessonLabels!=null)foreach(var label in lessonLabels)if(label)label.enabled=Progress.Introduced;
             arenaSeal.SetActive(Progress.RuneCount<3);exitSeal.SetActive(!Progress.Complete);
             for(int i=0;i<3;i++)runes[i].color=Progress.MissionComplete(i)?new Color(.6f,1,.85f):new Color(.6f,.75f,1);
             for(int i=0;i<shields.Length;i++)shields[i].enabled=false;
             string quest=Progress.Complete&&Transitioning?"The Echo Keeper is crumbling...":Progress.Complete?(CertificateReward&&CertificateReward.Ready?"Collect the certificate dropped by the Echo Keeper":(AmbrosJourney.Journey.JourneySession.Instance.Data.homePortalOpened?"Walk through the portal to go home":"View your certificate, then choose Exit to open the way home")):!Progress.InCave?(Progress.MissionComplete(0)?Progress.MissionComplete(1)?(Progress.WinterComplete?"Walk into the cave opening":"North ridge / Challenge the Winter Warden"):"Frozen Observatory / Compare evidence":"Wayfarer's Ledger / Check the source"):(Progress.RuneCount==3?"Echo Keeper / Final challenge: 7 of 8":!Progress.MissionComplete(0)||!Progress.MissionComplete(1)?"Return outside for the two field lessons":"Explore the passages to the Echo Archive");
+            if(!Progress.Introduced)quest="Press E to talk to the Little Mage by the portal.";
+            else if(Progress.WinterComplete&&!Progress.InCave&&!Progress.CaveEntryExplained)quest="Press E to talk to the Little Mage beside the cave.";
             objective.text=(Progress.InCave?"ECHO CAVERN":"FROSTVEIL")+"  |  SEALS "+Progress.RuneCount+" / 3\n"+quest;
             var destination=Destination();if(!InputBlocked)presentation.SetCompass(player.transform.position,destination,destination,false);
             prompt.text=CertificateReward&&CertificateReward.CanCollect&&!InputBlocked?"[ E ]  Pick up your certificate":InputBlocked||nearby<0?"":"[ E ]  "+new[]{"Talk to the Little Mage","Wayfarer's Ledger","Frozen Observatory","Echo Archive","Challenge the Echo Keeper","Winter crest","Enter Echo Cavern","Return outside","Challenge the Winter Warden"}[nearby];
-            if(!InputBlocked&&!Progress.InCave&&Progress.WinterComplete&&nearby<0&&Vector2.Distance(player.transform.position,caveEntrance.position)<3)prompt.text="Walk into the cave opening";
+            if(!InputBlocked&&!Progress.InCave&&Progress.CanEnterCave&&nearby<0&&Vector2.Distance(player.transform.position,caveEntrance.position)<3)prompt.text="Walk into the cave opening";
             party.text=Progress.WinterComplete?"PARTY / Ambros + Ancient Mage + Warriors + Emberfist + Little Mage":"PARTY / Ambros + Ancient Mage + Warriors + Emberfist";
         }
         public void RegionChanged(){PlaceLittleMage();}
         void CreateUI()
         {
+            var targets=new[]{stations[0],stations[1],stations[2],winterGuardian.transform,guardian.transform};lessonLabels=new SeasonWorldLabel[targets.Length];
+            for(int i=0;i<targets.Length;i++)lessonLabels[i]=targets[i].GetComponentInChildren<SeasonWorldLabel>(true);
             littleMageLabel=littleMage.GetComponentInChildren<SeasonWorldLabel>(true);
             var ui=new GameObject("Winter interface");ui.transform.SetParent(transform,false);
             presentation=ui.AddComponent<SeasonOverlay>();presentation.Initialize(font,4);presentation.CaveLighting=World.GetComponent<CaveVisibility>();

@@ -28,7 +28,7 @@ namespace AmbrosJourney.Fall
         {
             var prefab = Resources.Load<GameObject>("FallLevel");
             if (!prefab) { Debug.LogError("FALL: Missing Assets/FallLevel/Resources/FallLevel.prefab. Restore the FallLevel folder."); enabled = false; yield break; }
-            AmbrosJourney.Journey.JourneySession.Instance?.Save();
+            AmbrosJourney.Journey.JourneySession.Instance?.CaptureChapter();
             transitioning = true; summer.Transitioning=true;
             var source = SceneManager.GetActiveScene();
             var player = summer.player.transform;
@@ -45,11 +45,9 @@ namespace AmbrosJourney.Fall
             var group = overlay.GetComponent<CanvasGroup>();
             for (float t = 0; t < .5f; t += Time.unscaledDeltaTime) { group.alpha = t / .5f; yield return null; }
             group.alpha = 1;
-            foreach (var root in source.GetRootGameObjects())
-            {
-                foreach (var listener in root.GetComponentsInChildren<AudioListener>()) listener.enabled = false;
-                foreach (var camera in root.GetComponentsInChildren<Camera>()) camera.enabled = false;
-            }
+            // Retire the old world before the destination becomes active: its player,
+            // colliders and exploration objects must never be selected by the new season.
+            foreach (var root in source.GetRootGameObjects()) root.SetActive(false);
             var destination = SceneManager.CreateScene("Fall"); SceneManager.SetActiveScene(destination);
             var world = Object.Instantiate(prefab); world.name = "Emberwood"; SceneManager.MoveGameObjectToScene(world, destination);
             yield return SceneManager.UnloadSceneAsync(source);

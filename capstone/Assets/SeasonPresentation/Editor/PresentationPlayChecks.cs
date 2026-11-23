@@ -50,7 +50,7 @@ namespace AmbrosJourney.Presentation.Editor
         {
             try
             {
-                var l=UnityEngine.Object.FindAnyObjectByType<FallLevel>();Check(l,"Run Fall first");level=l;ui=l.GetComponentInChildren<SeasonOverlay>();Check(l.Progress.Introduced&&!l.IsDialogueOpen&&l.Progress.RuneCount==0,"Fresh Fall starts without a blocking introduction");inspected.Clear();Common();
+                var l=UnityEngine.Object.FindAnyObjectByType<FallLevel>();Check(l,"Run Fall first");level=l;ui=l.GetComponentInChildren<SeasonOverlay>();Check(!l.Progress.Introduced&&!l.IsDialogueOpen&&l.Progress.RuneCount==0,"Fresh Fall waits for E without a blocking introduction");inspected.Clear();Common();
                 CompanionGuidanceChecks.Fall(l);GuideArrivalChecks.Fall(l);Check(!l.InputBlocked,"Guide arrival preserves movement");
                 for(int m=0;m<3;m++)
                 {
@@ -73,7 +73,7 @@ namespace AmbrosJourney.Presentation.Editor
         {
             try
             {
-                var l=UnityEngine.Object.FindAnyObjectByType<SummerLevel>();Check(l,"Run Summer first");level=l;ui=l.GetComponentInChildren<SeasonOverlay>();Check(l.Progress.Introduced&&!l.IsDialogueOpen&&l.Progress.WardCount==0,"Fresh Summer starts without a blocking introduction");inspected.Clear();Common();
+                var l=UnityEngine.Object.FindAnyObjectByType<SummerLevel>();Check(l,"Run Summer first");level=l;ui=l.GetComponentInChildren<SeasonOverlay>();Check(!l.Progress.Introduced&&!l.IsDialogueOpen&&l.Progress.WardCount==0,"Fresh Summer waits for E without a blocking introduction");inspected.Clear();Common();
                 CompanionGuidanceChecks.Summer(l);GuideArrivalChecks.Summer(l);l.Interact(1);Next();Choice(0);Next();Choice(1);Next();Next();
                 l.Interact(2);Choice(1);Check(ui.Copy.text.StartsWith("Incorrect.")&&!l.Progress.Wards[1],"Garden mistake is explicit and retryable");Next();Choice(0);Next();Next();
                 l.Interact(3);Choice(0);Check(ui.Copy.text.StartsWith("Incorrect.")&&!l.Progress.PrivacyComplete,"Privacy mistake stays on the first question");Next();Choice(1);Next();Choice(0);Check(ui.Copy.text.StartsWith("Incorrect.")&&!l.Progress.Wards[2],"Human-help mistake stays retryable");Next();Choice(1);Next();Next();
