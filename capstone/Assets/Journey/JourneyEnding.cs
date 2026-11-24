@@ -15,7 +15,7 @@ namespace AmbrosJourney.Journey
 #endif
             bool done=false,failed=false,cleaned=false,returningNormally=false;
             var host=new GameObject("Return-home cinematic");
-            var audio=host.AddComponent<AudioSource>();audio.playOnAwake=false;audio.spatialBlend=0;audio.ignoreListenerPause=true;audio.volume=.4f;audio.mute=AmbrosJourney.Audio.GameAudio.Muted;
+            var audio=host.AddComponent<AudioSource>();audio.playOnAwake=false;audio.spatialBlend=0;audio.ignoreListenerPause=true;audio.volume=.4f;audio.mute=(AmbrosJourney.Audio.GameAudio.Muted||!AmbrosJourney.Audio.GameAudio.MusicEnabled);
             var video=host.AddComponent<VideoPlayer>();
 #if UNITY_WEBGL && !UNITY_EDITOR
             video.source=VideoSource.Url;video.url=Application.streamingAssetsPath+"/JourneyVideos/Outro.mp4";
@@ -27,7 +27,7 @@ namespace AmbrosJourney.Journey
 #if UNITY_WEBGL && !UNITY_EDITOR
             // Web video ignores AudioSource.volume; Direct honors the film level and music mute choice.
             video.audioOutputMode=VideoAudioOutputMode.Direct;video.controlledAudioTrackCount=1;
-            video.EnableAudioTrack(0,true);video.SetDirectAudioVolume(0,.4f);video.SetDirectAudioMute(0,AmbrosJourney.Audio.GameAudio.Muted);
+            video.EnableAudioTrack(0,true);video.SetDirectAudioVolume(0,.4f);video.SetDirectAudioMute(0,(AmbrosJourney.Audio.GameAudio.Muted||!AmbrosJourney.Audio.GameAudio.MusicEnabled));
 #else
             video.audioOutputMode=VideoAudioOutputMode.AudioSource;video.controlledAudioTrackCount=clip?clip.audioTrackCount:(ushort)1;
             for(ushort track=0;track<video.controlledAudioTrackCount;track++){video.EnableAudioTrack(track,track==0);if(track==0)video.SetTargetAudioSource(track,audio);}

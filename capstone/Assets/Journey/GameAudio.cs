@@ -9,12 +9,14 @@ namespace AmbrosJourney.Audio
     {
         static readonly Dictionary<SoundCue,AudioClip> clips=new Dictionary<SoundCue,AudioClip>();
         static readonly List<AudioSource> sources=new List<AudioSource>();
+        static readonly HashSet<AudioSource> musicSources=new HashSet<AudioSource>();
+        public static bool MusicEnabled {get;private set;}=true;
         static readonly Dictionary<SoundCue,float> lastPlayed=new Dictionary<SoundCue,float>();
         static GameObject host;static AudioSource ui,world;static int clickFrame=-1;
         public static bool Muted {get;private set;}
         public static int ClickPlayCount {get;private set;}
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
-        static void Reset(){SceneManager.activeSceneChanged-=SceneChanged;clips.Clear();sources.Clear();lastPlayed.Clear();host=null;ui=world=null;Muted=false;clickFrame=-1;ClickPlayCount=0;}
+        static void Reset(){SceneManager.activeSceneChanged-=SceneChanged;clips.Clear();sources.Clear();musicSources.Clear();MusicEnabled=true;lastPlayed.Clear();host=null;ui=world=null;Muted=false;clickFrame=-1;ClickPlayCount=0;}
         public static AudioClip Clip(SoundCue cue)
         {
             if(!clips.TryGetValue(cue,out var clip)||!clip){clip=Resources.Load<AudioClip>("GameSounds/"+cue);clips[cue]=clip;if(!clip)Debug.LogError("Missing game sound: "+cue);}
@@ -28,11 +30,25 @@ namespace AmbrosJourney.Audio
             world=host.AddComponent<AudioSource>();world.playOnAwake=false;world.spatialBlend=0;world.volume=.6f;world.priority=100;
             Register(ui);Register(world);SceneManager.activeSceneChanged-=SceneChanged;SceneManager.activeSceneChanged+=SceneChanged;
         }
-        public static void Register(AudioSource source){if(!source)return;source.mute=Muted;if(!sources.Contains(source))sources.Add(source);}
+        public static void Register(AudioSource source){if(!source)return;source.mute=Muted||(!MusicEnabled&&musicSources.Contains(source));if(!sources.Contains(source))sources.Add(source);}
+        public static void RegisterMusic(AudioSource source)
+        {
+            if(!source)return;musicSources.Add(source);Register(source);
+        }
+        public static void ToggleMusic()=>SetMusicEnabled(!MusicEnabled);
+        public static void SetMusicEnabled(bool enabled)
+        {
+            MusicEnabled=enabled;ApplyMute();
+        }
+        static void ApplyMute()
+        {
+            musicSources.RemoveWhere(source=>!source);
+            for(int i=sources.Count-1;i>=0;i--){if(!sources[i])sources.RemoveAt(i);else sources[i].mute=Muted||(!MusicEnabled&&musicSources.Contains(sources[i]));}
+        }
         public static void ToggleMute()=>SetMuted(!Muted);
         public static void SetMuted(bool muted)
         {
-            Muted=muted;for(int i=sources.Count-1;i>=0;i--){if(!sources[i])sources.RemoveAt(i);else sources[i].mute=muted;}
+            Muted=muted;ApplyMute();
         }
         public static void Click()
         {

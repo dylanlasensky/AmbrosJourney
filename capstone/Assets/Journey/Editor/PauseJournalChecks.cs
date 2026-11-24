@@ -7,6 +7,7 @@ using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using AmbrosJourney.Audio;
 
 namespace AmbrosJourney.Journey.Editor
 {
@@ -66,11 +67,14 @@ namespace AmbrosJourney.Journey.Editor
                     session.BeginTestProfile();session.Data.unlocked=4;session.Data.artifacts[0]=session.Data.artifacts[4]=session.Data.artifacts[8]=true;
                     session.Resume();var winter=UnityEngine.Object.FindAnyObjectByType<AmbrosJourney.Winter.WinterLevel>();winter.Progress.Introduced=true;Call(winter,"Close");winterPosition=winter.player.transform.position;
                     session.Pause();Check(session.Paused&&Time.timeScale==0&&AudioListener.pause&&winter.InputBlocked,"Pause still freezes world, sound and input");Inspect();
-                    Check(!HasButton("Certificate")&&UI.GetComponentsInChildren<UnityEngine.UI.Button>().Length==7,"Pause actions and four unlocked chapters only");Capture("Journal-Winter-"+Screen.width+"x"+Screen.height);
+                    Check(!HasButton("Certificate")&&UI.GetComponentsInChildren<UnityEngine.UI.Button>().Length==8,"Pause actions, music control and four unlocked chapters");Capture("Journal-Winter-"+Screen.width+"x"+Screen.height);
                 }
                 else if(stage==1)
                 {
                     Check(UI.transform.Find("Guidance status").GetComponent<TMP_Text>().text=="Trail guidance: always on","Journal explains continuous guidance");Check(!UI.transform.Find("Guidance status").GetComponent<UnityEngine.UI.Button>(),"Guidance is a label rather than a toggle");Inspect();
+                    bool musicWasEnabled=GameAudio.MusicEnabled;
+                    Click("Music: "+(musicWasEnabled?"On":"Off"));Check(GameAudio.MusicEnabled!=musicWasEnabled&&session.Paused&&Time.timeScale==0&&AudioListener.pause,"Music toggle preserves pause");
+                    Click("Music: "+(musicWasEnabled?"Off":"On"));Check(GameAudio.MusicEnabled==musicWasEnabled,"Music toggle restores preference");
                     Click("Artifacts / 3 of 12");Check(Array.Exists(UI.GetComponentsInChildren<TMP_Text>(),text=>text.text.Contains("3 of 12 recovered")),"Artifact view opens");Click("Return / Esc / Space");Check(session.Paused&&Time.timeScale==0&&AudioListener.pause,"Return restores pause journal");
                     session.Pause();string beforeEnd=JsonUtility.ToJson(session.Data);Click("End run and return to menu");Check(HasButton("Keep playing")&&HasButton("End run / Main menu"),"Ending the run requires confirmation");Click("Keep playing");Check(session.Data.started&&session.Data.ArtifactCount==3,"Cancel end-run preserves current progress");Check(JsonUtility.ToJson(session.Data)==beforeEnd,"Cancel end-run preserves the complete in-memory journey");Check(!HasButton("Reset journey"),"No redundant reset action");Inspect();
                     Click("Resume");Check(!session.Paused&&Time.timeScale==1,"Resume button resumes");
@@ -78,7 +82,7 @@ namespace AmbrosJourney.Journey.Editor
                 }
                 else if(stage==2)
                 {
-                    Check(SceneManager.GetActiveScene().name=="Spring","Spring travel preserved");session.Data.unlocked=1;session.Pause();Inspect();Check(UI.GetComponentsInChildren<UnityEngine.UI.Button>().Length==4,"Locked seasons are decoration, not new actions");Capture("Journal-Spring-Locked");
+                    Check(SceneManager.GetActiveScene().name=="Spring","Spring travel preserved");session.Data.unlocked=1;session.Pause();Inspect();Check(UI.GetComponentsInChildren<UnityEngine.UI.Button>().Length==5,"Locked seasons are decoration, not new actions");Capture("Journal-Spring-Locked");
                 }
                 else if(stage==3){session.Data.unlocked=4;session.Pause();Click(JourneySession.ChapterNames[1]);}
                 else if(stage==4){Check(SceneManager.GetActiveScene().name=="Summer","Summer travel preserved");session.Pause();Inspect();Click(JourneySession.ChapterNames[2]);}

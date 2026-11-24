@@ -82,7 +82,7 @@ public class OpeningCinematic : MonoBehaviour
         presentation.SetPictureOpacity(0);
         presentation.SetMessage("AMBROS' JOURNEY\nPreparing the opening...");
         video.aspectRatio=VideoAspectRatio.FitInside;video.playOnAwake=false;video.isLooping=false;video.waitForFirstFrame=true;video.timeUpdateMode=VideoTimeUpdateMode.UnscaledGameTime;
-        video.audioOutputMode=VideoAudioOutputMode.Direct;video.SetDirectAudioVolume(0,.4f);
+        video.audioOutputMode=VideoAudioOutputMode.Direct;video.SetDirectAudioVolume(0,.4f);video.SetDirectAudioMute(0,AmbrosJourney.Audio.GameAudio.Muted||!AmbrosJourney.Audio.GameAudio.MusicEnabled);
         video.loopPointReached+=Finished;video.errorReceived+=Failed;
         video.prepareCompleted+=Prepared;
         video.Prepare();

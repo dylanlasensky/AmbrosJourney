@@ -228,7 +228,7 @@ namespace AmbrosJourney.Fall
             effects = gameObject.AddComponent<AudioSource>(); effects.playOnAwake = false;
             music = gameObject.AddComponent<AudioSource>(); music.playOnAwake = false; music.loop = true; music.volume = .22f;
             good=GameAudio.Clip(SoundCue.Correct);bad=GameAudio.Clip(SoundCue.Incorrect);ward=GameAudio.Clip(SoundCue.Complete);strike=GameAudio.Clip(SoundCue.Impact);
-            effects.volume=.6f;GameAudio.Register(effects);GameAudio.Register(music);
+            effects.volume=.6f;GameAudio.Register(effects);GameAudio.RegisterMusic(music);
             music.clip = Resources.Load<AudioClip>("SeasonMusic/atlasaudio-autumn-background-621525");
             if (music.clip) music.Play();
             else Debug.LogError("Missing Fall background music.");
