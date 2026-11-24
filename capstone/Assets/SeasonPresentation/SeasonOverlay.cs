@@ -18,6 +18,7 @@ namespace AmbrosJourney.Presentation
         public float ObjectiveDistance { get; private set; }
         public RectTransform Arrow { get; private set; }
         public bool Asking { get; private set; }
+        public bool CompactQuestionSpacing;
         public bool CompassObscured { get; private set; }
         bool frostNotice;FrostNoticeFrame frostFrame;
         static readonly Color FrostPaper=new Color(.89f,.96f,1);
@@ -156,16 +157,19 @@ namespace AmbrosJourney.Presentation
                 Place(closeHint.rectTransform,Vector2.up,new Rect(24,boxHeight-44,380,29));return;
             }
             Place(headerRect,Vector2.up,new Rect(24,15,850,38));
-            float textHeight=Mathf.Max(Asking?90:64,Copy.GetPreferredValues(Copy.text,850,0).y+8);
+            bool compact=CompactQuestionSpacing&&Asking&&activityHeight==0;
+            float preferredHeight=Copy.GetPreferredValues(Copy.text,850,0).y;
+            float textHeight=compact?Mathf.Max(Copy.fontSize,preferredHeight):Mathf.Max(Asking?90:64,preferredHeight+8);
+            float answerGap=compact?Copy.fontSize*1.25f:14;
             textHeight=Mathf.Min(250,textHeight);
             int count=0;foreach(var b in Choices)if(b.gameObject.activeSelf)count++;
             float choiceHeight=46;
             if(Asking)foreach(var b in Choices)if(b.gameObject.activeSelf)choiceHeight=Mathf.Max(choiceHeight,b.GetComponentInChildren<TextMeshProUGUI>().GetPreferredValues(818,0).y+16);
-            float height=Asking?Mathf.Max(300,61+textHeight+14+count*(choiceHeight+7)+40):Mathf.Max(220,61+textHeight+78);
+            float height=Asking?Mathf.Max(compact?0:300,61+textHeight+answerGap+count*(choiceHeight+7)+40):Mathf.Max(220,61+textHeight+78);
             if(activityHeight>0)height=61+textHeight+14+activityHeight+40;
             Place(dialogueRect,new Vector2(.5f,0),new Rect(-450,-(height+25),900,height));
             Place(bodyRect,Vector2.up,new Rect(24,61,850,textHeight));
-            float y=61+textHeight+14;
+            float y=61+textHeight+answerGap;
             if(activityArea)Place(activityArea,Vector2.up,new Rect(24,y,850,activityHeight));
             foreach(var b in Choices)if(b.gameObject.activeSelf)
             {
