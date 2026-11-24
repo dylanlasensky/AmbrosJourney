@@ -75,13 +75,18 @@ namespace AmbrosJourney.Journey
         }
         public TMP_InputField NameInput(Transform parent,string initial,Rect b)
         {
-            var r=Panel(parent,"Player name",b,Color.white);var field=r.gameObject.AddComponent<TMP_InputField>();
+            var r=Panel(parent,"Player name",b,Color.white);
+            // TMP builds its caret on enable, after its text component is assigned.
+            r.gameObject.SetActive(false);
+            var field=r.gameObject.AddComponent<TMP_InputField>();
             var t=Text(r,"Name",initial,new Rect(-b.width/2+15,-b.height/2+9,b.width-30,b.height-18),24);t.raycastTarget=true;
             var placeholder=Text(r,"Placeholder","Your explorer name",new Rect(-b.width/2+15,-b.height/2+9,b.width-30,b.height-18),24,new Color(.4f,.47f,.45f));
             nameHint=field;
             nameHalo=r.gameObject.AddComponent<UnityEngine.UI.Outline>();nameHalo.effectDistance=new Vector2(6,6);nameHalo.useGraphicAlpha=false;
             nameGlow=r.gameObject.AddComponent<UnityEngine.UI.Outline>();nameGlow.effectDistance=new Vector2(3,3);nameGlow.useGraphicAlpha=false;
-            field.textViewport=r;field.textComponent=t;field.placeholder=placeholder;field.characterLimit=32;field.lineType=TMP_InputField.LineType.SingleLine;field.text=initial;return field;
+            field.textViewport=r;field.textComponent=t;field.placeholder=placeholder;field.characterLimit=32;field.lineType=TMP_InputField.LineType.SingleLine;
+            field.caretWidth=2;field.caretBlinkRate=.85f;field.onFocusSelectAll=false;field.shouldActivateOnSelect=true;
+            field.text=initial;r.gameObject.SetActive(true);return field;
         }
         void OnDestroy(){if(rounded){Destroy(rounded.texture);Destroy(rounded);}}
         public void Clear(){for(int i=transform.childCount-1;i>=0;i--){var c=transform.GetChild(i);if(!c.GetComponent<EventSystem>()){c.gameObject.SetActive(false);Destroy(c.gameObject);}}}
