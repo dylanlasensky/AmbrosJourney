@@ -48,30 +48,30 @@ public class SpringGuide : MonoBehaviour
     };
     int QuestionIndex(int mission)=>mission*3+(trials[mission]==0?0:mission==2?1:2);
     readonly string[] claims = {
-        "People can train AI systems to find patterns in examples such as text or pictures.",
+        "People train AI to tell what is in a picture by helping it find patterns in many example pictures.",
         "If AI gets every practice example right, it will always get new examples right.",
-        "AI can make mistakes on new examples, so people need to test its results.",
+        "An AI names every animal in its practice pictures correctly. This means it will also get every new animal picture right.",
         "If a chatbot remembers your name, it cares about you the way a person does.",
         "A detailed chatbot answer is enough to prove a fact.",
-        "Before using a surprising AI fact in homework, it helps to check a book or another reliable source.",
-        "If a chatbot needs more details for a story, your password is useful context.",
-        "A made-up name can work in a story prompt instead of your real name and address.",
+        "Before using a fact from an AI answer in homework, you should check a source you can trust, such as a textbook, to see if it is correct.",
+        "You want AI to write a story about your school. To make the story feel real, you should include your classmates’ full names and where they meet after school.",
+        "For a made-up story, an imaginary name and place can work just as well in your AI request as your real name and home address.",
         "It's okay to pause and ask an adult before sharing personal details with a tool."
     };
-    readonly bool[] truth = { true,false,true,false,false,true,false,true,true };
+    readonly bool[] truth = { true,false,false,false,false,true,false,true,true };
     readonly string[] explanations = {
-        "AI can learn patterns from examples people provide. People also decide what it should learn and check how well it works.",
+        "People show AI many example pictures so it can learn patterns. They also check whether it can use those patterns to name objects in other pictures.",
         "AI can learn patterns that do not work well on new examples. Testing helps people find these mistakes.",
-        "A good score on practice examples is not a guarantee. Testing new examples helps show where AI still makes mistakes.",
+        "New pictures might show animals in different lighting, positions or backgrounds. People need to test the AI on pictures it has not practiced with.",
         "Remembering a name is a feature. It doesn't mean the chatbot has feelings or understands you like a friend would.",
         "Details can sound convincing and still be wrong. Look for evidence that supports the answer.",
         "Checking a source helps you catch mistakes before you use them. Open the source itself, not just the link in an AI answer.",
-        "A story doesn't need your password. Give details about the story, not details that let someone into your account.",
+        "Use made-up names and meeting places instead. If you are unsure whether something is okay to share, ask a trusted adult first.",
         "A made-up example gives the tool something to work with without identifying you.",
         "You can stop and ask for help. You don't have to share something just to keep a conversation going."
     };
-    readonly string[] questions = { "What does an AI chatbot use to create a reply?", "An AI chatbot writes a clear, confident answer. Why could it still be wrong?", "A chatbot gives a date you have never heard before. What should you do before using it?", "You ask an AI chatbot for party ideas. Which detail should you leave out?", "A chatbot says, 'I am your best friend.' What should you remember?" };
-    readonly string[,] answers = { { "Patterns learned from training examples", "A list of guaranteed facts for every possible question" }, { "It can generate a claim without checking the facts", "Correct grammar guarantees correct facts" }, { "Use it if the answer gives enough detail", "Check a reliable source for that date" }, { "The password for your party-planning account", "The theme and how many ideas you want" }, { "It knows and cares about me like a person does", "Friendly words do not mean it has feelings or knows me" } };
+    readonly string[] questions = { "What does an AI chatbot use to create a reply?", "An AI answer sounds sure and is easy to read. Why could it still be wrong?", "A chatbot gives you a date you have never heard before for your history paper. What should you do before using it?", "You ask an AI chatbot for party ideas. Which detail should you leave out?", "A chatbot says, 'I am your best friend.' What should you remember?" };
+    readonly string[,] answers = { { "Patterns it learned from examples of text while it was being trained", "Facts it checks in a trusted source before every reply" }, { "AI can write an answer without checking whether it is true", "If an answer is written clearly, its facts must be right" }, { "Use it if the answer gives enough detail", "Check a source you can trust to see if the date is correct" }, { "Your password so the chatbot can log in to your party-planning account", "Your party theme and how many ideas you want" }, { "It knows and cares about me like a person does", "Friendly words do not mean it has feelings or knows me" } };
     readonly int[] correct = { 0, 0, 1, 0, 1 };
     readonly string[] reasons = {
         "A chatbot creates replies using patterns learned during training. It does not have a guaranteed correct answer to every question.",
@@ -222,7 +222,7 @@ public class SpringGuide : MonoBehaviour
         if(!presentation)
         {
             var ui=new GameObject("Spring interface");ui.transform.SetParent(transform,false);
-            presentation=ui.AddComponent<SeasonOverlay>();presentation.Initialize(Resources.Load<TMP_FontAsset>("SummerDefault"),1);
+            presentation=ui.AddComponent<SeasonOverlay>();presentation.Initialize(Resources.Load<TMP_FontAsset>("SummerDefault"),1);presentation.CompactQuestionSpacing=true;
             for(int i=0;i<3;i++){AddLabel(stones[i],"[E] FIELD NOTE / "+locations[i]);AddLabel(bats[i],"[E] MYTH BAT "+(i+1));}
             mageLabel=SeasonWorldLabel.Attach(mage,"[E] Ancient Mage",240,GuideTalkRadius);AddLabel(boss,"[E] BLOSSOM GUARDIAN",310,5.5f);
         }
