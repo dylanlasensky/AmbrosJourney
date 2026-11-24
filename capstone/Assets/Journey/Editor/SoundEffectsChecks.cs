@@ -50,6 +50,16 @@ namespace AmbrosJourney.Journey.Editor
             GameAudio.SetMuted(true);Check(voices[0].mute&&voices[1].mute&&!GameAudio.Play(SoundCue.Click),"Mute silences all effect channels");
             var registered=probe.AddComponent<AudioSource>();GameAudio.Register(registered);Check(registered.mute,"New scene sources inherit mute");
             GameAudio.SetMuted(false);Check(!voices[0].mute&&!voices[1].mute&&!registered.mute,"Unmute restores registered channels");
+            bool musicWasEnabled=GameAudio.MusicEnabled;
+            try
+            {
+                var soundtrack=probe.AddComponent<AudioSource>();GameAudio.RegisterMusic(soundtrack);
+                GameAudio.SetMusicEnabled(false);Check(soundtrack.mute&&!registered.mute&&!voices[0].mute,"Music off preserves sound effects");
+                var nextTrack=probe.AddComponent<AudioSource>();GameAudio.RegisterMusic(nextTrack);Check(nextTrack.mute,"New scene music inherits preference");
+                GameAudio.SetMuted(true);GameAudio.SetMuted(false);Check(soundtrack.mute&&nextTrack.mute&&!registered.mute,"Global unmute preserves music preference");
+                GameAudio.SetMusicEnabled(true);Check(!soundtrack.mute&&!nextTrack.mute,"Music can be turned back on");
+            }
+            finally{GameAudio.SetMusicEnabled(musicWasEnabled);}
             UnityEngine.Object.Destroy(probe);
             Debug.Log("SOUND_EFFECTS_PASS: eight short PCM cues, click under 40ms, waveform headroom/endpoints, four season music mappings, shared clip ownership, UI click deduplication, paused-menu audio and mute persistence.");
         }

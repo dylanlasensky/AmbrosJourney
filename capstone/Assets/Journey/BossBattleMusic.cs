@@ -19,7 +19,7 @@ namespace AmbrosJourney.Audio
         {
             if(battle&&battle.isPlaying)return;
             var clip=Resources.Load<AudioClip>("SeasonMusic/atlasaudio-battle-drums-636771");if(!clip)return;
-            if(!battle){battle=gameObject.AddComponent<AudioSource>();battle.playOnAwake=false;battle.loop=true;battle.spatialBlend=0;battle.volume=.22f;GameAudio.Register(battle);}
+            if(!battle){battle=gameObject.AddComponent<AudioSource>();battle.playOnAwake=false;battle.loop=true;battle.spatialBlend=0;battle.volume=.22f;GameAudio.RegisterMusic(battle);}
             background=levelMusic;resumeBackground=background&&background.isPlaying;
             if(resumeBackground)background.Pause();
             battle.clip=clip;battle.Play();

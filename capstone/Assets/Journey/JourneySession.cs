@@ -155,7 +155,8 @@ namespace AmbrosJourney.Journey
             foreach(var text in new[]{nameInput.textComponent,placeholder})
             {
                 JourneyUI.Place(text.rectTransform,new Rect(-155,-23,310,46));text.fontSize=22;
-                text.alignment=TextAlignmentOptions.MidlineLeft;text.textWrappingMode=TextWrappingModes.NoWrap;
+                // Use font-metric centering so TMP places its caret inside the name box.
+                text.alignment=TextAlignmentOptions.Left;text.textWrappingMode=TextWrappingModes.NoWrap;
                 text.enableAutoSizing=true;text.fontSizeMin=10;text.fontSizeMax=22;
             }
             nameInput.customCaretColor=true;nameInput.caretColor=JourneyMenu.Gold;
@@ -179,7 +180,8 @@ namespace AmbrosJourney.Journey
             JourneyMenu.Text(ui,"Settings heading","Journey settings",new Rect(-550,-45,420,46),30);
             JourneyMenu.Text(ui,"Guidance status","Trail guidance: always on",new Rect(-534,20,410,40),24,JourneyMenu.Cream);
             var description=JourneyMenu.Text(ui,"Guidance description","The guide arrow stays visible in every season and points toward your next lesson or goal.",new Rect(-534,78,360,65),19,JourneyMenu.Muted);description.textWrappingMode=TextWrappingModes.Normal;
-            JourneyMenu.Button(ui,"Back",177,ShowMenu,true);
+            JourneyMenu.Button(ui,MusicLabel,150,()=>{GameAudio.ToggleMusic();ShowMenuSettings();},false,42);
+            JourneyMenu.Button(ui,"Back",210,ShowMenu,true);
         }
         void QuitGame()
         {
@@ -196,7 +198,7 @@ namespace AmbrosJourney.Journey
             if(!menuMusic)
             {
                 menuMusic=gameObject.AddComponent<AudioSource>();menuMusic.playOnAwake=false;menuMusic.loop=true;menuMusic.volume=.22f;menuMusic.spatialBlend=0;
-                menuMusic.clip=Resources.Load<AudioClip>("SeasonMusic/andriig-spring-easter-day-music-507171");GameAudio.Register(menuMusic);
+                menuMusic.clip=Resources.Load<AudioClip>("SeasonMusic/andriig-spring-easter-day-music-507171");GameAudio.RegisterMusic(menuMusic);
             }
             if(menuMusic.clip&&!menuMusic.isPlaying)menuMusic.Play();
         }
@@ -225,6 +227,7 @@ namespace AmbrosJourney.Journey
         }
         public void Pause(){if(menu||loading||cinematic||SeasonTransition.Active||BossPortalSequence.Busy)return;Paused=true;Time.timeScale=0;AudioListener.pause=true;CaptureChapter();ShowPause();}
         public void Resume(){resumeFrame=Time.frameCount;Paused=false;Time.timeScale=1;AudioListener.pause=false;ShowHUD();}
+        static string MusicLabel=>"Music: "+(GameAudio.MusicEnabled?"On":"Off");
         void ShowHUD()
         {
             artifactsOpen=false;backAction=null;ui.KeyboardNavigation=false;
@@ -232,6 +235,9 @@ namespace AmbrosJourney.Journey
             ui.Clear();
             var pause=ui.Button(ui.Root,"Pause / Esc",new Rect(470,298,145,38),Pause);var rect=pause.GetComponent<RectTransform>();rect.anchorMin=rect.anchorMax=Vector2.one;rect.anchoredPosition=new Vector2(-379,-136);
             var b=ui.Button(ui.Root,Data.ArtifactCount+"/"+Data.artifacts.Length+" Artifacts",new Rect(300,298,190,38),ShowArtifacts);var br=b.GetComponent<RectTransform>();br.anchorMin=br.anchorMax=Vector2.one;br.anchoredPosition=new Vector2(-214,-136);
+            UnityEngine.UI.Button musicButton=null;
+            musicButton=ui.Button(ui.Root,MusicLabel,new Rect(300,252,190,38),()=>{GameAudio.ToggleMusic();musicButton.GetComponentInChildren<TMP_Text>().text=MusicLabel;});
+            var mr=musicButton.GetComponent<RectTransform>();mr.anchorMin=mr.anchorMax=Vector2.one;mr.anchoredPosition=new Vector2(-214,-182);
         }
         void ShowPause()
         {
@@ -240,7 +246,8 @@ namespace AmbrosJourney.Journey
             JourneyPauseJournal.Button(ui,"Resume",new Rect(-510,-68,445,49),Resume,true);
             JourneyPauseJournal.Button(ui,"End run and return to menu",new Rect(-510,-7,445,42),ShowConfirmEndRun);
             JourneyPauseJournal.Button(ui,"Artifacts / "+Data.ArtifactCount+" of 12",new Rect(-510,44,445,42),ShowArtifacts);
-            ui.Text(ui.Root,"Guidance status","Trail guidance: always on",new Rect(-490,95,405,42),20,new Color(.43f,.40f,.30f));
+            JourneyPauseJournal.Button(ui,MusicLabel,new Rect(-510,95,445,42),()=>{GameAudio.ToggleMusic();ShowPause();});
+            ui.Text(ui.Root,"Guidance status","Trail guidance: always on",new Rect(-490,226,405,20),17,new Color(.43f,.40f,.30f));
             if(Data.finished&&!Data.certificatePending)JourneyPauseJournal.Button(ui,"Certificate",new Rect(-510,146,445,42),ShowCertificate);
             for(int i=0;i<Data.unlocked;i++){int c=i+1;JourneyPauseJournal.Chapter(ui,i,ChapterNames[i],()=>{if(CaptureChapter())LoadChapter(c);else ShowPause();},c==Data.chapter);}
 

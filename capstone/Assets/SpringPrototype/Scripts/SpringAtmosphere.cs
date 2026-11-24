@@ -12,7 +12,7 @@ public class SpringAtmosphere : MonoBehaviour
         var music=gameObject.AddComponent<AudioSource>();
         music.playOnAwake=false;music.loop=true;music.volume=.22f;music.spatialBlend=0;
         music.clip=Resources.Load<AudioClip>("SeasonMusic/andriig-spring-easter-day-music-507171");
-        GameAudio.Register(music);if(music.clip)music.Play();else Debug.LogError("Missing Spring background music.");
+        GameAudio.RegisterMusic(music);if(music.clip)music.Play();else Debug.LogError("Missing Spring background music.");
     }
     void Start(){CreateAudio();
         foreach(var lake in FindObjectsByType<MeshRenderer>())
