@@ -184,7 +184,7 @@ namespace AmbrosJourney.Summer
         void GardenQuestion()
         {
             if (Progress.Wards[1]) { Show("Keep your practice", SummerContent.Notes[1], Close); return; }
-            Ask("Garden field note / Put learning first", "You wrote your own paragraph. Your teacher allows AI feedback but not AI writing. Which request helps you practice?", new[] { "Point out one unclear part so I can revise it", "Rewrite the draft so I can turn in the improved version" }, c => {
+            Ask("Garden field note / Put learning first", "You wrote a paragraph for class. Your teacher says you can ask AI for suggestions, but you must write the paragraph yourself. What should you ask AI to do?", new[] { "Show me one part that is hard to understand so I can improve it myself", "Rewrite my paragraph so I can turn in the new version" }, c => {
                 bool right = Progress.AnswerGarden(c); Effect(right);
                 Show(right ? "Your practice matters" : "Incorrect / Keep the thinking", SeasonOverlay.AnswerFeedback(right,"Use feedback to improve your own work. If the tool rewrites it all, you miss the practice. Follow your teacher's rules about help."), right ? (Action)(() => Reward(1)) : GardenQuestion);
             });
@@ -310,7 +310,7 @@ namespace AmbrosJourney.Summer
             workshopWarriorLabel=maleWarrior.GetComponentInChildren<SeasonWorldLabel>(true);
             gardenWarriorLabel=femaleWarrior.GetComponentInChildren<SeasonWorldLabel>(true);
             var ui=new GameObject("Summer interface");ui.transform.SetParent(transform,false);
-            presentation=ui.AddComponent<SeasonOverlay>();presentation.Initialize(font,false);
+            presentation=ui.AddComponent<SeasonOverlay>();presentation.Initialize(font,false);presentation.CompactQuestionSpacing=true;
             canvas=presentation.Canvas;dialog=presentation.Dialog;journal=presentation.Journal;
             heading=presentation.Heading;copy=presentation.Copy;objective=presentation.Objective;compass=presentation.CompassText;prompt=presentation.Prompt;journalCopy=presentation.JournalCopy;party=presentation.Party;
             choices.AddRange(presentation.Choices);
