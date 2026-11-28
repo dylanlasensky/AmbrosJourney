@@ -13,7 +13,7 @@ Use the main menu, finish Summer and walk through its unlocked portal after clos
 5. Seven successful choices restore three runes and open the southern **Bramble Sentinel**. Its five-question challenge requires **4/5 (80%)**; mistakes explain the answer and retries retain the missions.
 6. Earn Prompt Pathfinder, recruit Emberfist, close the Winter gate conversation and walk through it to **Frostveil**. Winter and the cave finale are playable.
 
-The 99 x 93-tile map is about 2.5 times Summer's area. Two river crossings, hedge turns and an optional watch-post branch increase navigation complexity. Explorer guidance uses broad bearings for distant objectives; Assisted gives exact route guidance. There are three optional artifacts and no artificial waiting timers.
+The 99 x 93-tile map is about 2.5 times Summer's area. Two river crossings, hedge turns and an optional watch-post branch increase navigation complexity. The always-on gold arrow points directly at the next objective; the player chooses a walkable route. There are three optional artifacts and no artificial waiting timers.
 
 ## Shared systems and ownership
 
@@ -33,4 +33,4 @@ Interactive people and lesson objects have overhead **[E]** cards; artifacts use
 
 Fall progression checks cover note prerequisites, seven choices, wrong answers, duplicate rewards, all 243 guardian combinations, the 4/5 threshold and retained progress. Live route checks verify station access and locked/unlocked barriers. The connected suite adds real portal transitions, text fitting, current-run state, artifacts and the mixed finale.
 
-`docs/FallValidation.md` is an older dated snapshot. Use `docs/CurrentValidation.md` and `docs/Testing.md` for the current game. Audience comprehension and timing still need first-time players.
+Use `docs/CurrentValidation.md` for current results and `docs/Testing.md` for repeatable checks. Audience comprehension and timing still need first-time players.

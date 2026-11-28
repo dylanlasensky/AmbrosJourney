@@ -1,3 +1,4 @@
+// Checks independent in-memory runs, chapter data, bounds and certificate identity.
 using System;
 using System.Text.Json;
 using AmbrosJourney.Journey;

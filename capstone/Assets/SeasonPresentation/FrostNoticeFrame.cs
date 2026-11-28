@@ -1,3 +1,4 @@
+// Draws the icicle-edged notice frame retained for compatible presentation tooling.
 using UnityEngine;
 
 namespace AmbrosJourney.Presentation

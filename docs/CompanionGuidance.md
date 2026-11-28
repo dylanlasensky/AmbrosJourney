@@ -10,6 +10,6 @@ Guide hints appear within four world units, ordinary notes within their 2.6–2.
 
 E or Enter advances a conversation; Escape closes it. Number keys or mouse clicks choose answers. No unsolicited companion caption is created by any season controller. Same-run chapter revisits retain completed conversations, while refresh/end-run starts fresh.
 
-The updated `CompanionGuidanceChecks`, transition, integration and boss-exit runners exercise these flows. See [presentation clarity validation](PresentationClarityValidation.md) for the current executed checks and their limits. Earlier automatic-caption checks in historical records do not describe this behavior.
+The updated `CompanionGuidanceChecks`, transition, integration and boss-exit runners exercise these flows. See [current validation](CurrentValidation.md) for the current executed checks and their limits. Earlier automatic-caption checks in historical records do not describe this behavior.
 
 November 23 checks: Spring name-card completion and the HUD were reviewed in the live Editor. `NpcFeedbackChecks` passed live Summer, Fall and Winter interaction states, including the required Winter cave briefing and HUD placement. These checks use the runtime Resources prefabs loaded by `JourneySession`, matching the actual journey. The older standalone Summer scene is missing MageWalk artwork and was not used for the passing checks; its serialized contents were left unchanged.

@@ -1,6 +1,6 @@
 # Seasonal guardians and the final AI Keeper
 
-Four new original sprite atlases bring the remaining bosses into the same visual family as Fall. **Fall's Bramble Sentinel texture, four-pose animation and scale are unchanged.** Learning prerequisites and passing scores remain. Winter's Warden now stands at (28.5, 25), to the right of the cave entrance at (24, 27), so the doorway stays visible during questions. All correct responses explicitly say Correct! and use fixed quiz totals; courage is removed.
+Four new original sprite atlases bring the remaining bosses into the same visual family as Fall. **Fall's Bramble Sentinel texture, four-pose animation and scale are unchanged.** Learning prerequisites and passing scores remain. Winter's Warden stands at (24, 23.5), in front of the cave entrance at (24, 27); it dissolves after victory while the natural cave remains. All correct responses explicitly say Correct! and use fixed quiz totals; courage is removed.
 
 | Encounter | Active design | Animation and threshold |
 | --- | --- | --- |
@@ -51,4 +51,4 @@ All seasonal guardians now use the same texture-backed pixel disintegration as t
 
 Spring, Summer and Fall then assemble their exit portal from square pixels and allow entry only after the finished portal appears. Winter's Warden instead leaves the original cave visible, with no portal overlay or portal-building animation. Finish the Little Mage's outside briefing before first cave entry, then walk through the doorway automatically.
 
-The final Keeper still drops the certificate scroll with its existing fall/bounce timing. Download PDF remains available. Exit/Escape resumes the cave and assembles the home portal; walking through it opens the main menu. Saved completed encounters restore without replaying their victory effects. [Full change description](SecondUserTesting.md).
+The final Keeper still drops the certificate scroll with its existing fall/bounce timing. Download PDF remains available. Exit/Escape resumes the cave and assembles the home portal; walking through it opens the main menu. Completed encounters retained during the current run restore without replaying their victory effects. [Full change description](UserTestingFeedback.md).

@@ -1,3 +1,4 @@
+// Sequences boss dissolution and gated exits, retaining Winter's natural cave doorway.
 using System.Collections;
 using UnityEngine;
 using AmbrosJourney.Audio;

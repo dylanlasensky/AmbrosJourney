@@ -1,3 +1,4 @@
+// Transfers the completed previous chapter into the scene-local Fall world.
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;

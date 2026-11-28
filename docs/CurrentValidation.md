@@ -1,31 +1,40 @@
-# Current combined validation
+# Current validation: 27 November 2026
 
-**November 22 session policy:** Persistent progress saving has been removed. New launches and browser refreshes start fresh; unlocked-season revisits retain progress only during the current run. Older save files/storage are ignored and left untouched. Results below are historical evidence for their named builds, including their former save/Continue behavior; they do not verify this change.
-
-**November 21, 2026 update:** The results below preserve the November 20 snapshot and are not validation of the newer candidate. Current guidance is a direct gold-and-cream arrow that stays visible in Winter; companions speak automatically, and Warden victory enables cave permission without a separate NPC conversation. The earlier frozen-arrow and required-briefing expectations are superseded. See [companion guidance](CompanionGuidance.md), [cinematic fullscreen checks](CinematicFullscreenChecks.md) and [Web export/browser checks](BrowserBuildChecks.md). New build or browser results must be recorded separately; none are claimed by this note.
-
-Checked November 20, 2026 using Unity **6000.6.2f1** on macOS, for the second-round feedback changes based on main `865a5c7`. Earlier dated reports describe their original snapshots.
+Validated on macOS with Unity **6000.6.2f1**, against main **97c7cbb** plus the pause-music, comments and documentation update described in this commit. The isolated build copy used the current repository inputs; source projects and unrelated local generated files were not reset.
 
 ## Passed checks
 
-- **Second-round boss/portal flow:** R no longer moves any player controller. All four seasonal bosses lose their flags and crumble after the results close. Spring, Summer and Fall build their exit portals from pixels; Winter retains its natural cave and requires finishing the Little Mage briefing before automatic entry. Gates reject entry during the effects. The final interactive quiz still drops the certificate; Download PDF works; Exit/Escape resumes the cave and builds the home portal; walking through it opens the menu. Saved completed portals restore without replaying the sequence. See [implementation and reproduction](SecondUserTesting.md).
+| Check | Result and scope |
+| --- | --- |
+| Standalone .NET progression | **22,959 assertions passed**; all 32 Summer, 243 Fall, 243 Winter boss outcomes and 256 mixed-final pass/fail combinations, plus independent current-run data, names, bounds and certificate identity. |
+| PauseJournalChecks.Run | **PAUSE_JOURNAL_PASS**; no music action over gameplay or after Resume, working pause music toggle, independent sound effects, pause freeze, layout, long/accented names, artifacts, end-run cancellation, unlocked chapters, retained Winter location and certificate access. |
+| SeasonIntegrationChecks.Run | **SEASON_INTEGRATION_PASS**; four seasons, both Winter bosses, real portals, question UI, retries, companion conversations, maps, chapter/cave revisits, twelve artifacts, menus, certificate export, end-run and a new named journey. Winter checks inspected 125 UI states. |
+| Asset integrity | **444 tracked GUIDs passed**, including the new desktop build helper metadata, required Resources/artwork/portals, build scenes and original video identities. |
+| Session-only source guard | **67 runtime files passed**; no progress-storage capabilities, with certificate PDF export retained. |
+| Web template and cinematic focus | Both Node checks passed: bounded Retina sizing, resize/fullscreen handling, loading/error flow, visible-canvas focus restoration, hidden-page/form-control preservation and denied-focus fallback. These use source/mocks, not a running WebAssembly player. |
+| Comment-only audit | Existing authored C# changes outside JourneySession and the three updated Editor checks contain no executable changes. The new desktop build helper is Editor-only. |
+| Report integrity | All seven supplied PDFs copied byte-for-byte into Reports; no byte-identical duplicates were present elsewhere among the tracked documents. |
 
-- **22,895 progression assertions:** all 32 Summer, 243 Fall and 243 outdoor Winter boss answer combinations; all 256 pass/fail combinations of the eight final activities; prerequisites, wrong-answer retries, retained lessons, invalid responses and passing thresholds. Courage/heart fields and penalties have been removed.
-- **Save compatibility:** old Spring/Summer/Fall/Winter checkpoints containing the removed fields remain readable. Save round trips, recovery, reset, names and bounds pass. Valid Winter outdoor positions stay exact; old checkpoints behind the newly sealed ridge recover at the cave approach without resetting lessons.
-- **Connected Unity playthrough:** Spring > Summer > Fall > Winter using real portals; both Winter bosses; mission/boss retries; menus, pause, exact outdoor/cave saves, revisits, all twelve artifacts, certificate export, reset and a fresh journey.
-- **Focused UI/collision checks:** explicit Correct feedback and fixed quiz totals in all chapters and the finale; wrong answers retain the same denominator; no courage/hearts text on screen; 0/12 and 12/12 Artifacts labels fit; real player-body collisions block the ridge sides and rear while leaving the automatic doorway usable; Little Mage has no interaction or label inside the cave; Activity 5 explains repeated clicks and its boxes cycle options; certificate Exit/Escape resumes the cave, forms the home portal, and retains completion; the portal opens the main menu.
-- **Render/text checks:** 1280x720 and 1024x768. The artifact button is slightly wider to keep its existing font size. Correctness feedback retains each question's explanation and the established UI styling.
-- **Earlier changes in this feedback batch:** Winter's arrival/cave NPC positions and automatic entry; the empty-name gold pulse; one overhead [E] label per interactive target with no duplicate bottom prompt; moving/hidden character label handling; retiring the Garden Warrior's completed dialogue label and remembering it in saves. Focused checks for these changes passed before the general update, and the combined journey still passes.
-- **Asset integrity:** tracked gameplay metadata, unique GUIDs, artwork/resource references and build scenes pass. No new package, font, external service or generated-art dependency is required for this feedback batch.
-- **Winter compass notice:** the real snowfall trigger, saved once-only flag, four progress-specific hints, rendered icicle mesh, text at both resolutions, Continue/Escape dismissal and normal dialogue restoration pass. The notice does not interrupt pause/conversations and does not appear if Assisted was selected before the freeze, inside the cavern or after journey completion. Once shown, it permanently hides the outdoor arrow until the cave; leaving the cave hides the arrow again.
+## Test maintenance
 
-## Reproduction
+The first connected run exposed Unity's known startup SearchDatabase indexing exception. The integration runner now applies the same narrow stack-specific exclusion already used by PauseJournalChecks; other gameplay exceptions still fail the run. A subsequent run exposed stale fixture answers for Spring's revised claim mapping and an expectation that Summer's completed arrival greeting could be repeated. The checks now read the active Spring claim mapping and assert that the completed Summer greeting stays closed. The complete updated suite then passed. No gameplay rule was changed to satisfy those outdated expectations.
 
-[Testing](Testing.md) lists the pure checks and connected Unity suite. Run `GeneralFeedbackChecks.Run` through Unity's `-executeMethod` in a **disposable project copy** with `-batchmode` to reproduce the focused checks. It uses `Logs/SeasonChecks/general-feedback-save.json`, renders review images and writes `Logs/SeasonChecks/GeneralFeedback.txt`, then exits. The method rejects non-batch use so it cannot be started accidentally in a working Editor. `CompassNoticeChecks.Run` independently verifies the real snowfall event and icy panel using its own save and `Logs/SeasonChecks/CompassNotice.txt`.
+## Release builds
 
-These results describe automated behavior and render checks. The second-round changes await the requested human playthrough and have no new standalone or WebGL build; the previous successful standalone build remains recorded in the older validation history. Teammate intro/outro clips remain absent; the retained outro player is not wired into the current scroll-pickup path.
+All three exports succeeded with **zero build errors**:
 
+| Platform | Build report | Additional verification |
+| --- | --- | --- |
+| macOS | Release, 254,660,015 bytes; 2 build warnings | Apple silicon arm64. Release player remained running in a 12-second startup smoke check with no logged gameplay exception. Applied and verified a local ad-hoc signature. This is not a notarized universal installer. |
+| Windows | Release, 281,756,622 bytes; 1 build warning | Windows x86_64 Mono. Complete EXE/Data/DLL/Mono dependencies packaged; not executed on Windows from this Mac. |
+| Web | Release, 113,717,470 bytes in Unity's build report; 6 build warnings | Gzip custom template; separate original MP4s retained. ZIP integrity/root layout and movie hashes checked. Unity's report does not include every separately copied streaming file. |
 
-## Winter follow-up verification
+Build warnings include existing Editor API deprecations and renderer/shader warnings. Compilation/export succeeded; these results do not claim warning-free source. Local build summaries/logs retain the exact messages.
 
-`WinterRefinementChecks.Run` passed the real snowfall notice, arrow hiding through clear weather/settings/reload, arrow restoration inside the cave and hiding outside again, natural cave with no added portal/build effect, Warden disintegration, required finished Little Mage dialogue (including dismissal/reload cases), automatic entry afterward and old cave-save compatibility. The updated plain-C# suite passed 22,895 progression assertions and legacy save checks.
+The command tool placed provenance inside the Mac app root after export. It was moved outside the bundle before ad-hoc signing. The Mac ZIP is made from the verified source app outside iCloud, avoiding Finder metadata that iCloud adds to an unpacked bundle. Windows debug-backup directories explicitly marked DoNotShip are excluded. ZIP byte counts and SHA-256 identities are in [Builds/manifest.json](../Builds/manifest.json).
+
+## Delivery and limits
+
+Source, reports and maintained documentation are published through the signed-in GitHub connector. All three packages are saved locally under the top-level Builds folder. Large archives are excluded from ordinary Git history because each exceeds GitHub's 100 MB file limit. The available GitHub connector does not provide release-attachment uploads; no uploaded GitHub build release or replacement itch upload is claimed by this update.
+
+The current packages still need the team's hosted itch playthrough, including films/fullscreen, fresh starts after refresh and PDF download. Windows execution, Intel Mac support, target-audience comprehension, accessibility, pacing, low-end hardware and subjective audio balance are not established by these checks. The team has tested individually and with friends/roommates; no middle-school testing or measured learning outcomes are claimed. Use [Testing](Testing.md) and [browser procedure](BrowserBuildChecks.md) to repeat the checks. Submitted sprint PDFs and old artwork captures remain historical records rather than current feature specifications.

@@ -1,3 +1,4 @@
+// Transfers the completed previous chapter into the scene-local Summer world.
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;

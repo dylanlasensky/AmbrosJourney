@@ -1,3 +1,4 @@
+// Runs isolated Editor regression checks for journey performance.
 #if UNITY_EDITOR
 using System;
 using System.Collections.Generic;

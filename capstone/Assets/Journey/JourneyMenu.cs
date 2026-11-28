@@ -1,3 +1,4 @@
+// Builds the landscape main-menu presentation and highlights the player-name entry.
 using AmbrosJourney.Audio;
 using System;
 using TMPro;

@@ -1,3 +1,4 @@
+// Lays out the earned certificate and its download/exit actions with the game font.
 using System;
 using TMPro;
 using UnityEngine;
@@ -6,6 +7,7 @@ namespace AmbrosJourney.Journey
 {
     public static class JourneyCertificateView
     {
+        // Lays out the earned certificate and its download/exit actions with the game font.
         public static RectTransform Draw(JourneyUI ui,JourneyData data,float scale)
         {
             var page=new GameObject("Personalized certificate",typeof(RectTransform));page.transform.SetParent(ui.Root,false);

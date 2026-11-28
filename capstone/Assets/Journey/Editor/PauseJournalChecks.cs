@@ -1,3 +1,4 @@
+// Runs isolated Editor regression checks for pause journal.
 #if UNITY_EDITOR
 using System;
 using System.IO;
@@ -24,6 +25,7 @@ namespace AmbrosJourney.Journey.Editor
             if(SessionState.GetBool(Key,false)){JourneySession.TestMode=true;}
             Application.logMessageReceived+=(message,stack,type)=>{if(stack.Contains("UnityEditor.Search.SearchDatabase"))return;if(SessionState.GetBool(Key,false)&&EditorApplication.isPlaying&&(type==LogType.Error||type==LogType.Exception||type==LogType.Assert))SessionState.SetString(Key+"Error",message);};
         }
+        // Editor entry points keep preparation and checks outside normal player execution.
         public static void Run()
         {
             Directory.CreateDirectory("Logs/PauseJournalChecks");SessionState.SetString(Key+"Error","");SessionState.SetBool(Key,true);
@@ -66,6 +68,7 @@ namespace AmbrosJourney.Journey.Editor
                 {
                     session.BeginTestProfile();session.Data.unlocked=4;session.Data.artifacts[0]=session.Data.artifacts[4]=session.Data.artifacts[8]=true;
                     session.Resume();var winter=UnityEngine.Object.FindAnyObjectByType<AmbrosJourney.Winter.WinterLevel>();winter.Progress.Introduced=true;Call(winter,"Close");winterPosition=winter.player.transform.position;
+                    Check(!HasButton("Music: On")&&!HasButton("Music: Off"),"Music control is absent from gameplay HUD");
                     session.Pause();Check(session.Paused&&Time.timeScale==0&&AudioListener.pause&&winter.InputBlocked,"Pause still freezes world, sound and input");Inspect();
                     Check(!HasButton("Certificate")&&UI.GetComponentsInChildren<UnityEngine.UI.Button>().Length==8,"Pause actions, music control and four unlocked chapters");Capture("Journal-Winter-"+Screen.width+"x"+Screen.height);
                 }
@@ -73,11 +76,17 @@ namespace AmbrosJourney.Journey.Editor
                 {
                     Check(UI.transform.Find("Guidance status").GetComponent<TMP_Text>().text=="Trail guidance: always on","Journal explains continuous guidance");Check(!UI.transform.Find("Guidance status").GetComponent<UnityEngine.UI.Button>(),"Guidance is a label rather than a toggle");Inspect();
                     bool musicWasEnabled=GameAudio.MusicEnabled;
+                    var musicObject=new GameObject("Music preference regression");var music=musicObject.AddComponent<AudioSource>();GameAudio.RegisterMusic(music);
+                    var effectObject=new GameObject("Sound effect preference regression");var effect=effectObject.AddComponent<AudioSource>();GameAudio.Register(effect);
+
                     Click("Music: "+(musicWasEnabled?"On":"Off"));Check(GameAudio.MusicEnabled!=musicWasEnabled&&session.Paused&&Time.timeScale==0&&AudioListener.pause,"Music toggle preserves pause");
+                    Check(music.mute==(!GameAudio.MusicEnabled||GameAudio.Muted)&&effect.mute==GameAudio.Muted,"Pause music option mutes music independently from effects");
                     Click("Music: "+(musicWasEnabled?"Off":"On"));Check(GameAudio.MusicEnabled==musicWasEnabled,"Music toggle restores preference");
+                    UnityEngine.Object.Destroy(musicObject);UnityEngine.Object.Destroy(effectObject);
                     Click("Artifacts / 3 of 12");Check(Array.Exists(UI.GetComponentsInChildren<TMP_Text>(),text=>text.text.Contains("3 of 12 recovered")),"Artifact view opens");Click("Return / Esc / Space");Check(session.Paused&&Time.timeScale==0&&AudioListener.pause,"Return restores pause journal");
                     session.Pause();string beforeEnd=JsonUtility.ToJson(session.Data);Click("End run and return to menu");Check(HasButton("Keep playing")&&HasButton("End run / Main menu"),"Ending the run requires confirmation");Click("Keep playing");Check(session.Data.started&&session.Data.ArtifactCount==3,"Cancel end-run preserves current progress");Check(JsonUtility.ToJson(session.Data)==beforeEnd,"Cancel end-run preserves the complete in-memory journey");Check(!HasButton("Reset journey"),"No redundant reset action");Inspect();
                     Click("Resume");Check(!session.Paused&&Time.timeScale==1,"Resume button resumes");
+                    Check(!HasButton("Music: On")&&!HasButton("Music: Off"),"Resuming does not restore a gameplay music button");
                     session.Pause();Click(JourneySession.ChapterNames[0]);
                 }
                 else if(stage==2)

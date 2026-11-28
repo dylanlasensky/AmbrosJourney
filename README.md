@@ -41,26 +41,23 @@ A bright gold-and-cream arrow with a dark outline follows Ambros and rotates smo
 
 All four seasons, menus, controls, notes and activities use the supplied **Determination** font with the existing point sizes and shared parchment UI. Minor labels are shortened to fit. [Current questions and notes](docs/QuestionRefresh.md)
 
-## Documentation and checks
+## Documentation and delivery
 
-- [November 21 changes and submission validation](docs/SubmissionValidation.md)
-- [Companion guidance](docs/CompanionGuidance.md), [cinematic fullscreen checks](docs/CinematicFullscreenChecks.md), and [Web export and browser checks](docs/BrowserBuildChecks.md)
-- [November 20 playtest changes and verified results](docs/FinalPlaytestChanges.md)
-- [Earlier user-testing changes](docs/UserTestingFeedback.md)
-- [Game design and progression](docs/GameDesign.md)
-- [Menus, session progress, artifacts and teammate video handoff](docs/JourneyCompletion.md)
-- [Spring setup](SPRING_PROTOTYPE.md), [Summer](capstone/Assets/SummerLevel/README.md), [Fall](capstone/Assets/FallLevel/README.md), [Winter](capstone/Assets/WinterLevel/README.md)
-- [Testing and builds](docs/Testing.md), [dated validation record](docs/CurrentValidation.md), [documentation index](docs/README.md)
+- [Current design](docs/GameDesign.md), [runtime flow](docs/JourneyCompletion.md), [curriculum](docs/QuestionRefresh.md)
+- [Testing and rebuild instructions](docs/Testing.md), [executed results and limits](docs/CurrentValidation.md)
+- [Implemented user feedback](docs/UserTestingFeedback.md), [documentation index](docs/README.md)
+- [Sprint reports and team contract](Reports/README.md)
+- [Web, macOS and Windows packages](Builds/README.md)
+- [Spring](SPRING_PROTOTYPE.md), [Summer](capstone/Assets/SummerLevel/README.md), [Fall](capstone/Assets/FallLevel/README.md), [Winter/cave](capstone/Assets/WinterLevel/README.md)
 
-The hosted Game checks workflow runs progression, asset-integrity, Web-template and cinematic-focus regression checks. Unity playthrough, rendering and player builds are additional local checks; a passing source test alone is not a complete release test. Commit required `.meta` files with assets and keep generated caches/builds/logs out of Git. Preserve existing art and font licenses.
+Music On/Off is in the pause journal and main-menu Settings. There is no music button over gameplay. The preference applies across scenes for the current application session; effects remain separate. M is the existing all-audio mute shortcut.
+
+GitHub Actions runs progression, asset, session-policy, Web-template and cinematic-focus checks. Unity runtime checks and release builds supplement them. Required assets and their .meta files must stay together. Generated caches, raw demo recordings and unpacked players are excluded; selected deliverable archives live under Builds. Existing asset/font/shader license notices are preserved.
 
 ## Design targets and remaining work
 
-Spring targets about five minutes; the whole journey targets roughly thirty minutes. These are unmeasured first-time-player targets, not promised durations. Navigation becomes more complex in Fall and Winter without artificial waiting timers. Trail guidance remains available through every season, including Winter snow.
+Spring targets about five minutes and the complete journey roughly thirty minutes; these are unmeasured first-time-player targets. Navigation becomes more complex through Fall and Winter without artificial waiting timers. All content is authored; no live AI model, backend, database or persistent progress save is required.
 
-The teammate's original 40-second PR18 intro is restored byte-for-byte; the outro is unchanged. [Video provenance](docs/IntroVideoSource.md) records both source identities. The outro plays above game overlays with other music muted. The [November 21 validation record](docs/SubmissionValidation.md) preserves the prior build's native and local browser results; its former persistence checks are historical. Current behavior and validation are recorded in [presentation clarity checks](docs/PresentationClarityValidation.md). Additional manual testing uses [the test procedure](docs/Testing.md) and [hosted browser checks](docs/BrowserBuildChecks.md). The team will upload to itch. Full manual browser completion, low-end hardware performance and first-time-player comprehension/pacing have not been measured.
+The team tested individually and with friends/roommates. Middle-school audience testing, measured learning outcomes, low-end hardware profiling and accessibility improvements remain future work. The current itch upload must be replaced with the new Web ZIP and tested on the host; a successful build does not establish that upload's behavior.
 
-The team's original Fall 2026 milestones remain planning context: Oct 19-23 rough Spring/Summer; Oct 26-30 rough Fall/Winter/finale; Sprint Three due Nov 4; later November polish, audience testing and post-Thanksgiving demo preparation. A milestone date is not evidence of completion.
-
-
-See [second-round feedback changes](docs/SecondUserTesting.md) for the removed R shortcut, shared boss crumble, animated seasonal exits and cave-to-menu home portal.
+Primary deliverables: [Play on itch.io](https://kcarrubba.itch.io/ambros-journey) and [GitHub source](https://github.com/dylanlasensky/AmbrosJourney). Team: Kaley Carrubba, Kaylie Pasternak and Dylan Lasensky, Two Kaylies and a Dylan.

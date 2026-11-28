@@ -1,3 +1,4 @@
+// Coordinates trail rendering for the active season and its current objective.
 using System.Collections.Generic;
 using UnityEngine;
 namespace AmbrosJourney.Presentation

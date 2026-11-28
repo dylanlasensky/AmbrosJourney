@@ -1,3 +1,4 @@
+// Runs isolated Editor regression checks for season integration.
 using System;
 using System.IO;
 using System.Linq;
@@ -30,6 +31,8 @@ public static class SeasonIntegrationChecks
         EditorApplication.update += Tick;
         Application.logMessageReceived += (message, stack, type) =>
         {
+            // Ignore Unity's known startup search-index exception, as the focused journal runner does.
+            if (stack.Contains("UnityEditor.Search.SearchDatabase")) return;
             if (SessionState.GetBool(Key + "active", false) &&
                 (type == LogType.Error || type == LogType.Exception || type == LogType.Assert))
                 SessionState.SetString(Key + "error", message);
@@ -99,8 +102,17 @@ public static class SeasonIntegrationChecks
                 Check(!SummerPortalBridge.GateAllowsEntry(g, gate.position, gate.position), "Locked Spring gate blocks entry");
                 CheckOverlay(g); Capture("SpringInterface");
                 for (int i = 0; i < 3; i++) { Set(g, "target", 5 + i);typeof(SpringGuide).GetProperty("DialogueOpen").SetValue(g,true);Call(g,"LateUpdate");CheckOverlay(g); Call(g, "Continue"); }
-                int[][] answers = {new[]{0,0}, new[]{1,0}, new[]{1,0}};
-                for (int i = 0; i < 3; i++) { Set(g, "target", i); Set(g, "feedback", ""); foreach (int a in answers[i]) { Call(g, "Answer", a); Call(g, "Continue"); } }
+                // Read the active claim mapping so wording/claim changes do not leave stale test answers.
+                var truth=(bool[])typeof(SpringGuide).GetField("truth",Private).GetValue(g);
+                for (int i=0;i<3;i++)
+                {
+                    Set(g,"target",i);Set(g,"feedback","");
+                    for(int attempt=0;attempt<2;attempt++)
+                    {
+                        int index=(int)typeof(SpringGuide).GetMethod("QuestionIndex",Private).Invoke(g,new object[]{i});
+                        Call(g,"Answer",truth[index]?0:1);Call(g,"Continue");
+                    }
+                }
                 Check(g.MissionsComplete==3,"All three myth-bat lessons complete before guardian quiz");
                 Set(g, "target", 3); Set(g, "bossQuestion", 0); Set(g, "feedback", ""); Set(g, "bossResult", false);
                 foreach (int a in new[]{0,0,1,1,0}) { Call(g, "Answer", a); Call(g, "Continue"); }

@@ -1,3 +1,4 @@
+// Provides explicit Editor commands for preparing shared seasonal presentation.
 #if UNITY_EDITOR
 using System;
 using System.IO;
@@ -13,6 +14,7 @@ namespace AmbrosJourney.Presentation.Editor
     public static class PresentationTools
     {
         [MenuItem("Capstone/Presentation/Prepare Mage Walking Frames")]
+        // Editor entry points keep preparation and checks outside normal player execution.
         public static void PrepareArt()
         {
             const string prefabPath="Assets/FallLevel/Resources/FallLevel.prefab";

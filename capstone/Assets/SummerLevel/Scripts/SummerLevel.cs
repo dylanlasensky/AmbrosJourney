@@ -1,3 +1,4 @@
+// Coordinates Summer interactions, field notes, lessons and boss questions.
 using AmbrosJourney.Audio;
 using System;
 using System.Collections.Generic;

@@ -1,3 +1,4 @@
+// Defines the cumulative AI-safety activities and validates structured responses.
 using System;
 using System.Collections.Generic;
 

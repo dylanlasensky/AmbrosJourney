@@ -1,3 +1,4 @@
+// Runs isolated Editor regression checks for sound effects.
 #if UNITY_EDITOR
 using System;
 using System.Reflection;
@@ -11,6 +12,7 @@ namespace AmbrosJourney.Journey.Editor
     {
         const string Pending="SoundEffectsChecks.Pending";
         const BindingFlags Hidden=BindingFlags.Instance|BindingFlags.NonPublic;
+        // Editor entry points keep preparation and checks outside normal player execution.
         public static void Run()
         {
             foreach(SoundCue cue in Enum.GetValues(typeof(SoundCue)))

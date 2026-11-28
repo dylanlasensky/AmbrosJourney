@@ -1,3 +1,4 @@
+// Places contextual overhead labels while avoiding UI, player and label overlap.
 using System.Collections.Generic;
 using UnityEngine;
 namespace AmbrosJourney.Presentation

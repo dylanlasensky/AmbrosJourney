@@ -1,3 +1,4 @@
+// Runs isolated Editor regression checks for guide arrival.
 #if UNITY_EDITOR
 using System;
 using System.Reflection;

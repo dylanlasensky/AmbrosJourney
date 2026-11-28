@@ -1,3 +1,4 @@
+// Starts the opening/menu sequence when the Intro scene loads.
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Video;

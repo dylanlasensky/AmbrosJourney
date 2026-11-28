@@ -1,3 +1,4 @@
+# Reject persistent progress storage in runtime sources while allowing certificate export.
 """Enforce the game's session-only storage boundary without launching Unity.
 
 Runtime C# and authored Web scripts may not use durable progress storage. The

@@ -1,9 +1,11 @@
+// Defines Winter lesson questions, prerequisites, scores and retry state.
 using System;
 namespace AmbrosJourney.Winter
 {
     [Serializable]
     public sealed class WinterProgress
     {
+        // Keep grading and prerequisites separate from rendering so the same rules can be tested without Unity.
         public bool Valid()
         {
             if(BossQuestion<0||BossQuestion>8||BossScore<0||BossScore>BossQuestion||Studied==null||Studied.Length!=3||Steps==null||Steps.Length!=3)return false;

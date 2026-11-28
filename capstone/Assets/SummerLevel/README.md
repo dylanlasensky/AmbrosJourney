@@ -8,8 +8,8 @@ Open the inner `capstone` project with Unity **6000.6.2f1**. Use the main menu, 
 
 1. Meet the Warriors; the Ancient Mage arrives with Ambros.
 2. Workshop: choose useful festival brainstorming help and ask the builder to inspect a damaged bridge.
-3. Training garden: choose a first-step hint, interact with **Sun > Seed > Leaf**, and ask for feedback on your own draft rather than a replacement.
-4. Message post: remove the unneeded name, fictional street address and password from Ambros's actual example, then choose real support for a friend. This is an authored fictional message, not collected personal data.
+3. Training garden: ask for feedback on your own draft rather than a replacement, following the teacher’s rule. Legacy pattern/hint state remains in the progress class but is not the current garden interaction.
+4. Message post: choose useful nonprivate details for a birthday treasure-hunt request, then choose a direct conversation with an upset friend instead of sharing their message with AI. No personal information is collected.
 5. Each completed mission awards a ward piece and a field note: **Pick the Right Kind of Help**, **Leave Room to Practice**, **Share Less, Ask People Too**.
 6. Three wards open the southern **Suncrest Guardian**, a golden sunflower-maned lion with leaf armor. Score **4/5** on its five questions. Wrong answers explain the issue; retries preserve missions.
 7. Earn Independent Thinker, recruit both Warriors, close the final conversation and walk through the unlocked Fall portal.

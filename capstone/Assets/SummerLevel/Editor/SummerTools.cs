@@ -1,3 +1,4 @@
+// Provides explicit Editor commands for preparing, opening and validating Summer.
 #if UNITY_EDITOR
 using System;
 using System.IO;
@@ -11,6 +12,7 @@ namespace AmbrosJourney.Summer.Editor
     {
         const string ScenePath = "Assets/SummerLevel/Summer.unity";
         [MenuItem("Capstone/Summer/Play Summer Only")]
+        // Editor entry points keep preparation and checks outside normal player execution.
         public static void Play()
         {
             if (EditorApplication.isPlayingOrWillChangePlaymode) return;

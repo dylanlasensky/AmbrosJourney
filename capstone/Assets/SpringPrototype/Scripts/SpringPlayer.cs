@@ -1,3 +1,4 @@
+// Handles Spring movement, interaction input and player animation.
 using UnityEngine;
 using UnityEngine.InputSystem;
 

@@ -1,3 +1,4 @@
+// Coordinates the in-memory run, menus, pause controls, chapter handoffs and certificate access.
 using AmbrosJourney.Audio;
 using System;
 using System.Collections;
@@ -235,9 +236,7 @@ namespace AmbrosJourney.Journey
             ui.Clear();
             var pause=ui.Button(ui.Root,"Pause / Esc",new Rect(470,298,145,38),Pause);var rect=pause.GetComponent<RectTransform>();rect.anchorMin=rect.anchorMax=Vector2.one;rect.anchoredPosition=new Vector2(-379,-136);
             var b=ui.Button(ui.Root,Data.ArtifactCount+"/"+Data.artifacts.Length+" Artifacts",new Rect(300,298,190,38),ShowArtifacts);var br=b.GetComponent<RectTransform>();br.anchorMin=br.anchorMax=Vector2.one;br.anchoredPosition=new Vector2(-214,-136);
-            UnityEngine.UI.Button musicButton=null;
-            musicButton=ui.Button(ui.Root,MusicLabel,new Rect(300,252,190,38),()=>{GameAudio.ToggleMusic();musicButton.GetComponentInChildren<TMP_Text>().text=MusicLabel;});
-            var mr=musicButton.GetComponent<RectTransform>();mr.anchorMin=mr.anchorMax=Vector2.one;mr.anchoredPosition=new Vector2(-214,-182);
+
         }
         void ShowPause()
         {

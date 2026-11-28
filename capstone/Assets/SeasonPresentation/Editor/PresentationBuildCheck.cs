@@ -1,3 +1,4 @@
+// Builds a standalone preview for seasonal presentation validation.
 #if UNITY_EDITOR
 using System.IO;
 using UnityEditor;
@@ -8,6 +9,7 @@ namespace AmbrosJourney.Presentation.Editor
     public static class PresentationBuildCheck
     {
         [MenuItem("Capstone/Presentation/Build macOS Validation Player")]
+        // Editor entry points keep preparation and checks outside normal player execution.
         public static void Build()
         {
             if(EditorApplication.isPlaying){Debug.LogWarning("Stop Play mode before building.");return;}

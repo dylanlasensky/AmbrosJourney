@@ -1,3 +1,4 @@
+// Bridge cinematic focus/fullscreen handling between Unity and its browser host.
 mergeInto(LibraryManager.library, {
   AmbrosReturnCinematicFocus: function() {
     try {

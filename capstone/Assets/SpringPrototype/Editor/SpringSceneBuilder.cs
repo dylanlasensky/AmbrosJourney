@@ -1,3 +1,4 @@
+// Rebuilds the authored Spring prototype scene through explicit Editor commands.
 using System.IO;
 using System.Collections.Generic;
 using UnityEngine;

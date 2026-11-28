@@ -1,3 +1,4 @@
+// Runs isolated Editor regression checks for winter refinement.
 #if UNITY_EDITOR
 using System;
 using System.IO;

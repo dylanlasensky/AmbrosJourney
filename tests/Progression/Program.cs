@@ -1,3 +1,4 @@
+// Runs the standalone progression assertions against the real seasonal state classes.
 using System;
 using AmbrosJourney.Summer;
 using AmbrosJourney.Fall;

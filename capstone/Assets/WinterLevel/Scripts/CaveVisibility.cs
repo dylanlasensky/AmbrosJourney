@@ -1,3 +1,4 @@
+// Restricts cave visibility around the player using the lantern mask material.
 using UnityEngine;
 using UnityEngine.UI;
 

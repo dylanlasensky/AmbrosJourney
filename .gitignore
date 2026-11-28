@@ -19,3 +19,9 @@
 # Standalone regression runner outputs
 /tests/**/bin/
 /tests/**/obj/
+
+# Presentation footage is submitted separately from the source project.
+/2 Minute Demo /
+# Deliverable archives live locally here and are distributed as release assets.
+/Builds/**/*.zip
+/Builds/**/Player/

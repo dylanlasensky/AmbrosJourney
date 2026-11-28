@@ -1,3 +1,4 @@
+// Finds the current objective and routes seasonal guidance around blocked terrain.
 using System.Collections.Generic;
 using UnityEngine;
 namespace AmbrosJourney.Presentation

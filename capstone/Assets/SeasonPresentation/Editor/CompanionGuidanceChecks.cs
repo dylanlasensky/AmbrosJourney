@@ -1,3 +1,4 @@
+// Runs isolated Editor regression checks for companion guidance.
 #if UNITY_EDITOR
 using System;
 using System.Linq;
@@ -92,9 +93,7 @@ namespace AmbrosJourney.Presentation.Editor
                 Press(level,Key.E);ReadableDialogue(ui,level.InputBlocked);StopsPlayer(level.player);
                 Check(!level.Progress.Introduced&&level.maleWarrior.Guidance==null,"Opening greeting does not start walking behind its dialogue");
                 Press(level,Key.Escape);Check(level.Progress.Introduced&&!level.InputBlocked&&level.maleWarrior.Guidance!=null,"Closing the deliberate greeting starts the walking escort");
-                Press(level,Key.E);ReadableDialogue(ui,level.InputBlocked);Vector3 before=level.maleWarrior.transform.position;
-                level.maleWarrior.Guidance.Step(level.maleWarrior.transform,level.player.transform,level.InputBlocked,1);
-                Check(level.maleWarrior.transform.position==before,"Repeated E conversation also stops the escort");Press(level,Key.Enter);
+                Press(level,Key.E);Check(!level.IsDialogueOpen&&!level.InputBlocked,"Completed arrival greeting does not reopen during the escort");
                 Move(level.player.transform,level.workshop.position);level.Interact(1);Check(level.Progress.GuideArrived,"Reading the workshop retires orientation even before guides arrive");level.DismissPanel();Move(level.player.transform,level.garden.position);Call(level,"RefreshWorld");
                 Check(!level.InputBlocked&&!ui.Objective.text.Contains("Walk with"),"Outpacing Warriors cannot leave a stale escort objective");
                 for(int i=0;i<1000&&!level.maleWarrior.Guidance.Arrived;i++)level.maleWarrior.Guidance.Step(level.maleWarrior.transform,level.player.transform,false,.1f);

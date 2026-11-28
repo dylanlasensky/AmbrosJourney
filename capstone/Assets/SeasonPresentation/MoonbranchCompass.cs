@@ -1,3 +1,4 @@
+// Renders the seasonal compass and direct objective arrow with distance feedback.
 using TMPro;
 using UnityEngine;
 

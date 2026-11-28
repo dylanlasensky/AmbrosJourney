@@ -1,3 +1,4 @@
+// Fades between chapters while blocking competing input and portal entries.
 using UnityEngine;
 namespace AmbrosJourney.Presentation
 {

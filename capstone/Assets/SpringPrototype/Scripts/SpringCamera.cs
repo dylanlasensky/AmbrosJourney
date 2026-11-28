@@ -1,3 +1,4 @@
+// Follows the Spring player and keeps the view within the level bounds.
 using UnityEngine;
 public class SpringCamera : MonoBehaviour
 {

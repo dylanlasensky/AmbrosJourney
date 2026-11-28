@@ -1,3 +1,4 @@
+// Builds organic-looking trail geometry from the season's navigation route.
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;

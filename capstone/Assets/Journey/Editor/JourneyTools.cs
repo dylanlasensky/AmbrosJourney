@@ -1,3 +1,4 @@
+// Prepares the connected journey entry scenes and removes the retired opening route.
 #if UNITY_EDITOR
 using UnityEditor;
 using UnityEngine;
@@ -6,6 +7,7 @@ namespace AmbrosJourney.Journey.Editor
     public static class JourneyTools
     {
         [MenuItem("Capstone/Journey/Prepare Art and Player")]
+        // Editor entry points keep preparation and checks outside normal player execution.
         public static void Prepare()
         {
             RemoveRetiredOpening();

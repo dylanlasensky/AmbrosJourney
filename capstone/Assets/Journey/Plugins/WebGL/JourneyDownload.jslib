@@ -1,3 +1,4 @@
+// Download the certificate PDF from the browser without persisting game progress.
 mergeInto(LibraryManager.library, {
   AmbrosDownloadPdf: function(pointer, length, filename) {
     var data = HEAPU8.slice(pointer, pointer + length);

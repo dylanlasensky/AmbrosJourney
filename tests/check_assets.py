@@ -1,3 +1,4 @@
+# Validate tracked Unity metadata, references and required gameplay assets.
 """Check tracked gameplay assets without importing or modifying the Unity project."""
 import hashlib
 import json

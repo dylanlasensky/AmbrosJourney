@@ -1,6 +1,6 @@
 # Game design and team handoff
 
-This is the current design/implementation handoff. Dated validation reports remain evidence of their own snapshots; see [documentation index](README.md).
+This is the current design/implementation handoff. Earlier validation snapshots are consolidated in the current results; see [documentation index](README.md).
 
 ## Story and audience
 
@@ -40,7 +40,7 @@ Three artifacts per season encourage revisits. Completing the collection reveals
 
 ## Collaboration and outstanding work
 
-Open `capstone/` in Unity 6000.6.2f1. Runtime world builders and Resources prefabs own later seasons; coordinate before rebuilding scenes or assets. Commit required `.meta` files and preserve pack/font licenses. Keep Library, Temp, Logs and player builds out of source control. Legacy `orc` and skeleton fields remain compatibility/source references, not the displayed boss forms.
+Open `capstone/` in Unity 6000.6.2f1. Runtime world builders and Resources prefabs own later seasons; coordinate before rebuilding scenes or assets. Commit required `.meta` files and preserve pack/font licenses. Keep Library, Temp, Logs and unpacked generated players out of source control. Packaged deliverables are indexed in the top-level Builds folder. Legacy `orc` and skeleton fields remain compatibility/source references, not the displayed boss forms.
 
 The original Sprint Three deadline was Nov 4; the original weekly schedule remains planning context in the root README. Final Web/itch video and session-lifecycle checks, audience comprehension/difficulty/pacing tests, and target-hardware/audio checks remain outstanding release evidence. Implemented features are not proof that the game meets learning or performance goals.
 
@@ -49,3 +49,7 @@ Use [Journey completion](JourneyCompletion.md), [current questions](QuestionRefr
 ## November 23 feedback polish
 
 Pause and Artifacts sit side by side immediately below the top-right lessons/objective panel in every season. NPC interaction cards use names and appear only while an unread conversation is available; later briefings can bring them back. Seasonal boss victory messages retain the score/rank and a short lesson takeaway, without instructions describing the dissolve or portal animation. Existing victory animation and portal/cave entry rules remain in place.
+
+## Music preference
+
+Music On/Off is in the pause journal and main-menu Settings. The gameplay HUD has no music button. The preference applies across scenes for this application session, while effects and the separate M all-audio shortcut retain their behavior.

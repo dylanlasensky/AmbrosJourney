@@ -1,3 +1,4 @@
+// Defines current-run identity, chapter checkpoints and optional artifact collection data.
 using System;
 using System.Text;
 namespace AmbrosJourney.Journey
@@ -23,6 +24,7 @@ namespace AmbrosJourney.Journey
         public bool[] artifacts=new bool[12];
         public ChapterState[] chapters={new ChapterState(),new ChapterState(),new ChapterState(),new ChapterState()};
         public int ArtifactCount {get{int n=0;foreach(bool found in artifacts)if(found)n++;return n;}}
+        // Defines current-run identity, chapter checkpoints and optional artifact collection data.
         public bool Valid()
         {
             if(certificatePending&&!finished)return false;

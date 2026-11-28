@@ -1,8 +1,10 @@
+// Applies the shared parchment appearance to field-note and interaction cards.
 using UnityEngine;
 namespace AmbrosJourney.Presentation
 {
     public static class FieldCardSkin
     {
+        // Applies the shared parchment appearance to field-note and interaction cards.
         public static Sprite Create()
         {
             var texture=Resources.Load<Texture2D>("Journey/FieldCard");if(!texture)return null;

@@ -1,3 +1,4 @@
+// Presents original intro/outro videos consistently in native players and Web builds.
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Video;

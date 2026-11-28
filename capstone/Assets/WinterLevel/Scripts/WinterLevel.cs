@@ -1,3 +1,4 @@
+// Coordinates Winter interactions, field notes, lessons and boss questions.
 using AmbrosJourney.Audio;
 using System;
 using System.Collections.Generic;
@@ -43,6 +44,7 @@ namespace AmbrosJourney.Winter
         SeasonWorldLabel littleMageLabel;
         int nearby=-1;
         string currentTitle;
+        // Advance conversations and grading through the existing level state rather than rebuilding the world.
         public void RestoreProgress(WinterProgress p)
         {
             if(p==null||!p.Valid())throw new ArgumentException("Invalid Winter checkpoint");

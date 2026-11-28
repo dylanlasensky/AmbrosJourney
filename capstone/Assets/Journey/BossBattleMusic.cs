@@ -1,3 +1,4 @@
+// Temporarily replaces exploration music with a looping boss encounter track.
 using UnityEngine;
 namespace AmbrosJourney.Audio
 {

@@ -1,3 +1,4 @@
+// Builds the personalized certificate PDF and dispatches its platform-specific download.
 using System;
 using System.Collections;
 using System.Collections.Generic;

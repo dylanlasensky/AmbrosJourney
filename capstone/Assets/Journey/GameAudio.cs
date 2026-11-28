@@ -1,3 +1,4 @@
+// Routes shared sound cues and session-wide music/mute preferences to registered audio sources.
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -17,6 +18,7 @@ namespace AmbrosJourney.Audio
         public static int ClickPlayCount {get;private set;}
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
         static void Reset(){SceneManager.activeSceneChanged-=SceneChanged;clips.Clear();sources.Clear();musicSources.Clear();MusicEnabled=true;lastPlayed.Clear();host=null;ui=world=null;Muted=false;clickFrame=-1;ClickPlayCount=0;}
+        // Routes shared sound cues and session-wide music/mute preferences to registered audio sources.
         public static AudioClip Clip(SoundCue cue)
         {
             if(!clips.TryGetValue(cue,out var clip)||!clip){clip=Resources.Load<AudioClip>("GameSounds/"+cue);clips[cue]=clip;if(!clip)Debug.LogError("Missing game sound: "+cue);}

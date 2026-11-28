@@ -1,3 +1,4 @@
+// Builds and validates QA/release Web players and packages the itch.io ZIP.
 #if UNITY_EDITOR
 using System;
 using System.IO;

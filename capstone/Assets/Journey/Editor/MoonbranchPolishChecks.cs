@@ -1,3 +1,4 @@
+// Runs isolated Editor regression checks for moonbranch polish.
 #if UNITY_EDITOR
 using System;
 using System.Linq;

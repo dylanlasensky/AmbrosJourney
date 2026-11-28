@@ -23,6 +23,6 @@ Earlier direction used the official Stardew Valley press imagery for connected b
 
 The world checks assert authored building counts of 1/2/3/2, routes to every doorstep and Winter tree texture assignment. Whole-map, arrival, doorway and nine-view surveys are saved under ignored `Logs/WorldAudit`. Selected older world captures remain in `docs/WorldScreenshots`; current boss captures are under `docs/BossScreenshots`.
 
-The connected suite covers all seasons, both Winter bosses, mixed finale/retries, pause, current-run chapter revisits, all twelve artifacts, certificate, fresh-run resets and direct Spring entry while the teammate intro is absent. Progress is held in memory for one sitting; returning to the menu ends the run and refreshing the browser starts fresh. See [Testing](Testing.md) and [current results](CurrentValidation.md).
+The connected suite covers all seasons, both Winter bosses, mixed finale/retries, pause, current-run chapter revisits, all twelve artifacts, certificate, fresh-run resets and fresh Spring startup after the supplied intro. Progress is held in memory for one sitting; returning to the menu ends the run and refreshing the browser starts fresh. See [Testing](Testing.md) and [current results](CurrentValidation.md).
 
 The retired procedural opening is not shipped; the teammate still owns intro/outro clips. Building entrances are scenic landmarks, not newly playable interiors. Existing terrain/character licenses remain in force. User testing and target-laptop performance measurement are still required.

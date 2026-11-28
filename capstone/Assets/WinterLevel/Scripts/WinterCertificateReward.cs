@@ -1,3 +1,4 @@
+// Spawns the earned certificate scroll and opens its reward view on interaction.
 using AmbrosJourney.Audio;
 using System.Collections;
 using System.Collections.Generic;

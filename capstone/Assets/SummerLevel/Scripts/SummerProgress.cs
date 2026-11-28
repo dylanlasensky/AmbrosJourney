@@ -1,3 +1,4 @@
+// Defines Summer lesson questions, prerequisites, scores and retry state.
 using System;
 
 namespace AmbrosJourney.Summer

@@ -1,3 +1,4 @@
+// Applies Spring presentation refinements through explicit Editor tools.
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEditor;

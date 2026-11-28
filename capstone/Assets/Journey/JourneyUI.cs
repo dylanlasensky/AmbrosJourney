@@ -1,3 +1,4 @@
+// Creates the shared canvas, text, buttons and keyboard navigation used by menus and activities.
 using AmbrosJourney.Audio;
 using System;
 using TMPro;

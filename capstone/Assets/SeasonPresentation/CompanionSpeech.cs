@@ -1,3 +1,4 @@
+// Presents deliberate companion conversations and controls their contextual overhead labels.
 using TMPro;
 using UnityEngine;
 using AmbrosJourney.Journey;

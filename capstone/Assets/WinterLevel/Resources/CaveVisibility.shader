@@ -1,3 +1,4 @@
+// Masks cave darkness around the player and the scene's lantern light pools.
 Shader "AmbrosJourney/CaveVisibility"
 {
     Properties { _MainTex ("Texture", 2D) = "white" {} }

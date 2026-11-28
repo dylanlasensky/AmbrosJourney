@@ -1,3 +1,4 @@
+// Validates the Spring scene structure and required gameplay references.
 using System;
 using System.Reflection;
 using UnityEngine;

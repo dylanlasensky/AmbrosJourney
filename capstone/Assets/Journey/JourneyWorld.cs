@@ -1,3 +1,4 @@
+// Coordinates optional artifact placement, collection and world-level journey services.
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;

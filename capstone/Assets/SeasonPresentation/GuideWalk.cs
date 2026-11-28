@@ -1,3 +1,4 @@
+// Moves companions along collision-aware routes and pauses them during conversations.
 using UnityEngine;
 namespace AmbrosJourney.Presentation
 {

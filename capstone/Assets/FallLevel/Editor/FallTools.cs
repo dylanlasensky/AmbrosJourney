@@ -1,3 +1,4 @@
+// Provides explicit Editor commands for preparing, opening and validating Fall.
 #if UNITY_EDITOR
 using System;
 using System.IO;
@@ -15,6 +16,7 @@ namespace AmbrosJourney.Fall.Editor
     {
         const string Root="Assets/FallLevel";
         public const string ScenePath=Root+"/Fall.unity";
+        // Editor entry points keep preparation and checks outside normal player execution.
         static bool CanChangeScene()
         {
             if(EditorApplication.isPlayingOrWillChangePlaymode)return false;

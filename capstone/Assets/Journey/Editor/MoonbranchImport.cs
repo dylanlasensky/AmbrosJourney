@@ -1,9 +1,11 @@
+// Applies consistent texture import settings to Moonbranch artwork.
 #if UNITY_EDITOR
 using UnityEditor;
 namespace AmbrosJourney.Journey.Editor
 {
     public sealed class MoonbranchImport : AssetPostprocessor
     {
+        // Editor entry points keep preparation and checks outside normal player execution.
         void OnPreprocessTexture()
         {
             if(!assetPath.Contains("/Journey/Moonbranch"))return;

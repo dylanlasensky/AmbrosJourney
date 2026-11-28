@@ -1,3 +1,4 @@
+// Shows the AI-content disclaimer before handing off to the opening video.
 using System;
 using TMPro;
 using UnityEngine;

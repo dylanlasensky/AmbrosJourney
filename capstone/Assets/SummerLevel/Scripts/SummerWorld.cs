@@ -1,3 +1,4 @@
+// Builds Summer scenery, actors, collision and navigable routes.
 using System;
 using System.Collections.Generic;
 using TMPro;

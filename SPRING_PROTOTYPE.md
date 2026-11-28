@@ -4,7 +4,7 @@ Spring is the introductory chapter of the connected four-season game. The Ancien
 
 ## Start and progression
 
-Use the main menu through `Assets/Opening/Intro.unity`, **Capstone > Play From Opening**, or **Play Spring Only** for a direct chapter preview. New Journey starts Spring immediately until the teammate supplies the optional intro.
+Use the main menu through `Assets/Opening/Intro.unity`, **Capstone > Play From Opening**, or **Play Spring Only** for a direct chapter preview. New Journey shows the AI-content disclaimer and plays the supplied intro before loading fresh Spring.
 
 1. Meet the Mage beside his cottage for the three-page introduction.
 2. Read the field notes at Blossom Grove, Stillwater Lake and Whispering Ruins.
@@ -31,6 +31,6 @@ Interactive people and lesson objects have overhead **[E]** cards; artifacts use
 
 World rebuilding commands replace generated scene content. Coordinate scene ownership before using Upgrade Spring World or the cottage/trail polish commands. Do not use a Spring rebuild to generate another season. The retired generated opening and `AnimatedOpening.cs` are no longer shipped; old demo footage is historical, not a current visual reference.
 
-Spring's approximate five-minute first-time pacing is a target awaiting audience testing. Movement retains side-facing character frames. The optional teammate intro/outro remains separate from gameplay.
+Spring's approximate five-minute first-time pacing is a target awaiting audience testing. Movement retains side-facing character frames. The supplied teammate intro/outro are integrated into the menu and completion flow.
 
 See [current design](docs/GameDesign.md), [questions](docs/QuestionRefresh.md), [boss artwork](docs/Bosses.md) and [validation](docs/CurrentValidation.md).

@@ -1,3 +1,4 @@
+// Captures Spring demonstration frames through Editor tooling.
 using System.Collections;
 using System.IO;
 using UnityEngine;

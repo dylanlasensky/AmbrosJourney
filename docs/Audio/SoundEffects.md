@@ -17,8 +17,10 @@ Original, short mono PCM cues replace the per-level synthesized pitch sweeps. Ge
 
 The four seasonal MP3 assets and their music volume/loop/pitch settings are unchanged. Sound cues are preloaded/decompressed short PCM assets, avoiding the latency and unnecessary streaming overhead of using long-song import settings.
 
-## Original audio validation snapshot
+## Music and mute controls
 
-Unity 6000.6.2f1 `AmbrosJourney.Journey.Editor.SoundEffectsChecks.Run` passed: eight mono cues, duration and waveform limits, non-clipping headroom, smooth endpoints, four original music mappings, shared-clip ownership, click deduplication, paused-menu playback, and mute inheritance/unmute. The fixture also ran the complete certificate reward regression (pixel breakup, fast scroll drop, pickup, reload recovery, name/date and PDF).
+Music On/Off appears in the pause journal and main-menu Settings, not on the gameplay HUD. `RegisterMusic` marks exploration, menu, battle and cinematic music sources so new tracks inherit the session preference. The setting resets for a new application session and is not written to disk. Sound effects remain audible with music off; M is the separate all-audio mute shortcut. Main-menu Spring music stops immediately after a valid New Journey action. Encounter music temporarily replaces the seasonal track and restores it when the conversation closes.
 
-That earlier .NET lesson/guardian pass had 22,927 assertions plus save/name/recovery checks. The current suite has 22,895 progression assertions after removing courage-only checks and adding required Winter cave-guidance checks, plus legacy-save compatibility; see [current validation](../CurrentValidation.md). Audio cues and music are unchanged by the feedback update. Cue files are generated from deterministic synthesis and use no third-party audio samples.
+## Verification
+
+`SoundEffectsChecks.Run` checks cue duration/waveform limits, shared ownership, clicks, pause and mute inheritance. `PauseJournalChecks.Run` checks the pause-only music action, toggle behavior and separation from effects. These procedures do not establish subjective audio balance; see [current results](../CurrentValidation.md) for executed checks. Cue files use deterministic synthesis without third-party sound samples; existing music credits remain with the project assets.

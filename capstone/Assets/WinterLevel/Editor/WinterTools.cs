@@ -1,3 +1,4 @@
+// Provides explicit Editor commands for preparing, opening and validating Winter.
 #if UNITY_EDITOR
 using System;
 using System.IO;
@@ -15,6 +16,7 @@ namespace AmbrosJourney.Winter.Editor
     {
         const string Root="Assets/WinterLevel";
         public const string ScenePath=Root+"/Winter.unity";
+        // Editor entry points keep preparation and checks outside normal player execution.
         static bool CanChangeScene()
         {
             if(EditorApplication.isPlayingOrWillChangePlaymode)return false;

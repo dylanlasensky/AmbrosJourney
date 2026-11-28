@@ -1,3 +1,4 @@
+// Runs isolated Editor regression checks for general feedback.
 #if UNITY_EDITOR
 using System;
 using System.IO;

@@ -1,3 +1,4 @@
+// Draws the shared seasonal HUD, lesson progress and controls.
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;

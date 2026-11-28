@@ -1,3 +1,4 @@
+// Selects Spring actor sprite frames from movement and facing direction.
 using UnityEngine;
 public class SpringSpriteAnimation : MonoBehaviour
 {

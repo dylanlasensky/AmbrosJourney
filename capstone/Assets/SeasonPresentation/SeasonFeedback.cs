@@ -1,3 +1,4 @@
+// Displays consistent answer feedback and encounter effects across seasons.
 using UnityEngine;
 namespace AmbrosJourney.Presentation
 {
@@ -7,6 +8,7 @@ namespace AmbrosJourney.Presentation
         SpriteRenderer[] sparks;
         Vector3[] origins,velocity;
         float born;
+        // Displays consistent answer feedback and encounter effects across seasons.
         public static void Burst(Vector2 position,Color color,int count=14)
         {
             var host=new GameObject("Lesson sparkle");host.transform.position=position;var effect=host.AddComponent<SeasonFeedback>();effect.Initialize(color,count);

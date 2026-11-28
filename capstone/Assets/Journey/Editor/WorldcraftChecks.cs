@@ -1,3 +1,4 @@
+// Runs isolated Editor regression checks for worldcraft.
 #if UNITY_EDITOR
 using System;
 using System.Linq;
@@ -9,6 +10,7 @@ namespace AmbrosJourney.Journey.Editor
     public static class WorldcraftChecks
     {
         static void Check(bool condition,string reason){if(!condition)throw new Exception("WORLDCRAFT: "+reason);}
+        // Editor entry points keep preparation and checks outside normal player execution.
         public static void Verify(int chapter)
         {
             Check(!UnityEngine.Object.FindObjectsByType<SpriteRenderer>().Any(r=>r.sprite&&r.sprite.name=="Letter"),"No decorative envelopes resemble an interaction");

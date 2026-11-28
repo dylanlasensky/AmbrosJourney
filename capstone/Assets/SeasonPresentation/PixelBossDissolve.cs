@@ -1,3 +1,4 @@
+// Breaks a defeated boss sprite into animated pixel fragments.
 using System;
 using System.Collections;
 using System.Collections.Generic;

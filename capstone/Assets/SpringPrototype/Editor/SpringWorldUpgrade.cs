@@ -1,3 +1,4 @@
+// Applies the optional Spring world-art upgrade through Editor commands.
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;

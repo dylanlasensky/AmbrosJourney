@@ -1,3 +1,4 @@
+// Renders and collects responses for the finale's choice, arrangement and matching activities.
 using AmbrosJourney.Audio;
 using System;
 using System.Collections.Generic;

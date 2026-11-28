@@ -1,0 +1,30 @@
+{
+  "builtOn": "2026-11-27",
+  "unity": "6000.6.2f1",
+  "sourceBaseCommit": "97c7cbb0ae45ddf2c03e62a76a407de1f932518a",
+  "containsUncommittedSourceUpdate": true,
+  "distribution": "Local packages; large archives excluded from ordinary Git history.",
+  "packages": [
+    {
+      "platform": "Web",
+      "path": "Web/AmbrosJourney-Web.zip",
+      "bytes": 152048019,
+      "sha256": "708853747abd539051d21d0ec1e6c8fb6f19dc7b1d3134f90562009dda8fc0ad",
+      "target": "WebGL release, gzip"
+    },
+    {
+      "platform": "macOS",
+      "path": "Desktop/macOS/AmbrosJourney-macOS.zip",
+      "bytes": 126147255,
+      "sha256": "1aab33f1b251edf5df4a2861c566f4c7a501ff0e25b2c82c744f3a04113fd944",
+      "target": "Apple silicon arm64; local ad-hoc signature, not notarized"
+    },
+    {
+      "platform": "Windows",
+      "path": "Desktop/Windows/AmbrosJourney-Windows.zip",
+      "bytes": 136488353,
+      "sha256": "264bcd1d8e29c99b64b42a7026634b21297afd08176045e11f041238cb955184",
+      "target": "Windows x86_64 Mono"
+    }
+  ]
+}

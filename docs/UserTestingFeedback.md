@@ -1,28 +1,29 @@
-# User-testing feedback: November 12, 2026
+# Implemented user-testing feedback
 
-**Historical feedback record.** The November 12 observations and validation below describe that earlier build. As of November 22, guidance uses a direct gold-and-cream arrow that remains available in Winter, and NPC conversations are started manually with nearby [E] prompts. The Little Mage briefing is required after the Warden before entering the cave. Decorative world headings are removed, and interaction cards appear only at usable range. Progress now lasts for one sitting, with no persistent save or Continue action. The old frozen-arrow and save/reload descriptions below are historical. See the [current overview](../README.md) and [companion guidance](CompanionGuidance.md).
+This maintained summary replaces the scattered dated feedback and validation notes. The original submitted sprint documents remain unchanged under [Reports](../Reports/README.md). Current verification and its limits are recorded in [CurrentValidation](CurrentValidation.md).
 
-## General game changes
+## Interaction and readability
 
-1. Courage and hearts are removed from gameplay, question feedback, trackers and progress data. Wrong answers explain the issue and allow retries without a penalty meter. Existing saves are compatible.
-2. The HUD counter reads **0/12 Artifacts**, using the actual twelve-item collection. Its full-count form fits at the original point size.
-3. Correct responses explicitly say **Correct!** before the explanation across all chapters and final activity types.
-4. Quiz scores use the full question count throughout an attempt: five for seasonal guardians, eight for the finale, and the actual fixed count for each lesson. An incorrect answer changes no denominator.
-5. Continuous Winter ridge barriers prevent walking around or behind the cave artwork. The intended doorway stays open and enters automatically after the Warden is passed and the Little Mage cave briefing is completed. Older saves behind the ridge recover at the approach.
-6. Little Mage still accompanies the party in the cavern, but has no dialogue interaction or [E] caption there. His outdoor dialogue stays available outside.
-7. The certificate's Exit action and Escape now resume the cave and form the home portal. Walking through that portal returns to the main menu, retaining the completed journey and certificate.
-8. Final Activity 5 says: “Click each answer box repeatedly to see all options. Fill every row, then check.”
+- Determination is shared across menus, questions, notes, controls and certificate. Existing UI point sizes and parchment frames are retained.
+- One nearby overhead `[E] NAME` card identifies an available NPC conversation. Completed conversations hide their cards until another briefing becomes available. Cave Little Mage has no conversation. Field notes/artifacts have their own contextual cards; the redundant bottom interaction prompt is removed.
+- Pause and Artifacts sit immediately below the top-right objective/lesson panel. The artifact counter explicitly says `Artifacts`.
+- Correct responses start with `Correct!`; explanations remain after both outcomes. Quiz totals remain fixed at the full question count. Courage/hearts and R-to-restart are removed.
+- The name field glows on the main menu. The caret alignment fix is retained. A Determination-font AI-content disclaimer fades in before the original intro.
 
-## Earlier changes in this same feedback batch
+## Learning, navigation and encounters
 
-Winter's arrival Mage is clear of its portal; the Warden stands beside the visible cave opening; Little Mage waits beside the cave after the Warden and explains it separately from the walk-in transition. The main menu's empty-name field pulses gold until a name is entered. Interactive objects and helpers use overhead [E] captions; the duplicate bottom interaction card is hidden. Nearby captions avoid overlap, and the Garden Warrior's finished dialogue stops advertising a repeat interaction.
+- Questions use conversational middle-school language, progressively applying AI foundations, responsible use, useful prompts and source verification. The finale uses eight mixed activities rather than repeating seasonal questions. Matching explains how to cycle choices. [Curriculum](QuestionRefresh.md).
+- The gold objective arrow stays available through all seasons, including Winter and Echo Cavern. The old frozen-compass rule and guidance modes are retired.
+- Companions use spaced, collision-aware movement. Conversations begin deliberately with E; escorts wait at their destinations.
+- Seasonal bosses match their setting and animate. Defeated guardians dissolve into pixels; Spring, Summer and Fall then assemble their exit portals. Flags/shields are removed. Victory dialogue gives a concise takeaway instead of explaining the animation.
+- Winter retains the natural cave entrance, continuous ridge/rear collision and no extra portal overlay. After Warden victory, the player must finish Little Mage's outside briefing before walking through the doorway. Arrival Little Mage is clear of the landing portal.
+- Scene-local players and canonical spawns prevent the Spring-to-Summer handoff from borrowing the outgoing player's position. Same-run revisits retain chapter progress.
 
-[Current validation](CurrentValidation.md) records the combined checks. The authored question content, four-season order, guardian passing scores, existing artwork and player font remain in place.
+## Completion, audio and browser delivery
 
-## Winter compass notice
+- Final victory dissolves Echo Keeper and drops an E-pickup certificate scroll. Download PDF keeps the certificate open. Exit/Escape returns to the cave and reveals the home portal. Walking through it plays the supplied outro and returns to the menu.
+- Main-menu Spring music stops when a valid journey starts. Seasonal and battle music use the existing session-wide preference. **Music On/Off is available in the pause journal and main-menu Settings, with no persistent gameplay music button.** It does not mute sound effects; M remains the separate all-audio mute shortcut.
+- Intro/outro originals are preserved. Web packaging uses the responsive template, bounded Retina rendering, cinematic focus handling and browser PDF download bridge.
+- Runs are intentionally in-memory only. There is no Continue/autosave/account/backend. Ending a run, closing or refreshing starts fresh; old storage is ignored without deletion. The certificate remains accessible after completion until a new run or reload.
 
-The first heavy-snow compass outage in Explorer mode opens an icy popup: “Uh oh! Your compass has frozen!” It directs the player toward the next unfinished landmark using lanterns and trail signs. Its pixel icicles are native uGUI geometry. The message appears once per saved journey, waits for conversations to finish, and supports Continue/E/Enter or Escape. After the notice, the outdoor arrow stays hidden for the rest of Winter, even when weather clears or the save reloads. It returns in the cave and hides outside again. Assisted guidance avoids the initial freeze only if selected before the notice.
-
-## Documentation handoff
-
-The root/chapter guides, design, journey/save/certificate handoff, guidance/world notes, video brief and testing instructions describe the current implementation. Earlier validation counts and original art prompts are preserved as dated evidence/provenance. The current certificate pickup opens the certificate directly; the retained outro helper needs an explicit teammate integration. No new video, font, package or generated-art asset is introduced by this feedback work.
+The team repeatedly tested individually and gathered feedback from friends and roommates. No middle-school user testing or measured learning outcome is claimed. That remains future work.

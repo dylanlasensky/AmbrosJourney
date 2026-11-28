@@ -1,3 +1,4 @@
+// Applies consistent texture import settings to Worldcraft artwork.
 #if UNITY_EDITOR
 using UnityEditor;
 using UnityEngine;
@@ -5,6 +6,7 @@ namespace AmbrosJourney.Journey.Editor
 {
     public sealed class WorldcraftImport : AssetPostprocessor
     {
+        // Editor entry points keep preparation and checks outside normal player execution.
         void OnPreprocessTexture()
         {
             if(!assetPath.EndsWith("/SeasonalRelics.png")&&!assetPath.EndsWith("/SeasonalDetails.png")&&!assetPath.EndsWith("/WinterRidge.png")&&!assetPath.EndsWith("/SeasonPortals.png"))return;

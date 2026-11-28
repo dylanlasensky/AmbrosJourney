@@ -1,3 +1,4 @@
+// Handles player movement, interaction and encounter animation in Summer.
 using UnityEngine;
 using UnityEngine.InputSystem;
 using AmbrosJourney.Presentation;
@@ -20,6 +21,7 @@ namespace AmbrosJourney.Summer
         public void Flash(Color color){flashColor=color;flashUntil=Time.time+.3f;}
         void Awake(){visual=GetComponent<SpriteRenderer>();body=GetComponent<Rigidbody2D>();animationMaterial=visual.material;}
         void Start(){body=GetComponent<Rigidbody2D>();if(isPlayer)trail.Reset(transform.position);}
+        // Respect modal input blocking before applying movement or interaction.
         void Update()
         {
             movement=Vector2.zero;bool blocked=level&&level.InputBlocked;

@@ -48,16 +48,23 @@ Both methods reject non-batch use and exit the Editor after their checks. `PASS`
 
 Use the assertion count printed by the current pure suite; older dated counts describe earlier snapshots. Session tests check fresh defaults, distinct data objects for separate runs, same-run lesson/collection state and certificate identity. New launches must ignore existing save files/storage without changing them; verify that with the runtime session tests, not by treating a serialization test as startup coverage. Required asset metadata must be included; no new packages are required.
 
-## Standalone build
+## Release exports
+
+Use a fresh output directory for each build. The top-level [Builds guide](../Builds/README.md) lists packaged deliverables and extraction instructions. Keep the project on Unity 6000.6.2f1 with matching Web and Windows Mono support installed.
 
 ```sh
-"/Applications/Unity/Hub/Editor/6000.6.2f1/Unity.app/Contents/MacOS/Unity"   -batchmode -projectPath /absolute/path/to/capstone   -executeMethod AmbrosJourney.Presentation.Editor.BossRefreshChecks.Build -quit   -logFile /tmp/ambros-build.log
+unity build capstone --target StandaloneOSX --execute-method AmbrosJourney.Journey.Editor.JourneyDesktopBuild.BuildMac --output /absolute/empty/macOS/AmbrosJourney.app
+unity build capstone --target StandaloneWindows64 --execute-method AmbrosJourney.Journey.Editor.JourneyDesktopBuild.BuildWindows --output /absolute/empty/Windows/AmbrosJourney.exe
+unity build capstone --target WebGL --execute-method AmbrosJourney.Journey.Editor.JourneyWebBuild.BuildSubmission --output /absolute/empty/Web/AmbrosJourney-Web
 ```
 
-This makes a macOS release player at `Logs/BossChecks/AmbrosJourney-BossPreview.app`; Intro and Spring are build scenes and later worlds/art are retained through Resources. Check `Logs/BossChecks/Build.txt`. It uses a separate output from the earlier preview so building does not overwrite a running copy.
+Desktop export uses release options and the Intro/Spring build scenes. Keep the Windows .exe beside its Data folder, UnityPlayer.dll and Mono dependencies; distribute the complete folder. Preserve the macOS .app bundle with an archive tool that retains executable permissions. Web export automatically makes a ZIP with index.html at its root, verifies original MP4 hashes and default itch size/file limits. Build summaries report errors, warnings and byte sizes. The methods reject populated destinations rather than mixing stale outputs.
 
-See [current validation](CurrentValidation.md) for results rather than inferring success from a command launch. A full human standalone playthrough, target-hardware measurements, accessibility, audio and first-time learning/pacing tests remain necessary. Hosted Unity builds require a separate licensing setup; no paid service or self-hosted runner is added.
+A successful desktop export does not establish Windows execution on a Mac or platform signing/notarization. Test on the target OS. A browser release must also pass the [hosted Web procedure](BrowserBuildChecks.md); no paid build service or extra gameplay package is required.
 
+## Pause music regression
+
+Run `AmbrosJourney.Journey.Editor.PauseJournalChecks.Run` in the isolated project using the batch-mode pattern above, without -quit because the runner exits when finished. Require PAUSE_JOURNAL_PASS in the fresh Editor log. It checks no music control on the gameplay HUD (including after Resume), pause Music On/Off behavior, independent effects, layout, end-run cancellation, artifacts, unlocked chapter travel and certificate access.
 
 ## Second-round boss and portal regression
 
@@ -80,3 +87,5 @@ Run `TransitionArrivalChecks.Run` in the same isolated batch-mode project. Its r
 - Summer arrival has a collision-aware route to the first workshop, with each route segment clear of scenery and closed seals.
 
 Separately verify that startup ignores existing legacy save data without changing it, closing/refreshing begins a fresh run, end-run confirmation can be cancelled, and the completed certificate remains available until the next run. A source guard or clean-start fixture does not replace testing with existing browser storage. Record fresh release results separately from these instructions.
+
+For a Mac export made with the command tool, keep its `unity-build.provenance.json` beside rather than inside the .app bundle. Apply a local ad-hoc signature with `codesign --force --deep --sign - /path/AmbrosJourney.app`, then verify with `codesign --verify --deep --strict /path/AmbrosJourney.app`. Archive that verified bundle with `ditto -c -k --sequesterRsrc --keepParent /path/AmbrosJourney.app /path/AmbrosJourney-macOS.zip`. This does not notarize it or add Intel support; the delivered build targets Apple silicon. Keep a signed bundle outside iCloud during packaging, since iCloud adds Finder metadata to unpacked app bundles. Windows archives must exclude Unity's `BackUpThisFolder_ButDontShipItWithYourGame` directory while retaining the player dependencies.

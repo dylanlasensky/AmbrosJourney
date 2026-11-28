@@ -1,3 +1,4 @@
+// Runs isolated Editor regression checks for certificate reward.
 #if UNITY_EDITOR
 using System;
 using System.IO;
@@ -24,6 +25,7 @@ namespace AmbrosJourney.Journey.Editor
             if(SessionState.GetBool(Key,false)){JourneySession.TestMode=true;}
             Application.logMessageReceived+=(message,stack,type)=>{if(stack.Contains("UnityEditor.Search.SearchDatabase"))return;if(SessionState.GetBool(Key,false)&&EditorApplication.isPlaying&&(type==LogType.Error||type==LogType.Exception||type==LogType.Assert))SessionState.SetString(Key+"Error",message);};
         }
+        // Editor entry points keep preparation and checks outside normal player execution.
         public static void Run()
         {
             Directory.CreateDirectory("Logs/CertificateChecks");Directory.CreateDirectory("Logs/CertificateChecks/Animation");foreach(var frame in Directory.GetFiles("Logs/CertificateChecks/Animation","*.png"))File.Delete(frame);SessionState.SetString(Key+"Error","");SessionState.SetBool(Key,true);

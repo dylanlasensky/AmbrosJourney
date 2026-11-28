@@ -1,3 +1,4 @@
+// Check responsive Web template configuration without claiming a browser playthrough.
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');

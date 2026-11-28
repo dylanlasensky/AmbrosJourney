@@ -1,3 +1,4 @@
+// Runs isolated Editor regression checks for boss refresh.
 #if UNITY_EDITOR
 using System;
 using System.IO;
@@ -10,6 +11,7 @@ namespace AmbrosJourney.Presentation.Editor
     public static class BossRefreshChecks
     {
         [MenuItem("Capstone/Bosses/Prepare Seasonal Artwork")]
+        // Editor entry points keep preparation and checks outside normal player execution.
         public static void Prepare()
         {
             QuestionRefreshChecks.PrepareFont();

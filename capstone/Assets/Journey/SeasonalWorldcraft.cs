@@ -1,3 +1,4 @@
+// Adds seasonal environmental art, animated water and scene-local landmark dressing.
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;

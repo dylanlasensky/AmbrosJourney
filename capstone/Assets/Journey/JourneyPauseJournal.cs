@@ -1,3 +1,4 @@
+// Draws the two-page pause journal, chapter navigation and current-run status.
 using System;
 using TMPro;
 using UnityEngine;

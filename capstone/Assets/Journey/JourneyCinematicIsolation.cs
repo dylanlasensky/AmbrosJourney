@@ -1,3 +1,4 @@
+// Keeps cinematic presentation separate from gameplay cameras, input and audio.
 using System.Collections.Generic;
 using UnityEngine;
 namespace AmbrosJourney.Journey

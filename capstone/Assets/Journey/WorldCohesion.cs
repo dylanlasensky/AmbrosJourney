@@ -1,3 +1,4 @@
+// Coordinates scene-local environmental details, reflections and visual cohesion.
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;

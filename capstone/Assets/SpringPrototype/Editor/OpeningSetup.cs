@@ -1,3 +1,4 @@
+// Prepares the Intro scene and opening assets through explicit Editor commands.
 using UnityEngine;
 using UnityEngine.Video;
 using UnityEditor;

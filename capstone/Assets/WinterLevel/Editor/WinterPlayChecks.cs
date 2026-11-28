@@ -1,3 +1,4 @@
+// Runs isolated Editor regression checks for winter play.
 #if UNITY_EDITOR
 using System;
 using System.Collections;
@@ -12,6 +13,7 @@ namespace AmbrosJourney.Winter.Editor
         const BindingFlags Flags=BindingFlags.Instance|BindingFlags.NonPublic;
         static WinterLevel level;static SeasonOverlay ui;public static int States;
         static void Check(bool value,string why){if(!value)throw new Exception("WINTER CHECK: "+why);}
+        // Editor entry points keep preparation and checks outside normal player execution.
         static void Call(string name)=>typeof(WinterLevel).GetMethod(name,Flags).Invoke(level,null);
         static void Inspect()
         {

@@ -1,3 +1,4 @@
+// Assembles a portal from pixel fragments before enabling its completed appearance.
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

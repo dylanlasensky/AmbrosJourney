@@ -1,3 +1,4 @@
+// Runs Spring's teaching conversations, lesson questions and guardian progression.
 using AmbrosJourney.Audio;
 using UnityEngine;
 using UnityEngine.InputSystem;

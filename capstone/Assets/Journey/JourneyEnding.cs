@@ -1,3 +1,4 @@
+// Plays the ending sequence after the player enters the completed journey home portal.
 using System;
 using System.Collections;
 using UnityEngine;

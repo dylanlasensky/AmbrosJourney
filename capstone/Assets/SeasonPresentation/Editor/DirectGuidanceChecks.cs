@@ -1,3 +1,4 @@
+// Runs isolated Editor regression checks for direct guidance.
 #if UNITY_EDITOR
 using System;
 using System.Reflection;

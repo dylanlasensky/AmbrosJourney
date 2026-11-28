@@ -1,81 +1,37 @@
-> Handoff updated November 22, 2026 for one-sitting play. See [companion guidance](CompanionGuidance.md), [cinematic fullscreen checks](CinematicFullscreenChecks.md) and [Web export/browser checks](BrowserBuildChecks.md). Earlier validation describes its dated snapshot; this update does not claim a new browser pass.
+# Runtime architecture and journey flow
 
-# Journey completion update
+## Entry and state
 
-## Play in one sitting
+Open the inner `capstone/` Unity project in **6000.6.2f1**. Start `Assets/Opening/Intro.unity`. The main menu requires an explorer name, shows an AI-content disclaimer, plays the supplied intro and loads Spring. Intro and Spring are the two build scenes; later worlds are instantiated from Resources prefabs through seasonal portal bridges.
 
-Open `capstone` in Unity **6000.6.2f1**, open `Assets/Opening/Intro.unity`, and press Play. Enter an explorer name and choose New Journey. The supplied intro plays, then Spring starts fresh. There is no Continue option or persistent progress saving.
+`JourneySession` coordinates name entry, menus, pause, current-run chapter data and transitions. `JourneyData` stores identity, unlocked chapters, visited locations, lesson/boss progress, twelve artifacts and certificate completion in memory. Chapter revisits keep this run's state and position. An arrival guard prevents an immediate repeat transition when restoring a location on a portal.
 
-Pause is always available on the right side of every season, or with **Esc**. It stops physics, animation and audio, and offers Resume, confirmed end-run, artifacts, guidance, and travel to seasons unlocked during this run. Revisits retain this run's lessons and collected artifacts. Returning to a chapter position on a portal does not immediately send the player through it: step away first.
+There is no persistent profile, Continue, database, account or live AI API. Refreshing/closing the player, ending the run or starting a new journey starts fresh. Legacy saves are ignored without deletion. After the completed outro, the certificate can be reopened from the menu until a new journey or reload.
 
-The current run holds the explorer name, chapter locations, Winter region, partial lessons, bosses, artifacts and completion date in memory. Closing or refreshing the game, ending the run or beginning a new journey clears that progress. Existing save files and browser storage are ignored and left untouched. There is no autosave, background checkpoint or cloud account. After completing the outro, the earned certificate remains available from the menu until a new journey or reload; a downloaded PDF remains the player's file.
+## Learning flow
 
-## Exploration and learning
+| Chapter | Runtime ownership | Player progression |
+| --- | --- | --- |
+| Spring | Authored scene, `SpringGuide`, `SpringPlayer` | Controls journal, Ancient Mage, three notes/six Myth Bat claims, guardian 4/5, Summer portal |
+| Summer | `SummerWorld`, `SummerLevel`, `SummerProgress`, `SummerPortalBridge` | Warriors, workshop/garden/message missions, three wards, guardian 4/5, Fall portal |
+| Fall | `FallWorld`, `FallLevel`, `FallProgress`, `FallPortalBridge` | Emberfist, goal/context/format and revision lessons, three runes, guardian 4/5, Winter portal |
+| Winter | `WinterWorld`, `WinterLevel`, `WinterProgress`, `WinterPortalBridge` | Two evidence stations, Warden 4/5, completed outside Little Mage briefing, natural cave entry |
+| Echo Cavern | Same Winter instance; `FinalChallenges`, `FinalActivityPanel` | Archive note/two choices, eight cumulative activities, 7/8, certificate scroll, home portal |
 
-- Spring field note 2 is at **(7, 1)**, on the approach to the lakeside Myth Bat at (10, 6).
-- Three artifacts are placed in each season. Approach and press **E**. The HUD reads 0/12 Artifacts and the collection screen tracks all twelve. Completed seasons remain available from Pause during this run, so missed artifacts can still be collected before ending it.
-- Completing the collection awards **Evidence Keeper** and reveals the Evidence Compass lesson: agreement between AI tools is not independent corroboration. Winter also teaches this idea before the final activities; collection completion is optional.
-- A bright gold-and-cream arrow with a dark outline rotates smoothly toward the next required destination. It remains active throughout Winter, including during snowstorms and cave travel. Players use the terrain to choose a walkable route; the arrow does not select path waypoints or disappear in snow.
-- The **Frostbound Warden** stands directly in front of Echo Cavern. Complete the two outdoor evidence stations, then score **4/5** to earn the Winter crest and recruit Little Mage. Closing the victory message returns movement control without starting another conversation. Press E beside Little Mage and finish his cave briefing with E or Enter; Escape closes it without granting entry. The Warden disintegrates, and the player can walk through the natural doorway after the briefing and victory sequence finish. Caves remain accessible when revisited during this run. Ridge barriers block travel behind the cave.
-- Inside the cave, Little Mage follows without a dialogue interaction or overhead E card. Complete the Echo Archive to open the final hall. The **Echo Keeper** presents eight new AI safety activities spanning all four seasons: selecting private details, arranging a prompt, matching tasks to help and checking evidence. **7/8** passes. Dragging has click and keyboard alternatives. The independent-evidence lesson is taught in Winter, so it does not depend on collecting optional artifacts. Correct feedback says Correct! and each score denominator stays fixed at the full quiz length. Courage/hearts are removed. Retries preserve lessons, crests and collectibles.
+Questions are authored content. Progress classes keep grading separate from UI and are linked directly into standalone tests. Wrong lesson answers allow retry; failed bosses retain completed lessons. The final has multi-selection, ordering, prompt assembly, matching and choice activities with click/keyboard alternatives. Correct feedback is explicit and all score denominators stay fixed. [Current curriculum](QuestionRefresh.md).
 
-## Intro and outro videos
+## Presentation and interaction
 
-The teammate's 40-second `Ambros-Journey-Intro-40s.mp4` from PR18 is restored unchanged as `Assets/Journey/Resources/Journey/Intro.mp4`. The name-entry menu opens first. Every New Journey plays that video, followed by loading and fresh Spring. The older October still-image sequence is no longer selected. See [video source provenance](IntroVideoSource.md).
+`JourneyUI`, `SeasonOverlay` and the baked Determination font provide the shared parchment presentation. `SeasonWorldLabel` shows one nearby overhead interaction card and avoids fixed HUD/player overlap. `CompanionSpeech` and each level's state retire completed NPC prompts and restore them for later briefings. E starts dialogue; Esc closes it. The duplicate bottom prompt and R restart are absent.
 
-`Ambros-Journey-Outro-20s.mp4` is included as `Assets/Journey/Resources/Journey/Outro.mp4`. Collecting the certificate opens it first. Closing it with Exit or Esc resumes the cave and reveals the home portal. Walking through that portal plays the outro, then returns to the main menu. The video fits the viewport with aspect-preserving letterboxing, with all game cameras and UI disabled. All game audio sources are muted and the listener is paused; a dedicated video-audio source is the only sound allowed through. The screen stays black while the first video frame prepares. Download PDF keeps the certificate open. A successfully watched outro is recorded in the current run. Reopening or closing the certificate never starts the video. Video preparation failures retain a way back to the menu or gameplay.
+`GuideWalk` uses collision-aware companion routes and varied formation spacing. `MoonbranchCompass` points directly at the next objective through all four seasons and the cave. It does not freeze in snow or choose a path around obstacles. `NaturalTrail`, `SeasonalWorldcraft` and `WorldCohesion` supply trails, scenery, reflections and lantern details. Winter's ridge collision prevents walking behind the cave; its visibility mask reveals nearby passages and lantern pools.
 
-The certificate uses this run's explorer name and original completion date. Exit and Escape resume the cave and assemble a home portal; walking through it opens the main menu. From the main-menu certificate viewer, Exit/Escape returns directly to that menu; completed explorers can reopen the certificate there. On desktop, Download PDF saves a dated PDF in the user's Downloads folder (persistent data folder if Downloads is unavailable) and opens it in the default viewer. The existing WebGL download bridge supports browser PDF downloads. This feedback batch verified the Unity flow and desktop PDF export; it does not include a new browser build. The certificate is a high-resolution rendered page, preserving the game's text layout; it is not a professional qualification.
+`SeasonBossVisual` animates seasonal atlases. `BossPortalSequence`, `PixelBossDissolve` and `PixelPortalReveal` block competing input while victories dissolve and exits assemble. Winter instead keeps its original cave art: no portal overlay, and first entry also requires the completed outside Mage briefing. Final victory drops the certificate scroll. E opens it; Download PDF stays in the viewer; Exit/Escape resumes the cave and builds the home portal. Walking through it plays the original outro and returns to the menu.
 
-## Interaction cards
+## Pause, audio and deployment
 
-Each interactive helper or lesson object uses one overhead [E] card; artifacts use [E]. Cards follow the current sprite bounds, avoid overlapping neighboring cards and hide during conversations/journals. Automatic portal destinations do not imply an E requirement. The redundant bottom interaction card is disabled. The Garden Warrior stops advertising her finished dialogue, including during same-run chapter revisits; other helpers and lesson targets keep their established interactions.
+Esc/Pause freezes gameplay, animation and ordinary audio. The two-page journal offers Resume, confirmed End run, Artifacts, **Music On/Off**, unlocked chapter travel and an earned Certificate action. Guidance is always on. The gameplay HUD has only Pause and Artifacts actions below the objective box; no music button persists over gameplay. Main-menu Settings also controls music. The music preference lasts for the application session and affects new tracks as well as current music; sound effects remain separate. M mutes all registered audio.
 
-## Graphics and animation
+`GameAudio` shares short sound cues, `BossBattleMusic` replaces exploration music during encounters, and the menu uses Spring's track. `JourneyCinematicIsolation` suppresses game UI/cameras/other audio during films. Web builds copy the original MP4s to StreamingAssets, use the responsive custom template and browser PDF bridge. Native PDF export writes to Downloads, with the existing fallback when unavailable. A certificate records participation, not an external qualification.
 
-The generated atlas uses the existing seasonal terrain pack as its visual reference: rounded violet-gray stone, warm ivory highlights, earthy roofs and clustered pixel shading. It adds warm and snowy ranger cottages, a mountain integrated with the cave mouth, and collectible compass shrines. Existing shelter/cottage visuals use the same family. Fall's enlarged placeholder guardian is replaced by a four-pose stone-and-bramble Sentinel atlas. Only authored landmark buildings remain; their front steps connect to trails. Seasonal cottage variants, snow-rooted trees, carved signs and grouped local furnishings replace generic extra-house placement. Generated files and import metadata live under `Assets/Journey/Resources/Journey`.
-
-Water surfaces have moving highlights, lanterns subtly flicker, and existing blossom/leaf/snow effects continue. All UI now uses the supplied Determination font through a baked TMP asset, including menu, notes, choices, controls, collection and certificate. Existing point sizes remain; font leading is normalized and cramped labels are shortened.
-
-Spring, Summer and Winter have new seasonal guardian atlases; the final Echo Keeper is a larger ancient AI robot. Two idle poses and distinct one-shot windup/impact poses respond to encounter events. Fall's existing Sentinel is unchanged. See `Bosses.md`.
-
-Companions retain a safe route spine but use different gaps and slowly varying lateral offsets. Obstacle checks pull the formation back into narrow passages; teleports reset its route.
-
-## Performance changes
-
-- Hardware VSync divides common display refresh rates down to at most 60 FPS: 60→60, 90→45, 120→60, 144→48, 165→55, 240→60. Other refresh configurations fall back to a 60 FPS software target. This follows Unity's preference for hardware frame pacing on desktop.
-- Background running is disabled during ordinary gameplay. Video playback temporarily keeps rendering through a fullscreen focus change, then restores the previous background setting.
-- The player arrow points directly to the objective and does no route searches. Companion escorts still use bounded, cached route checks; formation clearance is sampled rather than allocating cast results every frame.
-- Builds open in a 1280×720 window and use a non-development release build. Unity Editor testing still has Editor overhead.
-
-These changes address identifiable unnecessary work. They do not establish the temperature on the teammate's laptop; a standalone build should still be compared on that hardware.
-
-## Research and asset choices
-
-- [A Short Hike](https://ashorthike.com/): marked routes, backcountry exploration and optional discoveries informed the landmark/collectible loop.
-- [TUNIC](https://tunicgame.com/): exploration, lost knowledge and staged discoveries informed the final-cave structure. No game art was copied.
-- [Unity frame-rate documentation](https://docs.unity3d.com/6000.0/Documentation/ScriptReference/Application-targetFrameRate.html): desktop VSync and target-frame-rate behavior.
-- [Kenney Tiny Town](https://kenney.nl/assets/tiny-town) and [Tiny Dungeon](https://kenney.nl/assets/tiny-dungeon): reviewed as CC0 alternatives. Their 16×16 style is simpler than the existing terrain; this update uses referenced original artwork and the team's existing pack to preserve visual consistency. No additional third-party pack was imported.
-
-## Verification
-
-The pure .NET suite covers all 32 Summer, 243 Fall, 243 Winter and 256 final-activity pass/fail combinations, plus clean independent runs, in-memory chapter data, bounds and name handling. The Unity integration suite must cover real seasonal portals, quiz retries, UI fitting, pause/end-run confirmation, same-run revisits, all twelve E-key pickups, certificate export and a clean New Journey. `TransitionArrivalChecks.Run` separately checks active-scene player selection and canonical arrivals without borrowing the outgoing player.
-
-Run the existing .NET project, `python3 tests/check_assets.py`, and Unity's `SeasonIntegrationChecks.Run`. Runtime captures and generated sample PDFs are written under `capstone/Logs/SeasonChecks` and are not source assets. `SeasonIntegrationChecks.Build` creates the release Mac application there.
-
-## Homepage
-
-The blossom-valley homepage follows the supplied visual reference. New journeys begin at the name field, then play the supplied intro and enter Spring. Settings explains always-on guidance. There is no returning-player Continue button or saved-season card. Ending an unfinished run requires confirmation. Completed explorers can reopen their certificate until a new journey or reload. Quit exits a standalone player; a browser build explains that the tab can be closed. The supplied intro/outro clips remain teammate-owned.
-
-
-See [second-round feedback changes](SecondUserTesting.md) for the removed R shortcut, shared boss crumble, animated seasonal exits and cave-to-menu home portal.
-
-## Spring controls journal
-
-First-time explorers see a large two-page controls book at Spring spawn, matching the pause journal frame. Pixel key diagrams show WASD, arrow keys, E, 1/2, J, I and Esc. The controls explain the arrow beside the player and direct them to the Ancient Mage. E, Enter, the button or Esc dismisses the controls. Walking near the Mage does not start dialogue: press E and finish his three pages to enable the field lessons. Escape leaves an unfinished conversation available to reopen. Current-run chapter revisits retain completed controls and lessons without replaying them.
-
-## Boss encounter music
-
-The supplied `atlasaudio-battle-drums-636771.mp3` loops during the Spring Blossom Guardian, Summer Suncrest Guardian, Fall Sentinel, Winter Frostbound Warden and Echo Keeper conversations. It temporarily pauses the seasonal background track and resumes it when the conversation closes. Global mute and pause apply to the battle track. It uses the same streaming import settings as the other seasonal music.
-
-Focused Unity checks verified all five conversations, looping, background-music replacement/restoration, mute and pause/resume. A separate ending check verified certificate close → home portal reveal → physical portal entry → final video → main menu.
+Release Web/macOS/Windows exports and rebuild instructions are indexed in [Builds](../Builds/README.md). Browser execution/fullscreen/download testing is separate from compilation and packaging. [Testing](Testing.md), [actual results](CurrentValidation.md), [video provenance](IntroVideoSource.md).

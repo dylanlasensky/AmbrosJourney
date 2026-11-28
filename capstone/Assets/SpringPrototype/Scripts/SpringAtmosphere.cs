@@ -1,3 +1,4 @@
+// Adds ambient motion and visual details to Spring's existing scene.
 using UnityEngine;
 using AmbrosJourney.Audio;
 public class SpringAtmosphere : MonoBehaviour

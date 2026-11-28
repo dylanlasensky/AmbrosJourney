@@ -1,3 +1,4 @@
+// Applies shared camera feedback without replacing each season's follow controller.
 using UnityEngine;
 namespace AmbrosJourney.Presentation
 {

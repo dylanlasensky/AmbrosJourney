@@ -1,3 +1,4 @@
+// Prepares the Spring prototype on its initial Editor opening.
 using System.IO;
 using UnityEditor;
 [InitializeOnLoad]

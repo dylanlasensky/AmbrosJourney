@@ -1,3 +1,4 @@
+// Runs isolated Editor regression checks for presentation play.
 #if UNITY_EDITOR
 using System;
 using System.IO;
@@ -20,6 +21,7 @@ namespace AmbrosJourney.Presentation.Editor
         static MonoBehaviour level;
         static SeasonOverlay ui;
         static void Check(bool value,string message){PresentationTools.Require(value,message);}
+        // Editor entry points keep preparation and checks outside normal player execution.
         static void Inspect()
         {
             typeof(SeasonOverlay).GetMethod("LateUpdate",Flags).Invoke(ui,null);Canvas.ForceUpdateCanvases();

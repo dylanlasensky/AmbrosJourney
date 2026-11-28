@@ -1,3 +1,4 @@
+// Animates seasonal boss atlases and responds to encounter strike signals.
 using System;
 using UnityEngine;
 

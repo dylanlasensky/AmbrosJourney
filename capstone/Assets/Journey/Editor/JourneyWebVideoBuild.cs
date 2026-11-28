@@ -1,3 +1,4 @@
+// Copies the original cinematic files into Web StreamingAssets after a successful build.
 #if UNITY_EDITOR
 using System.IO;
 using UnityEditor;

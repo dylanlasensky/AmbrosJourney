@@ -1,3 +1,4 @@
+// Follows the Fall player within the season's world bounds.
 using UnityEngine;
 
 namespace AmbrosJourney.Fall
